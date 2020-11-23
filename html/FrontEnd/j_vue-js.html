@@ -102,6 +102,7 @@
 <li><a href="#org2931cc3">9.6.5. 聚合显示到 App.vue 里</a></li>
 </ul>
 </li>
+<li><a href="#org50867fe">9.7. 添加 axios 获取数据</a></li>
 </ul>
 </li>
 </ul>
@@ -1331,7 +1332,7 @@ alert-box 2:
 </p>
 
 
-<figure id="orgf1ee226">
+<figure id="org15c7a2e">
 <img src="img/oimg_20201104_064733.png" alt="oimg_20201104_064733.png" width="300px">
 
 </figure>
@@ -2160,6 +2161,30 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 </pre>
 </div>
 </div>
+</div>
+</div>
+
+<div id="outline-container-org50867fe" class="outline-3">
+<h3 id="org50867fe"><span class="section-number-3">9.7</span> 添加 axios 获取数据</h3>
+<div class="outline-text-3" id="text-9-7">
+<div class="org-src-container">
+<pre class="src src-js">created <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+    axios<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span>
+        url: <span style="color: #8b2252;">"http://localhost:9999/server_comment_list_war_exploded/comments"</span>,
+        responseType: <span style="color: #8b2252;">"json"</span>
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>.then<span style="color: #7388d6;">(</span><span style="color: #a020f0;">function</span> <span style="color: #909183;">(</span><span style="color: #a0522d;">data</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        <span style="color: #008b8b;">this</span>.comments = data;
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+为什么会有如下错误:
+</p>
+<pre class="example" id="org2ee6830">
+Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_exploded/comments' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+</pre>
 </div>
 </div>
 </section>

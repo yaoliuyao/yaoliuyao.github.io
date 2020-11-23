@@ -1783,3 +1783,22 @@ https://cli.vuejs.org/zh/guide/
    }
   </style>
 #+end_src
+
+** 添加 axios 获取数据
+
+#+begin_src js
+  created () {
+      axios({
+          url: "http://localhost:9999/server_comment_list_war_exploded/comments",
+          responseType: "json"
+      }).then(function (data) {
+          this.comments = data;
+      });
+  }
+#+end_src
+
+为什么会有如下错误:
+#+begin_example
+Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_exploded/comments' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+#+end_example
+
