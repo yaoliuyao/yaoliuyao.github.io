@@ -766,7 +766,7 @@ alert-box 2:
   </template>
 #+end_src
 
-* 第三方组件
+* 第三方组件库
 
 - iView
 - Element UI
