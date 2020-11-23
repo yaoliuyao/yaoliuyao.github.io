@@ -1,0 +1,536 @@
+#+TITLE: Transact-SQL
+
+
+
+* T-SQL
+
+- 什么是 T-SQL?
+
+** 批处理 (go)
+
+#+begin_src sql
+  select * from emp;
+  select * frmo dept; -- 如果这条出问题，上边一条也不会被执行
+  go
+  select * from emp;
+  go
+#+end_src
+
+小结:
+- GO 并不是标准的 SQL 关键词
+- GO 的作用是 *批处理*，它会将之前的若干语句一起编译并发送给服务器去执行
+- 一个批处理中的语句，如果有一条编译出错，它们整个批中的命令都将不会执行
+
+** 脚本 (Script)
+
+你可以将所有的 sql 语句保存到一个后缀名为 sql 的文件中:
+- 方便编辑
+- 可以永久化保存
+- 可以导入执行
+
+比如，保存为 D:/xxx.sql:
+#+begin_src sql
+  use xxx;
+  go
+
+  select * from emp;
+  select * from emp;
+
+  go
+
+  create table xyz 
+  (
+      id int
+  );
+
+  insert into xyz values (1), (2);
+#+end_src
+
+* 变量 (Variable)
+** 变量的命名
+
+- 以 ACII ... 等开头，不能使用保留字，不允许空格和特殊字符
+- 虽然可以使用中文，但是不建议
+- 一些不符合标准的名字，可以使用 [] 或者 "" 的方式引起来
+
+** 局部变量
+
+局部变量的声明周期是一个 P:
+- 是用户定义的，作用在一个 P 范围内的变量
+- 名字必须要以 @ 开始
+- 使用 declare 定义，使用 set/select 赋值，使用 select 查看值
+
+基本定义语句:
+#+begin_src sql
+  -- 例子 1
+  declare @sss int;   -- 声明
+  set @sss = 2000;    -- 赋值
+  select @sss;        -- 查看
+  select * from emp where sal > @sss; -- 使用
+
+  -- 例子 2
+  declare @s int, @job varchar(20);
+  set @s = 1000;
+  select @job = 'sales';
+  select * from emp where sal > @s and job like @job + '%';
+  select @s;
+
+  -- 例子 3，可以将查询的结果保存到变量中
+  declare @s int;
+  select @s=sal from emp where empno = 7499;
+  select * from emp where sal >= @s;
+#+end_src
+
+** 全局变量
+
+服务器内部使用的一些变量，通过修改它们，可以影响服务器的行为。
+
+用户只能修改这些变量，不能删除、创建它们。
+
+分为两种，一种是静态的，一种是动态的:
+#+begin_src sql
+  -- 每次查询都会不变
+  select @@VERSION;
+
+  -- 每次查询，会根据实际情况返回相应数据
+  delete from emp where sal < 1200;
+  select @@ROWCOUNT;
+#+end_src
+
+常见的全局变量:
+- @@connections / @@dbts / @@cpu_busy / @version;
+- @@rowcount
+- @@cursor_rows
+- @@error !!! 如果不出错，返回 0
+- @@identity
+
+* 逻辑处理
+** if/else
+
+基本句式:
+#+begin_src sql
+  if 条件
+    操作
+  else if
+    操作
+  else
+    操作
+#+end_src
+
+例子:
+#+begin_src sql
+ -- 给某个人加工资 (7499)
+ --  如果工资小于 1500 加上 1000
+ --  如果工资小于 3000 加上 500
+ --  如果工资大于等于 3000 加上 50
+
+ declare @empno int;
+ set @empno = 7499;
+
+ if (select sal from emp where empno = @empno) < 1500
+   begin
+     update emp set sal = sal + 1000 where empno = @empno;
+     insert into my_log (message) values ('money is so cool.');
+   end
+ else if (select sal from emp where empno = @empno) < 3000
+   begin
+     update emp set sal = sal + 500 where empno = @empno;
+     insert into my_log (message) values ('what a pity.');
+   end
+ else
+   begin
+     update emp set sal = sal + 50 where empno = @empno;
+     insert into my_log (message) values ('fxxxxxk.');
+   end
+#+end_src
+
+** while
+
+基本句式:
+#+begin_src sql
+  while 条件
+    语句
+#+end_src
+
+示例:
+#+begin_src sql
+  -- 向数据库中插入 1000000 条测试数据
+
+  declare @count int;
+  set @count = 1000000;
+  while @count > 0
+    begin
+        insert into my_log (message) values ('hello');
+        set @count = @count - 1
+    end
+#+end_src
+
+** return/returns
+
+无条件返回。
+
+** waitfor
+
+计时器，可以指定计划任务，比如，晚上对数据做一些统计性的工作。
+
+#+begin_src sql
+  waitfor delay '00:00:05' select * from emp;
+  waitfor time '00:00:05' select * from emp;
+#+end_src
+
+** print
+
+用来输出字符串到标准输出的。
+
+#+begin_src sql
+  print 'hello world';
+#+end_src
+
+** raiserror
+
+抛出一个错误。(类似 Java 中的 throw new Exception)
+
+#+begin_src sql
+  -- 一个有瑕疵的例子
+
+  declare @emsg varchar(200), @ecode int;
+  set @emsg = 'xxx';
+  set @ecode = 404;
+
+  raiserror('发生了一个错误: %s (%s)', @emsg, @ecode);
+#+end_src
+
+** case-when (很重要)
+
+类似于 Switch:
+
+#+begin_src sql
+  -- 列出每个员工的基本工资情况
+  select ename,
+         case
+           when sal < 1500 then '很少'
+           when sal < 3000 then '可以'
+           else '太多了'
+         end as '工资情况'
+   from emp;
+
+  -- 给所有人加工资
+  --  如果工资小于 1500 加上 1000
+  --  如果工资小于 3000 加上 500
+  --  如果工资大于等于 3000 加上 50
+  update emp set sal = sal + 
+                        (case 
+                          when sal < 1500 then 1000
+                          when sal < 3000 then 500
+                          else 50
+                         end);
+#+end_src
+
+* 函数 (Function)
+** 什么是函数
+
+- 黑箱子
+- 有输入，有输出
+- 无副作用
+
+** 创建函数
+
+- 创建使用 create function
+- 删除使用 drop function
+- 修改使用 alter function
+- 调用使用 select 或 exec
+- 函数内部不能使用 print/insert 等带有副作用的语句
+
+#+begin_src sql
+  -- 创建一个基本函数，查询部门平均工资
+  -- 对比 Java 中的 int pingjungongzi (int deptno)
+  create function pingjungongzi (@deptno int) returns int
+    as
+    begin
+      declare @avgsal int;
+      select @avgsal = avg(sal) from emp where deptno = @deptno;
+      return @avgsal;
+    end;
+
+  -- 调用刚才的函数
+  select dbo.pingjungongzi(20);
+  -- 或
+  declare @s int;
+  exec @s = pingjungongzi 20;
+
+  -- 删除
+  drop function pingjungongzi;
+#+end_src
+
+** 内置函数
+*** 数学函数
+
+- abs/ascii/avg/log/power/exp/PI/round/ceiling/floor()
+- rand() !!!
+
+*** 字符串相关
+
+- len/datalength() !!!
+- str/substring()
+- left/right/replicate/reverse()
+
+*** 日期相关
+
+- getdate() !!
+- datename/dateadd/datediff/day/month/year()
+
+使用 sql 计算一下，入学第一年，每天花费多少钱 (2019-8-5 ~ 2020-8-7)？
+#+begin_src sql
+  select 32000/datediff(day,'2019-08-05','2020-08-07');
+#+end_src
+
+计算一下，你现在活了多少秒。
+
+*** 类型转换 (cast/convert) !!!
+
+基本语法:
+#+begin_example
+  -- CAST Syntax:  
+  CAST ( expression AS data_type [ ( length ) ] )  
+  
+  -- CONVERT Syntax:  
+  CONVERT ( data_type [ ( length ) ] , expression [ , style ] )  
+#+end_example
+
+基本示例:
+#+begin_src sql
+  select cast('12345' as int);
+  select cast('2012-3-4' as datetime);
+
+  select convert(varchar(19), getdate());
+  select convert(varchar(19), getdate(), 20); -- yyyy-mm-dd hh:mi:ss
+  select convert(varchar(10), getdate(), 110);
+  select convert(varchar(11), getdate(), 106);
+  select convert(varchar(24), getdate(), 113);
+#+end_src
+
+https://docs.microsoft.com/zh-cn/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver15
+
+*** 其他
+
+- isnull()
+
+* 存储过程 (Procedure)
+** 什么是存储过程
+
+将一系列进行处理的语句过程保存下来，后面可以复用。
+
+有很多好处:
+- 它允许标准组件化编程
+- 能够实现更快的执行速度
+- 能够减少网络流量
+- 可以保障安全机制
+
+有什么坏处:
+- 【强制】禁止使用存储过程，存储过程难以调试和扩展，更没有移植性
+
+** 创建存储过程
+*** 基本语句
+
+#+begin_src sql
+  -- 创建
+  create procedure p_aa1 as
+    create table xxx (a int, b varchar(20));
+    insert into xxx values (1, 2), (2, 3), (3, 4);
+    select * from xxx;
+    waitfor delay '00:00:20' drop table xxx;
+  GO
+
+  -- 执行
+  exec p_aa1;
+  GO
+
+  -- 删除
+  drop procedure p_aa1;
+  drop proc p_aa1;
+
+  -- 修改
+  alter procedure p_aa1 as
+    select * from emp;
+#+end_src
+
+*** 各种参数
+
+没有参数:
+#+begin_src sql
+  create procedure p_aaa as select * from xxx;
+  exec p_aaa;
+#+end_src
+
+带有参数:
+#+begin_src sql
+  create procedure
+    p_aaa @name varchar(20) 
+  as
+    select * from xxx where name < @name;
+
+  exec p_aaa 30;
+#+end_src
+
+带有参数，还有默认值:
+#+begin_src sql
+  create procedure p_aaa
+    @name varchar(20) = 'Tom'
+  as
+    select * from xxx where name < @name;
+
+  exec p_aaa;
+  exec p_aaa 'xxx';
+#+end_src
+
+带 output 参数的存储过程:
+#+begin_src sql
+  create procedure p_aaa
+    @r int output
+  as
+    select @r = count(*) from xxx;
+
+  -- 调用
+  declare @rrr int;
+  exec p_aaa @rrr output;
+#+end_src
+
+混合各种参数:
+#+begin_src sql
+  create procedure p_aaa
+    @n varchar(20) = 'TOM',
+    @r int output
+  as
+    select @r = count(*) from xxx where name < @n;
+
+  -- 调用
+  declare @rrr int;
+  exec p_aaa 'Cat', @rrr output;
+
+  -- 查看返回的结果
+  select @rrr;
+#+end_src
+
+** 简单示例 (统计)
+
+为 emp 生成统计数据，统计所有部门的平均工资、最小工资和最大工资，将结果保存到 tj_emp 表中。要求:
+- 如果这张表不存在，那么创建
+- 如果这张表存在，但是里面有数据，清空它
+- 如果插入完成，在日志表 (my_log) 插入一条信息
+
+写法示例:
+#+begin_src sql
+  create procedure p_tj_emp
+    @lowsal int = 1000,
+    @highsal int = 10000
+  as
+  begin
+    -- 如果不存在，创建之
+    if not exists (select * from sys.tables where name = 'tj_emp')
+       create table tj_emp (deptno int, a float, b float, c float);
+    -- 清空数据
+    truncate table tj_emp;
+    -- 插入新的数据
+    insert into tj_emp select deptno, avg(sal) as a, max(sal) as b, min(sal) as c from emp
+      where sal >= @lowsal and sal <= @highsal
+      group by deptno;
+    -- 记录日志
+    insert into my_log (message) values ('统计完成 - ' + convert(varchar(200), getdate(), 20));
+    -- 结束
+    print 'hello, finished.';
+  end
+#+end_src
+
+** 内置存储过程
+
+系统内置的存储过程，一般是 sp_ 开始:
+#+begin_src sql
+  exec sp_databases;
+  exec sp_help;
+  exec sp_helptext sp_databases;
+  exec sp_helptext sp_helptext; -- 查看存储过程怎么写的
+
+  exec sp_tables;
+  exec sp_columns emp;
+#+end_src
+
+扩展出来的存储过程以 xp_ 开始:
+#+begin_src sql
+  exec xp_cmdshell 'mkdir e:\hello';
+  exec xp_fileexist 'e:\hello';
+
+  -- xp_enumgroups;
+  -- xp_loginconfig
+  -- xp_msver
+  -- xp_grantlogin;
+  -- ...
+#+end_src
+
+* 触发器 (Trigger)
+** 什么是触发器
+
+类似于 JS 中的事件:
+- 强制数据库间的引用完整性
+- 可以执行级联操作等动作
+- 可以防止误操作
+
+坏处:
+- 不透明，有风险，需慎用
+
+** 创建触发器
+
+Insert 触发器:
+#+begin_src sql
+  -- 触发器
+  create trigger tri_emp_insert_jiagongzi
+    on emp
+    after insert
+  as -- inserted 表示插入的数据形成的临时表，名字就叫 inserted
+    update emp set sal = sal + 100 where empno = (select mgr from inserted);
+
+  -- 测试
+  select * from emp;
+  insert into emp (empno, ename, mgr, deptno, sal)
+    values (999, 'ganmaoling', 7902, 10, 2000);
+#+end_src
+
+Delete 触发器:
+#+begin_src sql
+  -- select * into emp_hist from emp;
+  -- select * from emp_hist;
+  -- truncate table emp_hist;
+
+  create trigger tri_emp_delete_history
+    on emp
+    after delete
+  as -- deleted, 所有删除的数据形成的临时表
+    insert into emp_hist select * from deleted;
+#+end_src
+
+Drop 触发器:
+#+begin_src sql
+  -- 禁止删除表、视图等
+  create trigger tri_emp_no_drop
+      on database
+      for drop_table, drop_view, drop_procedure
+  as
+  begin
+      print '您不能这样啊~~~~~';
+      rollback transaction;
+  end
+
+  -- 测试
+  drop table emp;
+#+end_src
+
+* 常见问题
+
+- 什么是函数？
+- 什么是存储过程？
+- 什么是触发器？
+- 函数、存储过程和触发器有什么区别？
+- 函数、存储过程和触发器各有什么优点、缺点？
+- 存储过程的参数类型有哪些？
+- 写一个简单的存储过程，做一件 xxx 事 (统计一下 lagou_position 表中珠海的某些数据)
+- 写一个简单的触发器，完成某种效果 (比如禁止删除某些数据，比如做一些统计性工作)
+

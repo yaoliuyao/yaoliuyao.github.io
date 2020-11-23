@@ -1,0 +1,21 @@
+#+TITLE: 二学期期末考试
+
+
+
+* 题目
+
+[[file:../asset/erqueqikaoshi.doc]]
+
+* 参考视频
+
+#+begin_export html
+<video preload="metadata" controls="controls" width="600">
+  <source src="../videos/kaoshi-1.mp4" />
+</video>
+#+end_export
+
+注意，视频中存在若干瑕疵，请仔细甄别。
+
+* 参考代码
+
+https://github.com/yaollllllsan/6-kaoshi

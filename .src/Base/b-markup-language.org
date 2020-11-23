@@ -1,0 +1,72 @@
+#+TITLE: Markup Language
+
+
+
+* ML (Markup Lauguage)
+
+使用标签，组织内容的方式:
+- 表达能力强
+- 易读易修改
+- 可扩展性强
+
+示例:
+#+begin_src xml
+  <class>
+    <name>163</name>
+    <teacher>xxx</teacher>
+    <students>
+       <student>
+          <name>zhangsan</name>
+          <age>83</age>
+          <dizhi>guangxi</dizhi>
+          <games>
+             <game>111</game>
+             <game>222</game>
+          </games>
+       </student>
+       <student>
+          <name>zhangsan</name>
+          <age>83</age>
+          <dizhi>guangxi</dizhi>
+          <games>
+             <game>111</game>
+             <game>222</game>
+          </games>
+       </student>
+       <student>
+          <name>zhangsan</name>
+          <age>83</age>
+          <dizhi>guangxi</dizhi>
+          <games>
+             <game>111</game>
+             <game>222</game>
+          </games>
+       </student>
+    </students>
+  </class>
+#+end_src
+
+* html (渲染)
+
+html, 超文本标记语言（Hypertext Markup Language）
+
+#+begin_src html
+  <html>
+    <head>
+    </head>
+    <body>
+      <input>
+    </body>
+  </html>
+#+end_src
+
+多年前，也曾出现过 xhtml.
+
+* xml (存储)
+
+xml, 可扩展标示语言（Extensive Markup Language）
+
+充分利用了 ML 的优势，用来进行数据存储。
+它要求必须要有一个根元素，而且必须标签闭合。
+
+常用来保存复杂软件的配置数据，即作为配置文件。

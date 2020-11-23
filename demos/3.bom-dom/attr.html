@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <style>
+     .kuangzhuai {
+       background: black;
+       color: green;
+       height: 300px;
+     }
+     .wenrou {
+       background: green;
+       color: pink;
+     }
+     .wenrou2 {
+       background: green;
+       color: gold;
+     }
+     .bianju {
+       border: 3px dotted purple;
+       border-radius: 50%;
+     }
+
+    </style>
+  </head>
+  <body>
+    <button onclick="switchStyle()">切换编剧样式</button>
+
+    <div id="i3" class="wenrou">
+      我就是这么狂拽
+    </div>
+
+    <div id="i4" class="wenrou bianju">
+      人生真是猝不及防啊
+    </div>
+
+    <div id="i5" class="wenrou2">
+      不管你多少，有多少来多少
+    </div>
+
+    <script>
+
+     function switchStyle() {
+       document.getElementById('i4').classList.toggle('bianju');
+     }
+    </script>
+
+  </body>
+</html>

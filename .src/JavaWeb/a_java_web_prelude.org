@@ -1,0 +1,3316 @@
+#+TITLE: Java Web 起步
+
+* CS vs BS
+
+CS 架构:
+- Client-Server，客户端-服务端
+- 客户端需要你亲自去写，服务器也是
+- 缺点:
+  + 开发人员比较烦: 写客户端需要做的事太多了，太麻烦了
+  + 用户也比较烦: 我要使用一定功能，必须要先 *下载、安装* 客户端
+- 优点:
+  + 非常灵活，我想怎么写就怎么写
+  + 非常安全
+
+BS 架构:
+- Browser-Server，浏览器-服务端
+- 优点:
+  + 开发起来比较简单，修改维护起来也简单，开发的成本变低了，开发的效率变高了
+  + 用户也开始开心起来了，只要打开浏览器，输入 url 地址，访问即可
+- 缺点：
+  + 某些方面，功能是受限的
+  + 必须要考虑各种兼容性的问题。有时候解决兼容性问题带来的成本会非常非常高
+  + 所有的代码都是通过 html/css/js 来实现的，这种方式的客户端实现的代码是透明的。在某些场景之下不具备保密的特点
+
+#+begin_src html
+  <html>
+    <img src=xxx.jpg style="width: 200px; height: 300px; padding: 2em">
+  </html>
+#+end_src
+
+根据项目的实际情况，选择适合的方式进行开发。总之:
+
+能使用 BS 架构的，就要使用 BS 架构。因为，它简单、成本低、效率高。
+
+作为 BS 架构:
+1. 客户端使用的是 html/js/css 创建页面
+2. HTTP 协议
+3. 服务端，可以使用 *Java* /.net/C++/Python/Ruby/PHP
+
+* 准备工作
+
+需要的工具或者软件:
+1. *符合标准* 的浏览器 (Chrome/Edge)
+2. Java 编程语言 (JDK8, Java Development Kit)
+3. 服务器 (Tomcat/Jetty)
+4. [可选项] 需要一个趁手的编辑器，最好是 IDE (Eclipse/Intellj Idea)
+
+** 下载安装 Chrome 浏览器
+
+请大家自行安装
+
+** 下载安装 JDK8
+
+基本步骤:
+1. 打开浏览器，输入 jdk8 进行搜索，得到地址 https://www.oracle.com/cn/java/technologies/javase/javase-jdk8-downloads.html
+2. 进入页面，找到 windows_x64 的版本，下载
+3. 双击，安装
+
+安装完，得到的最重要的两个命令:
+1. javac，用来将 java 文本文件 *编译* 成 class 文件
+2. java，用来将 class 文件放到 jvm 环境中 *运行*
+
+使用举例 (e:\demo\Hello.java):
+#+begin_src java
+  public class Hello {
+      // public 权限，外部可以访问的、公开的
+      // static 静态的，不需要 new 创建实例，即可调用的
+      // void   返回值，返回为空
+      // main   函数名，入口函数 (默认会执行的方法)
+      // aaa    用户的输入，是一个字符串数组
+      public static void main(String[] aaa) {
+          System.out.println("我要打印参数了");
+          for (int i = 0; i < aaa.length; i++) {
+              System.out.println(i + " : " + aaa[i]);
+          }
+          System.out.println("打印结束. 总共打印了 " + aaa.length + " 个参数");
+      }
+  }
+#+end_src
+
+#+begin_src bat
+  REM 0. 切换到相应目录
+  cd e:\demo
+
+  REM 1. 编译，得到一个 Hello.class
+  "C:\Program Files\Java\jdk1.8.0_231\bin\javac.exe" Hello.java
+
+  REM 2. 执行，输出结果
+  "C:\Program Files\Java\jdk1.8.0_231\bin\java.exe" Hello
+#+end_src
+
+*** 配置环境变量
+
+首先，配置，使得可以方便地调用 javac/java 命令。
+
+#+begin_example
+命令行窗口，执行一个命令，那么它需要找到一个对应的可执行文件去执行，其寻找顺序为:
+1. 如果当前的命令是全路径的话 (c:\xxx\javac.exe)，则使用路径指定的可执行文件
+2. 查看当前目录下面有没有对应的文件 (.\javac.exe)，如果有，那么使用它
+3. 查看系统中的 Path 变量 (实际就是使用 ; 分割的一系列文件夹)，然后逐个(文件夹)搜索下面有没有相应可执行文件，找到则使用之
+4. 如果上面步骤结束，还是找到，那么报错
+
+因此，如果想让某个命令方便被调用，有如下解决方案:
+1. 在窗口中使用 set 重新设置 Path 的值，将命令所在的文件夹添加到 Path 中:
+   : set Path=%Path%;c:\xxx\yyy\bin;
+2. Windows 提供了一种机制，叫环境变量。可以用来设置全局的默认 Path 以及其他全局的值。
+
+注意:
+- 环境变量中 Path 只是比较特殊的一种，除此之外，还有其他相关的一些可能被不同程序依赖，不要轻易删除。
+- 在修改之前，最好拷贝出来。如果修改失败，可以重新复制回去
+#+end_example
+
+总而言之，环境变量的设置，两点:
+1. 添加 JAVA_HOME，对应的值为 JDK 的安装根目录。这个变量将会被 Tomcat 等软件使用到
+2. 修改 PATH，将 javac.exe 所在文件夹，追加到后面。这样，就可以在命令行创建直接调用 javac 了
+
+** 服务器 tomcat 的安装
+
+流行的服务器:
+- Apache Tomcat，开源、免费的
+- Jetty，免费、开源，不同的机制，速度更有优势
+- Weblogic，原先属于 BEA，现在已经被 Oracle 收购了
+- Websphere，属于 IBM 的产品
+- JBoss，相对于来说，很全面很大
+
+Tomcat:
+1. 下载 Tomcat，https://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v8.5.57/bin/apache-tomcat-8.5.57-windows-x64.zip
+2. 随便解压到某个目录
+
+** 第一个 Java Web 程序
+
+首先，在某个文件夹，创建文件 HelloWeb.java:
+#+begin_src java
+  import java.io.*;
+  import javax.servlet.*;
+  import javax.servlet.http.*;
+
+  public class HelloWeb extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+          System.out.println("This the first Web Application");
+          resp.getWriter().write("<html><h3>Hello, Web</h3><script>alert('hello web')</script></html>");
+      }
+  }
+#+end_src
+
+然后，需要将其 *编译* 成 class 文件:
+#+begin_src bat
+  javac -classpath C:\app\apache-tomcat-8.5.57\lib\servlet-api.jar HelloWeb.java
+#+end_src
+
+接下来，将 HelloWeb.class 文件，复制到 $TOMCAT/webapps/ROOT/WEB-INF/classes 文件夹下面。
+
+然后，修改 $TOMCAT/webapps/ROOT/WEB-INF/web.xml:
+#+begin_src xml
+  <servlet>
+    <servlet-name>aaa</servlet-name>
+    <servlet-class>HelloWeb</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>aaa</servlet-name>
+    <url-pattern>/abc</url-pattern>
+  </servlet-mapping>
+#+end_src
+
+之后，就可以启动服务器了，找到 $TOMCAT/bin/startup.bat，双击运行即可。(注意要提前配置 JAVA_HOME 环境变量)。
+
+最后，打开浏览器，输入 url 进行访问:
+: 127.0.0.1:8080/abc
+: localhost:8080/abc
+** 下载、安装 Eclipse 集成开发环境
+
+先熟悉 Eclipse，毕竟还有很多企业在用它。
+
+[[file:../Tools/eclipse.org::*下载][跳转查看 Eclipse 的安装与配置。]]
+
+* 使用 Eclipse 创建第一个 Java Web 项目
+** 第零步，打开 Eclipse
+
+Eclipse 占用内存有点点大，所以会慢一些。平常心、平常心！
+
+** 第一步，创建一个 Dynamic Web Project
+
+从 File 菜单的 New 中选择 Dynamic Web Project 的选项即可。
+
+[[file:img/java-web-first-1.png]]
+
+如果点击了 Next:
+
+[[file:img/java-web-first-2.png]]
+
+
+再点 Next:
+
+[[file:img/java-web-first-3.png]]
+
+** 第二步，[可选] 为新建的项目创建一个服务器
+
+如果从来没创建过服务器的话，我们需要为新项目的运行创建一个服务器。
+如果已有服务器，可以将项目直接 *部署* 到旧的服务器上即可。
+
+[[file:img/java-web-first-4.png]]
+
+在 Servers 标签，点击链接创建服务器，选择 Tomcat8.5 并点 Finish，于是创建完毕:
+
+[[file:img/java-web-first-5.png]]
+
+点击 Add-and-Remove，将我们刚创建的 nihao 添加到服务器即可:
+
+[[file:img/java-web-first-6.png]]
+
+** 第三步，创建我们的第一个动态页面
+
+我们的要求是:
+
+如果用户访问 http://localhost:8080/nihao/hello.html, 那么会显示粗体的 *Hello Java Web*。
+
+这时候，我们需要定义一个特别的 Java 类 (符合 Servlet 规范的类)，来响应用户的请求。
+
+在 src 下面创建一个 Hello.java 文件:
+
+
+[[file:img/java-web-first-7.png]]
+
+nihao/Hello.java 的内容如下:
+#+begin_src java
+  // 包名为 nihao，那么这个类的全名就是 nihao.Hello，需要保存为 nihao/Hello.java
+  package nihao;
+
+  // 需要用到的其他功能 (类)，通过 import 引进
+  import java.io.*;
+  import javax.servlet.*;
+  import javax.servlet.http.*;
+
+  // 按照规范，我们需要继承 HttpServlet 类
+  public class Hello extends HttpServlet {
+      // 在 service 方法内，写我们响应给访问者的逻辑
+      // 这个方法在 HttpServlet 中已经有定义，所以我们需要 Override，即重写它
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          // 获取一个 打印对象，它封装了一些向客户端打印文本内容的方法
+          PrintWriter writer = resp.getWriter();
+          // 利用 writer，将下面内容返回给访问者
+          writer.write("<html><h3>Hello Java Web</h3></html>");
+      }
+  }
+#+end_src
+
+这个 Servlet 类实现完成，我们需要用户可以通过 .../hello.html 的方式访问，我们需要配置一下。
+
+整个项目的核心配置文件就是 WebContent/WEB-INF 下面的 ~web.xml~，我们修改如下:
+
+[[file:img/java-web-first-80.png]]
+
+于是:
+- 我们在 nihao.Hello 的 service 里面定义了一段逻辑，用来响应用户请求
+- 我们也通过配置文件的方式表示，如果用户的请求是 +/xxx+ /hello.html，那么久执行上面的逻辑来回应他
+- 所以我们需要 *委托* 我们的服务器来 *监听用户请求*，如果用户访问到了 /hello.html，那么就调用 nihao.Hello 里的 service 方法以作回应
+
+** 最终章，启动服务器，看结果
+
+
+[[file:img/java-web-first-9.png]]
+
+现在，一切具备了。访问:
+: localhost:8080/nihao/hello.html
+* JS Event vs Java Servlet
+
+#+begin_div :class mc11
+
+写一个寻常函数:
+#+begin_src js
+  function xxx(e) {
+     console.log("kkkk");
+     alert("hello " + e.target.tagName);
+  }
+  // xxx(); // 可以亲自调用
+#+end_src
+
+
+
+
+我们想让函数在 *合适的时机被触发* (用户的动作)。
+
+为了达到这个目的，我们要拜托浏览器（绑定事件）:
+#+begin_src js
+  // 绑定事件的规则
+  document.body.onclick = xxx;
+  document.body.addEventListener('click', xxx);
+#+end_src
+
+之后，浏览器就会 *监听* 用户的一举一动，只要用户的动作满足了上面的要求，
+浏览器就会义无反顾，帮助我们将上面的 xxx 给执行一遍。
+
+为了能让 xxx 更好执行，所以，浏览器在调用 xxx 的时候，会将用户动作的相关细节都封装成了一个 event 的对象传进去了。
+:break:
+
+写一个寻常的类，里面有个方法 service:
+#+begin_src java
+  public class ReadFileServlet extends HttpServlet {
+      protected void service(HttpServletRequest req, HttpServletResponse resp) {
+          System.out.println("hello, world");
+          resp.getWriter().write("kdkkfkdk");
+      }
+  }
+  // new ReadFileServlet().service(...);
+#+end_src
+
+
+我们想让这段处理逻辑在 *合适的时机被触发* (用户的请求)。
+
+为了达到这个目的，我们需要拜托服务器 tomcat (绑定请求):
+#+begin_src java
+  // <servlet><servlet-mapping> <!-- 将某个 url 对应到这个 servlet -->
+  // 还可以直接使用 @注解的方式，就是为了绑定规则
+  @WebServlet("/read.html")
+#+end_src
+
+之后，服务器就会 *监听* 用户的任何请求，只要用户的请求满足刚刚声明的 url 地址，
+服务器就会义无反顾，帮助我们创建一个 Servlet 实例，并且调用 service 方法，将产生的内容返回给请求者。
+
+为了能让 service 更好执行，所以，服务器在调用 service 的时候，传进了封装好的两个参数:
+1. request，包含所有跟 *请求相关* 的信息和方法，获取 url/data/browser..
+2. response，包含了一些跟 *响应相关* 的信息和一些方法，能够方便我们将内容更容易返回给请求者
+#+end_div
+
+* Browser 跟 Server 的数据互动
+** 第一种方法，在超链接后增加参数
+
+直接在浏览器中输入，带参:
+: https://cn.bing.com/images/search?q=sdfs&form=HDRSC2&first=1&scenario=ImageBasicHover
+
+可以在 html 代码里:
+#+begin_src html
+  <a href="/xxx.html?a=3&b=4&c=5">点我看看怎么样</a>
+#+end_src
+
+注意:
+- url 从 ? 开始的是 k1=v1&k2=v2 的形式，就是上传的数据
+- 数据以 & 为分割，可以分为多个 k/v 对
+
+** 第二种方法，使用 Form 表单
+
+#+begin_src html
+  <section id="main">
+    <form action="/xxx" method="get|post">
+      <input name="a">
+      <input name="b">
+      <textarea name="c"></textarea>
+      <button>提交</button>
+    </form>
+  </section>
+  <a href="/xxx?a=第一个input&b=第二个input">提交</a>
+#+end_src
+
+小结:
+- form 表单跟 a 超链接，完成的是同样的效果，就是向服务器发送一次新的请求
+- form 跟 a 必须要有请求的地址，form 用 action 表示，a 用 href 表示
+- form 跟 a 都可以携带参数，form 使用下面的 input/textarea/option 之类的来表达参数，a 只能够写死
+- 如果 action 被省略的话，默认的 action 为当前页面；
+- 如果 method 被省略的话，默认的 method 为 get
+- 除了 get 之外，method 的有效取值还有 post|put|delete|patch，最常用新的还是 get 和 post; 这些都是属于 http 传输协议规定的
+
+#+begin_src html
+  <form action="/denglu" method="post">
+      <input name="username" placeholder="用户名">
+      <input name="password" type="password" placeholder="密码">
+      <button>登录</button>
+  </form>
+#+end_src
+
+** 服务器获取参数的方式
+
+基本的句式:
+#+begin_src java
+  // 参数，代表的就是用户上传的数据，是一种 k/v 结构
+  String value = request.getParameter("key");  // 如果没有参数，返回 null，否则返回的是 key 对应的一个字符串的值
+  String valueMap = request.getParameterMap(); // 得到包含所有参数的一个 Map 对象
+#+end_src
+
+一个稍微具体点的例子，根据用户的请求参数做做相关的事情:
+#+begin_src java
+  protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      String xxx = req.getParameter("xxx");
+
+      String dirString = getServletContext().getRealPath("/wenben");
+
+      File file = getRandomFileFromDirectory(dirString);
+      String content = getFileContent(file);
+
+      String html;
+      if (xxx == null || xxx.equals("ignore")) {
+          html = "<html><h3>404</h3><p>因为你的参数是 ignore，所以我不能为您提供更多</p></htm>";
+      } else {
+          html = "<html>" + "<head><meta charset=utf-8></head>" + "<h3>" + file.getName() + "</h3>"
+                  + "<p><pre style='display:none'>" + content + "</pre></p>"
+                  + "<button>Click Me</button><button class='rf'>Refresh</button>" + "<hr>" + "<p>xxx: " + xxx
+                  + "</p>" + "<hr>" + "<input type='text' placeholder='please input your file name'>"
+                  + "<input type='text' placeholder='please input your file content'>"
+                  + "<input type='submit' value='Submit your file'>" + "<script>"
+                  + "function xxx() { alert(document.querySelector('pre').innerText) }"
+                  + "document.querySelector('button').onclick=xxx;"
+                  + "document.querySelector('.rf').onclick = () => location.reload()" + "</script>" + "</html>";
+      }
+      resp.getWriter().write(html);
+  }
+#+end_src
+
+* 案例分析 (○ 读取文件)
+
+使用 Eclipse 创建一个简单项目 (比如项目名字为 readfile):
+- 在 WebContent 下面放置若干 txt 格式文件 (比如 a.txt, b.txt)
+- 用户可以使用 localhost:8080/readfile/read 的方式进行访问
+- 随机读取任意一个 txt 文本文件的内容，并响应给用户。html 格式为:
+
+  #+begin_src html
+    <html>
+      <h3>[文件名]</h3>
+      <p>
+          [文件内容]
+      </p>
+    </html>
+  #+end_src
+
+** 分析题目
+
+使用 Java:
+1. 从某个文件夹随机获取到某个文件
+2. 获取到文件之后，读取到文件中的内容
+3. 使用文件的名字，以及文件的内容，组装成用户可接受的 html 返回
+4. 如果将文件保存到 WebContent 目录，如何去定位这个目录下面的文件
+
+** 第一步，先创建项目
+
+比如:
+- 项目的名字 readfile
+- Java 源文件的名字 readfile/ReadFileServlet.java
+
+** 第二步，实现逻辑，从文件夹获取随机文件
+
+#+begin_src java
+  public class ReadFileServlet {
+      public static void main(String[] args) {
+          String dirName = "E:\\workspace\\hello";
+		
+          ReadFileServlet readFileServlet = new ReadFileServlet();
+          File rFile = readFileServlet.getRandomFileFromDirectory(dirName);
+          System.out.println("得到的随机文件是: " + rFile);
+      }
+	
+      File getRandomFileFromDirectory(String dirName) {
+          // 1. 应该列出文件夹下面的所有文件，按照道理返回的是一个数组才对
+          // 2. 从上面的数组里，随机获取一个元素。怎么去随机
+		
+          File dir = new File(dirName);
+          File[] files = dir.listFiles();
+		
+          int index = new Random().nextInt(files.length);
+          File rFile = files[index];
+          return rFile;
+      }
+  }
+#+end_src
+
+
+小结:
+1. 我们抽象出来的某些逻辑，最好能 *封装* 成单独的方法
+   + 可以方便进行代码复用
+   + 代码更整洁，变得易于维护，容易阅读
+2. 操作文件和文件夹，传统的方法是使用 java.io.File 类
+   + 根据文件名创建 File 对象: ~File file = new File(filename)~;
+   + 比如，列出所有文件: ~file.listFiles()~;
+3. 在 Java 中，数组的语法是 ~File[] files = ..~，数组可以通过 for 循环去遍历
+4. 在 Java 中，获取随机数的方法:
+   1. Math.random()，可以获取从 0 到 1 的一个随机 double 类型的值
+   2. 上面的方法过于底层，所以 Java 又提供了一个叫 java.util.Random 的类，封装了一些方便使用的方法
+
+** 第三步，实现逻辑，从某个文件中读取文件内容
+
+#+begin_src java
+  public static void main(String[] args) throws IOException {
+      String dirName = "E:\\workspace\\hello";
+		
+      ReadFileServlet readFileServlet = new ReadFileServlet();
+      File file = new File(dirName + "\\.classpath");
+      String cString = readFileServlet.getFileContent(file);
+      System.out.println(cString);
+  }
+  String getFileContent(File file) throws IOException {
+      // 由于 File 类出现太早，设计不够合理，所以 JDK7 推出了一个新的 Path 类想来替代 File
+      // 另外，JDK7 还提供了一个叫 Files 的静态类，封装了很多方便操作文件的方法
+      byte[] bs = Files.readAllBytes(file.toPath());
+      return new String(bs);
+  }
+#+end_src
+
+小结:
+1. 使用 Files.readXxx(Path) 这样的方法，可以方便读取文件的内容
+2. 可以通过 new String(byte[]) 的方法，将一个字节数组转化成一个字符串
+3. 我们也可以通过 Stream 的方法更灵活操作文件的读取
+
+** 第四步，将上面的两个逻辑，跟 Servlet 结合来实现请求效果
+
+#+begin_src java
+  @WebServlet("/read")
+  public class ReadFileServlet extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String dirString = getServletContext().getRealPath("/wenben");
+          // String dirString = "E:\\workspace\\readfile\\WebContent\\wenben";
+
+          File file = getRandomFileFromDirectory(dirString);
+          String content = getFileContent(file);
+
+          String html = "<html>"
+              + "<h3>" + file.getName() + "</h3>"
+              + "<p><pre>" + content + "</pre></p>"
+              + "</html>";
+          resp.getWriter().write(html);
+      }
+
+      File getRandomFileFromDirectory(String dirName) {
+          // 1. 应该列出文件夹下面的所有文件，按照道理返回的是一个数组才对
+          // 2. 从上面的数组里，随机获取一个元素。怎么去随机
+
+          File dir = new File(dirName);
+          File[] files = dir.listFiles();
+
+          // return files[new Random().nextInt(files.length)];
+
+          Random random = new Random();
+          int index = random.nextInt(files.length);
+          File rFile = files[index];
+          return rFile;
+      }
+
+      String getFileContent(File file) throws IOException {
+          // 从 JDK7 开始，提供了 Files 的一个静态类，封装了很多方便操作文件内容的方法
+          // 由于 File 类出现早起设计不够合理，所以 JDK7 开始，推出了一个新的 Path 来替代 File
+          byte[] bs = Files.readAllBytes(file.toPath());
+          return new String(bs);
+      }
+  }
+#+end_src
+
+* 案例分析 (↳ 写入文件)
+
+在上次作业的基础上，为页面添加：
+- 一个 input 表示文件名
+- 一个 textarea 表示文件内容
+- 一个 添加文件 按钮，点击之后，请求到服务器，然后服务器根据提交的内容创建包含相应内容的文件
+
+** 首先，定义 /write.html 对应的 Servlet，完成写入功能
+
+#+begin_src java
+  @WebServlet("/write.html")
+  public class CreateFileServlet extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String fileName = req.getParameter("fileName");
+          String content = req.getParameter("content");
+		
+          // 将文件保存为 fileName，内容为 content
+          String root = "e:/temp/";
+          Files.write(Paths.get(root + fileName), content.getBytes());
+		
+          // 设定使用 GBK 的方式进行转码
+          resp.setCharacterEncoding("GBK");
+		
+          PrintWriter writer = resp.getWriter();
+          writer.write("<html>");
+          writer.write("<div>保存成功！</div>");
+          writer.write("</html>");
+      }
+  }
+#+end_src
+
+** 使用 Form 表单的形式，对接上面的功能
+
+/readfile/read.html:
+#+begin_src java
+  @WebServlet("/read.html")
+  public class ReadFileServlet extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String xxx = req.getParameter("xxx");
+
+          String dirString = getServletContext().getRealPath("/wenben");
+
+          File file = getRandomFileFromDirectory(dirString);
+          String content = getFileContent(file);
+
+          String html = "<html>"
+                  + "<head><meta charset=utf-8></head>"
+				
+                  + "<form action='/readfile/write.html' method='post'>"
+                  + "  <input name='fileName' placeholder='file name'>"
+                  + "  <input name='content' placeholder='content'>"
+                  + "  <button>Submit</button>"
+                  + "</form>"
+				
+                  + "<hr>"
+                  + "<h3>" + file.getName() + "</h3>"
+				 
+                  + "<p><pre style='display:none'>" + content + "</pre></p>"
+                  + "<button class='xx'>Click Me</button><button class='rf'>Refresh</button>"
+                  + "<hr>"
+                  + "<script>"
+                  + "function xxx() { alert(document.querySelector('pre').innerText) }"
+                  + "document.querySelector('.xx').onclick=xxx;"
+                  + "document.querySelector('.rf').onclick = () => location.reload()" + "</script>" + "</html>";
+          resp.getWriter().write(html);
+      }
+
+      File getRandomFileFromDirectory(String dirName) {
+          File[] files = new File(dirName).listFiles();
+          return files[new Random().nextInt(files.length)];
+      }
+
+      String getFileContent(File file) throws IOException {
+          return new String(Files.readAllBytes(file.toPath()));
+      }
+  }
+#+end_src
+
+/readfile/write.html:
+#+begin_src java
+  @WebServlet("/write.html")
+  public class CreateFileServlet extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          // 获取用户的请求参数
+          String fileName = req.getParameter("fileName");
+          String content = req.getParameter("content");
+
+          // 将文件保存为 fileName，内容为 content
+          String root = "e:/temp/";
+          Files.write(Paths.get(root + fileName), content.getBytes());
+		
+          // 设定使用 GBK 的方式进行转码
+          resp.setCharacterEncoding("GBK");
+		
+          PrintWriter writer = resp.getWriter();
+          writer.write("<html>");
+          writer.write("<div>保存成功！</div>");
+          writer.write("<div><a href='/readfile/read.html'>return back</a></div>");
+          writer.write("</html>");
+      }
+  }
+#+end_src
+
+* 案例分析 (↳ JDBC 重出江湖，使用数据库重构)
+
+将数据放置到数据库中，可以更高效、更安全进行存储和管理，这是现在通用的数据管理方式。
+
+增删改查 (CRUD)。
+
+** 表的设计
+
+#+begin_src sql
+  create table book 
+  (
+      id int identity primary key ,
+      bookName varchar(200) not null,
+      price float default 0
+  );
+  insert into book (bookName, price) values ('xxx', 33);
+  insert into book (bookName, price) values ('yyy', 44);
+#+end_src
+
+** 查询操作 (/list)
+
+基本步骤:
+1. 写一个 Servlet 绑定到 /list 请求
+2. 打开数据库连接，并从中获取 (查询) 到所需要的数据
+3. 使用得到的数据，拼接成合适的 html 页面，返回给请求者
+
+代码如下:
+#+begin_src java
+  @WebServlet("/list")
+  public class BookList extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          try {
+              // 1. 打开数据库连接
+              String url = "jdbc:sqlserver://localhost:1434;databaseName=xxx;user=sa;password=";
+              Connection connection = DriverManager.getConnection(url);
+
+              // 2. 打开一个执行 SQL 语句的对象
+              Statement statement = connection.createStatement();
+
+              // 3. 使用上面的 statement 执行语句得到查询结果
+              String sql = "select id, name, price from book";
+              ResultSet resultSet = statement.executeQuery(sql);
+
+              // 4. 遍历结果集，使用结果，组合一个 html 字符串
+              String html = "";
+              while(resultSet.next()) {
+                  int id = resultSet.getInt(1);
+                  String name = resultSet.getString(2);
+                  float price = resultSet.getFloat(3);
+                  html += "<tr>" 
+                      + "<td>" + id + "</td>"
+                      + "<td>" + name + "</td>"
+                      + "<td>" + price + "</td>"
+                      + "</tr>\n";
+              }
+
+              // 5. 务必将其关闭
+              resultSet.close();
+              statement.close();
+              connection.close();
+
+              // 6. 将结果返回给客户端
+              html = "<html>"
+                  + "<head>"
+                  + "<meta charset=utf8>"
+                  + "<link rel='stylesheet' href='/book/css/xxx.css'>"
+                  + "</head>"
+                  + "<body><table>"
+                  + html
+                  + "</table></body>"
+                  + "</html>";
+              PrintWriter writer = resp.getWriter();
+              writer.write(html);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+      }
+  }
+#+end_src
+
+** 异常处理 (try-with-resource)
+
+上面的代码存在很多问题，比如:
+1. 如果出错了，没有向用户返回妥善的输出
+2. 如果中间出了错，会导致资源文件没有正常关闭(释放)
+
+通过异常处理，可以解决上述问题。
+
+建议使用 Try-With-Resource 语法，如下:
+#+begin_src java
+  @WebServlet("/list")
+  public class BookList extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String html = "";
+          String sql = "select id, name, price from book";
+          try (Connection connection = DBHelper.getConnection();
+                  Statement statement = connection.createStatement();
+                  ResultSet resultSet = statement.executeQuery(sql)) {
+              while(resultSet.next()) {
+                  int id = resultSet.getInt(1);
+                  String name = resultSet.getString(2);
+                  float price = resultSet.getFloat(3);
+                  html += "<tr>" 
+                          + "<td>" + id + "</td>"
+                          + "<td>" + name + "</td>"
+                          + "<td>" + price + "</td>"
+                          + "</tr>\n";
+              }
+              html = "<html>"
+                      + "<head>"
+                      + "<meta charset=utf8>"
+                      + "<link rel='stylesheet' href='/book/css/xxx.css'>"
+                      + "</head>"
+                      + "<body><table>"
+                      + html
+                      + "</table></body>"
+                      + "</html>";
+          } catch (Exception e) {
+              html = "<html><h3>Error Ocurred.</h3><p>" + e.getLocalizedMessage() + "</p></html>";
+          }			
+		
+          // 输出最后的结果
+          PrintWriter writer = resp.getWriter();
+          writer.write(html);
+      }
+  }
+#+end_src
+
+另外的辅助类:
+#+begin_src java
+  public class DBHelper {
+      public static Connection getConnection() throws Exception {
+          String user = "sa";
+          String password = "sa";
+          String dataBase = "xxx";
+          String host = "localhost:1434";
+          String url = "jdbc:sqlserver://" + host + ";databaseName=" + dataBase + ";user=" + user + ";password=" + password;
+
+          Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+          return DriverManager.getConnection(url);
+      }
+  }
+#+end_src
+
+** 删除操作 (/del)
+
+首先，在上述 /list 的返回页面中，添加删除的超链接:
+#+begin_src java -n
+  while(resultSet.next()) {
+      int id = resultSet.getInt(1);
+      String name = resultSet.getString(2);
+      float price = resultSet.getFloat(3);
+      html += "<tr>" 
+          + "<td>" + id + "</td>"
+          + "<td>" + name + "</td>"
+          + "<td>" + price + "</td>"
+          + "<td><a href='/book/del?id=" + id + "'>Del</a></td>" // 只需要修改这句
+          + "</tr>\n";
+  }
+#+end_src
+
+其次，增加一个 /del 请求逻辑，用来响应上述页面中的删除链接:
+#+begin_src java
+  @WebServlet("/del")
+  public class BookDelete extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          // 解决返回乱码问题
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+
+          // 获取用户输入的 id (/del?id=3)
+          String idString = req.getParameter("id");
+
+          // 如果用户的请求不带 id，那么给报错
+          if (idString == null) {
+              // 1. 参数错误页面
+              renderMessageString(resp, "id should not be null. Delete Action ignored.");
+              return;
+          }
+
+          // 执行删除的逻辑
+          try (Connection connection = DBHelper.getConnection();
+                  Statement statement = connection.createStatement()) {
+              String sql = "deletexxxx from book where id = " + idString;
+              int rows = statement.executeUpdate(sql);
+              System.out.println("Delete rows count: " + rows);
+              // 2. 成功页面
+              renderMessageString(resp, "Operation Success!");
+          } catch (Exception e) {
+              // 3. 异常页面
+              renderMessageString(resp, "Error: " + e.getLocalizedMessage());
+          }
+      }
+
+      // 我们可以将某些逻辑单独封装成一个方法，这样就可以反复使用了
+      // 当然，这是可选的，不过要养成将某些重复逻辑顺手封装出来的习惯	
+      String renderMessageString (HttpServletResponse resp, String message) {
+          try {
+              PrintWriter writer = resp.getWriter();
+              String ret = "<html><p>" + message + "</p></html>";
+              writer.write(ret);
+              return ret;
+          } catch (Exception e) {
+              throw new RuntimeException();
+          }
+      }
+  }
+#+end_src
+
+** 增加操作 (/add)
+
+: http://localhost:9999/book/add?name=xxx&price=yyy
+
+*** 首先，我们需要一个请求 (/add) 和相对应的响应 (BookAddServlet)
+
+#+begin_src java -n
+  @WebServlet("/add")
+  public class BookAdd extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+        
+          String name = req.getParameter("bookName");
+          String price = req.getParameter("price");
+		
+          if (name == null || price == null) {
+              TempUtils.renderMessageString(resp, "参数不对");
+              return;
+          }
+		
+          try (Connection connection = DBHelper.getConnection();
+                  Statement statement = connection.createStatement()) {
+              String sql = "insert into book (bookname, price) values ('" + name + "', " + price + ")";
+              System.out.println("要执行的语句是: " + sql);
+              statement.executeUpdate(sql);
+			
+              TempUtils.renderMessageString(resp, "保存成功");
+			
+              // 返回正确的页面
+          } catch (Exception e) {
+              // 返回出错的信息
+              TempUtils.renderMessageString(resp, e.getMessage());
+          }
+      }
+  }
+#+end_src
+
+测试:
+: http://localhost:9999/book/add?bookName=aaa&price=333
+
+如果成功，说明逻辑就对了。
+
+*** 其次，我们需要在某页面上，使用 Form 表单简化用户触发添加书籍操作
+
+最好就是添加到 /list 页面上 (当然，根据自己的设计，添加到其他地方也可以):
+#+begin_src java
+  html = "<html>"
+          + "<head>"
+          + "<meta charset=utf8>"
+          + "<link rel='stylesheet' href='/book/css/xxx.css'>"
+          + "</head>"
+          + "<body>"
+          + "<div>"
+          + "  <form action='/book/add'>" // 修改这一段
+          + "      <input type='text' name='bookName' placeholder='书名'>"
+          + "      <input type='number' name='price' placeholder='价格'>"
+          + "      <button>添加书籍</button>"
+          + "  </form>"
+          + "</div>"
+          + "<table>"
+          + html
+          + "</table></body>"
+          + "</html>";
+#+end_src
+
+添加完毕，你就可以在 /list 的页面上看到 form 表单了。
+
+接下来进行测试即可。
+
+*** 另外，我们将 renderMessageString 抽取到了单独的类中，方便公用
+
+#+begin_src java
+  public class TempUtils {
+      public static String renderMessageString (HttpServletResponse resp, String message) {
+          try {
+              PrintWriter writer = resp.getWriter();
+              String ret = "<html><div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>"
+                      + "<span style='margin-right: 2em'>" + message + "</span>"
+                      + "<a href='/book/list'>返回首页</a>"
+                      + "</div></html>";
+              writer.write(ret);
+              return ret;
+          } catch (Exception e) {
+              throw new RuntimeException();
+          }
+      }
+  }
+#+end_src
+
+** 修改操作 (/edit)
+
+: http://localhost:9999/book/edit?id=x&name=xxx&price=yyy
+
+*** 将请求分为两种，一种是 GET /edit 用来显示修改的页面，一种是 POST /edit 用来执行修改操作
+
+#+begin_src java
+  @WebServlet("/edit")
+  public class BookEdit extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String id = req.getParameter("id");
+		
+          if (id == null) {
+              TempUtils.renderMessageString(resp, "参数错误");
+              return;
+          }
+
+          String sql = "select id, bookName, price from book where id = " + id;
+          System.out.println("要执行的 SQL: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  Statement statement = connection.createStatement();
+                  ResultSet resultSet = statement.executeQuery(sql)) {
+			
+              resultSet.next();
+			
+              String html = "<form action='/book/edit' method='post' class='edit'>"
+                      + "  <input type='text' name='id' readonly placeholder='id' value='" + resultSet.getInt(1) + "'>"
+                      + "  <input type='text' name='bookName' placeholder='书名' value='" + resultSet.getString(2) + "'>"
+                      + "  <input type='number' name='price' placeholder='价格' value='" + resultSet.getFloat(3) + "'>"
+                      + "  <button>更新数据</button>"
+                      + "</form>";
+			
+              TempUtils.renderMessageString(resp, html);
+			
+          } catch (Exception e) {
+              TempUtils.renderMessageString(resp, e.getLocalizedMessage());
+          }
+      }
+	
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String id = req.getParameter("id");
+          String name = req.getParameter("bookName");
+          String price = req.getParameter("price");
+		
+          if (id == null || name == null || price == null) {
+              TempUtils.renderMessageString(resp, "参数错误");
+              return;
+          }
+		
+          try (Connection connection = DBHelper.getConnection();
+                  Statement statement = connection.createStatement()) {
+			
+              String sql = "update book set bookName='" + name + "', price='" + price + "' where id='" + id + "'";
+              System.out.println("要执行的 SQL: " + sql);
+              int rows = statement.executeUpdate(sql);
+			
+              if (rows == 0) throw new Exception("没有更新到任何语句");
+			
+              TempUtils.renderMessageString(resp, "更新成功");
+			
+          } catch (Exception e) {
+              TempUtils.renderMessageString(resp, e.getLocalizedMessage());
+          }
+      }
+  }
+#+end_src
+
+
+*** 然后，在 /list 页面上增加响应的入口
+
+#+begin_src java
+  html += "<tr>" 
+      + "<td>" + id + "</td>"
+      + "<td>" + name + "</td>"
+      + "<td>" + price + "</td>"
+      + "<td><a href='/book/del?id=" + id + "'>删除</a></td>"
+      + "<td><a href='/book/edit?id=" + id + "'>修改</a></td>" // 这句
+      + "</tr>\n";
+#+end_src
+
+*** 其他，做一些调整即可
+
+比如，修改返回页面的样式:
+#+begin_src java
+  public class TempUtils {
+      public static String renderMessageString (HttpServletResponse resp, String message) {
+          try {
+              PrintWriter writer = resp.getWriter();
+              String ret = "<html>"
+                      + "<head><link rel='stylesheet' href='/book/css/xxx.css'></head><body>"
+                      + "<div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>"
+                      + "<span style='margin-right: 2em'>" + message + "</span>"
+                      + "<a href='/book/list'>返回首页</a>"
+                      + "</div></body></html>";
+              writer.write(ret);
+              return ret;
+          } catch (Exception e) {
+              throw new RuntimeException();
+          }
+      }
+  }
+#+end_src
+
+#+begin_src css
+  table, tr, td, th {
+      border: 1px solid black;
+      padding: 5px 1em;
+      border-collapse: collapse;
+      text-align: center;
+  }
+  table {
+      width: 400px;
+  }
+
+  .edit input {
+      display: block;
+      margin-bottom: 10px;
+  }
+#+end_src
+
+* 案例分析 (↳ Statement → PreparedStatement)
+
+Statement 存在的问题:
+1. 拼接字符串，太麻烦了点
+2. 非常严重的 SQL 注入的安全问题
+
+** /list
+
+#+begin_src java
+  @WebServlet("/list")
+  public class BookList extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String html = "";
+          String sql = "select id, bookName, price from book";
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql);
+                  ResultSet resultSet = statement.executeQuery()) {
+              while(resultSet.next()) {
+                  int id = resultSet.getInt(1);
+                  String name = resultSet.getString(2);
+                  float price = resultSet.getFloat(3);
+                  html += "<tr>" 
+                          + "<td>" + id + "</td>"
+                          + "<td>" + name + "</td>"
+                          + "<td>" + price + "</td>"
+                          + "<td><a href='/book/del?id=" + id + "'>删除</a></td>"
+                          + "<td><a href='/book/edit?id=" + id + "'>修改</a></td>"
+                          + "</tr>\n";
+              }
+              html = "<html>"
+                      + "<head>"
+                      + "<meta charset=utf8>"
+                      + "<link rel='stylesheet' href='/book/css/xxx.css'>"
+                      + "</head>"
+                      + "<body>"
+                      + "<div>"
+                      + "  <form action='/book/add' method='post'>"
+                      + "      <input type='text' name='bookName' placeholder='书名'>"
+                      + "      <input type='number' name='price' placeholder='价格'>"
+                      + "      <button>添加书籍</button>"
+                      + "  </form>"
+                      + "</div>"
+                      + "<table>"
+                      + html
+                      + "</table></body>"
+                      + "</html>";
+          } catch (Exception e) {
+              html = "<html><h3>Error Ocurred.</h3><p>" + e.getLocalizedMessage() + "</p></html>";
+          }
+		
+          // 输出最后的结果
+          PrintWriter writer = resp.getWriter();
+          writer.write(html);
+      }
+  }
+#+end_src
+
+** /del
+
+#+begin_src java
+  @WebServlet("/del")
+  public class BookDelete extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+
+          String idString = req.getParameter("id");
+		
+          if (idString == null) {
+              TempUtils.renderMessageString(resp, "id should not be null. Delete Action ignored.");
+              return;
+          }
+		
+          String sql = "delete  from book where id = ?";
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setInt(1, Integer.parseInt(idString));
+              int rows = statement.executeUpdate();
+              System.out.println("Delete rows count: " + rows);
+			
+              TempUtils.renderMessageString(resp, "Operation Success!");
+          } catch (Exception e) {
+              TempUtils.renderMessageString(resp, "Error: " + e.getLocalizedMessage());
+          }
+      }
+  }
+#+end_src
+
+** /add
+
+#+begin_src java
+  @WebServlet("/add")
+  public class BookAdd extends HttpServlet {
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.setCharacterEncoding("utf-8");
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+
+          String name = req.getParameter("bookName");
+          String price = req.getParameter("price");
+		
+          if (name == null || price == null) {
+              TempUtils.renderMessageString(resp, "参数不对");
+              return;
+          }
+		
+          String sql = "insert into book (bookname, price) values (?, ?)";
+          System.out.println("要执行的语句是: " + sql);
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setString(1, name);
+              statement.setFloat(2, Float.parseFloat(price));
+              statement.executeUpdate();
+			
+              // 返回正确的页面
+              TempUtils.renderMessageString(resp, "保存成功");
+          } catch (Exception e) {
+              // 返回出错的信息
+              TempUtils.renderMessageString(resp, e.getMessage());
+          }
+      }
+
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          TempUtils.renderMessageString(resp, "I don't know what to do");
+      }
+  }
+#+end_src
+
+** /edit
+
+#+begin_src java
+  @WebServlet("/edit")
+  public class BookEdit extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String id = req.getParameter("id");
+		
+          if (id == null) {
+              TempUtils.renderMessageString(resp, "参数错误");
+              return;
+          }
+
+          String sql = "select id, bookName, price from book where id = ?";
+          System.out.println("要执行的 SQL: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setInt(1, Integer.parseInt(id));
+			
+              try (ResultSet resultSet = statement.executeQuery()) {
+                  resultSet.next();
+                  String html = "<form action='/book/edit' method='post' class='edit'>"
+                          + "  <input type='text' name='id' readonly placeholder='id' value='" + resultSet.getInt(1) + "'>"
+                          + "  <input type='text' name='bookName' placeholder='书名' value='" + resultSet.getString(2) + "'>"
+                          + "  <input type='number' name='price' placeholder='价格' value='" + resultSet.getFloat(3) + "'>"
+                          + "  <button>更新数据</button>"
+                          + "</form>";
+                  TempUtils.renderMessageString(resp, html);
+              }
+          } catch (Exception e) {
+              TempUtils.renderMessageString(resp, e.getLocalizedMessage());
+          }
+      }
+	
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.setCharacterEncoding("utf-8");
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String id = req.getParameter("id");
+          String name = req.getParameter("bookName");
+          String price = req.getParameter("price");
+		
+          if (id == null || name == null || price == null) {
+              TempUtils.renderMessageString(resp, "参数错误");
+              return;
+          }
+		
+          String sql = "update book set bookName=?, price=? where id=?";
+          System.out.println("要执行的 SQL: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+			
+              statement.setString(1, name);
+              statement.setFloat(2, Float.parseFloat(price));
+              statement.setInt(3, Integer.parseInt(id));
+              int rows = statement.executeUpdate();
+			
+              if (rows == 0) throw new Exception("没有更新到任何语句");
+			
+              TempUtils.renderMessageString(resp, "更新成功");
+			
+          } catch (Exception e) {
+              TempUtils.renderMessageString(resp, e.getLocalizedMessage());
+          }
+      }
+  }
+#+end_src
+* 案例分析 (↳ JSP - 革命性的视图改造)
+** 苦逼的临时工
+
+将任务一分为二，脏活累活（拼装 html）交给临时工去处理:
+1. 使用 request.getRequestDispatcher("/path").forward(request, response) 进行任务的交接
+2. 使用 request.setAttribute/getAttribute 来进行数据的传递!
+
+#+begin_src java
+  @WebServlet("/list")
+  public class BookList extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String html = "";
+          String sql = "select id, bookName, price from book";
+		
+          List<Book> books = new ArrayList<Book>();
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql);
+                  ResultSet resultSet = statement.executeQuery()) {
+              while(resultSet.next()) {
+                  int id = resultSet.getInt(1);
+                  String name = resultSet.getString(2);
+                  float price = resultSet.getFloat(3);
+				
+                  Book book = new Book(id, name, price);
+                  books.add(book);
+              }
+			
+              // 将 books 对象（数据），保存到了 req 的 xxx 上
+              req.setAttribute("xxx", books);
+			
+              // 让 /book/linshigong 所代表的那个 Servlet 去接力处理接下来的逻辑
+              req.getRequestDispatcher("/linshigong").forward(req, resp);
+          } catch (Exception e) {
+              html = "<html><h3>Error Ocurred.</h3><p>" + e.getLocalizedMessage() + "</p></html>";
+          }
+		
+          // 输出最后的结果
+          PrintWriter writer = resp.getWriter();
+          writer.write(html);
+      }
+  }
+#+end_src
+
+#+begin_src java
+  @WebServlet("/linshigong")
+  public class Linshigong extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          List<Book> books = (List<Book>) req.getAttribute("xxx");
+
+          String html = "";
+          for (Book book : books) {
+              html += "<tr>"
+                       + "<td>" + book.id + "</td>"
+                       + "<td>" + book.bookName + "</td>"
+                       + "<td>" + book.price + "</td>"
+                       + "<td><a href='/book/del?id=" + book.id + "'>删除</a></td>"
+                       + "<td><a href='/book/edit?id=" + book.id + "'>修改</a></td>"
+                       + "</tr>\n";
+          }
+          html = "<html>"
+                  + "<head>"
+                  + "<meta charset=utf8>"
+                  + "<meta http-equiv=\"Cache-Control\" content=\"no-store\" />"
+                  + "<link rel='stylesheet' href='/book/css/xxx.css'>"
+                  + "</head>"
+                  + "<body>"
+                  + "<div>"
+                  + "  <form action='/book/add' method='post'>"
+                  + "      <input type='text' name='bookName' placeholder='书名'>"
+                  + "      <input type='number' name='price' placeholder='价格'>"
+                  + "      <button>添加书籍</button>"
+                  + "  </form>"
+                  + "</div>"
+                  + "<table>"
+                  + html
+                  + "</table></body>"
+                  + "</html>";
+          resp.getWriter().write(html);
+      }
+  }
+#+end_src
+
+** 进击的临时工
+
+#+begin_src html
+  <%@page import="book.Book"%>
+  <%@page import="java.util.List"%>
+  <%@page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+	
+  <%
+      List<Book> books = (List<Book>) request.getAttribute("xxx");
+  %>
+	
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/xxx.css">
+  </head>
+
+  <body>
+      <div>
+          <form action='/book/add' method='post'>
+              <input type='text' name='bookName' placeholder='书名'>
+              <input type='number' name='price' placeholder='价格'>
+              <button>添加书籍</button>
+          </form>
+      </div>
+
+      <table>
+          <tr>
+              <th>编号</th>
+              <th>书名</th>
+              <th>价格</th>
+              <th>操作</th>
+          </tr>
+		
+          <% for (Book book : books) { %>
+          <tr>
+              <td><% out.print(book.id); %></td>
+              <td><% out.print(book.bookName); %></td>
+              <td><% out.print(book.price); %></td>
+              <td>
+                  <a href='/book/del?id=<%= book.id %>'>删除</a>
+                  <a href='/book/edit?id=<%= book.id %>'>修改</a>
+              </td>
+          </tr>
+          <% } %>
+      </table>
+  </body>
+  </html>
+#+end_src
+
+** 转正的临时工 (分工的革命)
+
+[[file:img/case-servlet+jsp-1.png]]
+
+逻辑与视图的分离:
+- 各个部分使用自己擅长的技术，更能充分利用技术提高效率 (Java/Html)
+- 更加方便维护，不易出错
+- 老板: 容易招人 (后台，前端)
+- 我们: 学习更有目的性 (全栈，后台，前端，UI，产品)
+- 成本降低了，效率大大提高了
+
+*** /list
+
+#+begin_src java
+  @WebServlet("/list")
+  public class BookList extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String sql = "select id, bookName, price from book";
+		
+          List<Book> books = new ArrayList<Book>();
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql);
+                  ResultSet resultSet = statement.executeQuery()) {
+              while(resultSet.next()) {
+                  int id = resultSet.getInt(1);
+                  String name = resultSet.getString(2);
+                  float price = resultSet.getFloat(3);
+				
+                  Book book = new Book(id, name, price);
+                  books.add(book);
+              }
+			
+              // 将 books 对象（数据），保存到了 req 的 xxx 上
+              req.setAttribute("xxx", books);
+			
+              // 让 /book/linshigong 所代表的那个 Servlet 去接力处理接下来的逻辑
+              req.getRequestDispatcher("/bookList.jsp").forward(req, resp);
+          } catch (Exception e) {
+              req.setAttribute("message", "Error Ocurred.");
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+          }
+      }
+  }
+#+end_src
+
+#+begin_src html
+  <%@page import="book.Book"%>
+  <%@page import="java.util.List"%>
+  <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+	
+  <%
+      List<Book> books = (List<Book>) request.getAttribute("xxx");
+  %>
+	
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/xxx.css">
+      <style>
+          form {
+              padding-bottom: 1em;
+              width: 98%;
+              display: flex;
+              justify-content: space-between;
+          }
+      </style>
+  </head>
+
+  <body>
+      <header>
+          <h3>163 书籍管理系统</h3>
+      </header>
+      <div>
+          <form action='/book/add' method='post'>
+              <input type='text' name='bookName' placeholder='书名'>
+              <input type='number' name='price' placeholder='价格'>
+              <button>添加书籍</button>
+          </form>
+      </div>
+      <table>
+          <tr>
+              <th>编号</th>
+              <th>书名</th>
+              <th>价格</th>
+              <th>操作</th>
+          </tr>
+		
+          <% for (Book book : books) { %>
+          <tr>
+              <td><%= book.id %></td>
+              <td><%= book.bookName %></td>
+              <td><%= book.price %></td>
+              <td>
+                  <a href='/book/del?id=<%= book.id %>'>删除</a>
+                  <a href='/book/edit?id=<%= book.id %>'>修改</a>
+              </td>
+          </tr>
+          <% } %>
+      </table>
+  </body>
+  </html>
+#+end_src
+
+*** /del
+
+#+begin_src java
+  @WebServlet("/del")
+  public class BookDelete extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+
+          String idString = req.getParameter("id");
+		
+          if (idString == null) {
+              req.setAttribute("message", "id should not be null. Delete Action ignored.");
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+              return;
+          }
+		
+          String sql = "delete  from book where id = ?";
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setInt(1, Integer.parseInt(idString));
+              int rows = statement.executeUpdate();
+              System.out.println("Delete rows count: " + rows);
+			
+              req.setAttribute("message", "Operation Success!");
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+          } catch (Exception e) {
+              req.setAttribute("message", "Error: " + e.getLocalizedMessage());
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+          }
+      }
+  }
+#+end_src
+
+*** /add
+
+#+begin_src java
+  @WebServlet("/add")
+  public class BookAdd extends HttpServlet {
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.setCharacterEncoding("utf-8");
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+
+          String name = req.getParameter("bookName");
+          String price = req.getParameter("price");
+		
+          if (name == null || price == null) {
+              req.setAttribute("message", "参数不对");
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+              return;
+          }
+		
+          String sql = "insert into book (bookname, price) values (?, ?)";
+          System.out.println("要执行的语句是: " + sql);
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setString(1, name);
+              statement.setFloat(2, Float.parseFloat(price));
+              statement.executeUpdate();
+			
+              req.setAttribute("message", "保存成功");
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+          } catch (Exception e) {
+              req.setAttribute("message", e.getLocalizedMessage());
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+          }
+      }
+
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.setAttribute("message", "I don't know what to do");
+          req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+      }
+  }
+#+end_src
+
+*** /edit
+
+#+begin_src java
+  @WebServlet("/edit")
+  public class BookEdit extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String id = req.getParameter("id");
+		
+          if (id == null) {
+              req.setAttribute("message", "参数错误");
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+              return;
+          }
+
+          String sql = "select id, bookName, price from book where id = ?";
+          System.out.println("要执行的 SQL: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setInt(1, Integer.parseInt(id));
+			
+              try (ResultSet resultSet = statement.executeQuery()) {
+                  resultSet.next();
+				
+                  Book book = new Book(
+                          resultSet.getInt(1),
+                          resultSet.getString(2),
+                          resultSet.getFloat(3));
+				
+                  req.setAttribute("book", book);
+                  req.getRequestDispatcher("/bookEdit.jsp").forward(req, resp);
+              }
+          } catch (Exception e) {
+              req.setAttribute("message", e.getLocalizedMessage());
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);		
+          }
+      }
+	
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.setCharacterEncoding("utf-8");
+          resp.setCharacterEncoding("utf-8");
+          resp.setContentType("text/html;charset=utf8");
+		
+          String id = req.getParameter("id");
+          String name = req.getParameter("bookName");
+          String price = req.getParameter("price");
+		
+          if (id == null || name == null || price == null) {
+              req.setAttribute("message", "参数不对");
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+              return;
+          }
+		
+          String sql = "update book set bookName=?, price=? where id=?";
+          System.out.println("要执行的 SQL: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+			
+              statement.setString(1, name);
+              statement.setFloat(2, Float.parseFloat(price));
+              statement.setInt(3, Integer.parseInt(id));
+              int rows = statement.executeUpdate();
+			
+              if (rows == 0) throw new Exception("没有更新到任何语句");
+			
+              req.setAttribute("message", "更新成功");
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+          } catch (Exception e) {
+              req.setAttribute("message", e.getLocalizedMessage());
+              req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+          }
+      }
+  }
+#+end_src
+
+#+begin_src html
+  <%@page import="book.Book"%>
+  <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
+  <%
+      Book book = (Book) request.getAttribute("book");
+  %>
+    
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>结果</title>
+  <link rel='stylesheet' href='/book/css/xxx.css'>
+  </head>
+  <body>
+
+  <div style='width: 600px; margin: 1em auto; padding: 2em;'>
+      <form action='/book/edit' method='post' class='edit'>
+          <input type='text' name='id' readonly placeholder='id' value='<%= book.id %>'>
+          <input type='text' name='bookName' placeholder='书名' value='<%= book.bookName %>'>
+          <input type='number' name='price' placeholder='价格' value='<%= book.price %>'>
+          <button>更新数据</button>
+      </form>
+      <a href='/book/list'>返回首页</a>
+  </div>
+
+  </body>
+  </html>
+#+end_src
+
+*** 通用的 /bookResult.jsp
+
+#+begin_src html
+  <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>结果</title>
+  <link rel='stylesheet' href='/book/css/xxx.css'>
+  </head>
+  <body>
+
+  <div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>
+      <span style='margin-right: 2em'>
+       <%= request.getAttribute("message") %>
+      </span>
+      <a href='/book/list'>返回首页</a>
+  </div>
+
+  </body>
+  </html>
+#+end_src
+
+* 案例分析 (↳ 编码设置)
+
+使用 Filter 将编码设置提取出来公用:
+- 使用过滤器，将效果作用在所有请求上，简单方便 (implements Filter)
+- 使用 setCharacterEncoding 设置编码格式，建议为通用的 UTF-8
+
+过滤器，好有一比，就是疫情时刻的商场入口测体温。
+
+代码示例:
+#+begin_src java
+  @WebFilter("/*") // * 的意思是: 所有的请求都必须经过此过滤器
+  public class EncodingFilter implements Filter {
+      @Override
+      public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+          System.out.println("进入大门口，接受检查");
+          request.setCharacterEncoding("utf-8");
+          response.setCharacterEncoding("utf-8");
+          response.setContentType("text/html;charset=utf8");
+		
+          System.out.println("检查完毕，放行");
+          chain.doFilter(request, response);
+		
+          System.out.println("你要离开，拿好防疫手册，下次再来，拜拜");
+		
+      }
+
+      @Override
+      public void init(FilterConfig filterConfig) throws ServletException {
+      }
+      @Override
+      public void destroy() {
+      }
+  }
+#+end_src
+
+* 案例分析 (↳ 访问日志)
+
+记录所有的用户请求信息 (访问日志)
+
+** 首先，需要创建一张表，来承载访问的日志
+
+按照道理，应该至少有如下字段:
+- id, 作为数据的唯一编号
+- url, 访问的 url 地址
+- ip, 访问者的 ip 地址
+- ua, 访问者浏览器的标识
+- vdate，访问的日期
+
+#+begin_details 创建表的示例
+#+begin_src sql
+  create table book_fangwen_rizhi 
+  (
+     -- 字段名 字段类型 [复制性的描述、属性]
+     id int identity primary key,
+     url varchar(1000) not null,
+     ip varchar(200),
+     ua varchar(1000),
+     vdate datetime default getdate()
+  );
+#+end_src
+#+end_details
+
+** 然后，写一个方法，能从 Java 中对这张表进行插入操作
+
+创建一个类 LogDAO.java，在里面写一个方法: insert(url, ip, user)。
+
+#+begin_details LogDAO#insert
+#+begin_src java
+  package book;
+
+  public class LogDAO {
+      public void insert(String url, String ip, String userAgent) {
+      }
+  }
+#+end_src
+#+end_details
+
+之后，在 insert 方法中，完成使用 JDBC 的语法进行数据的插入操作。
+
+#+begin_details 向数据库插入日志
+#+begin_src java
+  package book;
+
+  import java.sql.Connection;
+  import java.sql.PreparedStatement;
+
+  import utils.DBHelper;
+
+  public class LogDAO {
+      public void insert(String url, String ip, String userAgent) throws Exception {
+          String sql = "insert into book_fangwen_rizhi (url, ip, ua) values (?, ?, ?)";
+          try (Connection conn = DBHelper.getConnection();
+                  PreparedStatement st = conn.prepareStatement(sql)) {
+              st.setString(1, url);
+              st.setString(2, ip);
+              st.setString(3, userAgent);
+              st.executeUpdate();
+          }
+      }
+  }
+#+end_src
+#+end_details
+
+** 之后[可选] 写一个 main 方法测试一下 insert 到底好不好使
+
+#+begin_src java
+  public class LogDAO {
+      public void insert(String url, String ip, String userAgent) throws Exception {
+          //...
+      }
+	
+      public static void main(String[] args) throws Exception {
+          LogDAO logDAO = new LogDAO();
+          logDAO.insert("/xxx", "1.2.1.1", "IE");
+          System.out.println("插入成功!");
+      }
+  }
+#+end_src
+
+在执行上面的代码之前，一定要保证，jdbc.jar 包已经在相应的文件夹下:
+
+[[file:img/book_test_jdbc_jar.png]]
+
+之后，就可以 右键 - Run as... - Java Application 的方式，运行查看结果了。
+
+** 随后，就可以将上面的 insert 跟我们系统的 Filter 结合了
+
+创建过滤器，实现相关的逻辑:
+- 通过 request 获取相关的数据
+- 通过调用 LogDAO.insert 方法，进行插入
+
+#+begin_details 过滤器的实现
+#+begin_src java
+  package book;
+
+  import java.io.IOException;
+
+  import javax.servlet.Filter;
+  import javax.servlet.FilterChain;
+  import javax.servlet.FilterConfig;
+  import javax.servlet.ServletException;
+  import javax.servlet.ServletRequest;
+  import javax.servlet.ServletResponse;
+  import javax.servlet.http.HttpServletRequest;
+
+  public class FangwenRizhiFilter implements Filter {
+      @Override
+      public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+          // 所有跟请求相关的数据，都被 tomcat 封装到了 request 对象
+          HttpServletRequest req = (HttpServletRequest) request;
+          String url = req.getRequestURI();
+          String ip = req.getRemoteAddr();
+          String userAgent = req.getHeader("user-agent");
+
+          // 便于开发的时候查看结果
+          System.out.println("url: " + url + " ip: " + ip + " userAgent: " + userAgent);
+
+          // 将相关数据插入到数据
+          LogDAO logDAO = new LogDAO();
+          try {
+              logDAO.insert(url, ip, userAgent);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+
+          // 继续
+          chain.doFilter(request, response);
+      }
+
+      @Override
+      public void init(FilterConfig filterConfig) throws ServletException {
+      }
+      @Override
+      public void destroy() {
+      }
+  }
+#+end_src
+#+end_details
+
+** 接下来，在我们实现的 Filter 上面添加地址映射
+
+注意:
+- 是 @WebFilter 不要拼写错了
+- /* 代表的是所有，/book* 代表所有 /bookxxx 的访问
+
+#+begin_src java
+  @WebFilter("/*")
+  public class FangwenRizhiFilter implements Filter {
+#+end_src
+
+** 最后，启动服务器，检验结果
+
+小结:
+- 作业必须要在有答案之前做，才会有提升自己的效果!!!
+- 学会怎么去分析问题，要把大的问题拆分成多个小的问题，逐个击破
+- 多写，多练，也没那么难！！！
+
+完整的代码下载地址:
+- https://github.com/yaollllllsan/3-book/archive/master.zip
+- https://github.com/yaollllllsan/3-book 项目地址
+- https://github.com/yaollllllsan Github 首页
+
+* 案例分析 (↳ 重构代码结构)
+
+https://github.com/yaollllllsan/3-book
+
+** 代码结构，拆分
+
+写代码的时候，所有逻辑写在一起的话，当代码越来越多，会变得臃肿而不易维护。
+所以，要适当分包分类分方法。
+
+一般来说，Web 项目，需要下面几个包:
+- bean 放置所有的 JavaBean 类
+- dao 放置所有的数据库操作类
+- util 放置所有的辅助方法和类
+- filter 放置所有的过滤器类
+- web 放置所有的 Servlet
+
+当下，我们项目的结构为:
+[[file:img/folder-arch.png]]
+
+** 重点是 BookDAO.java
+
+它是将跟书籍相关的操作，都抽取出来放到这里了。
+
+#+begin_src java
+  package book.dao;
+
+  import java.sql.Connection;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+  import java.util.ArrayList;
+  import java.util.List;
+
+  import book.bean.Book;
+  import utils.DBHelper;
+
+  public class BookDAO {
+      public Book get(int id) throws Exception {
+          String sql = "select id, bookName, price from book where id = ?";
+          System.out.println("要执行的 SQL: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setInt(1, id);
+			
+              try (ResultSet resultSet = statement.executeQuery()) {
+                  resultSet.next();
+                  return new Book(resultSet.getInt(1), resultSet.getString(2), resultSet.getFloat(3));
+              }
+          }
+      }
+	
+      public List<Book> list() throws Exception {
+          List<Book> books = new ArrayList<Book>();
+		
+          String sql = "select id, bookName, price from book";
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql);
+                  ResultSet resultSet = statement.executeQuery()) {
+              while(resultSet.next()) {
+                  int id = resultSet.getInt(1);
+                  String name = resultSet.getString(2);
+                  float price = resultSet.getFloat(3);
+				
+                  Book book = new Book(id, name, price);
+                  books.add(book);
+              }
+              return books;
+          }
+      }
+	
+      public void insert(String bookName, float price) throws Exception {
+          String sql = "insert into book (bookname, price) values (?, ?)";
+          System.out.println("要执行的语句是: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setString(1, bookName);
+              statement.setFloat(2, price);
+              statement.executeUpdate();
+          }
+      }
+
+      public void update(int id, String bookName, float price) throws Exception {
+          String sql = "update book set bookName=?, price=? where id=?";
+          System.out.println("要执行的 SQL: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+			
+              statement.setString(1, bookName);
+              statement.setFloat(2, price);
+              statement.setInt(3, id);
+              int rows = statement.executeUpdate();
+			
+              if (rows == 0) throw new Exception("没有更新到任何语句");
+          }
+      }
+	
+      public void delete(int id) throws Exception {
+          String sql = "delete  from book where id = ?";
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setInt(1, id);
+              int rows = statement.executeUpdate();
+              System.out.println("Delete rows count: " + rows);
+          }
+      }
+
+      // 测试上述方法到底好不好使
+      public static void main(String[] args) throws Exception {
+          BookDAO bookDAO = new BookDAO();
+          System.out.println(bookDAO.get(32).bookName);
+      }
+  }
+#+end_src
+
+** 其他 BookXxxServlet 就可以将操作数据库的代码进行修改了
+*** BookListServlet
+
+#+begin_src java
+  try {
+      List<Book> books = new BookDAO().list();
+			
+      // 将 books 对象（数据），保存到了 req 的 xxx 上
+      req.setAttribute("xxx", books);
+			
+      // 让 /book/linshigong 所代表的那个 Servlet 去接力处理接下来的逻辑
+      req.getRequestDispatcher("/bookList.jsp").forward(req, resp);
+  } catch (Exception e) {
+      req.setAttribute("message", "Error Ocurred.");
+      req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+  }
+#+end_src
+
+*** BookAddServlet
+
+#+begin_src java
+  try {
+      BookDAO bookDAO = new BookDAO();
+      bookDAO.insert(name, Float.parseFloat(price));
+			
+      req.setAttribute("message", "保存成功");
+      req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+  } catch (Exception e) {
+      req.setAttribute("message", e.getLocalizedMessage());
+      req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+  }
+#+end_src
+
+*** BookDelServlet
+
+#+begin_src java
+  try {
+      BookDAO bookDAO = new BookDAO();
+      bookDAO.delete(Integer.parseInt(idString));
+			
+      req.setAttribute("message", "Operation Success!");
+      req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+  } catch (Exception e) {
+      req.setAttribute("message", "Error: " + e.getLocalizedMessage());
+      req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+  }
+#+end_src
+
+*** BookEditServlet
+
+#+begin_src java
+  try {
+      Book book = new BookDAO().get(Integer.parseInt(id));
+			
+      req.setAttribute("book", book);
+      req.getRequestDispatcher("/bookEdit.jsp").forward(req, resp);
+  } catch (Exception e) {
+      req.setAttribute("message", e.getLocalizedMessage());
+      req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);		
+  }
+#+end_src
+
+#+begin_src java
+  try {
+      BookDAO bookDAO = new BookDAO();
+      bookDAO.update(Integer.parseInt(id), name, Float.parseFloat(price));
+			
+      req.setAttribute("message", "更新成功");
+      req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+  } catch (Exception e) {
+      req.setAttribute("message", e.getLocalizedMessage());
+      req.getRequestDispatcher("/bookResult.jsp").forward(req, resp);
+  }
+#+end_src
+
+* 案例分析 (↳ 用户的注册和登录)
+** 注册
+*** 分析问题
+
+本质就是通过页面的形式，让用户提交一定的数据；
+然后服务器接收到这些数据之后，进行保存。
+因为这些数据具备因人而异的差异性，
+而且具备一定的保密性，所以服务器就可以认为，
+通过这些数据，就能区别不同的人。
+所以，这些数据又叫账号信息。
+
+如果我们去实现一个注册逻辑的话:
+1. 我们需要给用户呈现页面
+   a) 第一个请求 GET /regist，服务器会响应一个页面，主要包含一个 form 表单
+   b) 第二个请求 POST /regist，服务器会将提交的数据保存，然后响应一个页面，提醒你注册到底是成功还是失败
+2. 我们需要创建一张表，用来保存用户的注册信息 (user/account)
+   - 用户名
+   - 密码
+   - 性别
+   - +电话+
+   - 邮箱
+   - +住址+
+   - +微信+
+   - +QQ+
+   - +抖音+
+
+*** 初步设计
+
+首先，Servlet:
+#+begin_src java
+  @WebServlet("/regist")
+  public class RegistServlet extends HttpServlet {
+     doGet() {} // 返回 form 页面 
+     doPost() {} // 执行保存动作
+  }
+#+end_src
+
+其次，我们需要一个表:
+#+begin_src sql
+  create table account
+  (
+     id int identity primary key,
+     username varchar(200) not null,
+     password varchar(200) not null,
+     gender varchar(10),
+     email varchar(100),
+     created datetime default getdate()
+  );
+#+end_src
+
+需要根据表的内容，创建一个 Java 对象来表示:
+#+begin_src java
+  public class Account {
+  }
+#+end_src
+
+根据需求，现将数据库的操作实现出来:
+#+begin_src java
+  public class AccountDAO {
+     public void insert(String username, String password, String gender, String email) {
+     }
+  }
+#+end_src
+
+接下来，只要将 Servlet 之内的逻辑完成，将页面完成。
+
+*** 实现步骤 [数据库创建表]
+
+打开并连接数据库，根据以上语句创建表:
+#+begin_src sql
+  create table account
+  (
+     id int identity primary key,
+     username varchar(200) not null,
+     password varchar(200) not null,
+     gender varchar(10),
+     email varchar(100),
+     created datetime default getdate()
+  );
+#+end_src
+
+*** 实现步骤 [根据表，创建名为 Account 的 JavaBean 对象]
+
+#+begin_src java
+  public class Account {
+      private int id;
+      private String username;
+      private String password;
+      private String gender;
+      private String email;
+      private Date created;
+  }
+#+end_src
+
+然后，在 Eclipse 中，通过菜单 source - generate xxx 为这个类生成 Getter 方法、Setter 方法 和构造器方法。
+
+[[file:img/aaaa.png]]
+
+最终的代码是:
+#+begin_src java
+  package book.bean;
+
+  import java.sql.Date;
+
+  public class Account {
+      private int id;
+      private String username;
+      private String password;
+      private String gender;
+      private String email;
+      private Date created;
+	
+      public Account () {}
+	
+      public Account(String username, String password, String gender, String email) {
+          this.username = username;
+          this.password = password;
+          this.gender = gender;
+          this.email = email;
+      }
+
+      public int getId() {
+          return id;
+      }
+      public void setId(int id) {
+          this.id = id;
+      }
+      public String getUsername() {
+          return username;
+      }
+      public void setUsername(String username) {
+          this.username = username;
+      }
+      public String getPassword() {
+          return password;
+      }
+      public void setPassword(String password) {
+          this.password = password;
+      }
+      public String getGender() {
+          return gender;
+      }
+      public void setGender(String gender) {
+          this.gender = gender;
+      }
+      public String getEmail() {
+          return email;
+      }
+      public void setEmail(String email) {
+          this.email = email;
+      }
+      public Date getCreated() {
+          return created;
+      }
+      public void setCreated(Date created) {
+          this.created = created;
+      }
+  }
+#+end_src
+
+*** 实现步骤 [然后就可以在 AccountDAO 中实现 insert 方法了]
+
+通常的方法，从其他的地方 =Ctrl+C=，然后在这里 =Ctrl+V=，最后修修改就可以了：
+#+begin_src java
+  public class AccountDAO {
+      public void insert(Account account) throws Exception {
+          String sql = "insert into account (username, password, gender, email) values (?, ?, ?, ?)";
+          System.out.println("要执行的语句是: " + sql);
+		
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setString(1, account.getUsername());
+              statement.setString(2, account.getPassword());
+              statement.setString(3, account.getGender());
+              statement.setString(4, account.getEmail());
+              statement.executeUpdate();
+          }
+      }
+    
+      // 可选，做个测试
+      public static void main(String[] args) throws Exception {
+          Account account = new Account("abc", "123456", "男", "bunanbunv@younanyounv.com");
+          new AccountDAO().insert(account);
+      }
+  }
+#+end_src
+
+*** 实现步骤 [Servlet#get 方法的实现，用于显示注册页面]
+
+RegistServlet.java:
+#+begin_src java
+  @WebServlet("/regist")
+  public class RegistServlet extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.getRequestDispatcher("/regist/regist.jsp").forward(req, resp);
+      }
+  }
+#+end_src
+
+WebContent/regist/regist.jsp:
+#+begin_src html
+  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>注册页面</title>
+  <style>
+      label {
+          display: flex;
+      }
+      label span {
+          width: 100px;
+      }
+  </style>
+  </head>
+  <body>
+
+  <h3>注册页面</h3>
+
+  <div>
+      <form action="/book/regist" method="post">
+          <label>
+              <span>用户名</span>
+              <input name="username">
+          </label>
+          <label>
+              <span>密码</span>
+              <input type="password" name="password">
+          </label>
+          <label>
+              <span>性别</span>
+              <input type="radio" name="gender" value="男">男
+              <input type="radio" name="gender" value="女">女
+          </label>
+          <label>
+              <span>邮箱</span>
+              <input name="email">
+          </label>
+          <button>点击进行注册</button>
+      </form>
+  </div>
+
+  </body>
+  </html>
+#+end_src
+
+*** 实现步骤 [Servlet#post 方法的实现，用于完成注册]
+
+#+begin_src java
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      String username = req.getParameter("username");
+      String password = req.getParameter("password");
+      String gender = req.getParameter("gender");
+      String email = req.getParameter("email");
+		
+      if (username == null || password == null || gender == null || email == null) {
+          req.setAttribute("message", "字段不能为空");
+          req.getRequestDispatcher("/regist/result.jsp").forward(req, resp);
+          return;
+      }
+		
+      try {
+          new AccountDAO().insert(new Account(username, password, gender, email));
+          req.setAttribute("message", "注册成功");
+          req.getRequestDispatcher("/regist/result.jsp").forward(req, resp);
+      } catch (Exception e) {
+          e.printStackTrace();
+          req.setAttribute("message", e.getLocalizedMessage());
+          req.getRequestDispatcher("/regist/result.jsp").forward(req, resp);
+      }
+  }
+#+end_src
+
+响应的页面，这里为了简单只使用一个 JSP 来实现 WebContent/regist/result.jsp:
+#+begin_src html
+  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>结果</title>
+  <link rel='stylesheet' href='/book/css/xxx.css'>
+  </head>
+  <body>
+
+  <div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>
+      <span style='margin-right: 2em'>
+       <%= request.getAttribute("message") %>
+      </span>
+      <a href='/book/regist'>返回首页</a>
+  </div>
+
+  </body>
+  </html>
+#+end_src
+
+*** 打完收工，阶段小结
+
+- 要敢于分析问题
+- 要学会分析问题
+- 要善于分析问题
+- 要舍得投入时间和精力去分析问题
+- 工欲善其事必先利其器；磨刀不误砍柴工；好的开始是成功的一半；心急吃不了热豆腐...
+- 整个过程，前面往往比后面难，所以克服困难建立信心很重要
+- 学会 Ctrl-C 和 Ctrl-V 的使用
+
+** 登录
+*** 分析问题
+
+首次:
+- 需要向服务器发送 account/password 等能够表示自己唯一身份的数据
+- 服务器要根据你提交的 account/password 进行校验:
+  + 如果成功，就在 Session 中保存你是一个合法身份的凭证数据
+  + 如果失败，返回登录失败的页面
+
+后续:
+- [你再请求服务器的时候，浏览器会悄悄将之前保存在 Cookie 中的 JSESSIONID 随请求一起发送到服务器]
+- 如果有需要，服务器就可以从 Session 从获取之前验证并保存的凭证，从而决定要不要继续接下来的业务
+
+首次登陆:
+- 需要一个请求 GET /login 我们应该能得到一个具备 account/password 输入框的 form 表单
+- 点击登陆之后，POST /login，服务器将会进行校验，将成功的凭证保存在 Session 中
+
+其他:
+- 在 /book/list 上应该添加登录的入口链接，方便用户操作
+- 之后，就可以为某些业务增加身份校验的限制
+
+*** 初步设计
+
+一个 LoginServlet，包含 get/post 方法:
+#+begin_src java
+  public class LoginServlet extends HttpServlet {
+     doGet() {}     // login.jsp 包含一个 form 表单
+     doPost() {}    // 进行相关逻辑，成功、失败
+  }
+#+end_src
+
+跟数据库校验用户的正确性:
+#+begin_src java
+  public class LoginDAO {
+     public boolean check (String username, String password) {
+     }
+  }
+#+end_src
+
+*** 先搞一个方法 AccountDAO#check 用来校验用户名和密码的正确性
+
+#+begin_src java
+  public class AccountDAO {
+      public Account check (String username, String password) throws Exception {
+          String sql = "select id, username, gender, email from account where username = ? and password = ?";
+          System.out.println("要执行的语句是: " + sql);
+
+          try (Connection connection = DBHelper.getConnection();
+                  PreparedStatement statement = connection.prepareStatement(sql)) {
+              statement.setString(1, username);
+              statement.setString(2, password);
+              try (ResultSet rs = statement.executeQuery()) {
+                  if (rs.next()) {
+                      Account account = new Account();
+                      account.setId(rs.getInt(1));
+                      account.setUsername(rs.getString(2));
+                      account.setGender(rs.getString(3));
+                      account.setEmail(rs.getString(4));
+                      return account;
+                  } else {
+                      return null;
+                  }
+              }
+          }
+      }
+
+      //...
+
+      // 可选，做个测试
+      public static void main(String[] args) throws Exception {
+          System.out.println(new AccountDAO().check("abc", "123456"));
+      }
+  }
+#+end_src
+
+*** 然后，搞一个 LoginServlet 写 get/post 方法，分别用来表示 form 表单和处理登录逻辑
+
+#+begin_src java
+  package book.web;
+
+  @WebServlet("/login")
+  public class LoginServlet extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
+      }
+	
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String username = req.getParameter("username");
+          String password = req.getParameter("password");
+		
+          if (username == null || password == null) {
+              req.setAttribute("message", "字段不能为空");
+              req.getRequestDispatcher("/regist/result.jsp").forward(req, resp);
+              return;
+          }
+		
+          try {
+              Account account = new AccountDAO().check(username, password);
+			
+              if (account == null) {
+                  req.getSession().setAttribute("account", null);
+				
+                  req.setAttribute("message", "用户名或者密码错误");
+                  req.getRequestDispatcher("/login/result.jsp").forward(req, resp);
+              } else {
+                  HttpSession session = req.getSession();
+                  session.setAttribute("account", account);
+				
+                  req.setAttribute("message", "登录成功!!!");
+                  req.setAttribute("page", "/book/list");
+                  req.getRequestDispatcher("/login/result.jsp").forward(req, resp);
+              }
+          } catch (Exception e) {
+              e.printStackTrace();
+			
+              req.getSession().setAttribute("account", null);
+			
+              req.setAttribute("message", e.getLocalizedMessage());
+              req.getRequestDispatcher("/login/result.jsp").forward(req, resp);
+          }
+      }
+  }
+#+end_src
+
+Form 表单页面 (从 regist.jsp 复制而来，然后修改而成):
+#+begin_src html
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
+      pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>登录页面</title>
+  <style>
+      label {
+          display: flex;
+      }
+      label span {
+          width: 100px;
+      }
+  </style>
+  </head>
+  <body>
+
+  <h3>登录页面</h3>
+
+  <div>
+      <form action="/book/login" method="post">
+          <label>
+              <span>用户名</span>
+              <input name="username">
+          </label>
+          <label>
+              <span>密码</span>
+              <input type="password" name="password">
+          </label>
+          <button>登录</button>
+      </form>
+  </div>
+
+  </body>
+  </html>
+#+end_src
+
+结果页面 (result.jsp):
+#+begin_src html
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
+      pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>登录页面</title>
+  <style>
+      label {
+          display: flex;
+      }
+      label span {
+          width: 100px;
+      }
+  </style>
+  </head>
+  <body>
+
+  <h3>登录页面</h3>
+
+  <div>
+      <form action="/book/login" method="post">
+          <label>
+              <span>用户名</span>
+              <input name="username">
+          </label>
+          <label>
+              <span>密码</span>
+              <input type="password" name="password">
+          </label>
+          <button>登录</button>
+      </form>
+  </div>
+
+  </body>
+  </html>
+#+end_src
+
+*** 最后，在其他页面上，建立到登录的入口
+
+#+begin_src html
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/xxx.css">
+      <style>
+          form {
+              padding-bottom: 1em;
+              width: 98%;
+              display: flex;
+              justify-content: space-between;
+          }
+          header {
+              display: grid;
+              grid-template-columns: 1fr auto;
+          }
+          header span {
+              padding: 1em 2em;
+          }
+      </style>
+  </head>
+
+  <body>
+      <header>
+          <h3>163 书籍管理系统</h3>
+          <span>
+          <%
+              Object o = session.getAttribute("account");
+			
+              if (o == null) {
+                  out.print("<a href='/book/login'>登录</a>");
+              } else {
+                  Account account = (Account) o;
+                  out.println("欢迎您 " 
+                      + account.getUsername() 
+                      + " (" + account.getGender() + ")   <a href='/book/logout'>注销</a>");
+              }
+          %>
+          </span>
+      </header>
+      ....
+      ....
+  </body>
+#+end_src
+
+提示:
+- 在 JSP 中，可以直接使用 session 表示 Session 对象
+- 通过校验 session 中是否存在 account 来判断是否已经登录
+
+** 注销
+
+就是发送一个请求到服务器，然后，服务器将会把保存在 Session 中的值给清空！
+
+然后刷新下页面就可以啦。
+
+我们需要:
+- 写一个 GET /logout 的 Servlet，用来处理上述逻辑
+
+** 按照是否有登录，来限制某些业务
+
+分析:
+1. 判断: session.getAttrubite("account");
+2. 如果没有登录，相关的一些链接和按钮不显示: /book/list
+3. 如果没有登录，对 /book/del 等的请求，会被服务器阻止
+
+第 2 个问题，只需要定位到 /bookList.jsp，添加显示的条件即可:
+#+begin_src html
+  <% if (session.getAttribute("account") != null) { %>
+  <td>
+    <a href='/book/del?id=<%= book.id %>'>删除</a>
+    <a href='/book/edit?id=<%= book.id %>'>修改</a>
+  </td>
+  <% } %>
+#+end_src
+
+第 3 个问题，适合使用过滤器来批量处理。即如果没登录，显示错误页面，然后返回，从而避免业务继续进行:
+#+begin_src java
+  @WebFilter({"/del", "/add", "/edit"})
+  public class PrivFilter implements Filter {
+      @Override
+      public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+          HttpServletRequest req = (HttpServletRequest) request;
+		
+          if (req.getSession().getAttribute("account") == null) {
+              req.setAttribute("message", "您没有权限做这样的事情");
+              req.getRequestDispatcher("/bookResult.jsp").forward(request, response);
+              return;
+          }
+		
+          chain.doFilter(request, response);
+      }
+
+      @Override
+      public void init(FilterConfig filterConfig) throws ServletException {
+      }
+      @Override
+      public void destroy() {
+      }
+  }
+#+end_src
+
+* CANCEL 案例分析 (购物车的实现逻辑)
+:LOGBOOK:
+- State "CANCEL"     from "TODO"       [2020-07-29 Wed 04:02]
+:END:
+
+留作后续。
+
+* 案例分析 (↳ 简化JSP，EL表达式+JSTL 标签)
+
+修改示例:
+
+** bookList.jsp 中的登录、注册
+
+从:
+#+begin_src html
+  <header>
+      <h3>163 书籍管理系统</h3>
+      <span>
+      <%
+          Object o = session.getAttribute("account");
+
+          if (o == null) {
+              out.print("<a href='/book/login'>登录</a>");
+          } else {
+              Account account = (Account) o;
+              out.println("欢迎您 " 
+                  + account.getUsername() 
+                  + " (" + account.getGender() + ")<a href='/book/logout'>  注销</a>");
+          }
+      %>
+      </span>
+  </header>
+#+end_src
+
+到:
+#+begin_src html
+  <header>
+      <h3>163 书籍管理系统</h3>
+      <span>
+          <c:if test="${empty sessionScope.account}">
+              <a href="${pageContext.request.contextPath}/login">登录</a>
+          </c:if>
+          <c:if test="${sessionScope.account != null}">
+              欢迎您 ${account.username} ! 
+              <a href="${pageContext.request.contextPath}/logout">注销</a>
+          </c:if>
+      </span>
+  </header>
+#+end_src
+
+** bookList.jsp 中的表格渲染
+
+从:
+#+begin_src html
+  <%
+    List<Book> books = (List<Book>) request.getAttribute("xxx");
+  %>
+
+  <% for (Book book : books) { %>
+  <tr>
+      <td><%= book.id %></td>
+      <td><%= book.bookName %></td>
+      <td><%= book.price %></td>
+
+      <% if (session.getAttribute("account") != null) { %>
+
+      <td>
+          <a href='/book/del?id=<%= book.id %>'>删除</a>
+          <a href='/book/edit?id=<%= book.id %>'>修改</a>
+      </td>
+
+      <% } %>
+
+  </tr>
+  <% } %>
+#+end_src
+
+到:
+#+begin_src html
+  <c:forEach var="book" items="${xxx}">
+  <tr>
+      <td>${book.id}</td>
+      <td>${book.bookName}</td>
+      <td>${book.price}</td>
+      <c:if test="${sessionScope.account != null}">
+      <td>
+          <a href='${pageContext.request.contextPath}/del?id=${book.id}'>删除</a>
+          <a href='${pageContext.request.contextPath}/edit?id=${book.id}'>修改</a>
+      </td>
+      </c:if>
+  </tr>
+  </c:forEach>
+#+end_src
+
+** login/result.jsp 页面
+
+从:
+#+begin_src html
+  <div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>
+      <span style='margin-right: 2em'>
+       <%= request.getAttribute("message") %>
+      </span>
+      <a href='<%
+      Object o = request.getAttribute("page");
+      if (o == null) {
+          out.print("/book/login");
+      } else {
+          out.print(o);
+      }
+      %>'>返回首页</a>
+  </div>
+#+end_src
+
+到:
+#+begin_src html
+  <div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>
+      <span style='margin-right: 2em'>
+         ${message }
+      </span>
+      <a href='${pageContext.request.contextPath}${empty page ? "/list" : page }'>返回首页</a>
+  </div>
+#+end_src
+
+* 案例分析 (● 结束)
+
+- 仓库: https://github.com/yaollllllsan/3-book
+- 代码: https://github.com/yaollllllsan/3-book/archive/master.zip
+
+* 注册和登录 (复盘)
+
+B(浏览器) S(服务器)
+
+准备工具:
+- 浏览器 (Chome/Edge)
+- Tomcat/JDK (tomcat8/jdk8)
+- Eclipse JEE (企业版)
+- 数据库 (SQLServer)
+
+技术准备:
+- 一点点点的 CSS (锦上添花)
+- 一点点的 html (基础)
+- 一点的 JS
+- 一点的 Java
+- JDBC 的基本使用!!!
+- 一点的 Java Web (Servlet+CRUD)
+
+** 预览
+
+https://github.com/yaollllllsan/4-regandlog/archive/master.zip
+
+[[file:img/oimg_20200728_035835.png]]
+
+** 首先第一步，要分析题目
+
+两个功能，注册 + 登录。
+
+需要一张表，user，用来保存用户信息。
+
+需要两个 Servlet，分别用来处理注册和登录。
+
+注册的主要逻辑，是向数据库插入一条用户信息。
+
+登录的主要逻辑，是向数据库查询用户信息，并将结果保存到 Session。
+
+** 创建一个动态 Web 项目，复制一些必要文件
+
+src/regandlog/
+- filter/EncodingFilter.java
+- util/DBHelper.java
+- bean/
+- dao/
+- web/
+
+WebContent/
+- WEB-INF
+  - lib/jdbc.jar
+
+注意，不要落下 JDBC 驱动包。
+
+** 然后，创建所需要的表
+
+#+begin_src sql
+  create table myuser 
+  (
+      username varchar(100) primary key,
+      password varchar(100) not null,
+      usertype int default 1
+  );
+#+end_src
+
+** 之后，在 bean 包下创建 User.java
+
+结构跟数据库的 myuser 是对应的。
+
+#+begin_src java
+  package regandlog.bean;
+
+  public class User {
+      private String username;
+      private String password;
+      private int userType;
+	
+      public String getUsername() {
+          return username;
+      }
+      public void setUsername(String username) {
+          this.username = username;
+      }
+      public String getPassword() {
+          return password;
+      }
+      public void setPassword(String password) {
+          this.password = password;
+      }
+      public int getUserType() {
+          return userType;
+      }
+      public void setUserType(int userType) {
+          this.userType = userType;
+      }
+  }
+#+end_src
+
+
+** 随后，为接下来的业务，封装数据库操作的逻辑 (dao)
+
+#+begin_src java
+  package regandlog.dao;
+
+  import java.sql.Connection;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+
+  import regandlog.bean.User;
+  import regandlog.util.DBHelper;
+
+  public class UserDAO {
+      // 为了注册
+      // 根据传入的 User，向数据库插入一条数据
+      public void insert (User user) throws Exception {
+          String sql = "insert into myuser (username, password, usertype) values (?,?,?)";
+		
+          try (Connection conn = DBHelper.getConnection();
+                  PreparedStatement statement = conn.prepareStatement(sql)) {
+              statement.setString(1, user.getUsername());
+              statement.setString(2, user.getPassword());
+              statement.setInt(3, user.getUserType());
+              statement.executeUpdate();
+          }
+      }
+	
+      // 为了登录
+      // 跟数据库校验，有没有此 username、password 的用户，如果有，取出来
+      public User get (String username, String password) throws Exception {
+          String sql = "select usertype from myuser where username = ? and password = ?";
+		
+          try (Connection conn = DBHelper.getConnection();
+                  PreparedStatement statement = conn.prepareStatement(sql)) {
+              statement.setString(1, username);
+              statement.setString(2, password);
+			
+              try (ResultSet rs = statement.executeQuery()) {
+                  // 数据查到了，说明用户名、密码是对的，那么封装返回
+                  if (rs.next()) {
+                      int userType = rs.getInt(1);
+					
+                      User user = new User();
+                      user.setUsername(username);
+                      user.setPassword(password);
+                      user.setUserType(userType);
+					
+                      return user;
+                  } else {
+                      // 没有查到，返回 null，说明用户名或密码错了
+                      return null;
+                  }
+              }
+          }
+      }
+  }
+#+end_src
+
+
+** 准备工作完成，实现注册
+
+#+begin_src java
+  package regandlog.web;
+
+  import java.io.IOException;
+
+  import javax.servlet.ServletException;
+  import javax.servlet.annotation.WebServlet;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
+
+  import regandlog.bean.User;
+  import regandlog.dao.UserDAO;
+
+  @WebServlet("/regist")
+  public class RegistServlet extends HttpServlet {
+      @Override // 返回包含 form 表单的页面
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.getRequestDispatcher("/regist.jsp").forward(req, resp);
+      }
+	
+      @Override // 进行数据库的插入，然后返回成功页面
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String username = req.getParameter("username");
+          String password = req.getParameter("password");
+		
+          try {
+              User user = new User();
+              user.setUsername(username);
+              user.setPassword(password);
+              user.setUserType(1);
+			
+              new UserDAO().insert(user);
+			
+              req.setAttribute("message", "注册成功");
+              req.getRequestDispatcher("/registResult.jsp").forward(req, resp);
+          } catch (Exception e) {
+              req.setAttribute("message", "注册失败: " + e.getLocalizedMessage());
+              req.getRequestDispatcher("/registResult.jsp").forward(req, resp);
+          }
+      }
+  }
+#+end_src
+
+页面:
+#+begin_src html
+  <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+  <html>
+    <form action="/regandlog/regist" method="post">
+      <input name="username" placeholder="用户名">
+      <input name="password" type="password" placeholder="密码">
+      <button>注册</button>
+    </form>
+  </html>
+#+end_src
+
+失败或成功的页面:
+#+begin_src html
+  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>结果</title>
+    </head>
+    <body>
+
+      <div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>
+        <span style='margin-right: 2em'>
+          <%= request.getAttribute("message") %>
+        </span>
+        <a href='/regandlog/regist'>返回首页</a>
+      </div>
+
+    </body>
+  </html>
+#+end_src
+
+** 最后，是登录的逻辑
+
+要善于使用 Ctrl-C 和 Ctrl-V!
+
+#+begin_src java
+  package regandlog.web;
+
+  import java.io.IOException;
+
+  import javax.servlet.ServletException;
+  import javax.servlet.annotation.WebServlet;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
+
+  import regandlog.bean.User;
+  import regandlog.dao.UserDAO;
+
+  @WebServlet("/login")
+  public class LoginServlet extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          req.getRequestDispatcher("/login.jsp").forward(req, resp);
+      }
+	
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String username = req.getParameter("username");
+          String password = req.getParameter("password");
+		
+          try {
+              User user = new UserDAO().get(username, password);
+
+              if (user != null) {
+                  req.getSession().setAttribute("user", user);
+                  req.getRequestDispatcher("/loginCG.jsp").forward(req, resp);
+              } else {
+                  req.setAttribute("message", "用户名或密码错误");
+                  req.getRequestDispatcher("/loginSB.jsp").forward(req, resp);
+              }
+          } catch (Exception e) {
+              req.setAttribute("message", "登录失败: " + e.getLocalizedMessage());
+              req.getRequestDispatcher("/loginSB.jsp").forward(req, resp);
+          }
+      }
+  }
+#+end_src
+
+登录页面:
+#+begin_src html
+  <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+  <html>
+    <h3>登录</h3>
+    <form action="/regandlog/login" method="post">
+      <input name="username" placeholder="用户名">
+      <input name="password" type="password" placeholder="密码">
+      <button>登录</button>
+    </form>
+  </html>
+#+end_src
+
+登录成功 (loginCG.jsp):
+#+begin_src html
+  <%@page import="regandlog.bean.User"%>
+  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>结果</title>
+  </head>
+  <body>
+
+  <div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>
+      登录成功！！！！
+      <p style="color: red">
+      <%
+      User user = (User) session.getAttribute("user"); 
+      out.println("欢迎您 " + user.getUsername());
+      %>
+      </p>
+  </div>
+
+  </body>
+  </html>
+#+end_src
+
+登录失败 (loginSB.jsp):
+#+begin_src html
+  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>结果</title>
+  </head>
+  <body>
+
+  <div style='width: 400px; margin: 1em auto; background: #eee; padding: 2em;'>
+      <span style='margin-right: 2em'>
+       <%= request.getAttribute("message") %>
+      </span>
+      <a href='/regandlog/login'>返回首页</a>
+  </div>
+
+  </body>
+  </html>
+#+end_src
+
+* 手机的增删改查 (复盘)
+** 综述
+
+盘点:
+- 主体: 手机 (Phone)
+- 操作: 增删改查 (CRUD)
+
+准备工作:
+- 创建一个 Web 项目 (phone)
+- 在数据库中创建一张表 phone
+  + id
+  + name
+  + price
+- 创建相应的文件夹 (包)，C-c C-v 相应类
+  + bean
+  + dao
+  + listener+filter (编码/Startup)
+  + utils (DBHelper.java)
+  + web
+- C-c C-v 两个 jar 包 (jdbc/jstl)
+
+正式完成:
+- 为 Phone 表，在项目中创建相应的 bean/Phone.java
+  + 要写上 get/set 方法
+- 为接下来的业务，创建数据库的操作类 dao/PhoneDAO.java:
+  + insert(name, price)
+  + delete(id)
+  + +update(name, price)+
+  + list/get()
+- 创建相应的 web/XxxServlet 和 jsp/xxx.jsp 然后完成相应功能
+  + PhoneListServlet (/list)
+  + PhoneAddServlet (/add)
+  + PhoneDelServlet (/del)
+
+** 视频步骤
+
+#+begin_export html
+<video preload="metadata" controls="controls" width="600">
+  <source src="../videos/phone_crud.mp4" />
+</video>
+#+end_export
+
+** 修改功能
+
+- EditServlet (get/post)
+- edit.jsp
+- +message.jsp+
+
+
+#+begin_export html
+<video preload="metadata" controls="controls" width="600">
+  <source src="../videos/phone_edit.mp4" />
+</video>
+#+end_export
+
+** 搜索功能
+
+- 复用 ListServlet
+- 在 list.jsp 中添加一个 form 表单
+
+#+begin_export html
+<video preload="metadata" controls="controls" width="600">
+  <source src="../videos/phone_search.mp4" />
+</video>
+#+end_export
+
+** 仓库及代码
+
+- 仓库: https://github.com/yaollllllsan/5-phone
+- 代码: https://github.com/yaollllllsan/5-phone/archive/master.zip
+
+* 考试上机
+
+- SQL 的文件一定要记得打包进去，否则 10 分没了
+  + 创建表的语句
+  + 插入若干行的示例数据
+- 拷贝示例项目，在其基础上修改是可行的。但是一定要将需要改的地方都改好
+- 一定要按照题目要求来

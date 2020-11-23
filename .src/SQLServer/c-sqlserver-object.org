@@ -1,0 +1,118 @@
+#+TITLE: Objects in SQLServer
+
+
+* Index (查询效率)
+** 什么是 Index
+
+基本原理:
+- 以空间换时间
+- 避免 full table scan, 效率最低
+
+空间基本构建步骤:
+1. 创建一片空间，存储 *排序良好* 的数据
+2. 对排序好的数据，进行有效的 *分组*
+   - 根据策略的不同，分组可以能有很多不同的算法
+   - 目前比较流行，也比较高效的是 B-Tree 算法
+
+[[file:img/b-tree-demo.png]]
+
+基本查询步骤:
+1. 首先，寻找刚才的空间，找到所有符合条件的数据和其地址
+2. 其次，根据上述的地址，从原先的表中定位并获取所有对应数据
+
+[[file:img/what-is-index.png]]
+
+
+上述定义的额外存储空间，就叫 *索引(index)*!!!
+
+索引具备两面性，要客观使用:
+- 它能极大提高查询速度 (5m - 0.2s)
+- 它 *不一定* 能提高查询速度，甚至可能会降低
+- 它需要占用很多额外的存储空间
+- 它需要额外的成本进行维护 (插入/删除/更新)，会削弱相应的效率
+- 在右模糊或全模糊查询的时候，数据库不会走索引
+- 性别等字段，离散型比较差，不适合建立 (普通) 索引
+
+** 如何使用索引
+
+#+begin_src sql
+  -- 基本的创建
+  create index index_lagou_position_pos 
+	on lagou_position(position);
+
+  -- 聚集索引 (是能够直接干预主表上顺序的物理排序的索引。一个表最多只能有一个。一般来说，就是主键上的索引)
+  create clustered index index_lagou_position_pid
+	on lagou_position(pid);
+
+  -- 其他索引
+  create index idx_xxx on lagou_position (city, field); -- 联合索引
+  create index idx_yyy on lagou_position xxx(city);     -- 函数索引
+
+  -- 修改
+  alter index index_lagou_position_pos on lagou_position rebuild/reorganize/disable;
+
+  -- 删除
+  drop index index_lagou_position_pos on lagou_position;
+#+end_src
+
+对比:
+
+[[file:img/diff-before-and-after-index.png]]
+
+
+
+* View (简化语句)
+
+视图 (View) 的创建:
+#+begin_src sql
+  -- 单表加条件
+  create view xxx
+    as
+    select * from lagou_position where city = '珠海';
+
+  select * from xxx;
+
+  -- 多表加条件
+  create view v_yyy
+    as
+    select p.*, c.fullname, c.size from lagou_position p
+     join lagou_company c on c.cid = p.company
+     where city = '珠海' or city = '深圳' or city = '广州';
+   
+  select COUNT(*) from yyy;
+  select * from yyy order by salary_max desc;
+
+  -- 修改视图
+  alter view v_yyy
+     with encryption
+     with check option
+    as
+    select p.*, c.fullname, c.size from lagou_position p
+     join lagou_company c on c.cid = p.company
+     where city = '珠海' or city = '深圳' or city = '广州' or city = '东莞';
+
+  -- 删除
+  drop view v_yyy;
+#+end_src
+
+其他的一些语句:
+#+begin_src sql
+  -- 可以通过系统 "表" 来查询相关的信息
+  select * from sys.objects;
+  select * from sys.columns;
+  select * from sys.depends;
+  select * from sys.comments;
+
+  -- 可以通过存储过程查看结构
+  sp_help xxx;
+  sp_helptext xxx;
+  sp_helptext [sys.objects];
+#+end_src
+
+优点:
+- 简化 sql 语句
+- 加强对数据的权限控制
+
+另外:
+- 主要用于查询
+- 也可以进行有限的 /增删改/

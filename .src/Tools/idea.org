@@ -1,0 +1,23 @@
+#+TITLE: Intellij Idea
+
+
+* 本地下载
+
+[[file:../asset/IntellijIdea-2020.1.2.rar]]
+
+* 安装
+
+#+begin_export html
+<video preload="metadata" controls="controls" width="600">
+  <source src="../videos/idea_inst.mp4" />
+</video>
+#+end_export
+
+* 第一个项目
+
+#+begin_export html
+<video preload="metadata" controls="controls" width="600">
+  <source src="../videos/idea_first.mp4" />
+</video>
+#+end_export
+

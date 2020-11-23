@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>商品管理</title>
+    <style>
+     label {
+       display: block;
+     }
+     table {
+       border-collapse: collapse;
+       margin-top: 1em;
+     }
+     table, th, td {
+       border: 1px solid black;
+     }
+     th, td {
+       padding: 5px 1em;
+     }
+     .goods_new > label > span {
+       color: #009900;
+       margin-right: 10px;
+     }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- 商品录入 -->
+    <section class="goods_new">
+      <label>
+        <span>商品名字</span>
+        <input name="goods_name">
+      </label>
+      <label>
+        <span>商品价格</span>
+        <input name="goods_price">
+      </label>
+      <label>
+        <span>商品数量</span>
+        <input name="goods_amount">
+      </label>
+      <div>
+        <button onclick="addGoods()">添加商品</button>
+      </div>
+    </section>
+
+    <!-- 商品列表 -->
+    <div>
+      <button onclick="quanxuan()">全选</button>
+      <button onclick="buxuan()">不选</button>
+      <button onclick="fanxuan()">反选</button>
+      <button onclick="delSelect()">删除所有选择项</button>
+    </div>
+    <section class="goods_list">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>名字</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--
+          <tr>
+            <td>xx</td>
+            <td>xxx</td>
+            <td>xxxx</td>
+          </tr>
+          -->
+        </tbody>
+      </table>
+    </section>
+
+    <script>
+     var goods_arr = [
+       ['aaaa', 22, 33],
+       ['bbbb', 11, 43],
+       ['cccc', 55, 99]
+     ];
+
+     function renderGoods () {
+       var trs = "";
+       goods_arr.forEach(function(goods) {
+         trs += '<tr>';
+         trs += ' <td><input type="checkbox"></td>';
+         trs += ' <td>' + goods[0] + '</td><td>' + goods[1] + '</td><td>' + goods[2] + '</td>';
+         trs += ' <td><button onclick="del(event)">删除</button></td>';
+         trs += '</tr>';
+       });
+       document.querySelector('tbody').innerHTML = trs;
+     }
+
+     function addGoods() {
+       // 获取页面输入
+       var goods = [];
+       document.querySelectorAll(".goods_new input").forEach(function(input) {
+         goods.push(input.value);
+         input.value = "";
+       });
+
+       // 更新数据
+       goods_arr.push(goods);
+
+       // 重新渲染页面
+       renderGoods();
+     }
+
+     function del(ev) {
+       if (confirm('是不是确定要删除?')) {
+         var index = ev.target.parentNode.parentNode.rowIndex;
+         goods_arr.splice(index - 1, 1);
+         renderGoods();
+       }
+     }
+
+     function quanxuan() {
+       document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+         cb.checked = true;
+       });
+     }
+
+     function buxuan() {
+       document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+         cb.checked = false;
+       });
+     }
+
+     function fanxuan() {
+       document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+         cb.checked = !cb.checked;
+       });
+     }
+
+     function delSelect(er) {
+       var inputs = document.querySelectorAll(':checked');
+       for (var i = 0; i < inputs.length; i++) {
+         var index = inputs[i].parentNode.parentNode.rowIndex;
+         goods_arr.splice(index - 1, 1);
+       }
+       renderGoods();
+     }
+
+     renderGoods();
+    </script>
+  </body>
+</html>

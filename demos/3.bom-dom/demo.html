@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div>
+      <article>
+        <section>
+          <ul>
+            <li>xxx</li>
+            <li class="x">yyy</li>
+            <li>aaa</li>
+            <li class="x">bbb</li>
+            <li>ccc</li>
+          </ul>
+          <h3>
+            你猜点我会咋样?
+          </h3>
+        </section>
+      </article>
+    </div>
+
+    <script>
+     // var lis = document.querySelectorAll('li');
+     // for(var i = 0; i < lis.length; i++) {
+     //   lis[i].onclick = (e) => {
+     //     alert(e.target.innerText);
+     //   };
+     // }
+
+     // 事件的委托
+     // 将事情（责任）甩锅给自己的爸爸或爷爷，能让自己更轻松
+     var div = document.querySelector('div');
+     div.onclick = (e) => {
+       if (e.target.classList.contains('x')) {
+         alert(e.target.innerText); // e.target 事件源
+       }
+     };
+    </script>
+
+  </body>
+</html>

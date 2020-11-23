@@ -1,0 +1,1116 @@
+#+TITLE: 课本上的课后题
+
+
+
+* 第一章
+** 用 document.write 输出内容
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+      <script>
+        document.write("<h2>珠海</h2>");
+        document.write("珠海市一座城市。");
+      </script>
+    </body>
+  </html>
+#+end_src
+
+document.write 不建议大家平时使用。效率低，有安全问题。
+
+** 使用 document.write 输出表格
+
+#+begin_src html :tangle e:/aaa.html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+        table, tr, td {
+            border: 1px solid red;
+            border-collapse: collapse;
+        }
+        </style>
+    </head>
+    <body>
+      <script>
+        document.write("<table> <tr>");
+        document.write("    <td>xx</td> <td>xx</td> <td>xx</td>");
+        document.write("  </tr> <tr>");
+        document.write("    <td>yy</td> <td>yy</td> <td>yy</td>");
+        document.write("  </tr></table>");
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 使用 alert 弹出基本信息
+
+#+begin_src js
+  // 注释: 这是定义的变量，并且赋予了初始值
+  var name = "lily", age = 20;
+
+  // 弹出来
+  alert("用户信息\n\n姓名: " + name + "\n年龄: " + age);
+#+end_src
+
+** 用 js 操作页面样式
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+      <header>
+        <input value="南方 IT 学院">
+      </header>
+      <section>
+        <button>清空文本</button>
+      </section>
+      <div style="border: 1px solid black;">
+        请将鼠标放到我身上看看有什么效果.
+      </div>
+
+      <script>
+        document.querySelector('button').onclick = (e) => {
+          document.querySelector('input').value = '';
+        };
+
+       var div = document.querySelector('div');
+       div.onmouseover = function(e) {
+         e.target.style.background = 'yellow';
+         e.target.style.border = '5px dotted red';
+       };
+       div.onmouseout = function(e) {
+         e.target.style.background = 'white';
+         e.target.style.border = '1px solid black';
+       }
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+结合事件来食用。当然最后一步，也可以使用 css:hover 来解决。
+
+** 代码题 1
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+
+      <label>
+        <span>姓名</span>
+        <input id="xm" value="lily">
+      </label>
+
+      <label>
+        <span>年龄</span>
+        <input id="nl" value="20">
+      </label>
+
+      <button>按我忧伤</button>
+
+      <script>
+       document.querySelector('button').onclick = (e) => {
+         // 注释: 这是定义的变量，并且赋予了初始值
+         var name = document.querySelector('#xm').value,
+             age = document.querySelector('#nl').value;
+
+         // 弹出来
+         alert("用户信息\n\n姓名: " + name + "\n年龄: " + age);
+       }
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+** 代码题 2
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+
+      <h2>犯我中华者虽远必诛</h2>
+      <h2>犯我中华者虽远必诛</h2>
+      <h2>犯我中华者虽远必诛</h2>
+      <h2>犯我中华者虽远必诛</h2>
+
+      <script>
+       document.querySelectorAll('h2').forEach(h2 => {
+         h2.onmouseover = (e) => e.target.style.background = 'yellow';
+         h2.onmouseout = (e) => e.target.style.background = 'white';
+       });
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+* 第二章
+** 根据用户输入，插入多行文本
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+
+      <div></div>
+
+      <script>
+       // 通过互动的方式得到了应该插入的行数
+       var s = prompt("请输入要初始化的行数: ");
+
+       if (isNaN(s)) {
+         alert('请输入合适的数字！');
+       } else {
+         var num = parseInt(s);
+         var h = "";
+         for (let i = 0; i < num; i++) {
+           h += "<p>行数 " + (i + 1) + "</p>";
+         }
+         document.querySelector('div').innerHTML = h;
+       }
+      </script>
+    </body>
+  </html>
+#+end_src
+
+注意，不要使用 document.write 来实现了。
+
+** 搞一个计算器
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       label {
+         display: block;
+       }
+      </style>
+    </head>
+    <body>
+
+      <h3>简单计算器</h3>
+      <label>
+        <span>第1个数</span>
+        <input id="first">
+      </label>
+      <label>
+        <span>第2个数</span>
+        <input id="second">
+      </label>
+      <label>
+        <span>第3个数</span>
+        <input id="third">
+      </label>
+
+      <button>开始计算</button>
+
+      <script>
+       // 务必小心:
+       // 代码中千万不要使用任何的 eval
+       // 在有限的情况下，使用 new Function 来代替可以
+       function compute(x, op, y) {
+         // eval('2 + 333')
+         // return eval(x + op + y);
+         return (new Function('return ' + x + op + y))();
+       }
+
+       function getAnswer() {
+         var first = document.getElementById('first').value;
+         var second = document.getElementById('second').value;
+         var third = document.getElementById('third').value;
+
+         var input = parseFloat(first)
+                   + second
+                   + parseFloat(third);
+         alert(input + '=' + compute(first, second, third));
+       }
+
+       document.querySelector('button').onclick = getAnswer;
+
+      </script>
+    </body>
+  </html>
+
+#+end_src
+
+** 奇偶行的背景颜色
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       table, tr, td {
+         border: 1px solid black;
+         border-collapse: collapse;
+         padding: 5px 1em;
+       }
+       /* 可以使用 css 的方法来实现 */
+       tr:nth-child(odd) {
+         background: yellow;
+       }
+      </style>
+    </head>
+    <body>
+      <table>
+        <tr>
+          <td>xxx</td>
+          <td>xxx</td>
+          <td>xxx</td>
+        </tr>
+        <tr>
+          <td>xxx</td>
+          <td>xxx</td>
+          <td>xxx</td>
+        </tr>
+        <tr>
+          <td>xxx</td>
+          <td>xxx</td>
+          <td>xxx</td>
+        </tr>
+        <tr>
+          <td>xxx</td>
+          <td>xxx</td>
+          <td>xxx</td>
+        </tr>
+        <tr>
+          <td>xxx</td>
+          <td>xxx</td>
+          <td>xxx</td>
+        </tr>
+      </table>
+      <script>
+       // 用 JS 的方式去实现
+       document.querySelectorAll('tr:nth-child(even)').forEach((el) => {
+         el.style.background = 'pink';
+       });
+      </script>
+    </body>
+  </html>
+#+end_src
+
+
+** 代码题 1
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+      <button>点我算分</button>
+
+      <script>
+       function transformFenshu(score) {
+         if (score >= 90) {
+           return 'A';
+         }
+         if (score >= 80) {
+           return 'B';
+         }
+         if (score >= 70) {
+           return 'C';
+         }
+         if (score >= 60) {
+           return 'D';
+         }
+         return 'E';
+       }
+
+       document.querySelector('button').onclick = function(e) {
+         var input = prompt("请输入你的百分之分数: ");
+         alert(transformFenshu(parseFloat(input)));
+       };
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 代码题 2 打印乘法表
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       h3 {
+         font-size: 35pt;
+         position: absolute;
+         top: -20px;
+         right: 200px;
+       }
+       i {
+         background: darkgreen;
+         color: white;
+         margin: 3px;
+         padding: 5px;
+         width: 90px;
+         display: inline-block;
+         text-align: center;
+         font-style: normal;
+         font-weight: bold;
+         box-shadow: 0 0 3px black;
+       }
+       i:hover {
+         color: yellow;
+       }
+      </style>
+    </head>
+    <body>
+      <h3>九九乘法表</h3>
+      <section>
+      </section>
+
+      <script>
+       var h = "";
+
+       for (let i = 1; i <= 9; i++) { // i 代表的是各行
+         h += "<div>";
+         for (let j = 1; j <= i; j++) { // 每一行的各个 3x4=12 的格子
+           h += "<i>" + j + " x " + i + " = " + (i*j) + "</i>";
+         }
+         h += "</div>";
+       }
+
+       document.querySelector('section').innerHTML = h;
+      </script>
+    </body>
+  </html>
+#+end_src
+* 第三章
+** 切换图片 (Page 73)
+
+#+begin_src html
+  <section>
+    <img src="a.jpg">
+  </section>
+
+  <script>
+    var img = document.querySelector('img');
+    img.onmouseover = function(e) {
+        img.src = 'c.jpg';
+    };
+    img.onmouseout = function(e) {
+        img.src = 'a.jpg';
+    };
+  </script>
+#+end_src
+
+** input 输入框事件 (Page 74)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       header {
+         text-align: center;
+       }
+       section {
+         border: 1px dotted black;
+         text-align: center;
+       }
+       label {
+         display: block;
+       }
+      </style>
+    </head>
+    <body>
+      <header>员工信息</header>
+      <section>
+        <label>
+          <span>姓名</span>
+          <input id="xm" autofocus>
+        </label>
+        <label>
+          <span>年龄</span>
+          <input id="nl" value="[年龄]必须为数字">
+        </label>
+        <div>
+          <button class="sub">提交</button>
+          <button class="rest">重置</button>
+        </div>
+      </section>
+
+      <script>
+       var nl = document.getElementById('nl');
+       nl.onfocus = function(e) {
+         e.target.value = '';
+       };
+       nl.onkeydown = function(e) {
+         if ((e.keyCode > 57 || e.keyCode < 48)
+             && e.keyCode !== 13
+             && e.keyCode !== 8) {
+           e.preventDefault();
+         }
+       }
+      </script>
+    </body>
+  </html>
+#+end_src
+** 显示按钮文本的事件 (Page 75)
+
+#+begin_src html
+  <div>
+    <button>我是一个按钮</button>
+    <button>楼上说的对</button>
+    <button>我是谁，谁知道</button>
+    <button>大家都别吵</button>
+  </div>
+  <script>
+    function showMe(e) {
+        alert(e.target.innerText);
+    }
+    document.querySelectorAll('button').forEach(button => {
+        button.onclick = showMe;
+    });
+  </script>
+#+end_src
+
+利用事件委托:
+#+begin_src html
+  <div>
+    <button>我是一个按钮</button>
+    <button>楼上说的对</button>
+    <button>我是谁，谁知道</button>
+    <button>大家都别吵</button>
+  </div>
+  <script>
+    function showMe(e) {
+        if (e.target.tagName == 'BUTTON') {
+            alert(e.target.innerText);
+        }
+    }
+    document.querySelector('div').onclick = showMe;
+  </script>
+#+end_src
+
+** 按钮跟 checkbox 的互动 (Page 76)
+
+#+begin_src html
+  <div>
+    <button disabled>我是一个傀儡</button>
+  </div>
+  <div>
+    <input type="checkbox">
+  </div>
+  <script>
+    document.querySelector('input').onchange = (e) => {
+        if (e.target.checked) {
+            document.querySelector('button').removeAttribute('disabled');
+        } else {
+            document.querySelector('button').setAttribute('disabled', 'disabled');
+        }
+    }
+
+    window.onload = function(e) {
+        document.querySelector('input').click();
+    }
+  </script>
+#+end_src
+
+** 代码题 1
+
+#+begin_src html
+  <div></div>
+  <script>
+    document.onmousemove = function(e) {
+        document.querySelector('div').innerText = e.x + ', ' + e.y;
+    };
+  </script>
+#+end_src
+
+** 代码题 2 爷会飞
+
+#+begin_src html
+  <div style="position: fixed;">
+    <header>
+      <img src="a.jpg">
+    </header>
+    <footer>
+      爷会飞
+    </footer>
+  </div>
+  <script>
+    document.onmousemove = function(e) {
+        var imgDiv = document.querySelector('div');
+        imgDiv.style.left = (e.clientX - 30) + 'px';
+        imgDiv.style.top = (e.clientY -30) + 'px';
+    }
+  </script>
+#+end_src
+
+* 第四章
+** 复制节点 (Page 101)
+
+#+begin_src html
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <style>
+      .main {
+          display: flex;
+          flex-flow: row;
+      }
+      section {
+          width: 300px;
+          height: 200px;
+          margin: 3px;
+          padding: 1em;
+          border: 1px solid black;
+          overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button>开始复制</button>
+    </header>
+    <div class="main">
+      <section id="src">
+        <div>
+          <span>姓名</span>
+          <input value="lily">
+          <button>提交</button>
+          <div>
+      </section>
+      <section id="dst">
+      </section>
+    </div>
+
+    <script>
+      document.querySelector('header button').onclick = function(e) {
+          var node = document.querySelector('#src div').cloneNode(true);
+          document.querySelector('#dst').appendChild(node);
+      };
+    </script>
+  </body>
+#+end_src
+** 点击更改背景色 (Page 103)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       table, tr, th, td {
+         border: 1px solid black;
+         border-collapse: collapse;
+         padding: 5px 1em;
+       }
+       .beautiful {
+         background: green;
+         color: white;
+         font-weight: bold;
+       }
+      </style>
+    </head>
+    <body>
+
+      <table>
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3333</td>
+            <td>3333</td>
+            <td>3333</td>
+          </tr>
+          <tr>
+            <td>3333</td>
+            <td>3333</td>
+            <td>3333</td>
+          </tr>
+          <tr>
+            <td>3333</td>
+            <td>3333</td>
+            <td>3333</td>
+          </tr>
+          <tr>
+            <td>3333</td>
+            <td>3333</td>
+            <td>3333</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <script>
+       document.querySelector('tbody').addEventListener('click', (e) => {
+         if (e.target.parentNode.tagName.toLowerCase() == 'tr') {
+           e.target.parentNode.classList.toggle('beautiful');
+         }
+       });
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+** 点击按钮增加节点 (Page 104)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       .main {
+         border: 1px solid blue;
+         width: 250px;
+         height: 200px;
+         margin-top: 1em;
+         overflow-y: auto;
+       }
+      </style>
+    </head>
+    <body>
+
+      <header>
+        <button>添加节点</button>
+      </header>
+
+      <div class="main">
+      </div>
+
+      <script>
+       function addNode() {
+         var html = "<div><span>Email: </span><input value='zh@cctv.com'></div>";
+         document.querySelector('.main').insertAdjacentHTML('afterbegin', html);
+       }
+
+       document.querySelector('button').addEventListener('click', addNode);
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+** 添加、删除表格的行 (Page 105)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       body {
+         text-align: center;
+       }
+       table, tr, th, td {
+         border: 1px solid black;
+         border-collapse: collapse;
+         padding: 5px 1em;
+         width: 300px;
+         margin: 1em auto;
+       }
+      </style>
+    </head>
+    <body>
+
+      <header>
+        <span>书名</span>
+        <input>
+        <button>添加</button>
+      </header>
+
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>书名</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      <script>
+       function addTr() {
+         var input = document.querySelector('input');
+         var tbody = document.querySelector('tbody');
+         var index = tbody.rows.length + 1;
+         var tr = "<tr><td>" + index + "</td><td>" + input.value + "</td><td><button class='del'>删除</button></td></tr>";
+         tbody.insertAdjacentHTML('beforeend', tr);
+         input.value = '';
+       }
+
+       document.querySelector('header button').addEventListener('click', addTr);
+       document.querySelector('tbody').addEventListener('click', (e) => {
+         if (e.target.classList.contains('del')) {
+           var tr = e.target.parentNode.parentNode;
+           tr.parentNode.removeChild(tr);
+         }
+       });
+      </script>
+    </body>
+  </html>
+#+end_src
+
+
+
+
+** 代码题 (Page 108)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       div {
+         background: lightyellow;
+         margin-bottom: 4px;
+         border-bottom: 1px dotted gray;
+       }
+      </style>
+    </head>
+    <body>
+      <header>
+        <input placeholder="书名">
+        <input placeholder="作者">
+        <input placeholder="价格">
+        <button>添加</button>
+      </header>
+
+      <section>
+      </section>
+
+      <script>
+       document.querySelector('button').addEventListener('click', function(e) {
+         var inputs = document.querySelectorAll('input');
+         var html = "<div>书名: " + inputs[0].value + " 作者: " + inputs[1].value + " 价格: " + inputs[2].value + " </div>";
+         document.querySelector('section').insertAdjacentHTML('afterbegin', html);
+       });
+
+      </script>
+    </body>
+  </html>
+#+end_src
+
+* 第五章
+** 弹出时间 (Page 136)
+
+#+begin_src html
+  <button>猜猜今天是哪天?</button>
+
+  <script>
+    document.querySelector('button').onclick = (e) => {
+        var d = new Date();
+        alert(d.xxxxxxx进行拼接);
+    };
+  </script>
+#+end_src
+
+** 验证输入内容 (Page 137)
+
+#+begin_src html
+
+  <header>
+    <span>姓名</span>
+    <input>
+    <button>提交</button>
+  </header>
+
+  <script>
+    function doSubmit() {
+        var value = document.querySelector('input').value;
+        if (!value) {
+            return alert("不能为空啊");
+        }
+        if (value.match(/\d/)) {
+            return alert("不能包含任何数字啊");
+        }
+        // 正常逻辑
+    }
+  </script>
+#+end_src
+
+** 猜拳 (Page 138)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+      </style>
+    </head>
+    <body>
+
+      <header>
+        <h3>猜拳小游戏</h3>
+      </header>
+
+      <section>
+        <span>请选择: </span>
+        <input name="s" value="1" type="radio"> 剪刀
+        <input name="s" value="2" type="radio"> 石头
+        <input name="s" value="3" type="radio"> 布
+        <button>开始猜拳</button>
+      </section>
+
+      <script>
+       // 1 2 3
+       var arr = ["剪刀", "石头", "布"];
+       function caiquan() {
+         var xitongdexuanze = Math.ceil(Math.random()*3);
+         var inputs = document.querySelectorAll('input');
+         var nidexuanze;
+         for (let i = 0; i < inputs.length; i++) {
+           if (inputs[i].checked) {
+             nidexuanze = parseInt(inputs[i].value);
+             break;
+           }
+         }
+         alert("你的选择是: " + arr[nidexuanze - 1] + "\n系统的选择: " + arr[xitongdexuanze - 1]);
+       }
+       document.querySelector('button').onclick = caiquan;
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 添加员工 (Page 139)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       input {
+         display: block;
+       }
+       footer {
+         margin: 1em 0;
+         padding: 1em;
+         height: 200px;
+         border: 1px solid black;
+       }
+      </style>
+    </head>
+    <body>
+      <header>
+        <h3>员工资信息</h3>
+      </header>
+
+      <div>
+        <input value="rose">
+        <input value="23">
+        <input value="nose@126.com">
+        <button>添加</button>
+      </div>
+
+      <footer>
+      </footer>
+
+      <script>
+
+       var personList = [];
+
+       function Person(name, age, email) {
+         this.name = name;
+         this.age = age;
+         this.email = email;
+         this.showMe = function() {
+           alert("My name is " + this.name);
+         }
+       };
+
+       function addPerson() {
+         var inputs = document.querySelectorAll('input');
+         var person = new Person(
+           inputs[0].value,
+           inputs[1].value,
+           inputs[2].value
+         );
+         personList.push(person);
+         var html = "<div>姓名: " + inputs[0].value + " 年龄: " + inputs[1].value + " Email: " + inputs[2].value + " </div>";
+         document.querySelector('footer').insertAdjacentHTML('afterbegin', html);
+       }
+
+       document.querySelector('div button').addEventListener('click', addPerson);
+      </script>
+    </body>
+  </html>
+#+end_src
+
+* 第六章
+** 模拟跳转 (Page 163)
+
+#+begin_src js
+  var shengxiadeShijian = 5;
+
+  function showMessage() {
+      document.querySelector('.msg').innerText = "注册成功，剩 " + shengxiadeShijian + " 秒";
+  }
+
+  function redirctToHome () {
+      window.location.href = "/";
+  }
+
+  setInterval(showMessage, 1000);
+  setTimeout(redirctToHome, shengxiadeShijian * 1000);
+#+end_src
+
+* 第七章
+** 字体样式 (Page 195)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       .xieti {
+         font-style: italic;
+       }
+       .xiahuaxian {
+         text-decoration: underline;
+       }
+       .cuti {
+         font-weight: bolder;
+       }
+      </style>
+    </head>
+    <body>
+
+      <div>
+        <input type="checkbox" id="a"/> 斜体
+        <input type="checkbox" id="b"/> 下划线
+        <input type="checkbox" id="c"/> 粗体
+      </div>
+
+      <section>
+        广东省珠海市
+      </section>
+
+      <script>
+       var t = document.querySelector('section');
+       document.getElementById('a').onclick = function(e) {
+         t.classList.toggle('xieti');
+       };
+       document.getElementById('b').onclick = function(e) {
+         t.classList.toggle('xiahuaxian');
+       };
+       document.getElementById('c').onclick = function(e) {
+         t.classList.toggle('cuti');
+       };
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 级联选择 (Page 198)
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+      </style>
+    </head>
+    <body>
+
+      <div>
+        <span>省份:</span>
+        <select id="d1">
+        </select>
+        城市:
+        <select id="d2">
+        </select>
+      </div>
+
+      <script>
+       var diqu = [
+         ["广东", ["广州", "珠海", "深圳", "佛山", "清远"]],
+         ["湖南", ["长沙", "株洲", "永州", "郴州", "湘潭"]],
+         ["广西", ["南宁", "柳州", "桂林", "百色", "贺州"]]
+       ];
+
+       function renderD1 () {
+         var html = diqu.map(d => {
+           return "<option>" + d[0] + "</option>";
+         });
+         var d1 = document.getElementById('d1');
+         d1.innerHTML = html;
+         d1.onchange = renderD2;
+       }
+
+       function renderD2 () {
+         var cities;
+         var d = document.querySelector('#d1').value;
+         for (let i = 0; i < diqu.length; i++) {
+           if (diqu[i][0] === d) {
+             cities = diqu[i][1];
+             break;
+           }
+         }
+         var html = cities.map(c => {
+           return "<option>" + c + "</option>";
+         });
+         document.getElementById('d2').innerHTML = html;
+       }
+
+       renderD1();
+       renderD2();
+      </script>
+    </body>
+  </html>
+#+end_src

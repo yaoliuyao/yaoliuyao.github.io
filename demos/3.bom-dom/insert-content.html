@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <style>
+      biaoqian {
+        display: block;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 2em;
+      }
+    </style>
+  </head>
+  <body>
+
+    <zhubiaoqian>
+      hello world
+    </zhubiaoqian>
+
+    <biaoqian>
+      您好a
+    </biaoqian>
+
+    <div id="main">
+    </div>
+
+    <script>
+     var table = document.createElement('table');
+     var thead = document.createElement('tr');
+     for (var i = 0; i < 111; i++) {
+       var td = document.createElement('td');
+       td.innerText = '<hello>';
+       thead.appendChild(td);
+     }
+     table.appendChild(thead);
+     var tbody = document.createElement('tr');
+     for (var i = 0; i < 111; i++) {
+       var td = document.createElement('td');
+       td.innerText = 'world';
+       tbody.appendChild(td);
+     }
+     table.appendChild(tbody);
+
+     document.getElementById('main').appendChild(table);
+
+    </script>
+  </body>
+</html>

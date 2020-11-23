@@ -1,0 +1,501 @@
+#+TITLE: Hello Java
+
+
+* 图书资料
+
+- [[file:../asset/Head First Java 中文版.pdf][Head First Java 中文版]]
+- Think in Java (Java 编程思想)
+
+* 第一件事
+
+安装环境:
+- 如果你只是一个用户的话，你只需要安装软件 jre (Java 运行环境)，得到一个主要命令 ~java~
+- 如果你是一个开发者的话，你需要安装 jdk (Java 开发套装, Java Development Kit)，得到额外的命令 ~javac~
+
+* 第一行代码
+
+必须要穿衣服的 Java:
+- 源文件 (*.java)
+- 类 (Class)
+- 方法 (Method)
+- 语句 (Statement)
+  
+第一步，编写代码 X.java:
+#+begin_src java
+  public class X {
+      public void bark1() {}
+      public void naim () {}
+      public void bark() {}
+
+      // 方法最重要的是入参和返回值
+      // 其他的修饰，比如:
+      // - public 表示可以公开访问的权限
+      // - static 表示，这个方法是“静态的”，也就是说，它就在那里不增不灭，不需要 new 就可以调用
+      public static void main (String[] args) { // args 表示的是传入的参数
+          System.out.println("Hello " + args[0]);
+          System.out.println("约会: " + args[1]);
+      }
+
+  }
+#+end_src
+
+第二步，编译 (javac):
+#+begin_src java
+  javac X.java  // 恭喜您获取一个 X.class 文件
+#+end_src
+
+第三步，运行 (java):
+#+begin_src java
+  java X 小红 晚上一起看风景?
+#+end_src
+
+* 方法内部有什么？
+** 语句 (做某件事，声明、设定、调用方法等普通语句)
+
+#+begin_src java
+  int x = 3;
+  String name = "Dirk";
+  x = x * 17;
+  System.out.print("x is " + x);
+  double d = Math.random();
+#+end_src
+
+** 循环 (反复做某件事，for/while/doWhile)
+
+#+begin_src java
+  int x = 13;
+  while (x > 12) {
+      System.out.println("hhaha");
+      x = x - 1;
+  }
+
+  for (int x = 0; x < 10; x = x + 1) {
+      System.out.print("x is now " + x);
+  }
+#+end_src
+
+** 条件分支 (在适当的条件下做某件事, if/switch)
+
+#+begin_src java
+  int x = 13;
+  String name = "Dirk";
+
+  if (x == 10) {
+      System.out.println("x must be 10");
+  } else {
+      System.out.println("x isn't 10");
+  }
+  if ((x < 3) & (name.equals("Dirk"))) {
+      System.out.println("Gently");
+  }
+  System.out.println("this line runs no matter what");
+#+end_src
+
+** [TestCase] DooBeeDooBeeDo
+
+填空，要求输出 DooBeeDooBeeDo:
+#+begin_src java
+  public static void main (String[] args) {
+      int x = 1;
+      while (x < __ ) {
+          System.out.__("Doo");
+          System.out.__("Bee");
+          x = x + 1; // 2
+      }
+      if (x == __ ) {
+          System.out.print("Do");
+      }
+  }
+#+end_src
+
+** [TestCase] Beer Song, 啤酒之歌
+
+#+begin_src java
+  public static void main (String[] args) {
+      int beerNum = 99;
+      String word = "bottles";
+
+      while (beerNum > 0) {
+          if (beerNum == 1) {
+              word = "bottle";
+          }
+          System.out.println(beerNum + " " + word + " of beer on the wall");
+          System.out.println(beerNum + " " + word + " of beer.");
+          System.out.println("Take one down.");
+          System.out.println("Pass it around.");
+          beerNum = beerNum - 1;
+          if (beerNum > 0) {
+              System.out.println(beerNum + " " + word + " of beer on the wall");
+          } else {
+              System.out.println("No more bottles of beer on the wall");
+          }
+      }
+  }
+#+end_src
+
+** [TestCase] 带你一起去装酷
+
+#+begin_src java
+  public static void main (String[] args) {
+      // 字符串数组
+      String[] wordListOne = {
+          "24/7","multiTier","30,000 foot","B-to-B","win-win","frontend",
+          "web-based","pervasive", "smart", "sixsigma","critical-path", "dynamic"
+      };
+      String[] wordListTwo = {
+          "empowered", "sticky",
+          "value-added", "oriented", "centric", "distributed",
+          "clustered", "branded","outside-the-box", "positioned",
+          "networked", "focused", "leveraged", "aligned",
+          "targeted", "shared", "cooperative", "accelerated"
+      };
+      String[] wordListThree = {
+          "process", "tippingpoint", "solution", "architecture",
+          "core competency", "strategy", "mindshare", "portal", "space",
+          "vision", "paradigm", "mission"
+      };
+
+      // 分别获取长度
+      int oneLength = wordListOne.length;
+      int twoLength = wordListTwo.length;
+      int threeLength = wordListThree.length;
+
+      // 获取一个随机数
+      int rand1 = (int) (Math.random() * oneLength);
+      int rand2 = (int) (Math.random() * twoLength);
+      int rand3 = (int) (Math.random() * threeLength);
+
+      // 拿取随机元素，拼成一句酷酷的话
+      String phrase = wordListOne[rand1] + " " + wordListTwo[rand2] + " " + wordListThree[rand3];
+      System.out.println("What we need is a " + phrase);
+  }
+#+end_src
+
+* 没有鱼的鱼香肉丝 (Class vs Object)
+
+- 类 (class) 是对象 (object) 的蓝图 (设计稿)
+- JVM (厨子) 根据类 (菜谱) 的描述创建出具体的对象 (鱼香肉丝)
+
+** 椅子大战 (阿珠 vs 阿花 vs [阿娇])
+
+阿珠的代码:
+#+begin_src java
+  rotate (int type, int x, int y) { // 1 正方形 2 圆形 3 三角形
+      // 选择 360
+      if (type == 乱七八糟) {
+          //ksdj
+      } else if (type == 三角形) {
+          if (type == 正三角形) {
+              //ksjdksjdfksj
+          } else {
+              //ksdjfksdjfksdjfksdj
+          }
+      } else {
+          //原先
+      }
+  }
+  playSound (int type) {
+      if () {
+          // 播放相应的音频文件
+      } else if (type == 圆形) {
+
+      } else {
+          if (type == 正三角形) {
+              //ksjdksjdfksj
+          } else {
+              //ksdjfksdjfksdjfksdj
+          }
+      }
+  }
+
+  rotate(1, 0, 0);
+  playSound(1);
+#+end_src
+
+阿花的代码:
+#+begin_src java
+  class Shape {
+      rotate () { kkkkkkk }
+      playSound() { kkkkk }
+  }
+  class Square extends Share {
+  }
+  class Triangle {
+      rotate () { /* 自己的旋转方式 */ }
+  }
+  class ZhengTriangle extends Triangle {
+      eat () {}
+  }
+  class Circle {
+      playSound () { /* 自己的发声方式 */ }
+  }
+  class Amoeba {
+      int xPoint;
+      int yPoint;
+
+      rotate() {}
+      playSound() {}
+  }
+#+end_src
+
+裁判说:
+- 阿珠的代码，思路简单直接，是面向过程的典型写法
+- 阿珠的代码，层层 if/else 扭成一团，容易出错，不易扩展和修改，随着代码变多越来越难维护
+- 阿花的代码，非常自然的面向对象写法
+- 阿花的代码，通过一个个的类，将不同的逻辑 *隔离* 开来，又通过继承， *复用* 了某些逻辑防止冗余
+- 阿花的代码，由于代码的隔离性，可以放心大胆添加新的功能而不需要担心对其他的代码造成破坏。
+  项目越大，好处越多
+
+** [游戏] 猜数字
+
+游戏的主体逻辑 GuessGame:
+#+begin_src java
+  public class GuessGame {
+      public void startGame() {
+          Player p1 = new Player();
+          Player p2 = new Player();
+          Player p3 = new Player();
+
+          int guessp1 = 0; // 使用变量表达猜测的值
+          int guessp2 = 0;
+          int guessp3 = 0;
+
+          boolean p1isRight = false; // 猜中与否
+          boolean p2isRight = false;
+          boolean p3isRight = false;
+
+          int targetNumber = (int) (Math.random() * 10);
+          System.out.println("要猜测的数字是: " + targetNumber);
+
+          System.out.println("开始猜测，从 0 到 9...");
+          while(true) {
+              guessp1 = p1.guess();
+              System.out.println("P1 猜的是: " + guessp1);
+
+              guessp2 = p2.guess();
+              System.out.println("P2 猜的是: " + guessp2);
+
+              guessp3 = p3.guess();
+              System.out.println("P3 猜的是: " + guessp3);
+
+              if (guessp1 == targetNumber) {
+                  p1isRight = true;
+              }
+              if (guessp2 == targetNumber) {
+                  p2isRight = true;
+              }
+              if (guessp3 == targetNumber) {
+                  p3isRight = true;
+              }
+
+              if (p1isRight || p2isRight || p3isRight) {
+                  System.out.println("Wo~~~~");
+                  p1.qingzhu();
+                  p2.qingzhu();
+                  p3.qingzhu();
+                  break;
+              } else {
+                  System.out.println("都猜错了，继续猜");
+              }
+          }
+      }
+  }
+#+end_src
+
+玩家的相关动作 Player:
+#+begin_src java
+  public class Player {
+      public int guess() {
+          int number = (int) (Math.random() * 8);
+          System.out.println("我猜应该是: " + number);
+          return number;
+      }
+      public void qingzhu() {
+        // ............
+      }
+  }
+#+end_src
+
+游戏入口 GameLauncher:
+#+begin_src java
+  public class GameLauncher {
+      public static void main (String... args) {
+          // 程序的执行入口
+          GuessGame game = new GuessGame();
+          game.startGame();
+      }
+  }
+#+end_src
+
+
+
+
+* 变量与类型
+
+类型分两种:
+- primitive 类型:
+  + boolean
+  + char (2)
+  + byte(1)/short(2)/int(4)/long(8)
+  + float(4)/double(8)
+- Reference 类型
+  + 除了上述的基本类型，其他都是引用类型
+  + 可以想象成遥控器
+  + 字符串是引用类型
+  + 数组也是引用类型
+
+Dog[] dogs = new Dog[7];
+
+[[file:img/oimg_20201014_075539.png]]
+
+
+
+#+begin_src java
+  boolean buer;
+  buer = true;
+
+  int x;
+  x = 234;
+
+  byte b = 89;
+  boolean isFun = true;
+  double d = 3456.98;
+  char c = Ďfď;
+  int z = x;
+  boolean isPunkRock;
+  isPunkRock = false;
+  boolean powerOn;
+  powerOn = isFun;
+  long big = 3456789;
+  float f = 32.5f; // 注意，必须以 f 结尾
+
+  if (0.1 + 0.2 == 0.3) {
+      System.out.println("hello");
+  } else {
+      System.out.println(0.1 + 0.2);
+  }
+#+end_src
+
+** 这段代码为啥会出错？
+
+建立正确的内存观:
+#+begin_src java
+  class Books {
+      String title;
+      String author;
+  }
+
+  public class Main {
+      public static void main(String[] args) {
+          Books[] books = new Books[3];
+
+  //        books[0] = new Books();
+  //        books[1] = new Books();
+  //        books[2] = new Books();
+
+          books[0].title = "Java";
+          books[1].title = "Gatsby";
+          books[2].title = "Cookbook";
+
+          books[0].author = "bob";
+          books[1].author = "sue";
+          books[2].author = "ian";
+        
+          int x = 0;
+          while (x < 3) {
+              System.out.print(books[x].title);
+              System.out.print(" by ");
+              System.out.println(books[x].author);
+              x = x + 1;
+          }
+      }
+  }
+#+end_src
+
+
+
+* 对象的内部: 方法和实例变量
+
+对象组成:
+- 实例变量 (状态)
+- 方法 (行为)
+
+类:  
+#+begin_src java
+  public class Dog {
+      // 内部状态，实例变量
+      String name;
+      int weight;
+
+      // 行为
+      // 行为受 1) 内部状态 2) 外部参数 双重影响
+      public int makeNoice(int times) {
+          // 隐藏语句 times = 111111111
+          for (int i = 0; i < times; i++) {
+              if (weight > 100) {
+                  System.out.println("叫");
+              } else {
+                  System.out.println("wooooo.");
+              }
+              return 0;
+          }
+      }
+  }
+#+end_src
+
+实例:
+#+begin_src java
+  // 根据设计图，完成设计
+  // 根据菜谱，炒菜
+  Dog dog = new Dog();
+
+  // 初始化其内部状态
+  dog.weight = 33;
+  dog.name = "小明";
+
+  // 展示其行为 (传入了外部的数据 111111111)
+  int result = dog.makeNoice(111111111);
+#+end_src
+
+变量分为两种:
+1. 实例的变量
+   + 如果没有初始化值，JVM 会给其赋予默认值:
+      - int: 0
+      - float: 0.0
+      - boolean: false
+      - 对象: null
+2. 方法内部的变量 (又称局部变量)
+   + 不允许不初始化，否则，编译不通过
+
+* getter/setter, Capsulation 的开始
+
+两种说法:
+- 逻辑上，将一些强相关的数据以及它对应的方法放在一起，便于管理
+- 安全性，将一些没必要给别人看的藏起来，将一些需要给别人看的暴露出来
+
+怎样才能将数据进行隐藏呢:
+1. 将实例变量标志为 private (private/默认/protected/public)
+2. 通过方法达到间接操作数据的目的 (getter/setter)
+
+#+begin_src java
+  public class Dog {
+      // 私有化
+      private int weight;
+
+      // 提供接口
+      public void setWeight(int weight) {
+          if (weight > 0 && weight < 100) {
+              this.weight = weight;
+          } else {
+              throw new RuntimeException("您是不是对体重有所误解啊?");
+          }
+      }
+      public int getWeight() {
+          System.err.println("警告，有人在偷窥你的体重！！！！");
+          return weight;
+      }
+  }
+
+#+end_src
+
+

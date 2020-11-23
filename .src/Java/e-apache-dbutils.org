@@ -1,0 +1,52 @@
+#+TITLE: Apache DBUtils
+
+
+* 前情回顾
+
+基石:
+- html/css/js
+- http/JavaWeb
+- File/Database
+
+延续:
+- PlugIns, 扩充 / 丰富功能，便捷 -> 外挂
+- Framework, 框架
+
+* Apache DBUtils
+
+对 JDBC 的一种非常浅的封装，可以简化 JDBC 的使用。
+
+Post:
+- id
+- title
+- content
+- author
+- created
+
+Comment:
+- id
+- postid
+- content
+- author
+- created
+
+#+begin_src sql
+  create table post
+  (
+    id int identity primary key,
+    title varchar(200) not null,
+    content varchar(2000) not null,
+    author varchar(200) not null,
+    created datetime default getdate()
+  );
+  create table comment
+  (
+    id int identity primary key,
+    postid int,
+    content varchar(1000) not null,
+    author varchar(200) not null,
+    created datetime default getdate() 
+  );
+#+end_src
+
+创建一个 JavaWeb 项目。

@@ -1,0 +1,15 @@
+#+title: 思维导图
+#+roam-alis:
+
+
+* 所想即所记
+:PROPERTIES:
+:ID:       c798ad59-ddeb-4090-8c0a-3c63d0325f67
+:END:
+
+[[https://baike.baidu.com/item/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/563801][思维导图]]，又叫 The Mind Map，即心智导图，或者脑图。是表达发散性思维的有效图形思维工具，非常实用。
+
+常用的思维导图软件是 [[file:20200818085308-xmind.org][XMind]]。
+
+
+

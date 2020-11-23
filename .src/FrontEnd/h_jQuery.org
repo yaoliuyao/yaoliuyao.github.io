@@ -1,0 +1,1586 @@
+#+TITLE: jQuery
+
+
+* 以后所学的都是对已有概念和用法的封装，这些封装叫框架
+
+: 任何事情都是有代价的，想让事情变简单，就需要付出相应的成本。
+: 对我们来说，需要付出的是时间去学习。
+
+拆:
+a) css : Bootstrap
+b) js : jQuery | Vue.js (AngularJS/ReactJS)
+c) Servlet : +Struts+ | SpringMVC
+d) DAO/jdbc : Hibernate/JPA | MyBatis
+e) Java : Spring
+f) 整合、简化 : *SpringBoot*
+g) 微服务体系 : SpringCloud
+
+#+begin_src java
+  // ORM (Object-RDB Mapping)
+  Book book = new Book(sss, ddd);
+  hibernate.save(book);
+  hibernate.delete(book);
+#+end_src   
+
+* 什么是 jQuery
+
+https://jquery.com/
+
+主要解决的问题:
+1. 妈妈再也不担心我的 *兼容性* 问题啦
+2. 好简单、好灵活。语法实在是太 *优雅* 了
+
+#+begin_src js
+  $.get("http://sdjfksd")
+    .done(function () { alert(22) })
+    .fail(function () {})
+    .finally(function() {});
+#+end_src   
+
+* 基本的使用方法
+
+第一步，将 jQuery 引入到项目中 (下载到本地，或使用 cdn):
+: <script src="./jQuery.min.js"></script>
+: <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+第二步，使用 $ 或 jQuery 进行各种操作:
+#+begin_src js
+  $(document).ready(function () { // 页面加载完毕
+      var text = $("h1").text();  // 获取节点内容
+      console.log(text);
+      var css1 = {
+          "color": "red",
+          "text-decoration": "underline"
+      };
+      $("h1")
+          .text("hello, jQuery")  // 设置节点
+          .css(css1)
+          .on('click', function () {
+              alert("好不痛");
+          })
+          .on('click', function () {
+              alert("好痛");
+              $(this).css({ "text-decoration": "underline" });
+          })
+          .css({
+              "font-size": "50px"
+          })
+          .hide(2000)
+          .show(2000);
+      $("h2").css(css1);
+  });
+#+end_src
+
+** 补充: CDN 是啥玩意
+
+Content Delivery Network，内容分发网络。
+
+[[file:./img/cdn.png]]
+
+- https://cdnjs.com
+- https://bootcdn.cn
+- https://www.jsdelivr.com/
+
+* 选择器 (Selector)
+
+css3 语法:
+- Tag
+- #id
+- .class
+- 获取多个
+- 组合选取
+- 过滤
+  + 按照属性过滤
+  + 按照伪类顾虑
+  + 其他过滤
+- 在 Form 上的一些特殊操作
+- 在节点的基础上继续选择
+
+
+https://www.runoob.com/jquery/jquery-ref-selectors.html
+
+** 基本选择
+
+#+begin_src js
+  // by TAG
+  $("div");
+
+  // by ID
+  $("#id");
+
+  // by CLASS
+  $(".red");
+
+  // 后续的操作会作用在所有选取到的结果上
+  $("div")
+      .css("color", "red")
+      .on('click', function (ev) {
+          alert(ev.target.innerText);
+      })
+      .slideUp(2000)
+      .slideDown(2000);
+
+  // 组合选择
+  $("div.post");    // 所有带 post 样式类的 div 节点
+  $("div .post");   // 所有带 post 样式类的节点，它必须是某个 div 的后代
+  $("div > .post"); // 所有带 post 样式类的节点，它必须是某个 div 的儿子
+  $("div > div.post"); // 所有带 post 样式类的 div 节点，它必须是某个 div 的儿子
+                       // <div>.....<div class="post"
+  $("div + .post"); // 所有带 post 样式类的节点，它的上一个元素必须是 div
+  $("div ~ .post"); // 所有带 post 样式类的节点，它的前面的元素必须有 div
+
+  // 多个选择
+  $("div, section"); // 所有的 div 节点和 section 节点
+  $("div + .post, div + .comment"); //...
+#+end_src
+
+** 过滤
+
+属性:
+#+begin_src js
+    $("p[id]");         // 带有 id 属性的 p 节点
+    $("p[id='n']");     // 带有 id 属性并且值为 n 的 p 节点
+    $("p[id!='n']");    // 带有 id 属性并且值不为 n 的 p 节点
+    $("p[id^='n']");
+    $("p[id$='n']");
+    $("p[id~='n']");
+    $("input[type='password']");
+    $("div[data-id]");
+    $("div[data-id='1111']");
+#+end_src
+
+伪类:
+#+begin_src js
+  $("div:first"); // 第一个
+  $("div:last");  // 最后一个
+  $("div:eq(2)"); // equal 第 3 个 (= 2)
+  $("div:lt(2)"); // less than    (< 2)
+  $("div:gt(2)"); // greater than (> 2)
+
+  $("div:odd");   // 奇数
+  $("div:even");  // 偶数
+  $("tr:odd").css("background", "#999");
+  $("tr:odd").css({"background": "#999"});
+
+  $("div:has('.red')");     // 包含
+  $("div:empty"); // 空节点
+  $("div:contains('aaa')"); // 文本包含 aaa 的节点
+  $("div:parent");
+
+  $("div:visible/hidden");  // 所有可见/可不见的 div 节点
+  $("div:animated"); // 所有的有动画效果的 div 节点
+
+  $(":empty");       // 所有的空节点
+  $(":header");      // $("h1, h2, h3, h4, h5")
+
+  // 第几个孩子
+  $("#main:first-child");
+  $("#main:last-child");
+  $("#main:nth-child(2)");  // $("#main div").eq(2);
+#+end_src
+
+方法:
+#+begin_src js
+    $(".x").has("p");    // 选择所有带 x 样式类以及带一个 p 的后代的节点
+    $(".post").has("a"); // 带超链接的博客
+
+    $(".x").filter(".bar");
+    $(".x").not(".bar"); // 选择所有不带 .bar 而且带 .x 的节点
+
+    $(".x").first();
+    $(".x").last();
+    $(".x").eq(2);
+#+end_src
+
+** Form
+
+#+begin_src js
+  $("form :checked"); // 所有被选中的复选框节点
+  $(":checked");
+  $(":checkbox");
+  $(":input");        // 所有 input 节点
+  $(":selected");
+  $(":disabled");
+  $(":password"); // $("input[type='password']");
+  $(":text");
+  $(":submit");
+  $(":file");
+  $(":button");
+
+  // <input type="password" name="aaa" disabled>
+#+end_src
+
+** 按图索骥
+
+- 父辈: parent/parents/parentsUntil/closest();
+- 子辈: children/find();
+- 兄弟: next/prev/nextAll/prevAll/siblings();
+
+#+begin_src js
+  $("div").parent();     // 父节点
+  $("div").parents();    // 所有父辈
+  $("tr").parentsUntil("table");
+  $("tr").closest("table");
+
+  $("div").children();
+  $("div").find(".red"); // $("div .red")
+
+  $("div").siblings().css("color", "gold");
+#+end_src
+
+* DOM 操作
+** css/xxxClass()
+
+- css 可以跟 k-v，也可以跟 js 对象
+- xxxClass: addClass/removeClass/toggleClass/hasClass
+
+#+begin_src js
+  $("div")
+      .css("color", "red")
+      .css("width", "200px")
+      .css("border", "1px solid red")
+      .css({
+          color: "red",
+          width: "200px",
+          border: "1px solid green"
+      });
+  $("div").addClass("post");
+  $("div").removeClass("post");
+  $("div").toggleClass("post");
+
+  $("div").css("color"); // 这是获取
+
+  $(".hehe")
+      .on('click', function (ev) {
+          // $(this) 获取事件源元素
+          if ($(this).hasClass("xxx")) {
+              $(this).removeClass("xxx");
+          } else {
+              $(this).addClass("xxx");
+          }
+          $(this).toggleClass("xxx");
+      });
+#+end_src
+
+** text/html/val/attr/prop/data()
+
+- text(): node.innerText
+- html(): node.innerHTML
+- val(): inputNode.value
+- attr(): node.getAttribute();
+- prop(): node.property;
+- data(): 获取 data-xxx 值
+
+#+begin_src js
+  // 设置所有，选取是第一个
+
+  $("div").text();      // qs("div").innerText
+  $("div").text("a");   // qs("div").innerText = "a";
+  $("div").html();      // qs("div").innerHTML
+  $("div").html("<a>"); // qs("div").innerHTML = "<a>";
+
+  $(":text").val($(":text").val() + 1111);
+#+end_src
+
+** wrap/unwrap/append/prepend/appendTo/prependTo/before/after/insertBefore/insertAfter/replaceWith()
+
+#+begin_src js
+  // 最基本的创建节点
+  $("<h3 id='hello' class='xxx'>hello</h3>");
+
+  // 创建包含在某个 xx 李的节点
+  $("<h3 id='hello' class='xxx'>hello</h3>")
+    .unwrap("<h3>")
+    .wrap("<h5>")
+    .wrap("<header></header>");
+  $(".xx").wrap("<h3></h3>");
+
+  // 结合链式操作进行创建
+  var $a =
+      $("<article class='post'>hello</h3>")
+      .css("color", "red")
+      .on("click", function () { alert(333) })
+      .prop("id", "hi")
+      .attr("data-id", "3333")
+      .attr("xxxx", "yyyyy")
+      .text("你好，世界")
+      .appendTo(".posts");
+
+  // 附加
+  $(body).append($a);
+  $(body).prepend($a);
+  $a.appendTo("body");
+  $a.prependTo("body div");
+  $("body div").before($a);
+  $("body div").after($a);
+
+  a.before(b) // 将 a 插入 b 前
+  a.insertBefore(b) // 将 b 插入 a 前
+#+end_src
+
+** clone/remove/empty/detach()
+
+移动跟复制:
+#+begin_src html
+  <div class="c1">第一行</div>
+  <div class="c2">第二行</div>
+  <div class="c3">第三行</div>
+
+  <p style="border: 1px solid red"></p>
+
+  <script>
+    $(".c1").appendTo("p");
+    $("p").append($(".c2"));        // 移动
+    $(".c3").clone().appendTo("p"); // 复制
+
+    $(".c2").remove().appendTo("body"); // 使用 remove 来实现移动效果
+  </script>
+#+end_src
+
+问题:
+- remove 跟 detach 有什么区别?
+
+** width/height/offset/position/scrollTop/scrollLeft()
+
+- offset() 代表绝对偏移量
+- position() 代表相对偏移量
+- scrollTop/scrollLeft() 用来获取或控制滚动条
+
+#+begin_src js
+  $(el).scrollTop(0); // 滚动到头部
+  $(document).scrollTop($(".c2").offset().top); // 将某个元素滚动到视野中的示例
+#+end_src
+
+* 事件处理 (Event)
+
+API:
+- 绑定: ~$(el).on('click', function(event) { $(this).css("color", "red") });~
+- 简化: ~$(el).click(callback);~
+- 委托: ~$(div).on('click', '.del', callback);~
+- 取消: ~$(div).off(); $(div).off('click');~
+- 过时的方法: +bind/unbind/delegrate/xxxx...()+
+
+辅助:
+- 一次性事件: ~$(el).one('click', callback);~
+
+事件类型:
+- 鼠标: click/dblclick/mouseenter/mouseover/mouseout/mouseleave/hover
+- 键盘: keydown/keyup/keypress
+- 表单: focus/blur/change/select/sumbit
+- DOM: ready/load/unload/resize/scroll
+
+关于事件委托、代理:
+#+begin_src js
+  // 下面两种写法是等价的，但是下面的方式是更简洁的
+
+  $("section").on('click', function (ev) {
+      if (ev.target.classList.contains("c2")) {
+          var $this = $(ev.target);
+          alert($this.text());
+      }
+  });
+
+  $("section").on('click', ".c2" , function (ev) {
+      alert($(this).text());
+  });
+#+end_src
+
+悬停效果：
+#+begin_src js
+  $(".c2").hover(
+      function (ev) {
+          console.log("222");
+      },
+      function(ev) {
+          console.log("leave");
+      }
+  );
+#+end_src
+
+按键示例:
+#+begin_src js
+  $(":input").on('keypress', function(ev) {
+      if (ev.keyCode < 97) { // ev.key | ev.which | ev.keyCode
+          $(this).val($(this).val() + "*");
+      }
+      if (ev.keyCode === 13) {
+          $(this).val("");
+      }
+  });
+#+end_src
+
+Ready/Scroll/Resize:
+#+begin_src js
+  $(document).ready(function () {
+      alert(222);
+  });
+  $().ready(function() {
+      alert("haha,jieshule.");
+  });
+  $(function() { // 简写，相当于 window.onload 只不过比 onload 更提前执行
+      alert(222);
+  });
+
+  $(document).scroll(function(ev) {
+      console.log($(document).scrollTop());
+  });
+
+  $(window).on('resize', function(ev) {
+      console.log(222);
+  });
+#+end_src
+
+* 动画效果 (Effects)
+
+API:
+- animate/delay/stop()
+- hide/show/toggle()                     // 1. 左上角
+- slideUp/slideDown/slideToggle()        // 2. 卷上卷下
+- fadeOut/fadeIn/fadeToggle/fadeTo()     // 3. 变透明
+
+基本用法:
+#+begin_src js
+  $(".c1")
+      .animate({ // 关键帧
+          height: "200px",
+          width: "100px",
+          opacity: "1",
+      }, 2000)
+      .delay(3000)
+      .animate({
+          height: "50px",
+          width: "200px",
+          opacity: "0.2"
+      }, 1000)
+      .animate({
+          width: "200px"
+      }, "fast")
+      .closest("section")
+      .animate({
+          left: "300px"
+      }, 3000);
+
+  $(".btn").click(function () {
+      $(".c1").stop();
+  });
+#+end_src
+
+快捷方式:
+#+begin_src js
+  $(".c1").on('click', function() {
+      $(this).hide();
+      $(this).hide(2000);
+      $(this).hide("fast");
+      $(this).hide(function() { alert("我已经藏起来了") });
+      $(this).hide(2000, function() { alert("我已经藏起来了") });
+  });
+
+  $("button").on('click', function() {
+      $(".c1").toggle(1000);
+  });
+
+  $("button").on('click', function() {
+      $(".c1").slideToggle(300);
+  });
+#+end_src
+
+* 异步请求 (Ajax)
+
+API:
+- 核心方法: ~$.ajax()~
+- 核心配置: ~$.ajaxSetup()~
+- 快捷方式: ~$.get/post/load/getScript/getJSON()~
+
+语法解释:
+#+begin_src js
+  $.ajax({
+      url: '/xxx',                 // 代表请求的服务器地址
+      method: 'get|post|..',       // 使用的请求方法
+      headers: {},                 // 设置请求头
+
+      contentType: 'application/x-www-form-urlencoded|...', // 请求的 enctype
+      data: 'String'|Object|Array, // 传输的数据
+      processData: true|false,     // true: 若 data 是字符串不处理，否则调用 $.params(data, tranditional) 将其转换为 UrlSearchParams 格式
+      tranditional: false|true,    // 此参数将会传给上述 $.param 函数，决定是否深度序列
+
+      dataType: 'json?xml?text',   // 默认根据 response 头部的信息自动推测
+      async: true|false,           // 是否使用异步请求的方式
+      xhr: () => { var xhr = $.ajaxSettings.xhr() }, // 创建 xhr 后调用
+      xhrFields: { withCredentials: true },          // 跨域
+      timeout, cache, accepts, contents, crossDomain, converters, jsonp, mimeType
+  }).done((data) => {
+      console.log(data.xxx);
+  }).fail((xhr, status, err) => {
+      console.error(err);
+  }).always((data|xhr, status) => {
+      console.log("终于结束了!");
+  });
+
+  // 快捷方式
+  $.ajax({ url: "/xxx" });
+  $.ajax({ url: "/xxx", method: "POST", data: {} }).done(callback);
+  $.get("/xxx", callback);
+  $.get("/xxx").done(callback);
+  $.post("/xxx", callback);
+  $.post("/xxx", { id: 1 }, callback);
+  $.post("/xxx", { id: 1 }).done(callback);
+
+  // 下面是等同的
+  $.ajax({
+      method: "get",
+      url: "/xxx",
+      dataType: "json"
+  }).done(function (data) {
+      // data is json
+  });
+  $.getJSON("/XXX", callback);        // 1 个函数
+  $.getJSON("/XXX", { a: 2, b: 3});   // 1 个 json
+  $.getJSON("/XXX", { a: 2, b: 3},  callback); // 两个，数据和函数
+
+  // 下面是等同的
+  $.ajax({
+      method: "get",
+      url: "/xxx"
+  }).done(function(data) {
+    $("h3").html(data);
+  });
+  $("h3").load("/xxx");
+
+  // 加载 js 脚本
+  $.getScript("/xxxx.js");
+#+end_src
+
+基本示例:
+#+begin_src js
+  // 传统写法:
+  $.ajax({
+      method: "post",
+      url: "task/add",
+      data: { body: v },
+      success: function (data) {
+          console.log("成功了: " + data);
+          var html = `
+               <p>
+                   <span>${v}</span>
+                   <i class="finish">归档</i>
+                   <i class="del">删除</i>
+               </p>`;
+          $(html).prependTo(".todo div");
+          $(".add").val("");
+      },
+      error: function(err) {
+          console.log("失败了: " + err);
+      }
+  });
+
+  // Promise 风格 (done/fail/always)
+  $.ajax({
+      method: "post",    // 请求使用的 http 方法，包含 get/post，如果省略默认是 get
+      url: "task/add",   // 请求使用的 url 地址
+      data: { body: v }, // 数据，可以使用 a=1&b=2 的字符串，也可以使用 js 对象。如果是个对象，会自动被序列化为 a=n&b=m 的方式 ($.parms())
+  }).done(function (data) {
+      console.log("成功了: " + data);
+      var html = `
+        <p>
+            <span>${v}</span>
+            <i class="finish">归档</i>
+            <i class="del">删除</i>
+        </p>`;
+      $(html).prependTo(".todo div");
+      $(".add").val("");
+  }).fail(function(err) {
+      console.log("失败了: " + err);
+  }).always(function() {
+      console.log("终于一切都尘埃落定");
+  });
+#+end_src
+
+$.get/post 快捷方式:
+#+begin_src js
+    $.post({
+        url: "task/add",
+        data: { body: v }
+    }).done(function (data) {
+        console.log("成功了: " + data);
+        var html = `
+          <p>
+              <span>${v}</span>
+              <i class="finish">归档</i>
+              <i class="del">删除</i>
+          </p>`;
+        $(html).prependTo(".todo div");
+        $(".add").val("");
+    }).fail(function(err) {
+        console.log("失败了: " + err);
+    }).always(function() {
+        console.log("终于一切都尘埃落定");
+    });
+
+
+    $.ajax({
+        method: "get",
+        url: "/kkkkk"
+    }).done(callback);
+
+    $.get({
+        url: "/kkkkkk"
+    }).done(callback);
+
+    $.get("/kkkkk").done(callback);
+#+end_src
+
+$.ajaxSetup:
+#+begin_src js
+  // 可以出现的冗余
+  $.ajax({
+      // method/url/data
+      timeout: 3,
+      cache: true
+  }).fail(callback);
+  $.ajax({
+      // method/url/data
+      timeout: 3,
+      cache: true
+  }).fail(callback);
+  $.ajax({
+      // method/url/data
+      timeout: 3,
+      cache: true
+  }).fail(callback);
+  $.ajax({
+      // method/url/data
+      timeout: 3,
+      cache: true
+  }).fail(callback);
+
+  // 可以借助 ajaxSetup 将共有的属性提前设置
+  $.ajaxSetup({
+      timeout: 3000,
+      cache: true,
+      error: function(result) {
+          alert("出错了");
+      }
+  });
+  $.get();
+  $.post();
+  $.ajax().done(callback);
+  $.ajax().done(callback).fail(callback);
+#+end_src
+
+回调地狱:
+#+begin_src js
+  $.get({
+    success: function() {
+      $.get({
+        success: function() {
+          $.get({
+            success: function() {
+              $.get({
+                success: function() {
+                  
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+
+#+end_src
+
+* 其他函数
+
+- $("form").serialize();      // 将 form 下面的所有 input 等拼接成 id=111&xx=aaa&yy=ccc 字符串
+- $("form").serializeArray(); // 拼接成 JSON 对象
+- $.param(JSON);              // 将 JSON 对象序列化成 a=1&b=2
+- $(document);    // 将 DOM 对象转换为 jQuery 对象
+- $(el).get(0);   // 将 jQuery 对象转为 DOM 对象
+  #+begin_src js
+    $(document).get(0) == document;
+    $("div").eq(0) !== $("div").get(0)
+  #+end_src
+- $(el).toArray(); // 将所有结果转换为 DOM 数组
+- $(el).size() / $(el).length // 长度
+- $.trim()
+- $.each/map(o, callback) // index,element|key,value
+- $.grep(o, callback);    // filter
+- $.inArray/isXxx()
+- $.extend(); // Object.assign
+
+each/map:
+#+begin_src js
+  $("div").each(function(div) {
+      // 遍历
+  });
+
+  // 遍历数组
+  var arr = [222, 333, 444];
+  for (var i = 0; i < arr.length; i++) { alert(arr[i]) }
+  $.each(arr, (i, e) => { alert(e) });
+
+  // 遍历对象
+  var o1 = { name: "xxx", value: 123, xxx: 333};
+  $.map(o1, function(k, v) {
+      console.log(k, v);
+  });
+
+  // each 在页面中的使用
+  var arr = [
+      { a: "    111    ", b: "        2222 " },
+      { a: "    111    ", b: "        2222 " },
+      { a: "    111    ", b: "        2222 " }
+  ];
+  var $table = $("table");
+  $.each(arr, function(i, e) {
+      var tr = `
+          <tr><td>${e.a}</td><td>${e.b}</td></tr>
+       `;
+      $table.append(tr);
+  });
+#+end_src
+
+extend:
+#+begin_src js
+  var a = {
+      name: "xiaoming",
+      age: 18
+  };
+  var b = {
+      qq: '100000',
+      weixin: '100000',
+      tel: '520520520'
+  };
+  var c = {
+      address: 'huoxing'
+  };
+
+  $.extend(a, b, c);
+  console.log(a);
+#+end_src
+
+* jQuery 扩展框架
+
+- 后台 admin 框架: https://www.cnblogs.com/Leo_wl/p/5791545.html
+- https://www.layui.com/
+  
+* [例] TODO-LIST
+
+https://github.com/yaollllllsan/todo-list
+
+** 首先，必须要先进行设计
+
+比如，使用 [[file:../roam/20201015005125-原型工具.org][Mockups]] 画出的原型草图:
+
+#+ATTR_HTML: :width 40%
+[[file:img/todo-list.png]]
+
+** 其次，按照原型图将页面实现出来
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Todo List</title>
+      <style>
+        ,* {
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(to right, #e74c3c, #8e44ad);
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            color: #ecf0f1;
+        }
+        input {
+            border: 0;
+            outline: 0;
+            width: 300px;
+            padding: 5px;
+            box-shadow: 0 0 5px inset #999;
+            border-radius: 5px;
+        }
+        .todo {
+            margin-top: 15px;
+        }
+        .todo header {
+            font-weight: bolder;
+            text-shadow: 0 1px 3px darkslategrey;
+        }
+        .todo p {
+            background: rgba(255, 255, 255, 0.7);
+            color: black;
+            margin-top: 10px;
+            padding: 5px 8px;
+            width: 300px;
+            border-radius: 5px;
+            box-shadow: 0 0 1px #ffffff;
+        }
+        .todo i {
+            font-style: normal;
+            cursor: pointer;
+            color: darkblue;
+            float: right;
+            margin-right: 5px;
+        }
+        .done {
+            margin-top: 15px;
+        }
+        .done p {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            margin-top: 10px;
+            padding: 5px 8px;
+            width: 300px;
+            border-radius: 5px;
+            box-shadow: 0 0 1px black;
+        }
+        .done i {
+            font-style: normal;
+            cursor: pointer;
+            color: deepskyblue;
+            float: right;
+            margin-right: 5px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <section>
+          <h3>TODO LIST (任务列表)</h3>
+        </section>
+        <section class="input">
+          <input placeholder="请输入您要做的事情">
+        </section>
+        <section class="todo">
+          <header>未完成的任务</header>
+          <div>
+            <p>
+              <span>吃鸡 1000 次</span>
+              <i class="finish">归档</i>
+              <i class="del">删除</i>
+            </p>
+            <p>
+              <span>吃鸡 1000 次</span>
+              <i class="finish">归档</i>
+              <i class="del">删除</i>
+            </p>
+          </div>
+        </section>
+        <section class="done">
+          <header>已完成的任务</header>
+          <div>
+            <p>
+              <span>吃鸡 1000 次</span>
+              <i class="del">删除</i>
+            </p>
+            <p>
+              <span>吃鸡 1000 次</span>
+              <i class="del">删除</i>
+            </p>
+          </div>
+        </section>
+      </div>
+    </body>
+  </html>
+#+end_src
+
+当前的页面效果:
+
+#+ATTR_HTML: :width 50%
+[[file:img/todo-list-page.png]]
+
+** 然后，使用 jQuery 实现相关逻辑
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+      <title>Todo List</title>
+      <style>
+          ,* {
+              box-sizing: border-box;
+          }
+          body {
+              background: linear-gradient(to right, #e74c3c, #8e44ad);
+          }
+          .container {
+              width: 300px;
+              margin: 0 auto;
+              color: #ecf0f1;
+          }
+          input {
+              border: 0;
+              outline: 0;
+              width: 300px;
+              padding: 5px;
+              box-shadow: 0 0 5px inset #999;
+              border-radius: 5px;
+          }
+          .todo {
+              margin-top: 15px;
+          }
+          .todo header {
+              font-weight: bolder;
+              text-shadow: 0 1px 3px darkslategrey;
+          }
+          .todo p {
+              background: rgba(255, 255, 255, 0.7);
+              color: black;
+              margin-top: 10px;
+              padding: 5px 8px;
+              width: 300px;
+              border-radius: 5px;
+              box-shadow: 0 0 1px #ffffff;
+          }
+          .todo i {
+              font-style: normal;
+              cursor: pointer;
+              color: darkblue;
+              float: right;
+              margin-right: 5px;
+          }
+          .done {
+              margin-top: 15px;
+          }
+          .done p {
+              background: rgba(0, 0, 0, 0.3);
+              color: white;
+              margin-top: 10px;
+              padding: 5px 8px;
+              width: 300px;
+              border-radius: 5px;
+              box-shadow: 0 0 1px black;
+          }
+          .done i {
+              font-style: normal;
+              cursor: pointer;
+              color: deepskyblue;
+              float: right;
+              margin-right: 5px;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="container">
+          <section>
+              <h3>TODO LIST (任务列表)</h3>
+          </section>
+          <section class="input">
+              <input placeholder="请输入您要做的事情">
+          </section>
+          <section class="todo">
+              <header>未完成的任务</header>
+              <div></div>
+          </section>
+          <section class="done">
+              <header>已完成的任务</header>
+              <div></div>
+          </section>
+
+          <script>
+              $("input").on('keypress', function (e) {
+                  var v = $(this).val();
+                  if (e.keyCode === 13 && v !== "") {
+                      var html = `
+                        <p>
+                            <span>${v}</span>
+                            <i class="finish">归档</i>
+                            <i class="del">删除</i>
+                        </p>`;
+                      $(html).prependTo(".todo div");
+                      $(this).val("");
+                  }
+              });
+              $(".todo")
+                  .on('click', '.del', function (ev) {
+                      $(this).closest("p").remove();
+                  })
+                  .on('click', '.finish', function (ev) {
+                      $(this).closest("p").prependTo(".done div");
+                      $(this).remove();
+                  });
+              $(".done")
+                  .on('click', '.del', function (ev) {
+                      $(this).closest("p").remove();
+                  });
+          </script>
+      </div>
+  </body>
+  </html>
+#+end_src
+
+** 之后，增加 AJAX 支持
+*** 服务端
+
+#+begin_src java
+  public class Task {
+      private long id;
+      private String body;
+      private int state; // 1, 2, 8, 9
+      private Date created;
+  }
+#+end_src
+
+#+begin_src sql
+  create table task
+  (
+      id int identity primary key,
+      body varchar(2000) not null,
+      [state] tinyint not null,
+      created datetime2 default getdate()
+  );
+#+end_src
+
+API:
+- /task/add
+- /task/list
+- /task/archive
+- /task/delTodo  
+- /task/delDone
+
+*** 客户端
+
+#+begin_src html
+  <!doctype html>
+  <html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+      <title>Todo List</title>
+      <style>
+          ,* {
+              box-sizing: border-box;
+          }
+          body {
+              background: linear-gradient(to right, #e74c3c, #8e44ad);
+          }
+          .container {
+              width: 400px;
+              margin: 0 auto;
+              color: #ecf0f1;
+          }
+          .add {
+              border: 0;
+              outline: 0;
+              width: 400px;
+              padding: 5px;
+              box-shadow: 0 0 5px inset #999;
+              border-radius: 5px;
+          }
+          .todo {
+              margin-top: 15px;
+          }
+          .todo header {
+              font-weight: bolder;
+              text-shadow: 0 1px 3px darkslategrey;
+          }
+          .todo p {
+              background: rgba(255, 255, 255, 0.7);
+              color: black;
+              margin-top: 10px;
+              padding: 5px 12px;
+              width: 400px;
+              border-radius: 5px;
+              box-shadow: 0 0 1px #ffffff;
+          }
+          .todo .del, .todo .finish {
+              cursor: pointer;
+              float: right;
+              margin-left: 10px;
+          }
+          .done {
+              margin-top: 15px;
+          }
+          .done p {
+              background: rgba(0, 0, 0, 0.3);
+              color: white;
+              margin-top: 10px;
+              padding: 5px 12px;
+              width: 400px;
+              border-radius: 5px;
+              box-shadow: 0 0 1px black;
+          }
+          .done .del {
+              font-style: normal;
+              cursor: pointer;
+              color: deepskyblue;
+              float: right;
+              margin-right: 5px;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="container">
+          <section>
+              <h3>TODO LIST (任务列表)</h3>
+          </section>
+          <section>
+              <input class="add" placeholder="请输入您要做的事情">
+          </section>
+          <section class="todo">
+              <header>未完成的任务</header>
+              <div></div>
+          </section>
+          <section class="done">
+              <header>已完成的任务</header>
+              <div></div>
+          </section>
+
+          <script>
+              // 新建任务
+              $(".add").on('keypress', function (e) {
+                  var v = $(this).val();
+                  if (e.keyCode === 13 && v !== "") {
+                      $.ajax({
+                          method: "post",
+                          url: "task/add",
+                          data: { body: v },
+                          dataType: "json",
+                          success: function (task) {
+                              addTask(1, task);
+                              $(".add").val("");
+                          },
+                          error: function(err) {
+                              alert("创建任务失败: " + err);
+                          }
+                      });
+                  }
+              });
+
+              // 删除跟归档
+              $(".todo")
+                  .on('click', '.del', function (ev) {
+                      var $task = $(this).closest("p");
+                      $.get("task/delTodo?id=" + $task.data("id"))
+                          .done(function () {
+                              $task.remove();
+                          });
+                  })
+                  .on('click', '.finish', function (ev) {
+                      var $btn = $(this);
+                      $.get("task/archive?id=" + $btn.closest("p").data("id"))
+                          .done(function () {
+                              $btn.closest("p").prependTo(".done div");
+                              $btn.remove();
+                          });
+                  });
+              $(".done")
+                  .on('click', '.del', function (ev) {
+                      var $task = $(this).closest("p");
+                      $.get("task/delDone?id=" + $task.data("id"))
+                          .done(function () {
+                              $task.remove();
+                          });
+                  });
+
+              // 将任务添加到 dom 中
+              // type: 1 代表插入到 .todo; 2 代表插入到 .done
+              // body: 表示插入的内容
+              function addTask(type, task) {
+                  var html = `
+                      <p data-id="${task.id}">
+                          <span>${task.body}</span>
+                          ${type === 1 ? '<i class="finish">归档</i>' : ''}
+                          <i class="del">删除</i>
+                      </p>`;
+                  $(html).prependTo(type === 1 ? ".todo div" : ".done div");
+              }
+
+              // 页面的初始化加载
+              function initTasks() {
+                  $.get({
+                      url: "task/list",
+                      dataType: "json"
+                  }).done(function (data) {
+                      $.each(data, function (i, e) {
+                          addTask(e.state, e);
+                      });
+                  });
+              }
+
+              // 开始加载
+              initTasks();
+          </script>
+      </div>
+  </body>
+  </html>
+#+end_src
+
+*** 删除的示例
+
+back:
+#+begin_src java
+  @WebServlet("/task/delTodo")
+  public class TaskDelTodoApi extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String id = req.getParameter("id");
+          try {
+              new TaskDAO().deleteTodo(id);
+          } catch (Exception exception) {
+              exception.printStackTrace();
+              throw new RuntimeException("删除出错");
+          }
+      }
+  }
+#+end_src
+
+front:
+#+begin_src js
+  $(".todo")
+      .on('click', '.del', function (ev) {
+          var $task = $(this).closest("p");
+          $.get("task/delTodo?id=" + $task.data("id"))
+              .done(function () {
+                  $task.remove();
+              });
+      })
+#+end_src
+
+*** 归档的示例
+
+首先，服务器端:
+#+begin_src java
+  @WebServlet("/task/archive")
+  public class TaskArchiveApi extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          String id = req.getParameter("id");
+          try {
+              new TaskDAO().archiveTask(id);
+          } catch (Exception exception) {
+              exception.printStackTrace();
+              throw new RuntimeException("归档出错");
+          }
+      }
+  }
+#+end_src
+
+然后，客户端，修改:
+#+begin_src js
+  $(".todo").on('click', '.finish', function (ev) {
+      var $btn = $(this);
+      $.get("task/archive?id=" + $btn.closest("p").data("id"))
+          .done(function () {
+              $btn.closest("p").prependTo(".done div");
+              $btn.remove();
+          });
+  });
+#+end_src
+
+** 最终代码
+
+- 图标: https://iconify.design/
+- 图标: http://www.fontawesome.com.cn/
+
+#+begin_src html
+  <!doctype html>
+  <html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+      <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+      <title>Todo List</title>
+      <style>
+          ,* {
+              box-sizing: border-box;
+          }
+          body {
+              background: linear-gradient(to right, #e74c3c, #8e44ad);
+          }
+          .container {
+              width: 400px;
+              margin: 0 auto;
+              color: #ecf0f1;
+          }
+          .add {
+              border: 0;
+              outline: 0;
+              width: 400px;
+              padding: 5px;
+              box-shadow: 0 0 5px inset #999;
+              border-radius: 5px;
+          }
+          .todo {
+              margin-top: 15px;
+          }
+          .todo header {
+              font-weight: bolder;
+              text-shadow: 0 1px 3px darkslategrey;
+          }
+          .todo p {
+              background: rgba(255, 255, 255, 0.7);
+              color: black;
+              margin-top: 10px;
+              padding: 5px 12px;
+              width: 400px;
+              border-radius: 5px;
+              box-shadow: 0 0 1px #ffffff;
+          }
+          .todo .del, .todo .finish {
+              cursor: pointer;
+              float: right;
+              margin-left: 10px;
+          }
+          .done {
+              margin-top: 15px;
+          }
+          .done p {
+              background: rgba(0, 0, 0, 0.3);
+              color: white;
+              margin-top: 10px;
+              padding: 5px 12px;
+              width: 400px;
+              border-radius: 5px;
+              box-shadow: 0 0 1px black;
+          }
+          .done .del {
+              font-style: normal;
+              cursor: pointer;
+              color: deepskyblue;
+              float: right;
+              margin-right: 5px;
+          }
+      </style>
+  </head>
+  <body>
+  <div class="container">
+      <section>
+          <h3>
+              TODO LIST (任务列表)
+              <small>
+                  <i class="iconify" data-icon="emojione:bird" data-inline="false"></i>
+              </small>
+          </h3>
+      </section>
+      <section>
+          <input class="add" placeholder="请输入您要做的事情">
+      </section>
+      <section class="todo">
+          <header>未完成的任务</header>
+          <div></div>
+      </section>
+      <section class="done">
+          <header>已完成的任务</header>
+          <div></div>
+      </section>
+
+      <script>
+          // 辅助函数: 将任务添加到页面中
+          // type: 1 代表插入到 .todo; 2 代表插入到 .done
+          // body: 表示插入的内容
+          function addTask(type, task) {
+              var html = `
+                      <p data-id="${task.id}">
+                          <span>${task.body}</span>
+                          ${type === 1 ? '<i class="iconify finish" data-icon="ant-design:check-outlined" data-inline="false"></i>' : ''}
+                          <i class="iconify del" data-icon="bi:trash" data-inline="false"></i>
+                      </p>`;
+              $(html).prependTo(type === 1 ? ".todo div" : ".done div");
+          }
+
+          // 新建任务
+          $(".add").on('keypress', function (e) {
+              var v = $(this).val();
+              if (e.keyCode === 13 && v !== "") {
+                  $.ajax({
+                      method: "post",
+                      url: "task/add",
+                      data: { body: v },
+                      dataType: "json",
+                      success: function (task) {
+                          addTask(1, task);
+                          $(".add").val("");
+                      },
+                      error: function(err) {
+                          alert("创建任务失败: " + err);
+                      }
+                  });
+              }
+          });
+
+          // 删除跟归档
+          $(".todo")
+              .on('click', '.del', function (ev) {
+                  var $task = $(this).closest("p");
+                  $.get("task/delTodo?id=" + $task.data("id"), function () {
+                      $task.fadeOut(500, function() {
+                          $task.remove();
+                      });
+                  });
+              })
+              .on('click', '.finish', function (ev) {
+                  var $btn = $(this);
+                  $.get("task/archive?id=" + $btn.closest("p").data("id"), function () {
+                      $btn.closest("p").fadeOut(500, function () {
+                          $btn.closest("p")
+                              .prependTo(".done div")
+                              .fadeIn(1000);
+                          $btn.remove();
+                      });
+                  });
+              });
+          $(".done")
+              .on('click', '.del', function (ev) {
+                  var $task = $(this).closest("p");
+                  $.get("task/delDone?id=" + $task.data("id"), function () {
+                      $task.fadeOut(500, function() {
+                          $task.remove();
+                      });
+                  });
+              });
+
+          // 初始化加载
+          function initTasks() {
+              $.getJSON("task/list", function (data) { // 使用 getJSON 简化使用
+                  $.each(data, function (i, e) {
+                      addTask(e.state, e);
+                  });
+              });
+          }
+
+          // 开始加载
+          initTasks();
+      </script>
+  </div>
+  </body>
+  </html>
+#+end_src
+
+** 小结
+
+- 先设计，后编码。页面端如此，服务端也是如此
+- 循序渐进，逐步迭代。千尺之台起于累土
+- 这个例子，麻雀虽小五脏俱全。大项目中包含的内容和逻辑也不过如此
+- 将这些逻辑多亲自实现几遍，所谓熟能生巧，不会做诗也会吟
+
+周末作业 ([2020-10-16 Fri]):
+
+#+ATTR_HTML: :width 50%
+[[file:img/todo-list-final.png]]
+
+* [例] Checkbox 选择
+
+#+begin_div :class mc11
+
+
+页面:
+#+begin_src html
+  <section>
+    <input type="checkbox"> 1
+    <input type="checkbox"> 2
+    <input type="checkbox"> 3
+    <input type="checkbox"> 4
+    <input type="checkbox"> 5
+  </section>
+
+  <section>
+    <button class="btn1">全选</button>
+    <button class="btn2">全不选</button>
+    <button class="btn3">反选</button>
+    <button class="btn4">选奇数</button>
+    <button class="btn5">随机选</button>
+  </section>
+#+end_src
+
+:break:
+
+事件:
+#+begin_src js
+  $(".btn1").click(() => {
+      $(":checkbox").prop("checked", true);
+  });
+  $(".btn2").click(() => {
+      $(":checkbox").prop("checked", false);
+  });
+  $(".btn3").click(() => {
+      $(":checkbox").click();
+  });
+  $(".btn4").click(() => {
+      $(":checkbox:odd").prop("checked", false);
+      $(":checkbox:even").prop("checked", true);
+  });
+  $(".btn5").click(() => {
+      $(":checkbox").each((i, e) => {
+          $(e).prop("checked", Math.random() > 0.5 ? true : false);
+      });
+  });
+#+end_src
+#+end_div
+
+* [例] Select 多选
+
+#+begin_src html
+  <section>
+    <select name="xxx" multiple>
+      <option>aaa1 </option>
+      <option>aaa2 </option>
+      <option>aaa3 </option>
+      <option>aaa4 </option>
+      <option>aaa5 </option>
+      <option>aaa6 </option>
+    </select>
+    <p class="xxx-area"></p>
+  </section>
+#+end_src
+
+#+begin_src js
+  $("select").on('change', function() {
+       console.log($(this).val());
+       var str = "";
+       $(":selected").each(function(i, e) {
+         str += $(e).text() + "  ";
+       });
+       $(".xxx-area").text(str);
+     });
+#+end_src
+
+* Questions
+** JSP 中 模板字符串 不好使的问题
+
+模板字符串:
+#+begin_src js
+  var v = "hello world";
+  // var html = '<div>' + v + '</div>';
+  var html = `<div>${v}</div>`;
+#+end_src
+
+[服务器] index.jsp:
+#+begin_src html
+  <html>
+    <div>
+      el 表达式: ${session.account}
+    </div>
+    <script>
+      var v = "hello world";
+      var html = `<div>${v}</div>`;
+    </script>
+  </html>
+#+end_src
+
+[客户端] 浏览器看到的:
+#+begin_src html
+  <html>
+    <div>
+      el 表达式: 张三
+    </div>
+    <script>
+      var v = "hello world";
+      var html = `<div></div>`;
+    </script>
+  </html>
+#+end_src

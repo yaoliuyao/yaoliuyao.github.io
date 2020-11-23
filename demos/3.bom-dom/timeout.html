@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+  </head>
+  <body>
+
+    <h3>当前时间是: </h3>
+    <div id="time">未获取当前时间</div>
+
+    <script>
+     function mySetInterval (task, interval) {
+       function inner () {
+         task();
+         setTimeout(inner, interval);
+       }
+       setTimeout(inner, interval);
+     }
+     mySetInterval(function() {
+       time.innerHTML = new Date();
+     }, 1000);
+    </script>
+
+
+  </body>
+</html>

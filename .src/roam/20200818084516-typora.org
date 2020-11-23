@@ -1,0 +1,16 @@
+#+title: Typora
+#+roam-alis:
+
+
+* Typora
+
+是一款特别小巧的 [[file:20200818083258-markdown.org][Markdown]] [[file:20200818084418-工具软件.org][工具]]，适合记[[file:20200818082911-记笔记.org][记笔记]]。
+
+链接:
+- 首页: https://typora.org
+- 简单教程: https://www.jianshu.com/p/191d1e21f7ed
+
+[[file:20200818083701-小任务.org][小任务]]:
+- 使用 Markdown 的语法，整理下 Markdown 的基本使用。
+
+

@@ -1,0 +1,227 @@
+#+TITLE: BOM 浏览器对象模型
+
+
+
+* 全局变量的问题
+
+#+begin_src js
+  // 所有的全局变量
+  // 默认都是绑定到了 window 对象上面 !!!
+  function aaa() { console.log('aaa') }
+  window.aaa();  // 调用的时候，显式指明 window
+  aaa();         // 如果调用的时候，没有指定对象，那么默认以为它就是 window
+
+  function aaa() {
+      console.log(this); // this 指从哪个对象上执行的本函数
+  }
+  aaa(); // 打印的是 window 对象，因为没有显式指定对象，那么 aaa 就是从 window 开始调用的
+
+  var o = {
+      aaa: function() { console.log(this) }
+  }
+  o.aaa(); // 打印的是 o 对象，因为 aaa 是从 o 对象开始调用的，所以内部的 this 就是 o
+#+end_src
+
+#+begin_src js
+  function bbb () {
+      // 如果函数内的变量未使用 var/let 声明的话
+      // 它将会变成全局的，也就是会被绑定到 window 上面
+      for (i = 1; i < 5; i++) {
+          console.log(i);
+      }
+      open = '333'; // 莫名其妙绑定成了 window.open
+      // window.open = '333';
+  }
+  bbb();
+  window.open('http://baidu.com'); // 报错
+#+end_src
+
+* alert/confirm/prompt 弹窗
+
+尽量少用。
+
+#+begin_src js
+  // 常用语调试 （但是现在，又没有 console.log 好用）
+  // 在古老的年代，alert 正儿八经提醒用户的一种手段
+  // 现在，按照道理来说，代码中不应该有 alert 了
+  // 很多原因，最主要的原因，用户体验非常不好
+  window.alert("hello");
+  alert("hello");
+#+end_src
+
+#+begin_src js
+  // 返回值是 boolean 类型
+  // 如果点了确定，那么是 true；否则就是 false
+  // 因此，常与 if 搭配使用
+  var a = window.confirm("您是不是男人?");
+  typeof a;
+
+  if (window.confirm('你是不是男人啊?')) {
+      console.log('把这桶水放上去。');
+  } else {
+      console.error('你真好意思说....');
+  }
+#+end_src
+
+#+begin_src js
+  // 返回值是字符串
+
+  // 1
+  var str = prompt('您的年龄是多少?');
+  typeof str;
+
+  var age = Number(str);
+  if (age > 18) {
+      console.log('您已经是大人了.');
+  } else {
+      console.log('孩子，一边儿玩去...')
+  }
+
+  // 2
+  var s = prompt('请输入所有同学的名字，并用空格分开')
+  var names = s.split(' ');
+  names.forEach((n) => {
+      console.log('hello, ' + n);
+  });
+
+  // 3
+  var tom = {
+      name: prompt('请输入名字'),
+      age: Number(prompt('请输入年龄'))
+  };
+  console.log(tom);
+#+end_src
+
+* setTimeout/setInterval 计划任务
+
+计时器、秒表。
+
+setTimeout/clearTimeout:
+#+begin_src js
+  // 第一个参数，
+  // 可以是字符串，表示调用的一些逻辑
+  // 也可以是一个函数名
+  // 也可以是一个匿名函数
+
+  setTimeout(function() {
+      alert('哈哈，时间到了吧?');
+  }, 5000); // 时间单位是 ms
+
+  setTimeout(function() {
+      alert('哈哈，时间到了吧?');
+  }, 24 * 60 * 60 * 1000); // 时间单位是 ms
+
+  setTimeout("alert(333)", 5000);
+
+  var f = function() { alert('到时间了') }
+  setTimeout(f, 5000);
+  setTimeout("f()", 5000);
+
+  setTimeout(function() {
+      alert('哈哈，时间到了吧?');
+  }, 0);
+
+  // 取消任务的方式
+  var a = setTimeout("alert(33)", 10000);
+  clearTimeout(a); // a 实际就是一个数字
+#+end_src
+
+setInterval/clearInterval:
+#+begin_src js
+  var i = 1;
+  var a = setInterval(function() {
+      console.log('我已经被执行了 ' + i + ' 次');
+      i++;
+  }, 1000);
+
+  // 取消任务的方式
+  clearInterval(a);
+#+end_src
+* window.open/close/moveTo 窗口控制
+
+打开、关闭、移动:
+#+begin_src js
+  window.open('http://baidu.com');
+  window.open('http://baidu.com', '百度是wb之气的一个网站');
+  window.open('http://baidu.com', 'bd', "height=200,location=0")
+
+  // 恶意代码
+  while (true) { open('http://baidu.com') }
+
+  // 关闭
+  window.close();
+#+end_src
+
+* window.screen 获取显示器方面信息
+
+只是提供了一些，跟显示器相关的参数。
+
+后续，可以使用这些参数，做一些个性化方面的配置。
+
+#+begin_src js
+  window.screen.availHeight;
+  window.screen.availWidth;
+  window.screen.width;
+  window.screen.height;
+#+end_src
+
+* window.history 浏览历史
+
+控制浏览器的浏览历史，前进或者后退:
+
+#+begin_src js
+  window.history.back();    // 后退一步
+  window.history.forward(); // 前进一步
+  window.history.go(-1);    // 后退一步
+  window.history.go(-2);    // 后退两步
+  window.history.go(2);     // 前进两步
+
+  setTimeout(function () { history.go(-2) }, 2000);
+  setTimeout(function () { history.go(1) }, 3000);
+  setTimeout(function () { history.go(-1) }, 6000);
+#+end_src
+
+#+begin_src html
+  <html>
+    <body>
+      <button onclick='history.forward()'>前进</button>
+      <button onclick='history.back()'>后退</button>
+    </body>
+  </html>
+
+#+end_src
+
+扩展，查看 pushState 和 replaceState 的使用方法。
+
+* window.location 页面 URL
+
+身份证:
+- http://aaa.com/1.html
+- http://aaa.com/x/2.html
+
+URL (Uniform Resource Location) 唯一资源标识符。按照标准:
+: protocol://hostname:port/path?params
+:
+: // 端口号，如果没有写，默认使用 80/443
+
+例子:
+: https://cn.bing.com:443/search?q=hello&qs=n&form=QBLH&sp=-1&pq=hello&sc=8-5&sk=&cvid=44861E53C4EE443F853191DDA02D8F03
+: file:///E:/home/notes/demos/3/timeout.html
+
+#+begin_src js
+  // 获取跟 url 相关的一些信息
+  window.location.protocol
+  window.location.host
+  window.location.port
+  window.location.pathname
+  window.location.hash
+
+  // 控制 url
+  location.reload()
+  location.replace('http://sogou.com');
+  location.assign('http://bing.com'); // 替换当前网址为 url
+  location.href = 'http://baidu.com'; // 切换到百度
+
+  // 提问:
+  // - replace 跟 assign 有什么区别?
+#+end_src

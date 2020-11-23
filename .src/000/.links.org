@@ -1,0 +1,12 @@
+#+TITLE: 链接和资源
+
+
+渐进式的博客系统:
+- https://github.com/yaollllllsan/11-posts
+- https://github.com/yaollllllsan/12-posts-basic-impl DBUtils 和 CRUD
+- https://github.com/yaollllllsan/13-posts-file-upload 文件上传
+- https://github.com/yaollllllsan/14-posts-ajax 异步请求
+- https://github.com/yaollllllsan/15-posts-jquery-bootstrap jQuery + Bootstrap
+
+其他资源:
+- [[http://yaoliusan:5656/luping/][录屏回看]]

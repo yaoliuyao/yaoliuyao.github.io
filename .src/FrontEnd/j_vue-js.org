@@ -1,0 +1,1781 @@
+#+TITLE: Vue.js
+
+
+* MVC / MVP / M-V-VM
+
+把数据放到对应的页面:
+- M: Model 模型
+- V: View 视图
+- C: Controller 控制 (jQuery)
+- VM: ViewModel 层 (Vue/Angular/React)
+
+* Vue.js
+
+- Google, Angular.js
+- Facebook, React/ReactNative
+- Vue, https://cn.vuejs.org/
+
+版本:
+- 2.0
+- 3.0
+
+First:
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>第一个 Vue 程序</title>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+      <!-- View -->
+      <div id="main">
+        <p v-text="aaa + ' ' + name" v-bind:style="{ color: myColor }"></p>
+        <input v-model="name">
+        <button v-on:click="doChange">click me</button>
+      </div>
+
+      <!-- ViewModel -->
+      <script>
+        new Vue({
+            el: "#main",
+            data: {
+                aaa: "hello, world!",
+                myColor: "red",
+                name: "Vue"
+            },
+            methods: {
+                doChange() {
+                    this.aaa = "hello " + this.name;
+                    if (this.myColor === "red") {
+                        this.myColor = "green";
+                    } else {
+                        this.myColor = "red";
+                    }
+                    console.log(this.name);
+                }
+            }
+        });
+      </script>
+    </body>
+  </html>
+#+end_src
+
+* 指令模板 (View)
+
+| innerText   | v-text  {{..}}     |
+| innerHTML   | v-html             |
+| property    | v-bind:xxx  :xxx   |
+| input.value | v-model            |
+| Event       | v-on:click  @click |
+| Condition   | v-if v-else        |
+| Loop        | v-for              |
+| Others      | v-once             |
+
+Tips:
+- v-html 不建议使用: 1) 安全问题 2) 视图跟逻辑混淆问题
+
+示例:
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>第二个 Vue 程序</title>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+      <!-- View, 指令模板 -->
+      <div id="app">
+
+        <h3>
+          <span v-text="title"></span>
+          <small>{{subtitle}}</small>
+        </h3>
+
+        <div v-html="description"></div>
+        <div>
+          <span style="color: red">{{descriptionRaw}}</span>
+        </div>
+
+        <div v-bind:title="atitle">
+          <a :style="astyle" :href="alink" @click.prevent="shout">这是一个超链接</a>
+        </div>
+
+        <div>
+          <input v-model="user.username" placeholder="账户">
+          <input v-model="user.password" placeholder="密码" type="password" @keydown.13="save">
+          <div>您刚才输入的账号是 {{user.username}}</div>
+          <button v-on:click="save">Login</button>
+          <button v-if="user.username || user.password" @click="reset">Reset</button>
+        </div>
+
+        <div>
+          <h3>书籍列表</h3>
+          <table v-if="books.length > 0">
+            <tr>
+              <th>书名</th>
+              <th>价格</th>
+              <th>操作</th>
+            </tr>
+            <tr v-for="x in books">
+              <td>{{x.name}}</td>
+              <td>{{x.price}}</td>
+              <td><a href="#" @click.prevent="deleteBook(x.name)">删除</a></td>
+            </tr>
+          </table>
+          <div v-else>
+            目前没有任何数据，请首先添加数据。
+          </div>
+
+          <div>
+            <input v-model="book.name" placeholder="书名">
+            <input v-model="book.price" placeholder="价格">
+            <button @click="saveBook">保存</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ViewModel -->
+      <script>
+        var options = {
+            el: "#app",
+            // 绑定的数据
+            data: {
+                title: "我是标题",
+                subtitle: "vue.js 很香",
+                description: "<span style='color: red'>我们现在学习的是指令模板</span>",
+                descriptionRaw: "我们现在学习的是指令模板",
+
+                astyle: { color: "#e6f022", textDecoration: "none", fontSize: "20px" },
+                alink: "http://www.baidu.com",
+                atitle: "别摸我!",
+
+                user: {},
+
+                books: [],
+
+                book: {}
+            },
+            // 绑定的方法
+            methods: {
+                shout: function() {
+                    alert("不要点我!");
+                },
+                save: function() {
+                    alert("登录: " + JSON.stringify(this.user));
+                },
+                reset: function() {
+                    this.user = {}
+                },
+                deleteBook: function (name) {
+                    // 通过 ajax 给服务器发送一个删除请求
+                    // var booksR = [];
+                    // for (var i = 0; i < this.books.length; i++) {
+                    //   if (this.books[i].name !== name) {
+                    //     booksR.push(this.books[i]);
+                    //   }
+                    // }
+                    // this.books = booksR;
+                    this.books = this.books.filter(b => b.name !== name);
+                },
+                saveBook: function() {
+                    // ajax to server
+                    this.books.push({
+                        name: this.book.name,
+                        price: this.book.price
+                    });
+                    this.book = {};
+                },
+                loadBooks: function () {
+                    axios({
+                        url: "/xxx",
+                        responseType: "json"
+                    }).then(function (data) {
+                        this.books = data;
+                    }).catch(function (error) {
+                    });
+                }
+            },
+            // vm 被挂载到 dom 树上之后，会执行的逻辑 (onload)
+            // 一般用来进行数据的初始化
+            mounted: function() {
+                this.loadBooks();
+            }
+        };
+        new Vue(options);
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 计算属性 (computed) 与属性的监听 (watch)
+
+#+begin_src js
+  computed: {
+      herAge: function () {
+          return this.youAge - 2;
+      },
+      now () {
+          return new Date();
+      }
+  },
+  watch: {
+      youAge (newValue, oldValue) {
+          if (value > 120) {
+              alert("你见鬼了!!!");
+              console.log("youAge 要被人篡改啦!!!");
+              this.youAge = oldValue;
+              return;
+          }
+      }
+  },
+#+end_src
+
+** 样式 (style/class)
+
+#+begin_src html
+  <div :class="xxx" :style="{ color: 'red' }">xxx</div>
+  <div :class="{ xxx: isActive }">加个开关</div>
+#+end_src
+
+** 条件判断 (v-if/v-else-if/v-else/v-show)
+
+- 默认情况下，Vue 会尽可能复用一些元素
+- 我们可以将 key 添加到某些节点上，这样，不同 key 的节点就不存在被混用的可能
+
+#+begin_src html
+  <!-- 1. 带指令的模板 -->
+  <div id="app">
+    <template v-if="isLogin">
+      <h4>欢迎您，xxx (<a href="#" @click.prevent="doLogout">注销</a>) 。您可以享受下面服务:</h4>
+      <p>洗衣服</p>
+      <p>吃早餐</p>
+    </template>
+    <template v-else>
+      <p>请您 <a href="#" @click.prevent="doLogin">登录</a></p>
+      <p>如果没有账号，请您 <a href="#">注册</a></p>
+    </template>
+  </div>
+
+  <!-- 2. 创建 Vue 对象 (ViewModel) -->
+  <script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            isLogin: false
+        },
+        methods: {
+            doLogin () {
+                this.isLogin = true;
+            },
+            doLogout () {
+                this.isLogin = false;
+            }
+        }
+    });
+  </script>
+#+end_src
+
+** 循环迭代 (v-for)
+
+#+begin_src html
+  <ul id="example-2">
+    <li v-for="(item, index) in items">
+      {{ parentMessage }} - {{ index }} - {{ item.message }}
+    </li>
+  </ul>
+
+  <ul>
+    <li v-for="(v, k) in xiaoming">{{k}} 它的值是 {{v}}</li>
+  </ul>
+
+  <script>
+    data: {
+        isLogin: false,
+        xiaoming: {
+            name: "小明",
+            age: 18,
+            tel: 110,
+            weixin: "woyebuzhidao"
+        }
+    },
+  </script>
+#+end_src
+
+使用 key，不出错:
+#+begin_src html
+  <div v-for="item in items" v-bind:key="item.id">
+    <!-- 内容 -->
+  </div>
+#+end_src
+
+** 事件 (v-on)
+
+#+begin_src html
+  <button v-on:click="greet">按钮</button>
+
+  <button v-on:click="greet($event)">按钮</button>
+  <button v-on:click="hi(3)">按钮</button>
+  <button v-on:click="hi(3, $event)">按钮</button>
+  <button v-on:click="console.log(name)">按钮</button>
+
+  <button @click="hi(3)">按钮</button>
+
+  <input v-on:keyup.13="submit">
+  <input v-on:keyup.enter="submit">
+  <input v-on:keyup.enter.ctrl="submit">
+  <input v-on:keyup.enter.ctrl.exact="submit">
+  <input v-on:keyup.enter.ctrl.exact.stop="submit">
+
+  <script>
+    new Vue({
+      data: {
+        name: "tom";
+      },
+      methods: {
+        greet: function (event) {
+          console.log("hello, ", this.name);
+        },
+        hi: function (times, event) {
+          for (let i = 0; i < times; i++) {
+            console.log("hello");
+            console.log(event);
+          }
+        }
+      }
+    });
+  </script>
+#+end_src
+
+** 表单绑定 (v-model，双向绑定)
+
+#+begin_src html
+  <input v-model="message" placeholder="edit me">
+  <p>Message is: {{ message }}</p>
+#+end_src
+
+更多例子:
+
+https://cn.vuejs.org/v2/guide/forms.html
+
+* VM 实例
+** 生命周期的钩子
+
+#+begin_src html
+  <!-- 1. 带指令的模板 -->
+  <div id="app">
+    <h1>hello world (age: {{age}})</h1>
+    <button @click="xxx">点我</button>
+  </div>
+
+  <!-- 2. 创建 Vue 对象 (ViewModel) -->
+  <script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            name: "xiaoming",
+            age: 18,
+            addr: "guangdong"
+        },
+        methods: {
+            xxx () {
+                alert(vm.name);
+            }
+        },
+        beforeCreate () {
+            console.log("我在 vm 创建之前");
+        },
+        mounted () {
+            console.log("我在 vm 被挂载之后执行");
+        },
+        created () {
+            console.log("我在 vm 被创建之后执行");
+        },
+        beforeUpdate (x) {
+            console.log("修改之前", x);
+        },
+        updated () {
+            console.log("有东西被修改");
+        }
+    });
+
+    console.log(vm);
+    console.log(vm.name);
+    console.log(vm.age);
+    console.log(vm.$el);
+    console.log(vm.$data);
+  </script>
+#+end_src
+
+* 组件 (Component)
+
+好有一比啊，组件就是一种特殊的函数:
+- 都有名字
+- 都用来封装一定逻辑，达到复用目的
+- 都可以有入参、有返回值
+
+** 基本示例
+
+封装的 my-title 组件:
+#+begin_src js
+  // 创建一个函数，名字为 xxx: funtion (xxxx) {}
+  // 创建一个组件，名字为 my-title，返回的是一个 Vue 对象
+  Vue.component("my-title", {
+      props: ["title"],
+      template: `<header :style="myHeader">
+                   <h1>{{title}}</h1>
+                   <div>
+                      <span v-for="m in menus" style="margin-left: 1em">
+                        <a :href="m.href">{{m.title}}</a>
+                      </span>
+                   </div>
+                 </header>`,
+      data: function () {
+          return {
+              myHeader: {
+                  marginBottom: "2em",
+                  paddingBottom: "2em",
+                  borderBottom: "1px solid grey"
+              },
+              menus: [
+                  { title: "首页", href: "#" },
+                  { title: "百度", href: "http://www.baidu.com" },
+                  { title: "谷歌", href: "http://www.google.com" },
+                  { title: "腾讯", href: "http://www.qq.com" }
+              ]
+          }
+      },
+      methods: {
+          xxx: function () {
+              alert("hello world");
+          }
+      },
+      created: function () {
+          console.log("my-title created");
+      }
+  });
+#+end_src
+
+在页面中使用组件:
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>组件的使用</title>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+      <script src="my-title.js"></script>
+    </head>
+    <body>
+      <div id="app">
+        <my-title title="特朗普"></my-title>
+        <section>
+          {{content}}
+        </section>
+        <my-title title="瞌睡虫"></my-title>
+        <my-title :title="ttt"></my-title>
+      </div>
+
+      <script>
+        new Vue({
+            el: "#app",
+            data: {
+                content: "特朗普宣布自己胜选",
+                ttt: "我是特朗普，请支持我"
+            }
+        });
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 数据的交互
+
+- 往里传数据: props/slot
+- 向外发信号: $emit
+- 只能由父子之间进行，逐层传递
+
+#+begin_src html
+  <my-blog :blogs="blogs" a=22 b=333
+           title="<h3>xx</h3>"></my-blog>
+
+  <my-blog :blogs="blogs" a=22 b=333>
+    <div>
+      <h3>{{xxx}}</h3>
+      <h5>{{副标题}}</h5>
+    </div>
+  </my-blog>
+
+  <script>
+    Vue.component('my-blog', {
+        props: ["a", "b", "blogs"],
+        template: `<div><slot></slot><p>...</p></div>`;
+    });
+  </script>
+#+end_src
+
+alert-box 1:
+#+begin_src html
+  <script>
+    Vue.component('alert-box', {
+        props: [ "body" ],
+        template: `
+          <div class="demo-alert-box">
+            <strong>Error!</strong>
+            {{body}}
+          </div>`
+    });
+  </script>
+
+  <alert-box body="NullPointException"></alert-box>
+#+end_src
+
+alert-box 2:
+#+begin_src html
+  <script>
+    Vue.component('alert-box', {
+        template: `
+          <div class="demo-alert-box">
+            <strong>Error!</strong>
+            <slot></slot>
+          </div>`
+    });
+  </script>
+
+  <alert-box>
+    Something bad happened.
+  </alert-box>
+#+end_src
+
+** 全局 vs 局部
+
+全局:
+#+begin_src html
+  <div id="app" class="xxxx">
+    <aaa></aaa>
+  </div>
+
+  <script>
+    Vue.component('aaa', {
+        template: `<p>hello, world</p>`,
+        data: function() {
+            return {
+            }
+        }
+    });
+
+    Vue.component('aaa', {
+        template: `<p>hello, vue</p>`,
+        data: function() {
+            return {
+            }
+        }
+    });
+
+    new Vue({
+        el: "#app",
+        data: {
+        }
+    });
+    </script>
+#+end_src
+
+局部:
+#+begin_src html
+  <div id="app" class="xxxx">
+    <aaa></aaa>
+    <bbb></bbb>
+  </div>
+
+  <script>
+    var a = {
+        template: `<p>hello, world</p>`,
+        data: function() {
+            return {
+            }
+        }
+    };
+
+    var b = {
+        template: `<p>hello, vue</p>`,
+        data: function() {
+            return {
+            }
+        }
+    };
+
+    new Vue({
+        el: "#app",
+        data: {
+        },
+        components: {
+            "aaa": a,
+            "bbb": b
+        }
+    });
+    </script>
+#+end_src
+
+模块 + 组件:
+#+begin_src html
+  <div id="app" class="xxxx">
+    <aaa></aaa>
+    <bbb></bbb>
+  </div>
+
+  <script type="module">
+    import aaa from "./components/aaa.js";
+    import bbb from "./components/bbb.js";
+
+    new Vue({
+        el: "#app",
+        data: {
+        },
+        components: {
+            "aaa": aaa,
+            bbb
+        }
+    });
+  </script>
+#+end_src
+
+#+begin_src js
+  // components/aaa.js
+  // 封装了单独的 aaa 组件
+  export default {
+      template: `<p>hello, world</p>`,
+      data: function() {
+          return {
+          }
+      }
+  };
+#+end_src
+
+#+begin_src js
+  // components/bbb.js
+  // 封装了 bbb 组件的模块/文件
+  export default {
+      template: `<p>hello, vue</p>`,
+      data: function() {
+          return {
+          }
+      }
+  };
+
+#+end_src
+
+** 内置组件
+*** <component> 动态组件
+
+#+begin_src html
+  <div id="app" class="xxxx">
+    <div>
+      <a href="#" @click="compName = 'aaa'">第一个页面</a>
+      <a href="#" @click="compName = 'bbb'">第二个页面</a>
+      <a href="#" @click="compName = 'ccc'">第三个页面</a>
+    </div>
+    <div>
+      <component :is="compName"></component>
+      <!-- <aaa></aaa> -->
+    </div>
+  </div>
+
+  <script type="module">
+    var aaa = {
+        template: `<div>
+           <h1>first</h1>
+           <input>
+         </div>`,
+        data: function() { return {} }
+    };
+    var bbb = {
+        template: "<h1>我是老二</h1>",
+        data: function() { return {} }
+    };
+    var ccc = {
+        template: "<h1>我是小三</h1>",
+        data: function() { return {} }
+    };
+
+    new Vue({
+        el: "#app",
+        components: { aaa, bbb, ccc }, // { aaa: aaa, bbb: bbb, ccc: ccc }
+        data: {
+            compName: "aaa"
+        },
+        methods: {
+        }
+    });
+    </script>
+
+#+end_src
+
+*** <keep-alive> 保持状态
+
+切换走的时候，保留组件的内部状态:
+#+begin_src html
+  <keep-alive>
+    <component :is="compName"></component>
+  </keep-alive>
+#+end_src
+
+*** <transition> 动画效果
+
+#+begin_src html
+  <style>
+    #app {
+        width: 450px;
+        margin: 1em auto;
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 0.1s;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+  </style>
+
+  <div id="demo">
+    <button v-on:click="show = !show">Toggle</button>
+
+    <transition name="fade">
+      <p style="border: 1px solid #333; background: #eee" v-if="show">hello</p>
+    </transition>
+  </div>
+
+  <script type="module">
+    new Vue({
+        el: '#demo',
+        data: {
+            show: true
+        }
+    });
+  </script>
+#+end_src
+
+*** <template> 编组
+
+#+begin_src html
+  <template v-if="isShow">
+    <h1>Title</h1>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+  </template>
+#+end_src
+
+* 第三方组件
+
+- iView
+- Element UI
+- Ant Design
+
+** ElementUI
+
+#+begin_src html
+  <div id="app">
+    <el-button @click="visible = true">按钮</el-button>
+    <el-dialog :visible.sync="visible" title="Hello world">
+      <p>欢迎使用 Element</p>
+    </el-dialog>
+
+    <el-carousel height="150px">
+      <el-carousel-item v-for="item in 4" :key="item" type="card">
+        <h3>{{ item }}</h3>
+      </el-carousel-item>
+    </el-carousel>
+
+    <el-table :data="tableData"
+              stripe border
+              style="width: 100%">
+      <el-table-column type="selection"width="55"></el-table-column>
+      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+      <el-table-column prop="date" label="日期" width="180" sortable></el-table-column>
+      <el-table-column prop="address" label="地址"></el-table-column>
+    </el-table>
+
+    <el-button @click="shanchu">删除 wangdahu</el-button>
+  </div>
+
+  <script type="module">
+    new Vue({
+        el: '#app',
+        data: {
+            visible: false,
+            tableData: [
+                {
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: 'wangdahu',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }
+            ]
+        },
+        methods: {
+            shanchu: function () {
+                this.tableData = this.tableData.filter(e => e.name != "wangdahu");
+            },
+            handleCurrentChange: function (a, b) {
+                this.tableData = this.tableData.filter(e => e.name != a.name);
+            }
+        }
+    });
+  </script>
+#+end_src
+
+* [示例] Todo List
+
+#+begin_src html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>使用 Vue 实现的 TODO-LIST</title>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <style>
+        ,* {
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(to bottom, black, white, grey);
+        }
+        #app {
+            width: 500px;
+            margin: 1em auto;
+            background: white;
+            padding: 1em;
+        }
+        input {
+            border: 0;
+            outline: 0;
+            border-bottom: 1px solid grey;
+            width: 100%;
+            padding: 8px 12px;
+        }
+        input:hover {
+            border-bottom: 1px solid blue;
+        }
+        .task-todo, .task-done {
+            display: flex;
+        }
+        .task-todo p, .task-done div {
+            flex: 1;
+        }
+        button {
+            flex: 0 0 50px;
+            height: 25px;
+            border: 0;
+            outline: 0;
+            color: white;
+            background: linear-gradient(70deg, red, green, blue);
+            padding: 5px 10px;
+            margin-left: 1em;
+        }
+        button:hover {
+            background: linear-gradient(to right, green, blue, yellow);
+        }
+      </style>
+    </head>
+    <body>
+
+      <div id="app">
+        <header>
+          <h3>任务列表 (todo-list)</h3>
+        </header>
+
+        <div>
+          <input v-model="shuruneirong" @keydown.13="addTask" placeholder="请输入任务">
+        </div>
+
+        <div>
+          <h3>未完成任务</h3>
+          <div class="tasks-todo">
+            <div class="task-todo" v-for="task in tasksTodo">
+              <p class="task-body">{{task.body}}</p>
+              <button class="task-del" @click="delTodo(task.id)">删除</button>
+              <button class="task-arch" @click="archTodo(task.id)">归档</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3>已完成任务</h3>
+          <div class="tasks-done">
+            <div class="task-done" v-for="task in tasksDone">
+              <span class="task-desc">{{task.body}}</span>
+              <button class="task-del" @click="delDone(task.id)">删除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        var options = {
+            el: "#app",
+            data: {
+                shuruneirong: "",
+                tasksTodo: [],
+                tasksDone: []
+            },
+            methods: {
+                addTask: function () {
+                    // 多分部的格式进行发送，要求 Servlet 上面 @MultiPart
+                    // 优势是，可以发送文件
+                    // var formData = new FormData();
+                    // formData.append("body", this.shuruneirong);
+
+                    // 就是普通的 a=b&b=c 的格式进行发送
+                    // 缺点是，不可以发送文件
+                    var rsp = new URLSearchParams();
+                    rsp.append("body", this.shuruneirong);
+
+                    axios({
+                        url: "task/add",
+                        method: "post",
+                        data: rsp
+                    }).then(resp => {
+                        this.shuruneirong = "";
+                        this.loadTasks();
+                    });
+                },
+                delTodo: function (id) {
+                    axios.get("task/delTodo?id=" + id)
+                        .then(resp => {
+                            this.loadTasks();
+                        })
+                },
+                archTodo: function (id) {
+                    axios.get("task/archive?id=" + id)
+                        .then(resp => {
+                            this.loadTasks();
+                        })
+                },
+                delDone: function (id) {
+                    axios.get("task/delDone?id=" + id)
+                        .then(resp => {
+                            this.loadTasks();
+                        })
+                },
+                loadTasks: function () {
+                    axios({
+                        url: "task/list"
+                    }).then(resp => {
+                        // this.tasksTodo = [];
+                        // this.tasksDone = [];
+                        // resp.data.forEach(e => {
+                        //     if (e.state === 1) {
+                        //         this.tasksTodo.push(e);
+                        //     } else if (e.state === 2) {
+                        //         this.tasksDone.push(e);
+                        //     }
+                        // });
+
+                        // 还可以这么写
+                        this.tasksTodo = resp.data.filter(e => e.state === 1);
+                        this.tasksDone = resp.data.filter(e => e.state === 2);
+                    })
+                }
+            },
+            created: function () {
+                this.loadTasks();
+            },
+            mounted: function () {
+                console.log("页面加载完之后要做的事")
+            }
+        };
+        var vm = new Vue(options);
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+* [示例] Comment List
+** 要求
+
+自行完成一个评论列表功能的实现:
+1. 要求使用 Vue 进行构建
+2. 使用 Servlet 完成服务端功能
+3. 使用 axios 完成数据交互
+
+示例图:
+
+#+ATTR_HTML: :width 300px
+[[file:img/oimg_20201104_064733.png]]
+
+** 第一个版本
+
+#+begin_src html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>使用 Vue 实现的 Comment-List</title>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <style>
+        #app {
+            width: 350px;
+            margin: 1em auto;
+        }
+        .comment-form {
+            margin-top: 2em;
+        }
+        .comment-list {
+            margin-top: 2em;
+        }
+        .comment {
+            display: flex;
+        }
+        .comment .author {
+            flex: 0 0 50px;
+            font-weight: bold;
+        }
+        .comment .body {
+            flex: 1;
+            color: blue;
+        }
+        .comment .del {
+            flex: 0 0 50px;
+        }
+      </style>
+    </head>
+
+    <body>
+      <div id="app">
+        <header>
+          <h1>评论列表</h1>
+        </header>
+
+        <section class="comment-form">
+          <div>
+            <span>作者</span>
+            <input v-model="author">
+          </div>
+          <div>
+            <span>内容</span>
+            <input v-model="body">
+          </div>
+          <div>
+            <button v-on:click="addComment">点击</button>
+          </div>
+        </section>
+
+        <section class="comment-list">
+          <div class="comment" v-for="c in comments">
+            <span class="author">{{c.author}}</span>
+            <span class="body">{{c.body}}</span>
+            <a href="#" class="del" v-on:click="delComment(c.body)">删除</a>
+          </div>
+        </section>
+      </div>
+
+      <script>
+        new Vue({
+            el: "#app",
+            data: {
+                author: "",
+                body: "",
+                comments: [
+                    { author: "张三", body: "今天是个好日子" },
+                    { author: "李四", body: "学习快乐" },
+                    { author: "王五", body: "上课睡觉真舒服" }
+                ]
+            },
+            methods: {
+                addComment: function () {
+                    this.comments.push({
+                        author: this.author,
+                        body: this.body
+                    });
+                    this.author = "";
+                    this.body = "";
+                },
+                delComment: function () {
+                    alert("假装已经删除掉了");
+                }
+            },
+            created: {}
+        });
+
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+** 第二个版本 (组件化，并使用 Props 提高组件的灵活性)
+
+#+begin_src js
+  Vue.component('comment-list', {
+      props: ["title", "comments", "isshow"], // 传入的数据
+      template: `
+        <div id="app">
+          <section class="comment-form" v-if="isshow == 'true'">
+            <h3>发表评论</h3>
+            <div>
+              <span>作者</span>
+              <input v-model="author">
+            </div>
+            <div>
+              <span>内容</span>
+              <input v-model="body">
+            </div>
+            <div>
+              <button v-on:click="addComment">点击</button>
+            </div>
+          </section>
+          <section class="comment-list">
+            <h3>{{title}}</h3>
+            <div class="comment" v-for="c in comments">
+              <span class="author">{{c.author}}</span>
+              <span class="body">{{c.body}}</span>
+              <a href="#" class="del" v-on:click="delComment(c.body)">删除</a>
+            </div>
+          </section>
+        </div> `,
+      data: function () {  // 内部的数据
+          return {
+              author: "",
+              body: ""
+          };
+      },
+      methods: {
+          addComment: function() {
+              this.comments.push({
+                  author: this.author,
+                  body: this.body
+              });
+              this.author = "";
+              this.body = "";
+          },
+          delComment: function() {}
+      },
+      created: function () {
+          console.log(this.isshow);
+      }
+  });
+#+end_src
+
+#+begin_src html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>使用 Vue 实现的 Comment-List</title>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <style>
+        #app {
+            width: 350px;
+            margin: 1em auto;
+        }
+        .comment-form {
+            margin-top: 2em;
+        }
+        .comment-list {
+            margin-top: 2em;
+        }
+        .comment {
+            display: flex;
+        }
+        .comment .author {
+            flex: 0 0 50px;
+            font-weight: bold;
+        }
+        .comment .body {
+            flex: 1;
+            color: blue;
+        }
+        .comment .del {
+            flex: 0 0 50px;
+        }
+      </style>
+      <script src="comments.js"></script>
+    </head>
+
+    <body>
+      <div id="app">
+        <comment-list
+          title="论社会关系的复杂性和你们学习的重要性"
+          isshow="true"
+          :comments="comments">
+        </comment-list>
+      </div>
+
+      <script>
+        new Vue({
+            el: "#app",
+            data: {
+                comments: [
+                    { author: "张三", body: "今天是个好日子" },
+                    { author: "王五", body: "上课睡觉真舒服" }
+                ]
+            }
+        });
+
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+** 第三个版本 (更加精细的组件划分)
+
+- 通过 props 进行数据的下放
+- 通过 this.$emit 的方式进行信号的发送。信号只能逐层发送，不能越级
+
+#+begin_src js
+  Vue.component("comment-form", {
+      template: `
+          <section class="comment-form">
+            <h3>{{formTitle}}</h3>
+            <div>
+              <span>作者</span>
+              <input v-model="author">
+            </div>
+            <div>
+              <span>内容</span>
+              <input v-model="body">
+            </div>
+            <div>
+              <button v-on:click="addComment">保存</button>
+            </div>
+          </section>`,
+      props: ["formTitle"],
+      data: function () {
+          return {
+              author: "",
+              body: ""
+          };
+      },
+      methods: {
+          addComment: function() {
+              this.$emit("add-comment", {
+                  author: this.author,
+                  body: this.body
+              });
+              this.author = this.body = "";
+          }
+      }
+  });
+
+  Vue.component("comment-list", {
+      template: `
+          <section class="comment-list">
+            <h3>{{title}}</h3>
+            <div class="comment" v-for="c in comments">
+              <span class="author">{{c.author}}</span>
+              <span class="body">{{c.body}}</span>
+              <a href="#" class="del" v-on:click="delComment(c.body)">删除</a>
+            </div>
+          </section>`,
+      props: ["title", "comments"],
+      data: function () {
+          return {
+          }
+      },
+      methods: {
+          delComment: function(body) {
+              this.$emit("delete-comment", body);
+          }
+      }
+  });
+
+  Vue.component('comments', {
+      template: `
+        <div id="comments">
+          <comment-form form-title="Post Comments" @add-comment="addComment"></comment-form>
+          <comment-list :title="title" :comments="comments" @delete-comment="deleteComment"></comment-list>
+        </div>`,
+      props: ["title", "comments"], // 传入的数据
+      data: function () {  // 内部的数据
+          return {
+          };
+      },
+      methods: {
+          addComment: function(data) {
+              this.$emit("add-comment", data);
+          },
+          deleteComment: function(body) {
+              this.$emit("delete-comment", body);
+          }
+      },
+      created: function () {
+      }
+  });
+#+end_src
+
+#+begin_src html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>使用 Vue 实现的 Comment-List</title>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <style>
+        #app {
+            width: 350px;
+            margin: 1em auto;
+        }
+        .comment-form {
+            margin-top: 2em;
+        }
+        .comment-list {
+            margin-top: 2em;
+        }
+        .comment {
+            display: flex;
+        }
+        .comment .author {
+            flex: 0 0 50px;
+            font-weight: bold;
+        }
+        .comment .body {
+            flex: 1;
+            color: blue;
+        }
+        .comment .del {
+            flex: 0 0 50px;
+        }
+      </style>
+      <script src="./comments.js"></script>
+    </head>
+
+    <body>
+      <div id="app" class="xxxx">
+        <comments
+          title="我的评论 (使用封装的 Comments 组件)"
+          @add-comment="addComment"
+          @delete-comment="deleteComment"
+          :comments="comments1"
+          ></comments>
+
+        <hr style="margin-top: 20em">
+        <comment-form form-title="评论发表 (这是单独使用 comment-form 组件)"></comment-form>
+        <hr>
+        <comment-list
+          title="文章列表 (这是单独使用 comment-list 组件)"
+          :comments="comments3" ></comment-list>
+        <comment-list
+          title="图片列表"
+          :comments="comments3" ></comment-list>
+        <comment-list
+          title="广告列表"
+          :comments="comments3" ></comment-list>
+      </div>
+
+      <script>
+        new Vue({
+            el: "#app",
+            data: {
+                comments1: [
+                    { author: "张三", body: "今天是个好日子" },
+                    { author: "王五", body: "上课睡觉真舒服" }
+                ],
+                comments2: [
+                    { author: "Tom", body: "I will catch you." },
+                    { author: "Jerry", body: "Catch me if you can." }
+                ],
+                comments3: [
+                    { author: "Tom", body: "I will catch you." },
+                ]
+            },
+            methods: {
+                addComment: function (d) {
+                    this.comments1.push(d);
+                },
+                deleteComment: function(body) {
+                    this.comments1 = this.comments1.filter(c => c.body !== body);
+                }
+            }
+        });
+      </script>
+
+    </body>
+  </html>
+#+end_src
+
+** 第四个版本 (模块+组件)
+*** CommentForm
+
+#+begin_src js
+  export default {
+      template: `
+          <section class="comment-form">
+            <h3>{{formTitle}}</h3>
+            <div>
+              <input placeholder="author" v-model="author">
+              <input placeholder="content" v-model="body">
+              <button style="border: 3px solid grey" v-on:click="addComment">保存</button>
+            </div>
+          </section>`,
+      props: ["formTitle"],
+      data: function () {
+          return {
+              author: "",
+              body: ""
+          };
+      },
+      methods: {
+          addComment: function() {
+              this.$emit("add-comment", {
+                  author: this.author,
+                  body: this.body
+              });
+              this.author = this.body = "";
+          }
+      }
+  };
+#+end_src
+
+*** CommentList
+
+#+begin_src js
+  export default {
+      template: `
+          <section class="comment-list">
+            <h3>{{title}}</h3>
+            <div class="comment" v-for="c in comments">
+              <span class="author">{{c.author}}</span>
+              <span class="body">{{c.body}}</span>
+              <a href="#" class="del" v-on:click="delComment(c.body)">删除</a>
+            </div>
+          </section>`,
+      props: ["title", "comments"],
+      data: function () {
+          return {
+          }
+      },
+      methods: {
+          delComment: function(body) {
+              this.$emit("delete-comment", body);
+          }
+      }
+  };
+#+end_src
+
+*** Comments
+
+#+begin_src js
+  import CommentForm from "./comment-form.js";
+  import CommentList from "./comment-list.js";
+
+  export default {
+      props: ["title", "comments"], // 传入的数据
+      template: `
+        <div id="comments">
+          <comment-form form-title="Post Comments" @add-comment="addComment"></comment-form>
+          <comment-list :title="title" :comments="comments" @delete-comment="deleteComment"></comment-list>
+        </div>`,
+      components: { CommentForm, CommentList },
+      data: function () {  // 内部的数据
+          return {
+          };
+      },
+      methods: {
+          addComment: function(data) {
+              this.$emit("add-comment", data);
+          },
+          deleteComment: function(body) {
+              this.$emit("delete-comment", body);
+          }
+      },
+      mounted: function () {
+          console.log(this);
+      }
+  };
+#+end_src
+
+*** 首页
+
+#+begin_src html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>使用 Vue 实现的 Comment-List</title>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <style>
+       #app {
+         width: 450px;
+         margin: 1em auto;
+       }
+       .comment-form {
+         margin-top: 2em;
+       }
+       .comment-list {
+         margin-top: 2em;
+       }
+       .comment {
+         display: flex;
+       }
+       .comment .author {
+         flex: 0 0 50px;
+         font-weight: bold;
+       }
+       .comment .body {
+         flex: 1;
+         color: blue;
+       }
+       .comment .del {
+         flex: 0 0 50px;
+       }
+      </style>
+    </head>
+
+    <body>
+      <div id="app" class="xxxx">
+        <comments
+          title="我的评论 (使用封装的 Comments 组件)"
+          @add-comment="addComment"
+          @delete-comment="deleteComment"
+          :comments="comments1"
+        ></comments>
+
+        <hr style="margin-top: 20em">
+        <comment-form form-title="评论发表 (这是单独使用 comment-form 组件)"></comment-form>
+        <hr>
+        <comment-list
+          title="文章列表 (这是单独使用 comment-list 组件)"
+          :comments="comments3" ></comment-list>
+        <comment-list
+          title="图片列表"
+          :comments="comments3" ></comment-list>
+        <comment-list
+          title="广告列表"
+          :comments="comments3" ></comment-list>
+      </div>
+
+      <script type="module">
+       import CommentForm from "./comments/comment-form.js";
+       import CommentList from "./comments/comment-list.js";
+       import comments from "./comments/comments.js";
+
+       new Vue({
+         el: "#app",
+         components: { comments, CommentForm, CommentList },
+         data: {
+           comments1: [
+             { author: "张三", body: "今天是个好日子" },
+             { author: "王五", body: "上课睡觉真舒服" }
+           ],
+           comments2: [
+             { author: "Tom", body: "I will catch you." },
+             { author: "Jerry", body: "Catch me if you can." }
+           ],
+           comments3: [
+             { author: "Tom", body: "I will catch you." },
+           ]
+         },
+         methods: {
+           addComment: function (d) {
+             this.comments1.push(d);
+             console.log(this.$forceUpdate);
+           },
+           deleteComment: function(body) {
+             this.comments1 = this.comments1.filter(c => c.body !== body);
+           }
+         }
+       });
+      </script>
+
+    </body>
+  </html>
+
+#+end_src
+
+** 第五个版本 (工程化)
+*** 创建项目
+
+#+begin_src sh
+  cmd
+  e:  # 切换到 e 盘，这里切换盘符不能使用 cd e:
+  cd workspace                 # 切换到你需要的目录
+  vue create vue-comment-list  # 创建项目
+  cd vue-comment-list          # 切换到项目文件夹
+  npm run serve                # 启动服务，之后可以使用 http://localhost:8080 进行访问
+#+end_src
+
+*** 配置项目
+
+配置 package.json 下的 eslintConfig 节点:
+#+begin_src js
+  "rules": {
+      "no-unused-vars": 1
+  }
+#+end_src
+
+*** 组件 component/comment-form.vue
+
+#+begin_src html
+  <template>
+    <section class="comment-form">
+      <h3>{{formTitle}}</h3>
+      <div>
+        <input placeholder="author" v-model="author">
+        <input placeholder="content" v-model="body">
+        <button v-on:click="addComment">保存</button>
+      </div>
+    </section>
+  </template>
+
+  <script>
+   export default {
+     props: ["formTitle"],
+     data: function () {
+       return {
+         author: "",
+         body: ""
+       };
+     },
+     methods: {
+       addComment: function() {
+         this.$emit("add-comment", {
+           author: this.author,
+           body: this.body
+         });
+         this.author = this.body = "";
+       }
+     }
+   };
+  </script>
+
+  <style scoped>
+   .comment-form {
+     width: 400px;
+     margin: 0 auto;
+   }
+   .comment-form > div {
+     display: flex;
+     flex-flow: column;
+   }
+   input {
+     margin-bottom: 1em;
+     padding: 10px;
+   }
+   button {
+     padding: 10px;
+     border: 0;
+   }
+  </style>
+#+end_src
+
+*** 组件 component/comment-list.vue
+
+#+begin_src html
+  <template>
+    <section class="comment-list">
+      <h3>{{title}}</h3>
+      <div class="comment" v-for="c in comments" :key="c.body">
+        <span class="author">{{c.author}}</span>
+        <span class="body">{{c.body}}</span>
+        <a href="#" class="del" v-on:click="delComment(c.body)">删除</a>
+      </div>
+    </section>
+  </template>
+
+  <script>
+   export default {
+     props: ["title", "comments"],
+     data: function () {
+       return {
+       }
+     },
+     methods: {
+       delComment: function(body) {
+         this.$emit("delete-comment", body);
+       }
+     }
+   };
+  </script>
+
+  <style scoped>
+   .comment-list {
+     width: 400px;
+     margin: 2em auto;
+   }
+   .comment {
+     border: 1px solid #eee;
+     padding: 1em;
+     margin-bottom: 1em;
+     display: flex;
+   }
+   .author {
+     flex: 0 0 50px;
+   }
+   .body {
+     flex: 1;
+   }
+   .del {
+     flex: 0 0 50px;
+   }
+  </style>
+#+end_src
+
+*** 聚合显示到 App.vue 里
+
+#+begin_src html
+  <template>
+    <div id="app">
+      <h1>我的博客</h1>
+      <comment-form @add-comment="doAdd" />
+      <comment-list title="热门评论" :comments="comments" @delete-comment="doDelete" />
+    </div>
+  </template>
+
+  <script>
+   import CommentForm from './components/comment-form.vue';
+   import CommentList from './components/comment-list.vue';
+
+   export default {
+     name: 'App',
+     data() {
+       return  {
+         comments: [
+           { author: "张三", body: "今天是个好日子" },
+           { author: "王五", body: "上课睡觉真舒服" }
+         ]
+       }
+     },
+     methods: {
+       doDelete(b) {
+         this.comments = this.comments.filter((e) => e.body != b);
+       },
+       doAdd(comment) {
+         this.comments.push(comment);
+       }
+     },
+     components: {
+       CommentForm, CommentList
+     }
+   }
+  </script>
+
+  <style>
+   #app {
+     font-family: Avenir, Helvetica, Arial, sans-serif;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     text-align: center;
+     color: #2c3e50;
+     margin-top: 60px;
+   }
+  </style>
+#+end_src

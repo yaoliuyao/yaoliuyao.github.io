@@ -1,0 +1,454 @@
+#+TITLE: Java 基础
+
+
+
+* JDK vs JRE
+
+JDK:
+- Java Develop Kit，开发包
+- 面对的是 *开发人员*，比较大
+- 包含将一个 xxx.java 文件编译成 xxx.class 文件相关的一些组件跟命令
+- 包含生成相关文档的一些工具或命令
+- 包含一些跟调试相关的工具和命令
+- 当然，它也包含 JRE 环境
+
+JRE:
+- Java Runtime Environment，运行环境
+- 面对的是普通的 *用户*，相对来说，很精简
+- 是 Java 程序能在操作系统中运行起来的 *必备* 软件
+- 它的最主要组成部分就是 JVM (Java Virtual Machine)
+- 还包含一些跟运行相关的工具
+
+目前来说，学习的话，建议大家下载 JDK8.
+
+* javac/java 命令
+
+- 安装完 JRE 后，得到的一个重要的命令是 java;
+- 安装完 JDK 后，得到的一个重要的命令是 javac;
+
+~javac~ 的目的，是将 A.java 文件编译成 A.class 文件。所谓编译就是，当你执行了如下语句，就生成了 A.class 文件:
+#+begin_src bat
+  javac E:\xxx\yyy\A.java
+  
+  REM 或
+  cd E:\xxx\yyy
+  javac A.java
+#+end_src
+
+~java~ 的目的，就是将生成的 A.class 文件，交给 JVM 虚拟机去运行:
+: java A
+
+因此，一个正常的 A.java 文件，要运行分两步:
+#+begin_src sh
+  # 首先，编译
+  javac A.java # 得到一个 A.class 文件
+  
+  # 之后，执行
+  java A
+#+end_src
+
+另外，~javac~ 还可以跟不同的参数，通过参数控制编译细节:
+#+begin_src sh
+  javac -encoding utf-8 A.java   # 指定使用 utf-8 的格式进行编译。如果 Win 下出现乱码可能需要加这句
+  javac -classpath E:\aaa\lib\aaa.jar A.java # 指定编译的时候，使用到 aaa.jar 中定义的某些东西
+#+end_src
+
+-------------------
+
+一个具体的例子。
+
+比如，有一个名为 Study.java 的源文件:
+#+begin_src java
+  package com.nf;
+  public class Study {
+      public static void main (String[] args) {
+          System.out.println("day day up.");
+      }
+  }
+
+  // 需要注意:
+  // 1. 在 java 中，字母的大小写是敏感的
+  // 2. 源文件的名字，必须跟类的名字完全一致 (Study)
+  // 3. 由于定义了 package 为 com.nf，因此:
+  //    - 文件路径必须是 com\nf\Study.java
+  //    - 类的全名则为   com.nf.Study
+#+end_src
+
+假设，我们将文件放在 E:\aaa\com\nf\Study.java，那么进行编译:
+#+begin_src sh
+  E:\              # 切换盘符
+  cd E:\aaa        # 切换到文件夹
+
+  # 编译
+  # 将在 com\nf 下面生成了 Study.class 文件
+  javac -encoding utf-8 com\nf\Study.java
+#+end_src
+
+最后，运行:
+#+begin_src sh
+  # 首先，必须切换到相应文件夹 (类的根文件夹)
+  cd E:\aaa
+
+  # 使用类的全名 (com.nf.Study) 进行调用
+  java com.nf.Study
+#+end_src
+
+* 三目运算符
+
+#+begin_src java :classname Test :results raw
+  public class Test {
+      public static void main (String... arg) {
+          int i = 10;
+          String a = "10";
+
+          if (a.length() > 10) {
+              System.out.println("great than 10");
+          } else {
+              System.out.println("short than 10");
+          }
+
+          System.out.println(a.length() > 10 ? "great than 10" : "short than 10");
+      }
+
+  }
+#+end_src
+
+#+RESULTS:
+short than 10
+short than 10
+
+* 类/接口/抽象类
+** 类 (class)
+
+类是一种类似菜谱的东西，它描述了构建一个对象 (菜) 需要的数据 (材料) 和行为 (步骤)。
+- 其中数据，称为类的 *属性*
+- 其中行为，称为类的 *方法*
+
+基本示例:
+#+begin_src java
+  // 首先，定义菜谱
+  // 也就是创建类，是进行编程的第一步
+  public class Caipu {
+      public String oil;
+      public String salt;
+
+      public void zuo () {
+          System.out.println("放油");
+          System.out.println("放盐");
+      }
+
+      public void chi() {
+          System.out.println("先拿到筷子");
+          System.out.println("再系好口水巾");
+          System.out.println("然后开吃");
+      }
+  }
+
+  // 其次，就可以按照菜谱做事了
+  // 必须由类产生对象 (对象就是数据和逻辑的真正载体)
+  Caipu caipu = new Caipu();
+  caipu.zuo();
+  caipu.chi();
+#+end_src
+
+** 接口 (interface)
+
+接口是一种 *特殊的类*，它里面的所有方法，都只有声明，没有实现。
+
+它主要的存在目的，就是为了制定规则，好让实现它的人能够按照规则做事。
+所以，在某些语言中，接口又被称作 *合同*。
+
+#+begin_src java
+  // 定一个合同，所有履行合同的，必须要将下面所有规则实现
+  public interface NewCaipu {
+      void zuo();
+      void chi();
+      void mai(int price);
+  }
+
+  // 然后，其他就可以对合同进行实现了
+  public class jidanchaoXihongshi implements NewCaipu {
+      @Override
+      public void zuo() {
+          // 1
+          // 2
+      }
+      @Override
+      public void chi() {
+          // 1
+          // 2
+      }
+      @Override
+      public void mai(int price) {
+          // 1
+          // 2
+      }
+  }
+#+end_src
+
+#+begin_src java
+  public class XihongshichaoXihongshi implements NewCaipu {
+      @Override
+      public void zuo() {
+          // 1
+          // 2
+      }
+      @Override
+      public void chi() {
+          // 1
+          // 2
+      }
+      @Override
+      public void mai(int price) {
+          // 1
+          // 2
+      }
+  }
+#+end_src
+
+** 抽象类 (abstract class)
+
+是对接口的部分实现，或者包含部分没有实现逻辑的类。
+
+比如，这个 /销售人员/ 只是实现了接口中的一些跟销售相关的事务。
+#+begin_src java
+  abstract public class XiaoshouRenyuan implements NewCaipu {
+      @Override
+      public void mai(int price) {
+          // 1
+          // 2
+      }
+  }
+#+end_src
+
+其他人就可以在上述基础上，进行任务的接力了:
+#+begin_src java
+  public class XihongshichaoJidan extends XiaoshouRenyuan {
+      @Override
+      public void zuo() {
+          // 1
+          // 2
+      }
+      @Override
+      public void chi() {
+          // 1
+          // 2
+      }
+  }
+#+end_src
+
+* File/Path 文件
+
+都是用来处理文件系统中的文件。
+
+File 是传统的方式；Path 是 JDK7 之后引入的，它解决了 File 中的一些问题，更强大，更灵活。
+
+JDK7 在引入 Path 的同时，还引入了其他相应的文件处理类和包，典型的是 Files 的静态类。
+
+#+begin_src java
+  File f = new File("c:/xxx/");
+  f.listFiles(); // 得到 c:/xxx 文件夹下所有的文件
+  f.getXxx/setXxx/listXxx/.....();
+
+  Path p = Paths.get("c:/xxx/");
+  p.xxx();
+ 
+  Files.copy/delete/createXxx/readXxx();
+#+end_src
+
+* Input/Output Stream 流
+
+输入、输出。
+
+* Exception 异常
+** 例子
+
+- 可以预见的一些超乎正常的逻辑
+- 这个超乎正常的逻辑，不会无法挽回
+- 所谓的异常，就是给这个异常逻辑，一定的解决预案
+
+#+begin_src js
+  你去吃饭 () {
+     try {
+       走去食堂(); // 出错
+     } catch (饭碗掉了) {
+       捡起来();
+     } catch (饭卡丢了) {
+       if (借一个) else (补办一张)
+     }
+
+     给钱();
+     伸出饭碗打饭();
+     吃饭();
+     洗碗();
+     返回();
+  }
+#+end_src
+
+** 异常类
+
+[[file:img/java-exception-1.png]]
+
+小结:
+- 异常的根类是 Throwable
+- 所谓的 Error，就是无法挽回的一些出错
+- 异常的话，分两种:
+  1. 必须要去捕获的，叫 *检查型异常*
+  2. 不强制捕获的，叫 *运行时异常 (RuntimeException)*
+
+** 异常的处理
+*** 甩手掌柜 (throws)
+
+在方法的上面，加上 throws Exception 用来将异常甩锅给调用它的方法。
+
+#+begin_src java
+  public class ExceptionDemo {
+      public static void main(String[] args) throws Exception {
+          calc();
+      }
+      static void calc() throws Exception {
+          int a = 6;
+          int b = 0;
+
+          float r = a/b;
+          System.out.println("a / b = " + r);
+      }
+  }
+#+end_src
+
+*** 亲手给予方案 (try...catch...catch...finally)
+
+亲力亲为，使用 try..catch..finally 进行捕获处理:
+
+#+begin_src java
+  public class ExceptionDemo {
+      public static void main(String[] args) {
+          calc();
+      }
+      static void calc() {
+          int a = 6;
+          int b = 0;
+          try {
+              float r = a/b;
+              System.out.println("a / b = " + r);
+          } catch (Exception e) {
+              System.out.println(e.getMessage());
+              System.out.println("我怎么这么命苦啊");
+          } finally {
+              System.out.println("不管会不会有异常，最后我都要被执行");
+          }
+      }
+  }
+#+end_src
+
+*** 将上面的两种结合起来
+
+#+begin_src java
+  public class ExceptionDemo {
+      public static void main(String[] args) {
+          try {
+              calc();
+          } catch (Exception e) {
+              System.out.println(e.getMessage());
+              System.out.println("我怎么这么命苦啊");
+          }
+      }
+      static void calc() throws Exception {
+          int a = 6;
+          int b = 0;
+
+          float r = a/b;
+          System.out.println("a / b = " + r);
+      }
+  }
+#+end_src
+
+** 手动创建并抛出异常 (throw)
+
+什么是不正常的情况？我们可以自定义。
+
+使用 ~throw~ 关键词来手动抛出、产生一个异常。
+
+#+begin_src java
+  // 可以通过集成 Exception 创建自己的异常
+  class QianTaiDuoLeException extends Exception {}
+
+  void cunqian(float duoshaoqian) {
+      if (duoshaoqian > 1000000) {
+          // 怀疑这是一笔非法的存储
+          throw new QianTaiDuoLeException();
+      }
+      // 正常逻辑
+  }
+  void cunqianDae(float duoshaoqian) {
+      // 正常逻辑
+  }
+#+end_src
+
+** JDK7 推出的 Try-With-Resource
+
+#+begin_div :class mc11
+#+begin_src java
+  Connection connection = null;
+  Statement statement = null;
+  Resultset resultset = null;
+  try {
+      connection = Xxx.getConnection();
+      statement = connection.createStatement();
+      resultset = statement.executeQuery(sql);
+  } catch (Exception e) {
+      // 补救措施
+  } finally {
+      if (resultset != null)
+          try {
+              resultset.close();
+          } catch (SQLException e) {
+          }
+      if (statement != null)
+          try {
+              statement.close();
+          } catch (SQLException e) {
+          }
+      if (connection != null)
+          try {
+              connection.close();
+          } catch (SQLException e) {
+          }
+  }
+
+#+end_src
+:break:
+
+#+begin_src java
+  try (Connection conn = Xxx.getConnection();
+       Statement statment = conn.createStatement()) {
+      // 进行你的表演，可以使用 conn/statment 对象了
+
+      try (ResultSet rs = statment.executeQuery(sql)) {
+          // 使用结果集，做事
+      }
+  } catch (Exception e) {
+      // 出错之后的补救措施
+  }
+#+end_src
+#+end_div
+
+** 空指针异常 (NullPointerException)
+
+#+begin_src java
+  protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      String x = req.getParameter("aaa");     // 如果请求的参数中，没有 aaa，那么 x 的值就是 null
+      System.out.println("x: " + x.length()); // 如果上面得到的是 null, 则 x.length() 就会报 NullPointerException 异常
+
+      // System.out.println("x: " + (x == null ? 0 : x.length()));
+      // if (x == null) {} else { System.out.println("x: " + x.length()) }
+
+      PrintWriter writer = resp.getWriter();
+      writer = null; // 不怀好意，造成了下面一句 NullPointerException
+      writer.write("<html><h3>Hello Java Web</h3></html>");
+  }
+#+end_src
+
+#+OI: local @ 2020-07-13 00:59:49
+[[file:img/null-pointer-exception.png]]
+

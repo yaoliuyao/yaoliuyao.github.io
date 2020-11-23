@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <script>
+     // window.addEventListener('load', ...)
+     window.onload = function() { // 委托浏览器，当 window 加载完才去执行下面逻辑
+       var btn = document.querySelector('button');
+
+       // 常用的鼠标事件
+       btn.onclick = function(e) { alert('啊，我被点了'); }
+       btn.onmouseenter = function(e) { console.log('我被 enter 了'); }
+       btn.onmouseout = function(e) { console.log('我被 out 了'); }
+       btn.onmouseup = function(e) { console.log('我被弹起来了'); }
+       btn.onmousedown = function(e) { console.log('我被按下去了'); }
+       btn.onmouseover = function(e) { console.log('我被滑过嘞'); }
+       btn.onmouseleave = function(e) { console.log('你走好'); }
+       btn.onmousemove = function(e) { console.log('你在我上面移动呢'); }
+       btn.onmousewheel = function(e) {
+         console.log(e);
+       }
+
+       // 键盘的点击事件
+       document.body.onkeydown = (e) => {
+         console.log('我被按下去了');
+         console.log(e);
+       };
+       document.body.onkeyup = (e) => {
+         console.log('我被弹起来了');
+         console.log(e);
+       };
+       document.body.onkeypress = (e) => {
+         console.log('我被按了一下');
+         console.log(e);
+         if (e.ctrlKey && e.keyCode === 10) {
+           alert("你看，enter 被你按坏了吧?");
+         } else if (e.keyCode === 13) {
+           btn.click();
+         }
+       };
+
+       // dom 节点的 load 事件
+       var img = document.querySelector('img');
+       img.addEventListener('load', (e) => {
+         alert(e.target.src + ' 已经被加载完了');
+       });
+       img.src = "https://tse1-mm.cn.bing.net/th/id/OIP.RUd94Zebp7W27HjJgzB7GgHaLI?pid=Api&rs=1";
+     }
+    </script>
+  </head>
+  <body>
+    <button>点我</button>
+    <img style="width: 100px;height: 100px;" src="">
+  </body>
+</html>

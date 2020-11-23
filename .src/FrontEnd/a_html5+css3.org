@@ -1,0 +1,82 @@
+#+TITLE: HTML5 and CSS3
+
+
+
+* html5 中的标签（语义化）
+
+内置的一些标签:
+- section，部分
+- article，文章
+- aside, 侧边
+- header/footer
+
+#+begin_src html
+  <article>
+    <header>
+      <h3>我是一篇文章的标题</h3>
+      <span>发表日期: xxxxx</span>
+      <span>作者名字: xxxxx</span>
+    </header>
+
+    <div>
+      <p>ksdjfksd</p>
+    </div>
+
+    <div>
+      <p>ksdjfksd</p>
+    </div>
+
+    <footer>
+      <p>索引信息...</p>
+      <p>欢迎订阅...</p>
+    </footer>
+  </article>
+#+end_src
+
+* table 标签
+
+虽然你可以简写为:
+#+begin_src html
+  <table>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+#+end_src
+
+但是，它的全写格式却含有 thead/tbody:
+#+begin_src html
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+#+end_src

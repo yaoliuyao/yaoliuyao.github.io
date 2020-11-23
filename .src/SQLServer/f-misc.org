@@ -1,0 +1,239 @@
+#+TITLE: 练习题
+
+
+* emp/dept 测试数据
+
+#+begin_src sql
+  CREATE DATABASE oa;
+  use oa;
+
+  CREATE TABLE dept ( -- department
+    deptno int,
+    dname  VARCHAR(14),
+    loc    VARCHAR(13), -- location/address
+    CONSTRAINT pk_dept PRIMARY KEY (deptno)
+  );
+
+  CREATE TABLE emp ( -- employee
+    empno    int,
+    ename    VARCHAR(10),
+    job      VARCHAR(9),
+    mgr      int,
+    hiredate DATE,
+    sal      float,
+    comm     float,
+    deptno   int,
+    CONSTRAINT pk_emp PRIMARY KEY (empno),
+    CONSTRAINT fk_deptno FOREIGN KEY (deptno) REFERENCES dept (deptno)
+  );
+
+  CREATE TABLE bonus ( -- bonus
+    ename VARCHAR(10),
+    job   VARCHAR(9),
+    sal   float,
+    comm  float
+  );
+
+  CREATE TABLE salgrade ( -- salary grade
+    grade int,
+    losal float,
+    hisal float
+  );
+
+  INSERT INTO dept VALUES(10, 'ACCOUNTING', 'NEW YORK');
+  INSERT INTO dept VALUES(20, 'RESEARCH', 'DALLAS');
+  INSERT INTO dept VALUES(30, 'SALES', 'CHICAGO');
+  INSERT INTO dept VALUES(40, 'OPERATIONS', 'BOSTON');
+
+  INSERT INTO emp VALUES( 7839, 'KING', 'PRESIDENT', null, '1981-11-17', 5000, null, 10 );
+  INSERT INTO emp VALUES( 7698, 'BLAKE', 'MANAGER', 7839, '1981-05-01', 2850, null, 30);
+  INSERT INTO emp VALUES( 7782, 'CLARK', 'MANAGER', 7839, '1981-06-09', 2450, null, 10);
+  INSERT INTO emp VALUES( 7566, 'JONES', 'MANAGER', 7839, '1981-04-02', 2975, null, 20);
+  INSERT INTO emp VALUES( 7788, 'SCOTT', 'ANALYST', 7566, '1987-07-13', 3000, null, 20);
+  INSERT INTO emp VALUES( 7902, 'FORD', 'ANALYST', 7566, '1981-12-03', 3000, null, 20 );
+  INSERT INTO emp VALUES( 7369, 'SMITH', 'CLERK', 7902, '1980-12-17', 800, null, 20 );
+  INSERT INTO emp VALUES( 7499, 'ALLEN', 'SALESMAN', 7698, '1981-02-20', 1600, 300, 30);
+  INSERT INTO emp VALUES( 7521, 'WARD', 'SALESMAN', 7698, '1981-02-22', 1250, 500, 30 );
+  INSERT INTO emp VALUES( 7654, 'MARTIN', 'SALESMAN', 7698, '1981-09-28', 1250, 1400, 30 );
+  INSERT INTO emp VALUES( 7844, 'TURNER', 'SALESMAN', 7698, '1981-09-08', 1500, 0, 30);
+  INSERT INTO emp VALUES( 7876, 'ADAMS', 'CLERK', 7788, '1987-07-13', 1100, null, 20 );
+  INSERT INTO emp VALUES( 7900, 'JAMES', 'CLERK', 7698, '1981-12-03', 950, null, 30 );
+  INSERT INTO emp VALUES( 7934, 'MILLER', 'CLERK', 7782, '1982-01-23', 1300, null, 10 );
+
+  INSERT INTO salgrade VALUES (1, 700, 1200);
+  INSERT INTO salgrade VALUES (2, 1201, 1400);
+  INSERT INTO salgrade VALUES (3, 1401, 2000);
+  INSERT INTO salgrade VALUES (4, 2001, 3000);
+  INSERT INTO salgrade VALUES (5, 3001, 9999);
+
+  go
+#+end_src
+
+* SQL 自测
+** 查询每个部门下有多少员工
+
+ #+begin_src sql
+   select deptno, count(*) from emp  group by deptno;
+
+   -- 第一种，结合上一句，将部门名称加进来
+   select s.deptno, d.dname, s.cnt
+     from (select deptno, count(*) as cnt from emp  group by deptno) as s
+     join dept as d on s.deptno = d.deptno;
+
+   -- 第二种，先将所有要分组的数据搞出来，再进行其他操作
+   select d.dname, COUNT(*) from emp as e
+     join dept as d on e.deptno = d.deptno
+     group by d.dname;
+ #+end_src
+
+** 查询除去 salesman 所有平均工资超过 1500 的部门
+
+#+begin_src sql
+  select deptno, AVG(sal) from emp
+    where job <> 'salesman'
+    group by deptno
+    having AVG(sal) > 1500;
+
+  select d.dname, AVG(sal) from emp as e
+    join dept as d on e.deptno = d.deptno
+    where job <> 'salesman'
+    group by d.dname
+    having AVG(sal) > 1500;
+#+end_src
+
+** 查询在 new york 工作的所有员工的姓名，部门名称和工资信息
+
+#+begin_src sql
+  select dname, ename, sal from emp
+    join dept on emp.deptno = dept.deptno
+    where loc =  'new york';
+#+end_src
+    
+** 查询姓名为 King 的员工的编号，名称跟部门
+
+#+begin_src sql
+  select empno,ename,dept.dname from emp
+    join dept on dept.deptno = emp.deptno
+     where ename = 'King';
+#+end_src
+
+** 查询各种工作的最低工资
+
+#+begin_src sql
+  select job,min(sal) as small from emp group by job;
+#+end_src
+
+** 查询工龄大于 10 年的所有员工信息
+
+#+begin_src sql
+  select * from emp 
+    where datediff(YEAR, hiredate, GETDATE()) > 10
+#+end_src
+
+** 查询每个部门员工数量，平均工资和平均工作年限
+
+#+begin_src sql
+  select
+      dept.dname,
+      COUNT(*) as person,
+      AVG(sal) as a,
+      AVG(DATEDIFF(YEAR, hiredate, GETDATE())) as worktime 
+    from emp join dept on emp.deptno = dept.deptno 
+    group by dept.dname;
+#+end_src
+
+** 统计各部门每个工种的人数，平均工资
+
+#+begin_src sql
+  select deptno,
+         job,
+         count(empno) as allpeople,
+         avg(sal) as gongzi
+     from emp
+     group by job, deptno;
+#+end_src
+
+** 查询从事同一种工作但不属于同一部门的员工信息
+
+#+begin_src sql
+  select a.ename, a.empno, b.empno, b.ename
+    from emp a 
+    join emp b on a.job=b.job 
+    where a.deptno <> b.deptno
+      and a.empno > b.empno;
+#+end_src
+
+| ename  | empno |    empno | ename |
+|--------+-------+----------+-------|
+| SMITH  |  7369 | <   7900 | JAMES |
+| JAMES  |  7900 | >   7369 | SMITH |
+| MILLER |  7934 |     7369 | SMITH |
+| BLAKE  |  7698 |     7566 | JONES |
+| CLARK  |  7782 |     7566 | JONES |
+| CLARK  |  7782 |     7698 | BLAKE |
+| JAMES  |  7900 |     7876 | ADAMS |
+| MILLER |  7934 |     7876 | ADAMS |
+| MILLER |  7934 |     7900 | JAMES |
+
+** 查询所有员工工资都大于 1000 的部门的信息及员工信息
+
+#+begin_src sql
+  select * from emp e
+    join dept d on e.deptno = d.deptno
+    join (select deptno from emp
+            group by deptno
+            having min(sal + ISNULL(comm,0)) > 1000) c on e.deptno = c.deptno;
+
+  select * from dept a  join emp b
+    on a.deptno = b.deptno
+    where a.deptno not in(select deptno from emp where sal < 1000);
+#+end_src
+
+** 其他题目
+
+- 查询入职日期早于其直接上级的所有员工信息。
+- 列出雇员中（除去mgr为空的人)工资第二高的人。
+- 列出1981年来公司所有员工的总收入（包括sal和comm）
+- 查询部门编号为 10 和 30 的所有人（用不同方式查询）
+- 查询部门编号为 10 和 30 中名字中不含有 ‘C’ 的所有人
+- 查询部门编号为 10 和 30 中名字首字母之外不含有 ‘C’ 的所有人
+- 查询部门编号为 10 和 30 中所有的经理以及名字首字母之外不含有 ‘C’ 的所有人
+- 查询纽约和芝加哥地区所有的经理以及名字首字母之外不含有 ‘C’ 的所有人
+- 查询纽约和芝加哥地区所有的经理以及顶头上司名字的首字母之外不含有 ‘C’ 的所有人
+- 查询每个人的工资等级
+- 查询每个部门的平均工资的等级
+- 查询每个组最高工资的那些人
+
+* Lagou.com 测试数据
+
+[[file:asset/lagou.rar][下载 sql 文件]].
+
+* 奇 vs 偶
+** 1/3/5/7 出的题
+
+- 查询在北京，本科及本科以上，在招前端开发工程师的公司
+- 查询在天河区，招本科的所有岗位
+
+- 查询深圳在招“3C产品开发/运营”，并且要求学历“大专”的公司及工作要求
+- 查询深圳不需要融资的公司
+
+- 查询学历为博士的数量
+- 查询学历为本科，最大年薪大于 50 万，且降序排序 
+
+- 查询广州人数在 100-150 的上市公司 
+- 查询北京人数在 50 的科技公司
+
+** 2/4/6/8 出的题
+
+- 查询珠海所在的公司名字以及所需人员，工作经验和岗位以及学历
+- 查找所有在广州招聘的岗位，并且学历都在 本科以上
+
+- 查询在珠海职位为 Java 并且工资大于全国职位是 Java 平均工资的公司
+- 查询北京地区工资前十的岗位，显示其公司、岗位、工资、要求
+
+- 查询平均工资，在广州工作 1-3 年的 Java 工程师
+- 查询广州，招系统架构师的公司
+
+- 查询珠海工资最高的工作
+- 查询广州'开发/测试/运维类 - 后端开发'的最高年薪和最低年薪和他们之间的差距
+

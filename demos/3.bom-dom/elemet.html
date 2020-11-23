@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <style>
+     h3 { color: red; }
+     h4, h5 { color: red; }
+
+     #aaa { color: pink; }
+     .err { color: red; }
+
+     div .err { color: red; }
+     div.err { color: red; }
+     div > .err { color: red; }
+     div + .err { color: red; }
+    </style>
+  </head>
+  <body>
+    <div id="a1">
+      <h3 id="hhh">hello</h3>
+    </div>
+    <div id="a2">
+      <h4 id="hhhh">world</h4>
+    </div>
+
+    <div class="hello">
+      <div id="aaa" class="bbb ccc ddd"></div>
+    </div>
+  </body>
+</html>

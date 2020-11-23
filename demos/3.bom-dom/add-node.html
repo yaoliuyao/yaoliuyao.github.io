@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- 增加的第一块代码，用来显示错误信息 -->
+    <div id="err" style="color: red; height: 2em;">
+    </div>
+
+    <button onclick="chufadeshijian()">我是可以点击的</button>
+
+    <div id="iamaquyu">
+    </div>
+
+    <div id="gdquyu" style="border: 1px solid black; margin-top: 2em; padding: 1em;">
+    </div>
+
+    <script>
+     function chufadeshijian() {
+       var div = document.createElement('div');
+
+       var input = document.createElement('input');
+       input.value = prompt('请输入初始值');
+       div.appendChild(input);
+
+       var del = document.createElement('button');
+       del.style.marginLeft = '1em';
+       del.innerText = '删除';
+       del.onclick = shanchu;
+       div.appendChild(del);
+
+       var gd = document.createElement('button');
+       gd.style.marginLeft = '1em';
+       gd.innerText = '归档';
+       gd.onclick = doGuidang;
+       div.appendChild(gd);
+
+       document.getElementById('iamaquyu').appendChild(div);
+     }
+
+     function shanchu(ev) {
+       if (confirm('是不是确定要删除?')) {
+         var div = ev.target.parentNode;
+         div.parentNode.removeChild(div);
+       }
+     }
+
+     function doGuidang(ev) {
+       var div = ev.target.parentNode;
+
+       // 第三部分代码，将 alert 修改为 myAlert
+       var input = div.firstChild.value;
+       if (!input) {
+         return myAlert("输入不能为空.", 3)
+       }
+       if (!/^[a-zA-Z][0-9a-zA-Z]{0,9}$/.test(input)) {
+         return myAlert("输入格式有误.", 3);
+       }
+
+       if (confirm('是不是确定要归档?')) {
+         document.getElementById("gdquyu").appendChild(div);
+
+         div.firstChild.readOnly = true;
+         div.removeChild(div.lastChild);
+         div.removeChild(div.lastChild);
+       }
+     }
+
+     // 第二部分代码，增加一个自己封装的逻辑，myAlert
+     // 可选的第二个参数，如果提供了，那么信息会在 timeout 秒后消失
+     function myAlert(mesg, timeout = 0) {
+       var err = document.getElementById('err');
+       err.innerText = mesg;
+       if (timeout > 0) {
+         setTimeout("document.getElementById('err').innerText = ''", timeout * 1000);
+       }
+     }
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,437 @@
+#+TITLE: JDBC 连接数据库
+
+
+JDBC (Java DataBase Connectivity).
+
+
+* DriverManager 驱动管理类
+
+通过它可以对连接进行管理。最常用的就是:
+#+begin_src java
+  // Class.forName 现在可以省略
+  Conenction conn = DriverManger.getConnection(url);
+#+end_src
+
+可以将获取连接进行简单封装:
+#+begin_src java
+  public class DBHelper {
+      public static Connection getConnection() throws Exception {
+          String user = "sa";
+          String password = "sa";
+          String dataBase = "xxx";
+          String host = "localhost:1434";
+          String url = "jdbc:sqlserver://" + host + ";databaseName=" + dataBase + ";user=" + user + ";password=" + password;
+		
+          Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+          return DriverManager.getConnection(url);
+      }
+  }
+#+end_src
+
+* Connection 代表的是一个数据库连接
+
+后续所有的操作，都必须要基于 Connection 对象。
+
+如果使用完毕，请 *务必要记得* 关闭。
+
+#+begin_quote
+有始有终，方为睿智之士。
+#+end_quote
+
+* Statement 用来提交某个 SQL 语句
+** statement.execute/executeUpdate/executeQuery()
+
+execute = executeQuery + executeUpdate
+- executeQuery 更适合于 select 语句，返回的是 ResultSet 对象，代表结果集
+- executeUpdate 适合于更新数据，返回的是整形，表示受语句影响的行数
+
+** PreparedStatement 是可以绑定入参的 Statement
+
+PreparedStatement 解决掉的问题:
+1. 避免了枯燥拼接 SQL 字符串
+2. 可以有效规避 SQL 注入带来的风险!
+
+因此，以后操作数据库，请大家务必使用 PreparedStatement !!!
+
+#+begin_div :class mc11
+
+#+begin_src java
+  String sql = "insert into book (bookname, price) values ('"
+                   + name + "', " + price + ")";
+
+  Connection conn = DBHelper.getConnection();
+  Statement st = conn.createStatement();
+
+  st.executeUpdate(sql);
+
+  st.close();
+  conn.close();
+#+end_src
+:break:
+#+begin_src java
+  String sql = "insert into book (bookname, price) values (?, ?)";
+
+  Connection conn = DBHelper.getConnection();
+  PreparedStatement ps = conn.prepareStatement(sql);
+
+  ps.setString(1, "js tutor");
+  ps.setFloat(2, 22F);
+  ps.executeUpdate();
+
+  ps.close();
+  conn.close();
+#+end_src
+#+end_div
+
+* ResultSet 用来表示结果集
+
+通用的迭代方法为:
+#+begin_src java
+  while (rs.next()) {
+      Xxx i = rs.getXxx(1);
+      Xxx j = rs.getXxx(2);
+      System.out.println(i + j);
+  }
+#+end_src
+
+小结:
+- rs.next() 表示将当前的游标 (Cursor)，移到下一行。如果没有下一行，则返回 false
+- 如果使用 rs.getInt/Object 之类的，会在当前行的基础上取数据
+- rs 使用完毕，最好要将其结束掉
+
+* 小结
+
+- Connection/Statement/ResultSet 都属于资源，使用完毕，务必要 close 掉
+- 建议使用 Try-With-Resource 的语法进行异常的处理跟资源释放
+- 务必使用 PreparedStatement，由于安全问题，生产环境不应该使用 Statement 类
+
+* [案例] JDBC 连接 SQLServer
+** 创建名字为 xxx 的数据库，创建表 book
+
+#+begin_src sql
+  drop table book;
+
+  create table book
+  (
+         id int primary key,
+         name varchar(200) not null,
+         price float default 0
+  );
+  insert into book values (1, 'x', 22);
+  insert into book values (2, 'y', 23);
+  insert into book values (3, 'z', 21);
+  insert into book values (4, 'a', 77);
+#+end_src
+
+** 下载客户端，即 mssql-jdbc.jar
+
+去 http://mvnrepository.com 这个地址下载。
+
+[[file:img/jdbc-sqlserver-download.png]]
+
+
+下载完成之后，放到 e:/libs 文件夹下面。
+
+比如，我们下载完后，保存为 e:/libs/mssql-jdbc-8.2.2.jre8.jar
+
+它跟普通的客户端相比，它不需要安装。
+
+** 配置 jdbc.jar 到项目中，让项目能够使用它
+**** 第一种，直接放到 WebContent/WEB-INF/lib 文件夹下面
+**** 第二种，配置项目，让项目能够引用到这个 jar 包
+
+[[file:img/jdbc-jar.png]]
+
+点击 Add External JAR 后，选择 E:/libs/mssql-jdbc-8.2.2.jre8.jar 将其添加到项目即可。
+
+** 万事俱备，开始使用
+
+#+begin_src java
+  public static void main(String[] args) throws Exception {
+      // 0. 驱动 [从 JDK6/jdbc4 开始，这句可以不写，它会自动被注册；在 Web 项目中，如果出现驱动找不到的问题，将这句写上]
+      Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+      // 1. 连接
+      String url = "jdbc:sqlserver://localhost:1434;databaseName=xxx;user=sa;password=";
+      Connection connection = DriverManager.getConnection(url);
+
+      // 2. 使用
+      Statement statement = connection.createStatement();
+
+      statement.executeUpdate("create database aabbcc");
+      statement.executeUpdate("use aabbcc");
+      statement.executeUpdate("create table hello (id int, ttt varchar(20))");
+      statement.executeUpdate("insert into hello values (1, 'aaa')");
+      statement.executeUpdate("insert into hello values (2, 'bbb')");
+      statement.executeUpdate("insert into hello values (3, 'ccc')");
+      statement.executeUpdate("insert into hello values (4, 'ddd')");
+
+      ResultSet resultset = statement.executeQuery("select * from book");
+      while (resultset.next()) {
+          int id = resultset.getInt(1);
+          String name = resultset.getString(2);
+          float price = resultset.getFloat(3);
+          System.out.println("id: " + id + " name: " + name + " price: " + price);
+      }
+
+      // 释放资源，要注意释放的顺序
+      resultset.close();
+      statement.close();
+      connection.close();
+  }
+#+end_src
+
+#+begin_details Microsoft 提供的 jdbc 使用案例
+#+begin_src java
+  package nihao;
+
+  import java.sql.Connection;
+  import java.sql.Statement;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+  import java.sql.DriverManager;
+
+  public class App {
+
+      public static void main(String[] args) {
+
+          System.out.println("Connect to SQL Server and demo Create, Read, Update and Delete operations.");
+
+          //Update the username and password below
+          String connectionUrl = "jdbc:sqlserver://localhost:1434;databaseName=master;user=sa;password=";
+
+          try {
+              // Load SQL Server JDBC driver and establish connection.
+              System.out.print("Connecting to SQL Server ... ");
+              try (Connection connection = DriverManager.getConnection(connectionUrl)) {
+                  System.out.println("Done.");
+
+                  // Create a sample database
+                  System.out.print("Dropping and creating database 'yyy' ... ");
+                  String sql = "CREATE DATABASE [yyy]";
+                  try (Statement statement = connection.createStatement()) {
+                      statement.executeUpdate(sql);
+                      System.out.println("Done.");
+                  }
+
+                  // Create a Table and insert some sample data
+                  System.out.print("Creating sample table with data, press ENTER to continue...");
+                  System.in.read();
+                  sql = new StringBuilder().append("USE yyy; ").append("CREATE TABLE Employees ( ")
+                          .append(" Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY, ").append(" Name NVARCHAR(50), ")
+                          .append(" Location NVARCHAR(50) ").append("); ")
+                          .append("INSERT INTO Employees (Name, Location) VALUES ").append("(N'Jared', N'Australia'), ")
+                          .append("(N'Nikita', N'India'), ").append("(N'Tom', N'Germany'); ").toString();
+                  try (Statement statement = connection.createStatement()) {
+                      statement.executeUpdate(sql);
+                      System.out.println("Done.");
+                  }
+
+                  // INSERT demo
+                  System.out.print("Inserting a new row into table, press ENTER to continue...");
+                  System.in.read();
+                  sql = new StringBuilder().append("INSERT Employees (Name, Location) ").append("VALUES (?, ?);")
+                          .toString();
+                  try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                      statement.setString(1, "Jake");
+                      statement.setString(2, "United States");
+                      int rowsAffected = statement.executeUpdate();
+                      System.out.println(rowsAffected + " row(s) inserted");
+                  }
+
+                  // UPDATE demo
+                  String userToUpdate = "Nikita";
+                  System.out.print("Updating 'Location' for user '" + userToUpdate + "', press ENTER to continue...");
+                  System.in.read();
+                  sql = "UPDATE Employees SET Location = N'United States' WHERE Name = ?";
+                  try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                      statement.setString(1, userToUpdate);
+                      int rowsAffected = statement.executeUpdate();
+                      System.out.println(rowsAffected + " row(s) updated");
+                  }
+
+                  // DELETE demo
+                  String userToDelete = "Jared";
+                  System.out.print("Deleting user '" + userToDelete + "', press ENTER to continue...");
+                  System.in.read();
+                  sql = "DELETE FROM Employees WHERE Name = ?;";
+                  try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                      statement.setString(1, userToDelete);
+                      int rowsAffected = statement.executeUpdate();
+                      System.out.println(rowsAffected + " row(s) deleted");
+                  }
+
+                  // READ demo
+                  System.out.print("Reading data from table, press ENTER to continue...");
+                  System.in.read();
+                  sql = "SELECT Id, Name, Location FROM Employees;";
+                  try (Statement statement = connection.createStatement();
+                          ResultSet resultSet = statement.executeQuery(sql)) {
+                      while (resultSet.next()) {
+                          System.out.println(
+                                  resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3));
+                      }
+                  }
+                  connection.close();
+                  System.out.println("All done.");
+              }
+          } catch (Exception e) {
+              System.out.println();
+              e.printStackTrace();
+          }
+      }
+  }
+#+end_src
+#+end_details
+
+** 增加异常的处理，让代码更健壮
+
+#+begin_src java
+  public class JDBCDemo {
+      public static void main(String[] args) {
+          Connection connection = null;
+          Statement statement = null;
+          ResultSet resultset = null;
+          try {
+              // 1. 连接
+              String url = "jdbc:sqlserver://localhost:1434;databaseName=xxx;user=sa;password=";
+              connection = DriverManager.getConnection(url);
+
+              // 2. 使用
+              statement = connection.createStatement();
+
+              statement.executeUpdate("create database aabbcc");
+              statement.executeUpdate("use aabbcc");
+              statement.executeUpdate("create table hello (id int, ttt varchar(20))");
+              statement.executeUpdate("insert into hello values (1, 'aaa')");
+              statement.executeUpdate("insert into hello values (2, 'bbb')");
+              statement.executeUpdate("insert into hello values (3, 'ccc')");
+              statement.executeUpdate("insert into hello values (4, 'ddd')");
+
+              resultset = statement.executeQuery("select * from book");
+              while (resultset.next()) {
+                  int id = resultset.getInt(1);
+                  String name = resultset.getString(2);
+                  float price = resultset.getFloat(3);
+                  System.out.println("id: " + id + " name: " + name + " price: " + price);
+              }
+          } catch (Exception e) {
+              System.out.println("数据库连接的时候出现了错误: " + e.getMessage());
+          } finally {
+              if (resultset != null)
+                  try {
+                      resultset.close();
+                  } catch (SQLException e) {
+                  }
+              if (statement != null)
+                  try {
+                      statement.close();
+                  } catch (SQLException e) {
+                  }
+              if (connection != null)
+                  try {
+                      connection.close();
+                  } catch (SQLException e) {
+                  }
+          }
+      }
+  }
+#+end_src
+
+请大家务必要去了解为什么关闭语句要写得这么复杂！
+
+** 基于上述的代码，对相关的处理逻辑进行封装 (复用)
+
+业务类:
+#+begin_src java
+  public class JDBCDemo {
+      public static void main(String[] args) {
+          Connection connection = null;
+          Statement statement = null;
+          ResultSet resultset = null;
+          try {
+              // 1. 连接
+              connection = Xxx.getConnection();
+
+              // 2. 使用
+              statement = connection.createStatement();
+
+              statement.executeUpdate("create database aabbcc");
+              statement.executeUpdate("use aabbcc");
+              statement.executeUpdate("create table hello (id int, ttt varchar(20))");
+              statement.executeUpdate("insert into hello values (1, 'aaa')");
+              statement.executeUpdate("insert into hello values (2, 'bbb')");
+              statement.executeUpdate("insert into hello values (3, 'ccc')");
+              statement.executeUpdate("insert into hello values (4, 'ddd')");
+
+              resultset = statement.executeQuery("select * from book");
+              while (resultset.next()) {
+                  int id = resultset.getInt(1);
+                  String name = resultset.getString(2);
+                  float price = resultset.getFloat(3);
+                  System.out.println("id: " + id + " name: " + name + " price: " + price);
+              }
+          } catch (Exception e) {
+              System.out.println("数据库连接的时候出现了错误: " + e.getMessage());
+          } finally {
+              Xxx.closeDBResources(connection, statement, resultset);
+          }
+      }
+  }
+#+end_src
+
+辅助类:
+#+begin_src java
+  public class Xxx {
+      public static Connection getConnection() throws SQLException {
+          String url = "jdbc:sqlserver://localhost:1434;databaseName=xxx;user=sa;password=";
+          return DriverManager.getConnection(url);
+      }
+      public static void closeDBResources(Connection connection, Statement statement, ResultSet resultset) {
+          if (resultset != null)
+              try {
+                  resultset.close();
+              } catch (SQLException e) {
+              }
+          if (statement != null)
+              try {
+                  statement.close();
+              } catch (SQLException e) {
+              }
+          if (connection != null)
+              try {
+                  connection.close();
+              } catch (SQLException e) {
+              }
+      }
+  }
+#+end_src
+
+** 使用 Try-With-Resource 进行资源的释放
+
+#+begin_src java
+  public class JDBCDemo {
+      public static void main(String[] args) {
+          try (Connection connection = Xxx.getConnection(); Statement statement = connection.createStatement();) {
+              statement.executeUpdate("create database aabbcc");
+              statement.executeUpdate("use aabbcc");
+              statement.executeUpdate("create table hello (id int, ttt varchar(20))");
+              statement.executeUpdate("insert into hello values (1, 'aaa')");
+              statement.executeUpdate("insert into hello values (2, 'bbb')");
+              statement.executeUpdate("insert into hello values (3, 'ccc')");
+              statement.executeUpdate("insert into hello values (4, 'ddd')");
+
+              try (ResultSet resultset = statement.executeQuery("select * from book")) {
+                  while (resultset.next()) {
+                      int id = resultset.getInt(1);
+                      String name = resultset.getString(2);
+                      float price = resultset.getFloat(3);
+                      System.out.println("id: " + id + " name: " + name + " price: " + price);
+                  }
+              }
+          } catch (Exception e) {
+              System.out.println("数据库连接的时候出现了错误: " + e.getMessage());
+          }
+      }
+  }
+#+end_src

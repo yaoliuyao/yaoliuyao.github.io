@@ -1,0 +1,40 @@
+<style>
+ * { padding: 20px; margin: 0; }
+ div { background: lightgreen; }
+ article { background: yellow; }
+ section { background: skyblue; }
+ p { background: orange; }
+ .hi { box-shadow: inset 0 0 10px black; }
+</style>
+
+<div>
+  <article>
+    <section>
+      <p>Event.Target</p>
+    </section>
+  </article>
+</div>
+
+<aside>
+</aside>
+
+<script>
+ for (let tag of ["div", "article", "section", "p"]) {
+   const e = document.querySelector(tag);
+   e.addEventListener("click", callback, false);
+   e.addEventListener("click", callback, true);
+ }
+ var delay = 1000;
+ function callback(ev) {
+   var target = ev.currentTarget;
+   ev.time = ev.time + delay || 0;
+   setTimeout(function () {
+     target.classList.add("hi");
+     document.querySelector('aside').innerText = target.tagName;
+
+     setTimeout(function () {
+       target.classList.remove("hi");
+     }, delay);
+   }, ev.time);
+ };
+</script>

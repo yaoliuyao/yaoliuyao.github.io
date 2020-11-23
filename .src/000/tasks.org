@@ -1,0 +1,874 @@
+#+TITLE: 作业和任务
+#+OPTIONS: num:nil
+
+
+* [2020-09-14 Mon]
+:PROPERTIES:
+:CUSTOM_ID: active
+:END:
+
+[[https://github.com/yaollllllsan?tab=repositories][https://github.com/yaollllllsan]]
+
+* [2020-08-11 Tue]
+
+学会记笔记:
+1. Mind Map
+2. Markdown
+
+* [2020-07-31 Fri]
+
+创建一个新的项目，依照之前所讲，将 book 的 *增* *删* *查* 功能实现一遍。
+
+要求:
+- 尽量扫除知识盲点，有问题就提问
+- 总结规律和经验：如何从零开始完成简单的 CRUD 操作 (最重要)
+- 先仿着做，有一定熟练度，再尝试独立完成。循序渐进，相信自己
+- 找到写代码的勇气！勇气！勇气 和 信心
+
+* [2020-07-27 Mon]
+
+1. 复习
+2. 成注销的逻辑!
+3. 将书籍的删除和修改功能，限制为只有登录过的用户才能操作!
+4. [可选] 修改访问日志功能，将访问者的登录账号也保存到数据库中
+
+* [2020-07-25 Sat]
+
+完成登录的逻辑。
+
+* [2020-07-24 Fri]
+
+[[file:../JavaWeb/a_java_web_prelude.org::*案例分析 (↳ 用户的注册和登录)][案例分析/用户的注册和登录]]
+
+1. 完成用户的注册
+2. 预习 Session 相关，思考什么是登录，如何设计登录逻辑
+
+* [2020-07-20 Mon]
+
+在之前案例的基础上，使用过滤器的方式，将每个用户的请求记录到数据库。
+
+* [2020-07-17 Fri]
+
+1. 复习今天的内容
+2. 预习 JSP 部分
+
+
+* [2020-07-15 Wed]
+
+为[[file:../JavaWeb/a_java_web_prelude.org::*案例分析 (↳ JDBC 重出江湖，使用数据库重构)][今天的案例]]，增加 添加书籍 的方法！
+
+* [2020-07-11 Sat]
+
+1. 复习，复习，复习今天所敲的代码
+2. 预习，预习，预习 jdbc 的相关操作
+3. [可选] 将今天的案例，使用数据库的形式实现一遍
+
+* [2020-07-10 Fri]
+
+在上次作业的基础上，为页面添加：
+- 一个 input 表示文件名
+- 一个 textarea 表示文件内容
+- 一个 添加文件 按钮，点击之后，请求到服务器，然后服务器根据提交的内容创建包含相应内容的文件
+
+* [2020-07-09 Thu]
+
+首先，什么是 Servlet 规范？它是怎么制定的？搜索并总结。
+
+其次，使用 Eclipse 创建一个简单项目 (比如项目名字为 readfile):
+- 在 WebContent 下面放置若干 txt 格式文件 (比如 a.txt, b.txt)
+- 用户可以使用 localhost:8080/readfile/read 的方式进行访问
+- 随机读取任意一个 txt 文本文件的内容，并响应给用户。html 格式为:
+
+  #+begin_src html
+    <html>
+      <h3>[文件名]</h3>
+      <p>
+          [文件内容]
+      </p>
+    </html>
+  #+end_src
+
+* [2020-07-07 Tue]
+
+1. 使用 javac 的方式编译并部署运行 First Java Web
+2. 下载、安装 Eclipse，并使用 Eclipse 创建运行第一个 Java Web 项目
+
+* [2020-07-06 Mon]
+
+1. 安装 JDK8，了解 java 和 javac 命令的使用
+2. 下载安装 tomcat8
+3. 预习课本第一章
+
+* [2020-07-03 Fri]
+
+完成课本上第四章的所有课后题。
+
+* [2020-07-02 Thu]
+
+完成这个:
+
+[[file:../FrontEnd/f_dom.org::*案例分析 (图片切换)][案例分析 (图片切换)]]
+
+* [2020-07-01 Wed]
+
+- 复习、反复练习今天学习的代码
+- 预习 DOM 事件处理的相关内容
+
+* [2020-06-30 Tue]
+
+为 [[file:../FrontEnd/f_dom.org::*案例分析 (添加商品)][案例分析 (添加商品)]] 中商品列表增加 Checkbox 选择项，以及增加批量删除。
+
+* [2020-06-29 Mon]
+
+- 练习 css selector 用法
+- 课本习题 101 页
+
+* [2020-06-28 Sun]
+
+在 [[file:../FrontEnd/f_dom.org::*案例分析 (DOM 节点的基本操作)][案例分析 (DOM 节点的基本操作)]] 的基础上:
+1. 完善归档的逻辑，并逐步理解所有代码
+2. [增加] 归档的时候，增加输入校验:
+   - 不能为空
+   - 必须是英文字母或数字
+   - 不能以数字开头
+   - 长度不能大于 10
+
+* [2020-06-23 Tue]
+
+1. 写一个例子，使用 setTimeout 的方式，来实现 setInterval 的效果。
+2. 预习剩下的内容
+
+#+begin_details 实现 setInterval
+简化问题: 一秒钟之后，打印一次当前时间。
+#+begin_src js
+  // 第一步，任务
+  function task () {
+      console.log(new Date());
+  }
+  // 第二步，计划
+  setTimeout(task, 1000);
+#+end_src
+
+接下来，再上面的基础上，让任务进行接力，于是任务就可以完成了:
+#+begin_src js
+  // 第一步，任务
+  function task () {
+      console.log(new Date());
+      setTimeout(task, 1000);
+  }
+  // 第二步，计划
+  setTimeout(task, 1000);
+#+end_src
+
+---------------------------
+
+可以进一步对上述任务进行优化。
+
+通过一个变量记录当前的任务，并且可以通过 clearTimeout 将其停止:
+#+begin_src js
+  var timeout;
+
+  // 第一步，任务
+  function task () {
+      console.log(new Date());
+      timeout = setTimeout(task, 1000);
+  }
+  // 第二步，计划
+  timeout = setTimeout(task, 1000);
+#+end_src
+
+将其稍微封装成一个 mySetInterval 的函数:
+#+begin_src js
+  function mySetInterval (task, interval) {
+      function inner () {
+          task();
+          setTimeout(inner, interval);
+      }
+      setTimeout(inner, interval);
+  }
+  mySetInterval(function() { console.log(new Date()) }, 2000);
+#+end_src
+#+end_details
+
+* [2020-06-22 Mon]
+
+- 通过循环的方式，计算 1...1000 的和；对比之前递归实现的代码，思考一下这个计算是否还有其他方式
+- 总结一下，列表的遍历方式有哪些
+- [可选] 封装一个方法，从列表中返回一个随机元素
+- [可选] 封装一个方法，从列表中删除某个元素。总结一下有哪些方式
+
+#+begin_details 求取 1...1000 的和
+#+begin_src js
+  // 1. 递归
+  function s(i){
+      if(i == 1) { return 1; }
+      return i + s(i - 1);
+  }
+  s(1000);
+
+  // 2. for
+  var sum = 0;
+  for (var i = 1; i <= 1000; i++) {
+      sum += i;
+  }
+  console.log('最后的和为: ' + sum);
+
+  // 3. while
+  var sum = 0;
+  var max = 1000;
+  while (max > 0) {
+      sum += max;
+      max--;
+  }
+  console.log('最后的和为: ' + sum);
+
+  // 4. do while
+  var sum = 0;
+  var max = 0;
+  do {
+      sum += max;
+      max--;
+  } while (max > 0);
+  console.log('最后的和为: ' + sum);
+#+end_src
+
+求取 1...1000 中所有偶数的和:
+#+begin_src js
+  var sum = 0;
+  for (var i = 1; i <= 1000; i++) {
+      if (i % 2 === 1) continue;
+      sum += i;
+  }
+  console.log('最后的和为: ' + sum);
+#+end_src
+#+end_details
+
+#+begin_details 列表的遍历方式
+#+begin_src js
+  // arr[0]
+  // arr[1]
+  // arr[2]
+  // ...
+  // arr[arr.length - 1]
+
+  var arr = ['abc', 123, 9, true, 'hello', [1, 2, 3], null, 666];
+
+  // 1. for
+  for (let m = 0; m < arr.length; m++) {
+      if (typeof arr[m] === 'boolean') {
+          continue;
+      }
+      console.log(m, arr[m]);
+  }
+  for (let m = 0; m < arr.length; m++) {
+      if (typeof arr[m] === 'object') {
+          break;
+      }
+      console.log(m, arr[m]);
+  }
+
+  // 2. while
+  var n = arr.length - 1;
+  while (n > 0) {
+      console.log(arr[n]);
+      n--;
+  }
+
+  // 3. forEach
+  arr.forEach(function(x) { console.log(x) });
+  arr.forEach(x => console.log(x));
+
+  // 另外:
+  // - ES6 中还提供了一种叫 for of 的方式用来循环数组
+  // - 在数组循环中，请一定不要使用 for in 语句:
+  for (var e in arr) { console.log(e); }
+#+end_src
+
+求取所有数字的和:
+#+begin_src js
+  var sum = 0;
+  for (let m = 0; m < arr.length; m++) {
+      if (typeof arr[m] === 'number') {
+          sum += arr[m];
+      }
+  }
+  console.log(sum);
+
+  var sum = 0;
+  for (let m = 0; m < arr.length; m++) {
+      if (typeof arr[m] !== 'number') {
+          continue;
+      }
+      sum += arr[m];
+  }
+  console.log(sum);
+#+end_src
+#+end_details
+
+#+begin_details 返回数组的随机元素
+#+begin_src js
+  // 首先，获取随机数 Math.random()
+  // 其范围是 (0, 1) 我们需要映射到合理的数组下标
+  // Math.random() * arr.length 得到 (0, len)
+  // 然后，将获取的这个范围内的浮点数，取整就可以得到合理的下标了
+  // Math.floor(...)
+  // 最后，就取到想要的数组元素了
+  function getRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+  }
+  getRandom(arr);
+#+end_src
+
+#+begin_src js
+  // 为所有 Array 添加 random 方法，返回随机元素
+  // new Array [] 对象:
+  // arr -> Array.prototype -> Object.prototype -> null
+  Array.prototype.random = function () {
+      return this[Math.floor(Math.random() * this.length)];
+  };
+  [1, 2, 3, 4].random();
+
+  // 比如，有的老旧浏览器并不支持 ES6 的 forEach 方法
+  // 我们完全可以，自行写一个 forEach 去模拟它
+  Array.prototype.myForEach = function(f) {
+      for (var i = 0; i < this.length; i++) {
+          f(this[i]);
+      }
+  };
+  arr.forEach(console.log);
+  arr.myForEach(console.log);
+#+end_src
+#+end_details
+
+* [2020-06-18 Thu]
+
+面向对象最重要的就是封装和继承，这两种概念的彻底理解、消化需要借助大量的代码实战。
+
+下面是一个非常简单的作业，大家姑且一试。
+
+按照如下要求实现对象的设计:
+- 我们说，人分为很多种，咱们这里只关心两种:　一种是没毕业的学生，一种是已经毕业工作的社会人。
+- 这两种人都有一些共同特点，比如都有名字、身份证号码、出生年月、家庭住址、联系方式等；我如果咨询它们的身份，它们都能将自己的基本信息告诉我；而且他们都能吃、能睡!
+- 这两种人，也都喜欢打游戏；但学生的主要任务是学习，社会人的主要任务是干活；
+- 玩游戏是好事，但要适度，所以咱们做这样一种假设。让它们两种人都可以玩游戏，只不过:
+  + 每个人都拥有一个初始的分数
+  + 每玩一局游戏，那么这个分数就会被扣 ２，如果分数已经被扣没了，会有诸如 "xxx，您需要学习/干活了"　的提示
+  + 每进行一次学习/干活，这个分数就会被加 １，但是如果分数已经到 10 就不会再加，这时候会提醒诸如 "xxx，您玩一下游戏劳逸结合吧，别总是忙着学习/工作"
+  + 如果累积 3 次分数被扣为零，那么社会人就会被辞退，，也就是再进行工作，也会被提醒 "您已经被解雇，请做好离职准备"
+
+哈哈，够残酷吧？
+
+就这样，好好思考一下，该怎么设计其中的封装和继承关系合理。并创建几个学生、社会人对象，让他们学习工作游戏一番，验证执行结果。
+
+多讨论，认真完成。
+
+#+begin_details 题目解析
+第一步，要解析题目，提出核心内容:
+1. 学生学习会加分，玩游戏会扣分
+2. 社会人工作会加分，玩游戏可能被开除
+
+第二步，提取核心中的主角，针对其进行建模:
+1. 学生
+2. 社会人
+
+第三步，根据上述分析，开始建模、实现。如下。
+
+-------------------------
+
+第一层:
+- 请构建两种对象，分别来表示学生和社会人
+- 学生 (Student):
+  + 姓名、年龄、地址、电话
+  + 吃、喝、学习、游戏
+- 社会人 (Worker):
+  + 姓名、年龄、地址、电话
+  + 吃、喝、工作、游戏
+
+--------------------------
+
+第二层:
+- 将两种人共同的属性和行为，抽取出来共用。也就是继承
+- 共同的: 姓名、年龄、地址、电话、吃、喝？
+- 不同的: 工作、学习、游戏？
+
+--------------------------
+
+第三层:
+- 给两种人都增加一个分数系统。需要有一个叫分数的属性（变量？）
+- 分别给两种人增加分数的反馈，修改响应的方法:
+  + 加分: 工作/学习
+  + 减分: 玩游戏
+
+--------------------------
+
+第四层:
+- 添加开除机制
+- 目标：社会人；条件: 被扣分为零 3 次
+- 需要添加一个属性，来记录其被归零的次数
+- 修改社会人的各个行为，让其能够判断或修改归零的属性
+#+end_details
+
+#+begin_details 实现示例
+
+第一层:
+#+begin_src js
+  function Student(name, address) {
+      this.name = name;
+      this.address = address;
+
+      this.eat = function() { console.log('吃') };
+      this.drink = function() { console.log('喝') };
+      this.play = function() { console.log('玩') };
+      this.show = function() {
+          console.log('我是' + this.name + ', 我来自' + this.address);
+      };
+      this.study = function() {
+          console.log('学');
+      };
+  }
+
+  function Worker(name, address) {
+      this.name = name;
+      this.address = address;
+
+      this.eat = function() { console.log('吃') };
+      this.drink = function() { console.log('喝') };
+      this.play = function() { console.log('玩') };
+      this.show = function() {
+          console.log('我是' + this.name + ', 我来自' + this.address);
+      };
+      this.work = function() {
+          console.log('忙');
+      };
+  }
+
+  var s1 = new Student('张三', '广西');
+  var s2 = new Student('李四', '江西');
+  var w1 = new Worker('王五', '湖南');
+  w1.show();
+  w1.work();
+#+end_src
+
+第二层:
+#+begin_src js
+  function Person() {
+      this.eat = function() { console.log('吃') };
+      this.drink = function() {
+          console.log(this.name + '在喝水')
+      };
+      this.show = function() {
+          console.log('我是' + this.name + ', 我来自' + this.address);
+      };
+  }
+  function Student(name, address) {
+      this.name = name;
+      this.address = address;
+
+      this.play = function() { console.log('玩') };
+      this.study = function() {
+          console.log('学');
+      };
+  }
+  function Worker(name, address) {
+      this.name = name;
+      this.address = address;
+
+      this.play = function() { console.log('玩') };
+      this.work = function() {
+          console.log('忙');
+      };
+  }
+  // 使用 new Student 创建出来的所有对象，它的爹是 new Person 对象
+  var person = new Person();
+  Student.prototype = person;
+  Worker.prototype = person;
+
+  var s1 = new Student('张三', '广西');
+  var s2 = new Student('李四', '江西');
+  var w1 = new Worker('王五', '湖南');
+  w1.show();
+  w1.work();
+#+end_src
+
+第三层:
+#+begin_src js
+  function Person() {
+      this.eat = function() { console.log('吃') };
+      this.drink = function() {
+          console.log(this.name + '在喝水')
+      };
+      this.show = function() {
+          console.log('我是' + this.name + ', 我来自' + this.address);
+      };
+  }
+  function Student(name, address) {
+      var score = 10;          // 1
+      this.name = name;
+      this.address = address;
+
+      this.play = function() {
+          if (score === 0) {
+              return console.error('请你好好学习吧');
+          }
+          score = Math.max(score - 2, 0);
+          console.log('玩')
+      };
+      this.study = function() {
+          if (score === 10) {
+              return console.error('请你劳逸结合吧');
+          }
+          score = Math.min(score + 1, 10);
+          console.log('学');
+      };
+      this.showScore = function() {
+          console.log('当前的分数是: ' + score);
+      }
+  }
+  function Worker(name, address) {
+      var score = 5;             // 1
+      this.name = name;
+      this.address = address;
+
+      this.play = function() {
+          if (score === 0) {
+              return console.error('请你好好工作吧');
+          }
+          score = Math.max(score - 2, 0);
+          console.log('玩');
+      };
+      this.work = function() {
+          if (score === 10) {
+              return console.error('请你劳逸结合吧');
+          }
+          score = Math.min(score + 1, 10);
+          console.log('忙');
+      };
+      this.showScore = function() {
+          console.log('当前的分数是: ' + score);
+      }
+  }
+  // 使用 new Student 创建出来的所有对象，它的爹是 new Person 对象
+  var person = new Person();
+  Student.prototype = person;
+  Worker.prototype = person;
+
+  var s1 = new Student('张三', '广西');
+  var s2 = new Student('李四', '江西');
+  var w1 = new Worker('王五', '湖南');
+  w1.show();
+  w1.work();
+#+end_src
+
+第四层:
+#+begin_src js
+  var person = {
+      eat: function() {
+          console.log('吃')
+      },
+      drink: function() {
+          console.log(this.name + '在喝水')
+      },
+      show: function() {
+          console.log('我是' + this.name + ', 我来自' + this.address)
+      }
+  }
+  function Student(name, address) {
+      var score = 8;
+      this.name = name;
+      this.address = address;
+
+      this.play = function() {
+          if (score === 0) {
+              return console.error('请你好好学习吧');
+          }
+          score = Math.max(score - 2, 0);
+          console.log('玩')
+      };
+      this.study = function() {
+          if (score === 10) {
+              return console.error('请你劳逸结合吧');
+          }
+          score = Math.min(score + 1, 10);
+          console.log('学');
+      };
+      this.showScore = function() {
+          console.log('当前的分数是: ' + score);
+      }
+  }
+  function Worker(name, address) {
+      var score = 5;
+      var chances = 3;
+      this.name = name;
+      this.address = address;
+
+      this.play = function() {
+          if (chances !== 0) {
+              if (score === 0) {
+                  return console.error('请你好好工作吧');
+              }
+              score = Math.max(score - 2, 0); // 扣分
+              if (score === 0) {
+                  chances =  chances - 1;
+              }
+          }
+          console.log('玩');
+      };
+      this.work = function() {
+          if (chances === 0) {
+              return console.error('您已经被离职了');
+          }
+          if (score === 10) {
+              return console.error('请你劳逸结合吧');
+          }
+          score = Math.min(score + 1, 10);
+          console.log('忙');
+      };
+      this.showScore = function() {
+          console.log('当前的分数是: ' + score);
+      }
+      this.showChances = function() {
+          console.log('当前的机会有: ' + chances);
+      }
+  }
+
+  // 指定其原型
+  Student.prototype = person;
+  Worker.prototype = person;
+
+  var s1 = new Student('张三', '广西');
+  var s2 = new Student('李四', '江西');
+  var w1 = new Worker('王五', '湖南');
+  w1.show();
+  w1.work();
+#+end_src
+#+end_details
+
+* [2020-06-15 Mon]
+
+将上述求取 BMI 的方法，封装为一个函数 getBMI，要求:
+- 返回值: 为根据身高、体重得到的 BMI 值
+- 入参: 如果调用的时候指定了，那么使用指定的值；否则，让用户输入 (prompt)
+- 当用户 *过重/过轻* 的时候，给予适当提醒，默认使用 console.error，请做到有弹性
+
+建议使用 callback 的方式处理提醒。
+
+在做题的过程中，思考:
+- 什么是函数，它有什么作用？
+- 什么是入参、返回值？
+- 什么是回调函数，怎么使用回调函数？
+- 如何定义参数的默认值？
+
+#+begin_details 解题步骤
+首先，阅读题目，我们需要定义一个 getBMI 函数，参数是身高体重，返回求取的 bmi 值:
+#+begin_src js
+  function getBMI (h, w) {
+      var bmi = w / ((h / 100) * (h / 100));
+      return bmi;
+  }
+#+end_src
+
+上述就是题目的主干逻辑，后续的其他行为不应该影响主干的结果。
+
+然后，要求如果身高体重没有输入，提醒用户交互输入，所以上述代码修改为:
+#+begin_src js
+  function getBMI (h, w) {
+      if (!h) {
+          h = prompt("请输入您的身高 (CM): ")
+      }
+      if (!w) {
+          w = prompt("请输入您的体重 (Kg): ")
+      }
+      var bmi = w / ((h / 100) * (h / 100));
+      return bmi;
+  }
+#+end_src
+
+接下来，我们要对一些特殊情况（过轻、过重）做一些额外工作，比如给予提醒:
+#+begin_src js
+  function getBMI (h, w) {
+      if (!h) {
+          h = prompt("请输入您的身高 (CM): ")
+      }
+      if (!w) {
+          w = prompt("请输入您的体重 (Kg): ")
+      }
+      var bmi = w / ((h / 100) * (h / 100));
+
+      if (bmi <= 18.5) {
+          console.error("您有点轻")  // 千万不要加 return!!!
+      } else if (bmi > 32) {
+          console.error("您有点重")  // 千万不要加 return!!!
+      }
+
+      return bmi;
+  }
+
+#+end_src
+
+最后，如果想让额外工作的处理变得灵活，我们需要将其代理给其他函数（回调）:
+#+begin_src js
+  function getBMI (h, w, callback) {
+      if (!h) {
+          h = prompt("请输入您的身高 (CM): ")
+      }
+      if (!w) {
+          w = prompt("请输入您的体重 (Kg): ")
+      }
+      var bmi = w / ((h / 100) * (h / 100));
+
+      if (!callback) {
+          callback = console.error;
+      }
+
+      if (bmi <= 18.5) {
+          callback("您有点轻")  // 千万不要加 return!!!
+      } else if (bmi > 32) {
+          callback("您有点重")  // 千万不要加 return!!!
+      }
+
+      // 确保主干逻辑被执行，也就是要保证返回的一定是 bmi 值
+      return bmi;
+  }
+#+end_src
+#+end_details
+
+* [2020-06-13 Sat]
+
+1. 复习我们所学的东西，并认真总结
+2. 预习 function / Array 方面的知识
+
+代码题: 跟用户互动，让用户输入自己的 *身高*、*体重*、*性别*，
+根据用户的输入进行计算，弹出窗口告知用户其 BMI 状况:
+- 输出格式为: *您的 BMI 为 xxx，您有点 重/轻/正常*
+- 接受用户输入 ~window.prompt()~
+- 弹出窗口使用 ~window.alert()~
+- 计算 BMI 的方式，轻自行百度
+
+* [2020-06-10 Wed]
+
+- 整理一下，JS 中各种算数运算符的优先级
+- Math.floor/Math.trunc 有什么区别？
+
+正则表达式:
+- 如何使用正则表达式，来匹配一个电话号码
+- 如何使用正则表达式，来寻找 html 字符串中的所有图片地址
+
+#+begin_details 提示
+取图片基本示例：
+#+begin_src js
+  var html = "这里表示从网页源代码中提取的字符串";
+  var reg = /<img [^>]*src="([^"]+)"/g;   // 进行匹配的正则表达式
+  reg.exec(html)[1];                      // 第 1 个匹配的地址
+  reg.exec(html)[1];                      // 第 2 个匹配的地址
+  reg.exec(html)[1];                      // 第 3 个匹配的地址
+  // ...
+  reg.exec(html)[1];                      // 第 n 个匹配的地址
+#+end_src
+#+end_details
+
+* [2020-06-06 Sat]
+
+1. 了解 link 标签以及用法
+
+   #+begin_src html
+     <!-- link 的每个属性到底是啥意思？？？ -->
+     <!-- 引入样式表该怎么写？ -->
+     <!-- 它跟引入 JS 脚本有什么区别？ -->
+
+     <link href="css/heelo.css" rel="stylesheet/...">
+   
+     <link src="css/heelo.css" rel="stylesheet/...">
+     <script src="xxx.js"></script>
+     <script href="xxx.js"></script>
+     <a href="xxx">xxx</a>
+     <a src="xxx">xxx</a>
+     <img src="xxx">
+     <img href="xxx">
+   #+end_src
+
+2. 修改如下页面:
+
+   - 首先，日期显示为 2020年1月2日 的形式...
+   - 将鼠标划过 [Button] 会刷新时间
+
+   #+begin_example
+     现在时间是:
+     Sat Jun 06 2020 19:37:42 GMT+0800 (中国标准时间)
+     [Button]
+   #+end_example
+
+   #+begin_details 提示
+   *首先*，将问题分解。
+
+   我们需要做两件事:
+   1. 将时间显示为格式化的形式，即，我们该如何获取格式化时间
+   2. 将事件由点击切换为滑动，即，如何定义滑动事件
+
+   *然后*，我们需要分别找到问题的解决方案。
+
+   对于 (1)，打开搜索引擎，搜索 JS 格式化时间，获取到格式化日期的方法，类似于:
+   #+begin_src js
+     function formatDate(time){
+         // 获取一个时间对象，某一个时间作为参数
+         // date 代表了一个封装了时间操作的对象
+         // var date = new Date(time);
+         var date = new Date();
+
+         var year = date.getFullYear();   // 获取时间中的年
+         var month = date.getMonth() + 1; // 月。是从0开始的
+         var day = date.getDate();        // 日
+         var weekday = date.getDay();     // 周
+         var hour = date.getHours();      // 小时
+         var min = date.getMinutes();     // 分钟
+         var sec = date.getSeconds();     // 秒
+
+         var newTime = year + '年' +
+             month + '月' +
+             day + '日 ' +
+             weekday + ' ' +
+             hour + ':' +
+             min + ':' +
+             sec;
+         return newTime;
+     }
+   #+end_src
+
+   对于 (2)，打开搜索引擎，输入 JS 事件 滑动 进行搜索。
+   注意，输入的关键词要有层次，并且使用空格分开以便搜索引擎能够更好处理。
+   于是我们得到了，滑动事件的 DOM 属性是 ~onmouseover~。
+
+   *接下来*，我们就可以将 JS 中的相关代码进行 *替换* 了:
+   #+begin_src js
+     function showTime () {
+         var date = new Date();
+
+         var year = date.getFullYear();   // 获取时间中的年
+         var month = date.getMonth() + 1; // 月。是从0开始的
+         var day = date.getDate();        // 日
+         var weekday = date.getDay();     // 周
+         var hour = date.getHours();      // 小时
+         var min = date.getMinutes();     // 分钟
+         var sec = date.getSeconds();     // 秒
+
+         var newTime = year + '/' +
+             month + '/' +
+             day + ' ' +
+             // weekday + ' ' +
+             hour + ':' +
+             min + ':' +
+             sec;
+
+         time_node.innerText = newTime; // new Date() -> newTime
+     }
+
+     time_button.onmouseover = showTime; // onclick -> onmouseover
+
+   #+end_src
+
+   至此，大功告成。剩下一件至关重要的事:
+
+   将相关知识整理成笔记!
+   #+end_details   
+
+
+

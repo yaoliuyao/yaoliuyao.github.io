@@ -1,0 +1,29 @@
+#+TITLE: Tomcat
+
+
+
+* Tomcat 的目录结构
+
+[[file:img/tomcat-ov.png]]
+
+#+begin_example
+bin - ary          二进制
+conf - iguration   配置
+lib - rary         库
+logs               日志
+temp - orary       临时
+#+end_example
+
+* Tomcat8 修改控制台乱码
+
+修改 $TOMCAT/conf/logging.properties 下面这句，设为 GBK 编码:
+#+begin_src conf
+  java.util.logging.ConsoleHandler.encoding = GBK
+#+end_src
+
+* Tomcat 修改端口号
+
+修改 $TOMCAT/conf/server.xml 下面这句:
+#+begin_src xml
+  <Connector port="9999" protocol="HTTP/1.1"...
+#+end_src

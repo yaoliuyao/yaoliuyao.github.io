@@ -1,0 +1,46 @@
+#+TITLE: User/Permission
+
+
+
+* Login 登录名 (sa)
+
+拿来进行登录 sqlserver 的。
+
+#+begin_src sql
+  create login wodedengluming with password = 'nishishui';
+  drop login wodedengluming;
+#+end_src
+
+新创建的登录名 (login) 是没有任何操作数据库的权利的。
+
+必须要为 login 在不同的数据库上绑定 user 它才可能有相关的权利。
+
+* User 用户 (dbo/guest)
+
+#+begin_src sql
+  use oa;
+  create user aabc for wodedengluming; -- 在 oa 上为 wodedengluming 附加一个用户
+#+end_src
+
+虽然默认的用户是没有任何权利的，但是我们可以为它赋予权限和角色呀!
+
+也就是说，用户 (user) 是权限和角色的载体。
+
+* Permission 权限 (select/insert/update/...)
+
+#+begin_src sql
+  use oa;
+  grant select on emp to aabc; -- 授权语句
+  grant delete on emp to aabc; -- 授权语句
+
+  -- 撤销
+  revoke delete on emp from aabc;
+#+end_src
+
+* Role 角色 (db_owner)
+
+将各种权限打包，起个名字，便于使用。
+
+#+begin_src sql
+  exec sp_addrolemember 'db_owner', 'aabc'
+#+end_src

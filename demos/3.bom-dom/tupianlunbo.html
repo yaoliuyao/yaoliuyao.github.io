@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>图片轮播</title>
+    <style>
+     img {
+       width: 200px;
+       height: 200px;
+       transition: opacity 2s, transform 1s;
+     }
+     img:hover {
+       opacity: 50%;
+       transform: rotate(30deg);
+     }
+     .yincangdiao {
+       display: none; /* inline/block */
+     }
+    </style>
+  </head>
+  <body>
+    <!-- 放置图片 -->
+    <div>
+      <img src="">
+    </div>
+
+    <!-- 放置按钮 -->
+    <footer>
+      <button class="prev">上一张</button>
+      <button class="next">下一张</button>
+    </footer>
+
+    <script>
+     let current = 0;
+     const images = [
+       "images/a.jpg",
+       "images/b.jpg",
+       "images/c.jpg",
+       "images/d.jpg"
+     ];
+
+     // 处理的逻辑
+     function renderImage() {
+       let img = document.querySelector('img');
+       img.src = images[current];
+     }
+
+     function prevImage() { /* 0...length-1 */
+       current = current - 1 < 0 ? images.length-1 : current - 1;
+       renderImage();
+     }
+
+     function nextImage() {
+       current = current + 1 > images.length-1 ? 0 : current + 1;
+       renderImage();
+     }
+
+     // 绑定响应事件
+     document.querySelector('.prev').addEventListener('click', prevImage);
+     document.querySelector('.next').addEventListener('click', nextImage);
+     document.body.addEventListener('keydown', function (e) {
+       if (e.keyCode == 37) prevImage();
+       if (e.keyCode == 39) nextImage();
+     });
+     window.setInterval(nextImage, 5000);
+
+     const img = document.querySelector('img');
+     img.addEventListener('mouseover', function(e) {
+       // document.querySelector('footer').style.display = 'none';
+       document.querySelector('footer').classList.add('yincangdiao');
+     });
+     img.addEventListener('mouseout', function(e) {
+       document.querySelector('footer').classList.remove('yincangdiao');
+     });
+
+     // 初始化渲染，第一张图片
+     renderImage();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>删除示例</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>111</td> <td>111</td> <td>111</td> <td>111</td>
+        <td><button onclick="del(event)">删除</button></td>
+      </tr>
+      <tr>
+        <td>222</td> <td>222</td> <td>222</td> <td>222</td>
+        <td><button onclick="del(event)">删除</button></td>
+      </tr>
+      <tr>
+        <td>333</td> <td>333</td> <td>333</td> <td>333</td>
+        <td><button onclick="del(event)">删除</button></td>
+      </tr>
+    </table>
+
+    <script>
+     function del(event) {
+       // [定位] 根据事件发生的节点，寻找我们要去操作的节点
+       var node = event.target.parentNode.parentNode;
+
+       // [执行删除]
+       // node.remove();
+       node.parentNode.removeChild(node);
+     }
+
+     function delXuyaode(text) {
+       // 定位
+       var trs = document.querySelectorAll('tr');
+       trs.forEach(function(tr) {
+         if (tr.children[0].innerText == text) {
+           // 删除
+           tr.parentNode.removeChild(tr);
+         }
+       });
+     }
+    </script>
+  </body>
+</html>

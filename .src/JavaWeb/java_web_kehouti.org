@@ -1,0 +1,343 @@
+#+TITLE: 课本上的课后题
+
+
+* 选择题
+** 第一章 (P19)
+
+1. B
+   - src Java 源代码
+   - 根目录指定就是 WebContent 文件夹
+   - WebContent/WEB-INF 私密
+
+2. B
+
+3. A
+   - 404，资源未找到，url 错了
+   - 服务器未启动: 无法访问此网站
+   - 50x，服务器出现异常
+
+4. ABC
+   - 看清题目: 是不正确的是
+
+5. BCD
+   - 网络协议: 为进行网络中数据交换而建立的规则、标准或约定
+   - HTTP 是 WWW 中应用最广泛的
+   - HTML 是 用来设计网站的 Markup 语言
+
+6. C
+   - http://localhost:9999/book/list
+   - 协议://主机:端口/上下文路径/地址
+
+7. D
+   - 虚拟目录，就是所谓的上下文路径
+
+8. AB
+   - Java Web 项目的核心配置文件是 web.xml
+   - 从 Servlet3.x 这个文件可以不要，而使用注解替代
+
+** 第二章 (P48)
+
+1. D
+   - 协议://主机:端口/上下文路径(项目名)/地址(url-pattern)
+   - http://localhost:8080/helloapp/hello
+
+2. C
+   - 一个 Servlet 只会存在一个 (创建一次、销毁一次)
+   - service 方法会在每次请求来的时候被调用一次
+
+3. B
+
+4. A
+   - req.getParameter() 接受来自客户端的请求数据
+   - req.getAttribute() 拿取通过 req.setAttribute 放进去的数据
+
+5. AC ?
+   - getOutputStream() 更原始的一种输入输出，默认不会对编码进行干预
+   - getWriter() 自动根据你设置的 response.setCharacterEncoding("utf-8") 进行自动转码
+
+6. C
+   #+begin_src java
+     // 服务器内部的: 转发
+     req.getRequestDispatcher("/list").forward(req, resp);
+
+     // 完成了整个请求和响应: 重定向
+     resp.sendRedirect("/phone/list");
+   #+end_src
+
+7. D
+   - 获取一个值 String xx = req.getParameter(xx)
+   - 获取多个值 String[] xxs = req.getParameterValues(xx)
+   - 取多个的示例:
+     #+begin_src java
+       // <input type="checkbox" name='color' value='red'>红色
+       // <input type="checkbox" name='color' value='green'>绿色
+       // <input type="checkbox" name='color' value='purple'>紫色
+       String[] colors = req.getParameterValues("color");
+       for (String color : colors) {
+           System.out.println(color);
+       }
+     #+end_src
+
+8. A
+   - request != requert 拼写错误
+
+9. C
+   - 也可以覆盖 doGet/doPost 方法
+   - 如果覆盖了 service 方法，那么 doGet/doPost 则会无效
+
+10. B
+    - WebContent
+      + 静态文件
+      + 静态文件夹/**
+      + WEB-INF
+         - web.xml
+         - lib/xx.jar
+         - classes/*.class
+
+** 第三章 (P67)
+
+1. AC
+   - 过滤器必须实现 Filter 接口
+   - 必须要重写 doFilter/init/destroy 方法
+   - chain.doFilter 来执行下一个的 Filter 或 Servlet
+
+2. BC
+
+3. A
+   - 必须的是 filter-name
+   - 另一个是 servlet-name 或者 url-pattern
+
+4. C
+
+5. ABC
+   - 单例模式
+
+6. AC
+   - 只有一个
+   - 可以放共享的数据
+   - servletContext.setAttribute("xxx", xx);
+
+7. BD
+   配置:
+   #+begin_src xml
+     <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+         <context-param>
+             <param-name>bj</param-name>
+             <param-value>yaoliusan</param-value>
+         </context-param>
+     </web-app>
+   #+end_src
+
+   获取:
+   #+begin_src java
+     String banjiString = getServletContext().getInitParameter("bj");
+     req.setAttribute("banji", banjiString);
+   #+end_src
+
+   使用:
+   #+begin_src html
+     <h3>${banji} 的手机系统</h3>
+   #+end_src
+
+8. BD
+   - 可以设置多个 Listener，多多益善
+   - ServletContextListener 可以监听启动或关闭
+
+** 第四章 (P86)
+
+1. B
+
+2. AC
+   - 谷歌浏览器，多个窗口是 Session 共享的。在一些古老的浏览器中，不一定
+   - 不同的浏览器，Session 是不通用的，不共享的
+
+3. B
+   - 至少有两个错误
+   - session.getAttriubute 返回的是 Object 类型，一般需要类型转换
+   - out.println，只能有一个参数
+
+4. AD
+
+5. A
+   - req.getSession();  如果 session 不存在，那么自动创建
+   - req.getSession(false); 如果 session 不存在，那不会自动创建而且返回 null
+
+6. B
+
+7. C
+
+8. C
+
+9. E
+
+10. B
+
+** 第五章 (P107)
+
+1. B
+
+2. D
+
+3. D
+
+4. E
+
+5. ABCD
+
+6. A
+
+7. A
+
+8. E?
+
+9. ABCE
+
+10. A
+
+** 第六章 (P125)
+
+1. B
+
+2. A
+
+3. A
+
+4. C
+
+5. D
+   - out.println("<!-xxx...");
+
+6. C
+
+7. D
+
+8. D
+
+9. AD
+   - <%= 的话里面的表达式不能有 ; 结尾
+
+10. A
+
+** 第七章 (P146)
+
+1. A
+
+2. AB
+
+3. C
+
+4. A
+
+5. C
+
+6. B
+
+7. D
+
+8. ABC
+
+9. ?题目错误? BCD
+   - A 是错误的, pageContext.getServletContext 来获取 appliction
+   - B/C/D 貌似都是对的
+
+10. B
+
+** 第八章 (P165)
+
+1. B
+
+2. C
+   - page
+   - request
+   - session
+   - application 整个应用
+
+3. D
+
+4. CD
+
+5. C
+
+6. A
+
+7. AC
+
+8. B
+
+9. D
+
+10. ACD?
+
+** 第九章 (P180)
+
+1. AC
+
+2. C
+   - ne: not equal，不相等
+
+3. A
+
+4. D
+
+5. A
+   - ${out.xxx} 不对的
+   - ${header["user-agent"]}
+
+6. A
+
+7. ACD?
+
+8. D
+
+9. B
+
+10. C
+
+** 第十章 (P206)
+
+1. B
+   - c:if 判断
+   - c:forEach 循环
+   - c:choose/c:forTokens
+
+2. B
+
+3. B
+
+4. ABCD?
+
+5. A
+
+6. D
+
+7. A
+
+8. A
+
+9. C
+
+** 第 11 章 (P221)
+
+1. ABC
+   - Model, 模型层 (bean/dao) 主要用来处理逻辑
+   - View, 视图层 (jsp) 主要用来渲染页面
+   - Controller, 控制层 (Servlet) 用来居中调停
+   - 以上，就是所谓的 MVC 模式
+
+2. BCD
+
+3. B
+
+4. BC
+
+5. C
+
+6. B
+
+7. C
+
+8. C
+
+
+
+

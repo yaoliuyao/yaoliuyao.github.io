@@ -1,0 +1,1368 @@
+#+TITLE: Servlet and JSP
+
+
+* JCP 以及规范
+
+JCP (Java Community Process) 是 Java 技术的标准化组织。
+
+规范/标准:
+- pdf 文件
+- 包含 interface 的 jar 包
+
+Servlet3.1 规范 [[https://github.com/waylau/servlet-3.1-specification][中文版]] [[https://jcp.org/en/jsr/detail?id=340][英文版]]。
+
+Servlet 规范是 JCP 组织推出的一套，如何使用 Java 进行 Web 编程的规范。
+它本身只包含一份概念的 pdf，还有一个包含着基本接口的 Jar 包。
+- [[file:asset/Servlet3.1-Specification.pdf][Servlet3.1-Specification.pdf]]
+- [[file:asset/servlet-api.jar][servlet-api.jar]] [$TOMCAT/lib/servlet-api.jar]
+- [[file:asset/jsp-api.jar][jsp-api.jar]]     [$TOMCAT/lib/jsp-api.jar]
+
+Servlet 规范是对所有人开放的，只要你愿意，你就可以按照规范上的规定，自行去设计相关的基于 Java 的 Web 服务器。
+
+其中，比较流行的是:
+- Apache Tomcat
+- Jetty
+- Weblogic
+- Websphere
+- JBoss
+
+它们是基于 Java 进行 Web 编程的服务器，也被称作 *Servlet 容器*。
+
+* Servlet (核心)
+** Servlet 接口 / HttpServlet 类
+
+如果要使用 Java 提供一个 Web 服务，只需要:
+- 写一个类，这个类实现 ~Servlet~ 接口即可。在 Servlet 接口的 service 方法内，处理请求，并返回结果到客户端
+- 上述实现的类就是一个 Servlet，然后只需要将其编译并部署到 Servlet 容器里即可。
+  部署的意思是放到 Servlet 容器的指定位置，并配置合适的访问的 url
+- 常见的 Servlet 容器是 Tomcat，它不仅具备解析 Servlet 类的功能，还能提供基本的 Web 服务器功能
+
+由上可见，如果提供服务，只需要实现接口:
+#+begin_src java
+  @WebServlet("/woshishui")
+  public class WoshiYigeServlet implements Servlet {
+      @Override
+      public void init(ServletConfig config) throws ServletException {
+          System.out.println("我正在被初始化，我是 WoshiYigeServlet 类");
+      }
+      @Override
+      public void destroy() {
+      }
+
+      @Override
+      public ServletConfig getServletConfig() {
+          return null;
+      }
+      @Override
+      public String getServletInfo() {
+          return null;
+      }
+
+      @Override
+      public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+          res.getWriter().write("hello, world");
+      }
+  }
+#+end_src
+
+可实际上，我们大多数 Web 服务都是基于 Http 请求的。
+HTTP 协议有自己的一些独特规则，比如 http method 等，所以为了能更方便处理基于 HTTP 协议的服务，
+标准中又提供了一个针对性的 HttpServlet 类。
+
+一般来说，我们创建 Servlet，只需要继承这个类即可。
+#+begin_src java
+  @WebServlet("/nishishui")
+  public class NishiYigeServlet extends HttpServlet {
+      @Override
+      public void init() throws ServletException {
+          System.out.println("我正在被初始化，我是 WoshiYigeServlet 类");
+      }
+	
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.getWriter().write("hello, world");
+      }
+  }
+#+end_src
+
+之后，就不需要理会 service 方法了，而是将相应的逻辑写到对应 http method 的 doGet/doPost/doDelete 等方法中即可。
+#+begin_src java
+  public class MyServlet extends HttpServlet {
+      @Override
+      doGet(req, resp) {
+      }
+
+      @Override
+      doPost(req, resp) {
+      }
+  }
+#+end_src
+
+即:
+: 请求 -> 根据 /url 得到对应 Servlet -> 调用对应 doGet/doPost 方法 -> 响应给用户
+
+** Request/Response
+
+HttpServletRequest/HttpServletResponse:
+- request/response，是在请求到达服务器的时候，服务器自动创建的两个对象
+- request 包含的是一些跟请求相关的数据和操作
+- response 包含的是一些跟响应相关的数据和操作
+- 每次请求响应结束之后，服务器就会将这个 request/response 同时销毁
+
+** HttpSession
+
+Web 请求都是基于 HTTP 协议的。
+
+HTTP 协议最大的一个特点，就是无状态的:
+- 一个请求到底是谁发送的，服务器不 care
+- 如果一个人多次向服务器发送请求，服务器也压根分辨不出来
+
+但是，在实际的业务中，我们却需要让服务器能够识别来自不同人的请求。
+
+比如说，购物，如果一个人登录、浏览商品，所有的操作都应该聚合起来，
+多次请求加入购物车，后面买单。
+
+我们就需要有一定的手段，能够让服务器跟踪一个人的所有操作，这就是所谓的 *会话*。
+而跟踪一个人所有的请求操作的行为，就是 *会话跟踪*。
+
+实现会话跟踪的方式有若干，最常用的是:
+1. URL 重写
+2. 浏览器的 Cookie 功能
+
+*** Cookie
+
+表面是小饼干的意思。
+
+Cookie 是浏览器具备的一种功能，它能够为特定的 host 在本地保存一段小的数据。
+
+而每次有到这个 host 的请求的时候，浏览器会 *自动* 将匹配 host 的所有的保存的数据，一起发送到服务器。
+
+关键词:
+- 浏览器端
+- 自动发送
+- 凭证
+
+*** Session 的基本使用
+
+Java Web 就可以利用 URL Rewrite 的机制，或者 Cookie 的机制，实现所谓的 Session。
+
+基本使用:
+#+begin_src java
+  // 获取 Session 对象
+  //
+  // 判断上传的 Cookie 里，有没有一段 JSESSIONID 的数据。
+  //
+  // 没有:
+  // 1. TOMCAT 会生成一段随机的字符串
+  // 2. 通过 resp.setHeader('set-cookie') 方式进行响应。浏览器将会将返回的 JSESSIONID 保存到 Cookie 中
+  // 3. TOMCAT 随后，为这个 JSESSIONID 创建一个对象，Session 对象，保存在内存中
+  // 4. 返回这个新创建的对象。之后就可以在里面保存一些数据了
+  //
+  // 有的话:
+  // 直接返回这个 session 对象
+  HttpSession session = request.getSession();
+
+  // 保存
+  session.setAttribute("xxx", new User());
+
+  // 获取
+  User user = (User) session.getAttribute("xxx");
+
+  // 移除
+  session.setAttribute("xxx", null);
+  session.removeAttribute("xxx");
+
+  // 失效
+  session.invalidate();
+#+end_src
+
+session 具备有效期:
+#+begin_src java
+  // 在 30000 秒之后，如果一直没操作，TOMCAT 就会将这个 SESSIOn 给毁掉
+  session.setMaxInactiveInterval(30000);
+  session.getMaxInactiveInterval();
+#+end_src
+
+当然，也可以使用 Web.xml 的方式进行全局设置:
+#+begin_src xml
+  <!-- 单位是分钟，要根据自己的业务需求改成合适的值 -->
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+#+end_src
+
+*** Session 的基本原理
+
+Session 是 Tomcat 服务器，根据 JSESSIONID，为每个会话，在内存中创建的一个数据对象。
+它是一个 Java 对象，最主要的方法是 setAttribute/getAttribute。
+
+第一次请求的时候，响应:
+
+[[file:img/oimg_20200725_081639.png]]
+
+
+后面的每次请求，JSESSIONID 会随着请求一起被发送:
+
+[[file:img/oimg_20200725_082112.png]]
+
+
+
+** ServletContext
+
+在整个 Tomcat 运行的过程中，只会创建唯一的一个 ServletContext 对象。
+
+它主要用来表示 Tomcat 在运行的时候的一些基本信息（配置信息、临时数据）。
+#+begin_src java
+  ServletContext context = req.getServletContext();
+  context.getRealPath("/");
+#+end_src
+
+它也具备下面的相关方法:
+#+begin_src java
+  context.getAttribute("xxx");
+  context.setAttribute("xxx", yyy);
+#+end_src
+
+通过上述方法保存的数据:
+- 存在时间，就是 Tomcat 运行的整个期间
+- 可以被所有访问者进行获取或设置。所以叫共享数据、全局数据
+- 除非特殊情况，不要将数据放到 ServletContext 里面
+
+** ContextPath 项目上下文路径
+
+/book/add 中的 /book，是因为我们部署到 tomcat 上面使用的是 /book 作为前缀。
+
+但是如果在 tomcat 上部署发生变化的时候，这个可能会变的。
+
+因此，不建议写死，而是，在任何使用 /book 的地方，利用:
+: request.getContextPath()
+
+来获取、拼接、使用这个路径。
+
+在 JSP 中的话:
+: <%= request.getContextPath() %>
+: ${pageContext.request.contextPath}
+: ${pageContext.request.getContextPath()}
+
++${request.contextPath}+ 因为 request 不能作为隐式对象。
+
+* Filter (过滤器)
+
+: 它只是一种将 Servlet 中一些重复的逻辑提取出来，进行简化的方法。
+
+** 什么是过滤器
+
+过滤器:
+- 是一个类，需要实现 =javax.servlet.Filter= 接口
+- 需要通过 =@WebFilter= 或 web.xml 进行配置，从而委托给 tomcat
+
+场景:
+- 编码的设置
+- 访问日志
+- 登录检测
+- 权限检查
+
+另外:
+- 定义的 Filter 将会在对应的 Servlet#service 方法之前、之后被调用
+- 过滤器可以配置多个 (无限个)，多个将逐次执行（链式）
+
+** 基本示例
+
+#+begin_src java
+  @WebFilter("/*")
+  public class EncodingFilter implements Filter {
+      @Override
+      public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+          System.out.println("进入大门口，接受检查");
+          request.setCharacterEncoding("utf-8");
+          response.setCharacterEncoding("utf-8");
+          response.setContentType("text/html;charset=utf8");
+		
+          System.out.println("检查完毕，放行");
+          chain.doFilter(request, response);
+		
+          System.out.println("你要离开，拿好防疫手册，下次再来，拜拜");
+      }
+
+      @Override
+      public void init(FilterConfig filterConfig) throws ServletException {
+      }
+      @Override
+      public void destroy() {
+      }
+  }
+#+end_src
+
+** 配置方式
+
+1. 注解 (Annotation)
+2. 传统的 web.xml 方式
+3. 混合使用
+
+注解的方式:
+#+begin_src java
+  @WebFilter("/要匹配的路径")
+  @WebFilter(urlPatterns = { "/edit", "/list" })
+#+end_src
+
+传统的 XML 方式:
+#+begin_src xml
+  <filter>
+    <filter-name>fangf</filter-name>
+    <filter-class>book.filter.FangwenRizhiFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>fangf</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+#+end_src
+
+在 xml 中，是按照定义的顺序，来决定多个过滤器的执行次序:
+#+begin_src xml
+  <!-- 先执行编码的设置 -->
+  <filter>
+    <filter-name>encodef</filter-name>
+    <filter-class>book.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodef</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- 再去保存访问信息 -->
+  <filter>
+    <filter-name>fangf</filter-name>
+    <filter-class>book.filter.FangwenRizhiFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>fangf</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+#+end_src
+
+使用注解的方式，目前是不能确保多个过滤器的执行顺序的。
+可以混合使用注解或 xml 方式:
+#+begin_src xml
+  <!-- @WebFilter("/*") -->
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>book.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>FangwenRizhiFilter</filter-name>
+    <filter-class>book.filter.FangwenRizhiFilter</filter-class>
+  </filter>
+#+end_src
+
+* EventListener (监听器)
+
+: Servlet 是用来监听回应外部的用户请求。
+: EventListener 是用来监听应对服务器内部的一些变化。
+
+内部的事件:
+- 容器启动、关闭的时候
+  : ServletContextListener
+- request 对象创建、销毁的时候
+  : ServletRequestListener
+- response 对象创建、销毁的时候
+  : ServletResponseListener
+- session 对象创建、销毁、激活、失效的时候
+  : HttpSessionListener/HttpSessionActivationListener/...
+- request/session/application 设置、删除、更新值的时候
+  : ServletRequestAttributeListener
+  : HttpSessionAttributeListener
+  : ServletContextAttributeListener
+
+使用步骤:
+1. 创建一个类，实现上面相应的功能 *接口*
+2. 跟 Tomcat 注册激活上述的类:
+   - 注解:
+     : @WebListener
+   - web.xml:
+     : <listener>ccc.YourListener</listener>
+
+示例，在容器启动的时候，将 *上下文路径* 保存到 ServletContext 中方便后续在 JSP 中使用:
+#+begin_src java
+  @WebListener
+  public class StartupListener implements ServletContextListener {
+      @Override
+      public void contextInitialized(ServletContextEvent sce) {
+          ServletContext context = sce.getServletContext();
+          context.setAttribute("r", context.getContextPath());
+      }
+	
+      @Override
+      public void contextDestroyed(ServletContextEvent sce) {
+		
+      }
+  }
+#+end_src
+
+* JSP (Java Server Page)
+
+为什么要有 JSP:
+1. 如果使用 HTTP 进行通信，我们要响应给客户端的，一般就是符合 html 格式的文本字符串
+2. 如果只使用 Servlet，也可以通过拼接的方式得到这个 html 字符串，但字符串拼接的方式是在让人不愉快
+3. 我们需要一种类似 *模板* 的技术，能更好、更容易将服务器产生的数据渲染成一个合适的 html
+
+** JSP 本质就是一个 Servlet
+
+如果用户访问某个 JSP 文件，TOMCAT 会自动将其 *翻译* 成一个标准的 Servlet，然后使用它响应用户。
+
+: E:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\work\Catalina\localhost\book\org\apache\jsp
+
+#+begin_src html
+  <%@page import="java.sql.ResultSet"%>
+  <%@page import="java.sql.PreparedStatement"%>
+  <%@page import="utils.DBHelper"%>
+  <%@page import="java.sql.Connection"%>
+  <%@page import="java.util.Date"%>
+  <%@page language="java" 
+          contentType="text/html; charset=utf-8" 
+          pageEncoding="utf-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <title>Insert title here</title>
+  <style>
+      li {
+          color: red;
+      }
+  </style>
+  <script>
+      window.onload = function () {
+          var ul = document.querySelector('ul');
+          document.querySelector('ul').onclick = (e) {
+              alert("ul 一共有多少个子元素: " + ul.children.length);
+          };
+      }
+  </script>
+  </head>
+
+  <%
+      int age = 19;
+  %>
+
+  <body>
+      <h3>hello world</h3>
+	
+      <p>welcome come here.</p>
+	
+  <% if (age > 18) { %>
+      <p>nian ling tai da,bushei guankan</p>
+  <% } else { %>
+      <p>this a very good video</p>
+  <% } %>
+
+      <% 
+      // woshi yige zhushi.
+          System.out.println("helloo world");
+          out.print(new Date());
+  out.write("kkkkk");
+      %>
+
+
+  <ul>
+      <%
+      String sql = "select bookName from book";
+      try (Connection conn = DBHelper.getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);
+              ResultSet rs = ps.executeQuery()) {
+          while (rs.next()) {
+      %>
+          <li>
+          <% out.write(rs.getString(1)); %>
+          </li>
+      <%
+          }
+      }
+      %>
+  </ul>
+
+  </body>
+  </html>
+#+end_src
+
+将会被翻译成:
+#+begin_src java
+  /*
+   ,* Generated by the Jasper component of Apache Tomcat
+   ,* Version: Apache Tomcat/8.5.57
+   ,* Generated at: 2020-07-18 01:14:59 UTC
+   ,* Note: The last modified time of this file was set to
+   ,*       the last modified time of the source file after
+   ,*       generation to assist with modification tracking.
+   ,*/
+  package org.apache.jsp;
+
+  import javax.servlet.*;
+  import javax.servlet.http.*;
+  import javax.servlet.jsp.*;
+  import java.sql.ResultSet;
+  import java.sql.PreparedStatement;
+  import utils.DBHelper;
+  import java.sql.Connection;
+  import java.util.Date;
+
+  public final class xxx_jsp extends org.apache.jasper.runtime.HttpJspBase implements org.apache.jasper.runtime.JspSourceDependent, org.apache.jasper.runtime.JspSourceImports {
+
+    private static final javax.servlet.jsp.JspFactory _jspxFactory = javax.servlet.jsp.JspFactory.getDefaultFactory();
+    private static java.util.Map<java.lang.String,java.lang.Long> _jspx_dependants;
+    private static final java.util.Set<java.lang.String> _jspx_imports_packages;
+    private static final java.util.Set<java.lang.String> _jspx_imports_classes;
+
+    static {
+      _jspx_imports_packages = new java.util.HashSet<>();
+      _jspx_imports_packages.add("javax.servlet");
+      _jspx_imports_packages.add("javax.servlet.http");
+      _jspx_imports_packages.add("javax.servlet.jsp");
+      _jspx_imports_classes = new java.util.HashSet<>();
+      _jspx_imports_classes.add("utils.DBHelper");
+      _jspx_imports_classes.add("java.sql.Connection");
+      _jspx_imports_classes.add("java.sql.ResultSet");
+      _jspx_imports_classes.add("java.util.Date");
+      _jspx_imports_classes.add("java.sql.PreparedStatement");
+    }
+
+    private volatile javax.el.ExpressionFactory _el_expressionfactory;
+    private volatile org.apache.tomcat.InstanceManager _jsp_instancemanager;
+
+    public java.util.Map<java.lang.String,java.lang.Long> getDependants() { return _jspx_dependants; }
+    public java.util.Set<java.lang.String> getPackageImports() { return _jspx_imports_packages; }
+    public java.util.Set<java.lang.String> getClassImports() { return _jspx_imports_classes; }
+
+    public javax.el.ExpressionFactory _jsp_getExpressionFactory() {
+      if (_el_expressionfactory == null) {
+        synchronized (this) {
+          if (_el_expressionfactory == null) {
+            _el_expressionfactory = _jspxFactory.getJspApplicationContext(getServletConfig().getServletContext()).getExpressionFactory();
+          }
+        }
+      }
+      return _el_expressionfactory;
+    }
+
+    public org.apache.tomcat.InstanceManager _jsp_getInstanceManager() {
+      if (_jsp_instancemanager == null) {
+        synchronized (this) {
+          if (_jsp_instancemanager == null) {
+            _jsp_instancemanager = org.apache.jasper.runtime.InstanceManagerFactory.getInstanceManager(getServletConfig());
+          }
+        }
+      }
+      return _jsp_instancemanager;
+    }
+
+    public void _jspInit() {}
+
+    public void _jspDestroy() {}
+
+    // Service 方法!
+    public void _jspService(final javax.servlet.http.HttpServletRequest request, final javax.servlet.http.HttpServletResponse response) throws java.io.IOException, javax.servlet.ServletException {
+
+      final java.lang.String _jspx_method = request.getMethod();
+      if (!"GET".equals(_jspx_method) && !"POST".equals(_jspx_method) && !"HEAD".equals(_jspx_method) && !javax.servlet.DispatcherType.ERROR.equals(request.getDispatcherType())) {
+        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "JSP 只允许 GET、POST 或 HEAD。Jasper 还允许 OPTIONS");
+        return;
+      }
+
+      final javax.servlet.jsp.PageContext pageContext;
+      javax.servlet.http.HttpSession session = null;
+      final javax.servlet.ServletContext application;
+      final javax.servlet.ServletConfig config;
+      javax.servlet.jsp.JspWriter out = null;
+      final java.lang.Object page = this;
+      javax.servlet.jsp.JspWriter _jspx_out = null;
+      javax.servlet.jsp.PageContext _jspx_page_context = null;
+
+      try {
+        response.setContentType("text/html; charset=utf-8");
+        pageContext = _jspxFactory.getPageContext(this, request, response, null, true, 8192, true);
+        _jspx_page_context = pageContext;
+        application = pageContext.getServletContext();
+        config = pageContext.getServletConfig();
+        session = pageContext.getSession();
+        out = pageContext.getOut();
+        _jspx_out = out;
+
+
+///// 从这里开始，就是 jsp 中我们的内容 /////
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("<!DOCTYPE html>\r\n");
+        out.write("<html>\r\n");
+        out.write("<head>\r\n");
+        out.write("<meta charset=\"utf-8\">\r\n");
+        out.write("<title>Insert title here</title>\r\n");
+        out.write("<style>\r\n");
+        out.write("\tli {\r\n");
+        out.write("\t\tcolor: red;\r\n");
+        out.write("\t}\r\n");
+        out.write("</style>\r\n");
+        out.write("<script>\r\n");
+        out.write("\twindow.onload = function () {\r\n");
+        out.write("\t\tvar ul = document.querySelector('ul');\r\n");
+        out.write("\t\tdocument.querySelector('ul').onclick= (e) => {\r\n");
+        out.write("\t\t\talert(\"ul 一共有多少个子元素: \" + ul.children.length);\r\n");
+        out.write("\t\t};\r\n");
+        out.write("\t}\r\n");
+        out.write("</script>\r\n");
+        out.write("</head>\r\n");
+        out.write("\r\n");
+
+      int age = 19;
+
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("<body>\r\n");
+        out.write("\t<h3>hello world</h3>\r\n");
+        out.write("\t\r\n");
+        out.write("\t<p>welcome come here.</p>\r\n");
+        out.write("\t\r\n");
+   if (age > 18) { 
+        out.write("\r\n");
+        out.write("\t<p>nian ling tai da,bushei guankan</p>\r\n");
+   } else { 
+        out.write("\r\n");
+        out.write("\t<p>this a very good video</p>\r\n");
+   } 
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("\t");
+ 
+      // woshi yige zhushi.
+          System.out.println("helloo world");
+          out.print(new Date());
+  out.write("kkkkk");
+	
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("\r\n");
+        out.write("<ul>\r\n");
+        out.write("\t");
+
+      String sql = "select bookName from book";
+      try (Connection conn = DBHelper.getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);
+              ResultSet rs = ps.executeQuery()) {
+          while (rs.next()) {
+	
+        out.write("\r\n");
+        out.write("\t\t<li>\r\n");
+        out.write("\t\t");
+   out.write(rs.getString(1)); 
+        out.write("\r\n");
+        out.write("\t\t</li>\r\n");
+        out.write("\t");
+
+          }
+      }
+	
+        out.write("\r\n");
+        out.write("</ul>\r\n");
+        out.write("\r\n");
+        out.write("</body>\r\n");
+        out.write("</html>");
+///// 在这里结束，以上内容由 Tomcat 从 JSP 翻译而成并插入 /////
+
+
+      } catch (java.lang.Throwable t) {
+        if (!(t instanceof javax.servlet.jsp.SkipPageException)){
+          out = _jspx_out;
+          if (out != null && out.getBufferSize() != 0)
+            try {
+              if (response.isCommitted()) {
+                out.flush();
+              } else {
+                out.clearBuffer();
+              }
+            } catch (java.io.IOException e) {}
+          if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+          else throw new ServletException(t);
+        }
+      } finally {
+        _jspxFactory.releasePageContext(_jspx_page_context);
+      }
+    }
+  }
+#+end_src
+
+** 基本用法
+
+#+begin_src html
+  <%-- 我是注释 --%>
+
+  <html>
+  <%
+    写我们的 java 代码，没有任何限制;
+    写我们的 java 代码，没有任何限制;
+    写我们的 java 代码，没有任何限制;
+    out.println("<li>xxx</li>");
+  %>
+
+  <% out.println(book.getName()); %>
+  <%= book.getName() %>
+
+  <li>xxx</li>
+  </html>
+#+end_src
+
+** 内置对象
+
+我们通过上一章，可以看到，在我们的 JSP 渲染成的 Servlet 的 service 方面，有一些列的定义和初始化:
+#+begin_src java
+  public void _jspService(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+      PageContext pageContext;      // 3
+      HttpSession session = null;   // 4
+      ServletContext application;   // 5
+      ServletConfig config;         // 6
+      JspWriter out = null;         // 7
+      Object page = this;           // 8
+      JspWriter _jspx_out = null;
+      PageContext _jspx_page_context = null;
+
+      try {
+          response.setContentType("text/html; charset=utf-8");
+          pageContext = _jspxFactory.getPageContext(this, request, response, null, true, 8192, true);
+          _jspx_page_context = pageContext;
+          application = pageContext.getServletContext();
+          config = pageContext.getServletConfig();
+          session = pageContext.getSession();
+          out = pageContext.getOut();
+          _jspx_out = out;
+
+          ///// 下面一段是从我们写的 JSP 翻译而成并插入 /////
+          out.write("<html>");
+          out.write("</html>");
+          ///// 在这里插入结束 ///////
+
+          //...
+      }
+  }
+#+end_src
+
+由此可知，在 JSP 中，我们是可以直接使用到上述初始化的这些对象的:
+1. pageContext      (仅在 jsp 范围之内有效的一个对象)
+2. request/response (HttpServletRequest/HttpServletResponse)
+3. session          (HttpSession)
+4. application      (ServletContext)
+5. config           (ServletConfig)
+6. out              (PrintWriter)
+7. page             (代表被翻译成的那个 Servlet 对象)
+
+这些，有时候我们叫它们为 JSP 的内置对象。
+
+记住，会用 (可选: 进一步可以了解原理)。
+
+** JSP 指令
+
+- ~<%@ include file="xxx.jsp" %>~
+- ~<%@ taglib prefix="c" uri="xxx.tld" %>~
+- ~<%@ page import/errorPage/language/pageEncoding/contentType... %>~ key/value
+
+示例:
+#+begin_src html
+  <%@page import="book.bean.Account"%>
+  <%@page import="book.bean.Book"%>
+  <%@page import="java.util.List"%>
+  <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+  <%@ include file="footer.jsp" %>
+#+end_src
+
+定义的 footer 片段:
+#+begin_src html
+  <%@page pageEncoding="UTF-8"%>
+  <footer style="border-top: 1px darkgrey solid; padding: 5px; text-align: center; margin-top: 5em">
+    <p>版权所有: 南方IT学院 163 班</p>
+  </footer>
+#+end_src
+
+** JSP 动作
+
+仅是为了锦上添花:
+- ~<jsp:forward/include>~ request.getRequestDispatcher("/xxx").forward/include();
+- ~<jsp:param>~
+- ~<jsp:useBean/setProperty/getProperty...>~
+
+示例:
+#+begin_div :class mca1
+
+#+begin_src html
+  <%
+   String url = "user.jsp?username=Boss&password=19911";
+   request.getRequestDispatcher(url).forward(request, response);
+  %>
+#+end_src
+:break:
+#+begin_src html
+  <jsp:forward page="user.jsp">
+    <jsp:param value="Boss" name="username"/>
+    <jsp:param value="19911" name="password"/>
+  </jsp:forward>
+#+end_src
+#+end_div
+
+#+begin_div :class mc11
+
+#+begin_src html
+  <%
+    Cart cart = null;
+    Object o = session.getAttribute("cart");
+    if (o == null) {
+       cart = new Cart();
+    } else {
+       cart = (Cart) o;
+    }
+    cart.xxx;
+
+    cart.getAttribute("xxx");
+    cart.setAttribute("xxx", 222);
+  %>
+#+end_src
+:break:
+#+begin_src html
+  <jsp:useBean id="cart" scope="session" class="Carts">
+  <jsp:getProperty name="cart" propertie="xxx">
+  <jsp:setProperty name="cart" propertie="xxx" value="333">
+#+end_src
+#+end_div
+
+问题:
+- <%@ include %>  跟 <jsp:forward> 有什么区别?
+
+** EL 表达式
+
+EL (Expression Language) 表达式就是嵌入到 JSP 文件中的、
+结构为 ~${xxx.yyy}~ 的一种表达式语法。主要为了简化数据的获取。
+
+: JSP 的主要任务，就是 1) 拿到数据 2) 渲染出来
+
+拿到数据:
+- req.getAttribute("xxx")
+- session.getAttribute("account")
+- application.getAttribute("xxxxxxx")
+- req.getParameter("x")
+- req.getHeader("xxx");
+- req.getCookies()
+
+麻烦的原始写法:
+#+begin_src js
+  Book book;
+  Object o = req.getAttribute("book");
+  if (o == null) {
+      book = null;
+  } else {
+      book = (Book) o;
+  }
+  out.println("<li>" 
+               + book.getPrice()
+               + "</li>");
+
+
+  Student student = new Student("zhangsan");
+  pageContext.setAttribute("zhangsan", student);
+  application.setAttribute("xxx", student);
+#+end_src
+
+使用 el 表达式之后的简化:
+#+begin_src html
+  <!-- 从 request -->
+  <li>${requestScope.book.price}</li>
+  <li>${requestScope["book"].price}</li>
+  <li>${requestScope["book"].getPrice()}</li>
+
+  <!-- 从 session -->
+  <li>${sessionScope.book.price}</li>
+
+  <!-- 其他 -->
+  <li>${pageScope.book.price}</li>
+  <li>${aplicationScope.book.price}</li>
+
+  <!-- 更简单 -->
+  <!-- 这样写，将会依次从 pageScope/requestScope/sessionScope/applicationScope 寻找相应数据 -->
+  <li>${book.price}</li>
+#+end_src
+
+其他应用:
+#+begin_src html
+  ${param.xxx}             // req.getParameter("xxx");
+  ${paramValues.xxx}
+  ${header["user-agent"]}  // req.getHeader("user-agent");
+  ${cookie.JSESSIONID}
+  ${initParam.drive}
+#+end_src
+
+在 el 表达式中，可以进行简单的运算:
+#+begin_src html
+  ${1 + 1}
+  ${book.price + 10086}
+  ${pageScope.lianggeshu || !yigeshu == 33333}
+  ${empty books}
+  ${empty books ? "0" : books.length}
+  ${book.price > 100 ? "太贵了!" : "挺好的"}
+#+end_src
+
+** JSTL 标签
+
+JSP Standard Tag Library (JSP 标准标签库)。
+
+https://repo1.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+
+首先将其下载，[[file:../asset/jstl-1.2.jar][本地下载地址]]，然后，将其放置到 WEB-LIB/lib 下 (跟 jdbc.jar 排排坐)。
+
+然后需要在相应的 jsp 文件中，引入它:
+: <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+*** 条件判断 (c:if)
+
+#+begin_div :class mc11
+
+#+begin_src html
+<c:if test="${empty sessionScope.account}">
+	<p>请您点击登陆</p>
+</c:if>
+
+<c:if test="${sessionScope.account != null}">
+	<ul>
+		<li>账号: ${account.username}</li>
+		<li>密码: ${account.password}</li>
+	</ul>
+</c:if>
+#+end_src
+:break:
+#+begin_src html
+<%
+	if (session.getAttribute("account") == null) {
+%>
+<p>
+请您点击登陆
+</p>
+<%
+	} else {
+%>
+<ul>
+	<li>账号: ${account.username}</li>
+	<li>密码: ${account.password}</li>
+</ul>
+<%
+	}
+%>
+#+end_src
+#+end_div
+
+*** 循环语句 (c:forEach)
+
+#+begin_div :class mc11
+
+#+begin_src html
+  <ul>
+  <c:forEach items="${books}" var="book">
+      <li>
+        <c:out value="${book.bookName}" />
+        /
+        <c:out value="${book.price}" />
+      </li>
+  </c:forEach>
+  </ul>
+
+  <ul>
+  <c:forEach items="${books}" var="book">
+      <li> ${book.bookName} / ${book.price} </li>
+  </c:forEach>
+  </ul>
+
+  <ul>
+  <!--  begin="2" step="1" end="5" -->
+  <c:forEach items="${books}" var="book" varStatus="s">
+      <c:if test="${s.first}">
+      -----------------------------------
+      </c:if>
+      <c:if test="${book.price > 1000}">
+          <li>${s.count} :  ${book.bookName} / ${book.price} </li>
+      </c:if>
+  </c:forEach>
+  </ul>
+#+end_src
+:break:
+#+begin_src html
+<ul>
+<%
+	List<Book> books = (List<Book>) request.getAttribute("books");
+	for (Book book: books) {
+%>
+<li><%= book.getBookName() %> / <%= book.getPrice() %></li>
+<%
+	}
+%>
+</ul>
+#+end_src
+#+end_div
+
+varStatus 用来表示循环中的一些状态信息:
+- current 当前这次迭代的（集合中的）项
+- index 当前这次迭代从 0 开始的迭代索引
+- count 当前这次迭代从 1 开始的迭代计数
+- first 用来表明当前这轮迭代是否为第一次迭代的标志
+- last  用来表明当前这轮迭代是否为最后一次迭代的标志
+
+~<c:out>~ 用来表示输出变量内容，很多时候，可以直接用 el 表达式代替它。
+
+*** 其他的核心标签
+**** c:choose/when/otherwise 
+
+条件判断 Switch (加强版的 c:if)
+
+#+begin_src java
+  <c:forEach items="${books}" var="book" varStatus="s" begin="2" step="1">
+      <c:choose>
+          <c:when test="${book.price > 1000}">
+              <li>贵的书:  ${book.bookName}</li>
+          </c:when>
+          <c:when test="${book.price < 100}">
+              <li>推荐书籍:  ${book.bookName}</li>
+          </c:when>
+          <c:otherwise>
+              <li>${s.count} :  ${book.bookName} / ${book.price} </li>
+          </c:otherwise>
+      </c:choose>
+  </c:forEach>
+#+end_src
+
+**** c:forTokens 
+
+是 c:forEach 的一种特殊情况，用来将字符串分割并且逐个进行处理的一种循环
+
+#+begin_src html
+  <c:forTokens items="123:456:abc:ddddddd:哈哈" delims=":" var="e">
+    <li>${e}</li>
+  </c:forTokens>
+#+end_src
+
+**** c:url
+
+是用标签的形式更灵活拼接 url
+
+#+begin_src html
+  // 如果不带 var 的话，将会在原地生成一个 url
+  // 如果带 var 的话，那么将会把 url 放到 aaa 变量中，后续就可以 $aaa 的方式使用了
+  <c:url value="/add" var="aaa">
+      <c:param name="hello" value="1111" />
+      <c:param name="world" value="2222" />
+  </c:url>
+  <a href="${aaa}">hahaha</a>
+#+end_src
+
+**** c:set/c:remove
+
+#+begin_src html
+  <% session.setAttribute("aaa", 2333); %>
+  <c:set property="aaa" scope="session" value="2333"></c:set>
+#+end_src
+
+**** c:import 
+
+请问，这三个有啥区别:
+1. <%@ include file="xxx.jsp" %>
+2. <jsp:include path="xxx.jsp" >
+3. <c:import url="xxx.jsp"></c:import>
+
+*** 格式化 (fmt)
+
+首先，引进:
+: <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+接下来，使用:
+#+begin_src html
+  <fmt:formatNumber value="4000000" />
+  <fmt:formatNumber value="4000000" pattern="###,##" />
+  <fmt:formatNumber value="4000000" type="currency" currencySymbol="$" />
+
+  <fmt:formatDate value="<%= new java.util.Date() %>" pattern="yyyy 年 MM 月 HH:mm:ss" />
+#+end_src
+
+*** 函数标签 (fn)
+
+首先，引进:
+: <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+接下来，使用:
+#+begin_src html
+  ${fn:length("hello")}
+  ${fn:indexOf("hello", "l")}
+  ${fn:replace("hello", "l", "L")}
+  ${fn:toUpperCase("hello")}
+  ${fn:trim("   hello  ")}
+
+  <c:if test="${fn:contains('hello', 'h')}">
+      hello 里面是有 h 的
+  </c:if>
+#+end_src
+
+*** [示例] jstlDemo.jsp
+
+#+begin_src html
+  <%@page import="book.bean.Account"%>
+  <%@page import="book.bean.Book"%>
+  <%@page import="java.util.List"%>
+  <%@page import="book.dao.BookDAO"%>
+  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+  <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+  <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+  <%
+      request.setAttribute("books", new BookDAO().list());
+
+      Account account = new Account();
+      account.setUsername("tomcat");
+      account.setPassword("jerry");
+      session.setAttribute("account", account);
+  %>
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <title>JSTL 示例</title>
+  </head>
+  <body>
+  JSTL 示例
+
+  <%-- 判断 if --%>
+
+  <c:if test="${empty sessionScope.account}">
+      <p>请您点击登陆</p>
+  </c:if>
+
+  <c:if test="${sessionScope.account != null}">
+      <ul>
+          <li>账号: ${account.username}</li>
+          <li>密码: ${account.password}</li>
+      </ul>
+  </c:if>
+
+  <h5>书籍列表</h5>
+  <ul>
+  <c:forEach items="${books}" var="book" varStatus="s" begin="2" step="1">
+      <c:if test="${s.first}">
+      -----------------------------------
+      </c:if>
+      <c:if test="${book.price > 1000}">
+          <li>${s.count} :  ${book.bookName} / ${book.price} </li>
+      </c:if>
+  </c:forEach>
+  </ul>
+
+  <hr>
+
+  <%-- 加强版的 c:if/else; switch --%>
+  <c:forEach items="${books}" var="book" varStatus="s" begin="2" step="1">
+      <c:choose>
+          <c:when test="${book.price > 1000}">
+              <li>贵的书:  ${book.bookName}</li>
+          </c:when>
+          <c:when test="${book.price < 100}">
+              <li>推荐书籍:  ${book.bookName}</li>
+          </c:when>
+          <c:otherwise>
+              <li>${s.count} :  ${book.bookName} / ${book.price} </li>
+          </c:otherwise>
+      </c:choose>
+  </c:forEach>
+
+  <hr>
+
+  <%-- forEach 的一种特殊 --%>
+  <c:forTokens items="123:456:abc:ddddddd:哈哈" delims=":" var="e">
+      <li>${e}</li>
+  </c:forTokens>
+
+  <hr>
+
+  <c:url value="/add" var="aaa">
+      <c:param name="hello" value="1111" />
+      <c:param name="world" value="2222" />
+  </c:url>
+  <a href="${aaa}">hahaha</a>
+
+  <hr>
+
+  <% session.setAttribute("aaa", 2333); %>
+  <%--c:set property="aaa" scope="session" value="2333" var></c:set> --%>
+
+  <hr>
+
+  <%--
+  <c:import url="aaa.jsp" ></c:import>
+  --%>
+
+  <hr>
+
+  <fmt:formatNumber value="4000000" />
+  <fmt:formatNumber value="4000000" pattern="###,##" />
+  <fmt:formatNumber value="4000000" type="currency" currencySymbol="$" />
+
+  <hr>
+
+  <fmt:formatDate value="<%= new java.util.Date() %>" pattern="yyyy 年 MM 月 HH:mm:ss" />
+
+  <hr>
+
+  ${fn:length("hello")}
+  ${fn:indexOf("hello", "l")}
+  ${fn:replace("hello", "l", "L")}
+  ${fn:toUpperCase("hello")}
+  ${fn:trim("   hello  ")}
+
+  <c:if test="${fn:contains('hello', 'h')}">
+      hello 里面是有 h 的
+  </c:if>
+
+  </body>
+  </html>
+#+end_src
+
+* 生命周期 (单例、按需加载)
+
+- 单实例模式，简称单例模式，也就是一个类只会创建一个实例。每个 Servlet 只会有一个实例，创建之后被放到了容器里
+- 懒加载模式，默认情况下 Servlet/Filter/jsp 等是不会随着服务器启动而被实例化的，而是在第一个人访问的时候，才会触发创建实例的过程。后续再有人用的时候直接拿来用就可以了
+- Servlet 初始化、销毁，对应 ~init/destroy~ 方法
+
+另外，如果想让某个 Servlet 随着容器启动被实例化，可以显式指明:
+#+begin_src xml
+  <servlet>
+    <servlet-class>book.web.BookXxxServlet</servlet-class>
+    <load-on-startup>1</load-on-startup> <!-- load it! -->
+  </servlet>
+#+end_src
+
+* 配置小结
+** web.xml
+
+传统方式，通用、表达力强。
+
+#+begin_src xml
+  <!-- 标准头部 -->
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!-- 根标签 web-app -->
+  <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    <!-- 默认页面 -->
+    <welcome-file-list> 
+      <welcome-file>index.html</welcome-file>
+      <welcome-file>list</welcome-file>
+    </welcome-file-list>
+
+    <!-- 监听器 -->
+    <listener class="book.listener.StartupListener" />
+
+    <!-- Servlet -->
+    <servlet>
+      <servlet-name>book_list</servlet-name>
+      <servlet-class>book.web.BookListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>book_list</servlet-name>
+      <url-pattern>/list</url-pattern>
+    </servlet-mapping>
+
+    <!-- [可选] 也可以为 Servlet 传递一些参数 -->
+    <servlet>
+      <servlet-name>book_xxx</servlet-name>
+      <servlet-class>book.web.BookXxxServlet</servlet-class>
+      <!-- 这个参数，可以在 Servlet 中通过 getServletConfig 得到 -->
+      <init-param>
+        <param-name>aaa</param-name>
+        <param-value>111</param-value>
+      </init-param>
+      <!-- 随着容器启动而初始化 -->
+      <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- 过滤器 -->
+    <filter>
+      <filter-name>thisIsEncodingFilter</filter-name>
+      <filter-class>book.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping> 
+      <filter-name>thisIsEncodingFilter</filter-name> 
+      <url-pattern>/*</url-pattern> 
+    </filter-mapping>
+
+    <!-- 错误页面的设置 -->
+    <error-page> 
+      <error-code>404</error-code> <!-- 如果发生 404 页面找不到，默认跳到这个页面 -->
+      <location>/myerror404.jsp</location>
+    </error-page>
+    <error-page> 
+      <exception-type>java.lang.Exception</exception-type> <!-- 如果有的异常没有被处理，则这里是最后兜底的 -->
+      <location>/exception.jsp</location>
+    </error-page>
+
+    <!-- 设置 Session 过期时间 -->
+    <session-config>
+      <session-timeout>30</session-timeout>
+    </session-config>
+  </web-app>
+#+end_src
+
+** 注解 (Annotation)
+
+放到类上，简单方便。
+
+#+begin_src java
+  @WebServlet("/xxx")
+  @WebServlet(value = "/xxx")
+  @WebServlet(urlPatterns = {"/xxx"})
+
+  @WebFilter("/*")
+  @WebFilter({ "/admin/*", "/add", "/del" })
+
+  @WebListener
+#+end_src
+
+* 乱码问题
+** 请求乱码
+
+#+begin_src java
+  req.setCharacterEncoding("utf-8");
+#+end_src
+
+** 返回乱码
+
+只需要两步:
+
+首先，强制将所有数据使用 UTF8 的格式进行返回:
+#+begin_src java
+  resp.setCharacterEncoding("utf-8");
+#+end_src
+
+其次，告知请求的浏览器，使用 UTF8 的格式处理我们返回的数据。下面两种方法是等价的:
+- 可以在返回的 html 中，包含 ~<meta charset=utf8>~
+- 也可以在 Servlet 中指定: ~resp.setContentType("text/html;charset=utf8")~
+
+总而言之，前后处理数据的格式 *要一致*，通用的 UTF8 是最好的通用编码格式。
+在任何的 Servlet 返回前，只需要添加如下两句即可:
+#+begin_src java
+  resp.setCharacterEncoding("utf-8");
+  resp.setContentType("text/html;charset=utf8");
+#+end_src
+* 文件夹结构
+
+需要明白的:
+- 为什么需要分方法、分类、分包
+- 怎么去进行划分
+
+[[file:img/folder-arch.png]]
+
+#+begin_src sql
+ select * from book;
+#+end_src
+
+

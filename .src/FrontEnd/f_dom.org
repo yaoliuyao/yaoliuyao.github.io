@@ -1,0 +1,1671 @@
+#+TITLE: DOM 文档对象模型
+
+
+* 什么是 DOM
+
+DOM 树是有多个 Node (节点) 组成的，Node 又有很多 Child Node 组成的。
+
+[[file:img/742px-DOM-model.svg_20200624_065310.png]]
+
+节点分为若干的类型:
+- Document (9)，属于所有节点的祖宗 (Root)，又称根节点
+- Element (1)，代表了拥有孩子、属性的节点
+- Text (3)，文本节点
+- Attribute，属性节点，只属于 Element
+- Comment (8)，注释节点
+
+节点的基本属性:
+- main.nodeType，节点的类型
+- main.nodeName，表示节点的名字
+- main.nodeValue，表示已节点的值
+
+* 节点 (Node) 的基本操作
+
+示例 html 页面:
+#+begin_src html
+  <body>
+    <section id="main">
+      we can put text here 1...
+      <h1>China</h1>
+      we can put text here 2...
+      <!-- My comment ...  -->
+      we can put text here 3...
+      <p>China is a popular country with...</p>
+      we can put text here 4...
+      <div>
+        <button>See details</button>
+      </div>
+      we can put text here 5 ...
+    </section>
+  </body>
+#+end_src
+
+** 定位 (parent/child/sibling)
+
+定位到节点的孩子、父亲、兄弟姐妹:
+#+begin_src js
+  m.childNodes;           // 来显示所有的孩子节点
+  m.childNodes.length;
+  m.childNodes[2];        // 使用类似数组操作的方式，来获取第 N 个孩子节点
+  m.firstChild/lastChild; // 快速获取第一个跟最后一个孩子
+  m.parentNode;           // 爹
+  m.childNodes[3].prevSibling; // 上一个兄弟节点
+  m.childNodes[3].nextSibling; // 上下个兄弟节点
+#+end_src
+
+** 修改 (nodeValue/innerText)
+
+可以选取某个节点之后，直接对其进行修改:
+#+begin_src js
+  m.firstChild.nodeValue = 'hello';
+  m.childNodes[1].innerText = 'Chinese';
+#+end_src
+
+** 新建、附加 (document.createXxx/appendChild/insertBefore)
+
+创建新的节点，然后将其附加给某个节点就可以了:
+#+begin_src js
+  // 添加一个注释节点
+  var c = document.createComment('hahahaha');
+  m.appendChild(c);
+
+  // 添加一个文本节点
+  var t = document.createTextNode('世界和平');
+  m.appendChild(t);
+
+  // 添加一个元素节点
+  // <h3 style="color: red">您好</h3>
+  var e = document.createElement("h3");
+  e.innerText = "您好!";
+  e.setAttribute("style", "color: red");
+  m.insertBefore(e, m.childNodes[6]);
+  // m.insertBefore(e, m.childNodes[6].nextSibling);
+#+end_src
+
+** 替换、删除 (replaceChild/removeChild)
+
+替换、删除某个节点:
+#+begin_src js
+  // 必须，从父节点开始替换、删除
+
+  m.replaceChild(e, m.childNodes[1]);
+  m.removeChild(m.childNodes[6]);
+#+end_src
+
+** 其他
+
+cloneNode，请理解 clone 的意义:
+#+begin_div :class mc11
+#+begin_src js
+  var e = document.createElement("h3");
+  e.innerText = "您好!";
+  m.appendChild(e);
+  e.innerText = 'hello';
+#+end_src
+
+#+begin_src js
+  var e = document.createElement("h3");
+  e.innerText = "您好!";
+  m.appendChild(e.cloneNode(true));
+  e.innerText = 'hello';
+#+end_src
+#+end_div
+
+* Element 节点
+** 查找节点的传统方法
+
+- document.getElementById，返回一个元素，根据 ID
+- document.getElementsByClassName，返回一个 HTMLCollection 对象，类似数组的东西，匹配的是 class
+- document.getElementsByTagName，返回跟上面一样，根据标签来获取
+
+因为这些方法不够灵活，所以，出现了非常多的第三方框架，实现了另外的一些寻找节点的方式：
+- prototype.js
+- jQuery，简化了 dom 操作，其中代表，提供了寻找 dom 节点的方式
+
+** CSS3 选择器 (querySelector/querySelectorAll)
+
+https://www.w3school.com.cn/cssref/css_selectors.asp
+- node.querySelector，只返回一个
+- node.querySelectorAll，返回一个 NodeList 对象，类似 Array 的对象
+
+#+begin_src js
+  element.querySelector("div");
+  element.querySelector("#main");  // document.getElementsById 等同
+  element.querySelector(".xxx");
+  element.querySelector("div, span");
+  element.querySelector("div span");
+  element.querySelector("div + span");
+  element.querySelector("div > span");
+  element.querySelectorAll("img");
+
+  document.querySelector('.outline-2').querySelectorAll('div');
+#+end_src
+
+遍历 NodeList:
+#+begin_src js
+  var divs = document.querySelectorAll('div.xxx'); // NodeList
+
+  // 1
+  for (var i = 0; i < divs.length; i++) {
+      console.log(divs[i]);
+  }
+
+  // 2, forEach 相对来说，浏览器支持并不是很好的
+  divs.forEach(x => console.log(x));
+  document.querySelectorAll('div').forEach(x => console.log(x.className));
+
+  // 对于不支持 forEach 的浏览器，我们可以手动为 NodeList 增加一个 forEach 方法
+  // 为浏览器打补丁
+  NodeList.prototype.forEach = Array.prototype.forEach;
+#+end_src
+
+** appendChild/innerHTML/insertAdjacentHTML
+
+如果想在某个节点下面，添加新的元素:
+1. 创建一个新的节点 (document.createXxx)
+2. 找到这个节点 (parentNode/.../querySelector)
+3. 附加节点 (appendChild/insertBefore)
+
+#+begin_src js
+   var table = document.createElement('table');
+   var thead = document.createElement('tr');
+   for (var i = 0; i < 111; i++) {
+      var td = document.createElement('td');
+      thead.appendChild(td);
+   }
+  table.appendChild(thead);
+   var tbody = document.createElement('tr');
+   for (var i = 0; i < 111; i++) {
+      var td = document.createElement('td');
+      tbody.appendChild(td);
+   }
+  table.appendChild(tbody);
+#+end_src
+
+使用 innerHTML 方式:
+- 优点: 只需要考虑拼接字符串就可以了，简单快捷
+- 缺点: 字符串的操作并不是一件相对愉悦的事情
+- 选择合适的场景，使用合适的方法
+
+使用 insertAdjacentHTML() 方法:
+- 它可以看做是比较灵活的 innerHTML，它也是依据字符串的
+- 使用方式:
+  #+begin_src js
+    table.insertAdjacentHTML('beforebegin|afterbegin|beforeend|afterend', str);
+  #+end_src
+
+** attributes/setAttribute/getAttribute vs properties
+
+属性节点的基本 API:
+- attributes 获取节点上所有的属性
+- getAttribute/setAttribute/hasAttribute 获取/设置某个属性
+- 存在于此 *节点上* 的的属性，称为 Attribute 节点
+
+#+begin_src html
+  <div id="i3" name="xxx" hello="yyy" ppp="qqq" price="123">
+  </div>
+
+  <script>
+    a.getAttribute('style')
+    a.setAttribute('style', 'background: red, height: 100px')
+  </script>
+#+end_src
+
+#+begin_src js
+  dom.setAttribute('style', 'fontSize: 19pt');
+  console.log(dom.getAttribue);
+  console.log(dom.style.color);
+#+end_src
+
+使用 JS 对象属性的方式进行访问:
+- domObj.property
+- 某一些 node.Attribute 可以自动转化为 property，比如 id/class
+
+** [样式] style
+
+#+begin_src js
+  // 并不够灵活
+  dom.setAttribute('style', 'kkkkkkkkkkkkkkkkkkkkkkk');
+
+  // property，纯粹将节点当成一个 JS 对象
+  dom.style.color = 'red';
+  dom.style.fontSize = '19pt';
+  dom.style.cssText = 'color: red; font-size: 19pt';
+#+end_src
+
+** [样式] classList
+
+- dom.getAttribute('class')
+- dom.className
+- dom.classList.add/remove/toggle/contains();
+
+#+begin_src js
+  dom.classList.add('aaa');
+  dom.classList.toggle('aaa');
+#+end_src
+
+* 事件 (Event)
+** 定义的函数，什么时候会执行
+
+#+begin_src js
+  function xxx() {
+      console.log("hello");
+      alert("welcomle");
+      document.write("你好");
+  }
+#+end_src
+
+(1)亲自调用:
+#+begin_src js
+  xxx(); 
+#+end_src
+
+(2)通过定时任务的方式，委托给浏览器调用:
+#+begin_src js
+  setTimeout(xxx, 3000);
+  setInterval(xxx, 3000);
+#+end_src
+
+(3)通过事件的方式，委托给浏览器监听并触发调用:
+#+begin_src js
+  document.querySelector('button').onclick = xxx;
+#+end_src
+
+** 事件定义
+
+用户在页面上的操作，有很多类型，比如:
+- 鼠标的动作 (click/down/up/mouseover/mouseenter/mouseout)
+- 键盘的动作 (keydown/keyup)
+- 其他的动作 (copy/cut/paste)
+- DOM 节点的变化 (DOMContentReady/load/unload)
+
+*事件*，就是让浏览器随时监控这些动作，如果动作发生了，就触发绑定在节点上的相关函数的执行。
+
+所以，需要先在节点上绑定事件 (跟浏览器缔造触发事件的契约)，两种方式:
+- ~onXxx~，属性
+  + 在每个 dom 节点上，都存在若干的 onxxx 属性，如果我们将此属性给赋值，然后契约就成立了
+  + 优点: 写法特别简单
+  + 缺点: 只能绑定一个函数；太粗糙了，功能太单薄了
+  + 尽量不要使用这种方式进行事件绑定，千万不要这样 ~<div onclick="xxx()">~
+- ~dom.addEventListener()~，方法
+  + 可以绑定多个事件
+  + 可以随时移除事件
+
+** 事件对象
+
+事件对象是通过事件函数的第一个参数的形式传递进去的:
+#+begin_src js
+  dom.onclick = function (ev) {
+      console.log(ev);
+  };
+  dom.addEventListener('click', function(e) {
+      console.log(e);
+  });
+
+  function xxx(shijian) {
+      console.log(shijian);
+  }
+  dom.addEventListener('click', xxx);
+#+end_src
+
+事件对象的属性:
+- e.altKey/shiftKey/ctrlKey
+- 各种 x/y 坐标
+- e.target 事件源
+
+** 事件类型例子
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <script>
+       // window.addEventListener('load', ...)
+       window.onload = function() { // 委托浏览器，当 window 加载完才去执行下面逻辑
+         var btn = document.querySelector('button');
+
+         // 常用的鼠标事件
+         btn.onclick = function(e) { alert('啊，我被点了'); }
+         btn.onmouseenter = function(e) { console.log('我被 enter 了'); }
+         btn.onmouseout = function(e) { console.log('我被 out 了'); }
+         btn.onmouseup = function(e) { console.log('我被弹起来了'); }
+         btn.onmousedown = function(e) { console.log('我被按下去了'); }
+         btn.onmouseover = function(e) { console.log('我被滑过嘞'); }
+         btn.onmouseleave = function(e) { console.log('你走好'); }
+         btn.onmousemove = function(e) { console.log('你在我上面移动呢'); }
+         btn.onmousewheel = function(e) {
+           console.log(e);
+         }
+
+         // 键盘的点击事件
+         document.body.onkeydown = (e) => {
+           console.log('我被按下去了');
+           console.log(e);
+         };
+         document.body.onkeyup = (e) => {
+           console.log('我被弹起来了');
+           console.log(e);
+         };
+         document.body.onkeypress = (e) => {
+           console.log('我被按了一下');
+           console.log(e);
+           if (e.ctrlKey && e.keyCode === 10) {
+             alert("你看，enter 被你按坏了吧?");
+           } else if (e.keyCode === 13) {
+             btn.click();
+           }
+         };
+
+         // dom 节点的 load 事件
+         var img = document.querySelector('img');
+         img.addEventListener('load', (e) => {
+           alert(e.target.src + ' 已经被加载完了');
+         });
+         img.src = "https://tse1-mm.cn.bing.net/th/id/OIP.RUd94Zebp7W27HjJgzB7GgHaLI?pid=Api&rs=1";
+       }
+      </script>
+    </head>
+    <body>
+      <button>点我</button>
+      <img style="width: 100px;height: 100px;" src="">
+    </body>
+  </html>
+#+end_src
+
+补充:
+- input.onfocus 光标放上去的时候会咋样
+- input.onblur 当焦点失去的时候会咋样
+- input.onchange 当值发生变化的时候
+
+** 事件的传播机制
+
+当你在浏览器渲染出来的某个节点上点击了一下，你点到了目标节点，同样也点到了它的爸爸、爸爸的爸爸...，因为 DOM 是一种盒子模型。
+
+那如果我们在某节点以及包含它的父节点上都绑定事件，按道理，这些事件都应该能被触发。
+
+那处理的顺序怎样才合适?
+
+现在的 DOM 标准是这样定义的:
+1. 如果你在某个元素节点上施加了一个动作 (比如，点击了某个按钮，click, div>section>button)
+2. DOM 会将这个动作影响的所有节点排序 (Path: Body > Div > Section > Button)
+3. 依次遍历上述节点，查找是否绑定了 useCapture = true 类型的事件函数，如果有，那么调用它
+4. 等遍历到事件源后再反向遍历各个节点，查找是否绑定了 useCapture = false 类型的事件函数，如果有，那么调用它
+
+因此浏览器很忙，对你的每个动作，浏览器都会这样从外到内 (捕获)，再从内到外 (冒泡) 检查一遍，从而让该触发的事件函数被执行。
+
+正因为这样，我们绑定到节点上的事件，分为两种类型:
+1. 适用于捕获阶段被触发的事件，声明方式是这样的：
+   : div.addEventListener('click', xxx, true);  // 绑定的这个点击事件，只有在捕获的阶段才可能被触发。一般来说比较少用。少用不代表无用。
+2. 适用于冒泡节点被触发的事件，声明方式:
+   : div.addEventListener('click', xxx);  // 默认情况，第三个参数为 false，那么这个事件只有在冒泡阶段才会被触发
+   : div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在冒泡的阶段才会有机会被触发
+
+
+[[file:img/dom-event-model.jpg]]
+
+#+begin_src html
+  <div>
+    <article>
+      <section>
+        <ul>
+          <li>xxx</li>
+          <li>yyy</li>
+          <li>zzz</li>
+        </ul>
+        <a href="http://www.baidu.com">我是一个炫酷的超链接</a>
+      </section>
+    </article>
+  </div>
+
+  <script>
+    // 事件的传播，以及控制传播
+    document.querySelector('div').addEventListener('click', (e) => alert('div 被点了'));
+    document.querySelector('article').addEventListener('click', (e) => alert('article 被点了'));
+    document.querySelector('section').addEventListener('click', (e) => alert('section 被点了'));
+    document.querySelector('ul').addEventListener('click', (e) => {
+        alert('ul 被点了')
+        e.stopPropagation(); // 禁止继续传播
+    });
+    document.querySelector('li').addEventListener('click', (e) => alert('li 被点了'));
+
+    // 禁止默认行为
+    document.querySelector('a').addEventListener('click', (e) => {
+        alert('当前的链接为: ' + e.target.href);
+        e.preventDefault(); // 禁止事件的默认行为
+    });
+  </script>
+#+end_src
+
+记住:
+- e.stopPropagation();
+- e.preventDefault();
+
+** [可选] 事件的委托、代理
+
+#+begin_quote
+这是一种 *常用* 的绑定事件的策略。虽然你不一定非得这么用，但很多时候它能让事情变得简化。
+#+end_quote
+
+将作用于元素的事件，委托给其父层节点，让父层节点检测事件来源，并作出适当反应:
+- 绑定一次，便于维护和管理
+- 如果子元素发生变化，不需要重新绑定事件
+- 使用 event.target 定位事件源
+
+#+begin_src html
+  <div>
+    <article>
+      <section>
+        <ul>
+          <li>xxx</li>
+          <li class="x">yyy</li>
+          <li>aaa</li>
+          <li class="x">bbb</li>
+          <li>ccc</li>
+        </ul>
+        <h3>你猜点我会咋样?</h3>
+      </section>
+    </article>
+  </div>
+
+  <script>
+   // var lis = document.querySelectorAll('li');
+   // for(var i = 0; i < lis.length; i++) {
+   //   lis[i].onclick = (e) => {
+   //     alert(e.target.innerText);
+   //   };
+   // }
+
+   // 事件的委托
+   // 将事情（责任）甩锅给自己的爸爸或爷爷，能让自己更轻松
+   document.querySelector('div').addEventListener('click', e => {
+     if (e.target.classList.contains('x')) {
+       alert(e.target.innerText); // e.target 事件源
+     }
+     // else if (e.target....) ...
+   });
+  </script>
+#+end_src
+
+* 一些 API 的示例
+** 删除的示例
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>删除示例</title>
+    </head>
+    <body>
+      <table>
+        <tr>
+          <td>111</td> <td>111</td> <td>111</td> <td>111</td>
+          <td><button onclick="del(event)">删除</button></td>
+        </tr>
+        <tr>
+          <td>222</td> <td>222</td> <td>222</td> <td>222</td>
+          <td><button onclick="del(event)">删除</button></td>
+        </tr>
+        <tr>
+          <td>333</td> <td>333</td> <td>333</td> <td>333</td>
+          <td><button onclick="del(event)">删除</button></td>
+        </tr>
+      </table>
+
+      <script>
+       function del(event) {
+         // [定位] 根据事件发生的节点，寻找我们要去操作的节点
+         var node = event.target.parentNode.parentNode;
+
+         // [执行删除]
+         // node.remove();
+         node.parentNode.removeChild(node);
+       }
+
+       function delXuyaode(text) {
+         // 定位
+         var trs = document.querySelectorAll('tr');
+         trs.forEach(function(tr) {
+           if (tr.children[0].innerText == text) {
+             // 删除
+             tr.parentNode.removeChild(tr);
+           }
+         });
+       }
+      </script>
+    </body>
+  </html>
+#+end_src
+
+* 案例分析 (DOM 节点的基本操作)
+** 在页面上创建一个按钮，然后点击的时候，动态向页面的某个位置，添加 input 输入框
+
+理思路:
+- 需要一个页面
+- 页面上需要有一个按钮，还有一个区域
+- 按钮可点击，点击触发事件
+- 事件: 添加 input 元素节点，追加到上述区域
+
+最后的代码:
+#+begin_src html
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+      <button onclick="chufadeshijian()">我是可以点击的</button>
+      <div id="iamaquyu">
+      </div>
+
+      <script>
+        function chufadeshijian() {
+            var div = document.createElement('div');
+            var input = document.createElement('input');
+            input.value = prompt('请输入初始值');
+            div.appendChild(input);
+            document.getElementById('iamaquyu').appendChild(div);
+        }
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 在上述的代码基础上，为每个 input 后面添加 *删除* 功能，点击后移除当前条目
+
+分析题目，我们每次添加的 input 应该是下面这种结构:
+#+begin_src html
+  <div>
+    <input value='xxx'>
+    <button>删除</button>
+  </div>
+
+  <div>
+    <input value='xxx'>
+    <button onclick='shanchu()'>删除</button>
+  </div>
+
+  <script>
+    function shanchu(ev) {
+        if (confirm('是不是确定要删除?')) {
+           // 定位到 button 所在的 div 节点
+           var div = ev.target.parentNode;
+           // 将整个 div 节点删除掉。任务完成
+           div.parentNode.removeChild(div);
+        }
+    }
+  </script>
+#+end_src
+
+所以，在上述的代码基础上，修改即可得到最后的效果:
+#+begin_src html
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+      <button onclick="chufadeshijian()">我是可以点击的</button>
+      <div id="iamaquyu">
+      </div>
+
+      <script>
+       function chufadeshijian() {
+         var div = document.createElement('div');
+
+         var input = document.createElement('input');
+         input.value = prompt('请输入初始值');
+         div.appendChild(input);
+
+         // 增加的第一部分代码：显示一个绑定了事件的删除按钮
+         var del = document.createElement('button');
+         del.innerText = '删除';
+         del.onclick = shanchu;
+         div.appendChild(del);
+
+         document.getElementById('iamaquyu').appendChild(div);
+       }
+
+       // 增加的第二部分代码，处理删除的逻辑
+       function shanchu(ev) {
+         if (confirm('是不是确定要删除?')) {
+           var div = ev.target.parentNode;
+           div.parentNode.removeChild(div);
+         }
+       }
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 在上面基础上，每个 input 后面再增加一个 *归档* 的操作，点击之后，此条目会被移动到下面的归档区域，且变得不能修改
+
+[[file:img/dom-arch.png.png]]
+
+代码为:
+#+begin_src html
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+    </head>
+    <body>
+      <button onclick="chufadeshijian()">我是可以点击的</button>
+
+      <div id="iamaquyu">
+      </div>
+
+      <!-- 增加的第二部分代码，归档区域 -->
+      <div id="gdquyu" style="border: 1px solid black; margin-top: 2em; padding: 1em;">
+      </div>
+
+      <script>
+       function chufadeshijian() {
+         var div = document.createElement('div');
+
+         var input = document.createElement('input');
+         input.value = prompt('请输入初始值');
+         div.appendChild(input);
+
+         var del = document.createElement('button');
+         del.style.marginLeft = '1em';
+         del.innerText = '删除';
+         del.onclick = shanchu;
+         div.appendChild(del);
+
+         // 增加的第一部分代码，在页面上添加归档按钮
+         var gd = document.createElement('button');
+         gd.style.marginLeft = '1em';
+         gd.innerText = '归档';
+         gd.onclick = doGuidang;
+         div.appendChild(gd);
+
+         document.getElementById('iamaquyu').appendChild(div);
+       }
+
+       function shanchu(ev) {
+         if (confirm('是不是确定要删除?')) {
+           var div = ev.target.parentNode;
+           div.parentNode.removeChild(div);
+         }
+       }
+
+       // 增加的第三部分代码，处理归档逻辑
+       function doGuidang(ev) {
+         if (confirm('是不是确定要归档?')) {
+           alert("todo: guidang");
+         }
+       }
+      </script>
+    </body>
+  </html>
+#+end_src
+
+归档逻辑 1:
+#+begin_src js
+  function doGuidang(ev) {
+      if (confirm('是不是确定要归档?')) {
+          // 创建节点
+          var div1 = document.createElement('div');
+          document.getElementById('gdquyu').appendChild(div1);
+
+          // 过继孩子
+          var c = ev.target.parentNode.childNodes[0];
+          c.readOnly = true;
+          div1.appendChild(c);
+
+          // 删除按钮
+          var div = ev.target.parentNode;
+          div.parentNode.removeChild(div);
+      }
+  }
+#+end_src
+
+归档逻辑 2:
+#+begin_src js
+  function doGuidang(ev) {
+      if (confirm('是不是确定要归档?')) {
+          var div = ev.target.parentNode;
+
+          // 1. 过继节点
+          document.getElementById("gdquyu").appendChild(div);
+
+          // 2. 修改子节点
+          div.firstChild.readOnly = true;  // 第 1 个: 只读
+          div.removeChild(div.lastChild);  // 第 3 个: 删除
+          div.removeChild(div.lastChild);  // 第 2 个: 删除
+      }
+  }
+#+end_src
+
+** 在上述结果的基础上，为归档动作增加校验，保证 input 的值是合理的
+
+- 不能为空
+- 必须是英文字母或数字
+- 不能以数字开头
+- 长度不能大于 10
+
+只需要将归档逻辑更改为:
+#+begin_src js
+  function doGuidang(ev) {
+      var div = ev.target.parentNode;
+
+      // 校验的过程
+      var input = div.firstChild.value;
+      if (!input) {
+          return alert("输入不能为空.")
+      }
+      if (!/^[a-zA-Z][0-9a-zA-Z]{0,9}$/.test(input)) {
+          return alert("输入格式有误.");
+      }
+
+      // 归档的过程
+      if (confirm('是不是确定要归档?')) {
+          // 过继
+          document.getElementById("gdquyu").appendChild(div);
+
+          // 修补
+          div.firstChild.readOnly = true;
+          div.removeChild(div.lastChild);
+          div.removeChild(div.lastChild);
+      }
+  }
+#+end_src
+
+** alert 是万恶的，请将代码中的 alert 去除掉。提醒变为文字的方式
+
+[[file:img/dom-arch-err.png]]
+
+这只是一个替换 alert 的示例而已，实际上的封装方法有很多。
+
+此处仅供参考:
+
+#+begin_src html
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Document</title>
+    </head>
+    <body>
+      <!-- 增加的第一块代码，用来显示错误信息 -->
+      <div id="err" style="color: red; padding-bottom: 1em;">
+      </div>
+
+      <button onclick="chufadeshijian()">我是可以点击的</button>
+
+      <div id="iamaquyu">
+      </div>
+
+      <div id="gdquyu" style="border: 1px solid black; margin-top: 2em; padding: 1em;">
+      </div>
+
+      <script>
+       function chufadeshijian() {
+         var div = document.createElement('div');
+
+         var input = document.createElement('input');
+         input.value = prompt('请输入初始值');
+         div.appendChild(input);
+
+         var del = document.createElement('button');
+         del.style.marginLeft = '1em';
+         del.innerText = '删除';
+         del.onclick = shanchu;
+         div.appendChild(del);
+
+         var gd = document.createElement('button');
+         gd.style.marginLeft = '1em';
+         gd.innerText = '归档';
+         gd.onclick = doGuidang;
+         div.appendChild(gd);
+
+         document.getElementById('iamaquyu').appendChild(div);
+       }
+
+       function shanchu(ev) {
+         if (confirm('是不是确定要删除?')) {
+           var div = ev.target.parentNode;
+           div.parentNode.removeChild(div);
+         }
+       }
+
+       function doGuidang(ev) {
+         var div = ev.target.parentNode;
+
+         // 第三部分代码，将 alert 修改为 myAlert
+         var input = div.firstChild.value;
+         if (!input) {
+           return myAlert("输入不能为空.", 3)
+         }
+         if (!/^[a-zA-Z][0-9a-zA-Z]{0,9}$/.test(input)) {
+           return myAlert("输入格式有误.", 3);
+         }
+
+         if (confirm('是不是确定要归档?')) {
+           document.getElementById("gdquyu").appendChild(div);
+
+           div.firstChild.readOnly = true;
+           div.removeChild(div.lastChild);
+           div.removeChild(div.lastChild);
+         }
+       }
+
+       // 第二部分代码，增加一个自己封装的逻辑，myAlert
+       // 可选的第二个参数，如果提供了，那么信息会在 timeout 秒后消失
+       function myAlert(mesg, timeout = 0) {
+         var err = document.getElementById('err');
+         err.innerText = mesg;
+         if (timeout > 0) {
+           setTimeout("document.getElementById('err').innerText = ''", timeout * 1000);
+         }
+       }
+      </script>
+    </body>
+  </html>
+#+end_src
+* 案例分析 (添加商品)
+** 页面分为两部分，一部分使用 input 提供信息输入，一部分用来显示添加后的列表
+
+效果图:
+
+[[file:img/dom-add-goods.png]]
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>商品管理</title>
+      <style>
+        label {
+            display: block;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 5px 1em;
+        }
+      </style>
+    </head>
+    <body>
+      <!-- 商品录入 -->
+      <section>
+        <label>
+          <span>商品名字</span>
+          <input name="goods_name">
+        </label>
+        <label>
+          <span>商品价格</span>
+          <input name="goods_price">
+        </label>
+        <label>
+          <span>商品数量</span>
+          <input name="goods_amount">
+        </label>
+        <div>
+          <button onclick="addGoods()">添加商品</button>
+        </div>
+      </section>
+
+      <!-- 商品列表 -->
+      <section class="goods_list">
+        <table>
+          <tr>
+            <th>名字</th>
+            <th>价格</th>
+            <th>数量</th>
+          </tr>
+          <!--
+          <tr>
+            <td>xx</td>
+            <td>xxx</td>
+            <td>xxxx</td>
+          </tr>
+          -->
+        </table>
+      </section>
+
+      <script>
+        function addGoodsOrigin() {
+            // 获取输入的信息
+            var inputs = document.querySelectorAll('input');
+            var name = inputs[0].value;     // input 中的商品名字
+            var price = inputs[1].value;    // input 中的商品价格
+            var amount = inputs[2].value;   // input 中的商品数量
+
+            // 创建要添加的 tr 节点
+            var tr = document.createElement("tr");
+
+            // 在 tr 中添加 td: 商品名字
+            let td1 =  document.createElement('td');
+            td1.innerText = name;
+            tr.appendChild(td1);
+
+            // 在 tr 中添加 td: 商品价格
+            let td2 =  document.createElement('td');
+            td2.innerText = price;
+            tr.appendChild(td2);
+
+            // 在 tr 中添加 td: 商品数量
+            let td3 =  document.createElement('td');
+            td3.innerText = amount;
+            tr.appendChild(td3);
+
+            // 将组合好的 tr 追加进 table:
+            document.querySelector('table').appendChild(tr);
+        }
+
+        function addGoods() {
+            var tr = document.createElement("tr");
+
+            var inputs = document.querySelectorAll('input');
+            for (let i = 0; i < inputs.length; i++) {
+                let td =  document.createElement('td');
+                td.innerText = inputs[i].value;
+                tr.appendChild(td);
+                // 清空 input 中的值
+                inputs[i].value = '';
+            }
+
+            document.querySelector('table').appendChild(tr);
+
+            // 将焦点放到商品名字的 input 上
+            inputs[0].focus();
+        }
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 将上述代码，使用 innerHTML 的方式，再实现一次
+
+组装一个 tr:
+: <tr><td>名字</td><td>价格</td><td>数量</td></tr>
+
+#+begin_src js
+  function addGoods() {
+      var tr = "<tr>";
+
+      var inputs = document.querySelectorAll('input');
+      for (let i = 0; i < inputs.length; i++) {
+          tr += "<td>";
+          tr += inputs[i].value;
+          tr += "</td>";
+          inputs[i].value = '';
+      }
+
+      tr += "</tr>";
+      alert(tr);
+
+      var table = document.querySelector('table');
+      table.innerHTML = table.innerHTML + tr;
+      inputs[0].focus();
+  }
+#+end_src
+
+** 为商品列表增加删除按钮
+
+HTML 部分:
+#+begin_src html
+  ...
+  <thead>
+    <tr>
+      <th>名字</th>
+      <th>价格</th>
+      <th>数量</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  ...
+#+end_src
+
+JS 部分:
+#+begin_src js
+  function addGoods() {
+      var tr = document.createElement("tr");
+
+      var inputs = document.querySelectorAll("input");
+      for (let i = 0; i < inputs.length; i++) {
+          let td = document.createElement("td");
+          td.innerText = inputs[i].value;
+          tr.appendChild(td);
+          inputs[i].value = "";
+      }
+
+      var delTr = "<td><button onclick='del(event)'>删除</button></td>";
+      tr.insertAdjacentHTML("beforeend", delTr);
+
+      document.querySelector('tbody').appendChild(tr);
+      inputs[0].focus();
+  }
+
+  function del(ev) {
+      if (confirm('是不是确定要删除?')) {
+          var tr = ev.target.parentNode.parentNode;
+          tr.parentNode.removeChild(tr);
+      }
+  }
+#+end_src
+
+** 增加 CheckBox，可以全选、取消选择、反向选择
+
+考察内容:
+- 选择:
+  + 所有的 input 节点:
+    : document.querySelectorAll('input')
+  + 所有的 checkbox 节点:
+    : document.querySelectorAll('input[type=checkbox]')
+    : document.querySelectorAll('[type=checkbox]')
+  + 所有的被选中的 checkbox 节点:
+    : document.querySelectorAll('input:checked')
+    : document.querySelectorAll(':checked')
+- 如何设置属性
+  : checkboxNode.checked = false; // 将其取消选择
+  : checkboxNode.checked = true; // 将其选中
+- 如何通过遍历，去操作多个节点
+
+#+begin_src html
+  <div>
+    <button onclick="quanxuan()">全选</button>
+    <button onclick="buxuan()">不选</button>
+    <button onclick="fanxuan()">反选</button>
+  </div>
+#+end_src
+
+#+begin_src js
+  function quanxuan() {
+      document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+          cb.checked = true;
+      });
+  }
+  function buxuan() {
+      document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+          cb.checked = false;
+      });
+  }
+  function fanxuan() {
+      document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+          cb.checked = !cb.checked;
+      });
+  }
+#+end_src
+
+** 在上述 CheckBox 的基础上，增加删除所选项的功能
+
+考察:
+- 如何去定位某个节点
+- 如何去删除某个节点
+
+#+begin_src js
+  function delSelect(er) {
+      var inputs = document.querySelectorAll(':checked');
+      for (var i = 0; i < inputs.length; i++) {
+          var tr = inputs[i].parentNode.parentNode;
+          tr.parentNode.removeChild(tr);
+      }
+  }
+#+end_src
+
+** 做完上述操作后的所有代码
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>商品管理</title>
+    <style>
+      label {
+        display: block;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 1em;
+      }
+      table, th, td {
+        border: 1px solid black;
+      }
+      th, td {
+        padding: 5px 1em;
+      }
+      .goods_new > label > span {
+        color: #009900;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- 商品录入 -->
+    <section class="goods_new">
+      <label>
+        <span>商品名字</span>
+        <input name="goods_name">
+      </label>
+      <label>
+        <span>商品价格</span>
+        <input name="goods_price">
+      </label>
+      <label>
+        <span>商品数量</span>
+        <input name="goods_amount">
+      </label>
+      <div>
+        <button onclick="addGoods()">添加商品</button>
+      </div>
+    </section>
+
+    <!-- 商品列表 -->
+    <div>
+      <button onclick="quanxuan()">全选</button>
+      <button onclick="buxuan()">不选</button>
+      <button onclick="fanxuan()">反选</button>
+      <button onclick="delSelect()">删除所有选择项</button>
+    </div>
+    <section class="goods_list">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>名字</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--
+          <tr>
+            <td>xx</td>
+            <td>xxx</td>
+            <td>xxxx</td>
+          </tr>
+          -->
+        </tbody>
+      </table>
+    </section>
+
+    <script>
+      function addGoods() {
+        var tr = document.createElement("tr");
+
+        tr.insertAdjacentHTML('afterbegin', '<td><input type="checkbox"></td>');
+
+        var inputs = document.querySelectorAll(".goods_new input");
+        for (let i = 0; i < inputs.length; i++) {
+          let td = document.createElement("td");
+          td.innerText = inputs[i].value;
+          tr.appendChild(td);
+          inputs[i].value = "";
+        }
+
+        var delTr = "<td><button onclick='del(event)'>删除</button></td>";
+        tr.insertAdjacentHTML("beforeend", delTr);
+
+        document.querySelector('tbody').appendChild(tr);
+        inputs[0].focus();
+      }
+
+      function del(ev) {
+        if (confirm('是不是确定要删除?')) {
+          var tr = ev.target.parentNode.parentNode;
+          tr.parentNode.removeChild(tr);
+        }
+      }
+
+      function quanxuan() {
+        document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+          cb.checked = true;
+        });
+      }
+
+      function buxuan() {
+        document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+          cb.checked = false;
+        });
+      }
+
+      function fanxuan() {
+        document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+          cb.checked = !cb.checked;
+        });
+      }
+
+      function delSelect(er) {
+        var inputs = document.querySelectorAll(':checked');
+        for (var i = 0; i < inputs.length; i++) {
+          var tr = inputs[i].parentNode.parentNode;
+          tr.parentNode.removeChild(tr);
+        }
+      }
+    </script>
+  </body>
+  </html>
+#+end_src
+
+** 上述操作的另一种解答
+
+将对页面的操作，转化为了对数据 (array 数组) 的操作:
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>商品管理</title>
+      <style>
+       label {
+         display: block;
+       }
+       table {
+         border-collapse: collapse;
+         margin-top: 1em;
+       }
+       table, th, td {
+         border: 1px solid black;
+       }
+       th, td {
+         padding: 5px 1em;
+       }
+       .goods_new > label > span {
+         color: #009900;
+         margin-right: 10px;
+       }
+      </style>
+    </head>
+
+    <body>
+
+      <!-- 商品录入 -->
+      <section class="goods_new">
+        <label>
+          <span>商品名字</span>
+          <input name="goods_name">
+        </label>
+        <label>
+          <span>商品价格</span>
+          <input name="goods_price">
+        </label>
+        <label>
+          <span>商品数量</span>
+          <input name="goods_amount">
+        </label>
+        <div>
+          <button onclick="addGoods()">添加商品</button>
+        </div>
+      </section>
+
+      <!-- 商品列表 -->
+      <div>
+        <button onclick="quanxuan()">全选</button>
+        <button onclick="buxuan()">不选</button>
+        <button onclick="fanxuan()">反选</button>
+        <button onclick="delSelect()">删除所有选择项</button>
+      </div>
+      <section class="goods_list">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>名字</th>
+              <th>价格</th>
+              <th>数量</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--
+            <tr>
+              <td>xx</td>
+              <td>xxx</td>
+              <td>xxxx</td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+      </section>
+
+      <script>
+       var goods_arr = [
+         ['aaaa', 22, 33],
+         ['bbbb', 11, 43]
+       ];
+
+       function renderGoods () {
+         var trs = "";
+         goods_arr.forEach(function(goods) {
+           trs += '<tr>';
+           trs += ' <td><input type="checkbox"></td>';
+           trs += ' <td>' + goods[0] + '</td><td>' + goods[1] + '</td><td>' + goods[2] + '</td>';
+           trs += ' <td><button onclick="del(event)">删除</button></td>';
+           trs += '</tr>';
+         });
+         document.querySelector('tbody').innerHTML = trs;
+       }
+
+       function addGoods() {
+         // 获取页面输入
+         var goods = [];
+         document.querySelectorAll(".goods_new input").forEach(function(input) {
+           goods.push(input.value);
+           input.value = "";
+         });
+
+         // 更新数据
+         goods_arr.push(goods);
+
+         // 重新渲染页面
+         renderGoods();
+       }
+
+       function del(ev) {
+         if (confirm('是不是确定要删除?')) {
+           var index = ev.target.parentNode.parentNode.rowIndex;
+           goods_arr.splice(index - 1, 1);
+           renderGoods();
+         }
+       }
+
+       function quanxuan() {
+         document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+           cb.checked = true;
+         });
+       }
+
+       function buxuan() {
+         document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+           cb.checked = false;
+         });
+       }
+
+       function fanxuan() {
+         document.querySelectorAll('[type=checkbox]').forEach(function (cb) {
+           cb.checked = !cb.checked;
+         });
+       }
+
+       function delSelect(er) {
+         var inputs = document.querySelectorAll(':checked');
+         for (var i = 0; i < inputs.length; i++) {
+           var index = inputs[i].parentNode.parentNode.rowIndex;
+           goods_arr.splice(index - 1, 1);
+         }
+         renderGoods();
+       }
+
+       renderGoods();
+      </script>
+    </body>
+  </html>
+#+end_src
+
+* 案例分析 (图片切换)
+
+效果示例:
+#+begin_example
+   +-------------------------+
+   |                         |
+   |                         |
+   |      images             |
+   |                         |
+   |                         |
+   +-------------------------+
+
+   上一张               下一张
+#+end_example
+
+要求:
+- 至少 3 张图片，显示在图中的 images 区域
+- 鼠标点击上一张、下一张，进行切换，循环显示
+- 键盘的 \leftarrow 和 \rightarrow 达到同样的效果
+- 鼠标在图片上移动的时候，将上一张和下一张的按钮隐藏掉
+- 鼠标在图片上的时候，将图片的透明度设为 50%，有 2s 的渐变效果
+
+** 第一步
+
+先确立页面，保证各项元素能正常渲染:
+- 图片的地址，要使用相对路径，千万不能使用操作系统的全路径
+- 按钮和图片的节点，务必使用 div/section/footer 之类的容器包括起来，便于后面的操控
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>图片轮播</title>
+      <style>
+       img {
+         width: 200px;
+         height: 200px;
+       }
+      </style>
+    </head>
+    <body>
+      <!-- 放置图片 -->
+      <div>
+        <img src="images/a.jpg">
+      </div>
+
+      <!-- 放置按钮 -->
+      <footer>
+        <button>上一张</button>
+        <button>下一张</button>
+      </footer>
+    </body>
+  </html>
+#+end_src
+** 第二步
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>图片轮播</title>
+      <style>
+        img {
+            width: 200px;
+            height: 200px;
+        }
+      </style>
+    </head>
+    <body>
+      <!-- 放置图片 -->
+      <div>
+        <img src="">
+      </div>
+
+      <!-- 放置按钮 -->
+      <footer>
+        <button class="prev">上一张</button>
+        <button class="next">下一张</button>
+      </footer>
+
+      <script>
+        let current = 0;
+        const images = [
+            "images/a.jpg",
+            "images/b.jpg",
+            "images/c.jpg",
+            "images/d.jpg"
+        ];
+
+        // 处理的逻辑
+        function renderImage() {
+            let img = document.querySelector('img');
+            img.src = images[current];
+        }
+
+        function prevImage() { /* 0...length-1 */
+            current = current - 1 < 0 ? images.length-1 : current - 1;
+            renderImage();
+        }
+
+        function nextImage() {
+            if (current + 1 > images.length-1) { // 如果 +1 之后太大，返回第一张图片，下标 0
+                current = 0;
+            } else {
+                current = current + 1; // 默认行为，下一张图片
+            }
+            // current = current + 1 > images.length-1 ? 0 : current + 1;
+            renderImage();
+        }
+
+        // 绑定响应事件
+        document.querySelector('.prev').addEventListener('click', prevImage);
+        document.querySelector('.next').addEventListener('click', nextImage);
+
+        // 初始化渲染，第一张图片
+        renderImage();
+      </script>
+    </body>
+  </html>
+#+end_src
+
+** 第三步
+
+绑定键盘的事件:
+#+begin_src js
+  document.body.addEventListener('keydown', function (e) {
+      if (e.keyCode == 37) prevImage();
+      if (e.keyCode == 39) nextImage();
+  });
+#+end_src
+
+假如要求每隔 5 秒，自动跳到下一张，那么只需要额外绑定一个定时任务即可:
+#+begin_src js
+  window.setInterval(nextImage, 5000);
+#+end_src
+
+** 第四步
+
+隐藏元素:
+- 不要使用 js 将其移除掉，移除不是隐藏
+- 使用 display:none 可以将元素进行隐藏
+- 在实践中，借助 class 样式类，是更合理的一种行为
+
+#+begin_src js
+  const img = document.querySelector('img');
+  img.addEventListener('mouseover', function(e) {
+      // document.querySelector('footer').style.display = 'none';
+      document.querySelector('footer').classList.add('yincangdiao');
+  });
+  img.addEventListener('mouseout', function(e) {
+      document.querySelector('footer').classList.remove('yincangdiao');
+  });
+#+end_src
+
+** 第五步
+
+纯粹的 CSS 样式问题:
+1. 怎么样控制一个元素的透明度 (opacity)
+2. 怎么样控制鼠标放上去的样式 (伪类 :hover)
+3. 怎么样控制渐变的效果 (transition)
+
+#+begin_src css
+  img {
+      width: 200px;
+      height: 200px;
+      transition: all 2s;
+  }
+  img:hover {
+      opacity: 30%;
+      height: 100px;
+      margin-left: 30px;
+  }
+#+end_src
+** 最终的代码
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>图片轮播</title>
+      <style>
+        img {
+            width: 200px;
+            height: 200px;
+            transition: all 2s;
+        }
+        img:hover {
+            opacity: 30%;
+            height: 100px;
+            margin-left: 30px;
+        }
+        .yincangdiao {
+            display: none; /* inline/block */
+        }
+      </style>
+    </head>
+    <body>
+      <!-- 放置图片 -->
+      <div>
+        <img src="">
+      </div>
+
+      <!-- 放置按钮 -->
+      <footer>
+        <button class="prev">上一张</button>
+        <button class="next">下一张</button>
+      </footer>
+
+      <script>
+        let current = 0;
+        const images = [
+            "images/a.jpg",
+            "images/b.jpg",
+            "images/c.jpg",
+            "images/d.jpg"
+        ];
+
+        // 处理的逻辑
+        function renderImage() {
+            let img = document.querySelector('img');
+            img.src = images[current];
+        }
+
+        function prevImage() { /* 0...length-1 */
+            current = current - 1 < 0 ? images.length-1 : current - 1;
+            renderImage();
+        }
+
+        function nextImage() {
+            current = current + 1 > images.length-1 ? 0 : current + 1;
+            renderImage();
+        }
+
+        // 绑定响应事件
+        document.querySelector('.prev').addEventListener('click', prevImage);
+        document.querySelector('.next').addEventListener('click', nextImage);
+        document.body.addEventListener('keydown', function (e) {
+            if (e.keyCode == 37) prevImage();
+            if (e.keyCode == 39) nextImage();
+        });
+        // window.setInterval(nextImage, 5000);
+
+        // 绑定鼠标悬停事件
+        const img = document.querySelector('img');
+        img.addEventListener('mouseover', function(e) {
+            // document.querySelector('footer').style.display = 'none';
+            document.querySelector('footer').classList.add('yincangdiao');
+        });
+        img.addEventListener('mouseout', function(e) {
+            document.querySelector('footer').classList.remove('yincangdiao');
+        });
+
+        // 初始化渲染，第一张图片
+        renderImage();
+      </script>
+    </body>
+  </html>
+#+end_src

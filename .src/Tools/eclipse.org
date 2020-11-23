@@ -1,0 +1,75 @@
+#+TITLE: Eclipse
+
+
+* 下载
+
+注意，要下载的是 Enterprise 版本 (jee 版本)!
+
+下载地址为:
+
+https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-06/R/eclipse-jee-2020-06-R-win32-x86_64.zip
+
+* 激活 Eclipse 的即时补全
+
+选择菜单:
+
+Window - Preferences - Java - Editor - Content Assist
+
+滚动到最下面的 ~Auto activation triggers for Java~ 处，修改为：
+: .abcdefghijklmnopqrstuvwxyz
+
+* Eclipse 的常用快捷键
+
+最基本:
+- Alt+/ 补全
+- Ctrl+1 快速修复
+- Ctl+/ 注释代码
+- Ctrl+Shift+F 格式化代码
+- Ctrl+M 切换全屏
+
+编辑相关:
+- Shift+Enter 快速插入空行
+- Ctrl+D 删除行
+- Alt+Down/Up 移动行
+- Ctrl+Alt+Down/Up 复制行
+
+导航:
+- F3 跳到定义处
+- F4 打开类的层次结构
+- Ctrl+E 显示当前所有文件
+- Ctrl+O 显示当前文件的方法属性列表
+- Ctrl+T 显示当前类的继承关系
+- Ctrl+Shift+T 搜索类
+- Ctrl+Shift+R 搜索文件
+* 更改初始化的 JSP 模板
+
+- 菜单栏 Windows - Preferences 打开菜单。
+- 在输入框输入 jsp，找到 templates 部分，然后选择 New JSP File (html5)，之后 Edit:
+
+[[file:img/oimg_20200730_021410.png]]
+
+修改为:
+#+begin_src html
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <title>TITLE</title>
+  </head>
+  <body>
+  ${cursor}
+  </body>
+  </html>
+#+end_src
+
+保存即可。
+
+* 常见操作
+
+修改文件名:
+- 右键 - Refactor - Rename
+- 快捷键: ~alt shift r~
+
+[[file:img/eclipse-refactor.png]]

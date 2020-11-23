@@ -1,0 +1,1815 @@
+#+TITLE: JavaScript 语言核心
+
+
+* 简介
+
+JavaScript 语法上特别像 Java，实质上更像 Scheme，另外它的基于原型 (Prototype) 的对象系统，是来自于 Self。
+
+JavaScript 网络第一语言:
+- 定义数据的时候，不需要指定类型
+- 是一门 *弱类型* 的语言
+- 是一门 *动态类型* 的语言
+- 一切都是变量！！！函数跟数据一样的地位，函数是一等公民 (First Class)
+- 一切都是对象！！！
+
+#+begin_div :class mc11
+#+begin_src js
+  var aaa = 333;
+  // int aaa = 333;
+
+  aaa = "hello"
+  // java 会报错
+
+  print(aaa);
+  // Java 会确定 aaa 肯定是 int
+#+end_src
+
+#+begin_src java
+  // 1. 啰嗦
+  package com.xxx.yyy;
+  public class Asd {
+      public int getAge () {
+          return 18;
+      }
+      public static void main (String... arg) {
+          int aaa = 1; // 2. 必须手动指定类型，如果忽略直接报错
+          aaa = "hello"; // 3. 强类型、静态类型
+          System.out.println("hello, world");
+
+          Asd asd = new Asd();
+          asd.getAge();
+          System.out.println(getAge); // error!
+      }
+  }
+#+end_src
+#+end_div
+
+函数是一等公民:
+#+begin_src js
+  var aaa = 1;
+  var zzz = "hello world";
+  zzz = "你好，世界";
+
+  function bbb () {
+      alert("我是 bbb");
+      return "hello";
+  }
+  // var bbb = function bbb () {
+  //     alert("我是 bbb");
+  // }
+  function fff (f) {
+      f();
+      alert("我接受的这个函数" + f() + "真的好");
+  }
+
+  fff(bbb);
+
+  // var ccc = bbb;
+  // var ddd = ccc;
+  // var eee = ddd;
+  // eee();
+
+  // alert(aaa);
+#+end_src
+
+#+begin_details 执行步骤
+#+begin_src js
+  // 顺序执行，从上而下，先 bbb 定义，后 fff 定义，调用 fff(bbb)
+
+  // 1. 我要定义一个名字为 bbb 的函数。里面是什么我不知道
+  function bbb () {
+      alert("我是 bbb");
+      return "hello";
+  }
+
+  // 2. 我要定义一个名字为 fff 带一个参数的函数。里面是什么我不知道，我也不想知道
+  function fff (f) {
+      f();
+      alert("我接受的这个函数" + f() + "真的好");
+  }
+
+  // 3. 调用名字为 fff 的函数，将 bbb 喂给它
+  fff(bbb);
+#+end_src
+#+end_details
+
+* 变量 (Variable)
+
+变量的的定义:
+- 使用关键词 var (variable)
+- 在 ES6 中，建议使用 let/const 定义变量和常量
+- 变量实质上就是数据地址的一个别名
+- 另一种说法，变量是数据的一个容器
+- 让反复使用同一个数据，成为了可能
+
+另外:
+- 声明变量千万不要丢掉 var/let/const!!!
+- 变量的名字，建议您一定要取得有意义
+
+#+begin_src js
+  var a = 1;
+  alert(a);   // 1
+  var b;
+  alert(b);   // undefined，声明了，但是没有赋值
+
+  // 名字要有意义
+  var shengao = 1;
+  var xs_xingm = 'lll';
+  var xsXingm = 'lll';
+
+  // 反面例子:
+  var ksdjksdjfksjdkfjsdlkjfksdjfkjalkfdjlksdajflkdsajlkfj = 1;
+  var i;
+  var j;
+  var a;
+  var xs-skdfjskd = 'kkk';
+
+  // 多个赋值
+  var i = 1, j, k = 1;
+  var i = j = k = 1;
+
+  // 快捷方式
+  i = i + 1;
+  i++;
+  ++i;
+  i = i - 1;
+  i--;
+  --i;
+  i = i + 2;
+  i += 2;
+  i /= 2;
+  i *= 2;
+  i -= 2;
+#+end_src
+
+* 类型 (Type)
+
+- 原始类型 (Primitive Type): number/string/boolean/function/undefined
+- 对象(Object): Array/Object/.../null
+
+** number
+
+在 JS 中，number 表示一切数字，包括整数和浮点数。全都是 64 位。
+
+#+begin_src js
+  // int a = 1;
+  // number a = 1;
+
+  var a = 1;
+  var b = 1.2;
+  var c = 0.0000004;
+  var d = 12323232323;
+  var e = 0xffffff; // 16 进制的表现
+  var f = 0o12345;  // 8 进制的表现
+
+  // 用来查看其基本类型
+  typeof a;
+#+end_src
+
+运算:
+- + - x / % 
+- around/ceil/floor
+- power/exp/sqrt
+- sin/cos/tan/log/ln
+- random
+
+*** NaN (Not a Number)
+
+- 表示不是一个数字
+- 跟其他数字进行数学计算的结果还是 NaN
+- NaN 本质是一个 Number 上的属性，它表示一个不可知数字
+
+进行数学计算的顺序是:
+1. 首先，将运算符两边的 *元素* 都强制转换为 Number，然后进行计算
+   : '3' * '5'
+2. 如果在转换时，有一个转换失败了，那么运算的结果直接是 NaN
+3. 加法例外，只要做不了数学运算，就强制转换为字符串拼接
+   : '3' + '5'
+4. 如果一个结果无法表示，那么结果也会被表示为 NaN
+   : Math.sqrt(-1)
+
+如果要判断某个变量是否为 NaN。这两个有什么区别:
+- isNaN()
+- Number.isNaN()
+
+*** Infinity
+
+: 5 / 0
+
+*** Number/parseInt/parseFloat
+
+parseInt 和 parseFloat 只转化第一个无效字符之前的字符串:
+#+begin_src js
+  Number("123");      // 123
+  parseInt("123");    // 123
+
+  Number("123abc");   // NaN
+  parseInt("123abc"); // 123
+
+  Number("abc123");   // NaN
+  parseInt("abc123"); // NaN
+
+  Number(null);       // 0
+  parseInt(null);     // NaN
+#+end_src
+
+*** 其他
+
+- 浮点数计算偏差，典型的 $0.1 + 0.2 \ne 0.3$
+- 如果存在过大的数，是不能使用 Number 来表示的；使用内置的对象 BigInt 可以解决之
+
+** string
+
+字符串的字面表达:
+#+begin_src js
+  // 双引号、单引号，都是字符串
+
+  var b = '字符串';
+  var c = "字符串";
+  var c1 = ‘hello’; // 不能使用中文状态的引号
+
+  // 搭配使用，for your free
+
+  // var e = 'there're some body crying.'
+  var e = "there're some body crying."
+  // var f = "双号 " 是一个用来包括字符形成串的一种语法符号"
+  var f = '双号 " 是一个用来包括字符形成串的一种语法符号'
+  // var g = "双引号 " 是这样的，但是 单引号 ' 有是这样的"
+
+  // 转义字符是你的好朋友
+  var h = '\n\n\n\tffff\n' // 转义字符
+  var g = "双引号 \" 是这样的，但是 单引号 \' 有是这样的"
+  var i = '\\\''
+#+end_src
+
+因为字符串本身就是一个对象，所以它遵循对象的使用方式:
+: sss.length    // 属性
+: sss.charAt(1) // 方法
+
+#+begin_src js
+  "Hello".charAt(1)             // 'e'
+  "hello".charCodeAt(1)         // 101
+
+  "Hello".concat(" world")      // 连接: "Hello" + " World"
+  d.getFullYear().concat(d.getMonth().concat(d.getDay()))
+
+  // 正则表达式
+  "Hel000lo".match(/\d/);       // 返回第一个匹配的项
+  "Hel000lo".match(/\d/g);      // 返回所有匹配的项
+  "Hel000lo".search(/\d/);      // 搜索满足条件的序号
+  "Hel lo".replace(/\s/g, "");  // 正则替换
+  "Hello".search("e");          // 搜索、寻找
+  "Hello".replace("o", "O");    // 参数可以是字符串，也可以是正则表达式对象
+
+  // 搜索、位置
+  "Hello".startsWith('h')       // false
+  "Hello".startsWith('H')       // true 是不是用什么开始
+  "Hello".endsWith('lo')        // true 是不是用什么结尾
+  "hello world".indexOf("world") // 6，注意: (1) 序号是从 0 开始的 (2) 如果不存在，返回 -1 (3) 大小写敏感的
+  "hello world".indexOf("World")
+  "hello wOrLd".toUpperCase().indexOf("WORLD")
+  "hello wOrLd".toLowerCase().indexOf("world")
+  "hello WoRLd".search(/world/i)  // 使用 i 来表示不考虑大小写
+  "hello world".includes("world") // true, ES6
+
+  // 子字符串 (了解有什么区别)
+  "hello world".substring(3)
+  "hello world".substring(3, 5)
+  "hello world".substring(3, -3)
+  "hello world".substr(3)
+  "hello world".substr(3, 1)
+  "hello world".slice()       // 创建一个 s 的副本
+  "hello world".slice(3)      // 只是复制从第 3 位开始的字符串
+  "hello world".slice(3, 5)   // 从哪儿到哪儿，进行复制
+
+  // 补充、截断
+  "hello".padStart(10) // 补齐
+  "hello".padStart(10, "-")
+  "hello".padEnd(10)
+  "hello".padEnd(10, "-")
+  " hello    ".trim()
+  " hello    ".trimStart()
+  " hello    ".trimEnd()
+
+  "x".repeat(1000)   // 创建重复多少次的一个字符串
+#+end_src
+
+=+= 是一个重载 (overload) 的运算符:
+- 在其中一个是字符串的时候，它表示字符串的拼接
+- 如果两边都是 Number 的时候，它表示数学运算的加法
+
+** boolean
+
+用来配合 if/while 进行条件判断的，只有两个值:
+- true
+- false
+
+布尔类型的运算:
+- 否，! true
+- 与，false && true
+- 或，false ||  true
+- 搭配使用 false || (! true) || ((! true) && (false || true))
+
+创建 boolean 类型:
+#+begin_src js
+  var b = true;
+  var c = false;
+  var d = !b;
+  var e = b && d;
+
+  // 通过进行判断，可以得到布尔值
+  2222 == 3333
+  2222 != 3333
+  2222 > 3333
+  2222 < 3333
+  2222 <= 3333
+  '2222' == '2222'
+  '2222'.length > 3
+  '2222'.includes('2')
+
+  // JS 是一门弱类型的语言
+  // 后续使用的时候，请大家务必优先使用 === 进行判断
+  2222 == '2222'  // 只比较值，不比较类型
+  2222 === '2222' // 既比较类型，又比较值
+  2222 !== '2222'
+
+  // 如果条件是其他类型的话，会强制转换为 boolean 类型
+  // 如果是数字，且为 0/NaN 的话，会看做 false，其他 true
+  // 如果是字符串，那么为 "" 的话，看做 false
+  // 如果类型是 undefined，或者赋值为 null 的话，看做 false
+  var xxx = null;
+  if (xxx) {
+     console.log("将 A 当作 true 来看待");
+  } else {
+     console.log("将 A 当作 false 来看待");
+  }
+  if (!xxx) { alert("它不是 0，它也不是 ''，它不是 null，它也不是 undefined...")
+#+end_src
+
+** function
+*** 基本的声明与使用
+
+函数就是 *执行逻辑* 的一种封装。
+
+数学中的函数:
+\[
+f(x) = x^3 + 2x^2 + 1
+\]
+
+类比之下，函数最重要的元素:
+1. 函数的名字（功能）
+2. 函数必须要有输入值 (输入参数，简称入参)
+3. 函数必须要有输出值 (输出值，又称返回值)
+
+#+begin_src js
+  function mysum (a, b) {
+      if (typeof a === "string") {
+          a = Number(a)
+      }
+      if (isNaN(a) || isNaN(b)) {
+          console.log("error! NaN");
+          return NaN;
+      }
+      return a + b + b + b + b;
+      alert("hahaha");
+  }
+
+  function doNothing () {
+      console.log('aaa');
+      console.log('bbb');
+      // return undefined;
+  }
+
+  var doNothing = function () {
+      alert("hello")
+      return 1;
+  }
+
+  (function () {
+      console.log("woyebuzhidaowoshizale");
+  })();
+
+  (function (a, b) {
+      console.log(a + b);
+  })();
+
+  (function (a, b) {
+      console.log(a + b);
+  })(2, 3);
+#+end_src
+
+举例说明:
+#+begin_src js
+  // 声明了一个变量，为 getBMI
+  // getBMI 代表了一段封装的逻辑
+  // 这段逻辑 *描述了* 如何去获取 BMI
+  // 这段代码不会被执行，但是被保存为 getBMI 的名字
+  // 等后面，出现 getBMI() 情况的时候，才会调用里面的逻辑
+  // 这个 getBMI 就是一个函数
+
+  // 函数可以看做一个黑箱子，你如果只是一个调用者，你不需要关心里面怎么实现的
+  function getBMI () {
+      // 1. 获取用户的身高、体重
+      // 2. 进行了一些列的转换和计算
+      // 3. 得到 BMI 的结论
+      // 4. 返回结果
+      alert("hehe");
+      return "ksdjfksd";
+  }
+  function getBMI (h, w) {
+      // 2. 进行了一些列的转换和计算
+      // 3. 得到 BMI 的结论
+      // 4. 返回结果
+      alert("hehe");
+      return "ksdjfksd";
+  }
+#+end_src
+
+*** 函数是一等公民 (回调函数)
+
+函数作为另一个函数的参数的情况，叫回调函数。
+
+#+begin_src js
+  // 将错误的逻辑，跟主干逻辑拧合在一起
+  // 函数的代码非常死板，而且不便于维护
+  // 因此，我们的思路是，将可以频繁变化的非主要逻辑分离出去
+  // 分离的途径，就是将其转换为 入参，回调函数
+  function mysum(a, b) {
+      if (isNaN(a) || isNaN(b)) {
+          console.log("出错了，不能是 NaN 啊")
+          return null;
+      }
+      return a + b;
+  }
+
+
+  // f 是一个函数，它用来表示出错的时候的逻辑
+  // 通过回调函数实现了逻辑的分离，灵活通过传参的方式进行调用
+  function mysum2(a, b, f) {
+      if (isNaN(a) || isNaN(b)) {
+          return f("出错了，不能是 NaN 啊")
+      }
+      return a + b;
+  }
+  mysum2(1, 'hello', console.log)
+
+
+  // 我们一般会使用，赋予默认值的方式，来简化调用的时候参数输入
+  // 声明的函数，如果调用的时候，传入参数过少的时候，多余的入参将被赋值为 undefined
+  function mysum3(a, b, f) {
+      // console.log("f 的类型是", typeof f);
+      if (!f) f = console.log;
+      if (isNaN(a) || isNaN(b)) {
+          return f("出错了，不能是 NaN 啊")
+      }
+      return a + b;
+  }
+  mysum3(1, 'hello');        // f 是 undefined，所以在函数内部，使用 console.log 替代了它
+  mysum3(1, 'hello', alert); // f 是 alert
+#+end_src
+
+- Callback Hell
+
+*** 递归函数
+
+不断调用自己，千层套娃:
+#+begin_src js
+  function rec () {
+      console.log("hello");
+      if (Math.random() > 0.999) {
+          return;
+      }
+      rec();
+  }
+  rec();
+#+end_src
+
+计算从 0 到 1000 的和，不使用循环:
+#+begin_src js
+  function s(i){
+      if(i == 1) { return 1; } // if(i == 2) { return 3; }
+      return i + s(i - 1);
+  }
+  s(1000);
+
+  // 解析 s(10) 的基本计算步骤:
+  // return 10 + s(9)
+  //             9 + s(8)
+  //                 8 + s(7)
+  //                     7 + s(6)
+  //                         6 + s(5)
+  //                             5 + s(4)
+  //                                 4 + s(3)
+  //                                     3 + s(2)
+  //                                         2 + s(1)
+  //                                             1
+  //                                         3
+  //                                     6
+  //                                 10
+  //                             15
+  //                         21
+  //                     28
+  //                 36
+  //             45
+  //         55
+  /// 10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1
+#+end_src
+
+关于递归:
+- 它是计算机进行计算更加本质的一种行为
+- 它可以完全替换掉循环语句 
+- 烧脑，不够直观
+- 烧内存，爆栈。没有递归做进一步优化，尾递归优化
+- 递归必须要有边界条件 ！！！
+
+*** 变量的提升 (var)
+
+#+begin_src js
+  var a;
+  var aaa;
+
+  console.log(a); // undefined
+  a = 1000; // var a = 1000;
+
+  bbb();
+
+  function bbb () {
+      alert("现在呢?")
+  }
+
+  aaa();
+
+  aaa = function () {
+      alert('那现在呢?');
+  }
+#+end_src
+
+*** 变量的作用域 (var)
+
+#+begin_src js
+  var a = 9;
+
+  function x () {
+      var a = 10;
+      console.log(a);
+  }
+  x();
+
+  console.log(a);
+#+end_src
+
+#+begin_src js
+  var a = 9;
+
+  function x () {
+      console.log(a);
+      var a = 10;
+  }
+  x();
+
+  console.log(a);
+#+end_src
+
+#+begin_src js
+  var a = 9;
+
+  function x () {
+      var a = 10;
+      console.log(a);
+  }
+  x();
+
+  function y () {
+      console.log(a);
+  }
+  y();
+#+end_src
+
+#+begin_src js
+  var a = 9;
+
+  function x () {
+      var a = 10;
+      console.log(a);
+  }
+  x();
+
+  function y () {
+      console.log(a);
+      a = 22
+  }
+  y();
+  console.log(a);
+#+end_src
+
+#+begin_src js
+  function z () {
+      console.log(a);
+      a = 33;
+  }
+  z();
+#+end_src
+
+#+begin_src js
+  function z () {
+      a = 33;
+      console.log(a);
+  }
+  z();
+#+end_src
+
+#+begin_src js
+  function z () {
+      a = 33;
+      console.log(a);
+  }
+  z();
+  console.log(a);
+#+end_src
+
+#+begin_src js
+  function z () {
+      for (var i = 1; i < 10; i++) {
+          //...
+      }
+  }
+  z();
+  console.log(i);
+#+end_src
+
+- 使用 var 定义的变量，它是有作用范围的。默认的范围是函数级别
+
+*** ES6 提出了两个进行变量定义的关键词 let/const
+
+区别:
+- 块级别的作用域
+- 优先使用 const，在数据需要修改的时候，使用 let，迫不得已 var
+- 千万不能忘掉 var 的原理跟使用方式，因为面试需要
+
+举例，Java 中的块级作用域: 
+#+begin_src java
+  for (int i = 0; i < 11; i++) {
+      System.out.print(i);
+      for (int j = 0; j < 11; j++) {
+          System.out.print(j);
+      }
+      System.out.print(j);
+  }
+  System.out.print(i);
+
+  {
+      int iii = 222;
+  }
+  System.out.print(iii);
+#+end_src
+
+let 使用的是块级作用域，它可以完全避免 var 带来的一些列问题:
+#+begin_src js
+  function z () {
+      for (let i = 1; i < 10; i++) {
+      }
+      console.log(i);
+  }
+  z();
+#+end_src
+
+const 是初始化之后，不能再重新赋值的 *常量*:
+#+begin_src js
+  const a = 1;
+  a = 2;  // 报错
+#+end_src
+
+*** 词法作用域 (Lexical Scope)
+
+即静态绑定。
+
+函数使用的自由变量 (引用到外部的变量)，在定义的时候就开始绑定了。
+比如，下面的例子，函数 hello 中的 a 在 hello 声明的时候就绑定了外层的 a (即 'Dog')。
+
+词法作用域的好处是:
+- 函数定义时绑定了某个变量，后面就不会发生变化
+- 便于理解、便于调试，不容易出错
+
+基本现在所有的语言都是基于词法作用域的。
+
+#+begin_src js
+  var a = 'Dog';
+
+  function hello () {
+      console.log("hello, " + a);
+  }
+  a = "Sheep";
+
+  function test () {
+      var a = 'Cat';
+      hello();
+  }
+
+  test();
+#+end_src
+
+*** 闭包 (Closure)
+
+闭包的根源是 *词法作用域*！
+
+
+主要目的:
+- 为了保护变量，不被外部修改
+- 为了使数据在内存中驻留
+
+#+begin_src js
+  function aaa () {
+      var name = "tom";
+      console.log(name);
+  }
+  aaa();
+
+  function aaa () {
+      let name = "tom";
+      function inner () {
+          console.log(name);
+      }
+      return inner;
+  }
+  var inner_fun = aaa();
+  inner_fun();
+#+end_src
+
+举个例子:
+#+begin_src js
+  // 传统实现:
+  // count 是暴露的，可能被篡改的，是非常不安全的
+  var count = 1;
+  function incrCount () {
+      console.log("有一个...");
+      return count++;
+  }
+
+  // 使用闭包实现
+  // 1. 保护 count 的安全
+  // 2. 能够确保 count 在函数调用之后会一直存在，不会被释放
+  function Counter () {
+      let count1 = 1;
+      function incr () {
+          return ++count1;
+      }
+      return incr;
+  }
+  var c = Counter();
+  c();
+
+  // 进一步
+  function Counter () {
+      let count = 0;
+      return {
+          incr: function () {
+              return ++count;
+          },
+          get: function () {
+              return count
+          },
+          reset: function () {
+              count = 0;
+              return count;
+          },
+          derc: function () {
+              return --count;
+          }
+      };
+  }
+  var c = Counter();
+  c.incr();
+  c.incr();
+  c.decr();
+  c.get();
+  c.reset();
+#+end_src
+
+另外，了解:
+- 闭包可能会引发内存泄漏的问题 [小问题]
+
+** undefined/null
+
+- undefined 表示的是变量已经声明，但是没有赋值！
+- null 不是一种类型，而是一个 object 对象，它表示将某个变量置空
+
+#+begin_src js
+  var aaaaa;
+  var bbbbb = null;
+  typeof aaaaa; // 类型为 undefined; 值是 undefined
+  typeof bbbbb; // 类型为 object; 值是 null
+#+end_src
+
+[[file:img/undefined-vs-null.png]]
+
+** Array
+
+数组的创建：
+#+begin_src js
+  var arr = new Array();
+  var arr = new Array(1, 2, 'hello');
+  typeof arr;
+
+  var arr = new Array();
+  arr.push(121);
+  arr.push(212);
+  arr.push(function () { return "hello" });
+  console.log(arr.pop());
+  console.log(arr.pop()());
+
+  var arr = [121, 212,
+             'hello', true, undefined,
+             function () {console.error(1)}];
+  arr[5](); // 序号是从 0 开始的 !!!
+#+end_src
+
+数组的基本用法:
+#+begin_src js
+  var arr = [1, 2, "hello", true];
+  arr.length      // 4
+  arr.concat([33, 44]) // [1, 2, "hello", true, 33, 44]
+
+  arr.flat(); // 将其压平
+  arr.includes(); // 判定是否存在某个元素
+  arr.indexOf/lastIndexOf(1);  // 判定某个元素的序号
+
+  arr.slice();  // 复制
+  arr.splice(3); // 删除、添加，默认行为是删除从 3 到最后一位的元素，返回被删除的元素组成的数组
+  arr.splice(3, 1); // 删除多少个元素
+  arr.splice(2, 0, 11111); // 添加
+
+  arr.reverse(); // 将数组内元素反向排序，注意，它是一个破坏性的函数
+  arr.sort();    // 排序，破坏性的函数
+  arr.sort(function (a, b) { if (a > b) return -1; else return 1 });
+#+end_src
+
+字符串跟数组的美好友谊:
+#+begin_src js
+  "kkkk:jjjj:2222:xxxx".split(":").reverse().join("-");
+  "中华人民共和国万岁".split("").reverse().join("");
+#+end_src
+
+Array 与 function 的美好生活:
+#+begin_src js
+  // 寻找符合条件的
+  var myJudge = function (x) { return x > 1 }
+  arr.find(myJudge); // 2, 第一个符合条件的是 2
+  arr.find(function(x) { return x > 1});
+
+  // 过滤符合条件的
+  var myNumberJudge = function(x) { return typeof x === 'number' }
+  arr.filter(myNumberJudge) // [1, 2]
+
+  // 对每个元素做同样的操作，然后形成新的数组
+  arr.map(function (x) { return x + 1 })
+
+  // 合并计算
+  arr.reduce(function(a, b) { return a + b})
+
+  // 判定是不是符合...
+  arr.every(function (x) { return typeof x !== 'object' })
+  arr.some(function (x) { return typeof x !== 'object' })
+
+  // 对每一个元素都做一定的事情，从 ES6 开始出现的
+  arr.forEach(function(x) { console.log(x) })
+#+end_src
+
+ES6 添加的 Array 的一些静态方法:
+#+begin_src js
+  Array.from
+  Array.of
+#+end_src
+
+** Object
+*** 封装
+
+Array 是一种集合:
+- 表述简单 [xx, yy, zz]
+- 使用简单 xx[1,3,4] 以数字下标的方式访问 顺序
+- 缺点: arr[102]
+
+Object 也是一种集合:
+- 下标再也不是数字，而是字符串了
+
+对象的基本表述:
+#+begin_src js
+  var arr = new Array();
+  arr[1] = 'tom';
+  var arr = [1, 2, 3 ,5, 'laohu'];
+  // var arr = { 0:1, 1:2, 2:3, 3:5, 4:'laohu' };
+
+  // Key-Value 键-值
+  var obj = new Object();
+  obj['name'] = 'tom';
+  obj.age = 123;
+  var obj = { "name": 'tom', "age", 123  };
+  var obj = {
+      "name": 'tom',
+      "age": 123,
+      "greet": function () { alert(222) }
+  };
+  var obj = {
+      name: 'tom',
+      age: 123,
+      greet: function () { alert(222) }
+  };
+
+  // 访问
+  console.log(obj.name);
+  alert(obj.age);
+  alert(obj["age"]);
+  obj.greet();  /// obj["greet"]()
+
+  // 赋值、添加新的元素
+  obj.age = obj.age + 1;
+  obj.age++;
+  obj.school = 'nfit';
+#+end_src
+
+Java 中创建对象方式 [参考]:
+#+begin_src java
+  public class Person {
+      public void eat() {}
+  }
+
+  // 首先，需要创建一个类
+  public class Student extends Person {
+      public String name;
+      public String age;
+
+      public void greet() {
+          System.out.println("hello " + this.name);
+      }
+  }
+
+  // 接下来，实例化
+  Student xiaoming = new Student();
+  xiaoming.eat();
+
+#+end_src
+
+*** 继承 (基于原型链)
+
+JS 中，基于原型链的继承:
+#+begin_src js
+  var animal = {
+      play: function() { console.log("ooOOoooo...") }
+  };
+  var person = {
+      eat: function () { console.log('一定要吃饱啊') }
+  };
+  var xiaoming = {
+      name: "xiaoming",
+      age: 1222
+  };
+  // prototype (原型，爸爸) 是通过 __proto__ 属性指定的!
+  person.__proto__ = animal;
+  xiaoming.__proto__ = person;
+
+  // 可以动态改变某个 object 的爸爸:
+  xiaoming.__proto__ = animal;
+  // 换完爸爸之后，下面的执行就会报错
+  xiaoming.eat();
+  // 可以随时将爸爸换回来
+  xiaoming.__proto__ = person;
+  xiaoming.eat(); // ok
+
+  // 我们可以随时在任何的 object 上添加属性、方法:
+  person.study = function() { console.log('hello, xuexi'); };
+  // 然后，study 就会被 xiaoming 给继承
+  xiaoming.study();
+
+  // 所以，JS 中，方法、属性的调用，就是不断找爸爸的过程
+  // 首先查看自身对象有没有相应的属性方法，如果有，则返回
+  // 如果没有，通过 __proto__ 去寻找其父，然后查看其父有没有这个属性方法，有则返回
+  // 如果没有，毅种循环，知道找到头
+  // 顺序:
+  // 1. xiaoming.xxx()
+  // 2. xiaoming.__proto__.xxx() / perwson.xxx()
+  // 3. xiaoming.__proto__.__proto__.xxx() / animal.xxx()
+  // 4. xiaoming.__proto__.__proto__.__proto__.xxx() / Object.xxx()
+  // 5. 如果再找不到，那就只能报错了
+
+  // 这样一种方式，就是基于原型链的对象模型。(Prototype-Based OOP)
+  // 简单、粗暴、非常非常灵活
+  // Self/Lua 都是基于原型链
+#+end_src
+
+*** 使用构造函数，简化对象的创建
+
+如果想构建结果类似的 object 数据，普通的写法有点罗嗦:
+#+begin_src js
+  var person = {
+      eat: function () { console.log("是酸的"); }
+  }
+
+  // 一个
+  var tom = {
+      name: "tom",
+      age: 18,
+      lol: function() { console.log("忘乎所以") }
+  }
+  tom.__proto__ = person;
+
+  // 一个
+  var xiaoming = {
+      name: "xiaoming",
+      age: 19,
+      lol: function() { console.log("忘乎所以") }
+  }
+  xiaoming.__proto__ = person;
+
+  // 又一个
+  var xiaohong = {
+      name: "xiaohong",
+      age: 16,
+      lol: function() { console.log("忘乎所以") }
+  }
+  xiaohong.__proto__ = person;
+#+end_src
+
+为了让事情变得简化，我们可以写一个函数来帮助我们创建新对象，即使用函数消除冗余:
+#+begin_src js
+  var person = {
+      eat: function () { console.log("是酸的"); }
+  }
+
+  function createStudent (name, age) {
+      var s = {
+          name: name,
+          age: age,
+          lol: function() { console.log('好玩') }
+      };
+      s.__proto__ = person;
+      return s;
+  }
+
+  var xiaohong = createStudent("小红", 16);
+  var xiaolan = createStudent("小lan", 19);
+  var xiaozi = createStudent("小紫", 19);
+#+end_src
+
+上面的解决方案已经足够好了，但是因为这种使用方法实在常见，JS 内部就给提供了下面一种语法糖，简直甜死了:
+#+begin_src js
+  function Person () {
+      this.eat = function () { console.log("是酸的"); }
+  }
+
+  // Syntax Suger, 语法糖，构造函数
+  function Student(name, age) {
+      this.name = name; // window
+      this.age = age;
+      this.lol = function() { console.log("kkk") }
+  }
+  Student.prototype = new Person();
+
+  // xiaohong.__proto__ == Student.prototype
+  var xiaohong = new Student("小红", 15);
+  var xiaolan = new Student("小兰", 12);
+  var xiaogreen = new Student("小卢", 15);
+
+  xiaohong.study = function () { console.log("痛定思痛，好好学习") }
+#+end_src
+
+于是，使用函数作为构造方法的方式，就有点类似 Java 中的 class/instance 方式了，使用简单:
+#+begin_src js
+  function Phone (name, price) {
+      this.name = name;
+      this.price = price;
+      this.show = function () {
+          console.log(this.name + " 手机的价格为: ￥" + this.price + "元");
+      }
+  }
+  var iphone = new Phone("iphoneX", 5555);
+  var huawei = new Phone("huawei", 4444);
+  var xiaomi = new Phone("xiaomi", 6666);
+  var samsung = new Phone("samsung", 9999);
+
+  // 三星手机可能会爆炸，所以，添加爆炸的逻辑，即一个函数
+  samsung.baozha = function () {
+      if (Math.random() > 0.9) {
+          alert("爆炸了");
+      } else {
+          console.log("别冤枉我，我才不会这次爆炸呢.")
+      }
+  };
+  samsung.baozha();
+
+  // 如果想为每个构造出来的对象，都添加同样的功能，
+  // 那么只需要为他们共同的爸爸，添加此属性或方法即可
+  // 比如说，判断每个手机是否支持 5G，我们只需要为
+  // 这些手机的爸爸 (Phone.prototype) 添加 isSupport5G 方法即可
+  // Phone.prototype 代表 使用 Phone 创建出来的对象的爹
+  Phone.prototype.isSupport5G = function () {
+     return this.price > 5000; 
+     // this 指的是，调用的时候的对象
+     // 比如，后面我调用 huawei.isSupport5G() 那么 this 指的就是 huawei 对象
+  }
+  huawei.isSupport5G();
+  samsung.isSupport5G();
+#+end_src
+
+因此可以说，使用内置构造函数构建对象，跟自己写一个普通函数来构建对象，实际上是等价的:
+
+#+begin_div :class mc11
+
+#+begin_src js
+  // 构造函数
+  function Phone (name, price) {
+      this.name = name;
+      this.price = price;
+      this.show = function () {
+          console.log(this.name + " 价格: ￥" + this.price);
+      }
+  }
+  // 以构造函数为模板，创建 iphone 对象
+  // 新创建的对象有 name/price/show 属性
+  // 其父亲 (__proto__) 为 Phone.prototype
+  var iphone = new Phone("iphoneX", 5555);
+
+  // 为所有使用 Phone 构建出来的对象添加共同方法:
+  Phone.prototype.hello = function() {console.log('hello')};
+  // yes
+  iphone.hello();
+#+end_src
+使用「构造函数 + new」构建对象。
+
+:break:
+#+begin_src js
+  // 普通函数
+  function createPhone (name, price) {
+      var p = {
+          name: name,
+          price: price,
+          show: function () { 
+              console.log(this.name + "价格: ￥" + this.price) 
+          }
+      };
+      p.__proto__ = createPhone.die; // 为其指定父亲
+      return p;
+  }
+  // 在 createPhone 的 die 属性上绑定一个对象作为所有新建对象的父亲
+  createPhone.die = { constructor: createPhone };
+
+  // 通过这个普通函数构建出来的 iphone 对象
+  // 具有属性 name/price/show
+  // 并且其父亲 (__proto__) 为 createPhone.die
+  var iphone = createPhone("iphoneX", 5555);
+
+  // 为所有使用 createPhone 构建出来的对象添加共同方法:
+  createPhone.die.hello = function() { console.log('hello') };
+  // yes
+  iphone.hello();
+#+end_src
+自行创建普通函数，借助这个函数完成对象的构建。
+#+end_div
+
+*** ES6 中的 Class 语法糖
+
+一定要注意，这只是一种 *语法糖* ！
+
+在 JS 中是不存在真正的类的。
+
+#+begin_src js
+  class Person {
+      constructor(name, address) { // 构造函数
+          this.name = name;
+          this.address = address;
+      }
+      eat() { // 方法
+          console.log("Please eat.");
+      }
+      drink() { // 方法
+          console.log("Please drink.");
+      }
+  }
+  class Student extends Person {}
+
+  var xiaoming = new Person('xiaoming', 'China');
+  xiaoming.eat();
+#+end_src
+
+** 运算符优先级
+
+[[file:img/var-youxianji.png]]
+
+* 标准内置对象 (Global Objects)
+** Number/String/Boolean/Function
+
+包装类型 (Wrapper)：因为一切都是对象嘛……
+
+#+begin_src js
+  var d1 = 123;
+  var d2 = Number(123);
+  var d3 = new Number(123);
+#+end_src
+
+#+begin_src js
+  var s1 = "abc";
+  var s2 = String("abc");
+  var s3 = new String("abc");
+
+  s1 == s2   // true
+  s1 === s2  // true
+
+  s1 == s3   // true
+  s1 === s3  // false typeof(s3): object
+#+end_src
+
+#+begin_src js
+  function aaa () {}
+  var aaa = function () {}
+  var aaa = new Function('a', 'b', 'return a + b');
+  // typeof aaa: function
+#+end_src
+
+** Math
+
+Math 对象是一个静态的对象 (不需要使用 new Math()，而是直接 Math.xxx)。
+
+它主要作用在 Number 类型上，进行数学运算的。
+
+#+begin_src js
+  Math.PI
+
+  Math.min(2, 3, 4, 5);
+  Math.max(2, 3, 4, 5);
+
+  // 基本数学计算
+  Math.abs(-1);   // 绝对值 1
+  Math.sin(2.5);
+  Math.cos(Math.PI)
+  Math.pow(4, 2); // 16
+  Math.pow(4, 3); // 64
+  Math.sqrt(4);   // 开根号 2
+  Math.exp(2);    // 自然指数 7.38905609893065
+
+  // 区别 round/floor/ceil/trunc
+  Math.round(3.14);  //3
+  Math.floor(3.14);  // 3
+  Math.ceil(3.14);   // 4
+  Math.trunc(3.14);  // 3
+
+  // 求取随机值
+  Math.randon();  // (0, 1)
+  Math.round(100 * Math.random());
+#+end_src
+
+** Date
+
+#+begin_src js
+  let d = new Date();
+  let d = new Date('2010-08-04');
+  let d = new Date('1995-12-17T03:24:00');
+  let d = new Date("October 13, 1975 11:13:00");
+  let d = new Date(79, 5, 24);            // 年月日
+  let d = new Date(79, 5, 24, 11, 33, 0); // 年月日时分秒
+  let d = new Date(new Date().getTime() + 24*3600*1000);
+
+  d.setFullYear(2010,0,14);    // 2010.1.14
+  d.setDate(d.getDate() + 5);  // 5 days later
+
+  var seconds = Math.floor(Date.now() / 1000);
+  var elapsed = end.getTime() - start.getTime(); 
+
+  var yyyymmddwhhmiss = // "2020年6月8日(1) 19:16:9"
+      d.getFullYear() + '年'
+      + (d.getMonth() + 1) + '月'
+      + d.getDate() + '日'
+      + '(' + d.getDay() + ') '
+      + d.getHours() + ':'
+      + d.getMinutes() + ':'
+      + d.getSeconds();
+
+  d.toDateString();       // "Mon Jun 08 2020"
+  d.toGMTString();        // "Mon, 08 Jun 2020 11:16:09 GMT"
+  d.toISOString();        // "2020-06-08T11:16:09.617Z"
+  d.toLocaleString();     // "2020/6/8 下午7:16:09"
+  d.toLocaleString('en'); // "6/8/2020, 7:16:09 PM"
+  d.toString();           // "Mon Jun 08 2020 19:16:09 GMT+0800 (中国标准时间)"
+#+end_src
+
+** RegExp
+
+#+begin_src js
+  var a = new RegExp("[a-z]")
+  /[a-z]/  // 字面表达式，跟上面是等价的
+
+  a.test();
+  a.exec();
+  a.compile();
+
+  "Hello".match(/[a-z]/)
+#+end_src
+
+给大家的题目:
+- 如何使用正则表达式，来匹配一个电话号码
+- 如何使用正则表达式，来寻找 html 字符串中的所有图片地址
+
+*** 补充
+
+a{2}bc[abc]{2,5}
+
+: 1[3456789][0123456789][0123456789][0123456789][0123456789][0123456789][0123456789][0123456789][0123456789][0123456789]
+: 1[3456789][0123456789]{9}
+
+基本语法:
+- 一般情况下，我们读取到的每一位代表的是字符本身
+- 使用 [] 包含起来的所有字符，代表一位，值只能从 [xyz] 取其中之一
+- 使用 {} 搭配数字来修饰前一个字符，用来表达重复
+- 使用 () 用来进行分组、捕获
+
+偷懒:
+- [0-9] 来代表 [0123456789]
+- [a-z] 来代表 [abcdefghijklmnopqrstuvwxyz]
+- \d 来代表 [0123456789]
+- \s 来代表各种空格 [ \t]
+- * 来代表 {0,}
+- + 来代表 {1,}
+- ? 来代表 {0,1}
+
+** Proxy/Set/Map/...
+* 执行逻辑
+** 顺序执行
+
+默认行为
+
+** 分支判断
+
+- if/else if/else
+- switch
+- 三目运算
+
+*** IF/ELSE
+
+完全句式:
+#+begin_src js
+  if BOOLEAN {            // 必选的
+      // BOOLEAN 为真
+  } else if BOOLEAN2 {    // 可选
+      // BOOLEAN 为假
+      // BOOLEAN2 为真
+  } else {                // 可选的
+      // BOOLEAN 为假
+      // BOOLEAN2 为假
+  }
+#+end_src
+
+例子:
+#+begin_src js
+  var age = 18;
+
+  // 只有 if
+  if (age > 18) {
+      alert("你已经是成年人了，要懂得自律")
+  }
+
+  // 有 if 还有 else 
+  if (age > 18 && age < 25) {
+      alert("你年龄到了，该xx了")
+  } else {
+      alert("没你啥事，一边去")
+  }
+#+end_src
+
+完全句式:
+
+#+begin_div :class mc111
+
+#+begin_src js
+  if (age < 18) {
+      alert("好好玩")
+  } else if (age < 25) {
+      alert("好好学习")
+  } else if (age < 60) {
+      alert("好好工作")
+  } else {
+      alert("好好休息")
+  }
+#+end_src
+
+:break:
+
+#+begin_src js
+  if (age < 18) {
+      alert("好好玩")
+  }
+  if (age < 25 && age < 18) {
+      alert("好好学习")
+  }
+  if (age < 60 && age > 25) {
+      alert("好好工作")
+  }
+  if (age > 60) {
+      alert("好好休息")
+  }
+#+end_src
+
+:break:
+
+#+begin_src js
+  if (age < 18) {
+      alert("好好玩")
+  } else {
+      if (age < 25) {
+          alert("好好学习")
+      } else {
+          if (age < 60) {
+              alert("好好工作")
+          } else {
+              alert("好好休息")
+          }
+      }
+  }
+#+end_src
+#+end_div
+
+*** Switch/Case
+
+注意:
+- 只是 if/else if 的一种简化方式，用来对某个变量的多个值进行匹配分支
+- 它默认使用 ~===~ 进行判断，即既判断类型，又判断值
+- 使用 ~break~ 跳出分支，使用 ~default~ 表示其他分支都不匹配的情况，可以省略
+
+#+begin_div :class mc11
+
+#+begin_src js
+  if (age === 18) {
+      console.log("you should study")
+  } else if (age === 22) {
+      console.log("you should go to work")
+  } else if (age === 40) {
+      console.log("你们辛苦了")
+  } else if (age === 60) {
+      console.log("you should have a rest")
+  } else {
+      console.log("我没有什么好提醒你的")
+  }
+#+end_src
+
+:break:
+
+#+begin_src js
+  switch(age) {
+  case 18:
+      console.log("you should study")
+  case 22:
+      console.log("you should go to work")
+      break;
+  case 40:
+      console.log("您辛苦了")
+      break;
+  case 60:
+      console.log("you should have a rest")
+      break;
+  default:
+      console.log("我没有什么好提醒你的")
+  }
+#+end_src
+#+end_div
+
+*** 三目运算
+
+- 简短、快捷
+- 没有 return，不能写复杂句式
+
+: BOOLEAN ? 分支1 : 分支2
+
+** 循环迭代
+
+- for
+- while
+- do while
+
+* 作用域及模块化
+** var: 古老的函数级别作用域
+
+使用 var 定义的数据的作用域，是函数级别的! var 定义的变量会自动提升
+
+#+begin_src js
+  var a = 12;
+  var b = "hello";
+  var c = [1, "x"];
+  var d = { a: 1, b: 2};
+  var f = function () { alert("hello") };
+#+end_src
+
+例子:
+#+begin_src js
+  function xxx () {
+      for (var i = 0; i < 5; i++) {
+          setTimeout(function() {
+              console.log(i);
+          }, 10);
+      }
+  }
+  xxx(); // 5 个 5
+
+  function xxx () {
+      for (var i = 0; i < 5; i++) {
+          (function () {
+              var j = i;
+              setTimeout(function() {
+                  console.log(j);
+              }, 10);
+          })();
+      }
+  }
+  xxx(); // 0 1 2 3 4
+#+end_src
+
+** let/const: 块级作用域的华丽登场
+
+使用的优先级:
+- const > let > var
+
+#+begin_src js
+  function xxx () {
+      for (let i = 0; i < 5; i++) {
+          setTimeout(function() {
+              console.log(i);
+          }, 10);
+      }
+  }
+  xxx(); // 0 1 2 3 4
+#+end_src
+
+** <script src="xxx.js"> 划文件而治
+
+如果代码量变大的话，会将其划分到不同的文件中:
+#+begin_src js
+  // c1.js
+function hello() {
+    alert("hello");
+}
+
+function hi () {
+    alert("hi");
+}
+
+function goOut() {
+    alert("Out!!!!");
+}
+#+end_src
+
+使用的时候:
+#+begin_src html
+  <script src="c1.js"></script>
+  <script>
+    goOut();
+  </script>
+#+end_src
+
+利用函数级别的作用域，来避免命名空间的冲突和污染:
+#+begin_src js
+  var c1 = (function () {
+      var name = "tom";
+
+      var hello = function() {
+          alert(name);
+      }
+      var hi = function () {
+          alert("hi");
+      }
+      return {
+          hello: hello,
+          hi: hi
+      }
+  })();
+
+  c1.hi();
+#+end_src
+
+** 模块化的第三方解决方案 CommonJS/AMD
+
+Asynchronous Module Definition.
+
+** 终于，在 ES6 中，推出了标准化的模块写法
+
+两种语法:
+1. 模块文件中 export
+2. 在使用的地方 import
+
+模块的定义:
+#+begin_src js
+  // 1. 先声明，后通过 export {} 的方式进行导出
+  var name = "tom";
+  var hello = function() {
+      alert(name);
+  };
+  var setName = function(name1) {
+      name = name1;
+  }
+  var hi = function () {
+      alert("hi");
+  };
+  export { hello, setName, name };
+
+  // 2. 在声明的时候，顺便导出
+  export var a = 3;
+  export var b = function () {
+      alert("bbbbb");
+  }
+
+  // 3. 我们可以给出一个默认的导出 (可选的，只可以给一个)
+  export default "hello world";
+#+end_src
+
+模块的引用:
+#+begin_src html
+  <script type="module">
+    // 导出所需要的部分
+    import { hello, setName, b } from "./c1.js";
+    // 导出全部 export 的定义，并使用 x.xxx 来引用
+    import * as x from "./c1.js";
+    // 将 export default 的默认导出赋值给 y
+    import y from "./c1.js";
+    y();
+  </script>
+#+end_src
+
+* 问题集锦
+** 运算符优先级
+
+请说出下面运算的结果，并简析原因:
+#+begin_src js
+  var v = 'hhh';
+  console.log("Value is " + (v === 'hhhe') ? 'Something' : 'Nothing');
+  // console.log("Value is " + ((v === 'hhhe') ? 'Something' : 'Nothing'));
+#+end_src
+
+#+begin_details 提示
+Something
+
+#+begin_src js
+  // 1. 优先级
+  //    - 小括号的优先级是最高的!
+  //    - 乘除的优先级要比加减要高
+  //    - 三目运算符算什么东西！
+  // 2. JS 是一种弱类型的语言，
+  ///   所以碰到不匹配的类型的时候，它会尝试自动进行类型转换
+
+  // 整个执行、解析顺序大约如下:
+  "Value is " + (v === 'hhhe') ? 'Something' : 'Nothing'
+  "Value is " + false ? 'Something' : 'Nothing'
+  ("Value is " + false) ? 'Something' : 'Nothing'
+  ("Value is " + "false") ? 'Something' : 'Nothing'
+  "Value is false" ? 'Something' : 'Nothing'
+  true ? 'Something' : 'Nothing'
+  'Something'
+  
+  // 因此，打印出来的，只有:
+  // Something
+#+end_src
+#+end_details
+
+** 正则表达式
+
+请分别将下面字符串中的 *电话号码* 和 *邮箱地址*，使用 *正则表达式* 的形式，提取出来，并 *分别打印*:
+#+begin_src js
+  var s = '我的电话号码是 16776876543，我的邮箱是 xxx@qq.com，请随时联系我。否则打 110.'
+#+end_src
+
+#+begin_details 解决思路
+1. 怎么提取电话号码
+   + 到网上搜索 "js 正则表达式 电话号码"
+     : /^1[34578]\d{9}$/
+   + 使用得到的答案，解决问题:
+     : s.match(/1[3456789]\d{9}/)[0]
+2. 怎么提取邮箱地址
+   + 到网上搜索 “JS 正则表达式 邮箱”
+     : /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})^/
+   + 使用得到的答案，修修补补，解决问题:
+     : s.match(/([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})/)[0]
+
+总而言之:
+#+begin_src js
+  var s = '我的电话号码是 16776876543，我的邮箱是 xxx@qq.com，请随时联系我。否则打 110.'
+  console.log(s.match(/1[3456789]\d{9}/)[0])
+  console.log(s.match(/([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})/)[0])
+#+end_src
+
+也可以使用分组捕获的方式:
+#+begin_src js
+  var s = '我的电话号码是 16776876543，我的邮箱是 xxx@qq.com，请随时联系我。否则打 110.';
+  var r = /(1[3-9]\d{9}).*?([a-zA-Z0-9_-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+)/.exec(s);
+  console.log(r[1])
+  console.log(r[2])
+#+end_src
+#+end_details
+
+** 从文件名取后缀名
+
+从下面给出的文件名字符串中，提取后缀名:
+#+begin_src js
+  var f = "d:/home/software.d/xxx.a/xxx.jpg"
+#+end_src
+
+#+begin_details 答案
+截取子字符串的方式:
+#+begin_src js
+  f.substring(f.lastIndexOf(".") + 1)
+
+  // 表示序号的
+  // 1. indexOf
+  // 2. lastIndexOf
+  // 3. search
+
+  // 表示存不存在的
+  // 1. indexOf != -1
+  // 2. search != -1
+  // 3. includes
+#+end_src
+
+正则表达式的方式:
+#+begin_src js
+  var ext = f.match(/[a-zA-Z0-9]+$/)[0]
+  var ext = f.match(/\w+$/)[0]
+
+  // 如果自己实在不知道该怎么写：
+  // 1. 打开浏览器，输入关键词: JS 正则表达式 后缀名
+  // 2. 点击搜索
+#+end_src
+#+end_details
+
+** undefine/null
+
+#+begin_src js
+  undefined == null   // true
+  undefined === null  // false
+  null === null       // true
+  undefined === undefined // true
+#+end_src
+
+** 数字 + 字符串 + NaN
+
+#+begin_src js
+  3 + 5        // 8
+  3 + '5'      // 35
+  '3' + '5'    // 35
+  3 + 5 + '1'  // 81
+  3 + '5' + 1  // 351
+
+  3 * 5        // 15
+  3 * '5'      // 15
+  '3' * '5'    // 15
+  3 * 5 * '1'  // 15
+  3 * '5' * 1  // 15
+
+  null * 5     // 0
+  [] * 5       // 0
+  "" * 5       // 0
+  undefined * 5 // NaN
+ 
+  5 * 'hello'   // NaN
+  Math.sqrt(-1) // NaN
+  NaN * 5    
+#+end_src
+
+** 浮点数计算
+
+#+begin_src js
+  var a = 0.1;
+  console.log(a);
+
+  var b = 0.2;
+  console.log(b);
+
+  var c = a + b;
+  console.log(c);
+
+  c == a + b
+#+end_src
+
+#+begin_details 答案
+0.30000000000000004
+#+end_details
+
+** 求取斐波那契数列的某项 [递归]
+
+斐波那契数列，就是某一项的值，为前两项的和:
+: 1 1 2 3 5 8 13 21 34 55 89 ...
+
+#+begin_src js
+  function fib (n) {
+      if (n === 1) return 1;
+      if (n === 2) return 1;
+      return fib(n-1) + fib(n-2);
+  }
+#+end_src
+
+请优化之。
+
+** 自增运算符
+
+请解析下面的结果:
+#+begin_src js
+  var a = 2, b = 3; c = 5;
+  var d = a+++b+++c++;
+  console.log(a, b, c, d);
+#+end_src
+
+提示:
+- 运算符的优先级
+- =++i= 跟 =i++= 的区别
+

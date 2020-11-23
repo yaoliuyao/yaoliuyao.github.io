@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+     function getBMI (h, w) {
+       var bmi = w / ((h / 100) * (h / 100));
+       return bmi;
+     }
+     function getBMI (h, w) {
+       if (!h) {
+         h = prompt("请输入您的身高 (CM): ")
+       }
+       if (!w) {
+         w = prompt("请输入您的体重 (Kg): ")
+       }
+       var bmi = w / ((h / 100) * (h / 100));
+       return bmi;
+     }
+
+     function getBMI (h, w, callback) {
+       if (!h) {
+         h = prompt("请输入您的身高 (CM): ")
+       }
+       if (!w) {
+         w = prompt("请输入您的体重 (Kg): ")
+       }
+       var bmi = w / ((h / 100) * (h / 100));
+
+       if (!callback)
+         callback = console.error;
+       if (bmi <= 18.5) {
+         callback("您有点轻")
+       } else if (bmi > 32) {
+         callback("您有点重")
+       }
+
+       return bmi;
+     }
+
+
+    </script>
+
+  </body>
+</html>
