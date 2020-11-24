@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-11-03 -->
+<!-- 2020-11-24 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hello Java</title>
@@ -65,7 +65,9 @@
 </ul>
 </li>
 <li><a href="#org7d933e9">7. 对象的内部: 方法和实例变量</a></li>
-<li><a href="#org454d196">8. getter/setter, Capsulation 的开始</a></li>
+<li><a href="#org6ae907e">8. getter/setter, 封装 (Capsulation) 的开始</a></li>
+<li><a href="#org206a9e6">9. 数组</a></li>
+<li><a href="#org04049b6">10. 转换</a></li>
 </ul>
 </div>
 </nav>
@@ -516,7 +518,7 @@ Dog[] dogs = new Dog[7];
 </p>
 
 
-<figure id="orgedf8176">
+<figure id="orge42eee9">
 <img src="img/oimg_20201014_075539.png" alt="oimg_20201014_075539.png">
 
 </figure>
@@ -672,8 +674,8 @@ dog.name = <span style="color: #8b2252;">"&#23567;&#26126;"</span>;
 </div>
 </section>
 
-<section id="outline-container-org454d196" class="outline-2">
-<h2 id="org454d196"><span class="section-number-2">8</span> getter/setter, Capsulation 的开始</h2>
+<section id="outline-container-org6ae907e" class="outline-2">
+<h2 id="org6ae907e"><span class="section-number-2">8</span> getter/setter, 封装 (Capsulation) 的开始</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 两种说法:
@@ -709,7 +711,94 @@ dog.name = <span style="color: #8b2252;">"&#23567;&#26126;"</span>;
         <span style="color: #a020f0;">return</span> weight;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
+</pre>
+</div>
 
+<p>
+例子:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Cat</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">name</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">type</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">float</span> <span style="color: #a0522d;">weight</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">growup</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">getId</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> id;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setId</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">this</span>.id = id;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">getName</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> name;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setName</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">String</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>name.equals<span style="color: #709870;">(</span><span style="color: #8b2252;">""</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">this</span>.name = <span style="color: #8b2252;">"hahaha"</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">this</span>.name = name;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">getType</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> type;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setType</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">String</span> <span style="color: #a0522d;">type</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">this</span>.type = type;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">float</span> <span style="color: #0000ff;">getWeight</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> weight;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setWeight</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">float</span> <span style="color: #a0522d;">weight</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">this</span>.weight = weight;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">boolean</span> <span style="color: #0000ff;">isGrowup</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> growup;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setGrowup</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">growup</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">this</span>.growup = growup;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</section>
+
+
+
+<section id="outline-container-org206a9e6" class="outline-2">
+<h2 id="org206a9e6"><span class="section-number-2">9</span> 数组</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">aaa</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #707183;">[</span>4<span style="color: #707183;">]</span>;
+aaa<span style="color: #707183;">[</span>0<span style="color: #707183;">]</span> = 1;
+aaa<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> = 122;
+aaa<span style="color: #707183;">[</span>2<span style="color: #707183;">]</span> = 3;
+aaa<span style="color: #707183;">[</span>3<span style="color: #707183;">]</span> = 1;
+
+<span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">bbb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #707183;">{</span>1, 2, 3, 4<span style="color: #707183;">}</span>;
+<span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">ccc</span> = <span style="color: #707183;">{</span>1, 2, 3, 4<span style="color: #707183;">}</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">var ccc = [1, 2, 3, 4]; var ccc = { k: v }</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org04049b6" class="outline-2">
+<h2 id="org04049b6"><span class="section-number-2">10</span> 转换</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#23383;&#31526;&#20018;&#36716;&#25442;&#20026;&#25972;&#25968;&#12289;&#28014;&#28857;&#25968;&#31561;</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = Integer.parseInt<span style="color: #707183;">(</span><span style="color: #8b2252;">"2332323"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">float</span> <span style="color: #a0522d;">r</span> = Float.parseFloat<span style="color: #707183;">(</span><span style="color: #8b2252;">"2332323"</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
@@ -717,7 +806,7 @@ dog.name = <span style="color: #8b2252;">"&#23567;&#26126;"</span>;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-11-03</p>
+<p class="date">Created: 2020-11-24</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -467,7 +467,7 @@ Dog[] dogs = new Dog[7];
 2. 方法内部的变量 (又称局部变量)
    + 不允许不初始化，否则，编译不通过
 
-* getter/setter, Capsulation 的开始
+* getter/setter, 封装 (Capsulation) 的开始
 
 两种说法:
 - 逻辑上，将一些强相关的数据以及它对应的方法放在一起，便于管理
@@ -495,7 +495,81 @@ Dog[] dogs = new Dog[7];
           return weight;
       }
   }
+#+end_src
 
+例子:
+#+begin_src java
+  public class Cat {
+      private int id;
+      private String name;
+      private String type;
+      private float weight;
+      private boolean growup;
+
+      public int getId() {
+          return id;
+      }
+
+      public void setId(int id) {
+          this.id = id;
+      }
+
+      public String getName() {
+          return name;
+      }
+
+      public void setName(String name) {
+          if (name.equals("")) {
+              this.name = "hahaha";
+          }
+          this.name = name;
+      }
+
+      public String getType() {
+          return type;
+      }
+
+      public void setType(String type) {
+          this.type = type;
+      }
+
+      public float getWeight() {
+          return weight;
+      }
+
+      public void setWeight(float weight) {
+          this.weight = weight;
+      }
+
+      public boolean isGrowup() {
+          return growup;
+      }
+
+      public void setGrowup(boolean growup) {
+          this.growup = growup;
+      }
+  }
 #+end_src
 
 
+
+* 数组
+
+#+begin_src java
+  int[] aaa = new int[4];
+  aaa[0] = 1;
+  aaa[1] = 122;
+  aaa[2] = 3;
+  aaa[3] = 1;
+
+  int[] bbb = new int[] {1, 2, 3, 4};
+  int[] ccc = {1, 2, 3, 4};  // var ccc = [1, 2, 3, 4]; var ccc = { k: v }
+#+end_src
+
+* 转换
+
+#+begin_src java
+  // 将字符串转换为整数、浮点数等
+  int r = Integer.parseInt("2332323");
+  float r = Float.parseFloat("2332323");
+#+end_src

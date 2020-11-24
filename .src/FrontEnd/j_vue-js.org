@@ -1798,6 +1798,7 @@ https://cli.vuejs.org/zh/guide/
 #+end_src
 
 为什么会有如下错误:
+
 #+begin_example
 Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_exploded/comments' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 #+end_example
