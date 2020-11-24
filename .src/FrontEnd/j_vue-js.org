@@ -1784,7 +1784,7 @@ https://cli.vuejs.org/zh/guide/
   </style>
 #+end_src
 
-** 添加 axios 获取数据
+** 第六个版本 (前后端分类 + axios)
 
 #+begin_src js
   created () {
@@ -1802,3 +1802,13 @@ https://cli.vuejs.org/zh/guide/
 Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_exploded/comments' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 #+end_example
 
+解决同源问题:
+1. 服务器 ~Access-Control-Allow-Origin~
+2. 客户端，设置 devServer
+
+任务:
+- 完全将此项目使用前后端分离的形式实现出来
+- 要求: 功能完整
+- 要求: 必须使用 vue-cli 创建 vue 项目
+- 要求: 必须将数据保存到某个数据源。可以是关系型数据库，也可以是 NoSQL 或其他存储
+- 其他: 后端使用技术不限；实现的方式不限
