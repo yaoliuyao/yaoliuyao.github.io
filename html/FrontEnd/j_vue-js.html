@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-11-24 -->
+<!-- 2020-11-25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vue.js</title>
@@ -1332,7 +1332,7 @@ alert-box 2:
 </p>
 
 
-<figure id="org572050f">
+<figure id="org4f1e7b5">
 <img src="img/oimg_20201104_064733.png" alt="oimg_20201104_064733.png" width="300px">
 
 </figure>
@@ -2168,14 +2168,22 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 <h3 id="org9030c5b"><span class="section-number-3">9.7</span> 第六个版本 (前后端分类 + axios)</h3>
 <div class="outline-text-3" id="text-9-7">
 <div class="org-src-container">
-<pre class="src src-js">created <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
-    axios<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span>
-        url: <span style="color: #8b2252;">"http://localhost:9999/server_comment_list_war_exploded/comments"</span>,
-        responseType: <span style="color: #8b2252;">"json"</span>
-    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>.then<span style="color: #7388d6;">(</span><span style="color: #a020f0;">function</span> <span style="color: #909183;">(</span><span style="color: #a0522d;">data</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
-        <span style="color: #008b8b;">this</span>.comments = data;
-    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span>
+<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; axios &#24517;&#39035;&#20808;&#23558; axios &#19979;&#36733;&#24182;&#23433;&#35013;&#21040;&#39033;&#30446;&#20013;: vue add axios</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25191;&#34892;&#21518;&#65292;axios &#23558;&#20250;&#34987;&#19979;&#36733;&#21040; node_modules &#25991;&#20214;&#22841;&#19979;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20043;&#21518;&#65292;&#23601;&#21487;&#20197;&#22312;&#20219;&#24847;&#22320;&#26041;&#65292;&#36890;&#36807; import &#23558;&#20854;&#24341;&#36827;&#24182;&#20351;&#29992;&#20102;</span>
+<span style="color: #a020f0;">import</span> axios from <span style="color: #8b2252;">'axios'</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; axios &#21069;&#65292;&#24517;&#39035;&#35201;&#24341;&#20837;</span>
+
+<span style="color: #a020f0;">new</span> <span style="color: #228b22;">Vue</span><span style="color: #707183;">(</span><span style="color: #7388d6;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
+    created <span style="color: #909183;">()</span> <span style="color: #909183;">{</span>
+        axios<span style="color: #709870;">(</span><span style="color: #907373;">{</span>
+            url: <span style="color: #8b2252;">"http://localhost:9999/server_comment_list_war_exploded/comments"</span>,
+            responseType: <span style="color: #8b2252;">"json"</span>
+        <span style="color: #907373;">}</span><span style="color: #709870;">)</span>.then<span style="color: #709870;">(</span><span style="color: #a020f0;">function</span> <span style="color: #907373;">(</span><span style="color: #a0522d;">data</span><span style="color: #907373;">)</span> <span style="color: #907373;">{</span>
+            <span style="color: #008b8b;">this</span>.comments = data;
+        <span style="color: #907373;">}</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -2183,7 +2191,7 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 为什么会有如下错误:
 </p>
 
-<pre class="example" id="org367db9b">
+<pre class="example" id="org36bf33e">
 Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_exploded/comments' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 </pre>
 
@@ -2211,7 +2219,7 @@ Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_explo
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-11-24</p>
+<p class="date">Created: 2020-11-25</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

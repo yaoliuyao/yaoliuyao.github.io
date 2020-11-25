@@ -1787,14 +1787,22 @@ https://cli.vuejs.org/zh/guide/
 ** 第六个版本 (前后端分类 + axios)
 
 #+begin_src js
-  created () {
-      axios({
-          url: "http://localhost:9999/server_comment_list_war_exploded/comments",
-          responseType: "json"
-      }).then(function (data) {
-          this.comments = data;
-      });
-  }
+  // 使用 axios 必须先将 axios 下载并安装到项目中: vue add axios
+  // 执行后，axios 将会被下载到 node_modules 文件夹下
+  // 之后，就可以在任意地方，通过 import 将其引进并使用了
+  import axios from 'axios'; // 使用 axios 前，必须要引入
+
+  new Vue({
+      // ...
+      created () {
+          axios({
+              url: "http://localhost:9999/server_comment_list_war_exploded/comments",
+              responseType: "json"
+          }).then(function (data) {
+              this.comments = data;
+          });
+      }
+  });
 #+end_src
 
 为什么会有如下错误:
