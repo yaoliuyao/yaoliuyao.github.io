@@ -859,6 +859,10 @@ https://cli.vuejs.org/zh/guide/
 
   ## 将源代码打包，并准备部署
   vue run build
+
+  ## 为项目添加外部插件
+  vue add axios
+  vue add element
 #+end_src
 
 另外，你可以在项目的目录下面添加 vue.config.js 文件，来配置脚手架的行为。
