@@ -840,6 +840,45 @@ alert-box 2:
 
 https://cli.vuejs.org/zh/guide/
 
+基本使用:
+#+begin_src sh
+  # 首先，需要下载并安装 nodejs。安装完 nodejs 后，在命令行窗口就可以使用两个命令了: node, npm
+  # npm (node package manager) 是一个项目和包管理工具
+
+  # 其次，使用 npm 下载并安装 vue 脚手架。安装完之后，你会得到一个 vue 命令
+  npm install -g @vue/cli  # 注意，不要落下 -g，这个的意思是安装为全局命令
+
+  # 然后，就可以使用 vue 命令做你想做的事情了
+
+  ## 创建项目
+  vue create xxx
+
+  ## 启动开发服务器
+  cd xxx
+  vue run serve
+
+  ## 将源代码打包，并准备部署
+  vue run build
+#+end_src
+
+另外，你可以在项目的目录下面添加 vue.config.js 文件，来配置脚手架的行为。
+这个文件默认是不存在的，因为，脚手架是基于开箱即用的理念，即使没有这个配置文件，那么也会按照默认的选项正常运行。
+但如果你对默认的选项不满意，就可以在 vue.config.js 中添加自己的配置内容了 ([[https://cli.vuejs.org/zh/config/#%E5%85%A8%E5%B1%80-cli-%E9%85%8D%E7%BD%AE][配置参考]])。
+
+vue.config.js:
+#+begin_src js
+  module.exports = {
+    outputDir: "dist2", // 构建文件夹，默认为 dist，可以改成其他的
+    devServer: {
+      port: 8989,       // 通过添加这个，可以修改端口号
+      proxy: {...},     // 配置代理，一般用来进行跨域请求的设置
+    }
+  };
+#+end_src
+
+另外，一些全局性的参数，需要配置在 package.json 文件夹中。这是项目的主配置文件，跟脚手架没关系。
+比如，配置 eslint rules 和项目依赖的插件等，略过不提。
+
 * [示例] Todo List
 
 #+begin_src html
@@ -1790,7 +1829,7 @@ https://cli.vuejs.org/zh/guide/
   // 使用 axios 必须先将 axios 下载并安装到项目中: vue add axios
   // 执行后，axios 将会被下载到 node_modules 文件夹下
   // 之后，就可以在任意地方，通过 import 将其引进并使用了
-  import axios from 'axios'; // 使用 axios 前，必须要引入
+  import axios from 'axios';
 
   new Vue({
       // ...

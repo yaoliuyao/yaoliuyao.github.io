@@ -1136,6 +1136,55 @@ alert-box 2:
 <p>
 <a href="https://cli.vuejs.org/zh/guide/">https://cli.vuejs.org/zh/guide/</a>
 </p>
+
+<p>
+基本使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">&#39318;&#20808;&#65292;&#38656;&#35201;&#19979;&#36733;&#24182;&#23433;&#35013; nodejs&#12290;&#23433;&#35013;&#23436; nodejs &#21518;&#65292;&#22312;&#21629;&#20196;&#34892;&#31383;&#21475;&#23601;&#21487;&#20197;&#20351;&#29992;&#20004;&#20010;&#21629;&#20196;&#20102;: node, npm</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">npm (node package manager) &#26159;&#19968;&#20010;&#39033;&#30446;&#21644;&#21253;&#31649;&#29702;&#24037;&#20855;</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">&#20854;&#27425;&#65292;&#20351;&#29992; npm &#19979;&#36733;&#24182;&#23433;&#35013; vue &#33050;&#25163;&#26550;&#12290;&#23433;&#35013;&#23436;&#20043;&#21518;&#65292;&#20320;&#20250;&#24471;&#21040;&#19968;&#20010; vue &#21629;&#20196;</span>
+npm install -g @vue/cli  <span style="color: #b22222;"># </span><span style="color: #b22222;">&#27880;&#24847;&#65292;&#19981;&#35201;&#33853;&#19979; -g&#65292;&#36825;&#20010;&#30340;&#24847;&#24605;&#26159;&#23433;&#35013;&#20026;&#20840;&#23616;&#21629;&#20196;</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">&#28982;&#21518;&#65292;&#23601;&#21487;&#20197;&#20351;&#29992; vue &#21629;&#20196;&#20570;&#20320;&#24819;&#20570;&#30340;&#20107;&#24773;&#20102;</span>
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">&#21019;&#24314;&#39033;&#30446;</span>
+vue create xxx
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">&#21551;&#21160;&#24320;&#21457;&#26381;&#21153;&#22120;</span>
+<span style="color: #483d8b;">cd</span> xxx
+vue run serve
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">&#23558;&#28304;&#20195;&#30721;&#25171;&#21253;&#65292;&#24182;&#20934;&#22791;&#37096;&#32626;</span>
+vue run build
+</pre>
+</div>
+
+<p>
+另外，你可以在项目的目录下面添加 vue.config.js 文件，来配置脚手架的行为。
+这个文件默认是不存在的，因为，脚手架是基于开箱即用的理念，即使没有这个配置文件，那么也会按照默认的选项正常运行。
+但如果你对默认的选项不满意，就可以在 vue.config.js 中添加自己的配置内容了 (<a href="https://cli.vuejs.org/zh/config/#%E5%85%A8%E5%B1%80-cli-%E9%85%8D%E7%BD%AE">配置参考</a>)。
+</p>
+
+<p>
+vue.config.js:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">module.exports = <span style="color: #707183;">{</span>
+  outputDir: <span style="color: #8b2252;">"dist2"</span>, <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26500;&#24314;&#25991;&#20214;&#22841;&#65292;&#40664;&#35748;&#20026; dist&#65292;&#21487;&#20197;&#25913;&#25104;&#20854;&#20182;&#30340;</span>
+  devServer: <span style="color: #7388d6;">{</span>
+    port: 8989,       <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36890;&#36807;&#28155;&#21152;&#36825;&#20010;&#65292;&#21487;&#20197;&#20462;&#25913;&#31471;&#21475;&#21495;</span>
+    proxy: <span style="color: #909183;">{</span>...<span style="color: #909183;">}</span>,     <span style="color: #b22222;">// </span><span style="color: #b22222;">&#37197;&#32622;&#20195;&#29702;&#65292;&#19968;&#33324;&#29992;&#26469;&#36827;&#34892;&#36328;&#22495;&#35831;&#27714;&#30340;&#35774;&#32622;</span>
+  <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>;
+</pre>
+</div>
+
+<p>
+另外，一些全局性的参数，需要配置在 package.json 文件夹中。这是项目的主配置文件，跟脚手架没关系。
+比如，配置 eslint rules 和项目依赖的插件等，略过不提。
+</p>
 </div>
 </section>
 
@@ -1332,7 +1381,7 @@ alert-box 2:
 </p>
 
 
-<figure id="org4f1e7b5">
+<figure id="org738f294">
 <img src="img/oimg_20201104_064733.png" alt="oimg_20201104_064733.png" width="300px">
 
 </figure>
@@ -2171,7 +2220,7 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; axios &#24517;&#39035;&#20808;&#23558; axios &#19979;&#36733;&#24182;&#23433;&#35013;&#21040;&#39033;&#30446;&#20013;: vue add axios</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25191;&#34892;&#21518;&#65292;axios &#23558;&#20250;&#34987;&#19979;&#36733;&#21040; node_modules &#25991;&#20214;&#22841;&#19979;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20043;&#21518;&#65292;&#23601;&#21487;&#20197;&#22312;&#20219;&#24847;&#22320;&#26041;&#65292;&#36890;&#36807; import &#23558;&#20854;&#24341;&#36827;&#24182;&#20351;&#29992;&#20102;</span>
-<span style="color: #a020f0;">import</span> axios from <span style="color: #8b2252;">'axios'</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; axios &#21069;&#65292;&#24517;&#39035;&#35201;&#24341;&#20837;</span>
+<span style="color: #a020f0;">import</span> axios from <span style="color: #8b2252;">'axios'</span>;
 
 <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Vue</span><span style="color: #707183;">(</span><span style="color: #7388d6;">{</span>
     <span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
@@ -2191,7 +2240,7 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 为什么会有如下错误:
 </p>
 
-<pre class="example" id="org36bf33e">
+<pre class="example" id="orgca0c622">
 Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_exploded/comments' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 </pre>
 
