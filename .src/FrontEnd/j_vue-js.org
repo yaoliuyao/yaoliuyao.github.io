@@ -853,16 +853,18 @@ https://cli.vuejs.org/zh/guide/
   ## 创建项目
   vue create xxx
 
-  ## 启动开发服务器
-  cd xxx
-  vue run serve
-
-  ## 将源代码打包，并准备部署
-  vue run build
-
   ## 为项目添加外部插件
   vue add axios
   vue add element
+  vue add router
+  vue add vuex
+
+  ## 启动开发服务器
+  cd xxx
+  npm run serve
+
+  ## 将源代码打包，并准备部署
+  npm run build
 #+end_src
 
 另外，你可以在项目的目录下面添加 vue.config.js 文件，来配置脚手架的行为。
@@ -872,6 +874,7 @@ https://cli.vuejs.org/zh/guide/
 vue.config.js:
 #+begin_src js
   module.exports = {
+    publicPath: "./",   // 让生成的 dist/index.html 中的引入路径以 ./ 开始
     outputDir: "dist2", // 构建文件夹，默认为 dist，可以改成其他的
     devServer: {
       port: 8989,       // 通过添加这个，可以修改端口号

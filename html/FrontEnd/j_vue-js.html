@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-11-25 -->
+<!-- 2020-11-26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vue.js</title>
@@ -1152,16 +1152,18 @@ npm install -g @vue/cli  <span style="color: #b22222;"># </span><span style="col
 <span style="color: #b22222;">## </span><span style="color: #b22222;">&#21019;&#24314;&#39033;&#30446;</span>
 vue create xxx
 
-<span style="color: #b22222;">## </span><span style="color: #b22222;">&#21551;&#21160;&#24320;&#21457;&#26381;&#21153;&#22120;</span>
-<span style="color: #483d8b;">cd</span> xxx
-vue run serve
-
-<span style="color: #b22222;">## </span><span style="color: #b22222;">&#23558;&#28304;&#20195;&#30721;&#25171;&#21253;&#65292;&#24182;&#20934;&#22791;&#37096;&#32626;</span>
-vue run build
-
 <span style="color: #b22222;">## </span><span style="color: #b22222;">&#20026;&#39033;&#30446;&#28155;&#21152;&#22806;&#37096;&#25554;&#20214;</span>
 vue add axios
 vue add element
+vue add router
+vue add vuex
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">&#21551;&#21160;&#24320;&#21457;&#26381;&#21153;&#22120;</span>
+<span style="color: #483d8b;">cd</span> xxx
+npm run serve
+
+<span style="color: #b22222;">## </span><span style="color: #b22222;">&#23558;&#28304;&#20195;&#30721;&#25171;&#21253;&#65292;&#24182;&#20934;&#22791;&#37096;&#32626;</span>
+npm run build
 </pre>
 </div>
 
@@ -1176,6 +1178,7 @@ vue.config.js:
 </p>
 <div class="org-src-container">
 <pre class="src src-js">module.exports = <span style="color: #707183;">{</span>
+  publicPath: <span style="color: #8b2252;">"./"</span>,   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#35753;&#29983;&#25104;&#30340; dist/index.html &#20013;&#30340;&#24341;&#20837;&#36335;&#24452;&#20197; ./ &#24320;&#22987;</span>
   outputDir: <span style="color: #8b2252;">"dist2"</span>, <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26500;&#24314;&#25991;&#20214;&#22841;&#65292;&#40664;&#35748;&#20026; dist&#65292;&#21487;&#20197;&#25913;&#25104;&#20854;&#20182;&#30340;</span>
   devServer: <span style="color: #7388d6;">{</span>
     port: 8989,       <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36890;&#36807;&#28155;&#21152;&#36825;&#20010;&#65292;&#21487;&#20197;&#20462;&#25913;&#31471;&#21475;&#21495;</span>
@@ -1385,7 +1388,7 @@ vue.config.js:
 </p>
 
 
-<figure id="org2c83f81">
+<figure id="org6c14257">
 <img src="img/oimg_20201104_064733.png" alt="oimg_20201104_064733.png" width="300px">
 
 </figure>
@@ -2244,7 +2247,7 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 为什么会有如下错误:
 </p>
 
-<pre class="example" id="org9ed6acd">
+<pre class="example" id="orgdb4e591">
 Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_exploded/comments' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 </pre>
 
@@ -2272,7 +2275,7 @@ Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_explo
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-11-25</p>
+<p class="date">Created: 2020-11-26</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
