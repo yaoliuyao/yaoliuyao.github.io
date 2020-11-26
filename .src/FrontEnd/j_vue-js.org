@@ -1859,7 +1859,7 @@ Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_explo
 
 解决同源/跨域问题:
 1. 服务器 ~Access-Control-Allow-Origin~
-2. 客户端，设置 devServer
+2. 客户端，设置 devServer (百度搜索关键词: vue cli 3 跨域)
 
 任务:
 - 完全将此项目使用前后端分离的形式实现出来
