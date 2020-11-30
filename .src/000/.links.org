@@ -7,6 +7,7 @@
 - https://github.com/yaollllllsan/13-posts-file-upload 文件上传
 - https://github.com/yaollllllsan/14-posts-ajax 异步请求
 - https://github.com/yaollllllsan/15-posts-jquery-bootstrap jQuery + Bootstrap
+- https://github.com/yaollllllsan/16-posts-vue Vue + Element
 
 其他资源:
 - [[http://yaoliusan:5656/luping/][录屏回看]]
