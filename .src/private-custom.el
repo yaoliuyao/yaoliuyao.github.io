@@ -38,6 +38,8 @@
    )
  )
 
+(setq go-translate-token-current (cons 430675 2721866130))
+
 
 
 (custom-set-variables
