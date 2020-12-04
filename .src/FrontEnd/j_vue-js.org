@@ -766,6 +766,135 @@ alert-box 2:
   </template>
 #+end_src
 
+* SPA (Single Page Application)
+** v-if/v-show
+
+#+begin_src html
+  <template>
+    <div id="app">
+      <div>
+        <el-button @click="currentComp = '/home'">显示首页</el-button>
+        <el-button @click="currentComp = '/post'">显示详情页面</el-button>
+        <el-button @click="currentComp = ''">其他乱七八糟</el-button>
+      </div>
+      <hr>
+
+      <!-- 切换显示 -->
+      <Home v-if="currentComp === '/home'"></Home>
+      <Post v-else-if="currentComp === '/post'"></Post>
+      <div v-else>您没有任何权限</div>
+    </div>
+  </template>
+
+  <script>
+    data() {
+        return {
+            currentComp: "/post"
+        }
+    }
+  </script>
+#+end_src
+
+** <component>
+
+#+begin_src html
+  <template>
+    <div id="app">
+      <div>
+        <el-button @click="currentComp = 'Home'">显示首页</el-button>
+        <el-button @click="currentComp = 'Post'">显示详情页面</el-button>
+        <el-button @click="currentComp = ''">其他乱七八糟</el-button>
+      </div>
+      <hr>
+
+      <!-- 切换显示 -->
+      <component :is="currentComp"></component>
+    </div>
+  </template>
+
+  <h3 @click="$parent.currentComp = 'Post'">{{post.title}}</h3>
+#+end_src
+
+** Vue-Router
+
+https://router.vuejs.org/zh/
+
+*** 准备工作
+
+- 首先，在项目中下载 vue-router:
+  #+begin_src sh
+    cd myblog/client
+    npm install vue-router
+  #+end_src
+- 其次，创建一个文件 plugins/vue-router.js:
+  #+begin_src js
+    import Vue from 'vue'
+    import VueRouter from 'vue-router'
+
+    Vue.use(VueRouter)
+  #+end_src
+- 最后，在 main.js 里添加:
+  #+begin_src js
+    import './plugins/vue-router'
+  #+end_src
+
+*** 定义路由规则
+
+router.js:
+#+begin_src js
+  import VueRouter from "vue-router";
+  import Home from "./pages/Home";
+  import Post from "./pages/Post";
+
+  // 路由规则，返回路由对象
+  export default new VueRouter({
+      routes: [
+          {
+              path: "/home", component: Home
+          },
+          {
+              path: "/post/:id", component: Post
+          }
+      ]
+  });
+#+end_src
+
+*** 启用路由
+
+main.js
+#+begin_src js
+  import './plugins/vue-router'
+  import router from './routes'
+
+  new Vue({
+      router, // 等同于 router: router
+      render: h => h(App),
+  }).$mount('#app')
+#+end_src
+
+*** 使用路由
+
+#+begin_src html
+  <template>
+    <div id="app">
+      <h3>使用 router-view 定义路由的出口，即指定的组件要渲染到这里</h3>
+      <router-view></router-view>
+    </div>
+  </template>
+#+end_src
+
+#+begin_src html
+  <template>
+    <div id="app">
+      <!-- 第一种使用方式，在当前位置渲染一个跳转到指定路由的超链接 -->
+      <router-link to="/post/33">进入详情页面</router-link>
+      <!-- 第二种使用方式，使用事件的方式指定路由跳转 -->
+      <div @click="$router.back()">后退</div>
+      <div @click="$router.push('/post/33')">跳转到 33 的详情页面</div>
+    </div>
+  </template>
+#+end_src
+
 * 第三方组件库
 
 - iView
