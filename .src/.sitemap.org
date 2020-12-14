@@ -11,8 +11,8 @@
 - FrontEnd
   - [[file:FrontEnd/a_html5+css3.org][HTML5 and CSS3]]
   - [[file:FrontEnd/c_js.org][JavaScript (ECMAScript)]]
-  - [[file:FrontEnd/e_bom.org][BOM 浏览器对象模型]]
-  - [[file:FrontEnd/f_dom.org][DOM 文档对象模型]]
+  - [[file:FrontEnd/d_bom.org][BOM (浏览器对象模型)]]
+  - [[file:FrontEnd/e_dom.org][DOM (文档对象模型)]]
   - [[file:FrontEnd/h_jQuery.org][jQuery]]
   - [[file:FrontEnd/j_vue-js.org][Vue.js]]
   - [[file:FrontEnd/l_bootstrap.org][Bootstrap]]
