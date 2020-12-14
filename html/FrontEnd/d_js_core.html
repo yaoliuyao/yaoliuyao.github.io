@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-11-09 -->
+<!-- 2020-12-14 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JavaScript 语言核心</title>
@@ -53,15 +53,21 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org5bca0b5">1. 简介</a></li>
-<li><a href="#orgdd6f166">2. 变量 (Variable)</a></li>
+<li><a href="#orgdd6f166">2. 变量 (Variable)</a>
+<ul>
+<li><a href="#orgeb1bea7">2.1. 变量的声明的若干方式</a></li>
+</ul>
+</li>
 <li><a href="#org0b7cddf">3. 类型 (Type)</a>
 <ul>
 <li><a href="#org5e4dfd4">3.1. number</a>
 <ul>
-<li><a href="#org906588e">3.1.1. NaN (Not a Number)</a></li>
-<li><a href="#org4a83443">3.1.2. Infinity</a></li>
-<li><a href="#org6ea4d6a">3.1.3. Number/parseInt/parseFloat</a></li>
-<li><a href="#orge8bf595">3.1.4. 其他</a></li>
+<li><a href="#org1a52a5d">3.1.1. 声明</a></li>
+<li><a href="#orgbe85efa">3.1.2. 运算</a></li>
+<li><a href="#org906588e">3.1.3. NaN (Not a Number)</a></li>
+<li><a href="#org4a83443">3.1.4. Infinity</a></li>
+<li><a href="#org6ea4d6a">3.1.5. Number/parseInt/parseFloat</a></li>
+<li><a href="#orgcc8064d">3.1.6. 0.30000000000000004</a></li>
 </ul>
 </li>
 <li><a href="#org97efdd0">3.2. string</a></li>
@@ -82,13 +88,14 @@
 <li><a href="#org8959026">3.6. Array</a></li>
 <li><a href="#org4d8fd67">3.7. Object</a>
 <ul>
-<li><a href="#orgc5d5dab">3.7.1. 封装</a></li>
-<li><a href="#org48263e5">3.7.2. 继承 (基于原型链)</a></li>
-<li><a href="#org297062e">3.7.3. 使用构造函数，简化对象的创建</a></li>
-<li><a href="#orge0b6248">3.7.4. ES6 中的 Class 语法糖</a></li>
+<li><a href="#orga794cc0">3.7.1. instanceof</a></li>
+<li><a href="#orgc5d5dab">3.7.2. 封装</a></li>
+<li><a href="#org48263e5">3.7.3. 继承 (基于原型链)</a></li>
+<li><a href="#org297062e">3.7.4. 使用构造函数，简化对象的创建</a></li>
+<li><a href="#orge0b6248">3.7.5. ES6 中的 Class 语法糖</a></li>
 </ul>
 </li>
-<li><a href="#orge596ead">3.8. 运算符优先级</a></li>
+<li><a href="#orgf4d9578">3.8. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#org45505d6">4. 标准内置对象 (Global Objects)</a>
@@ -126,16 +133,22 @@
 <li><a href="#orgb767e00">6.5. 终于，在 ES6 中，推出了标准化的模块写法</a></li>
 </ul>
 </li>
-<li><a href="#org832bb61">7. 问题集锦</a>
+<li><a href="#orge8bf595">7. 其他</a>
 <ul>
-<li><a href="#orgf4d9578">7.1. 运算符优先级</a></li>
-<li><a href="#orge6e0218">7.2. 正则表达式</a></li>
-<li><a href="#org0e5b3de">7.3. 从文件名取后缀名</a></li>
-<li><a href="#orgf47d8dc">7.4. undefine/null</a></li>
-<li><a href="#org2b03a56">7.5. 数字 + 字符串 + NaN</a></li>
-<li><a href="#org8d6ad62">7.6. 浮点数计算</a></li>
-<li><a href="#org404844d">7.7. 求取斐波那契数列的某项 [递归]</a></li>
-<li><a href="#orgf3dd7a0">7.8. 自增运算符</a></li>
+<li><a href="#org09c3459">7.1. 严格模式 (strict mode)</a></li>
+<li><a href="#org034ad68">7.2. 异常处理</a></li>
+</ul>
+</li>
+<li><a href="#org832bb61">8. 问题集锦</a>
+<ul>
+<li><a href="#org42b037f">8.1. 运算符优先级</a></li>
+<li><a href="#orge6e0218">8.2. 正则表达式</a></li>
+<li><a href="#org0e5b3de">8.3. 从文件名取后缀名</a></li>
+<li><a href="#orgf47d8dc">8.4. undefine/null</a></li>
+<li><a href="#org2b03a56">8.5. 数字 + 字符串 + NaN</a></li>
+<li><a href="#org8d6ad62">8.6. 浮点数计算</a></li>
+<li><a href="#org404844d">8.7. 求取斐波那契数列的某项 [递归]</a></li>
+<li><a href="#orgf3dd7a0">8.8. 自增运算符</a></li>
 </ul>
 </li>
 </ul>
@@ -143,11 +156,12 @@
 </nav>
 
 
+
 <section id="outline-container-org5bca0b5" class="outline-2">
 <h2 id="org5bca0b5"><span class="section-number-2">1</span> 简介</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-JavaScript 语法上特别像 Java，实质上更像 Scheme，另外它的基于原型 (Prototype) 的对象系统，是来自于 Self。
+JavaScript 语法上特别像 Java，实质上更像 Scheme，另外它的基于原型 (prototype) 的对象系统，是来自于 Self。
 </p>
 
 <p>
@@ -310,6 +324,50 @@ i -= 2;
 </pre>
 </div>
 </div>
+
+<div id="outline-container-orgeb1bea7" class="outline-3">
+<h3 id="orgeb1bea7"><span class="section-number-3">2.1</span> 变量的声明的若干方式</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+第一种:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">a = 1;
+</pre>
+</div>
+
+<p>
+第二种:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = 1;
+
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span>;
+a = 1;
+</pre>
+</div>
+
+<p>
+第三种:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">a</span> = 1;
+a++;
+
+<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">pi</span> = 3.142;
+pi++;  <span style="color: #b22222;">// </span><span style="color: #b22222;">Error!</span>
+</pre>
+</div>
+
+<p>
+小结:
+</p>
+<ul class="org-ul">
+<li>勿用 1</li>
+<li>优先级: const &gt; let &gt; var</li>
+</ul>
+</div>
+</div>
 </section>
 
 <section id="outline-container-org0b7cddf" class="outline-2">
@@ -327,7 +385,11 @@ i -= 2;
 <p>
 在 JS 中，number 表示一切数字，包括整数和浮点数。全都是 64 位。
 </p>
+</div>
 
+<div id="outline-container-org1a52a5d" class="outline-4">
+<h4 id="org1a52a5d"><span class="section-number-4">3.1.1</span> 声明</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">int a = 1;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">number a = 1;</span>
@@ -336,17 +398,19 @@ i -= 2;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">b</span> = 1.2;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">c</span> = 0.0000004;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">d</span> = 12323232323;
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">e</span> = 0xffffff; <span style="color: #b22222;">// </span><span style="color: #b22222;">16 &#36827;&#21046;&#30340;&#34920;&#29616;</span>
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">f</span> = 0o12345;  <span style="color: #b22222;">// </span><span style="color: #b22222;">8 &#36827;&#21046;&#30340;&#34920;&#29616;</span>
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">e</span> = 0xffffff; <span style="color: #b22222;">// </span><span style="color: #b22222;">16 &#36827;&#21046;&#30340;&#34920;&#29616;</span>
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#29992;&#26469;&#26597;&#30475;&#20854;&#22522;&#26412;&#31867;&#22411;</span>
-<span style="color: #a020f0;">typeof</span> a;
+<span style="color: #a020f0;">typeof</span> a; <span style="color: #b22222;">// </span><span style="color: #b22222;">"number"</span>
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-运算:
-</p>
+<div id="outline-container-orgbe85efa" class="outline-4">
+<h4 id="orgbe85efa"><span class="section-number-4">3.1.2</span> 运算</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>+ - x / %</li>
 <li>around/ceil/floor</li>
@@ -355,10 +419,11 @@ i -= 2;
 <li>random</li>
 </ul>
 </div>
+</div>
 
 <div id="outline-container-org906588e" class="outline-4">
-<h4 id="org906588e"><span class="section-number-4">3.1.1</span> NaN (Not a Number)</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<h4 id="org906588e"><span class="section-number-4">3.1.3</span> NaN (Not a Number)</h4>
+<div class="outline-text-4" id="text-3-1-3">
 <ul class="org-ul">
 <li>表示不是一个数字</li>
 <li>跟其他数字进行数学计算的结果还是 NaN</li>
@@ -373,7 +438,7 @@ i -= 2;
 首先，将运算符两边的 <b>元素</b> 都强制转换为 Number，然后进行计算
 </p>
 <pre class="example">
-'3' * '5'
+'3' * '5a'
 </pre></li>
 <li>如果在转换时，有一个转换失败了，那么运算的结果直接是 NaN</li>
 <li><p>
@@ -381,6 +446,7 @@ i -= 2;
 </p>
 <pre class="example">
 '3' + '5'
+3 + '5'
 </pre></li>
 <li><p>
 如果一个结果无法表示，那么结果也会被表示为 NaN
@@ -401,8 +467,8 @@ Math.sqrt(-1)
 </div>
 
 <div id="outline-container-org4a83443" class="outline-4">
-<h4 id="org4a83443"><span class="section-number-4">3.1.2</span> Infinity</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<h4 id="org4a83443"><span class="section-number-4">3.1.4</span> Infinity</h4>
+<div class="outline-text-4" id="text-3-1-4">
 <pre class="example">
 5 / 0
 </pre>
@@ -410,8 +476,8 @@ Math.sqrt(-1)
 </div>
 
 <div id="outline-container-org6ea4d6a" class="outline-4">
-<h4 id="org6ea4d6a"><span class="section-number-4">3.1.3</span> Number/parseInt/parseFloat</h4>
-<div class="outline-text-4" id="text-3-1-3">
+<h4 id="org6ea4d6a"><span class="section-number-4">3.1.5</span> Number/parseInt/parseFloat</h4>
+<div class="outline-text-4" id="text-3-1-5">
 <p>
 parseInt 和 parseFloat 只转化第一个无效字符之前的字符串:
 </p>
@@ -432,9 +498,9 @@ parseInt<span style="color: #707183;">(</span><span style="color: #008b8b;">null
 </div>
 </div>
 
-<div id="outline-container-orge8bf595" class="outline-4">
-<h4 id="orge8bf595"><span class="section-number-4">3.1.4</span> 其他</h4>
-<div class="outline-text-4" id="text-3-1-4">
+<div id="outline-container-orgcc8064d" class="outline-4">
+<h4 id="orgcc8064d"><span class="section-number-4">3.1.6</span> 0.30000000000000004</h4>
+<div class="outline-text-4" id="text-3-1-6">
 <ul class="org-ul">
 <li>浮点数计算偏差，典型的 \(0.1 + 0.2 \ne 0.3\)</li>
 <li>如果存在过大的数，是不能使用 Number 来表示的；使用内置的对象 BigInt 可以解决之</li>
@@ -455,6 +521,7 @@ parseInt<span style="color: #707183;">(</span><span style="color: #008b8b;">null
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">b</span> = <span style="color: #8b2252;">'&#23383;&#31526;&#20018;'</span>;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">c</span> = <span style="color: #8b2252;">"&#23383;&#31526;&#20018;"</span>;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">c1</span> = &#8216;hello&#8217;; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19981;&#33021;&#20351;&#29992;&#20013;&#25991;&#29366;&#24577;&#30340;&#24341;&#21495;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">d</span> = <span style="color: #8b2252;">```&#27169;&#26495;&#23383;&#31526;&#20018;${c}&#24456;&#22909;&#29992;```</span>;
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25645;&#37197;&#20351;&#29992;&#65292;for your free</span>
 
@@ -582,13 +649,13 @@ d.getFullYear<span style="color: #707183;">()</span>.concat<span style="color: #
 <span style="color: #b22222;">// </span><span style="color: #b22222;">JS &#26159;&#19968;&#38376;&#24369;&#31867;&#22411;&#30340;&#35821;&#35328;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21518;&#32493;&#20351;&#29992;&#30340;&#26102;&#20505;&#65292;&#35831;&#22823;&#23478;&#21153;&#24517;&#20248;&#20808;&#20351;&#29992; === &#36827;&#34892;&#21028;&#26029;</span>
 2222 == <span style="color: #8b2252;">'2222'</span>  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21482;&#27604;&#36739;&#20540;&#65292;&#19981;&#27604;&#36739;&#31867;&#22411;</span>
-2222 === <span style="color: #8b2252;">'2222'</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26082;&#27604;&#36739;&#31867;&#22411;&#65292;&#21448;&#27604;&#36739;&#20540;</span>
+2222 === <span style="color: #8b2252;">'2222'</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26082;&#27604;&#36739;&#31867;&#22411;&#65292;&#21448;&#27604;&#36739;&#20540;&#12290;&#30495;&#31561;</span>
 2222 !== <span style="color: #8b2252;">'2222'</span>
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#26465;&#20214;&#26159;&#20854;&#20182;&#31867;&#22411;&#30340;&#35805;&#65292;&#20250;&#24378;&#21046;&#36716;&#25442;&#20026; boolean &#31867;&#22411;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#26159;&#25968;&#23383;&#65292;&#19988;&#20026; 0/NaN &#30340;&#35805;&#65292;&#20250;&#30475;&#20570; false&#65292;&#20854;&#20182; true</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#26159;&#23383;&#31526;&#20018;&#65292;&#37027;&#20040;&#20026; "" &#30340;&#35805;&#65292;&#30475;&#20570; false</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#31867;&#22411;&#26159; undefined&#65292;&#25110;&#32773;&#36171;&#20540;&#20026; null &#30340;&#35805;&#65292;&#30475;&#20570; false</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">- &#22914;&#26524;&#26159;&#25968;&#23383;&#65292;&#19988;&#20026; 0/NaN &#30340;&#35805;&#65292;&#20250;&#30475;&#20570; false&#65292;&#20854;&#20182; true</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">- &#22914;&#26524;&#26159;&#23383;&#31526;&#20018;&#65292;&#37027;&#20040;&#20026; "" &#30340;&#35805;&#65292;&#30475;&#20570; false</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">- &#22914;&#26524;&#31867;&#22411;&#26159; undefined&#65292;&#25110;&#32773;&#36171;&#20540;&#20026; null &#30340;&#35805;&#65292;&#30475;&#20570; false</span>
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">xxx</span> = <span style="color: #008b8b;">null</span>;
 <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>xxx<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#23558; A &#24403;&#20316; true &#26469;&#30475;&#24453;"</span><span style="color: #7388d6;">)</span>;
@@ -1152,7 +1219,7 @@ c.reset<span style="color: #707183;">()</span>;
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>undefined 表示的是变量已经声明，但是没有赋值！</li>
-<li>null 不是一种类型，而是一个 object 对象，它表示将某个变量置空</li>
+<li>null 不是一种类型，而是一个 <b>object</b> 对象，它表示将某个变量置空</li>
 </ul>
 
 <div class="org-src-container">
@@ -1164,7 +1231,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="orga45e90a">
+<figure id="org96fe646">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -1271,9 +1338,25 @@ Array.of
 <h3 id="org4d8fd67"><span class="section-number-3">3.7</span> Object</h3>
 <div class="outline-text-3" id="text-3-7">
 </div>
-<div id="outline-container-orgc5d5dab" class="outline-4">
-<h4 id="orgc5d5dab"><span class="section-number-4">3.7.1</span> 封装</h4>
+<div id="outline-container-orga794cc0" class="outline-4">
+<h4 id="orga794cc0"><span class="section-number-4">3.7.1</span> instanceof</h4>
 <div class="outline-text-4" id="text-3-7-1">
+<p>
+判断是否是某个对象:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">Student</span><span style="color: #707183;">()</span> <span style="color: #707183;">{}</span>
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">tom</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>tom <span style="color: #a020f0;">instanceof</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#22909;&#22909;&#23398;&#20064;&#65292;&#22825;&#22825;&#21521;&#19978;"</span><span style="color: #7388d6;">)</span> <span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5d5dab" class="outline-4">
+<h4 id="orgc5d5dab"><span class="section-number-4">3.7.2</span> 封装</h4>
+<div class="outline-text-4" id="text-3-7-2">
 <p>
 Array 是一种集合:
 </p>
@@ -1356,8 +1439,8 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org48263e5" class="outline-4">
-<h4 id="org48263e5"><span class="section-number-4">3.7.2</span> 继承 (基于原型链)</h4>
-<div class="outline-text-4" id="text-3-7-2">
+<h4 id="org48263e5"><span class="section-number-4">3.7.3</span> 继承 (基于原型链)</h4>
+<div class="outline-text-4" id="text-3-7-3">
 <p>
 JS 中，基于原型链的继承:
 </p>
@@ -1409,8 +1492,8 @@ xiaoming.study<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org297062e" class="outline-4">
-<h4 id="org297062e"><span class="section-number-4">3.7.3</span> 使用构造函数，简化对象的创建</h4>
-<div class="outline-text-4" id="text-3-7-3">
+<h4 id="org297062e"><span class="section-number-4">3.7.4</span> 使用构造函数，简化对象的创建</h4>
+<div class="outline-text-4" id="text-3-7-4">
 <p>
 如果想构建结果类似的 object 数据，普通的写法有点罗嗦:
 </p>
@@ -1614,8 +1697,8 @@ iphone.hello<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-orge0b6248" class="outline-4">
-<h4 id="orge0b6248"><span class="section-number-4">3.7.4</span> ES6 中的 Class 语法糖</h4>
-<div class="outline-text-4" id="text-3-7-4">
+<h4 id="orge0b6248"><span class="section-number-4">3.7.5</span> ES6 中的 Class 语法糖</h4>
+<div class="outline-text-4" id="text-3-7-5">
 <p>
 一定要注意，这只是一种 <b>语法糖</b> ！
 </p>
@@ -1647,11 +1730,11 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-orge596ead" class="outline-3">
-<h3 id="orge596ead"><span class="section-number-3">3.8</span> 运算符优先级</h3>
+<div id="outline-container-orgf4d9578" class="outline-3">
+<h3 id="orgf4d9578"><span class="section-number-3">3.8</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-3-8">
 
-<figure id="orgee09cb9">
+<figure id="orgc9d90a8">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2275,13 +2358,65 @@ Asynchronous Module Definition.
 </div>
 </section>
 
-<section id="outline-container-org832bb61" class="outline-2">
-<h2 id="org832bb61"><span class="section-number-2">7</span> 问题集锦</h2>
+<section id="outline-container-orge8bf595" class="outline-2">
+<h2 id="orge8bf595"><span class="section-number-2">7</span> 其他</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orgf4d9578" class="outline-3">
-<h3 id="orgf4d9578"><span class="section-number-3">7.1</span> 运算符优先级</h3>
+<div id="outline-container-org09c3459" class="outline-3">
+<h3 id="org09c3459"><span class="section-number-3">7.1</span> 严格模式 (strict mode)</h3>
 <div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #8b2252;">"use strict"</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#21464;&#37327;&#24517;&#39035;&#35201;&#20351;&#29992; var/let/const &#22768;&#26126;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">2. with &#20351;&#29992;&#34987;&#31105;&#29992;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">3. &#24378;&#21046; eval &#20316;&#29992;&#22495;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">4. this &#19981;&#20877;&#25351;&#21521; window</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">5. &#36234;&#26435;&#25805;&#20316;&#30452;&#25509;&#24322;&#24120;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">6. &#19981;&#20801;&#35768; Object &#30340; key &#37325;&#22797;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">7. &#19981;&#20801;&#35768;&#21442;&#25968;&#37325;&#21517;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">8. &#31105;&#27490; 8 &#36827;&#21046;&#30340;&#35821;&#27861;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">9. &#20989;&#25968;&#24517;&#39035;&#22768;&#26126;&#22312;&#39030;&#23618;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">10...16</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org034ad68" class="outline-3">
+<h3 id="org034ad68"><span class="section-number-3">7.2</span> 异常处理</h3>
+<div class="outline-text-3" id="text-7-2">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">try</span> <span style="color: #707183;">{</span>
+  <span style="color: #a020f0;">throw</span> <span style="color: #7388d6;">{</span>
+    name: <span style="color: #8b2252;">"xxx"</span>,
+    message: <span style="color: #8b2252;">"yyy"</span>
+  <span style="color: #7388d6;">}</span>;
+<span style="color: #707183;">}</span> <span style="color: #a020f0;">catch</span><span style="color: #707183;">(</span>e<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  alert<span style="color: #7388d6;">(</span>e.message<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span> <span style="color: #a020f0;">finally</span> <span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+如果全局异常的话 (BOM)，强烈不建议使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">window.onerror = xxx;
+window.addEventListener<span style="color: #707183;">(</span><span style="color: #8b2252;">'error'</span>, xxx<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org832bb61" class="outline-2">
+<h2 id="org832bb61"><span class="section-number-2">8</span> 问题集锦</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org42b037f" class="outline-3">
+<h3 id="org42b037f"><span class="section-number-3">8.1</span> 运算符优先级</h3>
+<div class="outline-text-3" id="text-8-1">
 <p>
 请说出下面运算的结果，并简析原因:
 </p>
@@ -2322,8 +2457,8 @@ Something
 </div>
 
 <div id="outline-container-orge6e0218" class="outline-3">
-<h3 id="orge6e0218"><span class="section-number-3">7.2</span> 正则表达式</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="orge6e0218"><span class="section-number-3">8.2</span> 正则表达式</h3>
+<div class="outline-text-3" id="text-8-2">
 <p>
 请分别将下面字符串中的 <b>电话号码</b> 和 <b>邮箱地址</b>，使用 <b>正则表达式</b> 的形式，提取出来，并 <b>分别打印</b>:
 </p>
@@ -2390,8 +2525,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 
 <div id="outline-container-org0e5b3de" class="outline-3">
-<h3 id="org0e5b3de"><span class="section-number-3">7.3</span> 从文件名取后缀名</h3>
-<div class="outline-text-3" id="text-7-3">
+<h3 id="org0e5b3de"><span class="section-number-3">8.3</span> 从文件名取后缀名</h3>
+<div class="outline-text-3" id="text-8-3">
 <p>
 从下面给出的文件名字符串中，提取后缀名:
 </p>
@@ -2435,8 +2570,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 
 <div id="outline-container-orgf47d8dc" class="outline-3">
-<h3 id="orgf47d8dc"><span class="section-number-3">7.4</span> undefine/null</h3>
-<div class="outline-text-3" id="text-7-4">
+<h3 id="orgf47d8dc"><span class="section-number-3">8.4</span> undefine/null</h3>
+<div class="outline-text-3" id="text-8-4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #008b8b;">undefined</span> == <span style="color: #008b8b;">null</span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">true</span>
 <span style="color: #008b8b;">undefined</span> === <span style="color: #008b8b;">null</span>  <span style="color: #b22222;">// </span><span style="color: #b22222;">false</span>
@@ -2448,8 +2583,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 
 <div id="outline-container-org2b03a56" class="outline-3">
-<h3 id="org2b03a56"><span class="section-number-3">7.5</span> 数字 + 字符串 + NaN</h3>
-<div class="outline-text-3" id="text-7-5">
+<h3 id="org2b03a56"><span class="section-number-3">8.5</span> 数字 + 字符串 + NaN</h3>
+<div class="outline-text-3" id="text-8-5">
 <div class="org-src-container">
 <pre class="src src-js">3 + 5        <span style="color: #b22222;">// </span><span style="color: #b22222;">8</span>
 3 + <span style="color: #8b2252;">'5'</span>      <span style="color: #b22222;">// </span><span style="color: #b22222;">35</span>
@@ -2477,8 +2612,8 @@ Math.sqrt<span style="color: #707183;">(</span>-1<span style="color: #707183;">)
 </div>
 
 <div id="outline-container-org8d6ad62" class="outline-3">
-<h3 id="org8d6ad62"><span class="section-number-3">7.6</span> 浮点数计算</h3>
-<div class="outline-text-3" id="text-7-6">
+<h3 id="org8d6ad62"><span class="section-number-3">8.6</span> 浮点数计算</h3>
+<div class="outline-text-3" id="text-8-6">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = 0.1;
 console.log<span style="color: #707183;">(</span>a<span style="color: #707183;">)</span>;
@@ -2501,8 +2636,8 @@ c == a + b
 </div>
 
 <div id="outline-container-org404844d" class="outline-3">
-<h3 id="org404844d"><span class="section-number-3">7.7</span> 求取斐波那契数列的某项 [递归]</h3>
-<div class="outline-text-3" id="text-7-7">
+<h3 id="org404844d"><span class="section-number-3">8.7</span> 求取斐波那契数列的某项 [递归]</h3>
+<div class="outline-text-3" id="text-8-7">
 <p>
 斐波那契数列，就是某一项的值，为前两项的和:
 </p>
@@ -2527,8 +2662,8 @@ c == a + b
 </div>
 
 <div id="outline-container-orgf3dd7a0" class="outline-3">
-<h3 id="orgf3dd7a0"><span class="section-number-3">7.8</span> 自增运算符</h3>
-<div class="outline-text-3" id="text-7-8">
+<h3 id="orgf3dd7a0"><span class="section-number-3">8.8</span> 自增运算符</h3>
+<div class="outline-text-3" id="text-8-8">
 <p>
 请解析下面的结果:
 </p>
@@ -2552,7 +2687,7 @@ console.log<span style="color: #707183;">(</span>a, b, c, d<span style="color: #
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-11-09</p>
+<p class="date">Created: 2020-12-14</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

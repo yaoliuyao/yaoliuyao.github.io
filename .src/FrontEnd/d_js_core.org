@@ -1,9 +1,10 @@
 #+TITLE: JavaScript 语言核心
 
 
+
 * 简介
 
-JavaScript 语法上特别像 Java，实质上更像 Scheme，另外它的基于原型 (Prototype) 的对象系统，是来自于 Self。
+JavaScript 语法上特别像 Java，实质上更像 Scheme，另外它的基于原型 (prototype) 的对象系统，是来自于 Self。
 
 JavaScript 网络第一语言:
 - 定义数据的时候，不需要指定类型
@@ -142,6 +143,34 @@ JavaScript 网络第一语言:
   i -= 2;
 #+end_src
 
+** 变量的声明的若干方式
+
+第一种:
+#+begin_src js
+  a = 1;
+#+end_src
+
+第二种:
+#+begin_src js
+  var a = 1;
+
+  var a;
+  a = 1;
+#+end_src
+
+第三种:
+#+begin_src js
+  let a = 1;
+  a++;
+
+  const pi = 3.142;
+  pi++;  // Error!
+#+end_src
+
+小结:
+- 勿用 1
+- 优先级: const > let > var
+
 * 类型 (Type)
 
 - 原始类型 (Primitive Type): number/string/boolean/function/undefined
@@ -151,6 +180,8 @@ JavaScript 网络第一语言:
 
 在 JS 中，number 表示一切数字，包括整数和浮点数。全都是 64 位。
 
+*** 声明
+
 #+begin_src js
   // int a = 1;
   // number a = 1;
@@ -159,14 +190,15 @@ JavaScript 网络第一语言:
   var b = 1.2;
   var c = 0.0000004;
   var d = 12323232323;
-  var e = 0xffffff; // 16 进制的表现
   var f = 0o12345;  // 8 进制的表现
+  var e = 0xffffff; // 16 进制的表现
 
   // 用来查看其基本类型
-  typeof a;
+  typeof a; // "number"
 #+end_src
 
-运算:
+*** 运算
+
 - + - x / % 
 - around/ceil/floor
 - power/exp/sqrt
@@ -181,10 +213,11 @@ JavaScript 网络第一语言:
 
 进行数学计算的顺序是:
 1. 首先，将运算符两边的 *元素* 都强制转换为 Number，然后进行计算
-   : '3' * '5'
+   : '3' * '5a'
 2. 如果在转换时，有一个转换失败了，那么运算的结果直接是 NaN
 3. 加法例外，只要做不了数学运算，就强制转换为字符串拼接
    : '3' + '5'
+   : 3 + '5'
 4. 如果一个结果无法表示，那么结果也会被表示为 NaN
    : Math.sqrt(-1)
 
@@ -213,7 +246,7 @@ parseInt 和 parseFloat 只转化第一个无效字符之前的字符串:
   parseInt(null);     // NaN
 #+end_src
 
-*** 其他
+*** 0.30000000000000004
 
 - 浮点数计算偏差，典型的 $0.1 + 0.2 \ne 0.3$
 - 如果存在过大的数，是不能使用 Number 来表示的；使用内置的对象 BigInt 可以解决之
@@ -227,6 +260,7 @@ parseInt 和 parseFloat 只转化第一个无效字符之前的字符串:
   var b = '字符串';
   var c = "字符串";
   var c1 = ‘hello’; // 不能使用中文状态的引号
+  let d = ```模板字符串${c}很好用```;
 
   // 搭配使用，for your free
 
@@ -330,13 +364,13 @@ parseInt 和 parseFloat 只转化第一个无效字符之前的字符串:
   // JS 是一门弱类型的语言
   // 后续使用的时候，请大家务必优先使用 === 进行判断
   2222 == '2222'  // 只比较值，不比较类型
-  2222 === '2222' // 既比较类型，又比较值
+  2222 === '2222' // 既比较类型，又比较值。真等
   2222 !== '2222'
 
   // 如果条件是其他类型的话，会强制转换为 boolean 类型
-  // 如果是数字，且为 0/NaN 的话，会看做 false，其他 true
-  // 如果是字符串，那么为 "" 的话，看做 false
-  // 如果类型是 undefined，或者赋值为 null 的话，看做 false
+  // - 如果是数字，且为 0/NaN 的话，会看做 false，其他 true
+  // - 如果是字符串，那么为 "" 的话，看做 false
+  // - 如果类型是 undefined，或者赋值为 null 的话，看做 false
   var xxx = null;
   if (xxx) {
      console.log("将 A 当作 true 来看待");
@@ -791,7 +825,7 @@ const 是初始化之后，不能再重新赋值的 *常量*:
 ** undefined/null
 
 - undefined 表示的是变量已经声明，但是没有赋值！
-- null 不是一种类型，而是一个 object 对象，它表示将某个变量置空
+- null 不是一种类型，而是一个 *object* 对象，它表示将某个变量置空
 
 #+begin_src js
   var aaaaa;
@@ -881,6 +915,16 @@ ES6 添加的 Array 的一些静态方法:
 #+end_src
 
 ** Object
+*** instanceof
+
+判断是否是某个对象:
+#+begin_src js
+  function Student() {}
+  var tom = new Student();
+
+  if (tom instanceof Student) { console.log("好好学习，天天向上") }
+#+end_src
+
 *** 封装
 
 Array 是一种集合:
@@ -1626,6 +1670,43 @@ Asynchronous Module Definition.
     import y from "./c1.js";
     y();
   </script>
+#+end_src
+
+* 其他
+** 严格模式 (strict mode)
+
+#+begin_src js
+  "use strict";
+  // 1. 变量必须要使用 var/let/const 声明
+  // 2. with 使用被禁用
+  // 3. 强制 eval 作用域
+  // 4. this 不再指向 window
+  // 5. 越权操作直接异常
+  // 6. 不允许 Object 的 key 重复
+  // 7. 不允许参数重名
+  // 8. 禁止 8 进制的语法
+  // 9. 函数必须声明在顶层
+  // 10...16
+#+end_src
+
+** 异常处理
+
+#+begin_src js
+  try {
+    throw {
+      name: "xxx",
+      message: "yyy"
+    };
+  } catch(e) {
+    alert(e.message);
+  } finally {
+  }
+#+end_src
+
+如果全局异常的话 (BOM)，强烈不建议使用:
+#+begin_src js
+  window.onerror = xxx;
+  window.addEventListener('error', xxx);
 #+end_src
 
 * 问题集锦
