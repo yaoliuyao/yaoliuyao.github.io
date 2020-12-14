@@ -75,16 +75,17 @@
 <li><a href="#orgceb632b">3.4. function</a>
 <ul>
 <li><a href="#org1f8a73b">3.4.1. 基本的声明与使用</a></li>
-<li><a href="#orgc9a0358">3.4.2. 函数是一等公民 (回调函数)</a></li>
-<li><a href="#org1579adf">3.4.3. 递归函数</a></li>
-<li><a href="#orgbb51fcd">3.4.4. 变量的提升 (var)</a></li>
-<li><a href="#org720b08e">3.4.5. 变量的作用域 (var)</a></li>
-<li><a href="#org8602168">3.4.6. ES6 提出了两个进行变量定义的关键词 let/const</a></li>
-<li><a href="#org3118363">3.4.7. 词法作用域 (Lexical Scope)</a></li>
-<li><a href="#org958188c">3.4.8. 闭包 (Closure)</a></li>
+<li><a href="#orgeafa4f8">3.4.2. 函数的定义</a></li>
+<li><a href="#orgc9a0358">3.4.3. 函数是一等公民 (回调函数)</a></li>
+<li><a href="#org1579adf">3.4.4. 递归函数</a></li>
+<li><a href="#orgbb51fcd">3.4.5. 变量的提升 (var)</a></li>
+<li><a href="#org720b08e">3.4.6. 变量的作用域 (var)</a></li>
+<li><a href="#org8602168">3.4.7. ES6 提出了两个进行变量定义的关键词 let/const</a></li>
+<li><a href="#org3118363">3.4.8. 词法作用域 (Lexical Scope)</a></li>
+<li><a href="#org958188c">3.4.9. 闭包 (Closure)</a></li>
 </ul>
 </li>
-<li><a href="#org7f975c8">3.5. undefined/null</a></li>
+<li><a href="#org2e00254">3.5. undefined (null is not a type)</a></li>
 <li><a href="#org8959026">3.6. Array</a></li>
 <li><a href="#org4d8fd67">3.7. Object</a>
 <ul>
@@ -95,7 +96,7 @@
 <li><a href="#orge0b6248">3.7.5. ES6 中的 Class 语法糖</a></li>
 </ul>
 </li>
-<li><a href="#orgf4d9578">3.8. 运算符优先级</a></li>
+<li><a href="#org42b037f">3.8. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#org45505d6">4. 标准内置对象 (Global Objects)</a>
@@ -141,7 +142,7 @@
 </li>
 <li><a href="#org832bb61">8. 问题集锦</a>
 <ul>
-<li><a href="#org42b037f">8.1. 运算符优先级</a></li>
+<li><a href="#orgf8f066b">8.1. 运算符优先级</a></li>
 <li><a href="#orge6e0218">8.2. 正则表达式</a></li>
 <li><a href="#org0e5b3de">8.3. 从文件名取后缀名</a></li>
 <li><a href="#orgf47d8dc">8.4. undefine/null</a></li>
@@ -521,7 +522,7 @@ parseInt<span style="color: #707183;">(</span><span style="color: #008b8b;">null
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">b</span> = <span style="color: #8b2252;">'&#23383;&#31526;&#20018;'</span>;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">c</span> = <span style="color: #8b2252;">"&#23383;&#31526;&#20018;"</span>;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">c1</span> = &#8216;hello&#8217;; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19981;&#33021;&#20351;&#29992;&#20013;&#25991;&#29366;&#24577;&#30340;&#24341;&#21495;</span>
-<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">d</span> = <span style="color: #8b2252;">```&#27169;&#26495;&#23383;&#31526;&#20018;${c}&#24456;&#22909;&#29992;```</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">d</span> = <span style="color: #8b2252;">```&#27169;&#26495;&#23383;&#31526;&#20018;${c} ${c.length + 1}&#24456;&#22909;&#29992;```</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#23884;&#20837;&#21464;&#37327;&#65307;&#21487;&#20197;&#22810;&#34892;</span>
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25645;&#37197;&#20351;&#29992;&#65292;for your free</span>
 
@@ -765,9 +766,88 @@ f(x) = x^3 + 2x^2 + 1
 </div>
 </div>
 
-<div id="outline-container-orgc9a0358" class="outline-4">
-<h4 id="orgc9a0358"><span class="section-number-4">3.4.2</span> 函数是一等公民 (回调函数)</h4>
+<div id="outline-container-orgeafa4f8" class="outline-4">
+<h4 id="orgeafa4f8"><span class="section-number-4">3.4.2</span> 函数的定义</h4>
 <div class="outline-text-4" id="text-3-4-2">
+<p>
+function -&gt; Function
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">1, &#20256;&#32479;&#26041;&#24335;</span>
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">aaa</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">a</span>, <span style="color: #a0522d;">b</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    console.log<span style="color: #7388d6;">(</span><span style="color: #008b8b;">this</span>.<span style="color: #008b8b;">arguments</span><span style="color: #7388d6;">)</span>;
+    console.log<span style="color: #7388d6;">(</span><span style="color: #008b8b;">this</span><span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">this: &#35841;&#35843;&#29992;&#30340;&#25105;</span>
+    <span style="color: #a020f0;">return</span> a + b;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">2, &#21464;&#37327;&#26041;&#24335;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">aaa</span> = <span style="color: #a020f0;">function</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">a</span>, <span style="color: #a0522d;">b</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">return</span> a + b;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">3, &#38754;&#21521;&#23545;&#35937;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">aaa</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Function</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"a"</span>, <span style="color: #8b2252;">"b"</span>, <span style="color: #8b2252;">"a + b"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">4, &#31661;&#22836;&#20989;&#25968; (&#31616;&#27905;+this)</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">aaa</span> = <span style="color: #707183;">(</span>a, b<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">{</span>
+  <span style="color: #a020f0;">return</span> a + b;
+<span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">aaa</span> = <span style="color: #707183;">(</span>a, b<span style="color: #707183;">)</span> =&gt; a + b;
+
+aaa<span style="color: #707183;">(</span>2, 3<span style="color: #707183;">)</span>;     <span style="color: #b22222;">// </span><span style="color: #b22222;">this: window</span>
+xxx.aaa<span style="color: #707183;">(</span>2, 3<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">this: xxx</span>
+</pre>
+</div>
+
+<p>
+Arguments:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">myAdd</span> <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+  <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">sum</span> = 0;
+  <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">i</span> = 0; i &lt; <span style="color: #008b8b;">arguments</span>.length; i++<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+    sum += <span style="color: #008b8b;">arguments</span><span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+  <span style="color: #7388d6;">}</span>
+  <span style="color: #a020f0;">return</span> sum;
+<span style="color: #707183;">}</span>
+
+myAdd<span style="color: #707183;">(</span>2, 3<span style="color: #707183;">)</span>;
+myAdd<span style="color: #707183;">(</span>2, 3, 4, 6, 8<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+apply/call/bind 强行改变 function 内部 this 的值:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">p</span> = <span style="color: #707183;">{</span>
+    x: 1
+<span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">o</span> = <span style="color: #707183;">{</span>
+    x: 2,
+    <span style="color: #0000ff;">a</span>: <span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">a</span>, <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        console.log<span style="color: #909183;">(</span><span style="color: #008b8b;">this</span>.x + a + b<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>;
+
+o.a<span style="color: #707183;">(</span>1, 1<span style="color: #707183;">)</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">4</span>
+
+o.a.call<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183;">)</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
+o.a.apply<span style="color: #707183;">(</span>p, <span style="color: #7388d6;">[</span>1, 1<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
+o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183;">)()</span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">b</span> = o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183;">)</span>; b<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
+
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">b</span> = document.write; b<span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Error</span>
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">c</span> = document.write.bind<span style="color: #707183;">(</span>document<span style="color: #707183;">)</span>; c<span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">OK</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc9a0358" class="outline-4">
+<h4 id="orgc9a0358"><span class="section-number-4">3.4.3</span> 函数是一等公民 (回调函数)</h4>
+<div class="outline-text-4" id="text-3-4-3">
 <p>
 函数作为另一个函数的参数的情况，叫回调函数。
 </p>
@@ -819,8 +899,8 @@ mysum3<span style="color: #707183;">(</span>1, <span style="color: #8b2252;">'he
 </div>
 
 <div id="outline-container-org1579adf" class="outline-4">
-<h4 id="org1579adf"><span class="section-number-4">3.4.3</span> 递归函数</h4>
-<div class="outline-text-4" id="text-3-4-3">
+<h4 id="org1579adf"><span class="section-number-4">3.4.4</span> 递归函数</h4>
+<div class="outline-text-4" id="text-3-4-4">
 <p>
 不断调用自己，千层套娃:
 </p>
@@ -884,8 +964,8 @@ s<span style="color: #707183;">(</span>1000<span style="color: #707183;">)</span
 </div>
 
 <div id="outline-container-orgbb51fcd" class="outline-4">
-<h4 id="orgbb51fcd"><span class="section-number-4">3.4.4</span> 变量的提升 (var)</h4>
-<div class="outline-text-4" id="text-3-4-4">
+<h4 id="orgbb51fcd"><span class="section-number-4">3.4.5</span> 变量的提升 (var)</h4>
+<div class="outline-text-4" id="text-3-4-5">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span>;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">aaa</span>;
@@ -910,8 +990,8 @@ aaa = <span style="color: #a020f0;">function</span> <span style="color: #707183;
 </div>
 
 <div id="outline-container-org720b08e" class="outline-4">
-<h4 id="org720b08e"><span class="section-number-4">3.4.5</span> 变量的作用域 (var)</h4>
-<div class="outline-text-4" id="text-3-4-5">
+<h4 id="org720b08e"><span class="section-number-4">3.4.6</span> 变量的作用域 (var)</h4>
+<div class="outline-text-4" id="text-3-4-6">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = 9;
 
@@ -1018,8 +1098,8 @@ console.log<span style="color: #707183;">(</span>i<span style="color: #707183;">
 </div>
 
 <div id="outline-container-org8602168" class="outline-4">
-<h4 id="org8602168"><span class="section-number-4">3.4.6</span> ES6 提出了两个进行变量定义的关键词 let/const</h4>
-<div class="outline-text-4" id="text-3-4-6">
+<h4 id="org8602168"><span class="section-number-4">3.4.7</span> ES6 提出了两个进行变量定义的关键词 let/const</h4>
+<div class="outline-text-4" id="text-3-4-7">
 <p>
 区别:
 </p>
@@ -1074,8 +1154,8 @@ a = 2;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#
 </div>
 
 <div id="outline-container-org3118363" class="outline-4">
-<h4 id="org3118363"><span class="section-number-4">3.4.7</span> 词法作用域 (Lexical Scope)</h4>
-<div class="outline-text-4" id="text-3-4-7">
+<h4 id="org3118363"><span class="section-number-4">3.4.8</span> 词法作用域 (Lexical Scope)</h4>
+<div class="outline-text-4" id="text-3-4-8">
 <p>
 即静态绑定。
 </p>
@@ -1117,8 +1197,8 @@ test<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org958188c" class="outline-4">
-<h4 id="org958188c"><span class="section-number-4">3.4.8</span> 闭包 (Closure)</h4>
-<div class="outline-text-4" id="text-3-4-8">
+<h4 id="org958188c"><span class="section-number-4">3.4.9</span> 闭包 (Closure)</h4>
+<div class="outline-text-4" id="text-3-4-9">
 <p>
 闭包的根源是 <b>词法作用域</b>！
 </p>
@@ -1214,8 +1294,8 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org7f975c8" class="outline-3">
-<h3 id="org7f975c8"><span class="section-number-3">3.5</span> undefined/null</h3>
+<div id="outline-container-org2e00254" class="outline-3">
+<h3 id="org2e00254"><span class="section-number-3">3.5</span> undefined (null is not a type)</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>undefined 表示的是变量已经声明，但是没有赋值！</li>
@@ -1231,7 +1311,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org96fe646">
+<figure id="orge423b76">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -1730,11 +1810,11 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-orgf4d9578" class="outline-3">
-<h3 id="orgf4d9578"><span class="section-number-3">3.8</span> 运算符优先级</h3>
+<div id="outline-container-org42b037f" class="outline-3">
+<h3 id="org42b037f"><span class="section-number-3">3.8</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-3-8">
 
-<figure id="orgc9d90a8">
+<figure id="org9b72a57">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2414,8 +2494,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 <h2 id="org832bb61"><span class="section-number-2">8</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org42b037f" class="outline-3">
-<h3 id="org42b037f"><span class="section-number-3">8.1</span> 运算符优先级</h3>
+<div id="outline-container-orgf8f066b" class="outline-3">
+<h3 id="orgf8f066b"><span class="section-number-3">8.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 请说出下面运算的结果，并简析原因:
