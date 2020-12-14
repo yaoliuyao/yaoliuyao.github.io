@@ -179,7 +179,7 @@ https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/First_steps/What_is_Ja
 将「样式」和「交互逻辑」从页面中 分离 出来，这样结构更加分明，
 方便分工协作，而且有益于维护和重构。
 
-* 简介
+* Overview
 
 JavaScript 语法上特别像 Java，实质上更像 Scheme，另外它的基于原型 (prototype) 的对象系统，是来自于 Self。
 
