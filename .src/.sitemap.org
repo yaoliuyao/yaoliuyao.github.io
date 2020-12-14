@@ -14,8 +14,8 @@
   - [[file:FrontEnd/d_bom.org][BOM (浏览器对象模型)]]
   - [[file:FrontEnd/e_dom.org][DOM (文档对象模型)]]
   - [[file:FrontEnd/h_jQuery.org][jQuery]]
-  - [[file:FrontEnd/j_vue-js.org][Vue.js]]
   - [[file:FrontEnd/l_bootstrap.org][Bootstrap]]
+  - [[file:FrontEnd/n_vue-js.org][Vue.js]]
   - [[file:FrontEnd/w_nodejs.org][Node.js]]
   - [[file:FrontEnd/z_kehouti.org][课本上的课后题]]
 - Java
