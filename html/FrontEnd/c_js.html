@@ -108,7 +108,7 @@
 <li><a href="#org8d3dfab">4.7.5. ES6 中的 Class 语法糖</a></li>
 </ul>
 </li>
-<li><a href="#org81dc52f">4.8. 运算符优先级</a></li>
+<li><a href="#org89da2ff">4.8. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -154,7 +154,7 @@
 </li>
 <li><a href="#org8ad9ada">9. 问题集锦</a>
 <ul>
-<li><a href="#org89da2ff">9.1. 运算符优先级</a></li>
+<li><a href="#orgad586e7">9.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">9.2. 正则表达式</a></li>
 <li><a href="#org1648f72">9.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">9.4. undefine/null</a></li>
@@ -1109,7 +1109,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org4a80378">
+<pre class="example" id="orga66eccf">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1489,6 +1489,9 @@ a = 2;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#
 基本现在所有的语言都是基于词法作用域的。
 </p>
 
+<p>
+青梅竹马胜过千军万马:
+</p>
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">'Dog'</span>;
 
@@ -1623,7 +1626,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org273d413">
+<figure id="org802c681">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -2122,11 +2125,11 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org81dc52f" class="outline-3">
-<h3 id="org81dc52f"><span class="section-number-3">4.8</span> 运算符优先级</h3>
+<div id="outline-container-org89da2ff" class="outline-3">
+<h3 id="org89da2ff"><span class="section-number-3">4.8</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-8">
 
-<figure id="org37f991f">
+<figure id="org52d2b95">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2680,6 +2683,20 @@ xxx<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </s
 c1.hi<span style="color: #707183;">()</span>;
 </pre>
 </div>
+
+<p>
+写法:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+    console.log<span style="color: #909183;">(</span>xxx<span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)()</span>;
+
++<span style="color: #a020f0;">function</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+    console.log<span style="color: #7388d6;">(</span>xxx<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}()</span>
+</pre>
+</div>
 </div>
 </div>
 
@@ -2806,8 +2823,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 <h2 id="org8ad9ada"><span class="section-number-2">9</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org89da2ff" class="outline-3">
-<h3 id="org89da2ff"><span class="section-number-3">9.1</span> 运算符优先级</h3>
+<div id="outline-container-orgad586e7" class="outline-3">
+<h3 id="orgad586e7"><span class="section-number-3">9.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 请说出下面运算的结果，并简析原因:

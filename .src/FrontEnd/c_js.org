@@ -1027,6 +1027,7 @@ const 是初始化之后，不能再重新赋值的 *常量*:
 
 基本现在所有的语言都是基于词法作用域的。
 
+青梅竹马胜过千军万马:
 #+begin_src js
   var a = 'Dog';
 
@@ -1042,6 +1043,10 @@ const 是初始化之后，不能再重新赋值的 *常量*:
 
   test();
 #+end_src
+
+#+RESULTS:
+: hello, Sheep
+: undefined
 
 *** 闭包 (Closure)
 
@@ -1923,6 +1928,17 @@ function goOut() {
   })();
 
   c1.hi();
+#+end_src
+
+写法:
+#+begin_src js
+  (function() {
+      console.log(xxx);
+  })();
+
+  +function() {
+      console.log(xxx);
+  }()
 #+end_src
 
 ** 模块化的第三方解决方案 CommonJS/AMD
