@@ -647,8 +647,8 @@ function -> Function
 #+begin_src js
   // 1, 传统方式
   function aaa (a, b) {
-      console.log(this.arguments);
       console.log(this); // this: 谁调用的我
+      console.log(arguments);
       return a + b;
   }
 
