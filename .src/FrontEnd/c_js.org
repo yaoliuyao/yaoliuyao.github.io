@@ -3,6 +3,8 @@
 
 * Hello
 
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
+
 浏览器发展史:
 1. 网景浏览器
 2. IE 浏览器
@@ -14,8 +16,10 @@ JavaScript 发展史:
 3. ES6
 4. Node.js
 
-参考网站:
-- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
+整个 JavaScript 的学习，分为三部分:
+1. ECMAScript 语言核心
+2. BOM 操作
+3. DOM 操作
 
 ** 基本示例 (Hello World)
 
@@ -179,7 +183,7 @@ https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/First_steps/What_is_Ja
 将「样式」和「交互逻辑」从页面中 分离 出来，这样结构更加分明，
 方便分工协作，而且有益于维护和重构。
 
-* Overview
+* 概述
 
 JavaScript 语法上特别像 Java，实质上更像 Scheme，另外它的基于原型 (prototype) 的对象系统，是来自于 Self。
 
