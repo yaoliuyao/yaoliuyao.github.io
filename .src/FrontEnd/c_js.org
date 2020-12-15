@@ -647,15 +647,17 @@ function -> Function
 #+begin_src js
   // 1, 传统方式
   function aaa (a, b) {
-      console.log(this); // this: 谁调用的我
-      console.log(arguments);
+      console.log(this);       // this: 谁调用的我
+      console.log(arguments);  // arguments: 所有入参构成的数组
       return a + b;
   }
+  aaa();
+  window.aaa();
 
   // 2, 变量方式
   let aaa = function (a, b) {
       return a + b;
-  }
+  };
 
   // 3, 面向对象
   let aaa = new Function("a", "b", "a + b");
@@ -707,6 +709,13 @@ apply/call/bind 强行改变 function 内部 this 的值:
   var c = document.write.bind(document); c("hello"); // OK
 #+end_src  
 
+古语有云:
+#+begin_example
+  函数内部有 this，默认指向调用者
+  如果调用在顶层，this 的值是 window
+  强行指定 this 值，请你使用 apply/call/bind 
+#+end_example
+
 *** 函数是一等公民 (回调函数)
 
 函数作为另一个函数的参数的情况，叫回调函数。
@@ -751,6 +760,17 @@ apply/call/bind 强行改变 function 内部 this 的值:
 #+end_src
 
 - Callback Hell
+
+#+begin_src js
+  function chuli (a) {
+  }
+
+  let jia2 = x => x + 2;
+  let cheng3 = x => x * 3;
+  let pingfang = x => x * x;
+
+  chili(3, jia2, cheng3, pingfang, (x) => x - 5); // 2
+#+end_src
 
 *** 递归函数
 
@@ -846,6 +866,10 @@ apply/call/bind 强行改变 function 内部 this 的值:
   function x () {
       console.log(a);
       var a = 10;
+
+      // var a;
+      // console.log(a);
+      // a = 10;
   }
   x();
 
@@ -882,6 +906,7 @@ apply/call/bind 强行改变 function 内部 this 的值:
   }
   y();
   console.log(a);
+  x();
 #+end_src
 
 #+begin_src js
@@ -914,12 +939,26 @@ apply/call/bind 强行改变 function 内部 this 的值:
       for (var i = 1; i < 10; i++) {
           //...
       }
+      console.log(i);
   }
   z();
-  console.log(i);
+  // console.log(i);
+#+end_src
+
+#+begin_src js
+  function z () {
+      let i = 999;
+      for (let i = 1; i < 10; i++) {
+          //...
+      }
+      console.log(i);
+  }
+  z();
+  // console.log(i);
 #+end_src
 
 - 使用 var 定义的变量，它是有作用范围的。默认的范围是函数级别
+- 优先使用 const/let
 
 *** ES6 提出了两个进行变量定义的关键词 let/const
 
