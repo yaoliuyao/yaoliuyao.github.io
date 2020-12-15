@@ -759,18 +759,32 @@ apply/call/bind 强行改变 function 内部 this 的值:
   mysum3(1, 'hello', alert); // f 是 alert
 #+end_src
 
-- Callback Hell
-
+借助函数参数，进行链式处理:
 #+begin_src js
   function chuli (a) {
+      for (let i = 1; i < arguments.length; i++) {
+          a = arguments[i](a);
+          console.log(arguments[i] + ": " + a);
+      }
+      return a;
   }
 
-  let jia2 = x => x + 2;
+  let jia2 = x => x + 2; // let jia2 = function (hello) { return hello + 2 }
   let cheng3 = x => x * 3;
   let pingfang = x => x * x;
 
-  chili(3, jia2, cheng3, pingfang, (x) => x - 5); // 2
+  chuli(3, jia2, cheng3, (x) => x - 5, x => x*x*x*x, pingfang);
 #+end_src
+
+#+RESULTS:
+: x => x + 2: 5
+: x => x * 3: 15
+: (x) => x - 5: 10
+: x => x*x*x*x: 10000
+: x => x * x: 100000000
+: undefined
+
+- Callback Hell
 
 *** 递归函数
 
