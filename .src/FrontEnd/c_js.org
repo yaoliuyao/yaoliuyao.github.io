@@ -1249,15 +1249,19 @@ Object 也是一种集合:
   // var arr = { 0:1, 1:2, 2:3, 3:5, 4:'laohu' };
 
   // Key-Value 键-值
+
   var obj = new Object();
   obj['name'] = 'tom';
   obj.age = 123;
+
   var obj = { "name": 'tom', "age", 123  };
+
   var obj = {
       "name": 'tom',
       "age": 123,
       "greet": function () { alert(222) }
   };
+
   var obj = {
       name: 'tom',
       age: 123,
@@ -1306,15 +1310,16 @@ JS 中，基于原型链的继承:
       play: function() { console.log("ooOOoooo...") }
   };
   var person = {
-      eat: function () { console.log('一定要吃饱啊') }
+      eat: function() { console.log('一定要吃饱啊') }
   };
   var xiaoming = {
       name: "xiaoming",
-      age: 1222
+      age: 22
   };
   // prototype (原型，爸爸) 是通过 __proto__ 属性指定的!
-  person.__proto__ = animal;
   xiaoming.__proto__ = person;
+  person.__proto__ = animal;
+  animal.__proto__ = Object;
 
   // 可以动态改变某个 object 的爸爸:
   xiaoming.__proto__ = animal;
@@ -1335,7 +1340,7 @@ JS 中，基于原型链的继承:
   // 如果没有，毅种循环，知道找到头
   // 顺序:
   // 1. xiaoming.xxx()
-  // 2. xiaoming.__proto__.xxx() / perwson.xxx()
+  // 2. xiaoming.__proto__.xxx() / person.xxx()
   // 3. xiaoming.__proto__.__proto__.xxx() / animal.xxx()
   // 4. xiaoming.__proto__.__proto__.__proto__.xxx() / Object.xxx()
   // 5. 如果再找不到，那就只能报错了
@@ -1537,6 +1542,54 @@ JS 中，基于原型链的继承:
 
   var xiaoming = new Person('xiaoming', 'China');
   xiaoming.eat();
+#+end_src
+
+*** Object
+
+- hasOwnProperty 用来判断某个属性是否定义在某个对象自身上
+- Object.assign，用来将若干对象合并到一个上面
+  #+begin_src js
+    Object.assign(a, b, c);    // 将 b/c 上的所有属性都添加到 a 上
+    Object.assign({}, xiaolv); // 复制
+  #+end_src
+
+#+begin_src js
+  var a = 2;
+  var o = {};
+  o.c = 3;
+  o.c;
+
+  var o = {};
+  function setAge(age) {
+      if (age > 99) {
+          o.age = 99;
+      } else {
+          o.age = age;
+      }
+  }
+  setAge(19);
+
+  // 属性并不是真正的属性
+  // 它应该是一个复合的概念
+  o.age = 18;
+  Object.defineProperty(o, "age", {
+      // writable: true,
+      // value: 18,
+      get: function() {
+          console.log("你想知道我的年龄吗，讨厌鬼!那我就告诉你嘛");
+          return this._age ? this._age - 5 : 16;
+      },
+      set: function(age) {
+          console.log("正在设置年龄: " + new Date());
+          this._age = age;
+      }
+  });
+  Object.defineProperties(o, {
+    age: {
+    },
+    score: {
+    }
+  });
 #+end_src
 
 ** 运算符优先级

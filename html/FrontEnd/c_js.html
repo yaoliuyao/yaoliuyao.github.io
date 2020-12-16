@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-12-15 -->
+<!-- 2020-12-16 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JavaScript (ECMAScript)</title>
@@ -99,16 +99,17 @@
 </li>
 <li><a href="#org69172f2">4.5. undefined (null is not a type)</a></li>
 <li><a href="#org7d16280">4.6. Array</a></li>
-<li><a href="#org3693d8b">4.7. Object</a>
+<li><a href="#orgf820b1a">4.7. Object</a>
 <ul>
 <li><a href="#org7d322d9">4.7.1. instanceof</a></li>
 <li><a href="#org692fc05">4.7.2. 封装</a></li>
 <li><a href="#org025cfda">4.7.3. 继承 (基于原型链)</a></li>
 <li><a href="#org2e3e656">4.7.4. 使用构造函数，简化对象的创建</a></li>
 <li><a href="#org8d3dfab">4.7.5. ES6 中的 Class 语法糖</a></li>
+<li><a href="#org3693d8b">4.7.6. Object</a></li>
 </ul>
 </li>
-<li><a href="#org89da2ff">4.8. 运算符优先级</a></li>
+<li><a href="#orgad586e7">4.8. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -154,7 +155,7 @@
 </li>
 <li><a href="#org8ad9ada">9. 问题集锦</a>
 <ul>
-<li><a href="#orgad586e7">9.1. 运算符优先级</a></li>
+<li><a href="#org56cc871">9.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">9.2. 正则表达式</a></li>
 <li><a href="#org1648f72">9.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">9.4. undefine/null</a></li>
@@ -1109,7 +1110,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="orga66eccf">
+<pre class="example" id="org2a62d4a">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1626,7 +1627,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org802c681">
+<figure id="org97b17fb">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -1729,8 +1730,8 @@ Array.of
 </div>
 </div>
 
-<div id="outline-container-org3693d8b" class="outline-3">
-<h3 id="org3693d8b"><span class="section-number-3">4.7</span> Object</h3>
+<div id="outline-container-orgf820b1a" class="outline-3">
+<h3 id="orgf820b1a"><span class="section-number-3">4.7</span> Object</h3>
 <div class="outline-text-3" id="text-4-7">
 </div>
 <div id="outline-container-org7d322d9" class="outline-4">
@@ -1778,15 +1779,19 @@ arr<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">var arr = { 0:1, 1:2, 2:3, 3:5, 4:'laohu' };</span>
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">Key-Value &#38190;-&#20540;</span>
+
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">obj</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Object</span><span style="color: #707183;">()</span>;
 obj<span style="color: #707183;">[</span><span style="color: #8b2252;">'name'</span><span style="color: #707183;">]</span> = <span style="color: #8b2252;">'tom'</span>;
 obj.age = 123;
+
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">obj</span> = <span style="color: #707183;">{</span> <span style="color: #8b2252;">"name"</span>: <span style="color: #8b2252;">'tom'</span>, <span style="color: #8b2252;">"age"</span>, 123  <span style="color: #707183;">}</span>;
+
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">obj</span> = <span style="color: #707183;">{</span>
     <span style="color: #8b2252;">"name"</span>: <span style="color: #8b2252;">'tom'</span>,
     <span style="color: #8b2252;">"age"</span>: 123,
     <span style="color: #8b2252;">"greet"</span>: <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> alert<span style="color: #909183;">(</span>222<span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>;
+
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">obj</span> = <span style="color: #707183;">{</span>
     name: <span style="color: #8b2252;">'tom'</span>,
     age: 123,
@@ -1844,15 +1849,16 @@ JS 中，基于原型链的继承:
     <span style="color: #0000ff;">play</span>: <span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> console.log<span style="color: #909183;">(</span><span style="color: #8b2252;">"ooOOoooo..."</span><span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">person</span> = <span style="color: #707183;">{</span>
-    <span style="color: #0000ff;">eat</span>: <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> console.log<span style="color: #909183;">(</span><span style="color: #8b2252;">'&#19968;&#23450;&#35201;&#21507;&#39281;&#21834;'</span><span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span>
+    <span style="color: #0000ff;">eat</span>: <span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> console.log<span style="color: #909183;">(</span><span style="color: #8b2252;">'&#19968;&#23450;&#35201;&#21507;&#39281;&#21834;'</span><span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">xiaoming</span> = <span style="color: #707183;">{</span>
     name: <span style="color: #8b2252;">"xiaoming"</span>,
-    age: 1222
+    age: 22
 <span style="color: #707183;">}</span>;
 <span style="color: #b22222;">// </span><span style="color: #b22222;">prototype (&#21407;&#22411;&#65292;&#29240;&#29240;) &#26159;&#36890;&#36807; __proto__ &#23646;&#24615;&#25351;&#23450;&#30340;!</span>
-person.__proto__ = animal;
 xiaoming.__proto__ = person;
+person.__proto__ = animal;
+animal.__proto__ = Object;
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#21160;&#24577;&#25913;&#21464;&#26576;&#20010; object &#30340;&#29240;&#29240;:</span>
 xiaoming.__proto__ = animal;
@@ -1873,7 +1879,7 @@ xiaoming.study<span style="color: #707183;">()</span>;
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#27809;&#26377;&#65292;&#27589;&#31181;&#24490;&#29615;&#65292;&#30693;&#36947;&#25214;&#21040;&#22836;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#39034;&#24207;:</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">1. xiaoming.xxx()</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">2. xiaoming.__proto__.xxx() / perwson.xxx()</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">2. xiaoming.__proto__.xxx() / person.xxx()</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">3. xiaoming.__proto__.__proto__.xxx() / animal.xxx()</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">4. xiaoming.__proto__.__proto__.__proto__.xxx() / Object.xxx()</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">5. &#22914;&#26524;&#20877;&#25214;&#19981;&#21040;&#65292;&#37027;&#23601;&#21482;&#33021;&#25253;&#38169;&#20102;</span>
@@ -2123,13 +2129,70 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 </div>
 </div>
+
+<div id="outline-container-org3693d8b" class="outline-4">
+<h4 id="org3693d8b"><span class="section-number-4">4.7.6</span> Object</h4>
+<div class="outline-text-4" id="text-4-7-6">
+<ul class="org-ul">
+<li>hasOwnProperty 用来判断某个属性是否定义在某个对象自身上</li>
+<li><p>
+Object.assign，用来将若干对象合并到一个上面
+</p>
+<div class="org-src-container">
+<pre class="src src-js">Object.assign<span style="color: #707183;">(</span>a, b, c<span style="color: #707183;">)</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558; b/c &#19978;&#30340;&#25152;&#26377;&#23646;&#24615;&#37117;&#28155;&#21152;&#21040; a &#19978;</span>
+Object.assign<span style="color: #707183;">(</span><span style="color: #7388d6;">{}</span>, xiaolv<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22797;&#21046;</span>
+</pre>
+</div></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = 2;
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">o</span> = <span style="color: #707183;">{}</span>;
+o.c = 3;
+o.c;
+
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">o</span> = <span style="color: #707183;">{}</span>;
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">setAge</span><span style="color: #707183;">(</span><span style="color: #a0522d;">age</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>age &gt; 99<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        o.age = 99;
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #7388d6;">{</span>
+        o.age = age;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+setAge<span style="color: #707183;">(</span>19<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23646;&#24615;&#24182;&#19981;&#26159;&#30495;&#27491;&#30340;&#23646;&#24615;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23427;&#24212;&#35813;&#26159;&#19968;&#20010;&#22797;&#21512;&#30340;&#27010;&#24565;</span>
+o.age = 18;
+Object.defineProperty<span style="color: #707183;">(</span>o, <span style="color: #8b2252;">"age"</span>, <span style="color: #7388d6;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">writable: true,</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">value: 18,</span>
+    <span style="color: #0000ff;">get</span>: <span style="color: #a020f0;">function</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span>
+        console.log<span style="color: #709870;">(</span><span style="color: #8b2252;">"&#20320;&#24819;&#30693;&#36947;&#25105;&#30340;&#24180;&#40836;&#21527;&#65292;&#35752;&#21388;&#39740;!&#37027;&#25105;&#23601;&#21578;&#35785;&#20320;&#22043;"</span><span style="color: #709870;">)</span>;
+        <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">this</span>._age ? <span style="color: #008b8b;">this</span>._age - 5 : 16;
+    <span style="color: #909183;">}</span>,
+    <span style="color: #0000ff;">set</span>: <span style="color: #a020f0;">function</span><span style="color: #909183;">(</span><span style="color: #a0522d;">age</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        console.log<span style="color: #709870;">(</span><span style="color: #8b2252;">"&#27491;&#22312;&#35774;&#32622;&#24180;&#40836;: "</span> + <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Date</span><span style="color: #907373;">()</span><span style="color: #709870;">)</span>;
+        <span style="color: #008b8b;">this</span>._age = age;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+Object.defineProperties<span style="color: #707183;">(</span>o, <span style="color: #7388d6;">{</span>
+  age: <span style="color: #909183;">{</span>
+  <span style="color: #909183;">}</span>,
+  score: <span style="color: #909183;">{</span>
+  <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org89da2ff" class="outline-3">
-<h3 id="org89da2ff"><span class="section-number-3">4.8</span> 运算符优先级</h3>
+<div id="outline-container-orgad586e7" class="outline-3">
+<h3 id="orgad586e7"><span class="section-number-3">4.8</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-8">
 
-<figure id="org52d2b95">
+<figure id="org7af4c7e">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2823,8 +2886,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 <h2 id="org8ad9ada"><span class="section-number-2">9</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-orgad586e7" class="outline-3">
-<h3 id="orgad586e7"><span class="section-number-3">9.1</span> 运算符优先级</h3>
+<div id="outline-container-org56cc871" class="outline-3">
+<h3 id="org56cc871"><span class="section-number-3">9.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 请说出下面运算的结果，并简析原因:
@@ -3096,7 +3159,7 @@ console.log<span style="color: #707183;">(</span>a, b, c, d<span style="color: #
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-12-15</p>
+<p class="date">Created: 2020-12-16</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
