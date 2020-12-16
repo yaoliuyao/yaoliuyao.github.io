@@ -1221,16 +1221,6 @@ ES6 添加的 Array 的一些静态方法:
 #+end_src
 
 ** Object
-*** instanceof
-
-判断是否是某个对象:
-#+begin_src js
-  function Student() {}
-  var tom = new Student();
-
-  if (tom instanceof Student) { console.log("好好学习，天天向上") }
-#+end_src
-
 *** 封装
 
 Array 是一种集合:
@@ -1348,6 +1338,14 @@ JS 中，基于原型链的继承:
   // 这样一种方式，就是基于原型链的对象模型。(Prototype-Based OOP)
   // 简单、粗暴、非常非常灵活
   // Self/Lua 都是基于原型链
+#+end_src
+
+*instanceof* 用来判断是否是某个对象:
+#+begin_src js
+  function Student() {}
+  var tom = new Student();
+
+  if (tom instanceof Student) { console.log("好好学习，天天向上") }
 #+end_src
 
 *** 使用构造函数，简化对象的创建
@@ -1544,21 +1542,33 @@ JS 中，基于原型链的继承:
   xiaoming.eat();
 #+end_src
 
-*** Object
+*** Object 对象
 
-- hasOwnProperty 用来判断某个属性是否定义在某个对象自身上
-- Object.assign，用来将若干对象合并到一个上面
-  #+begin_src js
-    Object.assign(a, b, c);    // 将 b/c 上的所有属性都添加到 a 上
-    Object.assign({}, xiaolv); // 复制
-  #+end_src
-
+hasOwnProperty 用来判断某个属性是否定义在某个对象自身上:
 #+begin_src js
+  var p = { a: 1 };
+  var q = { b: 1 };
+  p.__proto__ = q;
+
+  p.hasOwnProperty("b"); // false
+  p.hasOwnProperty("a"); // true
+#+end_src
+
+Object.assign，用来将若干对象合并到一个上面:
+#+begin_src js
+  Object.assign(a, b, c);    // 将 b/c 上的所有属性都添加到 a 上
+  Object.assign({}, xiaolv); // 复制
+#+end_src
+
+Object.defineProperty，从 ES5 开始，对象的属性变得不单纯了:
+#+begin_src js
+  // 单纯的年代
   var a = 2;
   var o = {};
   o.c = 3;
   o.c;
 
+  // 可以自己实现函数来进行限制
   var o = {};
   function setAge(age) {
       if (age > 99) {
@@ -1569,9 +1579,8 @@ JS 中，基于原型链的继承:
   }
   setAge(19);
 
-  // 属性并不是真正的属性
-  // 它应该是一个复合的概念
-  o.age = 18;
+  // 自从 ES5 之后，属性并不是真正的属性，它变成一个复合的概念
+  // 所以，可以使用如下语法给属性指定更多特性
   Object.defineProperty(o, "age", {
       // writable: true,
       // value: 18,
@@ -1584,6 +1593,8 @@ JS 中，基于原型链的继承:
           this._age = age;
       }
   });
+
+  // 甚至一次可以定义多个
   Object.defineProperties(o, {
     age: {
     },
@@ -1732,6 +1743,32 @@ a{2}bc[abc]{2,5}
 - ? 来代表 {0,1}
 
 ** Proxy/Set/Map/...
+** JSON
+
+序列化:
+#+begin_src js
+  let jsonStr = JSON.stringify({
+      name: "xxx", age: 19
+  });
+
+  // 可选的过滤选项
+  let jsonStr = JSON.stringify({ name: "xxx", age: 19 }, ["name"]);
+  let jsonStr = JSON.stringify({ name: "xxx", age: 19 }, (key, value) => {
+      if (key === "age" && value < 1) {
+          return 1;
+      }
+  });
+
+  // 可选的缩进设置
+  let jsonStr = JSON.stringify({ name: "xxx", age: 19 }, ["name"], 2);
+  let jsonStr = JSON.stringify({ name: "xxx", age: 19 }, ["name"], '+++');
+#+end_src
+
+反序列化:
+#+begin_src js
+  JSON.parse("....", (k, v) => {});
+#+end_src
+
 * 执行逻辑
 ** 顺序执行
 
