@@ -1754,9 +1754,10 @@ a{2}bc[abc]{2,5}
   // 可选的过滤选项
   let jsonStr = JSON.stringify({ name: "xxx", age: 19 }, ["name"]);
   let jsonStr = JSON.stringify({ name: "xxx", age: 19 }, (key, value) => {
-      if (key === "age" && value < 1) {
-          return 1;
+      if (key === "age") {
+          return value < 1 ? 1 : value + 3;
       }
+      return value;
   });
 
   // 可选的缩进设置
@@ -1766,7 +1767,8 @@ a{2}bc[abc]{2,5}
 
 反序列化:
 #+begin_src js
-  JSON.parse("....", (k, v) => {});
+  let o = JSON.parse("...");
+  let o = JSON.parse("...", (k, v) => {});
 #+end_src
 
 * 执行逻辑

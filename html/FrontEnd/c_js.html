@@ -107,7 +107,7 @@
 <li><a href="#orgf5f7bc0">4.6.5. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#org444f7d6">4.7. 运算符优先级</a></li>
+<li><a href="#orgaa85b91">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -155,7 +155,7 @@
 </li>
 <li><a href="#org8ad9ada">9. 问题集锦</a>
 <ul>
-<li><a href="#orgaa85b91">9.1. 运算符优先级</a></li>
+<li><a href="#org0d9c9c9">9.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">9.2. 正则表达式</a></li>
 <li><a href="#org1648f72">9.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">9.4. undefine/null</a></li>
@@ -1110,7 +1110,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org0b9ffdc">
+<pre class="example" id="org52c0ffb">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1627,7 +1627,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="orge88b797">
+<figure id="org82ac022">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -2103,11 +2103,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-org444f7d6" class="outline-3">
-<h3 id="org444f7d6"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div id="outline-container-orgaa85b91" class="outline-3">
+<h3 id="orgaa85b91"><span class="section-number-3">4.7</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="org8087ee6">
+<figure id="org437b43f">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2410,9 +2410,10 @@ a{2}bc[abc]{2,5}
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#36873;&#30340;&#36807;&#28388;&#36873;&#39033;</span>
 <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"name"</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>;
 <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">(</span>key, value<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{</span>
-    <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>key === <span style="color: #8b2252;">"age"</span> &amp;&amp; value &lt; 1<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
-        <span style="color: #a020f0;">return</span> 1;
+    <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>key === <span style="color: #8b2252;">"age"</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">return</span> value &lt; 1 ? 1 : value + 3;
     <span style="color: #909183;">}</span>
+    <span style="color: #a020f0;">return</span> value;
 <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#36873;&#30340;&#32553;&#36827;&#35774;&#32622;</span>
@@ -2425,7 +2426,8 @@ a{2}bc[abc]{2,5}
 反序列化:
 </p>
 <div class="org-src-container">
-<pre class="src src-js">JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"...."</span>, <span style="color: #7388d6;">(</span>k, v<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{}</span><span style="color: #707183;">)</span>;
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">o</span> = JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">o</span> = JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span>, <span style="color: #7388d6;">(</span>k, v<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{}</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
@@ -2932,8 +2934,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 <h2 id="org8ad9ada"><span class="section-number-2">9</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-orgaa85b91" class="outline-3">
-<h3 id="orgaa85b91"><span class="section-number-3">9.1</span> 运算符优先级</h3>
+<div id="outline-container-org0d9c9c9" class="outline-3">
+<h3 id="org0d9c9c9"><span class="section-number-3">9.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 请说出下面运算的结果，并简析原因:
