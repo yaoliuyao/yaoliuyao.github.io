@@ -98,31 +98,31 @@
 </ul>
 </li>
 <li><a href="#org69172f2">4.5. undefined (null is not a type)</a></li>
-<li><a href="#org7d16280">4.6. Array</a></li>
-<li><a href="#orgf820b1a">4.7. Object</a>
+<li><a href="#orgf820b1a">4.6. Object</a>
 <ul>
-<li><a href="#org692fc05">4.7.1. 封装</a></li>
-<li><a href="#org025cfda">4.7.2. 继承 (基于原型链)</a></li>
-<li><a href="#org2e3e656">4.7.3. 使用构造函数，简化对象的创建</a></li>
-<li><a href="#org8d3dfab">4.7.4. ES6 中的 Class 语法糖</a></li>
-<li><a href="#orgf5f7bc0">4.7.5. Object 对象</a></li>
+<li><a href="#org692fc05">4.6.1. 封装</a></li>
+<li><a href="#org025cfda">4.6.2. 继承 (基于原型链)</a></li>
+<li><a href="#org2e3e656">4.6.3. 使用构造函数，简化对象的创建</a></li>
+<li><a href="#org8d3dfab">4.6.4. ES6 中的 Class 语法糖</a></li>
+<li><a href="#orgf5f7bc0">4.6.5. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#org56cc871">4.8. 运算符优先级</a></li>
+<li><a href="#org444f7d6">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
 <ul>
 <li><a href="#org22b497f">5.1. Number/String/Boolean/Function</a></li>
-<li><a href="#org0bb0141">5.2. Math</a></li>
-<li><a href="#org2731167">5.3. Date</a></li>
-<li><a href="#org35d283f">5.4. RegExp</a>
+<li><a href="#org7d16280">5.2. Array</a></li>
+<li><a href="#org0bb0141">5.3. Math</a></li>
+<li><a href="#org2731167">5.4. Date</a></li>
+<li><a href="#org35d283f">5.5. RegExp</a>
 <ul>
-<li><a href="#org1ee9f95">5.4.1. 补充</a></li>
+<li><a href="#org1ee9f95">5.5.1. 补充</a></li>
 </ul>
 </li>
-<li><a href="#org9eb88c6">5.5. Proxy/Set/Map/&#x2026;</a></li>
-<li><a href="#orgf1f8645">5.6. JSON</a></li>
+<li><a href="#org9eb88c6">5.6. Proxy/Set/Map/&#x2026;</a></li>
+<li><a href="#orgf1f8645">5.7. JSON</a></li>
 </ul>
 </li>
 <li><a href="#org2933a27">6. 执行逻辑</a>
@@ -155,7 +155,7 @@
 </li>
 <li><a href="#org8ad9ada">9. 问题集锦</a>
 <ul>
-<li><a href="#org444f7d6">9.1. 运算符优先级</a></li>
+<li><a href="#orgaa85b91">9.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">9.2. 正则表达式</a></li>
 <li><a href="#org1648f72">9.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">9.4. undefine/null</a></li>
@@ -1110,7 +1110,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org54f57f0">
+<pre class="example" id="org0b9ffdc">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1627,116 +1627,20 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org8b8b8ae">
+<figure id="orge88b797">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org7d16280" class="outline-3">
-<h3 id="org7d16280"><span class="section-number-3">4.6</span> Array</h3>
-<div class="outline-text-3" id="text-4-6">
-<p>
-数组的创建：
-</p>
-<div class="org-src-container">
-<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">()</span>;
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">(</span>1, 2, <span style="color: #8b2252;">'hello'</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">typeof</span> arr;
-
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">()</span>;
-arr.push<span style="color: #707183;">(</span>121<span style="color: #707183;">)</span>;
-arr.push<span style="color: #707183;">(</span>212<span style="color: #707183;">)</span>;
-arr.push<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"hello"</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
-console.log<span style="color: #707183;">(</span>arr.pop<span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
-console.log<span style="color: #707183;">(</span>arr.pop<span style="color: #7388d6;">()()</span><span style="color: #707183;">)</span>;
-
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #707183;">[</span>121, 212,
-           <span style="color: #8b2252;">'hello'</span>, <span style="color: #008b8b;">true</span>, <span style="color: #008b8b;">undefined</span>,
-           <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>console.error<span style="color: #909183;">(</span>1<span style="color: #909183;">)</span><span style="color: #7388d6;">}</span><span style="color: #707183;">]</span>;
-arr<span style="color: #707183;">[</span>5<span style="color: #707183;">]()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24207;&#21495;&#26159;&#20174; 0 &#24320;&#22987;&#30340; !!!</span>
-</pre>
-</div>
-
-<p>
-数组的基本用法:
-</p>
-<div class="org-src-container">
-<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #707183;">[</span>1, 2, <span style="color: #8b2252;">"hello"</span>, <span style="color: #008b8b;">true</span><span style="color: #707183;">]</span>;
-arr.length      <span style="color: #b22222;">// </span><span style="color: #b22222;">4</span>
-arr.concat<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>33, 44<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">[1, 2, "hello", true, 33, 44]</span>
-
-arr.flat<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#20854;&#21387;&#24179;</span>
-arr.includes<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#23450;&#26159;&#21542;&#23384;&#22312;&#26576;&#20010;&#20803;&#32032;</span>
-arr.indexOf/lastIndexOf<span style="color: #707183;">(</span>1<span style="color: #707183;">)</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#23450;&#26576;&#20010;&#20803;&#32032;&#30340;&#24207;&#21495;</span>
-
-arr.slice<span style="color: #707183;">()</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22797;&#21046;</span>
-arr.splice<span style="color: #707183;">(</span>3<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21024;&#38500;&#12289;&#28155;&#21152;&#65292;&#40664;&#35748;&#34892;&#20026;&#26159;&#21024;&#38500;&#20174; 3 &#21040;&#26368;&#21518;&#19968;&#20301;&#30340;&#20803;&#32032;&#65292;&#36820;&#22238;&#34987;&#21024;&#38500;&#30340;&#20803;&#32032;&#32452;&#25104;&#30340;&#25968;&#32452;</span>
-arr.splice<span style="color: #707183;">(</span>3, 1<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21024;&#38500;&#22810;&#23569;&#20010;&#20803;&#32032;</span>
-arr.splice<span style="color: #707183;">(</span>2, 0, 11111<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#28155;&#21152;</span>
-
-arr.reverse<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#25968;&#32452;&#20869;&#20803;&#32032;&#21453;&#21521;&#25490;&#24207;&#65292;&#27880;&#24847;&#65292;&#23427;&#26159;&#19968;&#20010;&#30772;&#22351;&#24615;&#30340;&#20989;&#25968;</span>
-arr.sort<span style="color: #707183;">()</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25490;&#24207;&#65292;&#30772;&#22351;&#24615;&#30340;&#20989;&#25968;</span>
-arr.sort<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">a</span>, <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>a &gt; b<span style="color: #909183;">)</span> <span style="color: #a020f0;">return</span> -1; <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> 1 <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
-</pre>
-</div>
-
-<p>
-字符串跟数组的美好友谊:
-</p>
-<div class="org-src-container">
-<pre class="src src-js"><span style="color: #8b2252;">"kkkk:jjjj:2222:xxxx"</span>.split<span style="color: #707183;">(</span><span style="color: #8b2252;">":"</span><span style="color: #707183;">)</span>.reverse<span style="color: #707183;">()</span>.join<span style="color: #707183;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #707183;">)</span>;
-<span style="color: #8b2252;">"&#20013;&#21326;&#20154;&#27665;&#20849;&#21644;&#22269;&#19975;&#23681;"</span>.split<span style="color: #707183;">(</span><span style="color: #8b2252;">""</span><span style="color: #707183;">)</span>.reverse<span style="color: #707183;">()</span>.join<span style="color: #707183;">(</span><span style="color: #8b2252;">""</span><span style="color: #707183;">)</span>;
-</pre>
-</div>
-
-<p>
-Array 与 function 的美好生活:
-</p>
-<div class="org-src-container">
-<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23547;&#25214;&#31526;&#21512;&#26465;&#20214;&#30340;</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">myJudge</span> = <span style="color: #a020f0;">function</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">x</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> <span style="color: #a020f0;">return</span> x &gt; 1 <span style="color: #707183;">}</span>
-arr.find<span style="color: #707183;">(</span>myJudge<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">2, &#31532;&#19968;&#20010;&#31526;&#21512;&#26465;&#20214;&#30340;&#26159; 2</span>
-arr.find<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> x &gt; 1<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#36807;&#28388;&#31526;&#21512;&#26465;&#20214;&#30340;</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">myNumberJudge</span> = <span style="color: #a020f0;">function</span><span style="color: #707183;">(</span><span style="color: #a0522d;">x</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">typeof</span> x === <span style="color: #8b2252;">'number'</span> <span style="color: #707183;">}</span>
-arr.filter<span style="color: #707183;">(</span>myNumberJudge<span style="color: #707183;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">[1, 2]</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23545;&#27599;&#20010;&#20803;&#32032;&#20570;&#21516;&#26679;&#30340;&#25805;&#20316;&#65292;&#28982;&#21518;&#24418;&#25104;&#26032;&#30340;&#25968;&#32452;</span>
-arr.map<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> x + 1 <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21512;&#24182;&#35745;&#31639;</span>
-arr.reduce<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">a</span>, <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> a + b<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#23450;&#26159;&#19981;&#26159;&#31526;&#21512;...</span>
-arr.every<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">typeof</span> x !== <span style="color: #8b2252;">'object'</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
-arr.some<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">typeof</span> x !== <span style="color: #8b2252;">'object'</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23545;&#27599;&#19968;&#20010;&#20803;&#32032;&#37117;&#20570;&#19968;&#23450;&#30340;&#20107;&#24773;&#65292;&#20174; ES6 &#24320;&#22987;&#20986;&#29616;&#30340;</span>
-arr.forEach<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> console.log<span style="color: #909183;">(</span>x<span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-
-<p>
-ES6 添加的 Array 的一些静态方法:
-</p>
-<div class="org-src-container">
-<pre class="src src-js">Array.from
-Array.of
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-orgf820b1a" class="outline-3">
-<h3 id="orgf820b1a"><span class="section-number-3">4.7</span> Object</h3>
-<div class="outline-text-3" id="text-4-7">
+<h3 id="orgf820b1a"><span class="section-number-3">4.6</span> Object</h3>
+<div class="outline-text-3" id="text-4-6">
 </div>
 <div id="outline-container-org692fc05" class="outline-4">
-<h4 id="org692fc05"><span class="section-number-4">4.7.1</span> 封装</h4>
-<div class="outline-text-4" id="text-4-7-1">
+<h4 id="org692fc05"><span class="section-number-4">4.6.1</span> 封装</h4>
+<div class="outline-text-4" id="text-4-6-1">
 <p>
 Array 是一种集合:
 </p>
@@ -1823,8 +1727,8 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org025cfda" class="outline-4">
-<h4 id="org025cfda"><span class="section-number-4">4.7.2</span> 继承 (基于原型链)</h4>
-<div class="outline-text-4" id="text-4-7-2">
+<h4 id="org025cfda"><span class="section-number-4">4.6.2</span> 继承 (基于原型链)</h4>
+<div class="outline-text-4" id="text-4-6-2">
 <p>
 JS 中，基于原型链的继承:
 </p>
@@ -1888,8 +1792,8 @@ xiaoming.study<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org2e3e656" class="outline-4">
-<h4 id="org2e3e656"><span class="section-number-4">4.7.3</span> 使用构造函数，简化对象的创建</h4>
-<div class="outline-text-4" id="text-4-7-3">
+<h4 id="org2e3e656"><span class="section-number-4">4.6.3</span> 使用构造函数，简化对象的创建</h4>
+<div class="outline-text-4" id="text-4-6-3">
 <p>
 如果想构建结果类似的 object 数据，普通的写法有点罗嗦:
 </p>
@@ -2093,8 +1997,8 @@ iphone.hello<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org8d3dfab" class="outline-4">
-<h4 id="org8d3dfab"><span class="section-number-4">4.7.4</span> ES6 中的 Class 语法糖</h4>
-<div class="outline-text-4" id="text-4-7-4">
+<h4 id="org8d3dfab"><span class="section-number-4">4.6.4</span> ES6 中的 Class 语法糖</h4>
+<div class="outline-text-4" id="text-4-6-4">
 <p>
 一定要注意，这只是一种 <b>语法糖</b> ！
 </p>
@@ -2126,8 +2030,8 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-orgf5f7bc0" class="outline-4">
-<h4 id="orgf5f7bc0"><span class="section-number-4">4.7.5</span> Object 对象</h4>
-<div class="outline-text-4" id="text-4-7-5">
+<h4 id="orgf5f7bc0"><span class="section-number-4">4.6.5</span> Object 对象</h4>
+<div class="outline-text-4" id="text-4-6-5">
 <p>
 hasOwnProperty 用来判断某个属性是否定义在某个对象自身上:
 </p>
@@ -2199,11 +2103,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-org56cc871" class="outline-3">
-<h3 id="org56cc871"><span class="section-number-3">4.8</span> 运算符优先级</h3>
-<div class="outline-text-3" id="text-4-8">
+<div id="outline-container-org444f7d6" class="outline-3">
+<h3 id="org444f7d6"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div class="outline-text-3" id="text-4-7">
 
-<figure id="org2f8d326">
+<figure id="org8087ee6">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2252,9 +2156,105 @@ s1 === s3  <span style="color: #b22222;">// </span><span style="color: #b22222;"
 </div>
 </div>
 
-<div id="outline-container-org0bb0141" class="outline-3">
-<h3 id="org0bb0141"><span class="section-number-3">5.2</span> Math</h3>
+<div id="outline-container-org7d16280" class="outline-3">
+<h3 id="org7d16280"><span class="section-number-3">5.2</span> Array</h3>
 <div class="outline-text-3" id="text-5-2">
+<p>
+数组的创建：
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">(</span>1, 2, <span style="color: #8b2252;">'hello'</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">typeof</span> arr;
+
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">()</span>;
+arr.push<span style="color: #707183;">(</span>121<span style="color: #707183;">)</span>;
+arr.push<span style="color: #707183;">(</span>212<span style="color: #707183;">)</span>;
+arr.push<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"hello"</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+console.log<span style="color: #707183;">(</span>arr.pop<span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+console.log<span style="color: #707183;">(</span>arr.pop<span style="color: #7388d6;">()()</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #707183;">[</span>121, 212,
+           <span style="color: #8b2252;">'hello'</span>, <span style="color: #008b8b;">true</span>, <span style="color: #008b8b;">undefined</span>,
+           <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>console.error<span style="color: #909183;">(</span>1<span style="color: #909183;">)</span><span style="color: #7388d6;">}</span><span style="color: #707183;">]</span>;
+arr<span style="color: #707183;">[</span>5<span style="color: #707183;">]()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24207;&#21495;&#26159;&#20174; 0 &#24320;&#22987;&#30340; !!!</span>
+</pre>
+</div>
+
+<p>
+数组的基本用法:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #707183;">[</span>1, 2, <span style="color: #8b2252;">"hello"</span>, <span style="color: #008b8b;">true</span><span style="color: #707183;">]</span>;
+arr.length      <span style="color: #b22222;">// </span><span style="color: #b22222;">4</span>
+arr.concat<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>33, 44<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">[1, 2, "hello", true, 33, 44]</span>
+
+arr.flat<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#20854;&#21387;&#24179;</span>
+arr.includes<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#23450;&#26159;&#21542;&#23384;&#22312;&#26576;&#20010;&#20803;&#32032;</span>
+arr.indexOf/lastIndexOf<span style="color: #707183;">(</span>1<span style="color: #707183;">)</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#23450;&#26576;&#20010;&#20803;&#32032;&#30340;&#24207;&#21495;</span>
+
+arr.slice<span style="color: #707183;">()</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22797;&#21046;</span>
+arr.splice<span style="color: #707183;">(</span>3<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21024;&#38500;&#12289;&#28155;&#21152;&#65292;&#40664;&#35748;&#34892;&#20026;&#26159;&#21024;&#38500;&#20174; 3 &#21040;&#26368;&#21518;&#19968;&#20301;&#30340;&#20803;&#32032;&#65292;&#36820;&#22238;&#34987;&#21024;&#38500;&#30340;&#20803;&#32032;&#32452;&#25104;&#30340;&#25968;&#32452;</span>
+arr.splice<span style="color: #707183;">(</span>3, 1<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21024;&#38500;&#22810;&#23569;&#20010;&#20803;&#32032;</span>
+arr.splice<span style="color: #707183;">(</span>2, 0, 11111<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#28155;&#21152;</span>
+
+arr.reverse<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#25968;&#32452;&#20869;&#20803;&#32032;&#21453;&#21521;&#25490;&#24207;&#65292;&#27880;&#24847;&#65292;&#23427;&#26159;&#19968;&#20010;&#30772;&#22351;&#24615;&#30340;&#20989;&#25968;</span>
+arr.sort<span style="color: #707183;">()</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25490;&#24207;&#65292;&#30772;&#22351;&#24615;&#30340;&#20989;&#25968;</span>
+arr.sort<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">a</span>, <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>a &gt; b<span style="color: #909183;">)</span> <span style="color: #a020f0;">return</span> -1; <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> 1 <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+字符串跟数组的美好友谊:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #8b2252;">"kkkk:jjjj:2222:xxxx"</span>.split<span style="color: #707183;">(</span><span style="color: #8b2252;">":"</span><span style="color: #707183;">)</span>.reverse<span style="color: #707183;">()</span>.join<span style="color: #707183;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #707183;">)</span>;
+<span style="color: #8b2252;">"&#20013;&#21326;&#20154;&#27665;&#20849;&#21644;&#22269;&#19975;&#23681;"</span>.split<span style="color: #707183;">(</span><span style="color: #8b2252;">""</span><span style="color: #707183;">)</span>.reverse<span style="color: #707183;">()</span>.join<span style="color: #707183;">(</span><span style="color: #8b2252;">""</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+Array 与 function 的美好生活:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23547;&#25214;&#31526;&#21512;&#26465;&#20214;&#30340;</span>
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">myJudge</span> = <span style="color: #a020f0;">function</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">x</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> <span style="color: #a020f0;">return</span> x &gt; 1 <span style="color: #707183;">}</span>
+arr.find<span style="color: #707183;">(</span>myJudge<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">2, &#31532;&#19968;&#20010;&#31526;&#21512;&#26465;&#20214;&#30340;&#26159; 2</span>
+arr.find<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> x &gt; 1<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#36807;&#28388;&#31526;&#21512;&#26465;&#20214;&#30340;</span>
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">myNumberJudge</span> = <span style="color: #a020f0;">function</span><span style="color: #707183;">(</span><span style="color: #a0522d;">x</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">typeof</span> x === <span style="color: #8b2252;">'number'</span> <span style="color: #707183;">}</span>
+arr.filter<span style="color: #707183;">(</span>myNumberJudge<span style="color: #707183;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">[1, 2]</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23545;&#27599;&#20010;&#20803;&#32032;&#20570;&#21516;&#26679;&#30340;&#25805;&#20316;&#65292;&#28982;&#21518;&#24418;&#25104;&#26032;&#30340;&#25968;&#32452;</span>
+arr.map<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> x + 1 <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21512;&#24182;&#35745;&#31639;</span>
+arr.reduce<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">a</span>, <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> a + b<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#23450;&#26159;&#19981;&#26159;&#31526;&#21512;...</span>
+arr.every<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">typeof</span> x !== <span style="color: #8b2252;">'object'</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+arr.some<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">typeof</span> x !== <span style="color: #8b2252;">'object'</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23545;&#27599;&#19968;&#20010;&#20803;&#32032;&#37117;&#20570;&#19968;&#23450;&#30340;&#20107;&#24773;&#65292;&#20174; ES6 &#24320;&#22987;&#20986;&#29616;&#30340;</span>
+arr.forEach<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> console.log<span style="color: #909183;">(</span>x<span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<p>
+ES6 添加的 Array 的一些静态方法:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">Array.from
+Array.of
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0bb0141" class="outline-3">
+<h3 id="org0bb0141"><span class="section-number-3">5.3</span> Math</h3>
+<div class="outline-text-3" id="text-5-3">
 <p>
 Math 对象是一个静态的对象 (不需要使用 new Math()，而是直接 Math.xxx)。
 </p>
@@ -2293,8 +2293,8 @@ Math.round<span style="color: #707183;">(</span>100 * Math.random<span style="co
 </div>
 
 <div id="outline-container-org2731167" class="outline-3">
-<h3 id="org2731167"><span class="section-number-3">5.3</span> Date</h3>
-<div class="outline-text-3" id="text-5-3">
+<h3 id="org2731167"><span class="section-number-3">5.4</span> Date</h3>
+<div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Date</span><span style="color: #707183;">()</span>;
 <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Date</span><span style="color: #707183;">(</span><span style="color: #8b2252;">'2010-08-04'</span><span style="color: #707183;">)</span>;
@@ -2331,8 +2331,8 @@ d.toString<span style="color: #707183;">()</span>;           <span style="color:
 </div>
 
 <div id="outline-container-org35d283f" class="outline-3">
-<h3 id="org35d283f"><span class="section-number-3">5.4</span> RegExp</h3>
-<div class="outline-text-3" id="text-5-4">
+<h3 id="org35d283f"><span class="section-number-3">5.5</span> RegExp</h3>
+<div class="outline-text-3" id="text-5-5">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">RegExp</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"[a-z]"</span><span style="color: #707183;">)</span>
 <span style="color: #8b2252;">/[a-z]/</span>  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23383;&#38754;&#34920;&#36798;&#24335;&#65292;&#36319;&#19978;&#38754;&#26159;&#31561;&#20215;&#30340;</span>
@@ -2355,8 +2355,8 @@ a.compile<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org1ee9f95" class="outline-4">
-<h4 id="org1ee9f95"><span class="section-number-4">5.4.1</span> 补充</h4>
-<div class="outline-text-4" id="text-5-4-1">
+<h4 id="org1ee9f95"><span class="section-number-4">5.5.1</span> 补充</h4>
+<div class="outline-text-4" id="text-5-5-1">
 <p>
 a{2}bc[abc]{2,5}
 </p>
@@ -2394,11 +2394,11 @@ a{2}bc[abc]{2,5}
 </div>
 
 <div id="outline-container-org9eb88c6" class="outline-3">
-<h3 id="org9eb88c6"><span class="section-number-3">5.5</span> Proxy/Set/Map/&#x2026;</h3>
+<h3 id="org9eb88c6"><span class="section-number-3">5.6</span> Proxy/Set/Map/&#x2026;</h3>
 </div>
 <div id="outline-container-orgf1f8645" class="outline-3">
-<h3 id="orgf1f8645"><span class="section-number-3">5.6</span> JSON</h3>
-<div class="outline-text-3" id="text-5-6">
+<h3 id="orgf1f8645"><span class="section-number-3">5.7</span> JSON</h3>
+<div class="outline-text-3" id="text-5-7">
 <p>
 序列化:
 </p>
@@ -2932,8 +2932,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 <h2 id="org8ad9ada"><span class="section-number-2">9</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org444f7d6" class="outline-3">
-<h3 id="org444f7d6"><span class="section-number-3">9.1</span> 运算符优先级</h3>
+<div id="outline-container-orgaa85b91" class="outline-3">
+<h3 id="orgaa85b91"><span class="section-number-3">9.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 请说出下面运算的结果，并简析原因:

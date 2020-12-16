@@ -1142,84 +1142,6 @@ const 是初始化之后，不能再重新赋值的 *常量*:
 
 [[file:img/undefined-vs-null.png]]
 
-** Array
-
-数组的创建：
-#+begin_src js
-  var arr = new Array();
-  var arr = new Array(1, 2, 'hello');
-  typeof arr;
-
-  var arr = new Array();
-  arr.push(121);
-  arr.push(212);
-  arr.push(function () { return "hello" });
-  console.log(arr.pop());
-  console.log(arr.pop()());
-
-  var arr = [121, 212,
-             'hello', true, undefined,
-             function () {console.error(1)}];
-  arr[5](); // 序号是从 0 开始的 !!!
-#+end_src
-
-数组的基本用法:
-#+begin_src js
-  var arr = [1, 2, "hello", true];
-  arr.length      // 4
-  arr.concat([33, 44]) // [1, 2, "hello", true, 33, 44]
-
-  arr.flat(); // 将其压平
-  arr.includes(); // 判定是否存在某个元素
-  arr.indexOf/lastIndexOf(1);  // 判定某个元素的序号
-
-  arr.slice();  // 复制
-  arr.splice(3); // 删除、添加，默认行为是删除从 3 到最后一位的元素，返回被删除的元素组成的数组
-  arr.splice(3, 1); // 删除多少个元素
-  arr.splice(2, 0, 11111); // 添加
-
-  arr.reverse(); // 将数组内元素反向排序，注意，它是一个破坏性的函数
-  arr.sort();    // 排序，破坏性的函数
-  arr.sort(function (a, b) { if (a > b) return -1; else return 1 });
-#+end_src
-
-字符串跟数组的美好友谊:
-#+begin_src js
-  "kkkk:jjjj:2222:xxxx".split(":").reverse().join("-");
-  "中华人民共和国万岁".split("").reverse().join("");
-#+end_src
-
-Array 与 function 的美好生活:
-#+begin_src js
-  // 寻找符合条件的
-  var myJudge = function (x) { return x > 1 }
-  arr.find(myJudge); // 2, 第一个符合条件的是 2
-  arr.find(function(x) { return x > 1});
-
-  // 过滤符合条件的
-  var myNumberJudge = function(x) { return typeof x === 'number' }
-  arr.filter(myNumberJudge) // [1, 2]
-
-  // 对每个元素做同样的操作，然后形成新的数组
-  arr.map(function (x) { return x + 1 })
-
-  // 合并计算
-  arr.reduce(function(a, b) { return a + b})
-
-  // 判定是不是符合...
-  arr.every(function (x) { return typeof x !== 'object' })
-  arr.some(function (x) { return typeof x !== 'object' })
-
-  // 对每一个元素都做一定的事情，从 ES6 开始出现的
-  arr.forEach(function(x) { console.log(x) })
-#+end_src
-
-ES6 添加的 Array 的一些静态方法:
-#+begin_src js
-  Array.from
-  Array.of
-#+end_src
-
 ** Object
 *** 封装
 
@@ -1635,6 +1557,84 @@ Object.defineProperty，从 ES5 开始，对象的属性变得不单纯了:
   var aaa = function () {}
   var aaa = new Function('a', 'b', 'return a + b');
   // typeof aaa: function
+#+end_src
+
+** Array
+
+数组的创建：
+#+begin_src js
+  var arr = new Array();
+  var arr = new Array(1, 2, 'hello');
+  typeof arr;
+
+  var arr = new Array();
+  arr.push(121);
+  arr.push(212);
+  arr.push(function () { return "hello" });
+  console.log(arr.pop());
+  console.log(arr.pop()());
+
+  var arr = [121, 212,
+             'hello', true, undefined,
+             function () {console.error(1)}];
+  arr[5](); // 序号是从 0 开始的 !!!
+#+end_src
+
+数组的基本用法:
+#+begin_src js
+  var arr = [1, 2, "hello", true];
+  arr.length      // 4
+  arr.concat([33, 44]) // [1, 2, "hello", true, 33, 44]
+
+  arr.flat(); // 将其压平
+  arr.includes(); // 判定是否存在某个元素
+  arr.indexOf/lastIndexOf(1);  // 判定某个元素的序号
+
+  arr.slice();  // 复制
+  arr.splice(3); // 删除、添加，默认行为是删除从 3 到最后一位的元素，返回被删除的元素组成的数组
+  arr.splice(3, 1); // 删除多少个元素
+  arr.splice(2, 0, 11111); // 添加
+
+  arr.reverse(); // 将数组内元素反向排序，注意，它是一个破坏性的函数
+  arr.sort();    // 排序，破坏性的函数
+  arr.sort(function (a, b) { if (a > b) return -1; else return 1 });
+#+end_src
+
+字符串跟数组的美好友谊:
+#+begin_src js
+  "kkkk:jjjj:2222:xxxx".split(":").reverse().join("-");
+  "中华人民共和国万岁".split("").reverse().join("");
+#+end_src
+
+Array 与 function 的美好生活:
+#+begin_src js
+  // 寻找符合条件的
+  var myJudge = function (x) { return x > 1 }
+  arr.find(myJudge); // 2, 第一个符合条件的是 2
+  arr.find(function(x) { return x > 1});
+
+  // 过滤符合条件的
+  var myNumberJudge = function(x) { return typeof x === 'number' }
+  arr.filter(myNumberJudge) // [1, 2]
+
+  // 对每个元素做同样的操作，然后形成新的数组
+  arr.map(function (x) { return x + 1 })
+
+  // 合并计算
+  arr.reduce(function(a, b) { return a + b})
+
+  // 判定是不是符合...
+  arr.every(function (x) { return typeof x !== 'object' })
+  arr.some(function (x) { return typeof x !== 'object' })
+
+  // 对每一个元素都做一定的事情，从 ES6 开始出现的
+  arr.forEach(function(x) { console.log(x) })
+#+end_src
+
+ES6 添加的 Array 的一些静态方法:
+#+begin_src js
+  Array.from
+  Array.of
 #+end_src
 
 ** Math
