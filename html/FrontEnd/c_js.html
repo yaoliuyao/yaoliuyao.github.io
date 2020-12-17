@@ -108,7 +108,7 @@
 <li><a href="#orgf5f7bc0">4.6.6. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#org639a90c">4.7. 运算符优先级</a></li>
+<li><a href="#orgf0e2f25">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -157,22 +157,31 @@
 <li><a href="#orgcc9a874">7.5. 终于，在 ES6 中，推出了标准化的模块写法</a></li>
 </ul>
 </li>
-<li><a href="#orge52c87b">8. 其他</a>
+<li><a href="#org010f984">8. ES6 快速预览</a>
 <ul>
-<li><a href="#org351d9be">8.1. 严格模式 (strict mode)</a></li>
-<li><a href="#org9b7d1f9">8.2. 异常处理</a></li>
+<li><a href="#orgbdf3550">8.1. 对象的扩展</a></li>
+<li><a href="#orge077d6a">8.2. 块级作用域</a></li>
+<li><a href="#orgeb5b5b2">8.3. 函数默认值</a></li>
+<li><a href="#orgf1134eb">8.4. spread/rest</a></li>
+<li><a href="#org94b6007">8.5. destructuring</a></li>
 </ul>
 </li>
-<li><a href="#org8ad9ada">9. 问题集锦</a>
+<li><a href="#orge52c87b">9. 其他</a>
 <ul>
-<li><a href="#orgf0e2f25">9.1. 运算符优先级</a></li>
-<li><a href="#orgffc8f3f">9.2. 正则表达式</a></li>
-<li><a href="#org1648f72">9.3. 从文件名取后缀名</a></li>
-<li><a href="#org6b87afa">9.4. undefine/null</a></li>
-<li><a href="#orgad65185">9.5. 数字 + 字符串 + NaN</a></li>
-<li><a href="#org6712b07">9.6. 浮点数计算</a></li>
-<li><a href="#orgdc55d8d">9.7. 求取斐波那契数列的某项 [递归]</a></li>
-<li><a href="#org4e9c6e5">9.8. 自增运算符</a></li>
+<li><a href="#org351d9be">9.1. 严格模式 (strict mode)</a></li>
+<li><a href="#org9b7d1f9">9.2. 异常处理</a></li>
+</ul>
+</li>
+<li><a href="#org8ad9ada">10. 问题集锦</a>
+<ul>
+<li><a href="#orgd77ce0a">10.1. 运算符优先级</a></li>
+<li><a href="#orgffc8f3f">10.2. 正则表达式</a></li>
+<li><a href="#org1648f72">10.3. 从文件名取后缀名</a></li>
+<li><a href="#org6b87afa">10.4. undefine/null</a></li>
+<li><a href="#orgad65185">10.5. 数字 + 字符串 + NaN</a></li>
+<li><a href="#org6712b07">10.6. 浮点数计算</a></li>
+<li><a href="#orgdc55d8d">10.7. 求取斐波那契数列的某项 [递归]</a></li>
+<li><a href="#org4e9c6e5">10.8. 自增运算符</a></li>
 </ul>
 </li>
 </ul>
@@ -1120,7 +1129,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org473fcee">
+<pre class="example" id="orga269648">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1637,7 +1646,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org33e6663">
+<figure id="org273dbf0">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -2127,11 +2136,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-org639a90c" class="outline-3">
-<h3 id="org639a90c"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div id="outline-container-orgf0e2f25" class="outline-3">
+<h3 id="orgf0e2f25"><span class="section-number-3">4.7</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="org783a57f">
+<figure id="orgc1d251c">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2956,13 +2965,182 @@ Asynchronous Module Definition.
 </div>
 </section>
 
-<section id="outline-container-orge52c87b" class="outline-2">
-<h2 id="orge52c87b"><span class="section-number-2">8</span> 其他</h2>
+<section id="outline-container-org010f984" class="outline-2">
+<h2 id="org010f984"><span class="section-number-2">8</span> ES6 快速预览</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org351d9be" class="outline-3">
-<h3 id="org351d9be"><span class="section-number-3">8.1</span> 严格模式 (strict mode)</h3>
+<div id="outline-container-orgbdf3550" class="outline-3">
+<h3 id="orgbdf3550"><span class="section-number-3">8.1</span> 对象的扩展</h3>
 <div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"tom"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26356;&#31616;&#27905;&#30340;&#23646;&#24615;&#23450;&#20041;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">user</span> = <span style="color: #707183;">{</span> <span style="color: #8b2252;">"name"</span>: name <span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">user</span> = <span style="color: #707183;">{</span> name: name <span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">user</span> = <span style="color: #707183;">{</span> name <span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">user</span> = <span style="color: #707183;">{</span> name, score, xxx, yyy <span style="color: #707183;">}</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26356;&#31616;&#27905;&#30340;&#26041;&#27861;&#23450;&#20041;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">xxx</span> = <span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">hello</span>: <span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>,
+    world<span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>,
+<span style="color: #707183;">}</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">key &#21487;&#20197;&#20351;&#29992;&#34920;&#36798;&#24335;&#21862;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">yyy</span> = <span style="color: #707183;">{</span>
+    <span style="color: #8b2252;">"aaa"</span>: 222,
+    bbb: 333,
+
+    <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"abc"</span> + <span style="color: #8b2252;">"123"</span><span style="color: #7388d6;">]</span>: 444
+<span style="color: #707183;">}</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#35775;&#38382;&#22120;&#23646;&#24615;&#23450;&#20041;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">zzz</span> = <span style="color: #707183;">{</span>
+    id: 333,
+    <span style="color: #0000ff;">getId</span>: <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> id <span style="color: #7388d6;">}</span>,
+
+    get name<span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"xxx"</span>;
+    <span style="color: #7388d6;">}</span>,
+    set name<span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"xxx"</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+zzz.name = <span style="color: #8b2252;">"kkdk"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">__proto__ &#24050;&#34987;&#26631;&#20934;&#21270;&#21862;&#65281;</span>
+zzz.__proto__ = xxx;
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">mmm</span> = <span style="color: #707183;">{</span>
+    a: 1, b: 2, __proto__: zzz
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">super &#21487;&#20197;&#35775;&#38382;&#21040;&#29240;&#29240;&#30340;&#25968;&#25454;</span>
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">mmm</span> = <span style="color: #707183;">{</span>
+    a: 1,
+    b: 2,
+    __proto__: zzz,
+    xxx<span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        console.log<span style="color: #909183;">(</span><span style="color: #a020f0;">super</span>.name<span style="color: #909183;">)</span>;
+        console.log<span style="color: #909183;">(</span>zzz.name<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge077d6a" class="outline-3">
+<h3 id="orge077d6a"><span class="section-number-3">8.2</span> 块级作用域</h3>
+<div class="outline-text-3" id="text-8-2">
+<ul class="org-ul">
+<li>let/const</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgeb5b5b2" class="outline-3">
+<h3 id="orgeb5b5b2"><span class="section-number-3">8.3</span> 函数默认值</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">xxx</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">score</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>!score<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+    score = 59;
+  <span style="color: #7388d6;">}</span>
+  console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24744;&#30340;&#20998;&#25968;&#20026;"</span> + score<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">xxx</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">score</span> = 59<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24744;&#30340;&#20998;&#25968;&#20026;"</span> + score<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+xxx<span style="color: #707183;">()</span>;
+xxx<span style="color: #707183;">(</span>33<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf1134eb" class="outline-3">
+<h3 id="orgf1134eb"><span class="section-number-3">8.4</span> spread/rest</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+扒衣服:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#26469;&#33258;&#25968;&#32452;&#30340;&#23637;&#24320;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">a</span> = <span style="color: #707183;">[</span>1, 2, 3<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">b</span> = a.concat<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>4, 5, 6<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">c</span> = <span style="color: #707183;">[</span>...a, 4, 5, 6<span style="color: #707183;">]</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">[1, 2, 3, 4, 5, 6]</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">d</span> = <span style="color: #707183;">[</span>4, ...a, 5, 6<span style="color: #707183;">]</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">[4, 1, 2, 3, 5, 6]</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26469;&#33258;&#23545;&#35937;&#30340;&#23637;&#24320;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">person</span> = <span style="color: #707183;">{</span> xuexiao: <span style="color: #8b2252;">"nfit"</span>, score: 0 <span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">xiaoming</span> = Object.assign<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xm"</span> <span style="color: #7388d6;">}</span>, person<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">xiaohong</span> = <span style="color: #707183;">{</span> name: <span style="color: #8b2252;">"xh"</span>, score: 60, ...person <span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">xiaolan</span> = <span style="color: #707183;">{</span> name: <span style="color: #8b2252;">"xl"</span>, ...person, score: 60 <span style="color: #707183;">}</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20256;&#21442;</span>
+add<span style="color: #707183;">(</span>...<span style="color: #7388d6;">[</span>10, 20, 30<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+穿衣服:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">arguments</span>
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">xxx</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">m</span>, ...<span style="color: #a0522d;">duogecansh</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  console.log<span style="color: #7388d6;">(</span>m<span style="color: #7388d6;">)</span>;
+  console.log<span style="color: #7388d6;">(</span>duogecansh<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#34920;&#31034;&#20854;&#20182;&#30340;&#25152;&#26377;&#21442;&#25968;&#65292;&#26159;&#19968;&#20010;&#25968;&#32452; [2, 3, 4]</span>
+<span style="color: #707183;">}</span>
+xxx<span style="color: #707183;">(</span>1, 2, 3, 4<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org94b6007" class="outline-3">
+<h3 id="org94b6007"><span class="section-number-3">8.5</span> destructuring</h3>
+<div class="outline-text-3" id="text-8-5">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20174;&#25968;&#32452;&#20013;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">a</span> = <span style="color: #707183;">[</span>1, 2, 3<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">first</span> = a<span style="color: #707183;">[</span>0<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">third</span> = a<span style="color: #707183;">[</span>2<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #707183;">[</span><span style="color: #a0522d;">yi</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">san</span><span style="color: #707183;">]</span> = <span style="color: #707183;">[</span>1, 2, 3<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #707183;">[</span><span style="color: #7388d6;">[</span><span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">yi</span><span style="color: #7388d6;">]</span>, <span style="color: #a0522d;">__</span>, <span style="color: #a0522d;">san</span><span style="color: #707183;">]</span> = <span style="color: #707183;">[</span><span style="color: #7388d6;">[</span><span style="color: #8b2252;">'aaa'</span>, <span style="color: #8b2252;">'bbb'</span><span style="color: #7388d6;">]</span>, 2, 3<span style="color: #707183;">]</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20174;&#23545;&#35937;&#20013;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">xiaoming</span> = <span style="color: #707183;">{</span> name: <span style="color: #8b2252;">"xm"</span>, score: 68, school: <span style="color: #8b2252;">"nfit"</span> <span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">name</span> = xiaoming.name;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">school</span> = xiaoming.school;
+<span style="color: #a020f0;">let</span> <span style="color: #707183;">{</span> name, school <span style="color: #707183;">}</span> = <span style="color: #707183;">{</span> name: <span style="color: #8b2252;">"xm"</span>, score: 68, school: <span style="color: #8b2252;">"nfit"</span> <span style="color: #707183;">}</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20174;&#20989;&#25968;&#30340;&#36820;&#22238;&#20540;&#20013;&#30452;&#25509;&#33719;&#21462;&#38656;&#35201;&#30340;&#20540;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">xxx</span> = <span style="color: #707183;">()</span> =&gt; <span style="color: #707183;">[</span>1, 2<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">r1</span> = xxx<span style="color: #707183;">()[</span>0<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #707183;">[</span><span style="color: #a0522d;">r2</span><span style="color: #707183;">]</span> = xxx<span style="color: #707183;">()</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">import &#20013;&#30340;&#20351;&#29992;</span>
+<span style="color: #a020f0;">import</span> <span style="color: #707183;">{</span> Message, Loading <span style="color: #707183;">}</span> from <span style="color: #8b2252;">"element-ui"</span>;
+<span style="color: #a020f0;">import</span> xxx from <span style="color: #8b2252;">"element-ui"</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">Message</span> = xxx.Message;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">Loading</span> = xxx.Loading;
+
+<span style="color: #a020f0;">import</span> <span style="color: #707183;">{</span> Message, ...Qitade <span style="color: #707183;">}</span> from <span style="color: #8b2252;">"element-ui"</span>;
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orge52c87b" class="outline-2">
+<h2 id="orge52c87b"><span class="section-number-2">9</span> 其他</h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-org351d9be" class="outline-3">
+<h3 id="org351d9be"><span class="section-number-3">9.1</span> 严格模式 (strict mode)</h3>
+<div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #8b2252;">"use strict"</span>;
 <span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#21464;&#37327;&#24517;&#39035;&#35201;&#20351;&#29992; var/let/const &#22768;&#26126;</span>
@@ -2981,8 +3159,8 @@ Asynchronous Module Definition.
 </div>
 
 <div id="outline-container-org9b7d1f9" class="outline-3">
-<h3 id="org9b7d1f9"><span class="section-number-3">8.2</span> 异常处理</h3>
-<div class="outline-text-3" id="text-8-2">
+<h3 id="org9b7d1f9"><span class="section-number-3">9.2</span> 异常处理</h3>
+<div class="outline-text-3" id="text-9-2">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">try</span> <span style="color: #707183;">{</span>
   <span style="color: #a020f0;">throw</span> <span style="color: #7388d6;">{</span>
@@ -3009,12 +3187,12 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 </section>
 
 <section id="outline-container-org8ad9ada" class="outline-2">
-<h2 id="org8ad9ada"><span class="section-number-2">9</span> 问题集锦</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org8ad9ada"><span class="section-number-2">10</span> 问题集锦</h2>
+<div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orgf0e2f25" class="outline-3">
-<h3 id="orgf0e2f25"><span class="section-number-3">9.1</span> 运算符优先级</h3>
-<div class="outline-text-3" id="text-9-1">
+<div id="outline-container-orgd77ce0a" class="outline-3">
+<h3 id="orgd77ce0a"><span class="section-number-3">10.1</span> 运算符优先级</h3>
+<div class="outline-text-3" id="text-10-1">
 <p>
 请说出下面运算的结果，并简析原因:
 </p>
@@ -3055,8 +3233,8 @@ Something
 </div>
 
 <div id="outline-container-orgffc8f3f" class="outline-3">
-<h3 id="orgffc8f3f"><span class="section-number-3">9.2</span> 正则表达式</h3>
-<div class="outline-text-3" id="text-9-2">
+<h3 id="orgffc8f3f"><span class="section-number-3">10.2</span> 正则表达式</h3>
+<div class="outline-text-3" id="text-10-2">
 <p>
 请分别将下面字符串中的 <b>电话号码</b> 和 <b>邮箱地址</b>，使用 <b>正则表达式</b> 的形式，提取出来，并 <b>分别打印</b>:
 </p>
@@ -3123,8 +3301,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 
 <div id="outline-container-org1648f72" class="outline-3">
-<h3 id="org1648f72"><span class="section-number-3">9.3</span> 从文件名取后缀名</h3>
-<div class="outline-text-3" id="text-9-3">
+<h3 id="org1648f72"><span class="section-number-3">10.3</span> 从文件名取后缀名</h3>
+<div class="outline-text-3" id="text-10-3">
 <p>
 从下面给出的文件名字符串中，提取后缀名:
 </p>
@@ -3168,8 +3346,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 
 <div id="outline-container-org6b87afa" class="outline-3">
-<h3 id="org6b87afa"><span class="section-number-3">9.4</span> undefine/null</h3>
-<div class="outline-text-3" id="text-9-4">
+<h3 id="org6b87afa"><span class="section-number-3">10.4</span> undefine/null</h3>
+<div class="outline-text-3" id="text-10-4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #008b8b;">undefined</span> == <span style="color: #008b8b;">null</span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">true</span>
 <span style="color: #008b8b;">undefined</span> === <span style="color: #008b8b;">null</span>  <span style="color: #b22222;">// </span><span style="color: #b22222;">false</span>
@@ -3181,8 +3359,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 
 <div id="outline-container-orgad65185" class="outline-3">
-<h3 id="orgad65185"><span class="section-number-3">9.5</span> 数字 + 字符串 + NaN</h3>
-<div class="outline-text-3" id="text-9-5">
+<h3 id="orgad65185"><span class="section-number-3">10.5</span> 数字 + 字符串 + NaN</h3>
+<div class="outline-text-3" id="text-10-5">
 <div class="org-src-container">
 <pre class="src src-js">3 + 5        <span style="color: #b22222;">// </span><span style="color: #b22222;">8</span>
 3 + <span style="color: #8b2252;">'5'</span>      <span style="color: #b22222;">// </span><span style="color: #b22222;">35</span>
@@ -3210,8 +3388,8 @@ Math.sqrt<span style="color: #707183;">(</span>-1<span style="color: #707183;">)
 </div>
 
 <div id="outline-container-org6712b07" class="outline-3">
-<h3 id="org6712b07"><span class="section-number-3">9.6</span> 浮点数计算</h3>
-<div class="outline-text-3" id="text-9-6">
+<h3 id="org6712b07"><span class="section-number-3">10.6</span> 浮点数计算</h3>
+<div class="outline-text-3" id="text-10-6">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = 0.1;
 console.log<span style="color: #707183;">(</span>a<span style="color: #707183;">)</span>;
@@ -3234,8 +3412,8 @@ c == a + b
 </div>
 
 <div id="outline-container-orgdc55d8d" class="outline-3">
-<h3 id="orgdc55d8d"><span class="section-number-3">9.7</span> 求取斐波那契数列的某项 [递归]</h3>
-<div class="outline-text-3" id="text-9-7">
+<h3 id="orgdc55d8d"><span class="section-number-3">10.7</span> 求取斐波那契数列的某项 [递归]</h3>
+<div class="outline-text-3" id="text-10-7">
 <p>
 斐波那契数列，就是某一项的值，为前两项的和:
 </p>
@@ -3260,8 +3438,8 @@ c == a + b
 </div>
 
 <div id="outline-container-org4e9c6e5" class="outline-3">
-<h3 id="org4e9c6e5"><span class="section-number-3">9.8</span> 自增运算符</h3>
-<div class="outline-text-3" id="text-9-8">
+<h3 id="org4e9c6e5"><span class="section-number-3">10.8</span> 自增运算符</h3>
+<div class="outline-text-3" id="text-10-8">
 <p>
 请解析下面的结果:
 </p>

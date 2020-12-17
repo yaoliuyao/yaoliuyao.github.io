@@ -2129,6 +2129,145 @@ Asynchronous Module Definition.
   </script>
 #+end_src
 
+* ES6 快速预览
+** 对象的扩展
+
+#+begin_src js
+  const name = "tom";
+
+  // 更简洁的属性定义
+  let user = { "name": name };
+  let user = { name: name };
+  let user = { name };
+  let user = { name, score, xxx, yyy };
+
+  // 更简洁的方法定义
+  let xxx = {
+      hello: function() {},
+      world() {},
+  };
+
+  // key 可以使用表达式啦
+  let yyy = {
+      "aaa": 222,
+      bbb: 333,
+
+      ["abc" + "123"]: 444
+  };
+
+  // 访问器属性定义
+  let zzz = {
+      id: 333,
+      getId: function () { return id },
+
+      get name() {
+          return "xxx";
+      },
+      set name() {
+          return "xxx";
+      }
+  }
+  zzz.name = "kkdk";
+
+  // __proto__ 已被标准化啦！
+  zzz.__proto__ = xxx;
+  var mmm = {
+      a: 1, b: 2, __proto__: zzz
+  }
+
+  // super 可以访问到爸爸的数据
+  var mmm = {
+      a: 1,
+      b: 2,
+      __proto__: zzz,
+      xxx() {
+          console.log(super.name);
+          console.log(zzz.name);
+      }
+  }
+#+end_src
+
+** 块级作用域
+
+- let/const
+
+** 函数默认值
+
+#+begin_src js
+  function xxx (score) {
+    if (!score) {
+      score = 59;
+    }
+    console.log("您的分数为" + score);
+  }
+  function xxx (score = 59) {
+    console.log("您的分数为" + score);
+  }
+
+  xxx();
+  xxx(33);
+#+end_src
+
+** spread/rest
+
+扒衣服:
+#+begin_src js
+  // 来自数组的展开
+  let a = [1, 2, 3];
+  let b = a.concat([4, 5, 6]);
+  let c = [...a, 4, 5, 6];    // [1, 2, 3, 4, 5, 6]
+  let d = [4, ...a, 5, 6];    // [4, 1, 2, 3, 5, 6]
+
+  // 来自对象的展开
+  let person = { xuexiao: "nfit", score: 0 };
+  let xiaoming = Object.assign({ name: "xm" }, person);
+  let xiaohong = { name: "xh", score: 60, ...person };
+  let xiaolan = { name: "xl", ...person, score: 60 };
+
+  // 传参
+  add(...[10, 20, 30]);
+#+end_src
+
+穿衣服:
+#+begin_src js
+  // arguments
+  function xxx (m, ...duogecansh) {
+    console.log(m);
+    console.log(duogecansh); // 表示其他的所有参数，是一个数组 [2, 3, 4]
+  }
+  xxx(1, 2, 3, 4);
+#+end_src
+
+** destructuring
+
+#+begin_src js
+  // 从数组中
+  let a = [1, 2, 3];
+  let first = a[0];
+  let third = a[2];
+  let [yi, _, san] = [1, 2, 3];
+  let [[_, yi], __, san] = [['aaa', 'bbb'], 2, 3];
+
+  // 从对象中
+  let xiaoming = { name: "xm", score: 68, school: "nfit" };
+  let name = xiaoming.name;
+  let school = xiaoming.school;
+  let { name, school } = { name: "xm", score: 68, school: "nfit" };
+
+  // 从函数的返回值中直接获取需要的值
+  let xxx = () => [1, 2];
+  let r1 = xxx()[0];
+  let [r2] = xxx();
+
+  // import 中的使用
+  import { Message, Loading } from "element-ui";
+  import xxx from "element-ui";
+  let Message = xxx.Message;
+  let Loading = xxx.Loading;
+
+  import { Message, ...Qitade } from "element-ui";
+#+end_src
+
 * 其他
 ** 严格模式 (strict mode)
 
