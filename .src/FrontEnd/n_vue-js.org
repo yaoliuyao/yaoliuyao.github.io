@@ -1996,3 +1996,10 @@ Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_explo
 - 要求: 必须使用 vue-cli 创建 vue 项目
 - 要求: 必须将数据保存到某个数据源。可以是关系型数据库，也可以是 NoSQL 或其他存储
 - 其他: 后端使用技术不限；实现的方式不限
+
+* 后台 Admin 模板
+
+可以到 Github 上搜，很多。
+
+比如：
+- https://github.com/lin-xin/vue-manage-system
