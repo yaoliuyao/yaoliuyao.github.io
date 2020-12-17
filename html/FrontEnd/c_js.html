@@ -104,17 +104,26 @@
 <li><a href="#org025cfda">4.6.2. 继承 (基于原型链)</a></li>
 <li><a href="#org2e3e656">4.6.3. 使用构造函数，简化对象的创建</a></li>
 <li><a href="#org10fd46b">4.6.4. ES5 中的 Object.create</a></li>
-<li><a href="#org8d3dfab">4.6.5. ES6 中的 Class 语法糖</a></li>
+<li><a href="#org8d34347">4.6.5. ES6 中的 class 语法糖</a></li>
 <li><a href="#orgf5f7bc0">4.6.6. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#org0d9c9c9">4.7. 运算符优先级</a></li>
+<li><a href="#org639a90c">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
 <ul>
 <li><a href="#org22b497f">5.1. Number/String/Boolean/Function</a></li>
-<li><a href="#org7d16280">5.2. Array</a></li>
+<li><a href="#org7d16280">5.2. Array</a>
+<ul>
+<li><a href="#org950121c">5.2.1. 数组的创建</a></li>
+<li><a href="#orgfc9cef1">5.2.2. 数组的基本用法</a></li>
+<li><a href="#org45338c7">5.2.3. 字符串跟数组的美好友谊</a></li>
+<li><a href="#org4b47682">5.2.4. Array 与 function 的美好生活</a></li>
+<li><a href="#orgaf43ea1">5.2.5. ES6 添加的 Array 的一些静态方法</a></li>
+<li><a href="#org02ab87d">5.2.6. [示例] 常规操作</a></li>
+</ul>
+</li>
 <li><a href="#org0bb0141">5.3. Math</a></li>
 <li><a href="#org2731167">5.4. Date</a></li>
 <li><a href="#org35d283f">5.5. RegExp</a>
@@ -156,7 +165,7 @@
 </li>
 <li><a href="#org8ad9ada">9. 问题集锦</a>
 <ul>
-<li><a href="#org639a90c">9.1. 运算符优先级</a></li>
+<li><a href="#orgf0e2f25">9.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">9.2. 正则表达式</a></li>
 <li><a href="#org1648f72">9.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">9.4. undefine/null</a></li>
@@ -1111,7 +1120,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org0bab972">
+<pre class="example" id="org473fcee">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1628,7 +1637,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org2bfa4fa">
+<figure id="org33e6663">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -2011,8 +2020,8 @@ Object.assign<span style="color: #707183;">(</span>student, <span style="color: 
 </div>
 </div>
 
-<div id="outline-container-org8d3dfab" class="outline-4">
-<h4 id="org8d3dfab"><span class="section-number-4">4.6.5</span> ES6 中的 Class 语法糖</h4>
+<div id="outline-container-org8d34347" class="outline-4">
+<h4 id="org8d34347"><span class="section-number-4">4.6.5</span> ES6 中的 class 语法糖</h4>
 <div class="outline-text-4" id="text-4-6-5">
 <p>
 一定要注意，这只是一种 <b>语法糖</b> ！
@@ -2118,11 +2127,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-org0d9c9c9" class="outline-3">
-<h3 id="org0d9c9c9"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div id="outline-container-org639a90c" class="outline-3">
+<h3 id="org639a90c"><span class="section-number-3">4.7</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="orgdf61122">
+<figure id="org783a57f">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2174,9 +2183,10 @@ s1 === s3  <span style="color: #b22222;">// </span><span style="color: #b22222;"
 <div id="outline-container-org7d16280" class="outline-3">
 <h3 id="org7d16280"><span class="section-number-3">5.2</span> Array</h3>
 <div class="outline-text-3" id="text-5-2">
-<p>
-数组的创建：
-</p>
+</div>
+<div id="outline-container-org950121c" class="outline-4">
+<h4 id="org950121c"><span class="section-number-4">5.2.1</span> 数组的创建</h4>
+<div class="outline-text-4" id="text-5-2-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">()</span>;
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">(</span>1, 2, <span style="color: #8b2252;">'hello'</span><span style="color: #707183;">)</span>;
@@ -2195,10 +2205,12 @@ console.log<span style="color: #707183;">(</span>arr.pop<span style="color: #738
 arr<span style="color: #707183;">[</span>5<span style="color: #707183;">]()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24207;&#21495;&#26159;&#20174; 0 &#24320;&#22987;&#30340; !!!</span>
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-数组的基本用法:
-</p>
+<div id="outline-container-orgfc9cef1" class="outline-4">
+<h4 id="orgfc9cef1"><span class="section-number-4">5.2.2</span> 数组的基本用法</h4>
+<div class="outline-text-4" id="text-5-2-2">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #707183;">[</span>1, 2, <span style="color: #8b2252;">"hello"</span>, <span style="color: #008b8b;">true</span><span style="color: #707183;">]</span>;
 arr.length      <span style="color: #b22222;">// </span><span style="color: #b22222;">4</span>
@@ -2218,19 +2230,23 @@ arr.sort<span style="color: #707183;">()</span>;    <span style="color: #b22222;
 arr.sort<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">a</span>, <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>a &gt; b<span style="color: #909183;">)</span> <span style="color: #a020f0;">return</span> -1; <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">return</span> 1 <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-字符串跟数组的美好友谊:
-</p>
+<div id="outline-container-org45338c7" class="outline-4">
+<h4 id="org45338c7"><span class="section-number-4">5.2.3</span> 字符串跟数组的美好友谊</h4>
+<div class="outline-text-4" id="text-5-2-3">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #8b2252;">"kkkk:jjjj:2222:xxxx"</span>.split<span style="color: #707183;">(</span><span style="color: #8b2252;">":"</span><span style="color: #707183;">)</span>.reverse<span style="color: #707183;">()</span>.join<span style="color: #707183;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #707183;">)</span>;
 <span style="color: #8b2252;">"&#20013;&#21326;&#20154;&#27665;&#20849;&#21644;&#22269;&#19975;&#23681;"</span>.split<span style="color: #707183;">(</span><span style="color: #8b2252;">""</span><span style="color: #707183;">)</span>.reverse<span style="color: #707183;">()</span>.join<span style="color: #707183;">(</span><span style="color: #8b2252;">""</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-Array 与 function 的美好生活:
-</p>
+<div id="outline-container-org4b47682" class="outline-4">
+<h4 id="org4b47682"><span class="section-number-4">5.2.4</span> Array 与 function 的美好生活</h4>
+<div class="outline-text-4" id="text-5-2-4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23547;&#25214;&#31526;&#21512;&#26465;&#20214;&#30340;</span>
 <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">myJudge</span> = <span style="color: #a020f0;">function</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">x</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> <span style="color: #a020f0;">return</span> x &gt; 1 <span style="color: #707183;">}</span>
@@ -2255,14 +2271,61 @@ arr.some<span style="color: #707183;">(</span><span style="color: #a020f0;">func
 arr.forEach<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> console.log<span style="color: #909183;">(</span>x<span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-ES6 添加的 Array 的一些静态方法:
-</p>
+<div id="outline-container-orgaf43ea1" class="outline-4">
+<h4 id="orgaf43ea1"><span class="section-number-4">5.2.5</span> ES6 添加的 Array 的一些静态方法</h4>
+<div class="outline-text-4" id="text-5-2-5">
 <div class="org-src-container">
 <pre class="src src-js">Array.from
 Array.of
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org02ab87d" class="outline-4">
+<h4 id="org02ab87d"><span class="section-number-4">5.2.6</span> [示例] 常规操作</h4>
+<div class="outline-text-4" id="text-5-2-6">
+<p>
+现有一数组:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">array</span> = <span style="color: #707183;">[</span>
+    <span style="color: #7388d6;">{</span>
+        id: 1,
+        name: <span style="color: #8b2252;">'ohzri'</span>,
+        birth: <span style="color: #8b2252;">'1999.09.09'</span>,
+        city: <span style="color: #8b2252;">'&#28246;&#21271;'</span>,
+        salary: 3379
+    <span style="color: #7388d6;">}</span>,
+    <span style="color: #7388d6;">{</span>
+        id: 2,
+        name: <span style="color: #8b2252;">'rqgfd'</span>,
+        birth: <span style="color: #8b2252;">'1999.10.28'</span>,
+        city: <span style="color: #8b2252;">'&#28246;&#21335;'</span>,
+        salary: 4060
+    <span style="color: #7388d6;">}</span>,
+    <span style="color: #7388d6;">{</span>
+        id: 3,
+        name: <span style="color: #8b2252;">'fwfsh'</span>,
+        birth: <span style="color: #8b2252;">'1999.09.17'</span>,
+        city: <span style="color: #8b2252;">'&#24191;&#35199;'</span>,
+        salary: 3236
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">]</span>;
+</pre>
+</div>
+
+<p>
+要求:
+</p>
+<ol class="org-ol">
+<li>过滤: 返回工资 3000-3500 之内的人</li>
+<li>除去: 返回湖南人之外的人</li>
+<li>修改: 为每个人增加 age 字段</li>
+</ol>
 </div>
 </div>
 </div>
@@ -2949,8 +3012,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 <h2 id="org8ad9ada"><span class="section-number-2">9</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org639a90c" class="outline-3">
-<h3 id="org639a90c"><span class="section-number-3">9.1</span> 运算符优先级</h3>
+<div id="outline-container-orgf0e2f25" class="outline-3">
+<h3 id="orgf0e2f25"><span class="section-number-3">9.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 请说出下面运算的结果，并简析原因:

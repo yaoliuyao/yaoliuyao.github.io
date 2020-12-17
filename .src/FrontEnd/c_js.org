@@ -1449,7 +1449,7 @@ JS 中，基于原型链的继承:
   Object.assign(student, { name: "xxx", age: 18 });
 #+end_src
 
-*** ES6 中的 Class 语法糖
+*** ES6 中的 class 语法糖
 
 一定要注意，这只是一种 *语法糖* ！
 
@@ -1570,8 +1570,8 @@ Object.defineProperty，从 ES5 开始，对象的属性变得不单纯了:
 #+end_src
 
 ** Array
+*** 数组的创建
 
-数组的创建：
 #+begin_src js
   var arr = new Array();
   var arr = new Array(1, 2, 'hello');
@@ -1590,7 +1590,8 @@ Object.defineProperty，从 ES5 开始，对象的属性变得不单纯了:
   arr[5](); // 序号是从 0 开始的 !!!
 #+end_src
 
-数组的基本用法:
+*** 数组的基本用法
+
 #+begin_src js
   var arr = [1, 2, "hello", true];
   arr.length      // 4
@@ -1610,13 +1611,15 @@ Object.defineProperty，从 ES5 开始，对象的属性变得不单纯了:
   arr.sort(function (a, b) { if (a > b) return -1; else return 1 });
 #+end_src
 
-字符串跟数组的美好友谊:
+*** 字符串跟数组的美好友谊
+
 #+begin_src js
   "kkkk:jjjj:2222:xxxx".split(":").reverse().join("-");
   "中华人民共和国万岁".split("").reverse().join("");
 #+end_src
 
-Array 与 function 的美好生活:
+*** Array 与 function 的美好生活
+
 #+begin_src js
   // 寻找符合条件的
   var myJudge = function (x) { return x > 1 }
@@ -1641,11 +1644,46 @@ Array 与 function 的美好生活:
   arr.forEach(function(x) { console.log(x) })
 #+end_src
 
-ES6 添加的 Array 的一些静态方法:
+*** ES6 添加的 Array 的一些静态方法
+
 #+begin_src js
   Array.from
   Array.of
 #+end_src
+
+*** [示例] 常规操作
+
+现有一数组:
+#+begin_src js
+  let array = [
+      {
+          id: 1,
+          name: 'ohzri',
+          birth: '1999.09.09',
+          city: '湖北',
+          salary: 3379
+      },
+      {
+          id: 2,
+          name: 'rqgfd',
+          birth: '1999.10.28',
+          city: '湖南',
+          salary: 4060
+      },
+      {
+          id: 3,
+          name: 'fwfsh',
+          birth: '1999.09.17',
+          city: '广西',
+          salary: 3236
+      }
+  ];
+#+end_src
+
+要求:
+1. 过滤: 返回工资 3000-3500 之内的人
+2. 除去: 返回湖南人之外的人
+3. 修改: 为每个人增加 age 字段
 
 ** Math
 
