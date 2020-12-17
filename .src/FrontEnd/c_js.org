@@ -1790,6 +1790,22 @@ a{2}bc[abc]{2,5}
 - + 来代表 {1,}
 - ? 来代表 {0,1}
 
+** Symbol
+
+唯一性。
+
+#+begin_src js
+  let orderStatus = 0/1/2/3/4;
+
+  let OrderStatus = {
+    INIT: Symbol(),
+    FUKUAN: Symbol(),
+    JIESHU: Symbol()
+  };
+
+  OrderStatus.INIT;
+#+end_src
+
 ** Proxy/Set/Map/...
 ** JSON
 
@@ -2266,6 +2282,32 @@ Asynchronous Module Definition.
   let Loading = xxx.Loading;
 
   import { Message, ...Qitade } from "element-ui";
+#+end_src
+
+** Arrow Function
+
+- 没有自己的 this，而是继承自其父作用域
+- call/apply/bind 也就变得对其无效
+- aruments/caller 之类的东西也不存在
+- 不存在 prototype 属性
+- 不能作为构造器
+- 不能用作 Generator
+
+** 循环
+
+传统的方式:
+- ~for(var i = 0; i...) {}~
+- ~for (var x in xxx) { console.log(x, xxx[x]) }~ 不建议大家使用: 不准确，效率低
+
+ES6 中:
+- for..of: ~for (let x of Object.keys(xxx)) { console.log(x) }~
+- forEach: ~[1, 2, 3, 4, 5].forEach(el => console.log(el))~
+
+** 模板字符串
+
+#+begin_src js
+  let name = "world";
+  let a = `hello ${name}`;
 #+end_src
 
 * 其他

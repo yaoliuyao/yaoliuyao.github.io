@@ -108,7 +108,7 @@
 <li><a href="#orgf5f7bc0">4.6.6. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#orgf0e2f25">4.7. 运算符优先级</a></li>
+<li><a href="#orgd77ce0a">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -131,8 +131,9 @@
 <li><a href="#org1ee9f95">5.5.1. 补充</a></li>
 </ul>
 </li>
-<li><a href="#org9eb88c6">5.6. Proxy/Set/Map/&#x2026;</a></li>
-<li><a href="#orgf1f8645">5.7. JSON</a></li>
+<li><a href="#org94474e6">5.6. Symbol</a></li>
+<li><a href="#org9eb88c6">5.7. Proxy/Set/Map/&#x2026;</a></li>
+<li><a href="#orgf1f8645">5.8. JSON</a></li>
 </ul>
 </li>
 <li><a href="#org2933a27">6. 执行逻辑</a>
@@ -164,6 +165,9 @@
 <li><a href="#orgeb5b5b2">8.3. 函数默认值</a></li>
 <li><a href="#orgf1134eb">8.4. spread/rest</a></li>
 <li><a href="#org94b6007">8.5. destructuring</a></li>
+<li><a href="#orga830696">8.6. Arrow Function</a></li>
+<li><a href="#org6b8767d">8.7. 循环</a></li>
+<li><a href="#org433ec73">8.8. 模板字符串</a></li>
 </ul>
 </li>
 <li><a href="#orge52c87b">9. 其他</a>
@@ -174,7 +178,7 @@
 </li>
 <li><a href="#org8ad9ada">10. 问题集锦</a>
 <ul>
-<li><a href="#orgd77ce0a">10.1. 运算符优先级</a></li>
+<li><a href="#orgd3eba60">10.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">10.2. 正则表达式</a></li>
 <li><a href="#org1648f72">10.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">10.4. undefine/null</a></li>
@@ -1129,7 +1133,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="orga269648">
+<pre class="example" id="org59d507c">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1646,7 +1650,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org273dbf0">
+<figure id="org31b704a">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -2136,11 +2140,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-orgf0e2f25" class="outline-3">
-<h3 id="orgf0e2f25"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div id="outline-container-orgd77ce0a" class="outline-3">
+<h3 id="orgd77ce0a"><span class="section-number-3">4.7</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="orgc1d251c">
+<figure id="org965165e">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2480,12 +2484,34 @@ a{2}bc[abc]{2,5}
 </div>
 </div>
 
+<div id="outline-container-org94474e6" class="outline-3">
+<h3 id="org94474e6"><span class="section-number-3">5.6</span> Symbol</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+唯一性。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">orderStatus</span> = 0/1/2/3/4;
+
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">OrderStatus</span> = <span style="color: #707183;">{</span>
+  INIT: Symbol<span style="color: #7388d6;">()</span>,
+  FUKUAN: Symbol<span style="color: #7388d6;">()</span>,
+  JIESHU: Symbol<span style="color: #7388d6;">()</span>
+<span style="color: #707183;">}</span>;
+
+OrderStatus.INIT;
+</pre>
+</div>
+</div>
+</div>
+
 <div id="outline-container-org9eb88c6" class="outline-3">
-<h3 id="org9eb88c6"><span class="section-number-3">5.6</span> Proxy/Set/Map/&#x2026;</h3>
+<h3 id="org9eb88c6"><span class="section-number-3">5.7</span> Proxy/Set/Map/&#x2026;</h3>
 </div>
 <div id="outline-container-orgf1f8645" class="outline-3">
-<h3 id="orgf1f8645"><span class="section-number-3">5.7</span> JSON</h3>
-<div class="outline-text-3" id="text-5-7">
+<h3 id="orgf1f8645"><span class="section-number-3">5.8</span> JSON</h3>
+<div class="outline-text-3" id="text-5-8">
 <p>
 序列化:
 </p>
@@ -3132,6 +3158,52 @@ xxx<span style="color: #707183;">(</span>1, 2, 3, 4<span style="color: #707183;"
 </div>
 </div>
 </div>
+
+<div id="outline-container-orga830696" class="outline-3">
+<h3 id="orga830696"><span class="section-number-3">8.6</span> Arrow Function</h3>
+<div class="outline-text-3" id="text-8-6">
+<ul class="org-ul">
+<li>没有自己的 this，而是继承自其父作用域</li>
+<li>call/apply/bind 也就变得对其无效</li>
+<li>aruments/caller 之类的东西也不存在</li>
+<li>不存在 prototype 属性</li>
+<li>不能作为构造器</li>
+<li>不能用作 Generator</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6b8767d" class="outline-3">
+<h3 id="org6b8767d"><span class="section-number-3">8.7</span> 循环</h3>
+<div class="outline-text-3" id="text-8-7">
+<p>
+传统的方式:
+</p>
+<ul class="org-ul">
+<li><code>for(var i = 0; i...) {}</code></li>
+<li><code>for (var x in xxx) { console.log(x, xxx[x]) }</code> 不建议大家使用: 不准确，效率低</li>
+</ul>
+
+<p>
+ES6 中:
+</p>
+<ul class="org-ul">
+<li>for..of: <code>for (let x of Object.keys(xxx)) { console.log(x) }</code></li>
+<li>forEach: <code>[1, 2, 3, 4, 5].forEach(el =&gt; console.log(el))</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org433ec73" class="outline-3">
+<h3 id="org433ec73"><span class="section-number-3">8.8</span> 模板字符串</h3>
+<div class="outline-text-3" id="text-8-8">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"world"</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">`hello ${name}`</span>;
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-orge52c87b" class="outline-2">
@@ -3190,8 +3262,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 <h2 id="org8ad9ada"><span class="section-number-2">10</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orgd77ce0a" class="outline-3">
-<h3 id="orgd77ce0a"><span class="section-number-3">10.1</span> 运算符优先级</h3>
+<div id="outline-container-orgd3eba60" class="outline-3">
+<h3 id="orgd3eba60"><span class="section-number-3">10.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 请说出下面运算的结果，并简析原因:
