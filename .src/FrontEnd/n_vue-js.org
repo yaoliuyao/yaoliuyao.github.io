@@ -2002,4 +2002,4 @@ Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_explo
 可以到 Github 上搜，很多。
 
 比如：
-- https://github.com/lin-xin/vue-manage-system
+- https://github.com/lin-xin/vue-manage-system ([[https://lin-xin.gitee.io/example/work/#/dashboard][预览]])
