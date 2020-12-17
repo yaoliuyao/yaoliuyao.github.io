@@ -1439,6 +1439,16 @@ JS 中，基于原型链的继承:
 自行创建普通函数，借助这个函数完成对象的构建。
 #+end_div
 
+*** ES5 中的 Object.create
+
+#+begin_src js
+  var person = {};
+
+  var student = {}; student.__proto__ = person;
+  var student = Object.create(person);
+  Object.assign(student, { name: "xxx", age: 18 });
+#+end_src
+
 *** ES6 中的 Class 语法糖
 
 一定要注意，这只是一种 *语法糖* ！
