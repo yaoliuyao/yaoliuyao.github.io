@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-12-14 -->
+<!-- 2020-12-18 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DOM (文档对象模型)</title>
@@ -56,8 +56,10 @@
 <li><a href="#orge27a1c8">3.2. CSS3 选择器 (querySelector/querySelectorAll)</a></li>
 <li><a href="#org9368e62">3.3. appendChild/innerHTML/insertAdjacentHTML</a></li>
 <li><a href="#org2338ba4">3.4. attributes/setAttribute/getAttribute vs properties</a></li>
-<li><a href="#org3ddf07f">3.5. [样式] style</a></li>
-<li><a href="#orgd6ac3cf">3.6. [样式] classList</a></li>
+<li><a href="#org9067093">3.5. scrollTo/scrollIntoView</a></li>
+<li><a href="#org3ddf07f">3.6. [样式] style</a></li>
+<li><a href="#orgd6ac3cf">3.7. [样式] classList</a></li>
+<li><a href="#org23889eb">3.8. [数据] dataset</a></li>
 </ul>
 </li>
 <li><a href="#orgc22a7a2">4. 事件 (Event)</a>
@@ -119,7 +121,7 @@ DOM 树是有多个 Node (节点) 组成的，Node 又有很多 Child Node 组�
 </p>
 
 
-<figure id="orgd3c985d">
+<figure id="org450702f">
 <img src="img/742px-DOM-model.svg_20200624_065310.png" alt="742px-DOM-model.svg_20200624_065310.png">
 
 </figure>
@@ -442,9 +444,67 @@ console.log<span style="color: #707183;">(</span>dom.style.color<span style="col
 </div>
 </div>
 
-<div id="outline-container-org3ddf07f" class="outline-3">
-<h3 id="org3ddf07f"><span class="section-number-3">3.5</span> [样式] style</h3>
+<div id="outline-container-org9067093" class="outline-3">
+<h3 id="org9067093"><span class="section-number-3">3.5</span> scrollTo/scrollIntoView</h3>
 <div class="outline-text-3" id="text-3-5">
+<p>
+滚动进视野。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #a020f0;">!doctype</span> html&gt;
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">html</span> <span style="color: #a0522d;">lang</span>=<span style="color: #8b2252;">"en"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">meta</span> <span style="color: #a0522d;">charset</span>=<span style="color: #8b2252;">"UTF-8"</span>/<span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+     <span style="color: #0000ff;">div </span><span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">border</span>: 1px solid <span style="color: #ffffff; background-color: #ff0000;">red</span>;
+       <span style="color: #a020f0;">height</span>: 300px;
+     <span style="color: #707183;">}</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>&#28378;&#21160;&#21040;&#31532; 4 &#20010;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"d1"</span><span style="color: #707183;">&gt;</span>
+      111
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"d2"</span><span style="color: #707183;">&gt;</span>
+      222
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"d3"</span><span style="color: #707183;">&gt;</span>
+      333
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"d4"</span><span style="color: #707183;">&gt;</span>
+      444
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"d5"</span><span style="color: #707183;">&gt;</span>
+      555
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+     <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">b</span> = document.querySelector<span style="color: #707183;">(</span><span style="color: #8b2252;">"button"</span><span style="color: #707183;">)</span>;
+     b.addEventListener<span style="color: #707183;">(</span><span style="color: #8b2252;">'click'</span>, <span style="color: #7388d6;">(</span>ev<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{</span>
+       <span style="color: #b22222;">// </span><span style="color: #b22222;">window.scrollTo(0, 500); // &#38656;&#35201;&#25163;&#21160;&#35745;&#31639;</span>
+       document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">"#d4"</span><span style="color: #909183;">)</span>.scrollIntoView<span style="color: #909183;">(</span><span style="color: #008b8b;">false</span><span style="color: #909183;">)</span>;
+     <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3ddf07f" class="outline-3">
+<h3 id="org3ddf07f"><span class="section-number-3">3.6</span> [样式] style</h3>
+<div class="outline-text-3" id="text-3-6">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#24182;&#19981;&#22815;&#28789;&#27963;</span>
 dom.setAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">'style'</span>, <span style="color: #8b2252;">'kkkkkkkkkkkkkkkkkkkkkkk'</span><span style="color: #707183;">)</span>;
@@ -459,8 +519,8 @@ dom.style.cssText = <span style="color: #8b2252;">'color: red; font-size: 19pt'<
 </div>
 
 <div id="outline-container-orgd6ac3cf" class="outline-3">
-<h3 id="orgd6ac3cf"><span class="section-number-3">3.6</span> [样式] classList</h3>
-<div class="outline-text-3" id="text-3-6">
+<h3 id="orgd6ac3cf"><span class="section-number-3">3.7</span> [样式] classList</h3>
+<div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li>dom.getAttribute('class')</li>
 <li>dom.className</li>
@@ -470,6 +530,21 @@ dom.style.cssText = <span style="color: #8b2252;">'color: red; font-size: 19pt'<
 <div class="org-src-container">
 <pre class="src src-js">dom.classList.add<span style="color: #707183;">(</span><span style="color: #8b2252;">'aaa'</span><span style="color: #707183;">)</span>;
 dom.classList.toggle<span style="color: #707183;">(</span><span style="color: #8b2252;">'aaa'</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org23889eb" class="outline-3">
+<h3 id="org23889eb"><span class="section-number-3">3.8</span> [数据] dataset</h3>
+<div class="outline-text-3" id="text-3-8">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">data-id</span>=<span style="color: #8b2252;">"22"</span> <span style="color: #a0522d;">data-price</span>=<span style="color: #8b2252;">"32"</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"x"</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+  x.dataset<span style="color: #707183;">[</span><span style="color: #8b2252;">"id"</span><span style="color: #707183;">]</span>;
+  x.dataset<span style="color: #707183;">[</span><span style="color: #8b2252;">"price"</span><span style="color: #707183;">]</span> = 35;
+  x.dataset.price;
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
 </pre>
 </div>
 </div>
@@ -712,7 +787,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 
 
 
-<figure id="org55d685c">
+<figure id="org88caf25">
 <img src="img/dom-event-model.jpg" alt="dom-event-model.jpg">
 
 </figure>
@@ -1004,7 +1079,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 <h3 id="org65e48b7"><span class="section-number-3">6.3</span> 在上面基础上，每个 input 后面再增加一个 <b>归档</b> 的操作，点击之后，此条目会被移动到下面的归档区域，且变得不能修改</h3>
 <div class="outline-text-3" id="text-6-3">
 
-<figure id="orge21aab5">
+<figure id="org9984f29">
 <img src="img/dom-arch.png.png" alt="dom-arch.png.png">
 
 </figure>
@@ -1162,7 +1237,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 <h3 id="orgf082b7c"><span class="section-number-3">6.5</span> alert 是万恶的，请将代码中的 alert 去除掉。提醒变为文字的方式</h3>
 <div class="outline-text-3" id="text-6-5">
 
-<figure id="org0b8bcee">
+<figure id="org54590cd">
 <img src="img/dom-arch-err.png" alt="dom-arch-err.png">
 
 </figure>
@@ -1274,7 +1349,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </p>
 
 
-<figure id="orgd74c401">
+<figure id="orgd4037e3">
 <img src="img/dom-add-goods.png" alt="dom-add-goods.png">
 
 </figure>
@@ -1888,7 +1963,7 @@ checkboxNode.checked = true; // 将其选中
 <p>
 效果示例:
 </p>
-<pre class="example" id="orge7c4e2f">
+<pre class="example" id="orgff1b128">
 +-------------------------+
 |                         |
 |                         |
@@ -2196,7 +2271,7 @@ img.addEventListener<span style="color: #707183;">(</span><span style="color: #8
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-12-14</p>
+<p class="date">Created: 2020-12-18</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

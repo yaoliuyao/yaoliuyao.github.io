@@ -164,6 +164,7 @@ setInterval/clearInterval:
   window.screen.height;
 #+end_src
 
+* window.navigator 获取浏览器基本信息
 * window.history 浏览历史
 
 控制浏览器的浏览历史，前进或者后退:
@@ -205,7 +206,7 @@ URL (Uniform Resource Location) 唯一资源标识符。按照标准:
 
 例子:
 : https://cn.bing.com:443/search?q=hello&qs=n&form=QBLH&sp=-1&pq=hello&sc=8-5&sk=&cvid=44861E53C4EE443F853191DDA02D8F03
-: file:///E:/home/notes/demos/3/timeout.html
+: file:///E:/home/notes/demos/3/timeout.html#ssss
 
 #+begin_src js
   // 获取跟 url 相关的一些信息

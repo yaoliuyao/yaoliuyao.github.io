@@ -1262,14 +1262,6 @@ JS 中，基于原型链的继承:
   // Self/Lua 都是基于原型链
 #+end_src
 
-*instanceof* 用来判断是否是某个对象:
-#+begin_src js
-  function Student() {}
-  var tom = new Student();
-
-  if (tom instanceof Student) { console.log("好好学习，天天向上") }
-#+end_src
-
 *** 使用构造函数，简化对象的创建
 
 如果想构建结果类似的 object 数据，普通的写法有点罗嗦:
@@ -1438,6 +1430,14 @@ JS 中，基于原型链的继承:
 #+end_src
 自行创建普通函数，借助这个函数完成对象的构建。
 #+end_div
+
+*instanceof* 用来判断是否是某个对象:
+#+begin_src js
+  function Student() {}
+  var tom = new Student();
+
+  if (tom instanceof Student) { console.log("好好学习，天天向上") }
+#+end_src
 
 *** ES5 中的 Object.create
 

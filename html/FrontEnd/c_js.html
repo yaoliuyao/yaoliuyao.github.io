@@ -108,7 +108,7 @@
 <li><a href="#orgf5f7bc0">4.6.6. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#org316b734">4.7. 运算符优先级</a></li>
+<li><a href="#org7d16e5c">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -181,7 +181,7 @@
 </li>
 <li><a href="#org8ad9ada">10. 问题集锦</a>
 <ul>
-<li><a href="#org7d16e5c">10.1. 运算符优先级</a></li>
+<li><a href="#org0c6d1e5">10.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">10.2. 正则表达式</a></li>
 <li><a href="#org1648f72">10.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">10.4. undefine/null</a></li>
@@ -1136,7 +1136,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org209241a">
+<pre class="example" id="orgd88a2a3">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1653,7 +1653,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="orgeec625b">
+<figure id="org2f9176a">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -1801,17 +1801,6 @@ xiaoming.study<span style="color: #707183;">()</span>;
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36825;&#26679;&#19968;&#31181;&#26041;&#24335;&#65292;&#23601;&#26159;&#22522;&#20110;&#21407;&#22411;&#38142;&#30340;&#23545;&#35937;&#27169;&#22411;&#12290;(Prototype-Based OOP)</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31616;&#21333;&#12289;&#31895;&#26292;&#12289;&#38750;&#24120;&#38750;&#24120;&#28789;&#27963;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">Self/Lua &#37117;&#26159;&#22522;&#20110;&#21407;&#22411;&#38142;</span>
-</pre>
-</div>
-
-<p>
-<b>instanceof</b> 用来判断是否是某个对象:
-</p>
-<div class="org-src-container">
-<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">Student</span><span style="color: #707183;">()</span> <span style="color: #707183;">{}</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">tom</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
-
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>tom <span style="color: #a020f0;">instanceof</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#22909;&#22909;&#23398;&#20064;&#65292;&#22825;&#22825;&#21521;&#19978;"</span><span style="color: #7388d6;">)</span> <span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -2019,6 +2008,17 @@ iphone.hello<span style="color: #707183;">()</span>;
 </div>
 
 </div>
+
+<p>
+<b>instanceof</b> 用来判断是否是某个对象:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">Student</span><span style="color: #707183;">()</span> <span style="color: #707183;">{}</span>
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">tom</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>tom <span style="color: #a020f0;">instanceof</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#22909;&#22909;&#23398;&#20064;&#65292;&#22825;&#22825;&#21521;&#19978;"</span><span style="color: #7388d6;">)</span> <span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 
@@ -2143,11 +2143,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-org316b734" class="outline-3">
-<h3 id="org316b734"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div id="outline-container-org7d16e5c" class="outline-3">
+<h3 id="org7d16e5c"><span class="section-number-3">4.7</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="org0483e74">
+<figure id="org6eefa98">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -3461,8 +3461,8 @@ dataProxy.friends<span style="color: #707183;">[</span>1<span style="color: #707
 <h2 id="org8ad9ada"><span class="section-number-2">10</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-org7d16e5c" class="outline-3">
-<h3 id="org7d16e5c"><span class="section-number-3">10.1</span> 运算符优先级</h3>
+<div id="outline-container-org0c6d1e5" class="outline-3">
+<h3 id="org0c6d1e5"><span class="section-number-3">10.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 请说出下面运算的结果，并简析原因:

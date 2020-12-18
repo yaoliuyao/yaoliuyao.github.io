@@ -222,6 +222,58 @@ https://www.w3school.com.cn/cssref/css_selectors.asp
 - domObj.property
 - 某一些 node.Attribute 可以自动转化为 property，比如 id/class
 
+** scrollTo/scrollIntoView
+
+滚动进视野。
+
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       div {
+         border: 1px solid red;
+         height: 300px;
+       }
+      </style>
+    </head>
+    <body>
+
+      <button>滚动到第 4 个</button>
+
+      <div id="d1">
+        111
+      </div>
+
+      <div id="d2">
+        222
+      </div>
+
+      <div id="d3">
+        333
+      </div>
+
+      <div id="d4">
+        444
+      </div>
+
+      <div id="d5">
+        555
+      </div>
+
+      <script>
+       var b = document.querySelector("button");
+       b.addEventListener('click', (ev) => {
+         // window.scrollTo(0, 500); // 需要手动计算
+         document.querySelector("#d4").scrollIntoView(false);
+       });
+      </script>
+    </body>
+  </html>
+#+end_src
+
 ** [样式] style
 
 #+begin_src js
@@ -243,6 +295,17 @@ https://www.w3school.com.cn/cssref/css_selectors.asp
 #+begin_src js
   dom.classList.add('aaa');
   dom.classList.toggle('aaa');
+#+end_src
+
+** [数据] dataset
+
+#+begin_src html
+  <div data-id="22" data-price="32" id="x"></div>
+  <script>
+    x.dataset["id"];
+    x.dataset["price"] = 35;
+    x.dataset.price;
+  </script>
 #+end_src
 
 * 事件 (Event)
