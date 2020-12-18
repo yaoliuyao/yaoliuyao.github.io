@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-12-17 -->
+<!-- 2020-12-18 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JavaScript (ECMAScript)</title>
@@ -108,7 +108,7 @@
 <li><a href="#orgf5f7bc0">4.6.6. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#orgd77ce0a">4.7. 运算符优先级</a></li>
+<li><a href="#orgd3eba60">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -132,8 +132,9 @@
 </ul>
 </li>
 <li><a href="#org94474e6">5.6. Symbol</a></li>
-<li><a href="#org9eb88c6">5.7. Proxy/Set/Map/&#x2026;</a></li>
-<li><a href="#orgf1f8645">5.8. JSON</a></li>
+<li><a href="#orga3d001d">5.7. Set/Map/WeakSet/WeakMap</a></li>
+<li><a href="#orga9b8889">5.8. ArrayBuffer/TypedArray/DataView</a></li>
+<li><a href="#orgf1f8645">5.9. JSON</a></li>
 </ul>
 </li>
 <li><a href="#org2933a27">6. 执行逻辑</a>
@@ -178,7 +179,7 @@
 </li>
 <li><a href="#org8ad9ada">10. 问题集锦</a>
 <ul>
-<li><a href="#orgd3eba60">10.1. 运算符优先级</a></li>
+<li><a href="#org404ca37">10.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">10.2. 正则表达式</a></li>
 <li><a href="#org1648f72">10.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">10.4. undefine/null</a></li>
@@ -1133,7 +1134,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org59d507c">
+<pre class="example" id="org4dbe0fe">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1650,7 +1651,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org31b704a">
+<figure id="org9a43755">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -2140,11 +2141,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-orgd77ce0a" class="outline-3">
-<h3 id="orgd77ce0a"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div id="outline-container-orgd3eba60" class="outline-3">
+<h3 id="orgd3eba60"><span class="section-number-3">4.7</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="org965165e">
+<figure id="org8bf53a5">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2506,12 +2507,106 @@ OrderStatus.INIT;
 </div>
 </div>
 
-<div id="outline-container-org9eb88c6" class="outline-3">
-<h3 id="org9eb88c6"><span class="section-number-3">5.7</span> Proxy/Set/Map/&#x2026;</h3>
+<div id="outline-container-orga3d001d" class="outline-3">
+<h3 id="orga3d001d"><span class="section-number-3">5.7</span> Set/Map/WeakSet/WeakMap</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+Set 集合，唯一无序:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">nums</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Set</span><span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>1, 2, 3, 4, 5<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>;
+nums.add<span style="color: #707183;">(</span>3<span style="color: #707183;">)</span>;
+nums.add<span style="color: #707183;">(</span>33<span style="color: #707183;">)</span>;
+nums.size;
+nums.<span style="color: #a020f0;">delete</span><span style="color: #707183;">(</span>33<span style="color: #707183;">)</span>;
+nums.forEach<span style="color: #707183;">(</span>x =&gt; console.log<span style="color: #7388d6;">(</span>x<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+</pre>
 </div>
-<div id="outline-container-orgf1f8645" class="outline-3">
-<h3 id="orgf1f8645"><span class="section-number-3">5.8</span> JSON</h3>
+
+<p>
+Map 传统的 K-V 结构:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">m</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Map</span><span style="color: #707183;">()</span>;
+m.set<span style="color: #707183;">(</span><span style="color: #8b2252;">"name"</span>, <span style="color: #8b2252;">"zhangsan"</span><span style="color: #707183;">)</span>;
+m.set<span style="color: #707183;">(</span><span style="color: #8b2252;">"age"</span>, 22<span style="color: #707183;">)</span>;
+m.size;
+m.has<span style="color: #707183;">(</span><span style="color: #8b2252;">"age"</span><span style="color: #707183;">)</span>;
+m.clear<span style="color: #707183;">()</span>;
+m.forEach<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>k, v<span style="color: #7388d6;">)</span> =&gt; console.log<span style="color: #7388d6;">(</span>k + <span style="color: #8b2252;">' is: '</span> + v<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">transform</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">m1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Map</span><span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, <span style="color: #8b2252;">'a'</span><span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>2, <span style="color: #8b2252;">'bbb'</span><span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">a2</span> = <span style="color: #707183;">[</span>...m1<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">m2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Map</span><span style="color: #707183;">(</span>Object.entries<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span> a: 1, b: 2<span style="color: #909183;">}</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+过滤相同元素:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">aa</span> = <span style="color: #707183;">[</span>1, 2, 3, 4, 2, 3, 3, 2, 5<span style="color: #707183;">]</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20256;&#32479;&#30340;&#26041;&#24335;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">a</span> = <span style="color: #707183;">[]</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">i</span> = 0; i &lt; aa.length; i++<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>!a.include<span style="color: #909183;">(</span>aa<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> a.push<span style="color: #7388d6;">(</span>aa<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+console.log<span style="color: #707183;">(</span>a<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">Set &#30340;&#26041;&#24335;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">b</span> = <span style="color: #707183;">[</span>...<span style="color: #a020f0;">new</span> <span style="color: #228b22;">Set</span><span style="color: #7388d6;">(</span>aa<span style="color: #7388d6;">)</span><span style="color: #707183;">]</span>;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">requests</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">WeakSet</span><span style="color: #707183;">()</span>;
+
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">ApiRequest</span> <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+    requests.add<span style="color: #7388d6;">(</span><span style="color: #008b8b;">this</span><span style="color: #7388d6;">)</span>;
+    <span style="color: #0000ff;">makeRequest</span>: <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">url</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>!requests.has<span style="color: #709870;">(</span><span style="color: #008b8b;">this</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            console.log<span style="color: #709870;">(</span><span style="color: #8b2252;">"&#19981;&#21512;&#29702;"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #909183;">{</span>
+            axios<span style="color: #709870;">(</span><span style="color: #907373;">{}</span><span style="color: #709870;">)</span>.....;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">test</span> <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">1. r1 &#20316;&#20026;&#19968;&#20010;&#20989;&#25968;&#20869;&#37096;&#30340;&#21464;&#37327;&#65292;&#22312;&#20989;&#25968;&#35843;&#29992;&#32467;&#26463;&#20043;&#21518;&#65292;&#20250;&#32467;&#26463;&#29983;&#21629;&#21608;&#26399;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#22312; ApiRequest &#30340;&#26500;&#36896;&#20989;&#25968;&#20013;&#65292;r1 &#23545;&#24212;&#30340;&#23545;&#35937;&#34987;&#25918;&#21040;&#20102;&#20840;&#23616;&#30340; requests &#20013;</span>
+    <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">r1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ApiRequest</span><span style="color: #7388d6;">()</span>;
+    r1.makeRequest<span style="color: #7388d6;">(</span>url<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22240;&#27492;&#65292;&#31561; test &#35843;&#29992;&#23436;&#27605;&#20043;&#21518;&#65292;r1 &#23545;&#35937;&#65292;&#21482;&#20250;&#34987; requests &#24341;&#29992;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#65292;requests &#26159; Set &#30340;&#35805;&#65292;&#37027;&#20040;&#36825;&#20010;&#23545;&#35937;&#23601;&#20250;&#19968;&#30452;&#22312;&#20869;&#23384;&#20013;&#19981;&#20250;&#24471;&#21040;&#37322;&#25918;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#65292;requests &#26159; WeakSet &#30340;&#35805;&#65292;&#37027;&#20040; GC &#20250;&#26080;&#24773;&#23558;&#20854;&#28040;&#28781;&#25481;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25152;&#20197;&#65292;&#19981;&#20165;&#20445;&#35777;&#20102;&#20869;&#23384;&#30340;&#23433;&#20840;&#65292;&#36824;&#33021;&#20026; makeRequest &#37324;&#38754;&#30340;&#21028;&#26029;&#25552;&#20379;&#20381;&#25454;</span>
+test<span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga9b8889" class="outline-3">
+<h3 id="orga9b8889"><span class="section-number-3">5.8</span> ArrayBuffer/TypedArray/DataView</h3>
 <div class="outline-text-3" id="text-5-8">
+<p>
+&lt;input type=file id=xxx&gt;
+</p>
+
+<p>
+xxx.files[0]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf1f8645" class="outline-3">
+<h3 id="orgf1f8645"><span class="section-number-3">5.9</span> JSON</h3>
+<div class="outline-text-3" id="text-5-9">
 <p>
 序列化:
 </p>
@@ -3262,8 +3357,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 <h2 id="org8ad9ada"><span class="section-number-2">10</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orgd3eba60" class="outline-3">
-<h3 id="orgd3eba60"><span class="section-number-3">10.1</span> 运算符优先级</h3>
+<div id="outline-container-org404ca37" class="outline-3">
+<h3 id="org404ca37"><span class="section-number-3">10.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 请说出下面运算的结果，并简析原因:
@@ -3535,7 +3630,7 @@ console.log<span style="color: #707183;">(</span>a, b, c, d<span style="color: #
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-12-17</p>
+<p class="date">Created: 2020-12-18</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

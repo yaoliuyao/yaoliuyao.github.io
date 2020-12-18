@@ -1806,7 +1806,83 @@ a{2}bc[abc]{2,5}
   OrderStatus.INIT;
 #+end_src
 
-** Proxy/Set/Map/...
+** Set/Map/WeakSet/WeakMap
+
+Set 集合，唯一无序:
+#+begin_src js
+  let nums = new Set([1, 2, 3, 4, 5]);
+  nums.add(3);
+  nums.add(33);
+  nums.size;
+  nums.delete(33);
+  nums.forEach(x => console.log(x));
+#+end_src
+
+Map 传统的 K-V 结构:
+#+begin_src js
+  let m = new Map();
+  m.set("name", "zhangsan");
+  m.set("age", 22);
+  m.size;
+  m.has("age");
+  m.clear();
+  m.forEach((k, v) => console.log(k + ' is: ' + v));
+
+  // transform
+  let m1 = new Map([[1, 'a'], [2, 'bbb']]);
+  let a2 = [...m1];
+  let m2 = new Map(Object.entries({ a: 1, b: 2}));
+#+end_src
+
+过滤相同元素:
+#+begin_src js
+  let aa = [1, 2, 3, 4, 2, 3, 3, 2, 5];
+
+  // 传统的方式
+  let a = [];
+  for (let i = 0; i < aa.length; i++) {
+      if (!a.include(aa[i])) a.push(aa[i]);
+  }
+  console.log(a);
+
+  // Set 的方式
+  let b = [...new Set(aa)];
+#+end_src
+
+#+begin_src js
+  const requests = new WeakSet();
+
+  function ApiRequest () {
+      requests.add(this);
+      makeRequest: function (url) {
+          if (!requests.has(this)) {
+              console.log("不合理");
+          } else {
+              axios({}).....;
+          }
+      }
+  }
+
+  function test () {
+      // 1. r1 作为一个函数内部的变量，在函数调用结束之后，会结束生命周期
+      // 2. 在 ApiRequest 的构造函数中，r1 对应的对象被放到了全局的 requests 中
+      var r1 = new ApiRequest(); 
+      r1.makeRequest(url);
+  }
+
+  // 因此，等 test 调用完毕之后，r1 对象，只会被 requests 引用
+  // 如果，requests 是 Set 的话，那么这个对象就会一直在内存中不会得到释放
+  // 如果，requests 是 WeakSet 的话，那么 GC 会无情将其消灭掉
+  // 所以，不仅保证了内存的安全，还能为 makeRequest 里面的判断提供依据
+  test();
+#+end_src
+
+** ArrayBuffer/TypedArray/DataView
+
+<input type=file id=xxx>
+
+xxx.files[0]
+
 ** JSON
 
 序列化:
