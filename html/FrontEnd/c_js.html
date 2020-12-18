@@ -108,7 +108,7 @@
 <li><a href="#orgf5f7bc0">4.6.6. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#orgd3eba60">4.7. 运算符优先级</a></li>
+<li><a href="#org404ca37">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -135,6 +135,7 @@
 <li><a href="#orga3d001d">5.7. Set/Map/WeakSet/WeakMap</a></li>
 <li><a href="#orga9b8889">5.8. ArrayBuffer/TypedArray/DataView</a></li>
 <li><a href="#orgf1f8645">5.9. JSON</a></li>
+<li><a href="#orgefd05f4">5.10. Promise/async</a></li>
 </ul>
 </li>
 <li><a href="#org2933a27">6. 执行逻辑</a>
@@ -175,11 +176,12 @@
 <ul>
 <li><a href="#org351d9be">9.1. 严格模式 (strict mode)</a></li>
 <li><a href="#org9b7d1f9">9.2. 异常处理</a></li>
+<li><a href="#org8b52f75">9.3. Object.defineProperty / Proxy</a></li>
 </ul>
 </li>
 <li><a href="#org8ad9ada">10. 问题集锦</a>
 <ul>
-<li><a href="#org404ca37">10.1. 运算符优先级</a></li>
+<li><a href="#org316b734">10.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">10.2. 正则表达式</a></li>
 <li><a href="#org1648f72">10.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">10.4. undefine/null</a></li>
@@ -1134,7 +1136,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org4dbe0fe">
+<pre class="example" id="org30cd50e">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1651,7 +1653,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org9a43755">
+<figure id="orga113277">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -2141,11 +2143,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-orgd3eba60" class="outline-3">
-<h3 id="orgd3eba60"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div id="outline-container-org404ca37" class="outline-3">
+<h3 id="org404ca37"><span class="section-number-3">4.7</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="org8bf53a5">
+<figure id="org109834d">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2560,6 +2562,9 @@ console.log<span style="color: #707183;">(</span>a<span style="color: #707183;">
 </pre>
 </div>
 
+<p>
+Weak 弱引用:
+</p>
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">requests</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">WeakSet</span><span style="color: #707183;">()</span>;
 
@@ -2636,6 +2641,66 @@ xxx.files[0]
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">o</span> = JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span><span style="color: #707183;">)</span>;
 <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">o</span> = JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span>, <span style="color: #7388d6;">(</span>k, v<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{}</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgefd05f4" class="outline-3">
+<h3 id="orgefd05f4"><span class="section-number-3">5.10</span> Promise/async</h3>
+<div class="outline-text-3" id="text-5-10">
+<p>
+异步非常爽，一不小心就进入了回调地狱:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">jq<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span>
+  url: xx,
+  <span style="color: #0000ff;">success</span>: <span style="color: #a020f0;">function</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span>
+    jq<span style="color: #709870;">(</span><span style="color: #907373;">{</span>
+      url: yy,
+      <span style="color: #0000ff;">success</span>: <span style="color: #a020f0;">function</span><span style="color: #6276ba;">()</span> <span style="color: #6276ba;">{</span>
+        jq<span style="color: #858580;">(</span><span style="color: #80a880;">{</span>
+          url: zz,
+          <span style="color: #0000ff;">success</span>: <span style="color: #a020f0;">function</span><span style="color: #887070;">()</span> <span style="color: #887070;">{</span>
+            <span style="color: #b22222;">// </span><span style="color: #b22222;">....</span>
+          <span style="color: #887070;">}</span>
+        <span style="color: #80a880;">}</span><span style="color: #858580;">)</span>;
+      <span style="color: #6276ba;">}</span>
+    <span style="color: #907373;">}</span><span style="color: #709870;">)</span>;
+  <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+类比 Promise 语法:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">jq<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> url: xx <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+  .then<span style="color: #707183;">(</span>jq<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span> url: yy <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+  .then<span style="color: #707183;">(</span>jq<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span> url: aa <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+  .then<span style="color: #707183;">(</span>jq<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span> url: bb <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+  .then<span style="color: #707183;">(</span>jq<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span> url: cc <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+  .then<span style="color: #707183;">(</span>jq<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span> url: dd <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+  .then<span style="color: #707183;">(</span>jq<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span> url: ee <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+  .fail<span style="color: #707183;">(</span>....<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+ES7 中异步编程的继续演化:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">async</span> getHistoryData <span style="color: #707183;">(</span>data<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">try</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">res</span> = <span style="color: #a020f0;">await</span> axios.get<span style="color: #909183;">(</span><span style="color: #8b2252;">'/api/survey/list/'</span>, <span style="color: #709870;">{</span> params: data <span style="color: #709870;">}</span><span style="color: #909183;">)</span>
+        <span style="color: #008b8b;">this</span>.tableData = res.data.result
+        <span style="color: #008b8b;">this</span>.totalData = res.data.count
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">catch</span> <span style="color: #7388d6;">(</span>err<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        console.log<span style="color: #909183;">(</span>err<span style="color: #909183;">)</span>
+        alert<span style="color: #909183;">(</span><span style="color: #8b2252;">'&#35831;&#27714;&#20986;&#38169;&#65281;'</span><span style="color: #909183;">)</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -3078,6 +3143,8 @@ Asynchronous Module Definition.
   <span style="color: #a020f0;">import</span> * as x from <span style="color: #8b2252;">"./c1.js"</span>;
   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558; export default &#30340;&#40664;&#35748;&#23548;&#20986;&#36171;&#20540;&#32473; y</span>
   <span style="color: #a020f0;">import</span> y from <span style="color: #8b2252;">"./c1.js"</span>;
+  <span style="color: #a020f0;">import</span> y from <span style="color: #8b2252;">"./c1.js"</span>;
+  <span style="color: #a020f0;">import</span> y from <span style="color: #8b2252;">"./c1.js"</span>;
   y<span style="color: #707183;">()</span>;
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -3351,14 +3418,51 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 </div>
 </div>
 </div>
+
+<div id="outline-container-org8b52f75" class="outline-3">
+<h3 id="org8b52f75"><span class="section-number-3">9.3</span> Object.defineProperty / Proxy</h3>
+<div class="outline-text-3" id="text-9-3">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">data</span> = <span style="color: #707183;">{</span>
+    friends: <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"aa"</span>, <span style="color: #8b2252;">"bb"</span><span style="color: #7388d6;">]</span>
+<span style="color: #707183;">}</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">Vue 2</span>
+
+Object.defineProperty<span style="color: #707183;">(</span>data, <span style="color: #8b2252;">"xxx"</span>, <span style="color: #7388d6;">{</span>
+    set<span style="color: #909183;">(</span>v<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        console.log<span style="color: #709870;">(</span><span style="color: #8b2252;">"&#25105;&#35201;&#33719;&#21462;&#23427;&#30340;&#20540;"</span><span style="color: #709870;">)</span>;
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26681;&#25454;&#35774;&#32622;&#30340;&#20540;&#65292;&#21047;&#26032;&#39029;&#38754;</span>
+        <span style="color: #008b8b;">this</span>._xxx = v;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+data.xxx = 3; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25110;&#35302;&#21457;&#19978;&#36848;&#30340; get &#36923;&#36753;</span>
+data.friends<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> = <span style="color: #8b2252;">"A"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">Vue 3</span>
+
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">dataProxy</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Proxy</span><span style="color: #707183;">(</span>data, <span style="color: #7388d6;">{</span>
+    set<span style="color: #909183;">(</span>target, key, value, reciever<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+         <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>key === <span style="color: #8b2252;">"friends"</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+           <span style="color: #b22222;">// </span><span style="color: #b22222;">....</span>
+         <span style="color: #709870;">}</span>
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+data.friends<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> = <span style="color: #8b2252;">"A"</span>;
+dataProxy.friends<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> = <span style="color: #8b2252;">"A"</span>;
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-org8ad9ada" class="outline-2">
 <h2 id="org8ad9ada"><span class="section-number-2">10</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-org404ca37" class="outline-3">
-<h3 id="org404ca37"><span class="section-number-3">10.1</span> 运算符优先级</h3>
+<div id="outline-container-org316b734" class="outline-3">
+<h3 id="org316b734"><span class="section-number-3">10.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 请说出下面运算的结果，并简析原因:

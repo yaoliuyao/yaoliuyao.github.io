@@ -1849,6 +1849,7 @@ Map 传统的 K-V 结构:
   let b = [...new Set(aa)];
 #+end_src
 
+Weak 弱引用:
 #+begin_src js
   const requests = new WeakSet();
 
@@ -1909,6 +1910,54 @@ xxx.files[0]
 #+begin_src js
   let o = JSON.parse("...");
   let o = JSON.parse("...", (k, v) => {});
+#+end_src
+
+** Promise/async
+
+异步非常爽，一不小心就进入了回调地狱:
+#+begin_src js
+  jq({
+    url: xx,
+    success: function() {
+      jq({
+        url: yy,
+        success: function() {
+          jq({
+            url: zz,
+            success: function() {
+              // ....
+            }
+          });
+        }
+      });
+    }
+  });
+#+end_src
+
+类比 Promise 语法:
+#+begin_src js
+  jq({ url: xx })
+    .then(jq({ url: yy }))
+    .then(jq({ url: aa }))
+    .then(jq({ url: bb }))
+    .then(jq({ url: cc }))
+    .then(jq({ url: dd }))
+    .then(jq({ url: ee }))
+    .fail(....);
+#+end_src
+
+ES7 中异步编程的继续演化:
+#+begin_src js
+  async getHistoryData (data) {
+      try {
+          let res = await axios.get('/api/survey/list/', { params: data })
+          this.tableData = res.data.result
+          this.totalData = res.data.count
+      } catch (err) {
+          console.log(err)
+          alert('请求出错！')
+      }
+  }
 #+end_src
 
 * 执行逻辑
@@ -2217,6 +2266,8 @@ Asynchronous Module Definition.
     import * as x from "./c1.js";
     // 将 export default 的默认导出赋值给 y
     import y from "./c1.js";
+    import y from "./c1.js";
+    import y from "./c1.js";
     y();
   </script>
 #+end_src
@@ -2421,6 +2472,39 @@ ES6 中:
 #+begin_src js
   window.onerror = xxx;
   window.addEventListener('error', xxx);
+#+end_src
+
+** Object.defineProperty / Proxy
+
+#+begin_src js
+  var data = {
+      friends: ["aa", "bb"]
+  };
+
+  // Vue 2
+
+  Object.defineProperty(data, "xxx", {
+      set(v) {
+          console.log("我要获取它的值");
+          // 根据设置的值，刷新页面
+          this._xxx = v;
+      }
+  });
+
+  data.xxx = 3; // 或触发上述的 get 逻辑
+  data.friends[1] = "A";
+
+  // Vue 3
+
+  let dataProxy = new Proxy(data, {
+      set(target, key, value, reciever) {
+           if (key === "friends") {
+             // ....
+           }
+      }
+  });
+  data.friends[1] = "A";
+  dataProxy.friends[1] = "A";
 #+end_src
 
 * 问题集锦
