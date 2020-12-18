@@ -108,7 +108,7 @@
 <li><a href="#orgf5f7bc0">4.6.6. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#org404ca37">4.7. 运算符优先级</a></li>
+<li><a href="#org316b734">4.7. 运算符优先级</a></li>
 </ul>
 </li>
 <li><a href="#orgca96e46">5. 标准内置对象 (Global Objects)</a>
@@ -131,10 +131,10 @@
 <li><a href="#org1ee9f95">5.5.1. 补充</a></li>
 </ul>
 </li>
-<li><a href="#org94474e6">5.6. Symbol</a></li>
-<li><a href="#orga3d001d">5.7. Set/Map/WeakSet/WeakMap</a></li>
-<li><a href="#orga9b8889">5.8. ArrayBuffer/TypedArray/DataView</a></li>
-<li><a href="#orgf1f8645">5.9. JSON</a></li>
+<li><a href="#orgf1f8645">5.6. JSON</a></li>
+<li><a href="#org94474e6">5.7. Symbol</a></li>
+<li><a href="#orga3d001d">5.8. Set/Map/WeakSet/WeakMap</a></li>
+<li><a href="#org593b7ea">5.9. ArrayBuffer/DataView</a></li>
 <li><a href="#orgefd05f4">5.10. Promise/async</a></li>
 </ul>
 </li>
@@ -181,7 +181,7 @@
 </li>
 <li><a href="#org8ad9ada">10. 问题集锦</a>
 <ul>
-<li><a href="#org316b734">10.1. 运算符优先级</a></li>
+<li><a href="#org7d16e5c">10.1. 运算符优先级</a></li>
 <li><a href="#orgffc8f3f">10.2. 正则表达式</a></li>
 <li><a href="#org1648f72">10.3. 从文件名取后缀名</a></li>
 <li><a href="#org6b87afa">10.4. undefine/null</a></li>
@@ -1136,7 +1136,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org30cd50e">
+<pre class="example" id="org209241a">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1653,7 +1653,7 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="orga113277">
+<figure id="orgeec625b">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
@@ -2143,11 +2143,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-org404ca37" class="outline-3">
-<h3 id="org404ca37"><span class="section-number-3">4.7</span> 运算符优先级</h3>
+<div id="outline-container-org316b734" class="outline-3">
+<h3 id="org316b734"><span class="section-number-3">4.7</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="org109834d">
+<figure id="org0483e74">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2487,9 +2487,46 @@ a{2}bc[abc]{2,5}
 </div>
 </div>
 
-<div id="outline-container-org94474e6" class="outline-3">
-<h3 id="org94474e6"><span class="section-number-3">5.6</span> Symbol</h3>
+<div id="outline-container-orgf1f8645" class="outline-3">
+<h3 id="orgf1f8645"><span class="section-number-3">5.6</span> JSON</h3>
 <div class="outline-text-3" id="text-5-6">
+<p>
+序列化:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span>
+    name: <span style="color: #8b2252;">"xxx"</span>, age: 19
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#36873;&#30340;&#36807;&#28388;&#36873;&#39033;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"name"</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">(</span>key, value<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>key === <span style="color: #8b2252;">"age"</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">return</span> value &lt; 1 ? 1 : value + 3;
+    <span style="color: #909183;">}</span>
+    <span style="color: #a020f0;">return</span> value;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#36873;&#30340;&#32553;&#36827;&#35774;&#32622;</span>
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"name"</span><span style="color: #7388d6;">]</span>, 2<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"name"</span><span style="color: #7388d6;">]</span>, <span style="color: #8b2252;">'+++'</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+反序列化:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">o</span> = JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">o</span> = JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span>, <span style="color: #7388d6;">(</span>k, v<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{}</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org94474e6" class="outline-3">
+<h3 id="org94474e6"><span class="section-number-3">5.7</span> Symbol</h3>
+<div class="outline-text-3" id="text-5-7">
 <p>
 唯一性。
 </p>
@@ -2510,8 +2547,8 @@ OrderStatus.INIT;
 </div>
 
 <div id="outline-container-orga3d001d" class="outline-3">
-<h3 id="orga3d001d"><span class="section-number-3">5.7</span> Set/Map/WeakSet/WeakMap</h3>
-<div class="outline-text-3" id="text-5-7">
+<h3 id="orga3d001d"><span class="section-number-3">5.8</span> Set/Map/WeakSet/WeakMap</h3>
+<div class="outline-text-3" id="text-5-8">
 <p>
 Set 集合，唯一无序:
 </p>
@@ -2596,9 +2633,9 @@ test<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-orga9b8889" class="outline-3">
-<h3 id="orga9b8889"><span class="section-number-3">5.8</span> ArrayBuffer/TypedArray/DataView</h3>
-<div class="outline-text-3" id="text-5-8">
+<div id="outline-container-org593b7ea" class="outline-3">
+<h3 id="org593b7ea"><span class="section-number-3">5.9</span> ArrayBuffer/DataView</h3>
+<div class="outline-text-3" id="text-5-9">
 <p>
 &lt;input type=file id=xxx&gt;
 </p>
@@ -2606,43 +2643,6 @@ test<span style="color: #707183;">()</span>;
 <p>
 xxx.files[0]
 </p>
-</div>
-</div>
-
-<div id="outline-container-orgf1f8645" class="outline-3">
-<h3 id="orgf1f8645"><span class="section-number-3">5.9</span> JSON</h3>
-<div class="outline-text-3" id="text-5-9">
-<p>
-序列化:
-</p>
-<div class="org-src-container">
-<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span>
-    name: <span style="color: #8b2252;">"xxx"</span>, age: 19
-<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#36873;&#30340;&#36807;&#28388;&#36873;&#39033;</span>
-<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"name"</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">(</span>key, value<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{</span>
-    <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>key === <span style="color: #8b2252;">"age"</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
-        <span style="color: #a020f0;">return</span> value &lt; 1 ? 1 : value + 3;
-    <span style="color: #909183;">}</span>
-    <span style="color: #a020f0;">return</span> value;
-<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#36873;&#30340;&#32553;&#36827;&#35774;&#32622;</span>
-<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"name"</span><span style="color: #7388d6;">]</span>, 2<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">jsonStr</span> = JSON.stringify<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> name: <span style="color: #8b2252;">"xxx"</span>, age: 19 <span style="color: #7388d6;">}</span>, <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"name"</span><span style="color: #7388d6;">]</span>, <span style="color: #8b2252;">'+++'</span><span style="color: #707183;">)</span>;
-</pre>
-</div>
-
-<p>
-反序列化:
-</p>
-<div class="org-src-container">
-<pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">o</span> = JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">o</span> = JSON.parse<span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span>, <span style="color: #7388d6;">(</span>k, v<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{}</span><span style="color: #707183;">)</span>;
-</pre>
-</div>
 </div>
 </div>
 
@@ -3461,8 +3461,8 @@ dataProxy.friends<span style="color: #707183;">[</span>1<span style="color: #707
 <h2 id="org8ad9ada"><span class="section-number-2">10</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-org316b734" class="outline-3">
-<h3 id="org316b734"><span class="section-number-3">10.1</span> 运算符优先级</h3>
+<div id="outline-container-org7d16e5c" class="outline-3">
+<h3 id="org7d16e5c"><span class="section-number-3">10.1</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 请说出下面运算的结果，并简析原因:
