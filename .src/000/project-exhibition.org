@@ -55,4 +55,8 @@
 - Vue 商城: https://blog.csdn.net/weixin_33873846/article/details/91434336?utm_medium=distribute.pc_relevant_bbs_down.none-task-blog-baidujs-2.nonecase&depth_1-utm_source=distribute.pc_relevant_bbs_down.none-task-blog-baidujs-2.nonecase
 - Vue 仿小米商城: https://zhuanlan.zhihu.com/p/78088536
 - Vue 项目管理系统: https://cloud.tencent.com/developer/article/1345394
+
+** 需求文档
+
+- https://wenku.baidu.com/view/bd4813c958fb770bf78a55f6.html
   
