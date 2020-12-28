@@ -1,0 +1,109 @@
+#+TITLE: VCS: Git
+
+
+* VCS (版本控制系统)
+
+分类:
+- 集中式 (CVS - SVN)
+- 分布式 (Git)
+
+问题:
+- 两种有啥区别？
+- 请分别叙述两种的优点和缺点。
+
+Git 起源:
+- Linus/Linux
+
+* 基本使用
+** 基本配置
+
+下载完，第一件事，就是打开 git-bash，然后执行如下命令。
+
+这将会配置个人的信息（可以随便填，最好写真的）:
+#+begin_src sh
+  # 注意，要加 --global，那么将会把修改的信息写入到 $HOME/.gitconfig
+  # 如果不加 --global，默认情况下，会文件夹所在项目的配置文件 /e/myblog/.git/config
+  git config --global user.name "xxx"
+  git config --global user.email "xxx@yyy.com"
+#+end_src
+
+** 仓库创建 (repository)
+
+将一个文件夹转换为仓库:
+#+begin_src sh
+  # 将会在文件夹下面生成一个 .git 隐藏文件夹
+  # 这是一个用来记录所有版本的本地数据库
+  # 如果将其删除，那么当前文件夹就不在版本控制下了
+  git init
+#+end_src
+
+从一个已存的仓库克隆一个仓库:
+#+begin_src sh
+  # git clone 地址
+  git clone /e/kaoshi
+  git clone https://github.com/yaollllllsan/aaa.git
+  git clone git@github.com:yaollllllsan/aaa.git
+
+  git clone /e/kaoshi kaoshishaa # 克隆到本文件夹后，更名为 kaoshishaa
+#+end_src
+
+** 版本的添加
+
+首先，在文件夹下面修改若干文件。
+
+然后，执行如下命令，将其记录入版本库:
+#+begin_src sh
+  git add <某个文件的名字>
+  git add aaa/*
+  git add .
+
+  git commit -m "注释"
+  git commit --message "注释"
+  git commit
+
+  git log # 查看日志
+
+  # 注意，使用 git status 可以随时查看当前仓库的状态
+  git status
+#+end_src
+
+VI 的基本使用:
+- 普通模式 (默认):
+  + hjkl 分别对应左、下、上、右
+  + ^ 都表示移动光标到行首，$ 表示移动到行位
+  + 使用 / 或 ? 表示搜索，使用 n 或 N 表示下一个
+  + x 表示删除当前的字符
+  + d 表示删除的前缀, dw/dd, y 表示复制，p 表示将删除的东西粘贴
+  + c 表示替换, cw 表示替换当前单词，cc 表示本行
+  + 使用 u 来表示撤销
+  + 使用 i 切换到编辑模式，a/o/A/O/I 都是切换到编辑模式
+  + 使用 v 进入选择模式
+  + 使用 : 进行命令的输入, :w 保存, :q 退出, :wq 保存并退出, :q! 强制退出
+- 其他模式:
+  + ESC 切换到普通模式
+
+在 git 下面 vi 常用指南:
+- 使用 hjkl 进行光标的移动
+- 使用 i 进入编辑模式，然后输入自己该输入的东西
+- 使用 esc 切换回普通模式
+- 使用 :wq 保存并退出
+
+切换到其他编辑器:
+#+begin_src sh
+  export EDITOR=notepad # 你也可以将此句添加到 $HOME/.bashrc 下面
+#+end_src
+
+** 分支的管理
+
+#+begin_src sh
+  git branch          # 查看分支
+  git branch xxx      # 创建一个名为 xxx 的分支
+  git branch xxx dede # 从地址 dede 处创建一个名为 xxx 的分支
+
+  git checkout xxx    # 切换到分支 xxx
+  git checkout -b yyy # 创建分支 yyy 并切换到 yyy 分支
+
+  git branch -D xxx   # 删除 xxx 分支
+#+end_src
+
+** 其他

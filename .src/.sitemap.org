@@ -39,6 +39,7 @@
   - [[file:Tools/Tomcat.org][Tomcat]]
   - [[file:Tools/VSCode.org][VSCode]]
   - [[file:Tools/eclipse.org][Eclipse]]
+  - [[file:Tools/git.org][VCS: Git]]
   - [[file:Tools/idea.org][Intellij Idea]]
 - roam
   - [[file:roam/20200818082911-记笔记.org][记笔记]]
