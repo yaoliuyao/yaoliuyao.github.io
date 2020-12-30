@@ -147,4 +147,11 @@ VI 的基本使用:
   git remote set-url [origin] https://github.com/yaollllllsan/ddd
 #+end_src
 
+一个大的需求从开发到上线，代码执行的过程:
+1. 需求开发阶段，创建主分支 master / 开发分支 dev / 一些具体的功能分支，进行开发
+2. 需求开发完合并代码阶段，将具体功能分支上的代码合并到开发分支 dev 上
+3. 需求测试阶段，从 dev 分支上拿代码进行测试
+4. 需求正式投产阶段，从 dev 分支上拉出一个 release 分支，用来发布生产代码，投产完成后，合并到 master 分支和 dev 分支上
+5. 需求投产后 bugfix 阶段，需要从 master 分支上拉出 bugfix 分支，用于修改 bug，修改后合并到 master 分支和 dev 分支上
+
 ** 其他
