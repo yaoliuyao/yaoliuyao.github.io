@@ -244,6 +244,30 @@ git checkout master
 git rebase xxx
 </pre>
 </div>
+
+<p>
+远程分支:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">&#40664;&#35748;&#30340; pull/push &#22320;&#22336;: /e/workspace</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">&#40664;&#35748;&#30340; from:to &#24403;&#21069;&#20998;&#25903;&#26159; xxx&#65292;&#25152;&#20197;&#21487;&#20197;&#20889;&#20986;&#22914;&#19979;&#19977;&#31181;</span>
+
+git pull /e/workspace/bbb xxx:xxx
+git pull /e/workspace/bbb xxx
+git pull /e/workspace/bbb
+git pull
+
+git push origin master:xxx
+git push origin
+git push
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">origin &#26159;&#40664;&#35748;&#36828;&#31243;&#20179;&#24211;&#30340;&#21035;&#21517;&#65292;&#26159;&#20026;&#20102;&#31616;&#21270;&#20351;&#29992;&#37319;&#21462;&#30340;&#31574;&#30053;</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">&#20320;&#21487;&#20197;&#36890;&#36807; git remote &#36827;&#34892;&#26597;&#30475;&#65292;&#25110;&#36827;&#34892;&#20462;&#25913;</span>
+git remote -v <span style="color: #b22222;"># </span><span style="color: #b22222;">&#26597;&#30475;&#36828;&#31243;&#22320;&#22336;&#30340;&#21035;&#21517;</span>
+git remote add <span style="color: #707183;">[</span>origin<span style="color: #707183;">]</span> /e/workspace/bbb
+git remote set-url <span style="color: #707183;">[</span>origin<span style="color: #707183;">]</span> https://github.com/yaollllllsan/ddd
+</pre>
+</div>
 </div>
 </div>
 

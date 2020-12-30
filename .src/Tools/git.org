@@ -126,4 +126,25 @@ VI 的基本使用:
   git rebase xxx
 #+end_src
 
+远程分支:
+#+begin_src sh
+  # 默认的 pull/push 地址: /e/workspace
+  # 默认的 from:to 当前分支是 xxx，所以可以写出如下三种
+
+  git pull /e/workspace/bbb xxx:xxx
+  git pull /e/workspace/bbb xxx
+  git pull /e/workspace/bbb
+  git pull
+
+  git push origin master:xxx
+  git push origin
+  git push
+
+  # origin 是默认远程仓库的别名，是为了简化使用采取的策略
+  # 你可以通过 git remote 进行查看，或进行修改
+  git remote -v # 查看远程地址的别名
+  git remote add [origin] /e/workspace/bbb
+  git remote set-url [origin] https://github.com/yaollllllsan/ddd
+#+end_src
+
 ** 其他
