@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-12-28 -->
+<!-- 2020-12-30 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VCS: Git</title>
@@ -208,6 +208,9 @@ VI 的基本使用:
 <div id="outline-container-org1c4beef" class="outline-3">
 <h3 id="org1c4beef"><span class="section-number-3">2.4</span> 分支的管理</h3>
 <div class="outline-text-3" id="text-2-4">
+<p>
+基本管理：
+</p>
 <div class="org-src-container">
 <pre class="src src-sh">git branch          <span style="color: #b22222;"># </span><span style="color: #b22222;">&#26597;&#30475;&#20998;&#25903;</span>
 git branch xxx      <span style="color: #b22222;"># </span><span style="color: #b22222;">&#21019;&#24314;&#19968;&#20010;&#21517;&#20026; xxx &#30340;&#20998;&#25903;</span>
@@ -217,6 +220,28 @@ git checkout xxx    <span style="color: #b22222;"># </span><span style="color: #
 git checkout -b yyy <span style="color: #b22222;"># </span><span style="color: #b22222;">&#21019;&#24314;&#20998;&#25903; yyy &#24182;&#20999;&#25442;&#21040; yyy &#20998;&#25903;</span>
 
 git branch -D xxx   <span style="color: #b22222;"># </span><span style="color: #b22222;">&#21024;&#38500; xxx &#20998;&#25903;</span>
+</pre>
+</div>
+
+<p>
+分支合并:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">&#39318;&#20808;&#65292;&#20999;&#25442;&#21040;&#26576;&#20010;&#20998;&#25903;</span>
+git checkout master
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">&#20854;&#27425;&#65292;&#23558;&#30446;&#26631;&#20998;&#25903;&#30340;&#20462;&#25913;&#21512;&#24182;&#21040;&#24403;&#21069;&#20998;&#25903;</span>
+git merge xxx
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">&#20998;&#25903;&#30340;&#21512;&#24182;&#65292;&#20998;&#19977;&#31181;&#31574;&#30053;:</span>
+<span style="color: #b22222;">## </span><span style="color: #b22222;">1. &#22914;&#26524;&#20174;&#24320;&#21449;&#30340;&#22320;&#26041;&#31639;&#36215;&#65292;&#24403;&#21069;&#20998;&#25903;&#27809;&#26377;&#20570;&#36807;&#20462;&#25913;&#65292;&#37027;&#20040; fast-forward</span>
+<span style="color: #b22222;">## </span><span style="color: #b22222;">2. &#22914;&#26524;&#20174;&#24320;&#21449;&#30340;&#22320;&#26041;&#31639;&#36215;&#65292;&#24403;&#21069;&#20998;&#25903;&#20063;&#20570;&#36807;&#20462;&#25913;&#65292;&#19988;&#20004;&#20010;&#20998;&#25903;&#27809;&#26377;&#20914;&#31361;&#65292;&#20250;&#33258;&#21160;&#21512;&#24182;</span>
+<span style="color: #b22222;">## </span><span style="color: #b22222;">3. &#21542;&#21017;&#65292;&#20250;&#21512;&#24182;&#22833;&#36133;&#65292;&#24182;&#22312;&#23384;&#22312;&#20914;&#31361;&#30340;&#25991;&#20214;&#20013;&#22686;&#21152;&#30456;&#20851;&#26631;&#24535;&#12290;&#21518;&#32493;&#38656;&#35201;&#20320;&#25163;&#21160;&#35299;&#20915;&#20914;&#31361;</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">&#21478;&#22806;&#65292;&#38500;&#20102; git merge&#65292;&#36824;&#21487;&#20197;&#20351;&#29992; git rebase &#36827;&#34892;&#21512;&#24182;</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">&#20248;&#28857;&#26159;&#65292;&#19981;&#20250;&#39069;&#22806;&#22686;&#21152;&#25552;&#20132;&#35760;&#24405;&#65292;&#27905;&#30294;&#32773;&#30340;&#31119;&#38899;</span>
+git checkout master
+git rebase xxx
 </pre>
 </div>
 </div>
@@ -229,7 +254,7 @@ git branch -D xxx   <span style="color: #b22222;"># </span><span style="color: #
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-12-28</p>
+<p class="date">Created: 2020-12-30</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

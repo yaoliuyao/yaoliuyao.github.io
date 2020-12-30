@@ -95,6 +95,7 @@ VI 的基本使用:
 
 ** 分支的管理
 
+基本管理：
 #+begin_src sh
   git branch          # 查看分支
   git branch xxx      # 创建一个名为 xxx 的分支
@@ -104,6 +105,25 @@ VI 的基本使用:
   git checkout -b yyy # 创建分支 yyy 并切换到 yyy 分支
 
   git branch -D xxx   # 删除 xxx 分支
+#+end_src
+
+分支合并:
+#+begin_src sh
+  # 首先，切换到某个分支
+  git checkout master
+
+  # 其次，将目标分支的修改合并到当前分支
+  git merge xxx
+
+  # 分支的合并，分三种策略:
+  ## 1. 如果从开叉的地方算起，当前分支没有做过修改，那么 fast-forward
+  ## 2. 如果从开叉的地方算起，当前分支也做过修改，且两个分支没有冲突，会自动合并
+  ## 3. 否则，会合并失败，并在存在冲突的文件中增加相关标志。后续需要你手动解决冲突
+
+  # 另外，除了 git merge，还可以使用 git rebase 进行合并
+  # 优点是，不会额外增加提交记录，洁癖者的福音
+  git checkout master
+  git rebase xxx
 #+end_src
 
 ** 其他
