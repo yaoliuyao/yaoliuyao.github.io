@@ -47,7 +47,7 @@
 <li><a href="#org718388c">2.2. 仓库创建 (repository)</a></li>
 <li><a href="#org1409d10">2.3. 版本的添加</a></li>
 <li><a href="#org1c4beef">2.4. 分支的管理</a></li>
-<li><a href="#org57c6ffc">2.5. 远程分支</a></li>
+<li><a href="#org5b1e98c">2.5. 远程仓库及分支</a></li>
 <li><a href="#orgbbf5d10">2.6. 其他</a></li>
 </ul>
 </li>
@@ -103,6 +103,25 @@ Git 起源:
 <span style="color: #b22222;"># </span><span style="color: #b22222;">&#22914;&#26524;&#19981;&#21152; --global&#65292;&#40664;&#35748;&#24773;&#20917;&#19979;&#65292;&#20250;&#25991;&#20214;&#22841;&#25152;&#22312;&#39033;&#30446;&#30340;&#37197;&#32622;&#25991;&#20214; /e/myblog/.git/config</span>
 git config --global user.name <span style="color: #8b2252;">"xxx"</span>
 git config --global user.email <span style="color: #8b2252;">"xxx@yyy.com"</span>
+</pre>
+</div>
+
+<p>
+别名:
+</p>
+<div class="org-src-container">
+<pre class="src src-conf"># git config [--global] alias.loga <span style="color: #8b2252;">'log --pretty=format:"%h %ad |%s %d[%an]" --graph --date=short'</span>
+
+# .git/config &#25110; ~/.gitconfig
+[<span style="color: #228b22;">alias</span>]
+    <span style="color: #a0522d;">s</span> = status
+    <span style="color: #a0522d;">b</span> = branch
+    <span style="color: #a0522d;">co</span> = checkout
+    <span style="color: #a0522d;">ci</span> = commit
+    <span style="color: #a0522d;">loga</span> = log --pretty=format:\"%h %ad |%s %d[%an]\" --graph --date=short
+    <span style="color: #a0522d;">logb</span> = log --graph --abbrev-commit --decorate --date=relative --format=format:<span style="color: #8b2252;">'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'</span> --all
+    <span style="color: #a0522d;">lastlog</span> = log --name-status ORIG_HEAD..
+    <span style="color: #a0522d;">lastdiff</span> = diff --name-status ORIG_HEAD..
 </pre>
 </div>
 </div>
@@ -246,7 +265,7 @@ git rebase xxx
 </div>
 
 <p>
-一个大的需求从开发到上线，代码执行的过程:
+一个大的需求从开发到上线，过程:
 </p>
 <ol class="org-ol">
 <li>需求开发阶段，创建主分支 master / 开发分支 dev / 一些具体的功能分支，进行开发</li>
@@ -258,8 +277,8 @@ git rebase xxx
 </div>
 </div>
 
-<div id="outline-container-org57c6ffc" class="outline-3">
-<h3 id="org57c6ffc"><span class="section-number-3">2.5</span> 远程分支</h3>
+<div id="outline-container-org5b1e98c" class="outline-3">
+<h3 id="org5b1e98c"><span class="section-number-3">2.5</span> 远程仓库及分支</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">&#40664;&#35748;&#30340; pull/push &#22320;&#22336;: /e/workspace</span>
@@ -268,11 +287,15 @@ git rebase xxx
 git pull /e/workspace/bbb xxx:xxx
 git pull /e/workspace/bbb xxx
 git pull /e/workspace/bbb
+git pull origin
 git pull
 
+git push /e/workspace/bbb master:xxx
 git push origin master:xxx
-git push origin
 git push
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">clone &#30456;&#24403;&#20110; git init &amp;&amp; git remote add origin path &amp;&amp; git fetch &amp;&amp; git merge</span>
+git clone /e/workspace/bbb
 
 <span style="color: #b22222;"># </span><span style="color: #b22222;">origin &#26159;&#40664;&#35748;&#36828;&#31243;&#20179;&#24211;&#30340;&#21035;&#21517;&#65292;&#26159;&#20026;&#20102;&#31616;&#21270;&#20351;&#29992;&#37319;&#21462;&#30340;&#31574;&#30053;</span>
 <span style="color: #b22222;"># </span><span style="color: #b22222;">&#20320;&#21487;&#20197;&#36890;&#36807; git remote &#36827;&#34892;&#26597;&#30475;&#65292;&#25110;&#36827;&#34892;&#20462;&#25913;</span>
@@ -286,6 +309,19 @@ git remote set-url <span style="color: #707183;">[</span>origin<span style="colo
 
 <div id="outline-container-orgbbf5d10" class="outline-3">
 <h3 id="orgbbf5d10"><span class="section-number-3">2.6</span> 其他</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+常用命令:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git status <span style="color: #b22222;"># </span><span style="color: #b22222;">&#26597;&#30475;&#29366;&#24577;</span>
+git log    <span style="color: #b22222;"># </span><span style="color: #b22222;">&#26597;&#30475;&#26085;&#24535;</span>
+git diff   <span style="color: #b22222;"># </span><span style="color: #b22222;">&#26597;&#30475;&#24037;&#20316;&#21306;&#30340;&#21464;&#21160;</span>
+git show   <span style="color: #b22222;"># </span><span style="color: #b22222;">&#26597;&#30475;&#19978;&#19968;&#27425;&#20462;&#25913;&#30340;&#35814;&#24773;</span>
+git reflog <span style="color: #b22222;"># </span><span style="color: #b22222;">&#26597;&#30475;&#25152;&#26377;&#20998;&#25903;&#21464;&#21270;&#24773;&#20917;</span>
+</pre>
+</div>
+</div>
 </div>
 </section>
 </div>

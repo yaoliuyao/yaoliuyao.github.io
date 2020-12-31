@@ -27,6 +27,22 @@ Git 起源:
   git config --global user.email "xxx@yyy.com"
 #+end_src
 
+别名:
+#+begin_src conf
+  # git config [--global] alias.loga 'log --pretty=format:"%h %ad |%s %d[%an]" --graph --date=short'
+
+  # .git/config 或 ~/.gitconfig
+  [alias]
+      s = status
+      b = branch
+      co = checkout
+      ci = commit
+      loga = log --pretty=format:\"%h %ad |%s %d[%an]\" --graph --date=short
+      logb = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+      lastlog = log --name-status ORIG_HEAD..
+      lastdiff = diff --name-status ORIG_HEAD..
+#+end_src
+
 ** 仓库创建 (repository)
 
 将一个文件夹转换为仓库:
@@ -125,14 +141,14 @@ VI 的基本使用:
   git rebase xxx
 #+end_src
 
-一个大的需求从开发到上线，代码执行的过程:
+一个大的需求从开发到上线，过程:
 1. 需求开发阶段，创建主分支 master / 开发分支 dev / 一些具体的功能分支，进行开发
 2. 需求开发完合并代码阶段，将具体功能分支上的代码合并到开发分支 dev 上
 3. 需求测试阶段，从 dev 分支上拿代码进行测试
 4. 需求正式投产阶段，从 dev 分支上拉出一个 release 分支，用来发布生产代码，投产完成后，合并到 master 分支和 dev 分支上
 5. 需求投产后 bugfix 阶段，需要从 master 分支上拉出 bugfix 分支，用于修改 bug，修改后合并到 master 分支和 dev 分支上
 
-** 远程分支
+** 远程仓库及分支
 
 #+begin_src sh
   # 默认的 pull/push 地址: /e/workspace
@@ -141,11 +157,15 @@ VI 的基本使用:
   git pull /e/workspace/bbb xxx:xxx
   git pull /e/workspace/bbb xxx
   git pull /e/workspace/bbb
+  git pull origin
   git pull
 
+  git push /e/workspace/bbb master:xxx
   git push origin master:xxx
-  git push origin
   git push
+
+  # clone 相当于 git init && git remote add origin path && git fetch && git merge
+  git clone /e/workspace/bbb
 
   # origin 是默认远程仓库的别名，是为了简化使用采取的策略
   # 你可以通过 git remote 进行查看，或进行修改
@@ -155,3 +175,12 @@ VI 的基本使用:
 #+end_src
 
 ** 其他
+
+常用命令:
+#+begin_src sh
+  git status # 查看状态
+  git log    # 查看日志
+  git diff   # 查看工作区的变动
+  git show   # 查看上一次修改的详情
+  git reflog # 查看所有分支变化情况
+#+end_src
