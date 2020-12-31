@@ -184,3 +184,25 @@ VI 的基本使用:
   git show   # 查看上一次修改的详情
   git reflog # 查看所有分支变化情况
 #+end_src
+
+版本号:
+- 默认是 32 位长度的随机字符串
+- 在 git branch 等命令中，可以使用前若干位来表示某个版本
+
+版本的回撤:
+#+begin_src sh
+  git reset 3c36         # 只是将提交记录删除了，对应的文件还保留在工作区
+  git reset --mixed 3c36 # 上述的默认行为，实质就是 mixed 参数的结果
+  git reset --soft 3c36  # 只是将提交记录删除了，对应的文件还保留在缓冲区
+  git reset --hard 3c36  # 不仅删除提交记录，也会清空工作区
+
+  # 使用版本号的快捷方式
+  git reset HEAD^  # HEAD 是当前最新那个提交版本的别名; ^ 代表上一个; ~ 指定前 n 个版本
+  # HEAD / HEAD^ / HEAD^^ / HEAD^^^^^^^^^^^^ / HEAD~12
+#+end_src
+
+工作区的清理:
+#+begin_src sh
+  git checkout .  # 会将修改过的文件给清理掉。restore
+  git clean -fd   # 删除未跟踪的文件、文件夹
+#+end_src
