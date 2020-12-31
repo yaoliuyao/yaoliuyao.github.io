@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-12-30 -->
+<!-- 2020-12-31 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VCS: Git</title>
@@ -47,7 +47,8 @@
 <li><a href="#org718388c">2.2. 仓库创建 (repository)</a></li>
 <li><a href="#org1409d10">2.3. 版本的添加</a></li>
 <li><a href="#org1c4beef">2.4. 分支的管理</a></li>
-<li><a href="#orgbbf5d10">2.5. 其他</a></li>
+<li><a href="#org57c6ffc">2.5. 远程分支</a></li>
+<li><a href="#orgbbf5d10">2.6. 其他</a></li>
 </ul>
 </li>
 </ul>
@@ -224,12 +225,11 @@ git branch -D xxx   <span style="color: #b22222;"># </span><span style="color: #
 </div>
 
 <p>
-分支合并:
+分支合并 (三种方式: merge/rebase/cherry-pick):
 </p>
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">&#39318;&#20808;&#65292;&#20999;&#25442;&#21040;&#26576;&#20010;&#20998;&#25903;</span>
 git checkout master
-
 <span style="color: #b22222;"># </span><span style="color: #b22222;">&#20854;&#27425;&#65292;&#23558;&#30446;&#26631;&#20998;&#25903;&#30340;&#20462;&#25913;&#21512;&#24182;&#21040;&#24403;&#21069;&#20998;&#25903;</span>
 git merge xxx
 
@@ -246,8 +246,21 @@ git rebase xxx
 </div>
 
 <p>
-远程分支:
+一个大的需求从开发到上线，代码执行的过程:
 </p>
+<ol class="org-ol">
+<li>需求开发阶段，创建主分支 master / 开发分支 dev / 一些具体的功能分支，进行开发</li>
+<li>需求开发完合并代码阶段，将具体功能分支上的代码合并到开发分支 dev 上</li>
+<li>需求测试阶段，从 dev 分支上拿代码进行测试</li>
+<li>需求正式投产阶段，从 dev 分支上拉出一个 release 分支，用来发布生产代码，投产完成后，合并到 master 分支和 dev 分支上</li>
+<li>需求投产后 bugfix 阶段，需要从 master 分支上拉出 bugfix 分支，用于修改 bug，修改后合并到 master 分支和 dev 分支上</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org57c6ffc" class="outline-3">
+<h3 id="org57c6ffc"><span class="section-number-3">2.5</span> 远程分支</h3>
+<div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">&#40664;&#35748;&#30340; pull/push &#22320;&#22336;: /e/workspace</span>
 <span style="color: #b22222;"># </span><span style="color: #b22222;">&#40664;&#35748;&#30340; from:to &#24403;&#21069;&#20998;&#25903;&#26159; xxx&#65292;&#25152;&#20197;&#21487;&#20197;&#20889;&#20986;&#22914;&#19979;&#19977;&#31181;</span>
@@ -268,28 +281,17 @@ git remote add <span style="color: #707183;">[</span>origin<span style="color: #
 git remote set-url <span style="color: #707183;">[</span>origin<span style="color: #707183;">]</span> https://github.com/yaollllllsan/ddd
 </pre>
 </div>
-
-<p>
-一个大的需求从开发到上线，代码执行的过程:
-</p>
-<ol class="org-ol">
-<li>需求开发阶段，创建主分支 master / 开发分支 dev / 一些具体的功能分支，进行开发</li>
-<li>需求开发完合并代码阶段，将具体功能分支上的代码合并到开发分支 dev 上</li>
-<li>需求测试阶段，从 dev 分支上拿代码进行测试</li>
-<li>需求正式投产阶段，从 dev 分支上拉出一个 release 分支，用来发布生产代码，投产完成后，合并到 master 分支和 dev 分支上</li>
-<li>需求投产后 bugfix 阶段，需要从 master 分支上拉出 bugfix 分支，用于修改 bug，修改后合并到 master 分支和 dev 分支上</li>
-</ol>
 </div>
 </div>
 
 <div id="outline-container-orgbbf5d10" class="outline-3">
-<h3 id="orgbbf5d10"><span class="section-number-3">2.5</span> 其他</h3>
+<h3 id="orgbbf5d10"><span class="section-number-3">2.6</span> 其他</h3>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-12-30</p>
+<p class="date">Created: 2020-12-31</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
