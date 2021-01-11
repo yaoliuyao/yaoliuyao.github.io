@@ -1,0 +1,31 @@
+#+TITLE: 期末考试
+
+
+* 模拟题
+
+[[file:img/exam.png]]
+
+
+
+要求:
+- 使用技术:
+  + 工具: eclipse/idea
+  + 后台: Java/Servlet, SQLServer, TOMCAT
+  + 前端: Vue (可以使用 bootstrap 进行样式渲染)，不要用脚手架
+- 数据库对象:
+  + CUP (杯子)
+  + 需要有自增的 id，需要能处理 price 和 date
+- 后台:
+  + 创建合理的包结构 (com.xxx.yy.web/dao/service/filter/bean 等)
+  + 务必: 添加编码过滤器和跨域过滤器
+  + 务必: 根据数据库对象创建对应的正确的 Java Bean 对象
+  + 务必: 正确写好 Servlet 处理逻辑和 dao 处理逻辑
+- 前端:
+  + 直接创建 xxx.html 文件并使用 script 引入 vue.js 和 axios.js，*不要用脚手架*
+  + JS 的逻辑一定要完善:
+     * 提交之前要有确认
+     * 成功之后要有提醒
+     * 出现错误要有提示
+  + 使用 axios 进行异步提交
+  + 可以将 bootstrap 或其他 css 框架添加进项目渲染样式
+  
