@@ -1,4 +1,4 @@
-#+TITLE: 课本上的课后题
+#+TITLE: 课后题 (JS)
 
 
 
@@ -624,6 +624,7 @@ document.write 不建议大家平时使用。效率低，有安全问题。
     </script>
   </body>
 #+end_src
+
 ** 点击更改背景色 (Page 103)
 
 #+begin_src html

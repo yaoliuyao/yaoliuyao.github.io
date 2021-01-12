@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-01-12 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>课后题 (jQuery)</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">课后题 (jQuery)</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0bbab0b">1. 第一章</a></li>
+<li><a href="#orgf902e17">2. 第二章</a></li>
+<li><a href="#org50a902e">3. 第三章</a></li>
+<li><a href="#orgbe37caf">4. 第四章</a></li>
+<li><a href="#org28a6370">5. 第五章</a></li>
+<li><a href="#org375600f">6. 第六章</a></li>
+<li><a href="#org3e4b971">7. 第七章</a></li>
+</ul>
+</div>
+</nav>
+
+
+<section id="outline-container-org0bbab0b" class="outline-2">
+<h2 id="org0bbab0b"><span class="section-number-2">1</span> 第一章</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+实操题 (P47):
+</p>
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #a020f0;">!doctype</span> html&gt;
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">html</span> <span style="color: #a0522d;">lang</span>=<span style="color: #8b2252;">"en"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">meta</span> <span style="color: #a0522d;">charset</span>=<span style="color: #8b2252;">"UTF-8"</span>/<span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+     <span style="color: #0000ff;">tr:nth-child</span><span style="color: #707183;">(</span><span style="color: #0000ff;">odd</span><span style="color: #707183;">)</span><span style="color: #0000ff;"> </span><span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">background</span>: <span style="color: #000000; background-color: #ddd;">#ddd</span>;
+     <span style="color: #707183;">}</span>
+     <span style="color: #0000ff;">table </span><span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">width</span>: 400px;
+     <span style="color: #707183;">}</span>
+     <span style="color: #0000ff;">.bg </span><span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">display</span>: flex;
+       <span style="color: #a020f0;">justify-content</span>: space-around;
+     <span style="color: #707183;">}</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">table</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"tbl"</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">thead</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;&lt;</span><span style="color: #0000ff;">input</span> <span style="color: #a0522d;">type</span>=<span style="color: #8b2252;">"checkbox"</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"ca"</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>&#32534;&#21495;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>&#20219;&#21153;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>&#29366;&#24577;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>&#25805;&#20316;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">thead</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tbody</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tbody</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">table</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+     <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">data</span> = <span style="color: #707183;">[</span>
+       <span style="color: #7388d6;">{</span>id: 101, task: <span style="color: #8b2252;">'&#19978;&#35838;'</span>, status: 1<span style="color: #7388d6;">}</span>,
+       <span style="color: #7388d6;">{</span>id: 102, task: <span style="color: #8b2252;">'&#30561;&#35273;'</span>, status: 0<span style="color: #7388d6;">}</span>,
+       <span style="color: #7388d6;">{</span>id: 103, task: <span style="color: #8b2252;">'&#25171;&#28216;&#25103;'</span>, status: 0<span style="color: #7388d6;">}</span>
+     <span style="color: #707183;">]</span>;
+     <span style="color: #a020f0;">function</span> <span style="color: #0000ff;">renderTasks</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">result</span> = <span style="color: #8b2252;">''</span>;
+       <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">i</span> = 0; i &lt; data.length; i++<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+         <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">task</span> = data<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+         result += <span style="color: #8b2252;">`</span>
+<span style="color: #8b2252;">           &lt;tr data-id='${task.id}'&gt;</span>
+<span style="color: #8b2252;">             &lt;td&gt;&lt;input type=checkbox value=${task.id} class='cb'&gt;&lt;/td&gt;</span>
+<span style="color: #8b2252;">             &lt;td&gt;${task.id}&lt;/td&gt;</span>
+<span style="color: #8b2252;">             &lt;td&gt;${task.task}&lt;/td&gt;</span>
+<span style="color: #8b2252;">             &lt;td&gt;${task.status === 0 ? '&#26410;&#23436;&#25104;' : '&#24050;&#23436;&#25104;'}&lt;/td&gt;</span>
+<span style="color: #8b2252;">             &lt;td class=bg&gt;</span>
+<span style="color: #8b2252;">               &lt;a href='#' class=del&gt;&#21024;&#38500;&lt;/a&gt;</span>
+<span style="color: #8b2252;">               &lt;a href='#' class=arch&gt;${task.status === 0 ? '&#23436;&#25104;' : '&#26410;&#23436;&#25104;'}&lt;/a&gt;</span>
+<span style="color: #8b2252;">               &lt;a href='#'&gt;&#32534;&#36753;&lt;/a&gt;&lt;/td&gt;</span>
+<span style="color: #8b2252;">           &lt;/tr&gt;</span>
+<span style="color: #8b2252;">         `</span>;
+       <span style="color: #7388d6;">}</span>
+       document.querySelector<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'.tbl tbody'</span><span style="color: #7388d6;">)</span>.innerHTML = result;
+     <span style="color: #707183;">}</span>
+     <span style="color: #a020f0;">function</span> <span style="color: #0000ff;">bindEvents</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">tbl</span> = document.querySelector<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'.tbl'</span><span style="color: #7388d6;">)</span>;
+       tbl.addEventListener<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'click'</span>, <span style="color: #909183;">(</span>e<span style="color: #909183;">)</span> =&gt; <span style="color: #909183;">{</span>
+         <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>e.target.classList.contains<span style="color: #907373;">(</span><span style="color: #8b2252;">'ca'</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+           <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">cbs</span> = document.querySelectorAll<span style="color: #907373;">(</span><span style="color: #8b2252;">'.cb'</span><span style="color: #907373;">)</span>;
+           <span style="color: #a020f0;">for</span> <span style="color: #907373;">(</span><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">i</span> = 0; i &lt; cbs.length; i++<span style="color: #907373;">)</span> <span style="color: #907373;">{</span>
+             cbs<span style="color: #6276ba;">[</span>i<span style="color: #6276ba;">]</span>.checked = !cbs<span style="color: #6276ba;">[</span>i<span style="color: #6276ba;">]</span>.checked;
+           <span style="color: #907373;">}</span>
+           <span style="color: #a020f0;">return</span>;
+         <span style="color: #709870;">}</span>
+         <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>e.target.classList.contains<span style="color: #907373;">(</span><span style="color: #8b2252;">'del'</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+           <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">id</span> = e.target.parentNode.parentNode.dataset.id;
+           data = data.filter<span style="color: #907373;">(</span>v =&gt; v.id != id<span style="color: #907373;">)</span>;
+           renderTasks<span style="color: #907373;">()</span>;
+           <span style="color: #a020f0;">return</span>;
+         <span style="color: #709870;">}</span>
+         <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>e.target.classList.contains<span style="color: #907373;">(</span><span style="color: #8b2252;">'arch'</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+           <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">id</span> = e.target.parentNode.parentNode.dataset.id;
+           <span style="color: #a020f0;">for</span> <span style="color: #907373;">(</span><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">i</span> = 0; i &lt; data.length; i++<span style="color: #907373;">)</span> <span style="color: #907373;">{</span>
+             <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">task</span> = data<span style="color: #6276ba;">[</span>i<span style="color: #6276ba;">]</span>;
+             <span style="color: #a020f0;">if</span> <span style="color: #6276ba;">(</span>task.id == id<span style="color: #6276ba;">)</span> <span style="color: #6276ba;">{</span>
+               task.status = task.status == 0 ? 1 : 0;
+               renderTasks<span style="color: #858580;">()</span>;
+               <span style="color: #a020f0;">return</span>;
+             <span style="color: #6276ba;">}</span>
+           <span style="color: #907373;">}</span>
+         <span style="color: #709870;">}</span>
+       <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+       <span style="color: #707183;">}</span>
+     renderTasks<span style="color: #707183;">()</span>;
+     bindEvents<span style="color: #707183;">()</span>;
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgf902e17" class="outline-2">
+<h2 id="orgf902e17"><span class="section-number-2">2</span> 第二章</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+代码题 (P82):
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">Student</span> <span style="color: #707183;">(</span> <span style="color: #a0522d;">properties</span> <span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  <span style="color: #008b8b;">this</span>.name = properties.name;
+  <span style="color: #008b8b;">this</span>.age = properties.age;
+  <span style="color: #008b8b;">this</span>.uid = properties.uid;
+  <span style="color: #008b8b;">this</span>.sex = properties.sex;
+  <span style="color: #008b8b;">this</span>.getname = <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>;
+  <span style="color: #008b8b;">this</span>.setname = <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>;
+  <span style="color: #008b8b;">this</span>.getuid =  <span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org50a902e" class="outline-2">
+<h2 id="org50a902e"><span class="section-number-2">3</span> 第三章</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+P123:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">Data.<span style="color: #008b8b;">prototype</span>.formate = <span style="color: #a020f0;">function</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">fmt</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">yyyymmddwhhmiss</span> = <span style="color: #b22222;">// </span><span style="color: #b22222;">"2020&#24180;6&#26376;8&#26085;(1) 19:16:9"</span>
+        d.getFullYear<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">'&#24180;'</span>
+        + <span style="color: #7388d6;">(</span>d.getMonth<span style="color: #909183;">()</span> + 1<span style="color: #7388d6;">)</span> + <span style="color: #8b2252;">'&#26376;'</span>
+        + d.getDate<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">'&#26085;'</span>
+        + <span style="color: #8b2252;">'('</span> + d.getDay<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">') '</span>
+        + d.getHours<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">':'</span>
+        + d.getMinutes<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">':'</span>
+        + d.getSeconds<span style="color: #7388d6;">()</span>;
+    <span style="color: #a020f0;">return</span> yyyymmddwhhmiss;
+<span style="color: #707183;">}</span>;
+<span style="color: #a020f0;">new</span> <span style="color: #228b22;">Date</span><span style="color: #707183;">()</span>.formate<span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgbe37caf" class="outline-2">
+<h2 id="orgbe37caf"><span class="section-number-2">4</span> 第四章</h2>
+</section>
+<section id="outline-container-org28a6370" class="outline-2">
+<h2 id="org28a6370"><span class="section-number-2">5</span> 第五章</h2>
+</section>
+<section id="outline-container-org375600f" class="outline-2">
+<h2 id="org375600f"><span class="section-number-2">6</span> 第六章</h2>
+</section>
+<section id="outline-container-org3e4b971" class="outline-2">
+<h2 id="org3e4b971"><span class="section-number-2">7</span> 第七章</h2>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-01-12</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>

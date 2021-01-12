@@ -1,0 +1,137 @@
+#+TITLE: 课后题 (jQuery)
+
+
+* 第一章
+
+实操题 (P47):
+#+begin_src html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <title>Document</title>
+      <style>
+       tr:nth-child(odd) {
+         background: #ddd;
+       }
+       table {
+         width: 400px;
+       }
+       .bg {
+         display: flex;
+         justify-content: space-around;
+       }
+      </style>
+    </head>
+    <body>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th><input type="checkbox" class="ca"></th>
+            <th>编号</th>
+            <th>任务</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <script>
+       var data = [
+         {id: 101, task: '上课', status: 1},
+         {id: 102, task: '睡觉', status: 0},
+         {id: 103, task: '打游戏', status: 0}
+       ];
+       function renderTasks() {
+         var result = '';
+         for (var i = 0; i < data.length; i++) {
+           var task = data[i];
+           result += `
+             <tr data-id='${task.id}'>
+               <td><input type=checkbox value=${task.id} class='cb'></td>
+               <td>${task.id}</td>
+               <td>${task.task}</td>
+               <td>${task.status === 0 ? '未完成' : '已完成'}</td>
+               <td class=bg>
+                 <a href='#' class=del>删除</a>
+                 <a href='#' class=arch>${task.status === 0 ? '完成' : '未完成'}</a>
+                 <a href='#'>编辑</a></td>
+             </tr>
+           `;
+         }
+         document.querySelector('.tbl tbody').innerHTML = result;
+       }
+       function bindEvents() {
+         var tbl = document.querySelector('.tbl');
+         tbl.addEventListener('click', (e) => {
+           if (e.target.classList.contains('ca')) {
+             var cbs = document.querySelectorAll('.cb');
+             for (var i = 0; i < cbs.length; i++) {
+               cbs[i].checked = !cbs[i].checked;
+             }
+             return;
+           }
+           if (e.target.classList.contains('del')) {
+             var id = e.target.parentNode.parentNode.dataset.id;
+             data = data.filter(v => v.id != id);
+             renderTasks();
+             return;
+           }
+           if (e.target.classList.contains('arch')) {
+             var id = e.target.parentNode.parentNode.dataset.id;
+             for (var i = 0; i < data.length; i++) {
+               var task = data[i];
+               if (task.id == id) {
+                 task.status = task.status == 0 ? 1 : 0;
+                 renderTasks();
+                 return;
+               }
+             }
+           }
+         });
+         }
+       renderTasks();
+       bindEvents();
+      </script>
+    </body>
+  </html>
+#+end_src
+
+* 第二章
+
+代码题 (P82):
+#+begin_src js
+  function Student ( properties ) {
+    this.name = properties.name;
+    this.age = properties.age;
+    this.uid = properties.uid;
+    this.sex = properties.sex;
+    this.getname = function () {};
+    this.setname = function () {};
+    this.getuid =  function () {};
+  }
+#+end_src
+
+* 第三章
+
+P123:
+#+begin_src js
+  Data.prototype.formate = function (fmt) {
+      var yyyymmddwhhmiss = // "2020年6月8日(1) 19:16:9"
+          d.getFullYear() + '年'
+          + (d.getMonth() + 1) + '月'
+          + d.getDate() + '日'
+          + '(' + d.getDay() + ') '
+          + d.getHours() + ':'
+          + d.getMinutes() + ':'
+          + d.getSeconds();
+      return yyyymmddwhhmiss;
+  };
+  new Date().formate();
+#+end_src
+
+* 第四章
+* 第五章
+* 第六章
+* 第七章

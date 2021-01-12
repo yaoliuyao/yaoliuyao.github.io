@@ -18,7 +18,8 @@
   - [[file:FrontEnd/l_bootstrap.org][Bootstrap]]
   - [[file:FrontEnd/n_vue-js.org][Vue.js]]
   - [[file:FrontEnd/w_nodejs.org][Node.js]]
-  - [[file:FrontEnd/z_kehouti.org][课本上的课后题]]
+  - [[file:FrontEnd/y_kehouti_js.org][课后题 (JS)]]
+  - [[file:FrontEnd/z_kehouti_vue.org][课后题 (jQuery)]]
 - Java
   - [[file:Java/a-hello-world.org][Hello Java]]
   - [[file:Java/c-java.org][Java 基础]]

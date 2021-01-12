@@ -21,7 +21,7 @@
   + 务必: 根据数据库对象创建对应的正确的 Java Bean 对象
   + 务必: 正确写好 Servlet 处理逻辑和 dao 处理逻辑
 - 前端:
-  + 直接创建 xxx.html 文件并使用 script 引入 vue.js 和 axios.js，*不要用脚手架*
+  + 直接创建 xxx.html 文件并使用 script 引入 vue.js 和 axios.js，*不要用脚手架，不要用 CDN*
   + JS 的逻辑一定要完善:
      * 提交之前要有确认
      * 成功之后要有提醒
