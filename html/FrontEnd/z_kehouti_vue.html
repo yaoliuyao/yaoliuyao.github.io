@@ -180,21 +180,19 @@
 <h2 id="org50a902e"><span class="section-number-2">3</span> 第三章</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-P123:
+日期格式化 (P123):
 </p>
 <div class="org-src-container">
-<pre class="src src-js">Data.<span style="color: #008b8b;">prototype</span>.formate = <span style="color: #a020f0;">function</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">fmt</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-    <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">yyyymmddwhhmiss</span> = <span style="color: #b22222;">// </span><span style="color: #b22222;">"2020&#24180;6&#26376;8&#26085;(1) 19:16:9"</span>
-        d.getFullYear<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">'&#24180;'</span>
-        + <span style="color: #7388d6;">(</span>d.getMonth<span style="color: #909183;">()</span> + 1<span style="color: #7388d6;">)</span> + <span style="color: #8b2252;">'&#26376;'</span>
-        + d.getDate<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">'&#26085;'</span>
-        + <span style="color: #8b2252;">'('</span> + d.getDay<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">') '</span>
-        + d.getHours<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">':'</span>
-        + d.getMinutes<span style="color: #7388d6;">()</span> + <span style="color: #8b2252;">':'</span>
-        + d.getSeconds<span style="color: #7388d6;">()</span>;
-    <span style="color: #a020f0;">return</span> yyyymmddwhhmiss;
+<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; replace &#21363;&#21487;&#23436;&#25104;</span>
+Date.<span style="color: #008b8b;">prototype</span>.formate = <span style="color: #a020f0;">function</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">fmt</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">return</span> fmt.replace<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'yyyy'</span>, <span style="color: #008b8b;">this</span>.getFullYear<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>
+        .replace<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'MM'</span>, <span style="color: #008b8b;">this</span>.getMonth<span style="color: #909183;">()</span> + 1<span style="color: #7388d6;">)</span>
+        .replace<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'dd'</span>, <span style="color: #008b8b;">this</span>.getDate<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>
+        .replace<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'hh'</span>, <span style="color: #008b8b;">this</span>.getHours<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>
+        .replace<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'mm'</span>, <span style="color: #008b8b;">this</span>.getMinutes<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>
+        .replace<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'ss'</span>, <span style="color: #008b8b;">this</span>.getSeconds<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
 <span style="color: #707183;">}</span>;
-<span style="color: #a020f0;">new</span> <span style="color: #228b22;">Date</span><span style="color: #707183;">()</span>.formate<span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">new</span> <span style="color: #228b22;">Date</span><span style="color: #707183;">()</span>.formate<span style="color: #707183;">(</span><span style="color: #8b2252;">'yyyy-MM-dd'</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
@@ -202,7 +200,25 @@ P123:
 
 <section id="outline-container-orgbe37caf" class="outline-2">
 <h2 id="orgbe37caf"><span class="section-number-2">4</span> 第四章</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+重构 P(152):
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">body</span> = request.body;
+<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">username</span> = body.username;
+<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">password</span> = body.password;
+
+<span style="color: #a020f0;">const</span> <span style="color: #a0522d;">body</span> = request.body;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">username</span> = body.username;
+<span style="color: #a020f0;">let</span> <span style="color: #a0522d;">password</span> = body.password;
+
+<span style="color: #a020f0;">const</span> <span style="color: #707183;">{</span> username, password <span style="color: #707183;">}</span> = request.body;
+</pre>
+</div>
+</div>
 </section>
+
 <section id="outline-container-org28a6370" class="outline-2">
 <h2 id="org28a6370"><span class="section-number-2">5</span> 第五章</h2>
 </section>
