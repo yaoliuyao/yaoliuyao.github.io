@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-01-12 -->
+<!-- 2021-01-13 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>期末考试</title>
@@ -41,6 +41,13 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgd7998e3">1. 模拟题</a></li>
+<li><a href="#org9539361">2. 基本步骤</a>
+<ul>
+<li><a href="#org82cae2f">2.1. 创建数据库对象</a></li>
+<li><a href="#orgdeb1331">2.2. 创建项目</a></li>
+<li><a href="#orgb326557">2.3. 正式阶段</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -50,7 +57,7 @@
 <h2 id="orgd7998e3"><span class="section-number-2">1</span> 模拟题</h2>
 <div class="outline-text-2" id="text-1">
 
-<figure id="orgd0ce2dc">
+<figure id="org31d26c0">
 <img src="img/exam.png" alt="exam.png">
 
 </figure>
@@ -94,10 +101,69 @@
 </ul>
 </div>
 </section>
+
+
+
+<section id="outline-container-org9539361" class="outline-2">
+<h2 id="org9539361"><span class="section-number-2">2</span> 基本步骤</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org82cae2f" class="outline-3">
+<h3 id="org82cae2f"><span class="section-number-3">2.1</span> 创建数据库对象</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #b22222;">-- 1 &#20998;</span>
+<span style="color: #a020f0;">create</span> database mycup;
+<span style="color: #a020f0;">go</span>
+
+use mycup;
+
+<span style="color: #b22222;">-- 5 &#20998;</span>
+<span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">cup</span>
+<span style="color: #707183;">(</span>
+   id <span style="color: #228b22;">int</span> <span style="color: #a020f0;">identity</span> <span style="color: #a020f0;">primary</span> <span style="color: #a020f0;">key</span>,
+   <span style="color: #a020f0;">name</span> <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>20<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">null</span>,
+   price money <span style="color: #a020f0;">check</span> <span style="color: #7388d6;">(</span> price &gt; 0 <span style="color: #7388d6;">)</span>,
+   birth datetime <span style="color: #a020f0;">default</span> getdate<span style="color: #7388d6;">()</span>
+<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">-- 3 &#20998;</span>
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> cup <span style="color: #707183;">(</span><span style="color: #a020f0;">name</span>, price, birth<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span><span style="color: #8b2252;">'&#39640;&#33050;&#26479;'</span>, 22.3, <span style="color: #8b2252;">'2020-10-11'</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> cup <span style="color: #707183;">(</span><span style="color: #a020f0;">name</span>, price, birth<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span><span style="color: #8b2252;">'&#21860;&#37202;&#26479;'</span>, 14.3, <span style="color: #8b2252;">'2020-12-11'</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> cup <span style="color: #707183;">(</span><span style="color: #a020f0;">name</span>, price, birth<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span><span style="color: #8b2252;">'&#33590;&#27700;&#26479;'</span>, 93.3, <span style="color: #8b2252;">'2020-11-11'</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdeb1331" class="outline-3">
+<h3 id="orgdeb1331"><span class="section-number-3">2.2</span> 创建项目</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>使用 Idea/Eclipse 创建一个普通的 Java Web 项目 (<b>必须要保证考试的时候 idea 不罢工</b>)</li>
+<li>修改 tomcat 页面的 VM options 项，填入 <code>-Dfile.encoding=UTF-8</code></li>
+<li>在新项目的 src 目录下面，创建 <b>正确</b> 的 package (com.nfit.xxx.yyy)</li>
+<li>将备份的 lib/java/assets 复制到相应的位置；配置项目的 lib 依赖保证其正确；修改 java 文件中的错误，保证没错误</li>
+<li>在 web 文件夹下，创建初始的入口 html 文件，比如，叫 admin.html；然后，将 vue/axios/bootstrap 引入其中</li>
+<li>启动 tomcat，保证项目能正常运行</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb326557" class="outline-3">
+<h3 id="orgb326557"><span class="section-number-3">2.3</span> 正式阶段</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>在 admin.html 中，创建标题、表格、按钮组，并使用 bootstrap 渲染出合适的样式</li>
+<li>分别实现各个功能</li>
+</ul>
+</div>
+</div>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-01-12</p>
+<p class="date">Created: 2021-01-13</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
