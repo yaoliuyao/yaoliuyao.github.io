@@ -32,6 +32,9 @@
 
 
 * 基本步骤
+
+https://github.com/yaollllllsan/lastexam
+
 ** 创建数据库对象
 
 #+begin_src sql
