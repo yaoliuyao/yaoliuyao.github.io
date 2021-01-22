@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-12-18 -->
+<!-- 2021-01-22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BOM (浏览器对象模型)</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="孙悟空">
 <link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
 <script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
 
 <style>
  /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -40,124 +42,124 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1ec865b">1. 全局变量的问题</a></li>
-<li><a href="#org2303a24">2. alert/confirm/prompt 弹窗</a></li>
-<li><a href="#org7583152">3. setTimeout/setInterval 计划任务</a></li>
-<li><a href="#org68e6eea">4. window.open/close/moveTo 窗口控制</a></li>
-<li><a href="#org3ec6ed7">5. window.screen 获取显示器方面信息</a></li>
-<li><a href="#orga796105">6. window.navigator 获取浏览器基本信息</a></li>
-<li><a href="#org63e1ec8">7. window.history 浏览历史</a></li>
-<li><a href="#orgbbfa46c">8. window.location 页面 URL</a></li>
+<li><a href="#org2429df5">1. 全局变量的问题</a></li>
+<li><a href="#org9e16d38">2. alert/confirm/prompt 弹窗</a></li>
+<li><a href="#orgd0144c2">3. setTimeout/setInterval 计划任务</a></li>
+<li><a href="#org6d3d697">4. window.open/close/moveTo 窗口控制</a></li>
+<li><a href="#orgcacbe25">5. window.screen 获取显示器方面信息</a></li>
+<li><a href="#orgd3bece1">6. window.navigator 获取浏览器基本信息</a></li>
+<li><a href="#org79479d2">7. window.history 浏览历史</a></li>
+<li><a href="#orgf051717">8. window.location 页面 URL</a></li>
 </ul>
 </div>
 </nav>
 
 
-<section id="outline-container-org1ec865b" class="outline-2">
-<h2 id="org1ec865b"><span class="section-number-2">1</span> 全局变量的问题</h2>
+<section id="outline-container-org2429df5" class="outline-2">
+<h2 id="org2429df5"><span class="section-number-2">1</span> 全局变量的问题</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#25152;&#26377;&#30340;&#20840;&#23616;&#21464;&#37327;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#40664;&#35748;&#37117;&#26159;&#32465;&#23450;&#21040;&#20102; window &#23545;&#35937;&#19978;&#38754; !!!</span>
-<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">aaa</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span> console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'aaa'</span><span style="color: #7388d6;">)</span> <span style="color: #707183;">}</span>
-window.aaa<span style="color: #707183;">()</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#35843;&#29992;&#30340;&#26102;&#20505;&#65292;&#26174;&#24335;&#25351;&#26126; window</span>
-aaa<span style="color: #707183;">()</span>;         <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#35843;&#29992;&#30340;&#26102;&#20505;&#65292;&#27809;&#26377;&#25351;&#23450;&#23545;&#35937;&#65292;&#37027;&#20040;&#40664;&#35748;&#20197;&#20026;&#23427;&#23601;&#26159; window</span>
+<pre class="src src-js"><span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#25152;&#26377;&#30340;&#20840;&#23616;&#21464;&#37327;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#40664;&#35748;&#37117;&#26159;&#32465;&#23450;&#21040;&#20102; window &#23545;&#35937;&#19978;&#38754; !!!</span>
+<span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">aaa</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span> console.log<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'aaa'</span><span style="color: #93a8c6;">)</span> <span style="color: #8c8c8c;">}</span>
+window.aaa<span style="color: #8c8c8c;">()</span>;  <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#35843;&#29992;&#30340;&#26102;&#20505;&#65292;&#26174;&#24335;&#25351;&#26126; window</span>
+aaa<span style="color: #8c8c8c;">()</span>;         <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#22914;&#26524;&#35843;&#29992;&#30340;&#26102;&#20505;&#65292;&#27809;&#26377;&#25351;&#23450;&#23545;&#35937;&#65292;&#37027;&#20040;&#40664;&#35748;&#20197;&#20026;&#23427;&#23601;&#26159; window</span>
 
-<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">aaa</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
-    console.log<span style="color: #7388d6;">(</span><span style="color: #008b8b;">this</span><span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">this &#25351;&#20174;&#21738;&#20010;&#23545;&#35937;&#19978;&#25191;&#34892;&#30340;&#26412;&#20989;&#25968;</span>
-<span style="color: #707183;">}</span>
-aaa<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25171;&#21360;&#30340;&#26159; window &#23545;&#35937;&#65292;&#22240;&#20026;&#27809;&#26377;&#26174;&#24335;&#25351;&#23450;&#23545;&#35937;&#65292;&#37027;&#20040; aaa &#23601;&#26159;&#20174; window &#24320;&#22987;&#35843;&#29992;&#30340;</span>
+<span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">aaa</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+    console.log<span style="color: #93a8c6;">(</span><span style="color: #da8548; font-weight: bold;">this</span><span style="color: #93a8c6;">)</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">this &#25351;&#20174;&#21738;&#20010;&#23545;&#35937;&#19978;&#25191;&#34892;&#30340;&#26412;&#20989;&#25968;</span>
+<span style="color: #8c8c8c;">}</span>
+aaa<span style="color: #8c8c8c;">()</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#25171;&#21360;&#30340;&#26159; window &#23545;&#35937;&#65292;&#22240;&#20026;&#27809;&#26377;&#26174;&#24335;&#25351;&#23450;&#23545;&#35937;&#65292;&#37027;&#20040; aaa &#23601;&#26159;&#20174; window &#24320;&#22987;&#35843;&#29992;&#30340;</span>
 
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">o</span> = <span style="color: #707183;">{</span>
-    <span style="color: #0000ff;">aaa</span>: <span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> console.log<span style="color: #909183;">(</span><span style="color: #008b8b;">this</span><span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
-o.aaa<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25171;&#21360;&#30340;&#26159; o &#23545;&#35937;&#65292;&#22240;&#20026; aaa &#26159;&#20174; o &#23545;&#35937;&#24320;&#22987;&#35843;&#29992;&#30340;&#65292;&#25152;&#20197;&#20869;&#37096;&#30340; this &#23601;&#26159; o</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">o</span> = <span style="color: #8c8c8c;">{</span>
+    <span style="color: #61afef;">aaa</span>: <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span> console.log<span style="color: #b0b1a3;">(</span><span style="color: #da8548; font-weight: bold;">this</span><span style="color: #b0b1a3;">)</span> <span style="color: #93a8c6;">}</span>
+<span style="color: #8c8c8c;">}</span>
+o.aaa<span style="color: #8c8c8c;">()</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#25171;&#21360;&#30340;&#26159; o &#23545;&#35937;&#65292;&#22240;&#20026; aaa &#26159;&#20174; o &#23545;&#35937;&#24320;&#22987;&#35843;&#29992;&#30340;&#65292;&#25152;&#20197;&#20869;&#37096;&#30340; this &#23601;&#26159; o</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">bbb</span> <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#20989;&#25968;&#20869;&#30340;&#21464;&#37327;&#26410;&#20351;&#29992; var/let &#22768;&#26126;&#30340;&#35805;</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23427;&#23558;&#20250;&#21464;&#25104;&#20840;&#23616;&#30340;&#65292;&#20063;&#23601;&#26159;&#20250;&#34987;&#32465;&#23450;&#21040; window &#19978;&#38754;</span>
-    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span>i = 1; i &lt; 5; i++<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
-        console.log<span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
-    <span style="color: #7388d6;">}</span>
-    open = <span style="color: #8b2252;">'333'</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#33707;&#21517;&#20854;&#22937;&#32465;&#23450;&#25104;&#20102; window.open</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">window.open = '333';</span>
-<span style="color: #707183;">}</span>
-bbb<span style="color: #707183;">()</span>;
-window.open<span style="color: #707183;">(</span><span style="color: #8b2252;">'http://baidu.com'</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25253;&#38169;</span>
+<pre class="src src-js"><span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">bbb</span> <span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+    <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#22914;&#26524;&#20989;&#25968;&#20869;&#30340;&#21464;&#37327;&#26410;&#20351;&#29992; var/let &#22768;&#26126;&#30340;&#35805;</span>
+    <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#23427;&#23558;&#20250;&#21464;&#25104;&#20840;&#23616;&#30340;&#65292;&#20063;&#23601;&#26159;&#20250;&#34987;&#32465;&#23450;&#21040; window &#19978;&#38754;</span>
+    <span style="color: #c678dd; font-weight: bold;">for</span> <span style="color: #93a8c6;">(</span>i = 1; i &lt; 5; i++<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+        console.log<span style="color: #b0b1a3;">(</span>i<span style="color: #b0b1a3;">)</span>;
+    <span style="color: #93a8c6;">}</span>
+    open = <span style="color: #98be65;">'333'</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#33707;&#21517;&#20854;&#22937;&#32465;&#23450;&#25104;&#20102; window.open</span>
+    <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">window.open = '333';</span>
+<span style="color: #8c8c8c;">}</span>
+bbb<span style="color: #8c8c8c;">()</span>;
+window.open<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'http://baidu.com'</span><span style="color: #8c8c8c;">)</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#25253;&#38169;</span>
 </pre>
 </div>
 </div>
 </section>
 
-<section id="outline-container-org2303a24" class="outline-2">
-<h2 id="org2303a24"><span class="section-number-2">2</span> alert/confirm/prompt 弹窗</h2>
+<section id="outline-container-org9e16d38" class="outline-2">
+<h2 id="org9e16d38"><span class="section-number-2">2</span> alert/confirm/prompt 弹窗</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 尽量少用。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#24120;&#29992;&#35821;&#35843;&#35797; &#65288;&#20294;&#26159;&#29616;&#22312;&#65292;&#21448;&#27809;&#26377; console.log &#22909;&#29992;&#65289;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22312;&#21476;&#32769;&#30340;&#24180;&#20195;&#65292;alert &#27491;&#20799;&#20843;&#32463;&#25552;&#37266;&#29992;&#25143;&#30340;&#19968;&#31181;&#25163;&#27573;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#29616;&#22312;&#65292;&#25353;&#29031;&#36947;&#29702;&#26469;&#35828;&#65292;&#20195;&#30721;&#20013;&#19981;&#24212;&#35813;&#26377; alert &#20102;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#24456;&#22810;&#21407;&#22240;&#65292;&#26368;&#20027;&#35201;&#30340;&#21407;&#22240;&#65292;&#29992;&#25143;&#20307;&#39564;&#38750;&#24120;&#19981;&#22909;</span>
-window.alert<span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
-alert<span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
+<pre class="src src-js"><span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#24120;&#29992;&#35821;&#35843;&#35797; &#65288;&#20294;&#26159;&#29616;&#22312;&#65292;&#21448;&#27809;&#26377; console.log &#22909;&#29992;&#65289;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#22312;&#21476;&#32769;&#30340;&#24180;&#20195;&#65292;alert &#27491;&#20799;&#20843;&#32463;&#25552;&#37266;&#29992;&#25143;&#30340;&#19968;&#31181;&#25163;&#27573;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#29616;&#22312;&#65292;&#25353;&#29031;&#36947;&#29702;&#26469;&#35828;&#65292;&#20195;&#30721;&#20013;&#19981;&#24212;&#35813;&#26377; alert &#20102;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#24456;&#22810;&#21407;&#22240;&#65292;&#26368;&#20027;&#35201;&#30340;&#21407;&#22240;&#65292;&#29992;&#25143;&#20307;&#39564;&#38750;&#24120;&#19981;&#22909;</span>
+window.alert<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"hello"</span><span style="color: #8c8c8c;">)</span>;
+alert<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"hello"</span><span style="color: #8c8c8c;">)</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238;&#20540;&#26159; boolean &#31867;&#22411;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#28857;&#20102;&#30830;&#23450;&#65292;&#37027;&#20040;&#26159; true&#65307;&#21542;&#21017;&#23601;&#26159; false</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22240;&#27492;&#65292;&#24120;&#19982; if &#25645;&#37197;&#20351;&#29992;</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = window.confirm<span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24744;&#26159;&#19981;&#26159;&#30007;&#20154;?"</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">typeof</span> a;
+<pre class="src src-js"><span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#36820;&#22238;&#20540;&#26159; boolean &#31867;&#22411;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#22914;&#26524;&#28857;&#20102;&#30830;&#23450;&#65292;&#37027;&#20040;&#26159; true&#65307;&#21542;&#21017;&#23601;&#26159; false</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#22240;&#27492;&#65292;&#24120;&#19982; if &#25645;&#37197;&#20351;&#29992;</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">a</span> = window.confirm<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"&#24744;&#26159;&#19981;&#26159;&#30007;&#20154;?"</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">typeof</span> a;
 
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>window.confirm<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'&#20320;&#26159;&#19981;&#26159;&#30007;&#20154;&#21834;?'</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'&#25226;&#36825;&#26742;&#27700;&#25918;&#19978;&#21435;&#12290;'</span><span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #707183;">{</span>
-    console.error<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'&#20320;&#30495;&#22909;&#24847;&#24605;&#35828;....'</span><span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span>
+<span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #8c8c8c;">(</span>window.confirm<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'&#20320;&#26159;&#19981;&#26159;&#30007;&#20154;&#21834;?'</span><span style="color: #93a8c6;">)</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+    console.log<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'&#25226;&#36825;&#26742;&#27700;&#25918;&#19978;&#21435;&#12290;'</span><span style="color: #93a8c6;">)</span>;
+<span style="color: #8c8c8c;">}</span> <span style="color: #c678dd; font-weight: bold;">else</span> <span style="color: #8c8c8c;">{</span>
+    console.error<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'&#20320;&#30495;&#22909;&#24847;&#24605;&#35828;....'</span><span style="color: #93a8c6;">)</span>;
+<span style="color: #8c8c8c;">}</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238;&#20540;&#26159;&#23383;&#31526;&#20018;</span>
+<pre class="src src-js"><span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#36820;&#22238;&#20540;&#26159;&#23383;&#31526;&#20018;</span>
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">1</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">str</span> = prompt<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#24744;&#30340;&#24180;&#40836;&#26159;&#22810;&#23569;?'</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">typeof</span> str;
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">1</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">str</span> = prompt<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'&#24744;&#30340;&#24180;&#40836;&#26159;&#22810;&#23569;?'</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">typeof</span> str;
 
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">age</span> = Number<span style="color: #707183;">(</span>str<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>age &gt; 18<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
-    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'&#24744;&#24050;&#32463;&#26159;&#22823;&#20154;&#20102;.'</span><span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #707183;">{</span>
-    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'&#23401;&#23376;&#65292;&#19968;&#36793;&#20799;&#29609;&#21435;...'</span><span style="color: #7388d6;">)</span>
-<span style="color: #707183;">}</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">age</span> = Number<span style="color: #8c8c8c;">(</span>str<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #8c8c8c;">(</span>age &gt; 18<span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+    console.log<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'&#24744;&#24050;&#32463;&#26159;&#22823;&#20154;&#20102;.'</span><span style="color: #93a8c6;">)</span>;
+<span style="color: #8c8c8c;">}</span> <span style="color: #c678dd; font-weight: bold;">else</span> <span style="color: #8c8c8c;">{</span>
+    console.log<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'&#23401;&#23376;&#65292;&#19968;&#36793;&#20799;&#29609;&#21435;...'</span><span style="color: #93a8c6;">)</span>
+<span style="color: #8c8c8c;">}</span>
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">2</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">s</span> = prompt<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#35831;&#36755;&#20837;&#25152;&#26377;&#21516;&#23398;&#30340;&#21517;&#23383;&#65292;&#24182;&#29992;&#31354;&#26684;&#20998;&#24320;'</span><span style="color: #707183;">)</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">names</span> = s.split<span style="color: #707183;">(</span><span style="color: #8b2252;">' '</span><span style="color: #707183;">)</span>;
-names.forEach<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>n<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{</span>
-    console.log<span style="color: #909183;">(</span><span style="color: #8b2252;">'hello, '</span> + n<span style="color: #909183;">)</span>;
-<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">2</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">s</span> = prompt<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'&#35831;&#36755;&#20837;&#25152;&#26377;&#21516;&#23398;&#30340;&#21517;&#23383;&#65292;&#24182;&#29992;&#31354;&#26684;&#20998;&#24320;'</span><span style="color: #8c8c8c;">)</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">names</span> = s.split<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">' '</span><span style="color: #8c8c8c;">)</span>;
+names.forEach<span style="color: #8c8c8c;">(</span><span style="color: #93a8c6;">(</span>n<span style="color: #93a8c6;">)</span> =&gt; <span style="color: #93a8c6;">{</span>
+    console.log<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'hello, '</span> + n<span style="color: #b0b1a3;">)</span>;
+<span style="color: #93a8c6;">}</span><span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">tom</span> = <span style="color: #707183;">{</span>
-    name: prompt<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'&#35831;&#36755;&#20837;&#21517;&#23383;'</span><span style="color: #7388d6;">)</span>,
-    age: Number<span style="color: #7388d6;">(</span>prompt<span style="color: #909183;">(</span><span style="color: #8b2252;">'&#35831;&#36755;&#20837;&#24180;&#40836;'</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
-<span style="color: #707183;">}</span>;
-console.log<span style="color: #707183;">(</span>tom<span style="color: #707183;">)</span>;
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">3</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">tom</span> = <span style="color: #8c8c8c;">{</span>
+    name: prompt<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'&#35831;&#36755;&#20837;&#21517;&#23383;'</span><span style="color: #93a8c6;">)</span>,
+    age: Number<span style="color: #93a8c6;">(</span>prompt<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'&#35831;&#36755;&#20837;&#24180;&#40836;'</span><span style="color: #b0b1a3;">)</span><span style="color: #93a8c6;">)</span>
+<span style="color: #8c8c8c;">}</span>;
+console.log<span style="color: #8c8c8c;">(</span>tom<span style="color: #8c8c8c;">)</span>;
 </pre>
 </div>
 </div>
 </section>
 
-<section id="outline-container-org7583152" class="outline-2">
-<h2 id="org7583152"><span class="section-number-2">3</span> setTimeout/setInterval 计划任务</h2>
+<section id="outline-container-orgd0144c2" class="outline-2">
+<h2 id="orgd0144c2"><span class="section-number-2">3</span> setTimeout/setInterval 计划任务</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 计时器、秒表。
@@ -167,32 +169,32 @@ console.log<span style="color: #707183;">(</span>tom<span style="color: #707183;
 setTimeout/clearTimeout:
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#20010;&#21442;&#25968;&#65292;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#26159;&#23383;&#31526;&#20018;&#65292;&#34920;&#31034;&#35843;&#29992;&#30340;&#19968;&#20123;&#36923;&#36753;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20063;&#21487;&#20197;&#26159;&#19968;&#20010;&#20989;&#25968;&#21517;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20063;&#21487;&#20197;&#26159;&#19968;&#20010;&#21311;&#21517;&#20989;&#25968;</span>
+<pre class="src src-js"><span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#31532;&#19968;&#20010;&#21442;&#25968;&#65292;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21487;&#20197;&#26159;&#23383;&#31526;&#20018;&#65292;&#34920;&#31034;&#35843;&#29992;&#30340;&#19968;&#20123;&#36923;&#36753;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#20063;&#21487;&#20197;&#26159;&#19968;&#20010;&#20989;&#25968;&#21517;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#20063;&#21487;&#20197;&#26159;&#19968;&#20010;&#21311;&#21517;&#20989;&#25968;</span>
 
-setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
-    alert<span style="color: #909183;">(</span><span style="color: #8b2252;">'&#21704;&#21704;&#65292;&#26102;&#38388;&#21040;&#20102;&#21543;?'</span><span style="color: #909183;">)</span>;
-<span style="color: #7388d6;">}</span>, 5000<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26102;&#38388;&#21333;&#20301;&#26159; ms</span>
+setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span>
+    alert<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'&#21704;&#21704;&#65292;&#26102;&#38388;&#21040;&#20102;&#21543;?'</span><span style="color: #b0b1a3;">)</span>;
+<span style="color: #93a8c6;">}</span>, 5000<span style="color: #8c8c8c;">)</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#26102;&#38388;&#21333;&#20301;&#26159; ms</span>
 
-setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
-    alert<span style="color: #909183;">(</span><span style="color: #8b2252;">'&#21704;&#21704;&#65292;&#26102;&#38388;&#21040;&#20102;&#21543;?'</span><span style="color: #909183;">)</span>;
-<span style="color: #7388d6;">}</span>, 24 * 60 * 60 * 1000<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26102;&#38388;&#21333;&#20301;&#26159; ms</span>
+setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span>
+    alert<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'&#21704;&#21704;&#65292;&#26102;&#38388;&#21040;&#20102;&#21543;?'</span><span style="color: #b0b1a3;">)</span>;
+<span style="color: #93a8c6;">}</span>, 24 * 60 * 60 * 1000<span style="color: #8c8c8c;">)</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#26102;&#38388;&#21333;&#20301;&#26159; ms</span>
 
-setTimeout<span style="color: #707183;">(</span><span style="color: #8b2252;">"alert(333)"</span>, 5000<span style="color: #707183;">)</span>;
+setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"alert(333)"</span>, 5000<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">f</span> = <span style="color: #a020f0;">function</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span> alert<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'&#21040;&#26102;&#38388;&#20102;'</span><span style="color: #7388d6;">)</span> <span style="color: #707183;">}</span>
-setTimeout<span style="color: #707183;">(</span>f, 5000<span style="color: #707183;">)</span>;
-setTimeout<span style="color: #707183;">(</span><span style="color: #8b2252;">"f()"</span>, 5000<span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">f</span> = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span> alert<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'&#21040;&#26102;&#38388;&#20102;'</span><span style="color: #93a8c6;">)</span> <span style="color: #8c8c8c;">}</span>
+setTimeout<span style="color: #8c8c8c;">(</span>f, 5000<span style="color: #8c8c8c;">)</span>;
+setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"f()"</span>, 5000<span style="color: #8c8c8c;">)</span>;
 
-setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
-    alert<span style="color: #909183;">(</span><span style="color: #8b2252;">'&#21704;&#21704;&#65292;&#26102;&#38388;&#21040;&#20102;&#21543;?'</span><span style="color: #909183;">)</span>;
-<span style="color: #7388d6;">}</span>, 0<span style="color: #707183;">)</span>;
+setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span>
+    alert<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'&#21704;&#21704;&#65292;&#26102;&#38388;&#21040;&#20102;&#21543;?'</span><span style="color: #b0b1a3;">)</span>;
+<span style="color: #93a8c6;">}</span>, 0<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21462;&#28040;&#20219;&#21153;&#30340;&#26041;&#24335;</span>
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = setTimeout<span style="color: #707183;">(</span><span style="color: #8b2252;">"alert(33)"</span>, 10000<span style="color: #707183;">)</span>;
-clearTimeout<span style="color: #707183;">(</span>a<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">a &#23454;&#38469;&#23601;&#26159;&#19968;&#20010;&#25968;&#23383;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21462;&#28040;&#20219;&#21153;&#30340;&#26041;&#24335;</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">a</span> = setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"alert(33)"</span>, 10000<span style="color: #8c8c8c;">)</span>;
+clearTimeout<span style="color: #8c8c8c;">(</span>a<span style="color: #8c8c8c;">)</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">a &#23454;&#38469;&#23601;&#26159;&#19968;&#20010;&#25968;&#23383;</span>
 </pre>
 </div>
 
@@ -200,41 +202,41 @@ clearTimeout<span style="color: #707183;">(</span>a<span style="color: #707183;"
 setInterval/clearInterval:
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">i</span> = 1;
-<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = setInterval<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
-    console.log<span style="color: #909183;">(</span><span style="color: #8b2252;">'&#25105;&#24050;&#32463;&#34987;&#25191;&#34892;&#20102; '</span> + i + <span style="color: #8b2252;">' &#27425;'</span><span style="color: #909183;">)</span>;
+<pre class="src src-js"><span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">i</span> = 1;
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">a</span> = setInterval<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span>
+    console.log<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'&#25105;&#24050;&#32463;&#34987;&#25191;&#34892;&#20102; '</span> + i + <span style="color: #98be65;">' &#27425;'</span><span style="color: #b0b1a3;">)</span>;
     i++;
-<span style="color: #7388d6;">}</span>, 1000<span style="color: #707183;">)</span>;
+<span style="color: #93a8c6;">}</span>, 1000<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21462;&#28040;&#20219;&#21153;&#30340;&#26041;&#24335;</span>
-clearInterval<span style="color: #707183;">(</span>a<span style="color: #707183;">)</span>;
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21462;&#28040;&#20219;&#21153;&#30340;&#26041;&#24335;</span>
+clearInterval<span style="color: #8c8c8c;">(</span>a<span style="color: #8c8c8c;">)</span>;
 </pre>
 </div>
 </div>
 </section>
-<section id="outline-container-org68e6eea" class="outline-2">
-<h2 id="org68e6eea"><span class="section-number-2">4</span> window.open/close/moveTo 窗口控制</h2>
+<section id="outline-container-org6d3d697" class="outline-2">
+<h2 id="org6d3d697"><span class="section-number-2">4</span> window.open/close/moveTo 窗口控制</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 打开、关闭、移动:
 </p>
 <div class="org-src-container">
-<pre class="src src-js">window.open<span style="color: #707183;">(</span><span style="color: #8b2252;">'http://baidu.com'</span><span style="color: #707183;">)</span>;
-window.open<span style="color: #707183;">(</span><span style="color: #8b2252;">'http://baidu.com'</span>, <span style="color: #8b2252;">'&#30334;&#24230;&#26159;wb&#20043;&#27668;&#30340;&#19968;&#20010;&#32593;&#31449;'</span><span style="color: #707183;">)</span>;
-window.open<span style="color: #707183;">(</span><span style="color: #8b2252;">'http://baidu.com'</span>, <span style="color: #8b2252;">'bd'</span>, <span style="color: #8b2252;">"height=200,location=0"</span><span style="color: #707183;">)</span>
+<pre class="src src-js">window.open<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'http://baidu.com'</span><span style="color: #8c8c8c;">)</span>;
+window.open<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'http://baidu.com'</span>, <span style="color: #98be65;">'&#30334;&#24230;&#26159;wb&#20043;&#27668;&#30340;&#19968;&#20010;&#32593;&#31449;'</span><span style="color: #8c8c8c;">)</span>;
+window.open<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'http://baidu.com'</span>, <span style="color: #98be65;">'bd'</span>, <span style="color: #98be65;">"height=200,location=0"</span><span style="color: #8c8c8c;">)</span>
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#24694;&#24847;&#20195;&#30721;</span>
-<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">true</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> open<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'http://baidu.com'</span><span style="color: #7388d6;">)</span> <span style="color: #707183;">}</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#24694;&#24847;&#20195;&#30721;</span>
+<span style="color: #c678dd; font-weight: bold;">while</span> <span style="color: #8c8c8c;">(</span><span style="color: #da8548; font-weight: bold;">true</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span> open<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'http://baidu.com'</span><span style="color: #93a8c6;">)</span> <span style="color: #8c8c8c;">}</span>
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20851;&#38381;</span>
-window.close<span style="color: #707183;">()</span>;
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#20851;&#38381;</span>
+window.close<span style="color: #8c8c8c;">()</span>;
 </pre>
 </div>
 </div>
 </section>
 
-<section id="outline-container-org3ec6ed7" class="outline-2">
-<h2 id="org3ec6ed7"><span class="section-number-2">5</span> window.screen 获取显示器方面信息</h2>
+<section id="outline-container-orgcacbe25" class="outline-2">
+<h2 id="orgcacbe25"><span class="section-number-2">5</span> window.screen 获取显示器方面信息</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 只是提供了一些，跟显示器相关的参数。
@@ -254,36 +256,36 @@ window.screen.height;
 </div>
 </section>
 
-<section id="outline-container-orga796105" class="outline-2">
-<h2 id="orga796105"><span class="section-number-2">6</span> window.navigator 获取浏览器基本信息</h2>
+<section id="outline-container-orgd3bece1" class="outline-2">
+<h2 id="orgd3bece1"><span class="section-number-2">6</span> window.navigator 获取浏览器基本信息</h2>
 </section>
-<section id="outline-container-org63e1ec8" class="outline-2">
-<h2 id="org63e1ec8"><span class="section-number-2">7</span> window.history 浏览历史</h2>
+<section id="outline-container-org79479d2" class="outline-2">
+<h2 id="org79479d2"><span class="section-number-2">7</span> window.history 浏览历史</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 控制浏览器的浏览历史，前进或者后退:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-js">window.history.back<span style="color: #707183;">()</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21518;&#36864;&#19968;&#27493;</span>
-window.history.forward<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21069;&#36827;&#19968;&#27493;</span>
-window.history.go<span style="color: #707183;">(</span>-1<span style="color: #707183;">)</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21518;&#36864;&#19968;&#27493;</span>
-window.history.go<span style="color: #707183;">(</span>-2<span style="color: #707183;">)</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21518;&#36864;&#20004;&#27493;</span>
-window.history.go<span style="color: #707183;">(</span>2<span style="color: #707183;">)</span>;     <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21069;&#36827;&#20004;&#27493;</span>
+<pre class="src src-js">window.history.back<span style="color: #8c8c8c;">()</span>;    <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21518;&#36864;&#19968;&#27493;</span>
+window.history.forward<span style="color: #8c8c8c;">()</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21069;&#36827;&#19968;&#27493;</span>
+window.history.go<span style="color: #8c8c8c;">(</span>-1<span style="color: #8c8c8c;">)</span>;    <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21518;&#36864;&#19968;&#27493;</span>
+window.history.go<span style="color: #8c8c8c;">(</span>-2<span style="color: #8c8c8c;">)</span>;    <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21518;&#36864;&#20004;&#27493;</span>
+window.history.go<span style="color: #8c8c8c;">(</span>2<span style="color: #8c8c8c;">)</span>;     <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21069;&#36827;&#20004;&#27493;</span>
 
-setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> history.go<span style="color: #909183;">(</span>-2<span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span>, 2000<span style="color: #707183;">)</span>;
-setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> history.go<span style="color: #909183;">(</span>1<span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span>, 3000<span style="color: #707183;">)</span>;
-setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> history.go<span style="color: #909183;">(</span>-1<span style="color: #909183;">)</span> <span style="color: #7388d6;">}</span>, 6000<span style="color: #707183;">)</span>;
+setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span> history.go<span style="color: #b0b1a3;">(</span>-2<span style="color: #b0b1a3;">)</span> <span style="color: #93a8c6;">}</span>, 2000<span style="color: #8c8c8c;">)</span>;
+setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span> history.go<span style="color: #b0b1a3;">(</span>1<span style="color: #b0b1a3;">)</span> <span style="color: #93a8c6;">}</span>, 3000<span style="color: #8c8c8c;">)</span>;
+setTimeout<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span> history.go<span style="color: #b0b1a3;">(</span>-1<span style="color: #b0b1a3;">)</span> <span style="color: #93a8c6;">}</span>, 6000<span style="color: #8c8c8c;">)</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
-  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
-    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">button</span> <span style="color: #a0522d;">onclick</span>=<span style="color: #8b2252;">'history.forward()'</span><span style="color: #707183;">&gt;</span>&#21069;&#36827;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>
-    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">button</span> <span style="color: #a0522d;">onclick</span>=<span style="color: #8b2252;">'history.back()'</span><span style="color: #707183;">&gt;</span>&#21518;&#36864;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>
-  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
-<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span> <span style="color: #61afef;">onclick</span>=<span style="color: #98be65;">'history.forward()'</span><span style="color: #8c8c8c;">&gt;</span>&#21069;&#36827;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span> <span style="color: #61afef;">onclick</span>=<span style="color: #98be65;">'history.back()'</span><span style="color: #8c8c8c;">&gt;</span>&#21518;&#36864;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
 
 </pre>
 </div>
@@ -294,8 +296,8 @@ setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">fu
 </div>
 </section>
 
-<section id="outline-container-orgbbfa46c" class="outline-2">
-<h2 id="orgbbfa46c"><span class="section-number-2">8</span> window.location 页面 URL</h2>
+<section id="outline-container-orgf051717" class="outline-2">
+<h2 id="orgf051717"><span class="section-number-2">8</span> window.location 页面 URL</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 身份证:
@@ -325,21 +327,21 @@ file:///E:/home/notes/demos/3/timeout.html#ssss
 
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#33719;&#21462;&#36319; url &#30456;&#20851;&#30340;&#19968;&#20123;&#20449;&#24687;</span>
+<pre class="src src-js"><span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#33719;&#21462;&#36319; url &#30456;&#20851;&#30340;&#19968;&#20123;&#20449;&#24687;</span>
 window.location.protocol
 window.location.host
 window.location.port
 window.location.pathname
 window.location.hash
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25511;&#21046; url</span>
-location.reload<span style="color: #707183;">()</span>
-location.replace<span style="color: #707183;">(</span><span style="color: #8b2252;">'http://sogou.com'</span><span style="color: #707183;">)</span>;
-location.assign<span style="color: #707183;">(</span><span style="color: #8b2252;">'http://bing.com'</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26367;&#25442;&#24403;&#21069;&#32593;&#22336;&#20026; url</span>
-location.href = <span style="color: #8b2252;">'http://baidu.com'</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20999;&#25442;&#21040;&#30334;&#24230;</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#25511;&#21046; url</span>
+location.reload<span style="color: #8c8c8c;">()</span>
+location.replace<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'http://sogou.com'</span><span style="color: #8c8c8c;">)</span>;
+location.assign<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'http://bing.com'</span><span style="color: #8c8c8c;">)</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#26367;&#25442;&#24403;&#21069;&#32593;&#22336;&#20026; url</span>
+location.href = <span style="color: #98be65;">'http://baidu.com'</span>; <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#20999;&#25442;&#21040;&#30334;&#24230;</span>
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25552;&#38382;:</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">- replace &#36319; assign &#26377;&#20160;&#20040;&#21306;&#21035;?</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#25552;&#38382;:</span>
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">- replace &#36319; assign &#26377;&#20160;&#20040;&#21306;&#21035;?</span>
 </pre>
 </div>
 </div>
@@ -347,7 +349,7 @@ location.href = <span style="color: #8b2252;">'http://baidu.com'</span>; <span s
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-12-18</p>
+<p class="date">Created: 2021-01-22</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

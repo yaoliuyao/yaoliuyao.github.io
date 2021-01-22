@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-01-13 -->
+<!-- 2021-01-22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>期末考试</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="孙悟空">
 <link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
 <script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
 
 <style>
  /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -40,12 +42,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd7998e3">1. 模拟题</a></li>
-<li><a href="#org9539361">2. 基本步骤</a>
+<li><a href="#orgcb0ce47">1. 模拟题</a></li>
+<li><a href="#org6e8967b">2. 基本步骤</a>
 <ul>
-<li><a href="#org82cae2f">2.1. 创建数据库对象</a></li>
-<li><a href="#orgdeb1331">2.2. 创建项目</a></li>
-<li><a href="#orgb326557">2.3. 正式阶段</a></li>
+<li><a href="#org613f337">2.1. 创建数据库对象</a></li>
+<li><a href="#org7392608">2.2. 创建项目</a></li>
+<li><a href="#org16be41d">2.3. 正式阶段</a></li>
 </ul>
 </li>
 </ul>
@@ -53,11 +55,11 @@
 </nav>
 
 
-<section id="outline-container-orgd7998e3" class="outline-2">
-<h2 id="orgd7998e3"><span class="section-number-2">1</span> 模拟题</h2>
+<section id="outline-container-orgcb0ce47" class="outline-2">
+<h2 id="orgcb0ce47"><span class="section-number-2">1</span> 模拟题</h2>
 <div class="outline-text-2" id="text-1">
 
-<figure id="org7e0dce4">
+<figure id="org217e321">
 <img src="img/exam.png" alt="exam.png">
 
 </figure>
@@ -104,44 +106,44 @@
 
 
 
-<section id="outline-container-org9539361" class="outline-2">
-<h2 id="org9539361"><span class="section-number-2">2</span> 基本步骤</h2>
+<section id="outline-container-org6e8967b" class="outline-2">
+<h2 id="org6e8967b"><span class="section-number-2">2</span> 基本步骤</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://github.com/yaollllllsan/lastexam">https://github.com/yaollllllsan/lastexam</a>
 </p>
 </div>
 
-<div id="outline-container-org82cae2f" class="outline-3">
-<h3 id="org82cae2f"><span class="section-number-3">2.1</span> 创建数据库对象</h3>
+<div id="outline-container-org613f337" class="outline-3">
+<h3 id="org613f337"><span class="section-number-3">2.1</span> 创建数据库对象</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #b22222;">-- 1 &#20998;</span>
-<span style="color: #a020f0;">create</span> database mycup;
-<span style="color: #a020f0;">go</span>
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- 1 &#20998;</span>
+<span style="color: #c678dd; font-weight: bold;">create</span> database mycup;
+<span style="color: #c678dd; font-weight: bold;">go</span>
 
 use mycup;
 
-<span style="color: #b22222;">-- 5 &#20998;</span>
-<span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">cup</span>
-<span style="color: #707183;">(</span>
-   id <span style="color: #228b22;">int</span> <span style="color: #a020f0;">identity</span> <span style="color: #a020f0;">primary</span> <span style="color: #a020f0;">key</span>,
-   <span style="color: #a020f0;">name</span> <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>20<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">null</span>,
-   price money <span style="color: #a020f0;">check</span> <span style="color: #7388d6;">(</span> price &gt; 0 <span style="color: #7388d6;">)</span>,
-   birth datetime <span style="color: #a020f0;">default</span> getdate<span style="color: #7388d6;">()</span>
-<span style="color: #707183;">)</span>;
+<span style="color: #687080; font-style: italic;">-- 5 &#20998;</span>
+<span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">table</span> <span style="color: #61afef;">cup</span>
+<span style="color: #8c8c8c;">(</span>
+   id <span style="color: #61afef;">int</span> <span style="color: #c678dd; font-weight: bold;">identity</span> <span style="color: #c678dd; font-weight: bold;">primary</span> <span style="color: #c678dd; font-weight: bold;">key</span>,
+   <span style="color: #c678dd; font-weight: bold;">name</span> <span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>20<span style="color: #93a8c6;">)</span> <span style="color: #c678dd; font-weight: bold;">not</span> <span style="color: #c678dd; font-weight: bold;">null</span>,
+   price money <span style="color: #c678dd; font-weight: bold;">check</span> <span style="color: #93a8c6;">(</span> price &gt; 0 <span style="color: #93a8c6;">)</span>,
+   birth datetime <span style="color: #c678dd; font-weight: bold;">default</span> getdate<span style="color: #93a8c6;">()</span>
+<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #b22222;">-- 3 &#20998;</span>
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> cup <span style="color: #707183;">(</span><span style="color: #a020f0;">name</span>, price, birth<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span><span style="color: #8b2252;">'&#39640;&#33050;&#26479;'</span>, 22.3, <span style="color: #8b2252;">'2020-10-11'</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> cup <span style="color: #707183;">(</span><span style="color: #a020f0;">name</span>, price, birth<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span><span style="color: #8b2252;">'&#21860;&#37202;&#26479;'</span>, 14.3, <span style="color: #8b2252;">'2020-12-11'</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> cup <span style="color: #707183;">(</span><span style="color: #a020f0;">name</span>, price, birth<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span><span style="color: #8b2252;">'&#33590;&#27700;&#26479;'</span>, 93.3, <span style="color: #8b2252;">'2020-11-11'</span><span style="color: #707183;">)</span>;
+<span style="color: #687080; font-style: italic;">-- 3 &#20998;</span>
+<span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> cup <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">name</span>, price, birth<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'&#39640;&#33050;&#26479;'</span>, 22.3, <span style="color: #98be65;">'2020-10-11'</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> cup <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">name</span>, price, birth<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'&#21860;&#37202;&#26479;'</span>, 14.3, <span style="color: #98be65;">'2020-12-11'</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> cup <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">name</span>, price, birth<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'&#33590;&#27700;&#26479;'</span>, 93.3, <span style="color: #98be65;">'2020-11-11'</span><span style="color: #8c8c8c;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgdeb1331" class="outline-3">
-<h3 id="orgdeb1331"><span class="section-number-3">2.2</span> 创建项目</h3>
+<div id="outline-container-org7392608" class="outline-3">
+<h3 id="org7392608"><span class="section-number-3">2.2</span> 创建项目</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>使用 Idea/Eclipse 创建一个普通的 Java Web 项目 (<b>必须要保证考试的时候 idea 不罢工</b>)</li>
@@ -154,8 +156,8 @@ use mycup;
 </div>
 </div>
 
-<div id="outline-container-orgb326557" class="outline-3">
-<h3 id="orgb326557"><span class="section-number-3">2.3</span> 正式阶段</h3>
+<div id="outline-container-org16be41d" class="outline-3">
+<h3 id="org16be41d"><span class="section-number-3">2.3</span> 正式阶段</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>在 admin.html 中，创建标题、表格、按钮组，并使用 bootstrap 渲染出合适的样式</li>
@@ -167,7 +169,7 @@ use mycup;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-01-13</p>
+<p class="date">Created: 2021-01-22</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

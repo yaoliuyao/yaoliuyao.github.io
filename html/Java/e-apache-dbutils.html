@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-10-28 -->
+<!-- 2021-01-22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apache DBUtils</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="孙悟空">
 <link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
 <script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
 </head>
 <body>
 <div id="content">
@@ -20,15 +42,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0712139">1. 前情回顾</a></li>
-<li><a href="#org2f6a215">2. Apache DBUtils</a></li>
+<li><a href="#orgf4dad20">1. 前情回顾</a></li>
+<li><a href="#org87abfad">2. Apache DBUtils</a></li>
 </ul>
 </div>
 </nav>
 
 
-<section id="outline-container-org0712139" class="outline-2">
-<h2 id="org0712139"><span class="section-number-2">1</span> 前情回顾</h2>
+<section id="outline-container-orgf4dad20" class="outline-2">
+<h2 id="orgf4dad20"><span class="section-number-2">1</span> 前情回顾</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 基石:
@@ -49,8 +71,8 @@
 </div>
 </section>
 
-<section id="outline-container-org2f6a215" class="outline-2">
-<h2 id="org2f6a215"><span class="section-number-2">2</span> Apache DBUtils</h2>
+<section id="outline-container-org87abfad" class="outline-2">
+<h2 id="org87abfad"><span class="section-number-2">2</span> Apache DBUtils</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 对 JDBC 的一种非常浅的封装，可以简化 JDBC 的使用。
@@ -79,22 +101,22 @@ Comment:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">post</span>
-<span style="color: #707183;">(</span>
-  id <span style="color: #228b22;">int</span> <span style="color: #a020f0;">identity</span> <span style="color: #a020f0;">primary</span> <span style="color: #a020f0;">key</span>,
-  title <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>200<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">null</span>,
-  content <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>2000<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">null</span>,
-  author <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>200<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">null</span>,
-  created datetime <span style="color: #a020f0;">default</span> getdate<span style="color: #7388d6;">()</span>
-<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">create</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">comment</span>
-<span style="color: #707183;">(</span>
-  id <span style="color: #228b22;">int</span> <span style="color: #a020f0;">identity</span> <span style="color: #a020f0;">primary</span> <span style="color: #a020f0;">key</span>,
-  postid <span style="color: #228b22;">int</span>,
-  content <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>1000<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">null</span>,
-  author <span style="color: #228b22;">varchar</span><span style="color: #7388d6;">(</span>200<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">null</span>,
-  created datetime <span style="color: #a020f0;">default</span> getdate<span style="color: #7388d6;">()</span>
-<span style="color: #707183;">)</span>;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">table</span> <span style="color: #61afef;">post</span>
+<span style="color: #8c8c8c;">(</span>
+  id <span style="color: #61afef;">int</span> <span style="color: #c678dd; font-weight: bold;">identity</span> <span style="color: #c678dd; font-weight: bold;">primary</span> <span style="color: #c678dd; font-weight: bold;">key</span>,
+  title <span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>200<span style="color: #93a8c6;">)</span> <span style="color: #c678dd; font-weight: bold;">not</span> <span style="color: #c678dd; font-weight: bold;">null</span>,
+  content <span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>2000<span style="color: #93a8c6;">)</span> <span style="color: #c678dd; font-weight: bold;">not</span> <span style="color: #c678dd; font-weight: bold;">null</span>,
+  author <span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>200<span style="color: #93a8c6;">)</span> <span style="color: #c678dd; font-weight: bold;">not</span> <span style="color: #c678dd; font-weight: bold;">null</span>,
+  created datetime <span style="color: #c678dd; font-weight: bold;">default</span> getdate<span style="color: #93a8c6;">()</span>
+<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">table</span> <span style="color: #61afef;">comment</span>
+<span style="color: #8c8c8c;">(</span>
+  id <span style="color: #61afef;">int</span> <span style="color: #c678dd; font-weight: bold;">identity</span> <span style="color: #c678dd; font-weight: bold;">primary</span> <span style="color: #c678dd; font-weight: bold;">key</span>,
+  postid <span style="color: #61afef;">int</span>,
+  content <span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>1000<span style="color: #93a8c6;">)</span> <span style="color: #c678dd; font-weight: bold;">not</span> <span style="color: #c678dd; font-weight: bold;">null</span>,
+  author <span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>200<span style="color: #93a8c6;">)</span> <span style="color: #c678dd; font-weight: bold;">not</span> <span style="color: #c678dd; font-weight: bold;">null</span>,
+  created datetime <span style="color: #c678dd; font-weight: bold;">default</span> getdate<span style="color: #93a8c6;">()</span>
+<span style="color: #8c8c8c;">)</span>;
 </pre>
 </div>
 
@@ -106,7 +128,7 @@ Comment:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-10-28</p>
+<p class="date">Created: 2021-01-22</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

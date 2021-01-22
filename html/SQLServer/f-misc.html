@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-10-28 -->
+<!-- 2021-01-22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>练习题</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="孙悟空">
 <link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
 <script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
 </head>
 <body>
 <div id="content">
@@ -20,27 +42,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgef8c416">1. emp/dept 测试数据</a></li>
-<li><a href="#org62f59de">2. SQL 自测</a>
+<li><a href="#org8c64559">1. emp/dept 测试数据</a></li>
+<li><a href="#orgc72160a">2. SQL 自测</a>
 <ul>
-<li><a href="#orgd17c185">2.1. 查询每个部门下有多少员工</a></li>
-<li><a href="#org58bdccb">2.2. 查询除去 salesman 所有平均工资超过 1500 的部门</a></li>
-<li><a href="#org6fc8c03">2.3. 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</a></li>
-<li><a href="#org034c6ed">2.4. 查询姓名为 King 的员工的编号，名称跟部门</a></li>
-<li><a href="#org59e11d2">2.5. 查询各种工作的最低工资</a></li>
-<li><a href="#org2c4c39a">2.6. 查询工龄大于 10 年的所有员工信息</a></li>
-<li><a href="#orge9e2fa7">2.7. 查询每个部门员工数量，平均工资和平均工作年限</a></li>
-<li><a href="#org0b27191">2.8. 统计各部门每个工种的人数，平均工资</a></li>
-<li><a href="#org01f08da">2.9. 查询从事同一种工作但不属于同一部门的员工信息</a></li>
-<li><a href="#org20fcda5">2.10. 查询所有员工工资都大于 1000 的部门的信息及员工信息</a></li>
-<li><a href="#orgf321812">2.11. 其他题目</a></li>
+<li><a href="#org65adfcd">2.1. 查询每个部门下有多少员工</a></li>
+<li><a href="#org427fa21">2.2. 查询除去 salesman 所有平均工资超过 1500 的部门</a></li>
+<li><a href="#org7f52818">2.3. 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</a></li>
+<li><a href="#orgd6d072f">2.4. 查询姓名为 King 的员工的编号，名称跟部门</a></li>
+<li><a href="#orge64e5aa">2.5. 查询各种工作的最低工资</a></li>
+<li><a href="#orge063e0b">2.6. 查询工龄大于 10 年的所有员工信息</a></li>
+<li><a href="#org383ea66">2.7. 查询每个部门员工数量，平均工资和平均工作年限</a></li>
+<li><a href="#org8399582">2.8. 统计各部门每个工种的人数，平均工资</a></li>
+<li><a href="#orgc2f96fd">2.9. 查询从事同一种工作但不属于同一部门的员工信息</a></li>
+<li><a href="#org047379f">2.10. 查询所有员工工资都大于 1000 的部门的信息及员工信息</a></li>
+<li><a href="#orgf5fdfce">2.11. 其他题目</a></li>
 </ul>
 </li>
-<li><a href="#orgaa8abac">3. Lagou.com 测试数据</a></li>
-<li><a href="#org9362ab8">4. 奇 vs 偶</a>
+<li><a href="#org680b930">3. Lagou.com 测试数据</a></li>
+<li><a href="#org7996422">4. 奇 vs 偶</a>
 <ul>
-<li><a href="#org12fae1a">4.1. 1/3/5/7 出的题</a></li>
-<li><a href="#org8a46ced">4.2. 2/4/6/8 出的题</a></li>
+<li><a href="#orgf352e16">4.1. 1/3/5/7 出的题</a></li>
+<li><a href="#orgbf51da7">4.2. 2/4/6/8 出的题</a></li>
 </ul>
 </li>
 </ul>
@@ -48,206 +70,206 @@
 </nav>
 
 
-<section id="outline-container-orgef8c416" class="outline-2">
-<h2 id="orgef8c416"><span class="section-number-2">1</span> emp/dept 测试数据</h2>
+<section id="outline-container-org8c64559" class="outline-2">
+<h2 id="org8c64559"><span class="section-number-2">1</span> emp/dept 测试数据</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> DATABASE oa;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">CREATE</span> DATABASE oa;
 use oa;
 
-<span style="color: #a020f0;">CREATE</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">dept</span> <span style="color: #707183;">(</span> <span style="color: #b22222;">-- department</span>
-  deptno <span style="color: #228b22;">int</span>,
-  dname  <span style="color: #228b22;">VARCHAR</span><span style="color: #7388d6;">(</span>14<span style="color: #7388d6;">)</span>,
-  loc    <span style="color: #228b22;">VARCHAR</span><span style="color: #7388d6;">(</span>13<span style="color: #7388d6;">)</span>, <span style="color: #b22222;">-- location/address</span>
-  <span style="color: #a020f0;">CONSTRAINT</span> pk_dept <span style="color: #a020f0;">PRIMARY</span> <span style="color: #a020f0;">KEY</span> <span style="color: #7388d6;">(</span>deptno<span style="color: #7388d6;">)</span>
-<span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">CREATE</span> <span style="color: #c678dd; font-weight: bold;">TABLE</span> <span style="color: #61afef;">dept</span> <span style="color: #8c8c8c;">(</span> <span style="color: #687080; font-style: italic;">-- department</span>
+  deptno <span style="color: #61afef;">int</span>,
+  dname  <span style="color: #61afef;">VARCHAR</span><span style="color: #93a8c6;">(</span>14<span style="color: #93a8c6;">)</span>,
+  loc    <span style="color: #61afef;">VARCHAR</span><span style="color: #93a8c6;">(</span>13<span style="color: #93a8c6;">)</span>, <span style="color: #687080; font-style: italic;">-- location/address</span>
+  <span style="color: #c678dd; font-weight: bold;">CONSTRAINT</span> pk_dept <span style="color: #c678dd; font-weight: bold;">PRIMARY</span> <span style="color: #c678dd; font-weight: bold;">KEY</span> <span style="color: #93a8c6;">(</span>deptno<span style="color: #93a8c6;">)</span>
+<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #a020f0;">CREATE</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">emp</span> <span style="color: #707183;">(</span> <span style="color: #b22222;">-- employee</span>
-  empno    <span style="color: #228b22;">int</span>,
-  ename    <span style="color: #228b22;">VARCHAR</span><span style="color: #7388d6;">(</span>10<span style="color: #7388d6;">)</span>,
-  job      <span style="color: #228b22;">VARCHAR</span><span style="color: #7388d6;">(</span>9<span style="color: #7388d6;">)</span>,
-  mgr      <span style="color: #228b22;">int</span>,
-  hiredate <span style="color: #228b22;">DATE</span>,
-  sal      <span style="color: #228b22;">float</span>,
-  comm     <span style="color: #228b22;">float</span>,
-  deptno   <span style="color: #228b22;">int</span>,
-  <span style="color: #a020f0;">CONSTRAINT</span> pk_emp <span style="color: #a020f0;">PRIMARY</span> <span style="color: #a020f0;">KEY</span> <span style="color: #7388d6;">(</span>empno<span style="color: #7388d6;">)</span>,
-  <span style="color: #a020f0;">CONSTRAINT</span> fk_deptno <span style="color: #a020f0;">FOREIGN</span> <span style="color: #a020f0;">KEY</span> <span style="color: #7388d6;">(</span>deptno<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">REFERENCES</span> dept <span style="color: #7388d6;">(</span>deptno<span style="color: #7388d6;">)</span>
-<span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">CREATE</span> <span style="color: #c678dd; font-weight: bold;">TABLE</span> <span style="color: #61afef;">emp</span> <span style="color: #8c8c8c;">(</span> <span style="color: #687080; font-style: italic;">-- employee</span>
+  empno    <span style="color: #61afef;">int</span>,
+  ename    <span style="color: #61afef;">VARCHAR</span><span style="color: #93a8c6;">(</span>10<span style="color: #93a8c6;">)</span>,
+  job      <span style="color: #61afef;">VARCHAR</span><span style="color: #93a8c6;">(</span>9<span style="color: #93a8c6;">)</span>,
+  mgr      <span style="color: #61afef;">int</span>,
+  hiredate <span style="color: #61afef;">DATE</span>,
+  sal      <span style="color: #61afef;">float</span>,
+  comm     <span style="color: #61afef;">float</span>,
+  deptno   <span style="color: #61afef;">int</span>,
+  <span style="color: #c678dd; font-weight: bold;">CONSTRAINT</span> pk_emp <span style="color: #c678dd; font-weight: bold;">PRIMARY</span> <span style="color: #c678dd; font-weight: bold;">KEY</span> <span style="color: #93a8c6;">(</span>empno<span style="color: #93a8c6;">)</span>,
+  <span style="color: #c678dd; font-weight: bold;">CONSTRAINT</span> fk_deptno <span style="color: #c678dd; font-weight: bold;">FOREIGN</span> <span style="color: #c678dd; font-weight: bold;">KEY</span> <span style="color: #93a8c6;">(</span>deptno<span style="color: #93a8c6;">)</span> <span style="color: #c678dd; font-weight: bold;">REFERENCES</span> dept <span style="color: #93a8c6;">(</span>deptno<span style="color: #93a8c6;">)</span>
+<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #a020f0;">CREATE</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">bonus</span> <span style="color: #707183;">(</span> <span style="color: #b22222;">-- bonus</span>
-  ename <span style="color: #228b22;">VARCHAR</span><span style="color: #7388d6;">(</span>10<span style="color: #7388d6;">)</span>,
-  job   <span style="color: #228b22;">VARCHAR</span><span style="color: #7388d6;">(</span>9<span style="color: #7388d6;">)</span>,
-  sal   <span style="color: #228b22;">float</span>,
-  comm  <span style="color: #228b22;">float</span>
-<span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">CREATE</span> <span style="color: #c678dd; font-weight: bold;">TABLE</span> <span style="color: #61afef;">bonus</span> <span style="color: #8c8c8c;">(</span> <span style="color: #687080; font-style: italic;">-- bonus</span>
+  ename <span style="color: #61afef;">VARCHAR</span><span style="color: #93a8c6;">(</span>10<span style="color: #93a8c6;">)</span>,
+  job   <span style="color: #61afef;">VARCHAR</span><span style="color: #93a8c6;">(</span>9<span style="color: #93a8c6;">)</span>,
+  sal   <span style="color: #61afef;">float</span>,
+  comm  <span style="color: #61afef;">float</span>
+<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #a020f0;">CREATE</span> <span style="color: #a020f0;">TABLE</span> <span style="color: #0000ff;">salgrade</span> <span style="color: #707183;">(</span> <span style="color: #b22222;">-- salary grade</span>
-  grade <span style="color: #228b22;">int</span>,
-  losal <span style="color: #228b22;">float</span>,
-  hisal <span style="color: #228b22;">float</span>
-<span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">CREATE</span> <span style="color: #c678dd; font-weight: bold;">TABLE</span> <span style="color: #61afef;">salgrade</span> <span style="color: #8c8c8c;">(</span> <span style="color: #687080; font-style: italic;">-- salary grade</span>
+  grade <span style="color: #61afef;">int</span>,
+  losal <span style="color: #61afef;">float</span>,
+  hisal <span style="color: #61afef;">float</span>
+<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> dept <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span>10, <span style="color: #8b2252;">'ACCOUNTING'</span>, <span style="color: #8b2252;">'NEW YORK'</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> dept <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span>20, <span style="color: #8b2252;">'RESEARCH'</span>, <span style="color: #8b2252;">'DALLAS'</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> dept <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span>30, <span style="color: #8b2252;">'SALES'</span>, <span style="color: #8b2252;">'CHICAGO'</span><span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> dept <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span>40, <span style="color: #8b2252;">'OPERATIONS'</span>, <span style="color: #8b2252;">'BOSTON'</span><span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> dept <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span>10, <span style="color: #98be65;">'ACCOUNTING'</span>, <span style="color: #98be65;">'NEW YORK'</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> dept <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span>20, <span style="color: #98be65;">'RESEARCH'</span>, <span style="color: #98be65;">'DALLAS'</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> dept <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span>30, <span style="color: #98be65;">'SALES'</span>, <span style="color: #98be65;">'CHICAGO'</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> dept <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span>40, <span style="color: #98be65;">'OPERATIONS'</span>, <span style="color: #98be65;">'BOSTON'</span><span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7839, <span style="color: #8b2252;">'KING'</span>, <span style="color: #8b2252;">'PRESIDENT'</span>, <span style="color: #a020f0;">null</span>, <span style="color: #8b2252;">'1981-11-17'</span>, 5000, <span style="color: #a020f0;">null</span>, 10 <span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7698, <span style="color: #8b2252;">'BLAKE'</span>, <span style="color: #8b2252;">'MANAGER'</span>, 7839, <span style="color: #8b2252;">'1981-05-01'</span>, 2850, <span style="color: #a020f0;">null</span>, 30<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7782, <span style="color: #8b2252;">'CLARK'</span>, <span style="color: #8b2252;">'MANAGER'</span>, 7839, <span style="color: #8b2252;">'1981-06-09'</span>, 2450, <span style="color: #a020f0;">null</span>, 10<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7566, <span style="color: #8b2252;">'JONES'</span>, <span style="color: #8b2252;">'MANAGER'</span>, 7839, <span style="color: #8b2252;">'1981-04-02'</span>, 2975, <span style="color: #a020f0;">null</span>, 20<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7788, <span style="color: #8b2252;">'SCOTT'</span>, <span style="color: #8b2252;">'ANALYST'</span>, 7566, <span style="color: #8b2252;">'1987-07-13'</span>, 3000, <span style="color: #a020f0;">null</span>, 20<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7902, <span style="color: #8b2252;">'FORD'</span>, <span style="color: #8b2252;">'ANALYST'</span>, 7566, <span style="color: #8b2252;">'1981-12-03'</span>, 3000, <span style="color: #a020f0;">null</span>, 20 <span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7369, <span style="color: #8b2252;">'SMITH'</span>, <span style="color: #8b2252;">'CLERK'</span>, 7902, <span style="color: #8b2252;">'1980-12-17'</span>, 800, <span style="color: #a020f0;">null</span>, 20 <span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7499, <span style="color: #8b2252;">'ALLEN'</span>, <span style="color: #8b2252;">'SALESMAN'</span>, 7698, <span style="color: #8b2252;">'1981-02-20'</span>, 1600, 300, 30<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7521, <span style="color: #8b2252;">'WARD'</span>, <span style="color: #8b2252;">'SALESMAN'</span>, 7698, <span style="color: #8b2252;">'1981-02-22'</span>, 1250, 500, 30 <span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7654, <span style="color: #8b2252;">'MARTIN'</span>, <span style="color: #8b2252;">'SALESMAN'</span>, 7698, <span style="color: #8b2252;">'1981-09-28'</span>, 1250, 1400, 30 <span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7844, <span style="color: #8b2252;">'TURNER'</span>, <span style="color: #8b2252;">'SALESMAN'</span>, 7698, <span style="color: #8b2252;">'1981-09-08'</span>, 1500, 0, 30<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7876, <span style="color: #8b2252;">'ADAMS'</span>, <span style="color: #8b2252;">'CLERK'</span>, 7788, <span style="color: #8b2252;">'1987-07-13'</span>, 1100, <span style="color: #a020f0;">null</span>, 20 <span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7900, <span style="color: #8b2252;">'JAMES'</span>, <span style="color: #8b2252;">'CLERK'</span>, 7698, <span style="color: #8b2252;">'1981-12-03'</span>, 950, <span style="color: #a020f0;">null</span>, 30 <span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> emp <span style="color: #a020f0;">VALUES</span><span style="color: #707183;">(</span> 7934, <span style="color: #8b2252;">'MILLER'</span>, <span style="color: #8b2252;">'CLERK'</span>, 7782, <span style="color: #8b2252;">'1982-01-23'</span>, 1300, <span style="color: #a020f0;">null</span>, 10 <span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7839, <span style="color: #98be65;">'KING'</span>, <span style="color: #98be65;">'PRESIDENT'</span>, <span style="color: #c678dd; font-weight: bold;">null</span>, <span style="color: #98be65;">'1981-11-17'</span>, 5000, <span style="color: #c678dd; font-weight: bold;">null</span>, 10 <span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7698, <span style="color: #98be65;">'BLAKE'</span>, <span style="color: #98be65;">'MANAGER'</span>, 7839, <span style="color: #98be65;">'1981-05-01'</span>, 2850, <span style="color: #c678dd; font-weight: bold;">null</span>, 30<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7782, <span style="color: #98be65;">'CLARK'</span>, <span style="color: #98be65;">'MANAGER'</span>, 7839, <span style="color: #98be65;">'1981-06-09'</span>, 2450, <span style="color: #c678dd; font-weight: bold;">null</span>, 10<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7566, <span style="color: #98be65;">'JONES'</span>, <span style="color: #98be65;">'MANAGER'</span>, 7839, <span style="color: #98be65;">'1981-04-02'</span>, 2975, <span style="color: #c678dd; font-weight: bold;">null</span>, 20<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7788, <span style="color: #98be65;">'SCOTT'</span>, <span style="color: #98be65;">'ANALYST'</span>, 7566, <span style="color: #98be65;">'1987-07-13'</span>, 3000, <span style="color: #c678dd; font-weight: bold;">null</span>, 20<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7902, <span style="color: #98be65;">'FORD'</span>, <span style="color: #98be65;">'ANALYST'</span>, 7566, <span style="color: #98be65;">'1981-12-03'</span>, 3000, <span style="color: #c678dd; font-weight: bold;">null</span>, 20 <span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7369, <span style="color: #98be65;">'SMITH'</span>, <span style="color: #98be65;">'CLERK'</span>, 7902, <span style="color: #98be65;">'1980-12-17'</span>, 800, <span style="color: #c678dd; font-weight: bold;">null</span>, 20 <span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7499, <span style="color: #98be65;">'ALLEN'</span>, <span style="color: #98be65;">'SALESMAN'</span>, 7698, <span style="color: #98be65;">'1981-02-20'</span>, 1600, 300, 30<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7521, <span style="color: #98be65;">'WARD'</span>, <span style="color: #98be65;">'SALESMAN'</span>, 7698, <span style="color: #98be65;">'1981-02-22'</span>, 1250, 500, 30 <span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7654, <span style="color: #98be65;">'MARTIN'</span>, <span style="color: #98be65;">'SALESMAN'</span>, 7698, <span style="color: #98be65;">'1981-09-28'</span>, 1250, 1400, 30 <span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7844, <span style="color: #98be65;">'TURNER'</span>, <span style="color: #98be65;">'SALESMAN'</span>, 7698, <span style="color: #98be65;">'1981-09-08'</span>, 1500, 0, 30<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7876, <span style="color: #98be65;">'ADAMS'</span>, <span style="color: #98be65;">'CLERK'</span>, 7788, <span style="color: #98be65;">'1987-07-13'</span>, 1100, <span style="color: #c678dd; font-weight: bold;">null</span>, 20 <span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7900, <span style="color: #98be65;">'JAMES'</span>, <span style="color: #98be65;">'CLERK'</span>, 7698, <span style="color: #98be65;">'1981-12-03'</span>, 950, <span style="color: #c678dd; font-weight: bold;">null</span>, 30 <span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> emp <span style="color: #c678dd; font-weight: bold;">VALUES</span><span style="color: #8c8c8c;">(</span> 7934, <span style="color: #98be65;">'MILLER'</span>, <span style="color: #98be65;">'CLERK'</span>, 7782, <span style="color: #98be65;">'1982-01-23'</span>, 1300, <span style="color: #c678dd; font-weight: bold;">null</span>, 10 <span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> salgrade <span style="color: #a020f0;">VALUES</span> <span style="color: #707183;">(</span>1, 700, 1200<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> salgrade <span style="color: #a020f0;">VALUES</span> <span style="color: #707183;">(</span>2, 1201, 1400<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> salgrade <span style="color: #a020f0;">VALUES</span> <span style="color: #707183;">(</span>3, 1401, 2000<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> salgrade <span style="color: #a020f0;">VALUES</span> <span style="color: #707183;">(</span>4, 2001, 3000<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">INSERT</span> <span style="color: #a020f0;">INTO</span> salgrade <span style="color: #a020f0;">VALUES</span> <span style="color: #707183;">(</span>5, 3001, 9999<span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> salgrade <span style="color: #c678dd; font-weight: bold;">VALUES</span> <span style="color: #8c8c8c;">(</span>1, 700, 1200<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> salgrade <span style="color: #c678dd; font-weight: bold;">VALUES</span> <span style="color: #8c8c8c;">(</span>2, 1201, 1400<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> salgrade <span style="color: #c678dd; font-weight: bold;">VALUES</span> <span style="color: #8c8c8c;">(</span>3, 1401, 2000<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> salgrade <span style="color: #c678dd; font-weight: bold;">VALUES</span> <span style="color: #8c8c8c;">(</span>4, 2001, 3000<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">INSERT</span> <span style="color: #c678dd; font-weight: bold;">INTO</span> salgrade <span style="color: #c678dd; font-weight: bold;">VALUES</span> <span style="color: #8c8c8c;">(</span>5, 3001, 9999<span style="color: #8c8c8c;">)</span>;
 
-<span style="color: #a020f0;">go</span>
+<span style="color: #c678dd; font-weight: bold;">go</span>
 </pre>
 </div>
 </div>
 </section>
 
-<section id="outline-container-org62f59de" class="outline-2">
-<h2 id="org62f59de"><span class="section-number-2">2</span> SQL 自测</h2>
+<section id="outline-container-orgc72160a" class="outline-2">
+<h2 id="orgc72160a"><span class="section-number-2">2</span> SQL 自测</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd17c185" class="outline-3">
-<h3 id="orgd17c185"><span class="section-number-3">2.1</span> 查询每个部门下有多少员工</h3>
+<div id="outline-container-org65adfcd" class="outline-3">
+<h3 id="org65adfcd"><span class="section-number-3">2.1</span> 查询每个部门下有多少员工</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno, <span style="color: #483d8b;">count</span><span style="color: #707183;">(</span>*<span style="color: #707183;">)</span> <span style="color: #a020f0;">from</span> emp  <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> deptno;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> deptno, <span style="color: #61afef; font-weight: bold;">count</span><span style="color: #8c8c8c;">(</span>*<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">from</span> emp  <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> deptno;
 
-<span style="color: #b22222;">-- &#31532;&#19968;&#31181;&#65292;&#32467;&#21512;&#19978;&#19968;&#21477;&#65292;&#23558;&#37096;&#38376;&#21517;&#31216;&#21152;&#36827;&#26469;</span>
-<span style="color: #a020f0;">select</span> s.deptno, d.dname, s.cnt
-  <span style="color: #a020f0;">from</span> <span style="color: #707183;">(</span><span style="color: #a020f0;">select</span> deptno, <span style="color: #483d8b;">count</span><span style="color: #7388d6;">(</span>*<span style="color: #7388d6;">)</span> <span style="color: #a020f0;">as</span> cnt <span style="color: #a020f0;">from</span> emp  <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> deptno<span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> s
-  <span style="color: #a020f0;">join</span> dept <span style="color: #a020f0;">as</span> d <span style="color: #a020f0;">on</span> s.deptno = d.deptno;
+<span style="color: #687080; font-style: italic;">-- &#31532;&#19968;&#31181;&#65292;&#32467;&#21512;&#19978;&#19968;&#21477;&#65292;&#23558;&#37096;&#38376;&#21517;&#31216;&#21152;&#36827;&#26469;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> s.deptno, d.dname, s.cnt
+  <span style="color: #c678dd; font-weight: bold;">from</span> <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">select</span> deptno, <span style="color: #61afef; font-weight: bold;">count</span><span style="color: #93a8c6;">(</span>*<span style="color: #93a8c6;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> cnt <span style="color: #c678dd; font-weight: bold;">from</span> emp  <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> deptno<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> s
+  <span style="color: #c678dd; font-weight: bold;">join</span> dept <span style="color: #c678dd; font-weight: bold;">as</span> d <span style="color: #c678dd; font-weight: bold;">on</span> s.deptno = d.deptno;
 
-<span style="color: #b22222;">-- &#31532;&#20108;&#31181;&#65292;&#20808;&#23558;&#25152;&#26377;&#35201;&#20998;&#32452;&#30340;&#25968;&#25454;&#25630;&#20986;&#26469;&#65292;&#20877;&#36827;&#34892;&#20854;&#20182;&#25805;&#20316;</span>
-<span style="color: #a020f0;">select</span> d.dname, <span style="color: #483d8b;">COUNT</span><span style="color: #707183;">(</span>*<span style="color: #707183;">)</span> <span style="color: #a020f0;">from</span> emp <span style="color: #a020f0;">as</span> e
-  <span style="color: #a020f0;">join</span> dept <span style="color: #a020f0;">as</span> d <span style="color: #a020f0;">on</span> e.deptno = d.deptno
-  <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> d.dname;
+<span style="color: #687080; font-style: italic;">-- &#31532;&#20108;&#31181;&#65292;&#20808;&#23558;&#25152;&#26377;&#35201;&#20998;&#32452;&#30340;&#25968;&#25454;&#25630;&#20986;&#26469;&#65292;&#20877;&#36827;&#34892;&#20854;&#20182;&#25805;&#20316;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> d.dname, <span style="color: #61afef; font-weight: bold;">COUNT</span><span style="color: #8c8c8c;">(</span>*<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">as</span> e
+  <span style="color: #c678dd; font-weight: bold;">join</span> dept <span style="color: #c678dd; font-weight: bold;">as</span> d <span style="color: #c678dd; font-weight: bold;">on</span> e.deptno = d.deptno
+  <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> d.dname;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org58bdccb" class="outline-3">
-<h3 id="org58bdccb"><span class="section-number-3">2.2</span> 查询除去 salesman 所有平均工资超过 1500 的部门</h3>
+<div id="outline-container-org427fa21" class="outline-3">
+<h3 id="org427fa21"><span class="section-number-3">2.2</span> 查询除去 salesman 所有平均工资超过 1500 的部门</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno, <span style="color: #483d8b;">AVG</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">from</span> emp
-  <span style="color: #a020f0;">where</span> job &lt;&gt; <span style="color: #8b2252;">'salesman'</span>
-  <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> deptno
-  <span style="color: #a020f0;">having</span> <span style="color: #483d8b;">AVG</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> &gt; 1500;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> deptno, <span style="color: #61afef; font-weight: bold;">AVG</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">from</span> emp
+  <span style="color: #c678dd; font-weight: bold;">where</span> job &lt;&gt; <span style="color: #98be65;">'salesman'</span>
+  <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> deptno
+  <span style="color: #c678dd; font-weight: bold;">having</span> <span style="color: #61afef; font-weight: bold;">AVG</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> &gt; 1500;
 
-<span style="color: #a020f0;">select</span> d.dname, <span style="color: #483d8b;">AVG</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">from</span> emp <span style="color: #a020f0;">as</span> e
-  <span style="color: #a020f0;">join</span> dept <span style="color: #a020f0;">as</span> d <span style="color: #a020f0;">on</span> e.deptno = d.deptno
-  <span style="color: #a020f0;">where</span> job &lt;&gt; <span style="color: #8b2252;">'salesman'</span>
-  <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> d.dname
-  <span style="color: #a020f0;">having</span> <span style="color: #483d8b;">AVG</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> &gt; 1500;
+<span style="color: #c678dd; font-weight: bold;">select</span> d.dname, <span style="color: #61afef; font-weight: bold;">AVG</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">as</span> e
+  <span style="color: #c678dd; font-weight: bold;">join</span> dept <span style="color: #c678dd; font-weight: bold;">as</span> d <span style="color: #c678dd; font-weight: bold;">on</span> e.deptno = d.deptno
+  <span style="color: #c678dd; font-weight: bold;">where</span> job &lt;&gt; <span style="color: #98be65;">'salesman'</span>
+  <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> d.dname
+  <span style="color: #c678dd; font-weight: bold;">having</span> <span style="color: #61afef; font-weight: bold;">AVG</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> &gt; 1500;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6fc8c03" class="outline-3">
-<h3 id="org6fc8c03"><span class="section-number-3">2.3</span> 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</h3>
+<div id="outline-container-org7f52818" class="outline-3">
+<h3 id="org7f52818"><span class="section-number-3">2.3</span> 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> dname, ename, sal <span style="color: #a020f0;">from</span> emp
-  <span style="color: #a020f0;">join</span> dept <span style="color: #a020f0;">on</span> emp.deptno = dept.deptno
-  <span style="color: #a020f0;">where</span> loc =  <span style="color: #8b2252;">'new york'</span>;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> dname, ename, sal <span style="color: #c678dd; font-weight: bold;">from</span> emp
+  <span style="color: #c678dd; font-weight: bold;">join</span> dept <span style="color: #c678dd; font-weight: bold;">on</span> emp.deptno = dept.deptno
+  <span style="color: #c678dd; font-weight: bold;">where</span> loc =  <span style="color: #98be65;">'new york'</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org034c6ed" class="outline-3">
-<h3 id="org034c6ed"><span class="section-number-3">2.4</span> 查询姓名为 King 的员工的编号，名称跟部门</h3>
+<div id="outline-container-orgd6d072f" class="outline-3">
+<h3 id="orgd6d072f"><span class="section-number-3">2.4</span> 查询姓名为 King 的员工的编号，名称跟部门</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> empno,ename,dept.dname <span style="color: #a020f0;">from</span> emp
-  <span style="color: #a020f0;">join</span> dept <span style="color: #a020f0;">on</span> dept.deptno = emp.deptno
-   <span style="color: #a020f0;">where</span> ename = <span style="color: #8b2252;">'King'</span>;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> empno,ename,dept.dname <span style="color: #c678dd; font-weight: bold;">from</span> emp
+  <span style="color: #c678dd; font-weight: bold;">join</span> dept <span style="color: #c678dd; font-weight: bold;">on</span> dept.deptno = emp.deptno
+   <span style="color: #c678dd; font-weight: bold;">where</span> ename = <span style="color: #98be65;">'King'</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org59e11d2" class="outline-3">
-<h3 id="org59e11d2"><span class="section-number-3">2.5</span> 查询各种工作的最低工资</h3>
+<div id="outline-container-orge64e5aa" class="outline-3">
+<h3 id="orge64e5aa"><span class="section-number-3">2.5</span> 查询各种工作的最低工资</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> job,<span style="color: #483d8b;">min</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> small <span style="color: #a020f0;">from</span> emp <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> job;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> job,<span style="color: #61afef; font-weight: bold;">min</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> small <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> job;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org2c4c39a" class="outline-3">
-<h3 id="org2c4c39a"><span class="section-number-3">2.6</span> 查询工龄大于 10 年的所有员工信息</h3>
+<div id="outline-container-orge063e0b" class="outline-3">
+<h3 id="orge063e0b"><span class="section-number-3">2.6</span> 查询工龄大于 10 年的所有员工信息</h3>
 <div class="outline-text-3" id="text-2-6">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> emp
-  <span style="color: #a020f0;">where</span> datediff<span style="color: #707183;">(</span><span style="color: #a020f0;">YEAR</span>, hiredate, GETDATE<span style="color: #7388d6;">()</span><span style="color: #707183;">)</span> &gt; 10
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp
+  <span style="color: #c678dd; font-weight: bold;">where</span> datediff<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">YEAR</span>, hiredate, GETDATE<span style="color: #93a8c6;">()</span><span style="color: #8c8c8c;">)</span> &gt; 10
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orge9e2fa7" class="outline-3">
-<h3 id="orge9e2fa7"><span class="section-number-3">2.7</span> 查询每个部门员工数量，平均工资和平均工作年限</h3>
+<div id="outline-container-org383ea66" class="outline-3">
+<h3 id="org383ea66"><span class="section-number-3">2.7</span> 查询每个部门员工数量，平均工资和平均工作年限</h3>
 <div class="outline-text-3" id="text-2-7">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span>
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span>
     dept.dname,
-    <span style="color: #483d8b;">COUNT</span><span style="color: #707183;">(</span>*<span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> person,
-    <span style="color: #483d8b;">AVG</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> a,
-    <span style="color: #483d8b;">AVG</span><span style="color: #707183;">(</span>DATEDIFF<span style="color: #7388d6;">(</span><span style="color: #a020f0;">YEAR</span>, hiredate, GETDATE<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> worktime
-  <span style="color: #a020f0;">from</span> emp <span style="color: #a020f0;">join</span> dept <span style="color: #a020f0;">on</span> emp.deptno = dept.deptno
-  <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> dept.dname;
+    <span style="color: #61afef; font-weight: bold;">COUNT</span><span style="color: #8c8c8c;">(</span>*<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> person,
+    <span style="color: #61afef; font-weight: bold;">AVG</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> a,
+    <span style="color: #61afef; font-weight: bold;">AVG</span><span style="color: #8c8c8c;">(</span>DATEDIFF<span style="color: #93a8c6;">(</span><span style="color: #c678dd; font-weight: bold;">YEAR</span>, hiredate, GETDATE<span style="color: #b0b1a3;">()</span><span style="color: #93a8c6;">)</span><span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> worktime
+  <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">join</span> dept <span style="color: #c678dd; font-weight: bold;">on</span> emp.deptno = dept.deptno
+  <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> dept.dname;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0b27191" class="outline-3">
-<h3 id="org0b27191"><span class="section-number-3">2.8</span> 统计各部门每个工种的人数，平均工资</h3>
+<div id="outline-container-org8399582" class="outline-3">
+<h3 id="org8399582"><span class="section-number-3">2.8</span> 统计各部门每个工种的人数，平均工资</h3>
 <div class="outline-text-3" id="text-2-8">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno,
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> deptno,
        job,
-       <span style="color: #483d8b;">count</span><span style="color: #707183;">(</span>empno<span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> allpeople,
-       <span style="color: #483d8b;">avg</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> gongzi
-   <span style="color: #a020f0;">from</span> emp
-   <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> job, deptno;
+       <span style="color: #61afef; font-weight: bold;">count</span><span style="color: #8c8c8c;">(</span>empno<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> allpeople,
+       <span style="color: #61afef; font-weight: bold;">avg</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> gongzi
+   <span style="color: #c678dd; font-weight: bold;">from</span> emp
+   <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> job, deptno;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org01f08da" class="outline-3">
-<h3 id="org01f08da"><span class="section-number-3">2.9</span> 查询从事同一种工作但不属于同一部门的员工信息</h3>
+<div id="outline-container-orgc2f96fd" class="outline-3">
+<h3 id="orgc2f96fd"><span class="section-number-3">2.9</span> 查询从事同一种工作但不属于同一部门的员工信息</h3>
 <div class="outline-text-3" id="text-2-9">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> a.ename, a.empno, b.empno, b.ename
-  <span style="color: #a020f0;">from</span> emp a
-  <span style="color: #a020f0;">join</span> emp b <span style="color: #a020f0;">on</span> a.job=b.job
-  <span style="color: #a020f0;">where</span> a.deptno &lt;&gt; b.deptno
-    <span style="color: #a020f0;">and</span> a.empno &gt; b.empno;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> a.ename, a.empno, b.empno, b.ename
+  <span style="color: #c678dd; font-weight: bold;">from</span> emp a
+  <span style="color: #c678dd; font-weight: bold;">join</span> emp b <span style="color: #c678dd; font-weight: bold;">on</span> a.job=b.job
+  <span style="color: #c678dd; font-weight: bold;">where</span> a.deptno &lt;&gt; b.deptno
+    <span style="color: #c678dd; font-weight: bold;">and</span> a.empno &gt; b.empno;
 </pre>
 </div>
 
@@ -339,26 +361,26 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org20fcda5" class="outline-3">
-<h3 id="org20fcda5"><span class="section-number-3">2.10</span> 查询所有员工工资都大于 1000 的部门的信息及员工信息</h3>
+<div id="outline-container-org047379f" class="outline-3">
+<h3 id="org047379f"><span class="section-number-3">2.10</span> 查询所有员工工资都大于 1000 的部门的信息及员工信息</h3>
 <div class="outline-text-3" id="text-2-10">
 <div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> emp e
-  <span style="color: #a020f0;">join</span> dept d <span style="color: #a020f0;">on</span> e.deptno = d.deptno
-  <span style="color: #a020f0;">join</span> <span style="color: #707183;">(</span><span style="color: #a020f0;">select</span> deptno <span style="color: #a020f0;">from</span> emp
-          <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> deptno
-          <span style="color: #a020f0;">having</span> <span style="color: #483d8b;">min</span><span style="color: #7388d6;">(</span>sal + ISNULL<span style="color: #909183;">(</span>comm,0<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> &gt; 1000<span style="color: #707183;">)</span> c <span style="color: #a020f0;">on</span> e.deptno = c.deptno;
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp e
+  <span style="color: #c678dd; font-weight: bold;">join</span> dept d <span style="color: #c678dd; font-weight: bold;">on</span> e.deptno = d.deptno
+  <span style="color: #c678dd; font-weight: bold;">join</span> <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">select</span> deptno <span style="color: #c678dd; font-weight: bold;">from</span> emp
+          <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> deptno
+          <span style="color: #c678dd; font-weight: bold;">having</span> <span style="color: #61afef; font-weight: bold;">min</span><span style="color: #93a8c6;">(</span>sal + ISNULL<span style="color: #b0b1a3;">(</span>comm,0<span style="color: #b0b1a3;">)</span><span style="color: #93a8c6;">)</span> &gt; 1000<span style="color: #8c8c8c;">)</span> c <span style="color: #c678dd; font-weight: bold;">on</span> e.deptno = c.deptno;
 
-<span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> dept a  <span style="color: #a020f0;">join</span> emp b
-  <span style="color: #a020f0;">on</span> a.deptno = b.deptno
-  <span style="color: #a020f0;">where</span> a.deptno <span style="color: #a020f0;">not</span> <span style="color: #a020f0;">in</span><span style="color: #707183;">(</span><span style="color: #a020f0;">select</span> deptno <span style="color: #a020f0;">from</span> emp <span style="color: #a020f0;">where</span> sal &lt; 1000<span style="color: #707183;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> dept a  <span style="color: #c678dd; font-weight: bold;">join</span> emp b
+  <span style="color: #c678dd; font-weight: bold;">on</span> a.deptno = b.deptno
+  <span style="color: #c678dd; font-weight: bold;">where</span> a.deptno <span style="color: #c678dd; font-weight: bold;">not</span> <span style="color: #c678dd; font-weight: bold;">in</span><span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">select</span> deptno <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> sal &lt; 1000<span style="color: #8c8c8c;">)</span>;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf321812" class="outline-3">
-<h3 id="orgf321812"><span class="section-number-3">2.11</span> 其他题目</h3>
+<div id="outline-container-orgf5fdfce" class="outline-3">
+<h3 id="orgf5fdfce"><span class="section-number-3">2.11</span> 其他题目</h3>
 <div class="outline-text-3" id="text-2-11">
 <ul class="org-ul">
 <li>查询入职日期早于其直接上级的所有员工信息。</li>
@@ -378,8 +400,8 @@ use oa;
 </div>
 </section>
 
-<section id="outline-container-orgaa8abac" class="outline-2">
-<h2 id="orgaa8abac"><span class="section-number-2">3</span> Lagou.com 测试数据</h2>
+<section id="outline-container-org680b930" class="outline-2">
+<h2 id="org680b930"><span class="section-number-2">3</span> Lagou.com 测试数据</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="asset/lagou.rar">下载 sql 文件</a>.
@@ -387,12 +409,12 @@ use oa;
 </div>
 </section>
 
-<section id="outline-container-org9362ab8" class="outline-2">
-<h2 id="org9362ab8"><span class="section-number-2">4</span> 奇 vs 偶</h2>
+<section id="outline-container-org7996422" class="outline-2">
+<h2 id="org7996422"><span class="section-number-2">4</span> 奇 vs 偶</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org12fae1a" class="outline-3">
-<h3 id="org12fae1a"><span class="section-number-3">4.1</span> 1/3/5/7 出的题</h3>
+<div id="outline-container-orgf352e16" class="outline-3">
+<h3 id="orgf352e16"><span class="section-number-3">4.1</span> 1/3/5/7 出的题</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>查询在北京，本科及本科以上，在招前端开发工程师的公司</li>
@@ -410,8 +432,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org8a46ced" class="outline-3">
-<h3 id="org8a46ced"><span class="section-number-3">4.2</span> 2/4/6/8 出的题</h3>
+<div id="outline-container-orgbf51da7" class="outline-3">
+<h3 id="orgbf51da7"><span class="section-number-3">4.2</span> 2/4/6/8 出的题</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>查询珠海所在的公司名字以及所需人员，工作经验和岗位以及学历</li>
@@ -432,7 +454,7 @@ use oa;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2020-10-28</p>
+<p class="date">Created: 2021-01-22</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
