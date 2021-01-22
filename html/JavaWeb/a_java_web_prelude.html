@@ -124,10 +124,10 @@
 </li>
 <li><a href="#org7abd133">9. 案例分析 (↳ Statement → PreparedStatement)</a>
 <ul>
-<li><a href="#org6a95253">9.1. /list</a></li>
-<li><a href="#org06a1747">9.2. /del</a></li>
-<li><a href="#orgba0dae1">9.3. /add</a></li>
-<li><a href="#orgc76e7b7">9.4. /edit</a></li>
+<li><a href="#org3b5ecf9">9.1. /list</a></li>
+<li><a href="#orgfe5cea5">9.2. /del</a></li>
+<li><a href="#org3f08f67">9.3. /add</a></li>
+<li><a href="#org304255c">9.4. /edit</a></li>
 </ul>
 </li>
 <li><a href="#org551fcf7">10. 案例分析 (↳ JSP - 革命性的视图改造)</a>
@@ -136,10 +136,10 @@
 <li><a href="#orgb55bd42">10.2. 进击的临时工</a></li>
 <li><a href="#orgfc5ec47">10.3. 转正的临时工 (分工的革命)</a>
 <ul>
-<li><a href="#org3b5ecf9">10.3.1. /list</a></li>
-<li><a href="#orgfe5cea5">10.3.2. /del</a></li>
-<li><a href="#org3f08f67">10.3.3. /add</a></li>
-<li><a href="#org304255c">10.3.4. /edit</a></li>
+<li><a href="#org100843f">10.3.1. /list</a></li>
+<li><a href="#org9eae510">10.3.2. /del</a></li>
+<li><a href="#org1858667">10.3.3. /add</a></li>
+<li><a href="#org865dbbf">10.3.4. /edit</a></li>
 <li><a href="#orgc9ec26a">10.3.5. 通用的 /bookResult.jsp</a></li>
 </ul>
 </li>
@@ -174,8 +174,8 @@
 <ul>
 <li><a href="#orga5ec19a">14.1. 注册</a>
 <ul>
-<li><a href="#orgd81f0a7">14.1.1. 分析问题</a></li>
-<li><a href="#org4ed3ad3">14.1.2. 初步设计</a></li>
+<li><a href="#org3b29ba2">14.1.1. 分析问题</a></li>
+<li><a href="#org87fbf55">14.1.2. 初步设计</a></li>
 <li><a href="#org4130a80">14.1.3. 实现步骤 [数据库创建表]</a></li>
 <li><a href="#orgd1561f3">14.1.4. 实现步骤 [根据表，创建名为 Account 的 JavaBean 对象]</a></li>
 <li><a href="#orgbb9780d">14.1.5. 实现步骤 [然后就可以在 AccountDAO 中实现 insert 方法了]</a></li>
@@ -186,8 +186,8 @@
 </li>
 <li><a href="#org4d41f55">14.2. 登录</a>
 <ul>
-<li><a href="#org3b29ba2">14.2.1. 分析问题</a></li>
-<li><a href="#org87fbf55">14.2.2. 初步设计</a></li>
+<li><a href="#org371a855">14.2.1. 分析问题</a></li>
+<li><a href="#org2a76147">14.2.2. 初步设计</a></li>
 <li><a href="#orgae1d133">14.2.3. 先搞一个方法 AccountDAO#check 用来校验用户名和密码的正确性</a></li>
 <li><a href="#orgcd21d7d">14.2.4. 然后，搞一个 LoginServlet 写 get/post 方法，分别用来表示 form 表单和处理登录逻辑</a></li>
 <li><a href="#org3610409">14.2.5. 最后，在其他页面上，建立到登录的入口</a></li>
@@ -381,7 +381,7 @@ BS 架构:
 首先，配置，使得可以方便地调用 javac/java 命令。
 </p>
 
-<pre class="example" id="orgb66e3a7">
+<pre class="example" id="org5fd6492">
 命令行窗口，执行一个命令，那么它需要找到一个对应的可执行文件去执行，其寻找顺序为:
 1. 如果当前的命令是全路径的话 (c:\xxx\javac.exe)，则使用路径指定的可执行文件
 2. 查看当前目录下面有没有对应的文件 (.\javac.exe)，如果有，那么使用它
@@ -530,7 +530,7 @@ Eclipse 占用内存有点点大，所以会慢一些。平常心、平常心！
 </p>
 
 
-<figure id="org66cff9a">
+<figure id="org9b9bf44">
 <img src="img/java-web-first-1.png" alt="java-web-first-1.png">
 
 </figure>
@@ -540,7 +540,7 @@ Eclipse 占用内存有点点大，所以会慢一些。平常心、平常心！
 </p>
 
 
-<figure id="org560dbec">
+<figure id="org16522cc">
 <img src="img/java-web-first-2.png" alt="java-web-first-2.png">
 
 </figure>
@@ -551,7 +551,7 @@ Eclipse 占用内存有点点大，所以会慢一些。平常心、平常心！
 </p>
 
 
-<figure id="org94e3fee">
+<figure id="org90be093">
 <img src="img/java-web-first-3.png" alt="java-web-first-3.png">
 
 </figure>
@@ -567,7 +567,7 @@ Eclipse 占用内存有点点大，所以会慢一些。平常心、平常心！
 </p>
 
 
-<figure id="org85b9561">
+<figure id="org250422c">
 <img src="img/java-web-first-4.png" alt="java-web-first-4.png">
 
 </figure>
@@ -577,7 +577,7 @@ Eclipse 占用内存有点点大，所以会慢一些。平常心、平常心！
 </p>
 
 
-<figure id="org5f96064">
+<figure id="org01e6989">
 <img src="img/java-web-first-5.png" alt="java-web-first-5.png">
 
 </figure>
@@ -587,7 +587,7 @@ Eclipse 占用内存有点点大，所以会慢一些。平常心、平常心！
 </p>
 
 
-<figure id="orgc854b3f">
+<figure id="org895320a">
 <img src="img/java-web-first-6.png" alt="java-web-first-6.png">
 
 </figure>
@@ -615,7 +615,7 @@ Eclipse 占用内存有点点大，所以会慢一些。平常心、平常心！
 
 
 
-<figure id="org6dde897">
+<figure id="org1db442b">
 <img src="img/java-web-first-7.png" alt="java-web-first-7.png">
 
 </figure>
@@ -656,7 +656,7 @@ nihao/Hello.java 的内容如下:
 </p>
 
 
-<figure id="org9733f9d">
+<figure id="org7552326">
 <img src="img/java-web-first-80.png" alt="java-web-first-80.png">
 
 </figure>
@@ -676,7 +676,7 @@ nihao/Hello.java 的内容如下:
 <h3 id="orgfee60a0"><span class="section-number-3">3.5</span> 最终章，启动服务器，看结果</h3>
 <div class="outline-text-3" id="text-3-5">
 
-<figure id="org5be6d35">
+<figure id="orgda35da8">
 <img src="img/java-web-first-9.png" alt="java-web-first-9.png">
 
 </figure>
@@ -1761,8 +1761,8 @@ Statement 存在的问题:
 </ol>
 </div>
 
-<div id="outline-container-org6a95253" class="outline-3">
-<h3 id="org6a95253"><span class="section-number-3">9.1</span> /list</h3>
+<div id="outline-container-org3b5ecf9" class="outline-3">
+<h3 id="org3b5ecf9"><span class="section-number-3">9.1</span> /list</h3>
 <div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #da8548; font-weight: bold;">@WebServlet</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"/list"</span><span style="color: #8c8c8c;">)</span>
@@ -1821,8 +1821,8 @@ Statement 存在的问题:
 </div>
 </div>
 
-<div id="outline-container-org06a1747" class="outline-3">
-<h3 id="org06a1747"><span class="section-number-3">9.2</span> /del</h3>
+<div id="outline-container-orgfe5cea5" class="outline-3">
+<h3 id="orgfe5cea5"><span class="section-number-3">9.2</span> /del</h3>
 <div class="outline-text-3" id="text-9-2">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #da8548; font-weight: bold;">@WebServlet</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"/del"</span><span style="color: #8c8c8c;">)</span>
@@ -1857,8 +1857,8 @@ Statement 存在的问题:
 </div>
 </div>
 
-<div id="outline-container-orgba0dae1" class="outline-3">
-<h3 id="orgba0dae1"><span class="section-number-3">9.3</span> /add</h3>
+<div id="outline-container-org3f08f67" class="outline-3">
+<h3 id="org3f08f67"><span class="section-number-3">9.3</span> /add</h3>
 <div class="outline-text-3" id="text-9-3">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #da8548; font-weight: bold;">@WebServlet</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"/add"</span><span style="color: #8c8c8c;">)</span>
@@ -1903,8 +1903,8 @@ Statement 存在的问题:
 </div>
 </div>
 
-<div id="outline-container-orgc76e7b7" class="outline-3">
-<h3 id="orgc76e7b7"><span class="section-number-3">9.4</span> /edit</h3>
+<div id="outline-container-org304255c" class="outline-3">
+<h3 id="org304255c"><span class="section-number-3">9.4</span> /edit</h3>
 <div class="outline-text-3" id="text-9-4">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #da8548; font-weight: bold;">@WebServlet</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"/edit"</span><span style="color: #8c8c8c;">)</span>
@@ -2141,7 +2141,7 @@ Statement 存在的问题:
 <h3 id="orgfc5ec47"><span class="section-number-3">10.3</span> 转正的临时工 (分工的革命)</h3>
 <div class="outline-text-3" id="text-10-3">
 
-<figure id="org322765e">
+<figure id="orgfa7cb26">
 <img src="img/case-servlet+jsp-1.png" alt="case-servlet+jsp-1.png">
 
 </figure>
@@ -2158,8 +2158,8 @@ Statement 存在的问题:
 </ul>
 </div>
 
-<div id="outline-container-org3b5ecf9" class="outline-4">
-<h4 id="org3b5ecf9"><span class="section-number-4">10.3.1</span> /list</h4>
+<div id="outline-container-org100843f" class="outline-4">
+<h4 id="org100843f"><span class="section-number-4">10.3.1</span> /list</h4>
 <div class="outline-text-4" id="text-10-3-1">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #da8548; font-weight: bold;">@WebServlet</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"/list"</span><span style="color: #8c8c8c;">)</span>
@@ -2260,8 +2260,8 @@ Statement 存在的问题:
 </div>
 </div>
 
-<div id="outline-container-orgfe5cea5" class="outline-4">
-<h4 id="orgfe5cea5"><span class="section-number-4">10.3.2</span> /del</h4>
+<div id="outline-container-org9eae510" class="outline-4">
+<h4 id="org9eae510"><span class="section-number-4">10.3.2</span> /del</h4>
 <div class="outline-text-4" id="text-10-3-2">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #da8548; font-weight: bold;">@WebServlet</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"/del"</span><span style="color: #8c8c8c;">)</span>
@@ -2299,8 +2299,8 @@ Statement 存在的问题:
 </div>
 </div>
 
-<div id="outline-container-org3f08f67" class="outline-4">
-<h4 id="org3f08f67"><span class="section-number-4">10.3.3</span> /add</h4>
+<div id="outline-container-org1858667" class="outline-4">
+<h4 id="org1858667"><span class="section-number-4">10.3.3</span> /add</h4>
 <div class="outline-text-4" id="text-10-3-3">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #da8548; font-weight: bold;">@WebServlet</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"/add"</span><span style="color: #8c8c8c;">)</span>
@@ -2347,8 +2347,8 @@ Statement 存在的问题:
 </div>
 </div>
 
-<div id="outline-container-org304255c" class="outline-4">
-<h4 id="org304255c"><span class="section-number-4">10.3.4</span> /edit</h4>
+<div id="outline-container-org865dbbf" class="outline-4">
+<h4 id="org865dbbf"><span class="section-number-4">10.3.4</span> /edit</h4>
 <div class="outline-text-4" id="text-10-3-4">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #da8548; font-weight: bold;">@WebServlet</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"/edit"</span><span style="color: #8c8c8c;">)</span>
@@ -2650,7 +2650,7 @@ Statement 存在的问题:
 </p>
 
 
-<figure id="orge65787e">
+<figure id="orgaee88c3">
 <img src="img/book_test_jdbc_jar.png" alt="book_test_jdbc_jar.png">
 
 </figure>
@@ -3007,8 +3007,8 @@ Statement 存在的问题:
 <h3 id="orga5ec19a"><span class="section-number-3">14.1</span> 注册</h3>
 <div class="outline-text-3" id="text-14-1">
 </div>
-<div id="outline-container-orgd81f0a7" class="outline-4">
-<h4 id="orgd81f0a7"><span class="section-number-4">14.1.1</span> 分析问题</h4>
+<div id="outline-container-org3b29ba2" class="outline-4">
+<h4 id="org3b29ba2"><span class="section-number-4">14.1.1</span> 分析问题</h4>
 <div class="outline-text-4" id="text-14-1-1">
 <p>
 本质就是通过页面的形式，让用户提交一定的数据；
@@ -3044,8 +3044,8 @@ Statement 存在的问题:
 </div>
 </div>
 
-<div id="outline-container-org4ed3ad3" class="outline-4">
-<h4 id="org4ed3ad3"><span class="section-number-4">14.1.2</span> 初步设计</h4>
+<div id="outline-container-org87fbf55" class="outline-4">
+<h4 id="org87fbf55"><span class="section-number-4">14.1.2</span> 初步设计</h4>
 <div class="outline-text-4" id="text-14-1-2">
 <p>
 首先，Servlet:
@@ -3142,7 +3142,7 @@ Statement 存在的问题:
 </p>
 
 
-<figure id="org1d2d085">
+<figure id="org174a345">
 <img src="img/aaaa.png" alt="aaaa.png">
 
 </figure>
@@ -3395,8 +3395,8 @@ WebContent/regist/regist.jsp:
 <h3 id="org4d41f55"><span class="section-number-3">14.2</span> 登录</h3>
 <div class="outline-text-3" id="text-14-2">
 </div>
-<div id="outline-container-org3b29ba2" class="outline-4">
-<h4 id="org3b29ba2"><span class="section-number-4">14.2.1</span> 分析问题</h4>
+<div id="outline-container-org371a855" class="outline-4">
+<h4 id="org371a855"><span class="section-number-4">14.2.1</span> 分析问题</h4>
 <div class="outline-text-4" id="text-14-2-1">
 <p>
 首次:
@@ -3436,8 +3436,8 @@ WebContent/regist/regist.jsp:
 </div>
 </div>
 
-<div id="outline-container-org87fbf55" class="outline-4">
-<h4 id="org87fbf55"><span class="section-number-4">14.2.2</span> 初步设计</h4>
+<div id="outline-container-org2a76147" class="outline-4">
+<h4 id="org2a76147"><span class="section-number-4">14.2.2</span> 初步设计</h4>
 <div class="outline-text-4" id="text-14-2-2">
 <p>
 一个 LoginServlet，包含 get/post 方法:
@@ -3985,7 +3985,7 @@ B(浏览器) S(服务器)
 </p>
 
 
-<figure id="orgf6ac9f0">
+<figure id="org1df26a5">
 <img src="img/oimg_20200728_035835.png" alt="oimg_20200728_035835.png">
 
 </figure>
