@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-01-22 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transact-SQL</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">Transact-SQL</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7a090e7">1. T-SQL</a>
+<ul>
+<li><a href="#org8c8b542">1.1. 批处理 (go)</a></li>
+<li><a href="#org377dc78">1.2. 脚本 (Script)</a></li>
+</ul>
+</li>
+<li><a href="#orgd801a68">2. 变量 (Variable)</a>
+<ul>
+<li><a href="#org8277377">2.1. 变量的命名</a></li>
+<li><a href="#org51dd127">2.2. 局部变量</a></li>
+<li><a href="#org0b16ad6">2.3. 全局变量</a></li>
+</ul>
+</li>
+<li><a href="#orgc39681d">3. 逻辑处理</a>
+<ul>
+<li><a href="#orgbebad28">3.1. if/else</a></li>
+<li><a href="#orgb25c1c7">3.2. while</a></li>
+<li><a href="#orgcf202a7">3.3. return/returns</a></li>
+<li><a href="#orgad1e10e">3.4. waitfor</a></li>
+<li><a href="#orgb95838c">3.5. print</a></li>
+<li><a href="#orgb75f8d5">3.6. raiserror</a></li>
+<li><a href="#org651c5dc">3.7. case-when (很重要)</a></li>
+</ul>
+</li>
+<li><a href="#org1c56ac1">4. 函数 (Function)</a>
+<ul>
+<li><a href="#orge707bd2">4.1. 什么是函数</a></li>
+<li><a href="#org2694676">4.2. 创建函数</a></li>
+<li><a href="#org909ed82">4.3. 内置函数</a>
+<ul>
+<li><a href="#orgc008341">4.3.1. 数学函数</a></li>
+<li><a href="#org4adf561">4.3.2. 字符串相关</a></li>
+<li><a href="#org900850b">4.3.3. 日期相关</a></li>
+<li><a href="#org9ddd2bd">4.3.4. 类型转换 (cast/convert) !!!</a></li>
+<li><a href="#orgb4b92c8">4.3.5. 其他</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org20ebb10">5. 存储过程 (Procedure)</a>
+<ul>
+<li><a href="#org9e5c5c3">5.1. 什么是存储过程</a></li>
+<li><a href="#org11a99c8">5.2. 创建存储过程</a>
+<ul>
+<li><a href="#org1142799">5.2.1. 基本语句</a></li>
+<li><a href="#orge736edb">5.2.2. 各种参数</a></li>
+</ul>
+</li>
+<li><a href="#orgd882344">5.3. 简单示例 (统计)</a></li>
+<li><a href="#org1a5971b">5.4. 内置存储过程</a></li>
+</ul>
+</li>
+<li><a href="#org26058ee">6. 触发器 (Trigger)</a>
+<ul>
+<li><a href="#org7f508b1">6.1. 什么是触发器</a></li>
+<li><a href="#orgfb4632c">6.2. 创建触发器</a></li>
+</ul>
+</li>
+<li><a href="#org167f2d1">7. 常见问题</a></li>
+</ul>
+</div>
+</nav>
+
+
+
+<section id="outline-container-org7a090e7" class="outline-2">
+<h2 id="org7a090e7"><span class="section-number-2">1</span> T-SQL</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>什么是 T-SQL?</li>
+</ul>
+</div>
+
+<div id="outline-container-org8c8b542" class="outline-3">
+<h3 id="org8c8b542"><span class="section-number-3">1.1</span> 批处理 (go)</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+<span style="color: #c678dd; font-weight: bold;">select</span> * frmo dept; <span style="color: #687080; font-style: italic;">-- &#22914;&#26524;&#36825;&#26465;&#20986;&#38382;&#39064;&#65292;&#19978;&#36793;&#19968;&#26465;&#20063;&#19981;&#20250;&#34987;&#25191;&#34892;</span>
+<span style="color: #c678dd; font-weight: bold;">go</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+<span style="color: #c678dd; font-weight: bold;">go</span>
+</pre>
+</div>
+
+<p>
+小结:
+</p>
+<ul class="org-ul">
+<li>GO 并不是标准的 SQL 关键词</li>
+<li>GO 的作用是 <b>批处理</b>，它会将之前的若干语句一起编译并发送给服务器去执行</li>
+<li>一个批处理中的语句，如果有一条编译出错，它们整个批中的命令都将不会执行</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org377dc78" class="outline-3">
+<h3 id="org377dc78"><span class="section-number-3">1.2</span> 脚本 (Script)</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+你可以将所有的 sql 语句保存到一个后缀名为 sql 的文件中:
+</p>
+<ul class="org-ul">
+<li>方便编辑</li>
+<li>可以永久化保存</li>
+<li>可以导入执行</li>
+</ul>
+
+<p>
+比如，保存为 D:/xxx.sql:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql">use xxx;
+<span style="color: #c678dd; font-weight: bold;">go</span>
+
+<span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+<span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+
+<span style="color: #c678dd; font-weight: bold;">go</span>
+
+<span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">table</span> <span style="color: #61afef;">xyz</span>
+<span style="color: #8c8c8c;">(</span>
+    id <span style="color: #61afef;">int</span>
+<span style="color: #8c8c8c;">)</span>;
+
+<span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> xyz <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span>1<span style="color: #8c8c8c;">)</span>, <span style="color: #8c8c8c;">(</span>2<span style="color: #8c8c8c;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgd801a68" class="outline-2">
+<h2 id="orgd801a68"><span class="section-number-2">2</span> 变量 (Variable)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org8277377" class="outline-3">
+<h3 id="org8277377"><span class="section-number-3">2.1</span> 变量的命名</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>以 ACII &#x2026; 等开头，不能使用保留字，不允许空格和特殊字符</li>
+<li>虽然可以使用中文，但是不建议</li>
+<li>一些不符合标准的名字，可以使用 [] 或者 "" 的方式引起来</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org51dd127" class="outline-3">
+<h3 id="org51dd127"><span class="section-number-3">2.2</span> 局部变量</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+局部变量的声明周期是一个 P:
+</p>
+<ul class="org-ul">
+<li>是用户定义的，作用在一个 P 范围内的变量</li>
+<li>名字必须要以 @ 开始</li>
+<li>使用 declare 定义，使用 set/select 赋值，使用 select 查看值</li>
+</ul>
+
+<p>
+基本定义语句:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#20363;&#23376; 1</span>
+<span style="color: #c678dd; font-weight: bold;">declare</span> @sss <span style="color: #61afef;">int</span>;   <span style="color: #687080; font-style: italic;">-- &#22768;&#26126;</span>
+<span style="color: #c678dd; font-weight: bold;">set</span> @sss = 2000;    <span style="color: #687080; font-style: italic;">-- &#36171;&#20540;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> @sss;        <span style="color: #687080; font-style: italic;">-- &#26597;&#30475;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> sal &gt; @sss; <span style="color: #687080; font-style: italic;">-- &#20351;&#29992;</span>
+
+<span style="color: #687080; font-style: italic;">-- &#20363;&#23376; 2</span>
+<span style="color: #c678dd; font-weight: bold;">declare</span> @s <span style="color: #61afef;">int</span>, @job <span style="color: #61afef;">varchar</span><span style="color: #8c8c8c;">(</span>20<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">set</span> @s = 1000;
+<span style="color: #c678dd; font-weight: bold;">select</span> @job = <span style="color: #98be65;">'sales'</span>;
+<span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> sal &gt; @s <span style="color: #c678dd; font-weight: bold;">and</span> job <span style="color: #c678dd; font-weight: bold;">like</span> @job + <span style="color: #98be65;">'%'</span>;
+<span style="color: #c678dd; font-weight: bold;">select</span> @s;
+
+<span style="color: #687080; font-style: italic;">-- &#20363;&#23376; 3&#65292;&#21487;&#20197;&#23558;&#26597;&#35810;&#30340;&#32467;&#26524;&#20445;&#23384;&#21040;&#21464;&#37327;&#20013;</span>
+<span style="color: #c678dd; font-weight: bold;">declare</span> @s <span style="color: #61afef;">int</span>;
+<span style="color: #c678dd; font-weight: bold;">select</span> @s=sal <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> empno = 7499;
+<span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> sal &gt;= @s;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b16ad6" class="outline-3">
+<h3 id="org0b16ad6"><span class="section-number-3">2.3</span> 全局变量</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+服务器内部使用的一些变量，通过修改它们，可以影响服务器的行为。
+</p>
+
+<p>
+用户只能修改这些变量，不能删除、创建它们。
+</p>
+
+<p>
+分为两种，一种是静态的，一种是动态的:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#27599;&#27425;&#26597;&#35810;&#37117;&#20250;&#19981;&#21464;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> @@VERSION;
+
+<span style="color: #687080; font-style: italic;">-- &#27599;&#27425;&#26597;&#35810;&#65292;&#20250;&#26681;&#25454;&#23454;&#38469;&#24773;&#20917;&#36820;&#22238;&#30456;&#24212;&#25968;&#25454;</span>
+<span style="color: #c678dd; font-weight: bold;">delete</span> <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> sal &lt; 1200;
+<span style="color: #c678dd; font-weight: bold;">select</span> @@ROWCOUNT;
+</pre>
+</div>
+
+<p>
+常见的全局变量:
+</p>
+<ul class="org-ul">
+<li>@@connections / @@dbts / @@cpu_busy / @version;</li>
+<li>@@rowcount</li>
+<li>@@cursor_rows</li>
+<li>@@error !!! 如果不出错，返回 0</li>
+<li>@@identity</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgc39681d" class="outline-2">
+<h2 id="orgc39681d"><span class="section-number-2">3</span> 逻辑处理</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgbebad28" class="outline-3">
+<h3 id="orgbebad28"><span class="section-number-3">3.1</span> if/else</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+基本句式:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql">if &#26465;&#20214;
+  &#25805;&#20316;
+<span style="color: #c678dd; font-weight: bold;">else</span> if
+  &#25805;&#20316;
+<span style="color: #c678dd; font-weight: bold;">else</span>
+  &#25805;&#20316;
+</pre>
+</div>
+
+<p>
+例子:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#32473;&#26576;&#20010;&#20154;&#21152;&#24037;&#36164; (7499)</span>
+<span style="color: #687080; font-style: italic;">--  &#22914;&#26524;&#24037;&#36164;&#23567;&#20110; 1500 &#21152;&#19978; 1000</span>
+<span style="color: #687080; font-style: italic;">--  &#22914;&#26524;&#24037;&#36164;&#23567;&#20110; 3000 &#21152;&#19978; 500</span>
+<span style="color: #687080; font-style: italic;">--  &#22914;&#26524;&#24037;&#36164;&#22823;&#20110;&#31561;&#20110; 3000 &#21152;&#19978; 50</span>
+
+<span style="color: #c678dd; font-weight: bold;">declare</span> @empno <span style="color: #61afef;">int</span>;
+<span style="color: #c678dd; font-weight: bold;">set</span> @empno = 7499;
+
+if <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">select</span> sal <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> empno = @empno<span style="color: #8c8c8c;">)</span> &lt; 1500
+  <span style="color: #c678dd; font-weight: bold;">begin</span>
+    <span style="color: #c678dd; font-weight: bold;">update</span> emp <span style="color: #c678dd; font-weight: bold;">set</span> sal = sal + 1000 <span style="color: #c678dd; font-weight: bold;">where</span> empno = @empno;
+    <span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> my_log <span style="color: #8c8c8c;">(</span>message<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'money is so cool.'</span><span style="color: #8c8c8c;">)</span>;
+  <span style="color: #c678dd; font-weight: bold;">end</span>
+<span style="color: #c678dd; font-weight: bold;">else</span> if <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">select</span> sal <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> empno = @empno<span style="color: #8c8c8c;">)</span> &lt; 3000
+  <span style="color: #c678dd; font-weight: bold;">begin</span>
+    <span style="color: #c678dd; font-weight: bold;">update</span> emp <span style="color: #c678dd; font-weight: bold;">set</span> sal = sal + 500 <span style="color: #c678dd; font-weight: bold;">where</span> empno = @empno;
+    <span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> my_log <span style="color: #8c8c8c;">(</span>message<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'what a pity.'</span><span style="color: #8c8c8c;">)</span>;
+  <span style="color: #c678dd; font-weight: bold;">end</span>
+<span style="color: #c678dd; font-weight: bold;">else</span>
+  <span style="color: #c678dd; font-weight: bold;">begin</span>
+    <span style="color: #c678dd; font-weight: bold;">update</span> emp <span style="color: #c678dd; font-weight: bold;">set</span> sal = sal + 50 <span style="color: #c678dd; font-weight: bold;">where</span> empno = @empno;
+    <span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> my_log <span style="color: #8c8c8c;">(</span>message<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'fxxxxxk.'</span><span style="color: #8c8c8c;">)</span>;
+  <span style="color: #c678dd; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb25c1c7" class="outline-3">
+<h3 id="orgb25c1c7"><span class="section-number-3">3.2</span> while</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+基本句式:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql">while &#26465;&#20214;
+  &#35821;&#21477;
+</pre>
+</div>
+
+<p>
+示例:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#21521;&#25968;&#25454;&#24211;&#20013;&#25554;&#20837; 1000000 &#26465;&#27979;&#35797;&#25968;&#25454;</span>
+
+<span style="color: #c678dd; font-weight: bold;">declare</span> @<span style="color: #61afef; font-weight: bold;">count</span> <span style="color: #61afef;">int</span>;
+<span style="color: #c678dd; font-weight: bold;">set</span> @<span style="color: #61afef; font-weight: bold;">count</span> = 1000000;
+while @<span style="color: #61afef; font-weight: bold;">count</span> &gt; 0
+  <span style="color: #c678dd; font-weight: bold;">begin</span>
+      <span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> my_log <span style="color: #8c8c8c;">(</span>message<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'hello'</span><span style="color: #8c8c8c;">)</span>;
+      <span style="color: #c678dd; font-weight: bold;">set</span> @<span style="color: #61afef; font-weight: bold;">count</span> = @<span style="color: #61afef; font-weight: bold;">count</span> - 1
+  <span style="color: #c678dd; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcf202a7" class="outline-3">
+<h3 id="orgcf202a7"><span class="section-number-3">3.3</span> return/returns</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+无条件返回。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgad1e10e" class="outline-3">
+<h3 id="orgad1e10e"><span class="section-number-3">3.4</span> waitfor</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+计时器，可以指定计划任务，比如，晚上对数据做一些统计性的工作。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql">waitfor delay <span style="color: #98be65;">'00:00:05'</span> <span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+waitfor <span style="color: #61afef;">time</span> <span style="color: #98be65;">'00:00:05'</span> <span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb95838c" class="outline-3">
+<h3 id="orgb95838c"><span class="section-number-3">3.5</span> print</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+用来输出字符串到标准输出的。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql">print <span style="color: #98be65;">'hello world'</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb75f8d5" class="outline-3">
+<h3 id="orgb75f8d5"><span class="section-number-3">3.6</span> raiserror</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+抛出一个错误。(类似 Java 中的 throw new Exception)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#19968;&#20010;&#26377;&#29781;&#30133;&#30340;&#20363;&#23376;</span>
+
+<span style="color: #c678dd; font-weight: bold;">declare</span> @emsg <span style="color: #61afef;">varchar</span><span style="color: #8c8c8c;">(</span>200<span style="color: #8c8c8c;">)</span>, @ecode <span style="color: #61afef;">int</span>;
+<span style="color: #c678dd; font-weight: bold;">set</span> @emsg = <span style="color: #98be65;">'xxx'</span>;
+<span style="color: #c678dd; font-weight: bold;">set</span> @ecode = 404;
+
+raiserror<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'&#21457;&#29983;&#20102;&#19968;&#20010;&#38169;&#35823;: %s (%s)'</span>, @emsg, @ecode<span style="color: #8c8c8c;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org651c5dc" class="outline-3">
+<h3 id="org651c5dc"><span class="section-number-3">3.7</span> case-when (很重要)</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+类似于 Switch:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#21015;&#20986;&#27599;&#20010;&#21592;&#24037;&#30340;&#22522;&#26412;&#24037;&#36164;&#24773;&#20917;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> ename,
+       <span style="color: #c678dd; font-weight: bold;">case</span>
+         <span style="color: #c678dd; font-weight: bold;">when</span> sal &lt; 1500 <span style="color: #c678dd; font-weight: bold;">then</span> <span style="color: #98be65;">'&#24456;&#23569;'</span>
+         <span style="color: #c678dd; font-weight: bold;">when</span> sal &lt; 3000 <span style="color: #c678dd; font-weight: bold;">then</span> <span style="color: #98be65;">'&#21487;&#20197;'</span>
+         <span style="color: #c678dd; font-weight: bold;">else</span> <span style="color: #98be65;">'&#22826;&#22810;&#20102;'</span>
+       <span style="color: #c678dd; font-weight: bold;">end</span> <span style="color: #c678dd; font-weight: bold;">as</span> <span style="color: #98be65;">'&#24037;&#36164;&#24773;&#20917;'</span>
+ <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+
+<span style="color: #687080; font-style: italic;">-- &#32473;&#25152;&#26377;&#20154;&#21152;&#24037;&#36164;</span>
+<span style="color: #687080; font-style: italic;">--  &#22914;&#26524;&#24037;&#36164;&#23567;&#20110; 1500 &#21152;&#19978; 1000</span>
+<span style="color: #687080; font-style: italic;">--  &#22914;&#26524;&#24037;&#36164;&#23567;&#20110; 3000 &#21152;&#19978; 500</span>
+<span style="color: #687080; font-style: italic;">--  &#22914;&#26524;&#24037;&#36164;&#22823;&#20110;&#31561;&#20110; 3000 &#21152;&#19978; 50</span>
+<span style="color: #c678dd; font-weight: bold;">update</span> emp <span style="color: #c678dd; font-weight: bold;">set</span> sal = sal +
+                      <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">case</span>
+                        <span style="color: #c678dd; font-weight: bold;">when</span> sal &lt; 1500 <span style="color: #c678dd; font-weight: bold;">then</span> 1000
+                        <span style="color: #c678dd; font-weight: bold;">when</span> sal &lt; 3000 <span style="color: #c678dd; font-weight: bold;">then</span> 500
+                        <span style="color: #c678dd; font-weight: bold;">else</span> 50
+                       <span style="color: #c678dd; font-weight: bold;">end</span><span style="color: #8c8c8c;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org1c56ac1" class="outline-2">
+<h2 id="org1c56ac1"><span class="section-number-2">4</span> 函数 (Function)</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orge707bd2" class="outline-3">
+<h3 id="orge707bd2"><span class="section-number-3">4.1</span> 什么是函数</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>黑箱子</li>
+<li>有输入，有输出</li>
+<li>无副作用</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2694676" class="outline-3">
+<h3 id="org2694676"><span class="section-number-3">4.2</span> 创建函数</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>创建使用 create function</li>
+<li>删除使用 drop function</li>
+<li>修改使用 alter function</li>
+<li>调用使用 select 或 exec</li>
+<li>函数内部不能使用 print/insert 等带有副作用的语句</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#21019;&#24314;&#19968;&#20010;&#22522;&#26412;&#20989;&#25968;&#65292;&#26597;&#35810;&#37096;&#38376;&#24179;&#22343;&#24037;&#36164;</span>
+<span style="color: #687080; font-style: italic;">-- &#23545;&#27604; Java &#20013;&#30340; int pingjungongzi (int deptno)</span>
+<span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">pingjungongzi</span> <span style="color: #8c8c8c;">(</span>@deptno <span style="color: #61afef;">int</span><span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">returns</span> <span style="color: #61afef;">int</span>
+  <span style="color: #c678dd; font-weight: bold;">as</span>
+  <span style="color: #c678dd; font-weight: bold;">begin</span>
+    <span style="color: #c678dd; font-weight: bold;">declare</span> @avgsal <span style="color: #61afef;">int</span>;
+    <span style="color: #c678dd; font-weight: bold;">select</span> @avgsal = <span style="color: #61afef; font-weight: bold;">avg</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">from</span> emp <span style="color: #c678dd; font-weight: bold;">where</span> deptno = @deptno;
+    <span style="color: #c678dd; font-weight: bold;">return</span> @avgsal;
+  <span style="color: #c678dd; font-weight: bold;">end</span>;
+
+<span style="color: #687080; font-style: italic;">-- &#35843;&#29992;&#21018;&#25165;&#30340;&#20989;&#25968;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> dbo.pingjungongzi<span style="color: #8c8c8c;">(</span>20<span style="color: #8c8c8c;">)</span>;
+<span style="color: #687080; font-style: italic;">-- &#25110;</span>
+<span style="color: #c678dd; font-weight: bold;">declare</span> @s <span style="color: #61afef;">int</span>;
+<span style="color: #c678dd; font-weight: bold;">exec</span> @s = pingjungongzi 20;
+
+<span style="color: #687080; font-style: italic;">-- &#21024;&#38500;</span>
+<span style="color: #c678dd; font-weight: bold;">drop</span> <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">pingjungongzi</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org909ed82" class="outline-3">
+<h3 id="org909ed82"><span class="section-number-3">4.3</span> 内置函数</h3>
+<div class="outline-text-3" id="text-4-3">
+</div>
+<div id="outline-container-orgc008341" class="outline-4">
+<h4 id="orgc008341"><span class="section-number-4">4.3.1</span> 数学函数</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<ul class="org-ul">
+<li>abs/ascii/avg/log/power/exp/PI/round/ceiling/floor()</li>
+<li>rand() !!!</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4adf561" class="outline-4">
+<h4 id="org4adf561"><span class="section-number-4">4.3.2</span> 字符串相关</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<ul class="org-ul">
+<li>len/datalength() !!!</li>
+<li>str/substring()</li>
+<li>left/right/replicate/reverse()</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org900850b" class="outline-4">
+<h4 id="org900850b"><span class="section-number-4">4.3.3</span> 日期相关</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<ul class="org-ul">
+<li>getdate() !!</li>
+<li>datename/dateadd/datediff/day/month/year()</li>
+</ul>
+
+<p>
+使用 sql 计算一下，入学第一年，每天花费多少钱 (2019-8-5 ~ 2020-8-7)？
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> 32000/datediff<span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">day</span>,<span style="color: #98be65;">'2019-08-05'</span>,<span style="color: #98be65;">'2020-08-07'</span><span style="color: #8c8c8c;">)</span>;
+</pre>
+</div>
+
+<p>
+计算一下，你现在活了多少秒。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ddd2bd" class="outline-4">
+<h4 id="org9ddd2bd"><span class="section-number-4">4.3.4</span> 类型转换 (cast/convert) !!!</h4>
+<div class="outline-text-4" id="text-4-3-4">
+<p>
+基本语法:
+</p>
+<pre class="example" id="org3b30303">
+-- CAST Syntax:
+CAST ( expression AS data_type [ ( length ) ] )
+
+-- CONVERT Syntax:
+CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
+</pre>
+
+<p>
+基本示例:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">select</span> <span style="color: #61afef; font-weight: bold;">cast</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'12345'</span> <span style="color: #c678dd; font-weight: bold;">as</span> <span style="color: #61afef;">int</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">select</span> <span style="color: #61afef; font-weight: bold;">cast</span><span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'2012-3-4'</span> <span style="color: #c678dd; font-weight: bold;">as</span> datetime<span style="color: #8c8c8c;">)</span>;
+
+<span style="color: #c678dd; font-weight: bold;">select</span> <span style="color: #61afef; font-weight: bold;">convert</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>19<span style="color: #93a8c6;">)</span>, getdate<span style="color: #93a8c6;">()</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">select</span> <span style="color: #61afef; font-weight: bold;">convert</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>19<span style="color: #93a8c6;">)</span>, getdate<span style="color: #93a8c6;">()</span>, 20<span style="color: #8c8c8c;">)</span>; <span style="color: #687080; font-style: italic;">-- yyyy-mm-dd hh:mi:ss</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> <span style="color: #61afef; font-weight: bold;">convert</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>10<span style="color: #93a8c6;">)</span>, getdate<span style="color: #93a8c6;">()</span>, 110<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">select</span> <span style="color: #61afef; font-weight: bold;">convert</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>11<span style="color: #93a8c6;">)</span>, getdate<span style="color: #93a8c6;">()</span>, 106<span style="color: #8c8c8c;">)</span>;
+<span style="color: #c678dd; font-weight: bold;">select</span> <span style="color: #61afef; font-weight: bold;">convert</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>24<span style="color: #93a8c6;">)</span>, getdate<span style="color: #93a8c6;">()</span>, 113<span style="color: #8c8c8c;">)</span>;
+</pre>
+</div>
+
+<p>
+<a href="https://docs.microsoft.com/zh-cn/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver15">https://docs.microsoft.com/zh-cn/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver15</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb4b92c8" class="outline-4">
+<h4 id="orgb4b92c8"><span class="section-number-4">4.3.5</span> 其他</h4>
+<div class="outline-text-4" id="text-4-3-5">
+<ul class="org-ul">
+<li>isnull()</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org20ebb10" class="outline-2">
+<h2 id="org20ebb10"><span class="section-number-2">5</span> 存储过程 (Procedure)</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org9e5c5c3" class="outline-3">
+<h3 id="org9e5c5c3"><span class="section-number-3">5.1</span> 什么是存储过程</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+将一系列进行处理的语句过程保存下来，后面可以复用。
+</p>
+
+<p>
+有很多好处:
+</p>
+<ul class="org-ul">
+<li>它允许标准组件化编程</li>
+<li>能够实现更快的执行速度</li>
+<li>能够减少网络流量</li>
+<li>可以保障安全机制</li>
+</ul>
+
+<p>
+有什么坏处:
+</p>
+<ul class="org-ul">
+<li>【强制】禁止使用存储过程，存储过程难以调试和扩展，更没有移植性</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org11a99c8" class="outline-3">
+<h3 id="org11a99c8"><span class="section-number-3">5.2</span> 创建存储过程</h3>
+<div class="outline-text-3" id="text-5-2">
+</div>
+<div id="outline-container-org1142799" class="outline-4">
+<h4 id="org1142799"><span class="section-number-4">5.2.1</span> 基本语句</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#21019;&#24314;</span>
+<span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">procedure</span> <span style="color: #61afef;">p_aa1</span> <span style="color: #c678dd; font-weight: bold;">as</span>
+  <span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">table</span> <span style="color: #61afef;">xxx</span> <span style="color: #8c8c8c;">(</span>a <span style="color: #61afef;">int</span>, b <span style="color: #61afef;">varchar</span><span style="color: #93a8c6;">(</span>20<span style="color: #93a8c6;">)</span><span style="color: #8c8c8c;">)</span>;
+  <span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> xxx <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span>1, 2<span style="color: #8c8c8c;">)</span>, <span style="color: #8c8c8c;">(</span>2, 3<span style="color: #8c8c8c;">)</span>, <span style="color: #8c8c8c;">(</span>3, 4<span style="color: #8c8c8c;">)</span>;
+  <span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> xxx;
+  waitfor delay <span style="color: #98be65;">'00:00:20'</span> <span style="color: #c678dd; font-weight: bold;">drop</span> <span style="color: #c678dd; font-weight: bold;">table</span> xxx;
+<span style="color: #c678dd; font-weight: bold;">GO</span>
+
+<span style="color: #687080; font-style: italic;">-- &#25191;&#34892;</span>
+<span style="color: #c678dd; font-weight: bold;">exec</span> p_aa1;
+<span style="color: #c678dd; font-weight: bold;">GO</span>
+
+<span style="color: #687080; font-style: italic;">-- &#21024;&#38500;</span>
+<span style="color: #c678dd; font-weight: bold;">drop</span> <span style="color: #c678dd; font-weight: bold;">procedure</span> <span style="color: #61afef;">p_aa1</span>;
+<span style="color: #c678dd; font-weight: bold;">drop</span> proc <span style="color: #61afef;">p_aa1</span>;
+
+<span style="color: #687080; font-style: italic;">-- &#20462;&#25913;</span>
+<span style="color: #c678dd; font-weight: bold;">alter</span> <span style="color: #c678dd; font-weight: bold;">procedure</span> <span style="color: #61afef;">p_aa1</span> <span style="color: #c678dd; font-weight: bold;">as</span>
+  <span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge736edb" class="outline-4">
+<h4 id="orge736edb"><span class="section-number-4">5.2.2</span> 各种参数</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<p>
+没有参数:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">procedure</span> <span style="color: #61afef;">p_aaa</span> <span style="color: #c678dd; font-weight: bold;">as</span> <span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> xxx;
+<span style="color: #c678dd; font-weight: bold;">exec</span> p_aaa;
+</pre>
+</div>
+
+<p>
+带有参数:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">procedure</span>
+  p_aaa @<span style="color: #c678dd; font-weight: bold;">name</span> <span style="color: #61afef;">varchar</span><span style="color: #8c8c8c;">(</span>20<span style="color: #8c8c8c;">)</span>
+<span style="color: #c678dd; font-weight: bold;">as</span>
+  <span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> xxx <span style="color: #c678dd; font-weight: bold;">where</span> <span style="color: #c678dd; font-weight: bold;">name</span> &lt; @<span style="color: #c678dd; font-weight: bold;">name</span>;
+
+<span style="color: #c678dd; font-weight: bold;">exec</span> p_aaa 30;
+</pre>
+</div>
+
+<p>
+带有参数，还有默认值:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">procedure</span> <span style="color: #61afef;">p_aaa</span>
+  @<span style="color: #c678dd; font-weight: bold;">name</span> <span style="color: #61afef;">varchar</span><span style="color: #8c8c8c;">(</span>20<span style="color: #8c8c8c;">)</span> = <span style="color: #98be65;">'Tom'</span>
+<span style="color: #c678dd; font-weight: bold;">as</span>
+  <span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> xxx <span style="color: #c678dd; font-weight: bold;">where</span> <span style="color: #c678dd; font-weight: bold;">name</span> &lt; @<span style="color: #c678dd; font-weight: bold;">name</span>;
+
+<span style="color: #c678dd; font-weight: bold;">exec</span> p_aaa;
+<span style="color: #c678dd; font-weight: bold;">exec</span> p_aaa <span style="color: #98be65;">'xxx'</span>;
+</pre>
+</div>
+
+<p>
+带 output 参数的存储过程:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">procedure</span> <span style="color: #61afef;">p_aaa</span>
+  @r <span style="color: #61afef;">int</span> <span style="color: #c678dd; font-weight: bold;">output</span>
+<span style="color: #c678dd; font-weight: bold;">as</span>
+  <span style="color: #c678dd; font-weight: bold;">select</span> @r = <span style="color: #61afef; font-weight: bold;">count</span><span style="color: #8c8c8c;">(</span>*<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">from</span> xxx;
+
+<span style="color: #687080; font-style: italic;">-- &#35843;&#29992;</span>
+<span style="color: #c678dd; font-weight: bold;">declare</span> @rrr <span style="color: #61afef;">int</span>;
+<span style="color: #c678dd; font-weight: bold;">exec</span> p_aaa @rrr <span style="color: #c678dd; font-weight: bold;">output</span>;
+</pre>
+</div>
+
+<p>
+混合各种参数:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">procedure</span> <span style="color: #61afef;">p_aaa</span>
+  @n <span style="color: #61afef;">varchar</span><span style="color: #8c8c8c;">(</span>20<span style="color: #8c8c8c;">)</span> = <span style="color: #98be65;">'TOM'</span>,
+  @r <span style="color: #61afef;">int</span> <span style="color: #c678dd; font-weight: bold;">output</span>
+<span style="color: #c678dd; font-weight: bold;">as</span>
+  <span style="color: #c678dd; font-weight: bold;">select</span> @r = <span style="color: #61afef; font-weight: bold;">count</span><span style="color: #8c8c8c;">(</span>*<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">from</span> xxx <span style="color: #c678dd; font-weight: bold;">where</span> <span style="color: #c678dd; font-weight: bold;">name</span> &lt; @n;
+
+<span style="color: #687080; font-style: italic;">-- &#35843;&#29992;</span>
+<span style="color: #c678dd; font-weight: bold;">declare</span> @rrr <span style="color: #61afef;">int</span>;
+<span style="color: #c678dd; font-weight: bold;">exec</span> p_aaa <span style="color: #98be65;">'Cat'</span>, @rrr <span style="color: #c678dd; font-weight: bold;">output</span>;
+
+<span style="color: #687080; font-style: italic;">-- &#26597;&#30475;&#36820;&#22238;&#30340;&#32467;&#26524;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> @rrr;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd882344" class="outline-3">
+<h3 id="orgd882344"><span class="section-number-3">5.3</span> 简单示例 (统计)</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+为 emp 生成统计数据，统计所有部门的平均工资、最小工资和最大工资，将结果保存到 tj_emp 表中。要求:
+</p>
+<ul class="org-ul">
+<li>如果这张表不存在，那么创建</li>
+<li>如果这张表存在，但是里面有数据，清空它</li>
+<li>如果插入完成，在日志表 (my_log) 插入一条信息</li>
+</ul>
+
+<p>
+写法示例:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">procedure</span> <span style="color: #61afef;">p_tj_emp</span>
+  @lowsal <span style="color: #61afef;">int</span> = 1000,
+  @highsal <span style="color: #61afef;">int</span> = 10000
+<span style="color: #c678dd; font-weight: bold;">as</span>
+<span style="color: #c678dd; font-weight: bold;">begin</span>
+  <span style="color: #687080; font-style: italic;">-- &#22914;&#26524;&#19981;&#23384;&#22312;&#65292;&#21019;&#24314;&#20043;</span>
+  if <span style="color: #c678dd; font-weight: bold;">not</span> <span style="color: #c678dd; font-weight: bold;">exists</span> <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> sys.tables <span style="color: #c678dd; font-weight: bold;">where</span> <span style="color: #c678dd; font-weight: bold;">name</span> = <span style="color: #98be65;">'tj_emp'</span><span style="color: #8c8c8c;">)</span>
+     <span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">table</span> <span style="color: #61afef;">tj_emp</span> <span style="color: #8c8c8c;">(</span>deptno <span style="color: #61afef;">int</span>, a <span style="color: #61afef;">float</span>, b <span style="color: #61afef;">float</span>, c <span style="color: #61afef;">float</span><span style="color: #8c8c8c;">)</span>;
+  <span style="color: #687080; font-style: italic;">-- &#28165;&#31354;&#25968;&#25454;</span>
+  truncate <span style="color: #c678dd; font-weight: bold;">table</span> tj_emp;
+  <span style="color: #687080; font-style: italic;">-- &#25554;&#20837;&#26032;&#30340;&#25968;&#25454;</span>
+  <span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> tj_emp <span style="color: #c678dd; font-weight: bold;">select</span> deptno, <span style="color: #61afef; font-weight: bold;">avg</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> a, <span style="color: #61afef; font-weight: bold;">max</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> b, <span style="color: #61afef; font-weight: bold;">min</span><span style="color: #8c8c8c;">(</span>sal<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">as</span> c <span style="color: #c678dd; font-weight: bold;">from</span> emp
+    <span style="color: #c678dd; font-weight: bold;">where</span> sal &gt;= @lowsal <span style="color: #c678dd; font-weight: bold;">and</span> sal &lt;= @highsal
+    <span style="color: #c678dd; font-weight: bold;">group</span> <span style="color: #c678dd; font-weight: bold;">by</span> deptno;
+  <span style="color: #687080; font-style: italic;">-- &#35760;&#24405;&#26085;&#24535;</span>
+  <span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> my_log <span style="color: #8c8c8c;">(</span>message<span style="color: #8c8c8c;">)</span> <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'&#32479;&#35745;&#23436;&#25104; - '</span> + <span style="color: #61afef; font-weight: bold;">convert</span><span style="color: #93a8c6;">(</span><span style="color: #61afef;">varchar</span><span style="color: #b0b1a3;">(</span>200<span style="color: #b0b1a3;">)</span>, getdate<span style="color: #b0b1a3;">()</span>, 20<span style="color: #93a8c6;">)</span><span style="color: #8c8c8c;">)</span>;
+  <span style="color: #687080; font-style: italic;">-- &#32467;&#26463;</span>
+  print <span style="color: #98be65;">'hello, finished.'</span>;
+<span style="color: #c678dd; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1a5971b" class="outline-3">
+<h3 id="org1a5971b"><span class="section-number-3">5.4</span> 内置存储过程</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+系统内置的存储过程，一般是 sp_ 开始:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">exec</span> sp_databases;
+<span style="color: #c678dd; font-weight: bold;">exec</span> sp_help;
+<span style="color: #c678dd; font-weight: bold;">exec</span> sp_helptext sp_databases;
+<span style="color: #c678dd; font-weight: bold;">exec</span> sp_helptext sp_helptext; <span style="color: #687080; font-style: italic;">-- &#26597;&#30475;&#23384;&#20648;&#36807;&#31243;&#24590;&#20040;&#20889;&#30340;</span>
+
+<span style="color: #c678dd; font-weight: bold;">exec</span> sp_tables;
+<span style="color: #c678dd; font-weight: bold;">exec</span> sp_columns emp;
+</pre>
+</div>
+
+<p>
+扩展出来的存储过程以 xp_ 开始:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #c678dd; font-weight: bold;">exec</span> xp_cmdshell <span style="color: #98be65;">'mkdir e:\hello'</span>;
+<span style="color: #c678dd; font-weight: bold;">exec</span> xp_fileexist <span style="color: #98be65;">'e:\hello'</span>;
+
+<span style="color: #687080; font-style: italic;">-- xp_enumgroups;</span>
+<span style="color: #687080; font-style: italic;">-- xp_loginconfig</span>
+<span style="color: #687080; font-style: italic;">-- xp_msver</span>
+<span style="color: #687080; font-style: italic;">-- xp_grantlogin;</span>
+<span style="color: #687080; font-style: italic;">-- ...</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org26058ee" class="outline-2">
+<h2 id="org26058ee"><span class="section-number-2">6</span> 触发器 (Trigger)</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org7f508b1" class="outline-3">
+<h3 id="org7f508b1"><span class="section-number-3">6.1</span> 什么是触发器</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+类似于 JS 中的事件:
+</p>
+<ul class="org-ul">
+<li>强制数据库间的引用完整性</li>
+<li>可以执行级联操作等动作</li>
+<li>可以防止误操作</li>
+</ul>
+
+<p>
+坏处:
+</p>
+<ul class="org-ul">
+<li>不透明，有风险，需慎用</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfb4632c" class="outline-3">
+<h3 id="orgfb4632c"><span class="section-number-3">6.2</span> 创建触发器</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Insert 触发器:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#35302;&#21457;&#22120;</span>
+<span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">trigger</span> <span style="color: #61afef;">tri_emp_insert_jiagongzi</span>
+  <span style="color: #c678dd; font-weight: bold;">on</span> emp
+  <span style="color: #c678dd; font-weight: bold;">after</span> <span style="color: #c678dd; font-weight: bold;">insert</span>
+<span style="color: #c678dd; font-weight: bold;">as</span> <span style="color: #687080; font-style: italic;">-- inserted &#34920;&#31034;&#25554;&#20837;&#30340;&#25968;&#25454;&#24418;&#25104;&#30340;&#20020;&#26102;&#34920;&#65292;&#21517;&#23383;&#23601;&#21483; inserted</span>
+  <span style="color: #c678dd; font-weight: bold;">update</span> emp <span style="color: #c678dd; font-weight: bold;">set</span> sal = sal + 100 <span style="color: #c678dd; font-weight: bold;">where</span> empno = <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">select</span> mgr <span style="color: #c678dd; font-weight: bold;">from</span> inserted<span style="color: #8c8c8c;">)</span>;
+
+<span style="color: #687080; font-style: italic;">-- &#27979;&#35797;</span>
+<span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> emp;
+<span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> emp <span style="color: #8c8c8c;">(</span>empno, ename, mgr, deptno, sal<span style="color: #8c8c8c;">)</span>
+  <span style="color: #c678dd; font-weight: bold;">values</span> <span style="color: #8c8c8c;">(</span>999, <span style="color: #98be65;">'ganmaoling'</span>, 7902, 10, 2000<span style="color: #8c8c8c;">)</span>;
+</pre>
+</div>
+
+<p>
+Delete 触发器:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- select * into emp_hist from emp;</span>
+<span style="color: #687080; font-style: italic;">-- select * from emp_hist;</span>
+<span style="color: #687080; font-style: italic;">-- truncate table emp_hist;</span>
+
+<span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">trigger</span> <span style="color: #61afef;">tri_emp_delete_history</span>
+  <span style="color: #c678dd; font-weight: bold;">on</span> emp
+  <span style="color: #c678dd; font-weight: bold;">after</span> <span style="color: #c678dd; font-weight: bold;">delete</span>
+<span style="color: #c678dd; font-weight: bold;">as</span> <span style="color: #687080; font-style: italic;">-- deleted, &#25152;&#26377;&#21024;&#38500;&#30340;&#25968;&#25454;&#24418;&#25104;&#30340;&#20020;&#26102;&#34920;</span>
+  <span style="color: #c678dd; font-weight: bold;">insert</span> <span style="color: #c678dd; font-weight: bold;">into</span> emp_hist <span style="color: #c678dd; font-weight: bold;">select</span> * <span style="color: #c678dd; font-weight: bold;">from</span> deleted;
+</pre>
+</div>
+
+<p>
+Drop 触发器:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #687080; font-style: italic;">-- &#31105;&#27490;&#21024;&#38500;&#34920;&#12289;&#35270;&#22270;&#31561;</span>
+<span style="color: #c678dd; font-weight: bold;">create</span> <span style="color: #c678dd; font-weight: bold;">trigger</span> <span style="color: #61afef;">tri_emp_no_drop</span>
+    <span style="color: #c678dd; font-weight: bold;">on</span> database
+    <span style="color: #c678dd; font-weight: bold;">for</span> drop_table, drop_view, drop_procedure
+<span style="color: #c678dd; font-weight: bold;">as</span>
+<span style="color: #c678dd; font-weight: bold;">begin</span>
+    print <span style="color: #98be65;">'&#24744;&#19981;&#33021;&#36825;&#26679;&#21834;~~~~~'</span>;
+    <span style="color: #c678dd; font-weight: bold;">rollback</span> <span style="color: #c678dd; font-weight: bold;">transaction</span>;
+<span style="color: #c678dd; font-weight: bold;">end</span>
+
+<span style="color: #687080; font-style: italic;">-- &#27979;&#35797;</span>
+<span style="color: #c678dd; font-weight: bold;">drop</span> <span style="color: #c678dd; font-weight: bold;">table</span> <span style="color: #61afef;">emp</span>;
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org167f2d1" class="outline-2">
+<h2 id="org167f2d1"><span class="section-number-2">7</span> 常见问题</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>什么是函数？</li>
+<li>什么是存储过程？</li>
+<li>什么是触发器？</li>
+<li>函数、存储过程和触发器有什么区别？</li>
+<li>函数、存储过程和触发器各有什么优点、缺点？</li>
+<li>存储过程的参数类型有哪些？</li>
+<li>写一个简单的存储过程，做一件 xxx 事 (统计一下 lagou_position 表中珠海的某些数据)</li>
+<li>写一个简单的触发器，完成某种效果 (比如禁止删除某些数据，比如做一些统计性工作)</li>
+</ul>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-01-22</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>

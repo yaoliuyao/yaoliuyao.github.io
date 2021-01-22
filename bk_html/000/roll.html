@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            .maxBox {
+                padding: 4px 6px;
+                font-size: 16px;
+                color: #3EAFE0;
+            }
+            
+            .clickBtn {
+                border: 1px solid #3EAFE0;
+                background-color: #3EAFE0;
+                color: #FFF;
+                font-size: 14px;
+                padding: 4px 6px;
+            }
+            
+            .result {
+                font-size: 80px;
+                color: #3EAFE0;
+                font-weight: bold;
+                padding: 30px;
+            }
+            
+            .txt_center {
+                text-align: center;
+            }
+            
+            .exist {
+                border: 1px solid #EEE;
+                padding: 20px;
+                margin: 20px auto;
+                width: 600px;
+                min-height: 100px;
+                text-align: left;
+            }
+            
+            .exist span {
+                display: inline-block;
+                padding: 2px 10px;
+                margin: 4px;
+                border-radius: 3px;
+                background-color: #3EAFE0;
+                color: #FFFFFF;
+            }
+            
+            .info {
+                border: 1px solid blue;
+                color: #000;
+                font-weight: 500;
+                padding: 20px;
+                margin: 20px auto;
+                width: 600px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="txt_center">
+            <div class="result">
+                <span class="" id="result">0</span>
+            </div>
+            <input class="maxBox" type="text" id="txt" placeholder="请在里面输入号码最大值！">
+            <input class="clickBtn" type="button" id="btn" value="抽号">
+            <div class="exist">
+                <div>已抽取：</div>
+                <div id="exist"></div>
+            </div>
+        </div>
+        <!--练习说明-->
+        <div class="info">
+            1、在文本框中输入抽号最大值<br/> 2、点击按钮，开始抽号，随机生成1~最大值之间的整数
+            <br/> 3、已经抽取的号码存入一个数组
+            <br/> 4、为了保证号码的唯一性，每次生成一个号码，跟数组中的已抽取的号码比对
+            <br/> 5、如果已存在，重新生成号码
+            <br/> 6、如果不存在，放入数组中保存，并显示出来 <br/> 7、将号码结果放入result中显示出来
+            <br/> 8、将已经生成的号码（数组）存入exist中显示出来
+            <br/>
+        </div>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oBtn = document.getElementById("btn");
+                var oTxt = document.getElementById("txt");
+                var oRes = document.getElementById("result");
+                var oExt = document.getElementById("exist");
+                var arr = [];
+                var max = 0
+                oBtn.onclick = function() {
+                    max = parseInt(oTxt.value);
+                    //如果不是数字，终止
+                    if(isNaN(max)) {
+                        alert("请输入大于1的数字！");
+                        return;
+                    }
+                    //如果达到最大值
+                    if(arr.length == max) {
+                        oTxt.value = "";
+                        alert("号码已全部抽完！");
+                        return;
+                    }
+                    //前面情况不存在，正常执行
+                    getRandomNum();
+//                    generateResult()
+                    oRes.innerHTML = arr[arr.length - 1];
+                    //生成已抽取的号码结果
+                    generateExist();
+                }
+
+                //生成随机数
+                function getRandomNum() {
+                    var tmp = Math.floor(Math.random() * max + 1);
+                    // 判断是不是好数
+                    var flag = isGood(tmp);
+                    if(flag) {
+                        arr.push(tmp);
+                    } else {
+                        //递归
+                        getRandomNum();
+                    }
+                }
+                //判断是否重复
+                function isGood(x) {
+                    for(var i = 0; i < arr.length; i++) {
+                        if(arr[i] == x) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                //生成已抽取的号码
+                function generateExist() {
+                    var html = ''
+                    for(var i = 0; i < arr.length; i++) {
+                        html += '<span>' + arr[i] + '</span>';
+                    }
+                    oExt.innerHTML = html;
+                }
+                
+                
+
+            }
+        </script>
+    </body>
+
+</html>

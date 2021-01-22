@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-01-22 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>课后题 (JS)</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">课后题 (JS)</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org5a78646">1. 第一章</a>
+<ul>
+<li><a href="#orgd42d5d8">1.1. 用 document.write 输出内容</a></li>
+<li><a href="#orgb0b2e51">1.2. 使用 document.write 输出表格</a></li>
+<li><a href="#org24f34bb">1.3. 使用 alert 弹出基本信息</a></li>
+<li><a href="#org17dbedf">1.4. 用 js 操作页面样式</a></li>
+<li><a href="#org781b8ad">1.5. 代码题 1</a></li>
+<li><a href="#orgb60468a">1.6. 代码题 2</a></li>
+</ul>
+</li>
+<li><a href="#org8fc3120">2. 第二章</a>
+<ul>
+<li><a href="#orgbc00d8e">2.1. 根据用户输入，插入多行文本</a></li>
+<li><a href="#org25231cd">2.2. 搞一个计算器</a></li>
+<li><a href="#org549df39">2.3. 奇偶行的背景颜色</a></li>
+<li><a href="#orge1d14ce">2.4. 代码题 1</a></li>
+<li><a href="#org0deaaae">2.5. 代码题 2 打印乘法表</a></li>
+</ul>
+</li>
+<li><a href="#orgc9ef99b">3. 第三章</a>
+<ul>
+<li><a href="#org8d2e7a2">3.1. 切换图片 (Page 73)</a></li>
+<li><a href="#orge543799">3.2. input 输入框事件 (Page 74)</a></li>
+<li><a href="#orgfb89074">3.3. 显示按钮文本的事件 (Page 75)</a></li>
+<li><a href="#orgf18757d">3.4. 按钮跟 checkbox 的互动 (Page 76)</a></li>
+<li><a href="#org63bddf0">3.5. 代码题 1</a></li>
+<li><a href="#orgf012598">3.6. 代码题 2 爷会飞</a></li>
+</ul>
+</li>
+<li><a href="#org1eed350">4. 第四章</a>
+<ul>
+<li><a href="#org714cae4">4.1. 复制节点 (Page 101)</a></li>
+<li><a href="#org2455d1e">4.2. 点击更改背景色 (Page 103)</a></li>
+<li><a href="#org58ed6e6">4.3. 点击按钮增加节点 (Page 104)</a></li>
+<li><a href="#orgbd21875">4.4. 添加、删除表格的行 (Page 105)</a></li>
+<li><a href="#orga65fba3">4.5. 代码题 (Page 108)</a></li>
+</ul>
+</li>
+<li><a href="#orgcc9a838">5. 第五章</a>
+<ul>
+<li><a href="#org70de3c3">5.1. 弹出时间 (Page 136)</a></li>
+<li><a href="#orga44d21e">5.2. 验证输入内容 (Page 137)</a></li>
+<li><a href="#orge792577">5.3. 猜拳 (Page 138)</a></li>
+<li><a href="#orgb52b2c5">5.4. 添加员工 (Page 139)</a></li>
+</ul>
+</li>
+<li><a href="#org7ce7055">6. 第六章</a>
+<ul>
+<li><a href="#orgeeedecb">6.1. 模拟跳转 (Page 163)</a></li>
+</ul>
+</li>
+<li><a href="#org448c37a">7. 第七章</a>
+<ul>
+<li><a href="#org44323fd">7.1. 字体样式 (Page 195)</a></li>
+<li><a href="#orgb4006f9">7.2. 级联选择 (Page 198)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+
+
+<section id="outline-container-org5a78646" class="outline-2">
+<h2 id="org5a78646"><span class="section-number-2">1</span> 第一章</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgd42d5d8" class="outline-3">
+<h3 id="orgd42d5d8"><span class="section-number-3">1.1</span> 用 document.write 输出内容</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+      document.write<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"&lt;h2&gt;&#29664;&#28023;&lt;/h2&gt;"</span><span style="color: #8c8c8c;">)</span>;
+      document.write<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"&#29664;&#28023;&#24066;&#19968;&#24231;&#22478;&#24066;&#12290;"</span><span style="color: #8c8c8c;">)</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+
+<p>
+document.write 不建议大家平时使用。效率低，有安全问题。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb0b2e51" class="outline-3">
+<h3 id="orgb0b2e51"><span class="section-number-3">1.2</span> 使用 document.write 输出表格</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #61afef;">table, tr, td </span><span style="color: #8c8c8c;">{</span>
+          <span style="color: #c678dd; font-weight: bold;">border</span>: 1px solid <span style="color: #ffffff; background-color: #ff0000;">red</span>;
+          <span style="color: #c678dd; font-weight: bold;">border-collapse</span>: collapse;
+      <span style="color: #8c8c8c;">}</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+      document.write<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"&lt;table&gt; &lt;tr&gt;"</span><span style="color: #8c8c8c;">)</span>;
+      document.write<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"    &lt;td&gt;xx&lt;/td&gt; &lt;td&gt;xx&lt;/td&gt; &lt;td&gt;xx&lt;/td&gt;"</span><span style="color: #8c8c8c;">)</span>;
+      document.write<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"  &lt;/tr&gt; &lt;tr&gt;"</span><span style="color: #8c8c8c;">)</span>;
+      document.write<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"    &lt;td&gt;yy&lt;/td&gt; &lt;td&gt;yy&lt;/td&gt; &lt;td&gt;yy&lt;/td&gt;"</span><span style="color: #8c8c8c;">)</span>;
+      document.write<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"  &lt;/tr&gt;&lt;/table&gt;"</span><span style="color: #8c8c8c;">)</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org24f34bb" class="outline-3">
+<h3 id="org24f34bb"><span class="section-number-3">1.3</span> 使用 alert 弹出基本信息</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#27880;&#37322;: &#36825;&#26159;&#23450;&#20041;&#30340;&#21464;&#37327;&#65292;&#24182;&#19988;&#36171;&#20104;&#20102;&#21021;&#22987;&#20540;</span>
+<span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">name</span> = <span style="color: #98be65;">"lily"</span>, <span style="color: #61afef;">age</span> = 20;
+
+<span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#24377;&#20986;&#26469;</span>
+alert<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"&#29992;&#25143;&#20449;&#24687;\n\n&#22995;&#21517;: "</span> + name + <span style="color: #98be65;">"\n&#24180;&#40836;: "</span> + age<span style="color: #8c8c8c;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org17dbedf" class="outline-3">
+<h3 id="org17dbedf"><span class="section-number-3">1.4</span> 用 js 操作页面样式</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"&#21335;&#26041; IT &#23398;&#38498;"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#28165;&#31354;&#25991;&#26412;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span> <span style="color: #61afef;">style</span>=<span style="color: #98be65;">"border: 1px solid black;"</span><span style="color: #8c8c8c;">&gt;</span>
+      &#35831;&#23558;&#40736;&#26631;&#25918;&#21040;&#25105;&#36523;&#19978;&#30475;&#30475;&#26377;&#20160;&#20040;&#25928;&#26524;.
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+      document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.onclick = <span style="color: #8c8c8c;">(</span>e<span style="color: #8c8c8c;">)</span> =&gt; <span style="color: #8c8c8c;">{</span>
+        document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'input'</span><span style="color: #93a8c6;">)</span>.value = <span style="color: #98be65;">''</span>;
+      <span style="color: #8c8c8c;">}</span>;
+
+     <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">div</span> = document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'div'</span><span style="color: #8c8c8c;">)</span>;
+     div.onmouseover = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       e.target.style.background = <span style="color: #98be65;">'yellow'</span>;
+       e.target.style.border = <span style="color: #98be65;">'5px dotted red'</span>;
+     <span style="color: #8c8c8c;">}</span>;
+     div.onmouseout = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       e.target.style.background = <span style="color: #98be65;">'white'</span>;
+       e.target.style.border = <span style="color: #98be65;">'1px solid black'</span>;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+
+<p>
+结合事件来食用。当然最后一步，也可以使用 css:hover 来解决。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org781b8ad" class="outline-3">
+<h3 id="org781b8ad"><span class="section-number-3">1.5</span> 代码题 1</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#22995;&#21517;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"xm"</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"lily"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#24180;&#40836;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"nl"</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"20"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#25353;&#25105;&#24551;&#20260;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.onclick = <span style="color: #8c8c8c;">(</span>e<span style="color: #8c8c8c;">)</span> =&gt; <span style="color: #8c8c8c;">{</span>
+       <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#27880;&#37322;: &#36825;&#26159;&#23450;&#20041;&#30340;&#21464;&#37327;&#65292;&#24182;&#19988;&#36171;&#20104;&#20102;&#21021;&#22987;&#20540;</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">name</span> = document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'#xm'</span><span style="color: #93a8c6;">)</span>.value,
+           age = document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'#nl'</span><span style="color: #93a8c6;">)</span>.value;
+
+       <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#24377;&#20986;&#26469;</span>
+       alert<span style="color: #93a8c6;">(</span><span style="color: #98be65;">"&#29992;&#25143;&#20449;&#24687;\n\n&#22995;&#21517;: "</span> + name + <span style="color: #98be65;">"\n&#24180;&#40836;: "</span> + age<span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb60468a" class="outline-3">
+<h3 id="orgb60468a"><span class="section-number-3">1.6</span> 代码题 2</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">h2</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; font-style: italic; text-decoration: underline;">&#29359;&#25105;&#20013;&#21326;&#32773;&#34429;&#36828;&#24517;&#35803;</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">h2</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">h2</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; font-style: italic; text-decoration: underline;">&#29359;&#25105;&#20013;&#21326;&#32773;&#34429;&#36828;&#24517;&#35803;</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">h2</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">h2</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; font-style: italic; text-decoration: underline;">&#29359;&#25105;&#20013;&#21326;&#32773;&#34429;&#36828;&#24517;&#35803;</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">h2</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">h2</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; font-style: italic; text-decoration: underline;">&#29359;&#25105;&#20013;&#21326;&#32773;&#34429;&#36828;&#24517;&#35803;</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">h2</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     document.querySelectorAll<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'h2'</span><span style="color: #8c8c8c;">)</span>.forEach<span style="color: #8c8c8c;">(</span>h2 =&gt; <span style="color: #93a8c6;">{</span>
+       h2.onmouseover = <span style="color: #b0b1a3;">(</span>e<span style="color: #b0b1a3;">)</span> =&gt; e.target.style.background = <span style="color: #98be65;">'yellow'</span>;
+       h2.onmouseout = <span style="color: #b0b1a3;">(</span>e<span style="color: #b0b1a3;">)</span> =&gt; e.target.style.background = <span style="color: #98be65;">'white'</span>;
+     <span style="color: #93a8c6;">}</span><span style="color: #8c8c8c;">)</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org8fc3120" class="outline-2">
+<h2 id="org8fc3120"><span class="section-number-2">2</span> 第二章</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgbc00d8e" class="outline-3">
+<h3 id="orgbc00d8e"><span class="section-number-3">2.1</span> 根据用户输入，插入多行文本</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#36890;&#36807;&#20114;&#21160;&#30340;&#26041;&#24335;&#24471;&#21040;&#20102;&#24212;&#35813;&#25554;&#20837;&#30340;&#34892;&#25968;</span>
+     <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">s</span> = prompt<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">"&#35831;&#36755;&#20837;&#35201;&#21021;&#22987;&#21270;&#30340;&#34892;&#25968;: "</span><span style="color: #8c8c8c;">)</span>;
+
+     <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #8c8c8c;">(</span>isNaN<span style="color: #93a8c6;">(</span>s<span style="color: #93a8c6;">)</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       alert<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'&#35831;&#36755;&#20837;&#21512;&#36866;&#30340;&#25968;&#23383;&#65281;'</span><span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span> <span style="color: #c678dd; font-weight: bold;">else</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">num</span> = parseInt<span style="color: #93a8c6;">(</span>s<span style="color: #93a8c6;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">h</span> = <span style="color: #98be65;">""</span>;
+       <span style="color: #c678dd; font-weight: bold;">for</span> <span style="color: #93a8c6;">(</span><span style="color: #c678dd; font-weight: bold;">let</span> <span style="color: #61afef;">i</span> = 0; i &lt; num; i++<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+         h += <span style="color: #98be65;">"&lt;p&gt;&#34892;&#25968; "</span> + <span style="color: #b0b1a3;">(</span>i + 1<span style="color: #b0b1a3;">)</span> + <span style="color: #98be65;">"&lt;/p&gt;"</span>;
+       <span style="color: #93a8c6;">}</span>
+       document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'div'</span><span style="color: #93a8c6;">)</span>.innerHTML = h;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+
+<p>
+注意，不要使用 document.write 来实现了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org25231cd" class="outline-3">
+<h3 id="org25231cd"><span class="section-number-3">2.2</span> 搞一个计算器</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">label </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">display</span>: block;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">h3</span><span style="color: #8c8c8c;">&gt;</span><span style="font-style: italic; text-decoration: underline;">&#31616;&#21333;&#35745;&#31639;&#22120;</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">h3</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#31532;1&#20010;&#25968;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"first"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#31532;2&#20010;&#25968;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"second"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#31532;3&#20010;&#25968;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"third"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#24320;&#22987;&#35745;&#31639;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#21153;&#24517;&#23567;&#24515;:</span>
+     <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#20195;&#30721;&#20013;&#21315;&#19975;&#19981;&#35201;&#20351;&#29992;&#20219;&#20309;&#30340; eval</span>
+     <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#22312;&#26377;&#38480;&#30340;&#24773;&#20917;&#19979;&#65292;&#20351;&#29992; new Function &#26469;&#20195;&#26367;&#21487;&#20197;</span>
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">compute</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">x</span>, <span style="color: #61afef;">op</span>, <span style="color: #61afef;">y</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">eval('2 + 333')</span>
+       <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">return eval(x + op + y);</span>
+       <span style="color: #c678dd; font-weight: bold;">return</span> <span style="color: #93a8c6;">(</span><span style="color: #c678dd; font-weight: bold;">new</span> <span style="color: #61afef;">Function</span><span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'return '</span> + x + op + y<span style="color: #b0b1a3;">)</span><span style="color: #93a8c6;">)()</span>;
+     <span style="color: #8c8c8c;">}</span>
+
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">getAnswer</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">first</span> = document.getElementById<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'first'</span><span style="color: #93a8c6;">)</span>.value;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">second</span> = document.getElementById<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'second'</span><span style="color: #93a8c6;">)</span>.value;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">third</span> = document.getElementById<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'third'</span><span style="color: #93a8c6;">)</span>.value;
+
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">input</span> = parseFloat<span style="color: #93a8c6;">(</span>first<span style="color: #93a8c6;">)</span>
+                 + second
+                 + parseFloat<span style="color: #93a8c6;">(</span>third<span style="color: #93a8c6;">)</span>;
+       alert<span style="color: #93a8c6;">(</span>input + <span style="color: #98be65;">'='</span> + compute<span style="color: #b0b1a3;">(</span>first, second, third<span style="color: #b0b1a3;">)</span><span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>
+
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.onclick = getAnswer;
+
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org549df39" class="outline-3">
+<h3 id="org549df39"><span class="section-number-3">2.3</span> 奇偶行的背景颜色</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">table, tr, td </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">border</span>: 1px solid <span style="color: #ffffff; background-color: #000000;">black</span>;
+       <span style="color: #c678dd; font-weight: bold;">border-collapse</span>: collapse;
+       <span style="color: #c678dd; font-weight: bold;">padding</span>: 5px 1em;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #687080; font-style: italic;">/* </span><span style="color: #687080; font-style: italic;">&#21487;&#20197;&#20351;&#29992; css &#30340;&#26041;&#27861;&#26469;&#23454;&#29616; </span><span style="color: #687080; font-style: italic;">*/</span>
+     <span style="color: #61afef;">tr:nth-child</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">odd</span><span style="color: #8c8c8c;">)</span><span style="color: #61afef;"> </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">background</span>: <span style="color: #000000; background-color: #ffff00;">yellow</span>;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">table</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>xxx<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">table</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#29992; JS &#30340;&#26041;&#24335;&#21435;&#23454;&#29616;</span>
+     document.querySelectorAll<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'tr:nth-child(even)'</span><span style="color: #8c8c8c;">)</span>.forEach<span style="color: #8c8c8c;">(</span><span style="color: #93a8c6;">(</span>el<span style="color: #93a8c6;">)</span> =&gt; <span style="color: #93a8c6;">{</span>
+       el.style.background = <span style="color: #98be65;">'pink'</span>;
+     <span style="color: #93a8c6;">}</span><span style="color: #8c8c8c;">)</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orge1d14ce" class="outline-3">
+<h3 id="orge1d14ce"><span class="section-number-3">2.4</span> 代码题 1</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#28857;&#25105;&#31639;&#20998;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">transformFenshu</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">score</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span>score &gt;= 90<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">return</span> <span style="color: #98be65;">'A'</span>;
+       <span style="color: #93a8c6;">}</span>
+       <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span>score &gt;= 80<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">return</span> <span style="color: #98be65;">'B'</span>;
+       <span style="color: #93a8c6;">}</span>
+       <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span>score &gt;= 70<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">return</span> <span style="color: #98be65;">'C'</span>;
+       <span style="color: #93a8c6;">}</span>
+       <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span>score &gt;= 60<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">return</span> <span style="color: #98be65;">'D'</span>;
+       <span style="color: #93a8c6;">}</span>
+       <span style="color: #c678dd; font-weight: bold;">return</span> <span style="color: #98be65;">'E'</span>;
+     <span style="color: #8c8c8c;">}</span>
+
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.onclick = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">input</span> = prompt<span style="color: #93a8c6;">(</span><span style="color: #98be65;">"&#35831;&#36755;&#20837;&#20320;&#30340;&#30334;&#20998;&#20043;&#20998;&#25968;: "</span><span style="color: #93a8c6;">)</span>;
+       alert<span style="color: #93a8c6;">(</span>transformFenshu<span style="color: #b0b1a3;">(</span>parseFloat<span style="color: #97b098;">(</span>input<span style="color: #97b098;">)</span><span style="color: #b0b1a3;">)</span><span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0deaaae" class="outline-3">
+<h3 id="org0deaaae"><span class="section-number-3">2.5</span> 代码题 2 打印乘法表</h3>
+<div class="outline-text-3" id="text-2-5">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">h3 </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">font-size</span>: 35pt;
+       <span style="color: #c678dd; font-weight: bold;">position</span>: absolute;
+       <span style="color: #c678dd; font-weight: bold;">top</span>: -20px;
+       <span style="color: #c678dd; font-weight: bold;">right</span>: 200px;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">i </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">background</span>: <span style="color: #ffffff; background-color: #006400;">darkgreen</span>;
+       <span style="color: #c678dd; font-weight: bold;">color</span>: <span style="color: #000000; background-color: #ffffff;">white</span>;
+       <span style="color: #c678dd; font-weight: bold;">margin</span>: 3px;
+       <span style="color: #c678dd; font-weight: bold;">padding</span>: 5px;
+       <span style="color: #c678dd; font-weight: bold;">width</span>: 90px;
+       <span style="color: #c678dd; font-weight: bold;">display</span>: inline-block;
+       <span style="color: #c678dd; font-weight: bold;">text-align</span>: center;
+       <span style="color: #c678dd; font-weight: bold;">font-style</span>: normal;
+       <span style="color: #c678dd; font-weight: bold;">font-weight</span>: bold;
+       <span style="color: #c678dd; font-weight: bold;">box-shadow</span>: 0 0 3px <span style="color: #ffffff; background-color: #000000;">black</span>;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">i:hover </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">color</span>: <span style="color: #000000; background-color: #ffff00;">yellow</span>;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">h3</span><span style="color: #8c8c8c;">&gt;</span><span style="font-style: italic; text-decoration: underline;">&#20061;&#20061;&#20056;&#27861;&#34920;</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">h3</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">h</span> = <span style="color: #98be65;">""</span>;
+
+     <span style="color: #c678dd; font-weight: bold;">for</span> <span style="color: #8c8c8c;">(</span><span style="color: #c678dd; font-weight: bold;">let</span> <span style="color: #61afef;">i</span> = 1; i &lt;= 9; i++<span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span> <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">i &#20195;&#34920;&#30340;&#26159;&#21508;&#34892;</span>
+       h += <span style="color: #98be65;">"&lt;div&gt;"</span>;
+       <span style="color: #c678dd; font-weight: bold;">for</span> <span style="color: #93a8c6;">(</span><span style="color: #c678dd; font-weight: bold;">let</span> <span style="color: #61afef;">j</span> = 1; j &lt;= i; j++<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span> <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#27599;&#19968;&#34892;&#30340;&#21508;&#20010; 3x4=12 &#30340;&#26684;&#23376;</span>
+         h += <span style="color: #98be65;">"&lt;i&gt;"</span> + j + <span style="color: #98be65;">" x "</span> + i + <span style="color: #98be65;">" = "</span> + <span style="color: #b0b1a3;">(</span>i*j<span style="color: #b0b1a3;">)</span> + <span style="color: #98be65;">"&lt;/i&gt;"</span>;
+       <span style="color: #93a8c6;">}</span>
+       h += <span style="color: #98be65;">"&lt;/div&gt;"</span>;
+     <span style="color: #8c8c8c;">}</span>
+
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'section'</span><span style="color: #8c8c8c;">)</span>.innerHTML = h;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="outline-container-orgc9ef99b" class="outline-2">
+<h2 id="orgc9ef99b"><span class="section-number-2">3</span> 第三章</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org8d2e7a2" class="outline-3">
+<h3 id="org8d2e7a2"><span class="section-number-3">3.1</span> 切换图片 (Page 73)</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">img</span> <span style="color: #61afef;">src</span>=<span style="color: #98be65;">"a.jpg"</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">img</span> = document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'img'</span><span style="color: #8c8c8c;">)</span>;
+  img.onmouseover = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+      img.src = <span style="color: #98be65;">'c.jpg'</span>;
+  <span style="color: #8c8c8c;">}</span>;
+  img.onmouseout = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+      img.src = <span style="color: #98be65;">'a.jpg'</span>;
+  <span style="color: #8c8c8c;">}</span>;
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge543799" class="outline-3">
+<h3 id="orge543799"><span class="section-number-3">3.2</span> input 输入框事件 (Page 74)</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">header </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">text-align</span>: center;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">section </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">border</span>: 1px dotted <span style="color: #ffffff; background-color: #000000;">black</span>;
+       <span style="color: #c678dd; font-weight: bold;">text-align</span>: center;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">label </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">display</span>: block;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>&#21592;&#24037;&#20449;&#24687;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#22995;&#21517;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"xm"</span> autofocus<span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#24180;&#40836;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"nl"</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"[&#24180;&#40836;]&#24517;&#39035;&#20026;&#25968;&#23383;"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">label</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span> <span style="color: #61afef;">class</span>=<span style="color: #98be65;">"sub"</span><span style="color: #8c8c8c;">&gt;</span>&#25552;&#20132;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span> <span style="color: #61afef;">class</span>=<span style="color: #98be65;">"rest"</span><span style="color: #8c8c8c;">&gt;</span>&#37325;&#32622;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">nl</span> = document.getElementById<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'nl'</span><span style="color: #8c8c8c;">)</span>;
+     nl.onfocus = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       e.target.value = <span style="color: #98be65;">''</span>;
+     <span style="color: #8c8c8c;">}</span>;
+     nl.onkeydown = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span><span style="color: #b0b1a3;">(</span>e.keyCode &gt; 57 || e.keyCode &lt; 48<span style="color: #b0b1a3;">)</span>
+           &amp;&amp; e.keyCode !== 13
+           &amp;&amp; e.keyCode !== 8<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+         e.preventDefault<span style="color: #b0b1a3;">()</span>;
+       <span style="color: #93a8c6;">}</span>
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfb89074" class="outline-3">
+<h3 id="orgfb89074"><span class="section-number-3">3.3</span> 显示按钮文本的事件 (Page 75)</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#27004;&#19978;&#35828;&#30340;&#23545;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#25105;&#26159;&#35841;&#65292;&#35841;&#30693;&#36947;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#22823;&#23478;&#37117;&#21035;&#21557;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">showMe</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+      alert<span style="color: #93a8c6;">(</span>e.target.innerText<span style="color: #93a8c6;">)</span>;
+  <span style="color: #8c8c8c;">}</span>
+  document.querySelectorAll<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.forEach<span style="color: #8c8c8c;">(</span>button =&gt; <span style="color: #93a8c6;">{</span>
+      button.onclick = showMe;
+  <span style="color: #93a8c6;">}</span><span style="color: #8c8c8c;">)</span>;
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+
+<p>
+利用事件委托:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#27004;&#19978;&#35828;&#30340;&#23545;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#25105;&#26159;&#35841;&#65292;&#35841;&#30693;&#36947;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#22823;&#23478;&#37117;&#21035;&#21557;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">showMe</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+      <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span>e.target.tagName == <span style="color: #98be65;">'BUTTON'</span><span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+          alert<span style="color: #b0b1a3;">(</span>e.target.innerText<span style="color: #b0b1a3;">)</span>;
+      <span style="color: #93a8c6;">}</span>
+  <span style="color: #8c8c8c;">}</span>
+  document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'div'</span><span style="color: #8c8c8c;">)</span>.onclick = showMe;
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf18757d" class="outline-3">
+<h3 id="orgf18757d"><span class="section-number-3">3.4</span> 按钮跟 checkbox 的互动 (Page 76)</h3>
+<div class="outline-text-3" id="text-3-4">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span> disabled<span style="color: #8c8c8c;">&gt;</span>&#25105;&#26159;&#19968;&#20010;&#20608;&#20769;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">type</span>=<span style="color: #98be65;">"checkbox"</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'input'</span><span style="color: #8c8c8c;">)</span>.onchange = <span style="color: #8c8c8c;">(</span>e<span style="color: #8c8c8c;">)</span> =&gt; <span style="color: #8c8c8c;">{</span>
+      <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span>e.target.checked<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+          document.querySelector<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'button'</span><span style="color: #b0b1a3;">)</span>.removeAttribute<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'disabled'</span><span style="color: #b0b1a3;">)</span>;
+      <span style="color: #93a8c6;">}</span> <span style="color: #c678dd; font-weight: bold;">else</span> <span style="color: #93a8c6;">{</span>
+          document.querySelector<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'button'</span><span style="color: #b0b1a3;">)</span>.setAttribute<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'disabled'</span>, <span style="color: #98be65;">'disabled'</span><span style="color: #b0b1a3;">)</span>;
+      <span style="color: #93a8c6;">}</span>
+  <span style="color: #8c8c8c;">}</span>
+
+  window.onload = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+      document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'input'</span><span style="color: #93a8c6;">)</span>.click<span style="color: #93a8c6;">()</span>;
+  <span style="color: #8c8c8c;">}</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org63bddf0" class="outline-3">
+<h3 id="org63bddf0"><span class="section-number-3">3.5</span> 代码题 1</h3>
+<div class="outline-text-3" id="text-3-5">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  document.onmousemove = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+      document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'div'</span><span style="color: #93a8c6;">)</span>.innerText = e.x + <span style="color: #98be65;">', '</span> + e.y;
+  <span style="color: #8c8c8c;">}</span>;
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf012598" class="outline-3">
+<h3 id="orgf012598"><span class="section-number-3">3.6</span> 代码题 2 爷会飞</h3>
+<div class="outline-text-3" id="text-3-6">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span> <span style="color: #61afef;">style</span>=<span style="color: #98be65;">"position: fixed;"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">img</span> <span style="color: #61afef;">src</span>=<span style="color: #98be65;">"a.jpg"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">footer</span><span style="color: #8c8c8c;">&gt;</span>
+    &#29239;&#20250;&#39134;
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">footer</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  document.onmousemove = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+      <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">imgDiv</span> = document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'div'</span><span style="color: #93a8c6;">)</span>;
+      imgDiv.style.left = <span style="color: #93a8c6;">(</span>e.clientX - 30<span style="color: #93a8c6;">)</span> + <span style="color: #98be65;">'px'</span>;
+      imgDiv.style.top = <span style="color: #93a8c6;">(</span>e.clientY -30<span style="color: #93a8c6;">)</span> + <span style="color: #98be65;">'px'</span>;
+  <span style="color: #8c8c8c;">}</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org1eed350" class="outline-2">
+<h2 id="org1eed350"><span class="section-number-2">4</span> 第四章</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org714cae4" class="outline-3">
+<h3 id="org714cae4"><span class="section-number-3">4.1</span> 复制节点 (Page 101)</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #61afef;">.main </span><span style="color: #8c8c8c;">{</span>
+        <span style="color: #c678dd; font-weight: bold;">display</span>: flex;
+        <span style="color: #c678dd; font-weight: bold;">flex-flow</span>: row;
+    <span style="color: #8c8c8c;">}</span>
+    <span style="color: #61afef;">section </span><span style="color: #8c8c8c;">{</span>
+        <span style="color: #c678dd; font-weight: bold;">width</span>: 300px;
+        <span style="color: #c678dd; font-weight: bold;">height</span>: 200px;
+        <span style="color: #c678dd; font-weight: bold;">margin</span>: 3px;
+        <span style="color: #c678dd; font-weight: bold;">padding</span>: 1em;
+        <span style="color: #c678dd; font-weight: bold;">border</span>: 1px solid <span style="color: #ffffff; background-color: #000000;">black</span>;
+        <span style="color: #c678dd; font-weight: bold;">overflow-y</span>: auto;
+    <span style="color: #8c8c8c;">}</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#24320;&#22987;&#22797;&#21046;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span> <span style="color: #61afef;">class</span>=<span style="color: #98be65;">"main"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"src"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#22995;&#21517;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"lily"</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#25552;&#20132;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"dst"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+    document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'header button'</span><span style="color: #8c8c8c;">)</span>.onclick = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+        <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">node</span> = document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'#src div'</span><span style="color: #93a8c6;">)</span>.cloneNode<span style="color: #93a8c6;">(</span><span style="color: #da8548; font-weight: bold;">true</span><span style="color: #93a8c6;">)</span>;
+        document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'#dst'</span><span style="color: #93a8c6;">)</span>.appendChild<span style="color: #93a8c6;">(</span>node<span style="color: #93a8c6;">)</span>;
+    <span style="color: #8c8c8c;">}</span>;
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2455d1e" class="outline-3">
+<h3 id="org2455d1e"><span class="section-number-3">4.2</span> 点击更改背景色 (Page 103)</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">table, tr, th, td </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">border</span>: 1px solid <span style="color: #ffffff; background-color: #000000;">black</span>;
+       <span style="color: #c678dd; font-weight: bold;">border-collapse</span>: collapse;
+       <span style="color: #c678dd; font-weight: bold;">padding</span>: 5px 1em;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">.beautiful </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">background</span>: <span style="color: #ffffff; background-color: #008000;">green</span>;
+       <span style="color: #c678dd; font-weight: bold;">color</span>: <span style="color: #000000; background-color: #ffffff;">white</span>;
+       <span style="color: #c678dd; font-weight: bold;">font-weight</span>: bold;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">table</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">thead</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>&#24207;&#21495;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>&#22995;&#21517;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>&#24180;&#40836;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">thead</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tbody</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>3333<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">td</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tbody</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">table</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'tbody'</span><span style="color: #8c8c8c;">)</span>.addEventListener<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'click'</span>, <span style="color: #93a8c6;">(</span>e<span style="color: #93a8c6;">)</span> =&gt; <span style="color: #93a8c6;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #b0b1a3;">(</span>e.target.parentNode.tagName.toLowerCase<span style="color: #97b098;">()</span> == <span style="color: #98be65;">'tr'</span><span style="color: #b0b1a3;">)</span> <span style="color: #b0b1a3;">{</span>
+         e.target.parentNode.classList.toggle<span style="color: #97b098;">(</span><span style="color: #98be65;">'beautiful'</span><span style="color: #97b098;">)</span>;
+       <span style="color: #b0b1a3;">}</span>
+     <span style="color: #93a8c6;">}</span><span style="color: #8c8c8c;">)</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org58ed6e6" class="outline-3">
+<h3 id="org58ed6e6"><span class="section-number-3">4.3</span> 点击按钮增加节点 (Page 104)</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">.main </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">border</span>: 1px solid <span style="color: #ffffff; background-color: #0000ff;">blue</span>;
+       <span style="color: #c678dd; font-weight: bold;">width</span>: 250px;
+       <span style="color: #c678dd; font-weight: bold;">height</span>: 200px;
+       <span style="color: #c678dd; font-weight: bold;">margin-top</span>: 1em;
+       <span style="color: #c678dd; font-weight: bold;">overflow-y</span>: auto;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#28155;&#21152;&#33410;&#28857;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span> <span style="color: #61afef;">class</span>=<span style="color: #98be65;">"main"</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">addNode</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">html</span> = <span style="color: #98be65;">"&lt;div&gt;&lt;span&gt;Email: &lt;/span&gt;&lt;input value='zh@cctv.com'&gt;&lt;/div&gt;"</span>;
+       document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'.main'</span><span style="color: #93a8c6;">)</span>.insertAdjacentHTML<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'afterbegin'</span>, html<span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>
+
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.addEventListener<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'click'</span>, addNode<span style="color: #8c8c8c;">)</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbd21875" class="outline-3">
+<h3 id="orgbd21875"><span class="section-number-3">4.4</span> 添加、删除表格的行 (Page 105)</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">body </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">text-align</span>: center;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">table, tr, th, td </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">border</span>: 1px solid <span style="color: #ffffff; background-color: #000000;">black</span>;
+       <span style="color: #c678dd; font-weight: bold;">border-collapse</span>: collapse;
+       <span style="color: #c678dd; font-weight: bold;">padding</span>: 5px 1em;
+       <span style="color: #c678dd; font-weight: bold;">width</span>: 300px;
+       <span style="color: #c678dd; font-weight: bold;">margin</span>: 1em auto;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#20070;&#21517;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#28155;&#21152;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">table</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">thead</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+            <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>&#24207;&#21495;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>
+            <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>&#20070;&#21517;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>
+            <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>&#25805;&#20316;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">th</span><span style="color: #8c8c8c;">&gt;</span>
+          <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tr</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">thead</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">tbody</span><span style="color: #8c8c8c;">&gt;</span>
+        <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">tbody</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">table</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">addTr</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">input</span> = document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'input'</span><span style="color: #93a8c6;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">tbody</span> = document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'tbody'</span><span style="color: #93a8c6;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">index</span> = tbody.rows.length + 1;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">tr</span> = <span style="color: #98be65;">"&lt;tr&gt;&lt;td&gt;"</span> + index + <span style="color: #98be65;">"&lt;/td&gt;&lt;td&gt;"</span> + input.value + <span style="color: #98be65;">"&lt;/td&gt;&lt;td&gt;&lt;button class='del'&gt;&#21024;&#38500;&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;"</span>;
+       tbody.insertAdjacentHTML<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'beforeend'</span>, tr<span style="color: #93a8c6;">)</span>;
+       input.value = <span style="color: #98be65;">''</span>;
+     <span style="color: #8c8c8c;">}</span>
+
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'header button'</span><span style="color: #8c8c8c;">)</span>.addEventListener<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'click'</span>, addTr<span style="color: #8c8c8c;">)</span>;
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'tbody'</span><span style="color: #8c8c8c;">)</span>.addEventListener<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'click'</span>, <span style="color: #93a8c6;">(</span>e<span style="color: #93a8c6;">)</span> =&gt; <span style="color: #93a8c6;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #b0b1a3;">(</span>e.target.classList.contains<span style="color: #97b098;">(</span><span style="color: #98be65;">'del'</span><span style="color: #97b098;">)</span><span style="color: #b0b1a3;">)</span> <span style="color: #b0b1a3;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">tr</span> = e.target.parentNode.parentNode;
+         tr.parentNode.removeChild<span style="color: #97b098;">(</span>tr<span style="color: #97b098;">)</span>;
+       <span style="color: #b0b1a3;">}</span>
+     <span style="color: #93a8c6;">}</span><span style="color: #8c8c8c;">)</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orga65fba3" class="outline-3">
+<h3 id="orga65fba3"><span class="section-number-3">4.5</span> 代码题 (Page 108)</h3>
+<div class="outline-text-3" id="text-4-5">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">div </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">background</span>: <span style="color: #000000; background-color: #ffffe0;">lightyellow</span>;
+       <span style="color: #c678dd; font-weight: bold;">margin-bottom</span>: 4px;
+       <span style="color: #c678dd; font-weight: bold;">border-bottom</span>: 1px dotted <span style="color: #ffffff; background-color: #808080;">gray</span>;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">placeholder</span>=<span style="color: #98be65;">"&#20070;&#21517;"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">placeholder</span>=<span style="color: #98be65;">"&#20316;&#32773;"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">placeholder</span>=<span style="color: #98be65;">"&#20215;&#26684;"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#28155;&#21152;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.addEventListener<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'click'</span>, <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #93a8c6;">(</span><span style="color: #61afef;">e</span><span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">inputs</span> = document.querySelectorAll<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'input'</span><span style="color: #b0b1a3;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">html</span> = <span style="color: #98be65;">"&lt;div&gt;&#20070;&#21517;: "</span> + inputs<span style="color: #b0b1a3;">[</span>0<span style="color: #b0b1a3;">]</span>.value + <span style="color: #98be65;">" &#20316;&#32773;: "</span> + inputs<span style="color: #b0b1a3;">[</span>1<span style="color: #b0b1a3;">]</span>.value + <span style="color: #98be65;">" &#20215;&#26684;: "</span> + inputs<span style="color: #b0b1a3;">[</span>2<span style="color: #b0b1a3;">]</span>.value + <span style="color: #98be65;">" &lt;/div&gt;"</span>;
+       document.querySelector<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'section'</span><span style="color: #b0b1a3;">)</span>.insertAdjacentHTML<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">'afterbegin'</span>, html<span style="color: #b0b1a3;">)</span>;
+     <span style="color: #93a8c6;">}</span><span style="color: #8c8c8c;">)</span>;
+
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgcc9a838" class="outline-2">
+<h2 id="orgcc9a838"><span class="section-number-2">5</span> 第五章</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org70de3c3" class="outline-3">
+<h3 id="org70de3c3"><span class="section-number-3">5.1</span> 弹出时间 (Page 136)</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#29468;&#29468;&#20170;&#22825;&#26159;&#21738;&#22825;?<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.onclick = <span style="color: #8c8c8c;">(</span>e<span style="color: #8c8c8c;">)</span> =&gt; <span style="color: #8c8c8c;">{</span>
+      <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">d</span> = <span style="color: #c678dd; font-weight: bold;">new</span> <span style="color: #61afef;">Date</span><span style="color: #93a8c6;">()</span>;
+      alert<span style="color: #93a8c6;">(</span>d.xxxxxxx&#36827;&#34892;&#25340;&#25509;<span style="color: #93a8c6;">)</span>;
+  <span style="color: #8c8c8c;">}</span>;
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga44d21e" class="outline-3">
+<h3 id="orga44d21e"><span class="section-number-3">5.2</span> 验证输入内容 (Page 137)</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-html">
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#22995;&#21517;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#25552;&#20132;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">doSubmit</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+      <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">value</span> = document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'input'</span><span style="color: #93a8c6;">)</span>.value;
+      <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span>!value<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+          <span style="color: #c678dd; font-weight: bold;">return</span> alert<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">"&#19981;&#33021;&#20026;&#31354;&#21834;"</span><span style="color: #b0b1a3;">)</span>;
+      <span style="color: #93a8c6;">}</span>
+      <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #93a8c6;">(</span>value.match<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">/\d/</span><span style="color: #b0b1a3;">)</span><span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+          <span style="color: #c678dd; font-weight: bold;">return</span> alert<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">"&#19981;&#33021;&#21253;&#21547;&#20219;&#20309;&#25968;&#23383;&#21834;"</span><span style="color: #b0b1a3;">)</span>;
+      <span style="color: #93a8c6;">}</span>
+      <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">&#27491;&#24120;&#36923;&#36753;</span>
+  <span style="color: #8c8c8c;">}</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge792577" class="outline-3">
+<h3 id="orge792577"><span class="section-number-3">5.3</span> 猜拳 (Page 138)</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">h3</span><span style="color: #8c8c8c;">&gt;</span><span style="font-style: italic; text-decoration: underline;">&#29468;&#25331;&#23567;&#28216;&#25103;</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">h3</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#35831;&#36873;&#25321;: <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">name</span>=<span style="color: #98be65;">"s"</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"1"</span> <span style="color: #61afef;">type</span>=<span style="color: #98be65;">"radio"</span><span style="color: #8c8c8c;">&gt;</span> &#21098;&#20992;
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">name</span>=<span style="color: #98be65;">"s"</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"2"</span> <span style="color: #61afef;">type</span>=<span style="color: #98be65;">"radio"</span><span style="color: #8c8c8c;">&gt;</span> &#30707;&#22836;
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">name</span>=<span style="color: #98be65;">"s"</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"3"</span> <span style="color: #61afef;">type</span>=<span style="color: #98be65;">"radio"</span><span style="color: #8c8c8c;">&gt;</span> &#24067;
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#24320;&#22987;&#29468;&#25331;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #687080; font-style: italic;">// </span><span style="color: #687080; font-style: italic;">1 2 3</span>
+     <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">arr</span> = <span style="color: #8c8c8c;">[</span><span style="color: #98be65;">"&#21098;&#20992;"</span>, <span style="color: #98be65;">"&#30707;&#22836;"</span>, <span style="color: #98be65;">"&#24067;"</span><span style="color: #8c8c8c;">]</span>;
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">caiquan</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">xitongdexuanze</span> = Math.ceil<span style="color: #93a8c6;">(</span>Math.random<span style="color: #b0b1a3;">()</span>*3<span style="color: #93a8c6;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">inputs</span> = document.querySelectorAll<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'input'</span><span style="color: #93a8c6;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">nidexuanze</span>;
+       <span style="color: #c678dd; font-weight: bold;">for</span> <span style="color: #93a8c6;">(</span><span style="color: #c678dd; font-weight: bold;">let</span> <span style="color: #61afef;">i</span> = 0; i &lt; inputs.length; i++<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #b0b1a3;">(</span>inputs<span style="color: #97b098;">[</span>i<span style="color: #97b098;">]</span>.checked<span style="color: #b0b1a3;">)</span> <span style="color: #b0b1a3;">{</span>
+           nidexuanze = parseInt<span style="color: #97b098;">(</span>inputs<span style="color: #aebed8;">[</span>i<span style="color: #aebed8;">]</span>.value<span style="color: #97b098;">)</span>;
+           <span style="color: #c678dd; font-weight: bold;">break</span>;
+         <span style="color: #b0b1a3;">}</span>
+       <span style="color: #93a8c6;">}</span>
+       alert<span style="color: #93a8c6;">(</span><span style="color: #98be65;">"&#20320;&#30340;&#36873;&#25321;&#26159;: "</span> + arr<span style="color: #b0b1a3;">[</span>nidexuanze - 1<span style="color: #b0b1a3;">]</span> + <span style="color: #98be65;">"\n&#31995;&#32479;&#30340;&#36873;&#25321;: "</span> + arr<span style="color: #b0b1a3;">[</span>xitongdexuanze - 1<span style="color: #b0b1a3;">]</span><span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'button'</span><span style="color: #8c8c8c;">)</span>.onclick = caiquan;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb52b2c5" class="outline-3">
+<h3 id="orgb52b2c5"><span class="section-number-3">5.4</span> 添加员工 (Page 139)</h3>
+<div class="outline-text-3" id="text-5-4">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">input </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">display</span>: block;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">footer </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">margin</span>: 1em 0;
+       <span style="color: #c678dd; font-weight: bold;">padding</span>: 1em;
+       <span style="color: #c678dd; font-weight: bold;">height</span>: 200px;
+       <span style="color: #c678dd; font-weight: bold;">border</span>: 1px solid <span style="color: #ffffff; background-color: #000000;">black</span>;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">h3</span><span style="color: #8c8c8c;">&gt;</span><span style="font-style: italic; text-decoration: underline;">&#21592;&#24037;&#36164;&#20449;&#24687;</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">h3</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">header</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"rose"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"23"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">value</span>=<span style="color: #98be65;">"nose@126.com"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>&#28155;&#21152;<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">button</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">footer</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">footer</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+
+     <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">personList</span> = <span style="color: #8c8c8c;">[]</span>;
+
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">Person</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">name</span>, <span style="color: #61afef;">age</span>, <span style="color: #61afef;">email</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #da8548; font-weight: bold;">this</span>.name = name;
+       <span style="color: #da8548; font-weight: bold;">this</span>.age = age;
+       <span style="color: #da8548; font-weight: bold;">this</span>.email = email;
+       <span style="color: #da8548; font-weight: bold;">this</span>.showMe = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #93a8c6;">()</span> <span style="color: #93a8c6;">{</span>
+         alert<span style="color: #b0b1a3;">(</span><span style="color: #98be65;">"My name is "</span> + <span style="color: #da8548; font-weight: bold;">this</span>.name<span style="color: #b0b1a3;">)</span>;
+       <span style="color: #93a8c6;">}</span>
+     <span style="color: #8c8c8c;">}</span>;
+
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">addPerson</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">inputs</span> = document.querySelectorAll<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'input'</span><span style="color: #93a8c6;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">person</span> = <span style="color: #c678dd; font-weight: bold;">new</span> <span style="color: #61afef;">Person</span><span style="color: #93a8c6;">(</span>
+         inputs<span style="color: #b0b1a3;">[</span>0<span style="color: #b0b1a3;">]</span>.value,
+         inputs<span style="color: #b0b1a3;">[</span>1<span style="color: #b0b1a3;">]</span>.value,
+         inputs<span style="color: #b0b1a3;">[</span>2<span style="color: #b0b1a3;">]</span>.value
+       <span style="color: #93a8c6;">)</span>;
+       personList.push<span style="color: #93a8c6;">(</span>person<span style="color: #93a8c6;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">html</span> = <span style="color: #98be65;">"&lt;div&gt;&#22995;&#21517;: "</span> + inputs<span style="color: #93a8c6;">[</span>0<span style="color: #93a8c6;">]</span>.value + <span style="color: #98be65;">" &#24180;&#40836;: "</span> + inputs<span style="color: #93a8c6;">[</span>1<span style="color: #93a8c6;">]</span>.value + <span style="color: #98be65;">" Email: "</span> + inputs<span style="color: #93a8c6;">[</span>2<span style="color: #93a8c6;">]</span>.value + <span style="color: #98be65;">" &lt;/div&gt;"</span>;
+       document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'footer'</span><span style="color: #93a8c6;">)</span>.insertAdjacentHTML<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'afterbegin'</span>, html<span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>
+
+     document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'div button'</span><span style="color: #8c8c8c;">)</span>.addEventListener<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'click'</span>, addPerson<span style="color: #8c8c8c;">)</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org7ce7055" class="outline-2">
+<h2 id="org7ce7055"><span class="section-number-2">6</span> 第六章</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgeeedecb" class="outline-3">
+<h3 id="orgeeedecb"><span class="section-number-3">6.1</span> 模拟跳转 (Page 163)</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">shengxiadeShijian</span> = 5;
+
+<span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">showMessage</span><span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+    document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'.msg'</span><span style="color: #93a8c6;">)</span>.innerText = <span style="color: #98be65;">"&#27880;&#20876;&#25104;&#21151;&#65292;&#21097; "</span> + shengxiadeShijian + <span style="color: #98be65;">" &#31186;"</span>;
+<span style="color: #8c8c8c;">}</span>
+
+<span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">redirctToHome</span> <span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+    window.location.href = <span style="color: #98be65;">"/"</span>;
+<span style="color: #8c8c8c;">}</span>
+
+setInterval<span style="color: #8c8c8c;">(</span>showMessage, 1000<span style="color: #8c8c8c;">)</span>;
+setTimeout<span style="color: #8c8c8c;">(</span>redirctToHome, shengxiadeShijian * 1000<span style="color: #8c8c8c;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org448c37a" class="outline-2">
+<h2 id="org448c37a"><span class="section-number-2">7</span> 第七章</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org44323fd" class="outline-3">
+<h3 id="org44323fd"><span class="section-number-3">7.1</span> 字体样式 (Page 195)</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #61afef;">.xieti </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">font-style</span>: italic;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">.xiahuaxian </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">text-decoration</span>: underline;
+     <span style="color: #8c8c8c;">}</span>
+     <span style="color: #61afef;">.cuti </span><span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">font-weight</span>: bolder;
+     <span style="color: #8c8c8c;">}</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">type</span>=<span style="color: #98be65;">"checkbox"</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"a"</span>/<span style="color: #8c8c8c;">&gt;</span> &#26012;&#20307;
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">type</span>=<span style="color: #98be65;">"checkbox"</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"b"</span>/<span style="color: #8c8c8c;">&gt;</span> &#19979;&#21010;&#32447;
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">input</span> <span style="color: #61afef;">type</span>=<span style="color: #98be65;">"checkbox"</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"c"</span>/<span style="color: #8c8c8c;">&gt;</span> &#31895;&#20307;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+      &#24191;&#19996;&#30465;&#29664;&#28023;&#24066;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">section</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">t</span> = document.querySelector<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'section'</span><span style="color: #8c8c8c;">)</span>;
+     document.getElementById<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'a'</span><span style="color: #8c8c8c;">)</span>.onclick = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       t.classList.toggle<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'xieti'</span><span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>;
+     document.getElementById<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'b'</span><span style="color: #8c8c8c;">)</span>.onclick = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       t.classList.toggle<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'xiahuaxian'</span><span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>;
+     document.getElementById<span style="color: #8c8c8c;">(</span><span style="color: #98be65;">'c'</span><span style="color: #8c8c8c;">)</span>.onclick = <span style="color: #c678dd; font-weight: bold;">function</span><span style="color: #8c8c8c;">(</span><span style="color: #61afef;">e</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">{</span>
+       t.classList.toggle<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'cuti'</span><span style="color: #93a8c6;">)</span>;
+     <span style="color: #8c8c8c;">}</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb4006f9" class="outline-3">
+<h3 id="orgb4006f9"><span class="section-number-3">7.2</span> 级联选择 (Page 198)</h3>
+<div class="outline-text-3" id="text-7-2">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #c678dd; font-weight: bold;">!doctype</span> html&gt;
+<span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">html</span> <span style="color: #61afef;">lang</span>=<span style="color: #98be65;">"en"</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">meta</span> <span style="color: #61afef;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>/<span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Document</span><span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">title</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">style</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">head</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>&#30465;&#20221;:<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">span</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">select</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"d1"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">select</span><span style="color: #8c8c8c;">&gt;</span>
+      &#22478;&#24066;:
+      <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">select</span> <span style="color: #61afef;">id</span>=<span style="color: #98be65;">"d2"</span><span style="color: #8c8c8c;">&gt;</span>
+      <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">select</span><span style="color: #8c8c8c;">&gt;</span>
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">div</span><span style="color: #8c8c8c;">&gt;</span>
+
+    <span style="color: #8c8c8c;">&lt;</span><span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+     <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">diqu</span> = <span style="color: #8c8c8c;">[</span>
+       <span style="color: #93a8c6;">[</span><span style="color: #98be65;">"&#24191;&#19996;"</span>, <span style="color: #b0b1a3;">[</span><span style="color: #98be65;">"&#24191;&#24030;"</span>, <span style="color: #98be65;">"&#29664;&#28023;"</span>, <span style="color: #98be65;">"&#28145;&#22323;"</span>, <span style="color: #98be65;">"&#20315;&#23665;"</span>, <span style="color: #98be65;">"&#28165;&#36828;"</span><span style="color: #b0b1a3;">]</span><span style="color: #93a8c6;">]</span>,
+       <span style="color: #93a8c6;">[</span><span style="color: #98be65;">"&#28246;&#21335;"</span>, <span style="color: #b0b1a3;">[</span><span style="color: #98be65;">"&#38271;&#27801;"</span>, <span style="color: #98be65;">"&#26666;&#27954;"</span>, <span style="color: #98be65;">"&#27704;&#24030;"</span>, <span style="color: #98be65;">"&#37108;&#24030;"</span>, <span style="color: #98be65;">"&#28248;&#28525;"</span><span style="color: #b0b1a3;">]</span><span style="color: #93a8c6;">]</span>,
+       <span style="color: #93a8c6;">[</span><span style="color: #98be65;">"&#24191;&#35199;"</span>, <span style="color: #b0b1a3;">[</span><span style="color: #98be65;">"&#21335;&#23425;"</span>, <span style="color: #98be65;">"&#26611;&#24030;"</span>, <span style="color: #98be65;">"&#26690;&#26519;"</span>, <span style="color: #98be65;">"&#30334;&#33394;"</span>, <span style="color: #98be65;">"&#36154;&#24030;"</span><span style="color: #b0b1a3;">]</span><span style="color: #93a8c6;">]</span>
+     <span style="color: #8c8c8c;">]</span>;
+
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">renderD1</span> <span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">html</span> = diqu.map<span style="color: #93a8c6;">(</span>d =&gt; <span style="color: #b0b1a3;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">return</span> <span style="color: #98be65;">"&lt;option&gt;"</span> + d<span style="color: #97b098;">[</span>0<span style="color: #97b098;">]</span> + <span style="color: #98be65;">"&lt;/option&gt;"</span>;
+       <span style="color: #b0b1a3;">}</span><span style="color: #93a8c6;">)</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">d1</span> = document.getElementById<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'d1'</span><span style="color: #93a8c6;">)</span>;
+       d1.innerHTML = html;
+       d1.onchange = renderD2;
+     <span style="color: #8c8c8c;">}</span>
+
+     <span style="color: #c678dd; font-weight: bold;">function</span> <span style="color: #61afef;">renderD2</span> <span style="color: #8c8c8c;">()</span> <span style="color: #8c8c8c;">{</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">cities</span>;
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">d</span> = document.querySelector<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'#d1'</span><span style="color: #93a8c6;">)</span>.value;
+       <span style="color: #c678dd; font-weight: bold;">for</span> <span style="color: #93a8c6;">(</span><span style="color: #c678dd; font-weight: bold;">let</span> <span style="color: #61afef;">i</span> = 0; i &lt; diqu.length; i++<span style="color: #93a8c6;">)</span> <span style="color: #93a8c6;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">if</span> <span style="color: #b0b1a3;">(</span>diqu<span style="color: #97b098;">[</span>i<span style="color: #97b098;">][</span>0<span style="color: #97b098;">]</span> === d<span style="color: #b0b1a3;">)</span> <span style="color: #b0b1a3;">{</span>
+           cities = diqu<span style="color: #97b098;">[</span>i<span style="color: #97b098;">][</span>1<span style="color: #97b098;">]</span>;
+           <span style="color: #c678dd; font-weight: bold;">break</span>;
+         <span style="color: #b0b1a3;">}</span>
+       <span style="color: #93a8c6;">}</span>
+       <span style="color: #c678dd; font-weight: bold;">var</span> <span style="color: #61afef;">html</span> = cities.map<span style="color: #93a8c6;">(</span>c =&gt; <span style="color: #b0b1a3;">{</span>
+         <span style="color: #c678dd; font-weight: bold;">return</span> <span style="color: #98be65;">"&lt;option&gt;"</span> + c + <span style="color: #98be65;">"&lt;/option&gt;"</span>;
+       <span style="color: #b0b1a3;">}</span><span style="color: #93a8c6;">)</span>;
+       document.getElementById<span style="color: #93a8c6;">(</span><span style="color: #98be65;">'d2'</span><span style="color: #93a8c6;">)</span>.innerHTML = html;
+     <span style="color: #8c8c8c;">}</span>
+
+     renderD1<span style="color: #8c8c8c;">()</span>;
+     renderD2<span style="color: #8c8c8c;">()</span>;
+    <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">script</span><span style="color: #8c8c8c;">&gt;</span>
+  <span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">body</span><span style="color: #8c8c8c;">&gt;</span>
+<span style="color: #8c8c8c;">&lt;</span>/<span style="color: #61afef;">html</span><span style="color: #8c8c8c;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-01-22</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>
