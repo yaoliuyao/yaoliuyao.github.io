@@ -3,6 +3,7 @@
 #+HTML_HEAD: <meta http-equiv="Cache-Control" content="no-store">
 #+HTML_HEAD: <link rel="stylesheet" href="/html/asset/common.css?8912">
 #+HTML_HEAD: <link rel="stylesheet" href="/yaoliusan/html/asset/common.css?8912">
+#+HTML_HEAD: <script async=true src="https://imfine.cc/script/ga/163.js"></script>
 #+HTML_HEAD: <style>
 #+HTML_HEAD: #org-div-home-and-up { display:none; }
 #+HTML_HEAD: @media (max-width: 768px) {
