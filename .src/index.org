@@ -27,11 +27,11 @@
 
 #+HTML: <section id="toc">
 
-#+HTML: <h3>当前任务</h3>
-#+INCLUDE: "000/tasks.org::#active" :only-contents t
+# #+HTML: <h3>当前任务</h3>
+# #+INCLUDE: "000/tasks.org::#active" :only-contents t
 
-#+HTML: <h3>链接资源</h3>
-#+INCLUDE: "000/.links.org" :lines "2-"
+# #+HTML: <h3>链接资源</h3>
+# #+INCLUDE: "000/.links.org" :lines "2-"
 
 #+HTML: <div><br>
 #+HTML: <h3>笔记目录 <small>(<a href="https://github.com/yaollllllsan/" target="_blank">Github 首页</a>)</small></h3>
@@ -40,8 +40,8 @@
 
 #+HTML: </section>
 
-#+HTML: <aside>
-#+INCLUDE: "000/.group.org"
-#+HTML: </aside>
+# #+HTML: <aside>
+# #+INCLUDE: "000/.group.org"
+# #+HTML: </aside>
 
 #+HTML: </div>

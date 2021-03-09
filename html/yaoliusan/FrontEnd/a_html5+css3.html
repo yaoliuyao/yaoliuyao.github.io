@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-03-09 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML5 and CSS3</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">HTML5 and CSS3</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4bf211a">1. html5 中的标签（语义化）</a></li>
+<li><a href="#org25268b2">2. table 标签</a></li>
+</ul>
+</div>
+</nav>
+
+
+
+<section id="outline-container-org4bf211a" class="outline-2">
+<h2 id="org4bf211a"><span class="section-number-2">1</span> html5 中的标签（语义化）</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+内置的一些标签:
+</p>
+<ul class="org-ul">
+<li>section，部分</li>
+<li>article，文章</li>
+<li>aside, 侧边</li>
+<li>header/footer</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">article</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">header</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">h3</span><span style="color: #707183;">&gt;</span><span style="font-style: italic; text-decoration: underline;">&#25105;&#26159;&#19968;&#31687;&#25991;&#31456;&#30340;&#26631;&#39064;</span><span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">h3</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">span</span><span style="color: #707183;">&gt;</span>&#21457;&#34920;&#26085;&#26399;: xxxxx<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">span</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">span</span><span style="color: #707183;">&gt;</span>&#20316;&#32773;&#21517;&#23383;: xxxxx<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">span</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">header</span><span style="color: #707183;">&gt;</span>
+
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>ksdjfksd<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>ksdjfksd<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">footer</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>&#32034;&#24341;&#20449;&#24687;...<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>&#27426;&#36814;&#35746;&#38405;...<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">footer</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">article</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org25268b2" class="outline-2">
+<h2 id="org25268b2"><span class="section-number-2">2</span> table 标签</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+虽然你可以简写为:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">table</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">table</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+
+<p>
+但是，它的全写格式却含有 thead/tbody:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">table</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">thead</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">th</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">thead</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tbody</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">td</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tr</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">tbody</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">table</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-03-09</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>

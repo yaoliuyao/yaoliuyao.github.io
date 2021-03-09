@@ -1,0 +1,53 @@
+#+TITLE: C#/.net
+
+
+历史:
+- 1998 年左右，Java 风靡世界。面向对象，一次编译处处运行 (解决了 C++ 之类的一些痛点)
+- 微软基于 Java 搞出了一个 J++ 的东西。陷入官司。推出了 C# 语言
+- 因此，C# 借鉴了很多语言: Java/C++/Pascal...
+  + 摸着 Java 过河，很多坑被 Java 踩过之后，不需要再踩
+  + 微软专有的，历史包袱，开发成本相对低多了
+- .net framework，微软在 Windows 上的专有技术，C# 的发挥受限于 .net 平台
+- .net core 从 .net framework 中被剥离出来，成为开源、免费、跨平台的解决方案
+- .net5，自此合二为一
+
+* 开发方式
+** 原始方式
+
+安装完 Windows 之后，自带的 csc 在 C:\Windows\Microsoft.NET\版本号 下面。
+
+所以，可以使用记事本等任何顺手的文本编辑器，创建并打开编辑一个 Hello.cs 的文件:
+#+begin_src csharp
+  namespace Hello {
+      class Test {
+          static void Main() {
+              System.Console.WriteLine("hello, csharp");
+          }
+      }
+  }
+#+end_src
+
+接下来，就可以编译，并运行了:
+: C:\Windows\...\csc.exe Hello.cs
+: Hello.exe
+
+** 解锁开发的完全能力 (Visual Studio)
+
+如果在 Windows 下面进行开发的话。最好的环境就是 VS。
+
+三个版本:
+1. 社区版
+2. 专业版
+3. 企业版
+
+** 跨平台开发 (.net core + vscode)
+
+Java:
+- jdk (Java Development Kit) 开发包
+- jre (Java Runtime Environment)  运行环境
+- eclipse
+
+使用 .net core 开发:
+- 下载并安装 .net core 的 runtime + sdk
+- 安装 VSCode 并安装 C# 的插件  
+  
