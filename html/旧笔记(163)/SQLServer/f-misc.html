@@ -42,27 +42,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5dd1a43">1. emp/dept 测试数据</a></li>
-<li><a href="#org7f571ac">2. SQL 自测</a>
+<li><a href="#org71c90e0">1. emp/dept 测试数据</a></li>
+<li><a href="#org276fc71">2. SQL 自测</a>
 <ul>
-<li><a href="#orgadc563c">2.1. 查询每个部门下有多少员工</a></li>
-<li><a href="#org36b1bf3">2.2. 查询除去 salesman 所有平均工资超过 1500 的部门</a></li>
-<li><a href="#orgb9537de">2.3. 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</a></li>
-<li><a href="#org365347c">2.4. 查询姓名为 King 的员工的编号，名称跟部门</a></li>
-<li><a href="#org65efbca">2.5. 查询各种工作的最低工资</a></li>
-<li><a href="#org4a3f795">2.6. 查询工龄大于 10 年的所有员工信息</a></li>
-<li><a href="#org8d814db">2.7. 查询每个部门员工数量，平均工资和平均工作年限</a></li>
-<li><a href="#org953c464">2.8. 统计各部门每个工种的人数，平均工资</a></li>
-<li><a href="#org9feb112">2.9. 查询从事同一种工作但不属于同一部门的员工信息</a></li>
-<li><a href="#org3ba01d8">2.10. 查询所有员工工资都大于 1000 的部门的信息及员工信息</a></li>
-<li><a href="#orgc089734">2.11. 其他题目</a></li>
+<li><a href="#orga075f77">2.1. 查询每个部门下有多少员工</a></li>
+<li><a href="#org9ab505b">2.2. 查询除去 salesman 所有平均工资超过 1500 的部门</a></li>
+<li><a href="#org0bfad0a">2.3. 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</a></li>
+<li><a href="#orgd129ae5">2.4. 查询姓名为 King 的员工的编号，名称跟部门</a></li>
+<li><a href="#org18576c0">2.5. 查询各种工作的最低工资</a></li>
+<li><a href="#orge78a03c">2.6. 查询工龄大于 10 年的所有员工信息</a></li>
+<li><a href="#org5fff802">2.7. 查询每个部门员工数量，平均工资和平均工作年限</a></li>
+<li><a href="#org78e2892">2.8. 统计各部门每个工种的人数，平均工资</a></li>
+<li><a href="#org13e82d7">2.9. 查询从事同一种工作但不属于同一部门的员工信息</a></li>
+<li><a href="#orgc92670d">2.10. 查询所有员工工资都大于 1000 的部门的信息及员工信息</a></li>
+<li><a href="#org381eeec">2.11. 其他题目</a></li>
 </ul>
 </li>
-<li><a href="#org4c8f4c0">3. Lagou.com 测试数据</a></li>
-<li><a href="#orgeafbd8f">4. 奇 vs 偶</a>
+<li><a href="#orgfd638b3">3. Lagou.com 测试数据</a></li>
+<li><a href="#org6abc502">4. 奇 vs 偶</a>
 <ul>
-<li><a href="#orgedb47a0">4.1. 1/3/5/7 出的题</a></li>
-<li><a href="#orgbaa292b">4.2. 2/4/6/8 出的题</a></li>
+<li><a href="#orgd46adef">4.1. 1/3/5/7 出的题</a></li>
+<li><a href="#org61cf559">4.2. 2/4/6/8 出的题</a></li>
 </ul>
 </li>
 </ul>
@@ -70,8 +70,8 @@
 </nav>
 
 
-<section id="outline-container-org5dd1a43" class="outline-2">
-<h2 id="org5dd1a43"><span class="section-number-2">1</span> emp/dept 测试数据</h2>
+<section id="outline-container-org71c90e0" class="outline-2">
+<h2 id="org71c90e0"><span class="section-number-2">1</span> emp/dept 测试数据</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> DATABASE oa;
@@ -142,12 +142,12 @@ use oa;
 </div>
 </section>
 
-<section id="outline-container-org7f571ac" class="outline-2">
-<h2 id="org7f571ac"><span class="section-number-2">2</span> SQL 自测</h2>
+<section id="outline-container-org276fc71" class="outline-2">
+<h2 id="org276fc71"><span class="section-number-2">2</span> SQL 自测</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgadc563c" class="outline-3">
-<h3 id="orgadc563c"><span class="section-number-3">2.1</span> 查询每个部门下有多少员工</h3>
+<div id="outline-container-orga075f77" class="outline-3">
+<h3 id="orga075f77"><span class="section-number-3">2.1</span> 查询每个部门下有多少员工</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno, <span style="color: #483d8b;">count</span><span style="color: #707183;">(</span>*<span style="color: #707183;">)</span> <span style="color: #a020f0;">from</span> emp  <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> deptno;
@@ -166,8 +166,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org36b1bf3" class="outline-3">
-<h3 id="org36b1bf3"><span class="section-number-3">2.2</span> 查询除去 salesman 所有平均工资超过 1500 的部门</h3>
+<div id="outline-container-org9ab505b" class="outline-3">
+<h3 id="org9ab505b"><span class="section-number-3">2.2</span> 查询除去 salesman 所有平均工资超过 1500 的部门</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno, <span style="color: #483d8b;">AVG</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">from</span> emp
@@ -185,8 +185,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-orgb9537de" class="outline-3">
-<h3 id="orgb9537de"><span class="section-number-3">2.3</span> 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</h3>
+<div id="outline-container-org0bfad0a" class="outline-3">
+<h3 id="org0bfad0a"><span class="section-number-3">2.3</span> 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> dname, ename, sal <span style="color: #a020f0;">from</span> emp
@@ -197,8 +197,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org365347c" class="outline-3">
-<h3 id="org365347c"><span class="section-number-3">2.4</span> 查询姓名为 King 的员工的编号，名称跟部门</h3>
+<div id="outline-container-orgd129ae5" class="outline-3">
+<h3 id="orgd129ae5"><span class="section-number-3">2.4</span> 查询姓名为 King 的员工的编号，名称跟部门</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> empno,ename,dept.dname <span style="color: #a020f0;">from</span> emp
@@ -209,8 +209,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org65efbca" class="outline-3">
-<h3 id="org65efbca"><span class="section-number-3">2.5</span> 查询各种工作的最低工资</h3>
+<div id="outline-container-org18576c0" class="outline-3">
+<h3 id="org18576c0"><span class="section-number-3">2.5</span> 查询各种工作的最低工资</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> job,<span style="color: #483d8b;">min</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> small <span style="color: #a020f0;">from</span> emp <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> job;
@@ -219,8 +219,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org4a3f795" class="outline-3">
-<h3 id="org4a3f795"><span class="section-number-3">2.6</span> 查询工龄大于 10 年的所有员工信息</h3>
+<div id="outline-container-orge78a03c" class="outline-3">
+<h3 id="orge78a03c"><span class="section-number-3">2.6</span> 查询工龄大于 10 年的所有员工信息</h3>
 <div class="outline-text-3" id="text-2-6">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> emp
@@ -230,8 +230,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org8d814db" class="outline-3">
-<h3 id="org8d814db"><span class="section-number-3">2.7</span> 查询每个部门员工数量，平均工资和平均工作年限</h3>
+<div id="outline-container-org5fff802" class="outline-3">
+<h3 id="org5fff802"><span class="section-number-3">2.7</span> 查询每个部门员工数量，平均工资和平均工作年限</h3>
 <div class="outline-text-3" id="text-2-7">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span>
@@ -246,8 +246,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org953c464" class="outline-3">
-<h3 id="org953c464"><span class="section-number-3">2.8</span> 统计各部门每个工种的人数，平均工资</h3>
+<div id="outline-container-org78e2892" class="outline-3">
+<h3 id="org78e2892"><span class="section-number-3">2.8</span> 统计各部门每个工种的人数，平均工资</h3>
 <div class="outline-text-3" id="text-2-8">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno,
@@ -261,8 +261,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org9feb112" class="outline-3">
-<h3 id="org9feb112"><span class="section-number-3">2.9</span> 查询从事同一种工作但不属于同一部门的员工信息</h3>
+<div id="outline-container-org13e82d7" class="outline-3">
+<h3 id="org13e82d7"><span class="section-number-3">2.9</span> 查询从事同一种工作但不属于同一部门的员工信息</h3>
 <div class="outline-text-3" id="text-2-9">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> a.ename, a.empno, b.empno, b.ename
@@ -361,8 +361,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org3ba01d8" class="outline-3">
-<h3 id="org3ba01d8"><span class="section-number-3">2.10</span> 查询所有员工工资都大于 1000 的部门的信息及员工信息</h3>
+<div id="outline-container-orgc92670d" class="outline-3">
+<h3 id="orgc92670d"><span class="section-number-3">2.10</span> 查询所有员工工资都大于 1000 的部门的信息及员工信息</h3>
 <div class="outline-text-3" id="text-2-10">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> emp e
@@ -379,8 +379,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-orgc089734" class="outline-3">
-<h3 id="orgc089734"><span class="section-number-3">2.11</span> 其他题目</h3>
+<div id="outline-container-org381eeec" class="outline-3">
+<h3 id="org381eeec"><span class="section-number-3">2.11</span> 其他题目</h3>
 <div class="outline-text-3" id="text-2-11">
 <ul class="org-ul">
 <li>查询入职日期早于其直接上级的所有员工信息。</li>
@@ -400,8 +400,8 @@ use oa;
 </div>
 </section>
 
-<section id="outline-container-org4c8f4c0" class="outline-2">
-<h2 id="org4c8f4c0"><span class="section-number-2">3</span> Lagou.com 测试数据</h2>
+<section id="outline-container-orgfd638b3" class="outline-2">
+<h2 id="orgfd638b3"><span class="section-number-2">3</span> Lagou.com 测试数据</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="asset/lagou.rar">下载 sql 文件</a>.
@@ -409,12 +409,12 @@ use oa;
 </div>
 </section>
 
-<section id="outline-container-orgeafbd8f" class="outline-2">
-<h2 id="orgeafbd8f"><span class="section-number-2">4</span> 奇 vs 偶</h2>
+<section id="outline-container-org6abc502" class="outline-2">
+<h2 id="org6abc502"><span class="section-number-2">4</span> 奇 vs 偶</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgedb47a0" class="outline-3">
-<h3 id="orgedb47a0"><span class="section-number-3">4.1</span> 1/3/5/7 出的题</h3>
+<div id="outline-container-orgd46adef" class="outline-3">
+<h3 id="orgd46adef"><span class="section-number-3">4.1</span> 1/3/5/7 出的题</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>查询在北京，本科及本科以上，在招前端开发工程师的公司</li>
@@ -432,8 +432,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-orgbaa292b" class="outline-3">
-<h3 id="orgbaa292b"><span class="section-number-3">4.2</span> 2/4/6/8 出的题</h3>
+<div id="outline-container-org61cf559" class="outline-3">
+<h3 id="org61cf559"><span class="section-number-3">4.2</span> 2/4/6/8 出的题</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>查询珠海所在的公司名字以及所需人员，工作经验和岗位以及学历</li>

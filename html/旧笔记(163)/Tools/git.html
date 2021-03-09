@@ -42,16 +42,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3be6196">1. VCS (版本控制系统)</a></li>
-<li><a href="#orga995af2">2. 基本使用</a>
+<li><a href="#org779abc5">1. VCS (版本控制系统)</a></li>
+<li><a href="#org671fdef">2. 基本使用</a>
 <ul>
-<li><a href="#orga280e9f">2.1. 基本配置</a></li>
-<li><a href="#org103de30">2.2. 仓库创建 (repository)</a></li>
-<li><a href="#orga191589">2.3. 版本的添加</a></li>
-<li><a href="#orgac54608">2.4. 分支的管理</a></li>
-<li><a href="#org7f59b25">2.5. 远程仓库及分支</a></li>
-<li><a href="#org93f8542">2.6. 标签 (一种特殊的分支)</a></li>
-<li><a href="#org5697dbf">2.7. 其他</a></li>
+<li><a href="#org9fbafd3">2.1. 基本配置</a></li>
+<li><a href="#org7892ace">2.2. 仓库创建 (repository)</a></li>
+<li><a href="#orgddec6aa">2.3. 版本的添加</a></li>
+<li><a href="#orgb832bdd">2.4. 分支的管理</a></li>
+<li><a href="#orga1c0d97">2.5. 远程仓库及分支</a></li>
+<li><a href="#org2780189">2.6. 标签 (一种特殊的分支)</a></li>
+<li><a href="#orgafca353">2.7. 其他</a></li>
 </ul>
 </li>
 </ul>
@@ -59,8 +59,8 @@
 </nav>
 
 
-<section id="outline-container-org3be6196" class="outline-2">
-<h2 id="org3be6196"><span class="section-number-2">1</span> VCS (版本控制系统)</h2>
+<section id="outline-container-org779abc5" class="outline-2">
+<h2 id="org779abc5"><span class="section-number-2">1</span> VCS (版本控制系统)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 分类:
@@ -87,12 +87,12 @@ Git 起源:
 </div>
 </section>
 
-<section id="outline-container-orga995af2" class="outline-2">
-<h2 id="orga995af2"><span class="section-number-2">2</span> 基本使用</h2>
+<section id="outline-container-org671fdef" class="outline-2">
+<h2 id="org671fdef"><span class="section-number-2">2</span> 基本使用</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orga280e9f" class="outline-3">
-<h3 id="orga280e9f"><span class="section-number-3">2.1</span> 基本配置</h3>
+<div id="outline-container-org9fbafd3" class="outline-3">
+<h3 id="org9fbafd3"><span class="section-number-3">2.1</span> 基本配置</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 下载完，第一件事，就是打开 git-bash，然后执行如下命令。
@@ -130,8 +130,8 @@ git config --global user.email <span style="color: #8b2252;">"xxx@yyy.com"</span
 </div>
 </div>
 
-<div id="outline-container-org103de30" class="outline-3">
-<h3 id="org103de30"><span class="section-number-3">2.2</span> 仓库创建 (repository)</h3>
+<div id="outline-container-org7892ace" class="outline-3">
+<h3 id="org7892ace"><span class="section-number-3">2.2</span> 仓库创建 (repository)</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 将一个文件夹转换为仓库:
@@ -159,8 +159,8 @@ git clone /e/kaoshi kaoshishaa <span style="color: #b22222;"># </span><span styl
 </div>
 </div>
 
-<div id="outline-container-orga191589" class="outline-3">
-<h3 id="orga191589"><span class="section-number-3">2.3</span> 版本的添加</h3>
+<div id="outline-container-orgddec6aa" class="outline-3">
+<h3 id="orgddec6aa"><span class="section-number-3">2.3</span> 版本的添加</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 首先，在文件夹下面修改若干文件。
@@ -228,8 +228,8 @@ VI 的基本使用:
 </div>
 </div>
 
-<div id="outline-container-orgac54608" class="outline-3">
-<h3 id="orgac54608"><span class="section-number-3">2.4</span> 分支的管理</h3>
+<div id="outline-container-orgb832bdd" class="outline-3">
+<h3 id="orgb832bdd"><span class="section-number-3">2.4</span> 分支的管理</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 基本管理：
@@ -280,8 +280,8 @@ git rebase xxx
 </div>
 </div>
 
-<div id="outline-container-org7f59b25" class="outline-3">
-<h3 id="org7f59b25"><span class="section-number-3">2.5</span> 远程仓库及分支</h3>
+<div id="outline-container-orga1c0d97" class="outline-3">
+<h3 id="orga1c0d97"><span class="section-number-3">2.5</span> 远程仓库及分支</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">&#40664;&#35748;&#30340; pull/push &#22320;&#22336;: /e/workspace</span>
@@ -310,8 +310,8 @@ git remote set-url <span style="color: #707183;">[</span>origin<span style="colo
 </div>
 </div>
 
-<div id="outline-container-org93f8542" class="outline-3">
-<h3 id="org93f8542"><span class="section-number-3">2.6</span> 标签 (一种特殊的分支)</h3>
+<div id="outline-container-org2780189" class="outline-3">
+<h3 id="org2780189"><span class="section-number-3">2.6</span> 标签 (一种特殊的分支)</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 一种只读的分支。是为了方便大家的记忆。
@@ -328,8 +328,8 @@ git tag -d xxx
 </div>
 </div>
 
-<div id="outline-container-org5697dbf" class="outline-3">
-<h3 id="org5697dbf"><span class="section-number-3">2.7</span> 其他</h3>
+<div id="outline-container-orgafca353" class="outline-3">
+<h3 id="orgafca353"><span class="section-number-3">2.7</span> 其他</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 常用命令:
