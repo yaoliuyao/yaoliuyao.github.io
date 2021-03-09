@@ -36,6 +36,7 @@
 #+HTML: <div><br>
 #+HTML: <h3>笔记目录 <small>(<a href="https://github.com/yaollllllsan/" target="_blank">Github 首页</a>)</small></h3>
 #+INCLUDE: ".sitemap.org" :lines "4-6"
+#+HTML: <li><a href="163/index.html">backup of 163's notes</a></li>
 #+HTML: </div>
 
 #+HTML: </section>
