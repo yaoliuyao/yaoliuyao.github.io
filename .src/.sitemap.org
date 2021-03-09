@@ -3,6 +3,8 @@
 - [[file:index.org][163]]
 - dotnet
   - [[file:dotnet/a-dotnet-env.org][.NET 平台]]
+  - [[file:dotnet/b-csharp.org][C# 编程语言]]
+  - [[file:dotnet/e-aspnet.org][ASP.NET MVC]]
 - 旧笔记(163)
   - [[file:旧笔记(163)/index.org][163]]
   - 000
