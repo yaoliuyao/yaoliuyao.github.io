@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-03-09 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">Bootstrap</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8ee8f2a">1. 基本使用</a></li>
+<li><a href="#org8a871c3">2. 网格布局</a></li>
+<li><a href="#orgab2712f">3. 响应式布局</a></li>
+<li><a href="#orgd2a940b">4. 组件</a></li>
+<li><a href="#org3485ceb">5. 应用</a></li>
+</ul>
+</div>
+</nav>
+
+
+
+<section id="outline-container-org8ee8f2a" class="outline-2">
+<h2 id="org8ee8f2a"><span class="section-number-2">1</span> 基本使用</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+首先，要引进 (本地或 cdn):
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#25552;&#20379;&#22522;&#26412;&#30340;&#26679;&#24335;&#12289;&#24067;&#23616;&#12289;&#32452;&#20214; </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">link</span> <span style="color: #a0522d;">rel</span>=<span style="color: #8b2252;">"stylesheet"</span> <span style="color: #a0522d;">href</span>=<span style="color: #8b2252;">"https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#25552;&#20379;&#39069;&#22806;&#30340;&#65292;&#36319;&#20132;&#20114;&#26377;&#20851;&#30340;&#32452;&#20214;&#21151;&#33021;&#65292;&#24377;&#20986;&#23618;&#12289;tab &#39029;&#20999;&#25442; </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span> <span style="color: #a0522d;">src</span>=<span style="color: #8b2252;">"https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span> <span style="color: #a0522d;">src</span>=<span style="color: #8b2252;">"https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org8a871c3" class="outline-2">
+<h2 id="org8a871c3"><span class="section-number-2">2</span> 网格布局</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #a020f0;">!doctype</span> html&gt;
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">html</span> <span style="color: #a0522d;">lang</span>=<span style="color: #8b2252;">"en"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">meta</span> <span style="color: #a0522d;">charset</span>=<span style="color: #8b2252;">"UTF-8"</span>/<span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">&#32593;&#26684;&#24067;&#23616;</span><span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">link</span> <span style="color: #a0522d;">rel</span>=<span style="color: #8b2252;">"stylesheet"</span> <span style="color: #a0522d;">href</span>=<span style="color: #8b2252;">"https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+     <span style="color: #0000ff;">* </span><span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">box-sizing</span>: border-box;
+     <span style="color: #707183;">}</span>
+
+     <span style="color: #0000ff;">p </span><span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">color</span>: <span style="color: #000000; background-color: #ffffff;">white</span>;
+       <span style="color: #a020f0;">background</span>: <span style="color: #ffffff; background-color: #000000;">black</span>;
+       <span style="color: #a020f0;">font-weight</span>: bold;
+       <span style="color: #a020f0;">height</span>: 50px;
+       <span style="color: #a020f0;">border</span>: 1px solid <span style="color: #ffffff; background-color: #ff0000;">red</span>;
+     <span style="color: #707183;">}</span>
+     <span style="color: #0000ff;">.left-side, .main, .ad </span><span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">border</span>: 1px solid <span style="color: #ffffff; background-color: #808080;">grey</span>;
+       <span style="color: #a020f0;">height</span>: 300px;
+     <span style="color: #707183;">}</span>
+     <span style="color: #0000ff;">.logo </span><span style="color: #707183;">{</span>
+       <span style="color: #a020f0;">height</span>: 150px;
+       <span style="color: #a020f0;">background</span>: <span style="color: #ffffff; background-color: #808080;">grey</span>;
+     <span style="color: #707183;">}</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"container"</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">header</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"logo row"</span><span style="color: #707183;">&gt;</span>
+        &#25105;&#30340;&#21338;&#23458;&#31995;&#32479;
+      <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">header</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"row"</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"left-side col-md-2"</span><span style="color: #707183;">&gt;</span>
+          &#33756;&#21333;&#20043;&#31867;
+        <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"main col-md-8"</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"row"</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-1"</span><span style="color: #707183;">&gt;</span>11111<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-1"</span><span style="color: #707183;">&gt;</span>22222<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-1"</span><span style="color: #707183;">&gt;</span>33333<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-1"</span><span style="color: #707183;">&gt;</span>44444<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"row"</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-1"</span><span style="color: #707183;">&gt;</span>11111<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-2"</span><span style="color: #707183;">&gt;</span>22222<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-2"</span><span style="color: #707183;">&gt;</span>33333<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-1"</span><span style="color: #707183;">&gt;</span>44444<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"row"</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-1"</span><span style="color: #707183;">&gt;</span>11111<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-5"</span><span style="color: #707183;">&gt;</span>22222<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-5"</span><span style="color: #707183;">&gt;</span>33333<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-1"</span><span style="color: #707183;">&gt;</span>44444<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"row"</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-3"</span><span style="color: #707183;">&gt;</span>11111<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-3"</span><span style="color: #707183;">&gt;</span>22222<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-3"</span><span style="color: #707183;">&gt;</span>33333<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"col-md-3"</span><span style="color: #707183;">&gt;</span>44444<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+          <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"ad col-md-2"</span><span style="color: #707183;">&gt;</span>
+          &#24191;&#21578;&#20043;&#31867;
+        <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgab2712f" class="outline-2">
+<h2 id="orgab2712f"><span class="section-number-2">3</span> 响应式布局</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+pass
+</p>
+</div>
+</section>
+
+<section id="outline-container-orgd2a940b" class="outline-2">
+<h2 id="orgd2a940b"><span class="section-number-2">4</span> 组件</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+pass
+</p>
+</div>
+</section>
+
+<section id="outline-container-org3485ceb" class="outline-2">
+<h2 id="org3485ceb"><span class="section-number-2">5</span> 应用</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+pass
+</p>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-03-09</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>
