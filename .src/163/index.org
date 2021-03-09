@@ -1,0 +1,46 @@
+#+TITLE: 163
+
+#+HTML_HEAD: <meta http-equiv="Cache-Control" content="no-store">
+#+HTML_HEAD: <link rel="stylesheet" href="/html/asset/common.css?8912">
+#+HTML_HEAD: <link rel="stylesheet" href="/yaoliusan/html/asset/common.css?8912">
+#+HTML_HEAD: <style>
+#+HTML_HEAD: #org-div-home-and-up { display:none; }
+#+HTML_HEAD: @media (max-width: 768px) {
+#+HTML_HEAD:   #content { background: #f9f9f9; }
+#+HTML_HEAD:   #content > .org-ul { display:flex; flex-flow: column wrap; height: 2200px; margin: 0 auto; }
+#+HTML_HEAD:   #content > .org-ul > li {  padding-right: 2em; list-style: none; }
+#+HTML_HEAD:   #content > .org-ul > li > ul:first-child { margin-top: 1em; }
+#+HTML_HEAD: }
+#+HTML_HEAD: @media (min-width: 768px) {
+#+HTML_HEAD:   #content { margin-left: auto; margin-right: auto; padding-left: 50px; }
+#+HTML_HEAD:   #postamble { display: none; }
+#+HTML_HEAD:   #main {display: grid; grid-gap: 20px; grid-template-columns: 1fr auto;}
+#+HTML_HEAD:   #main aside { width: 200px; }
+#+HTML_HEAD:   #toc { min-width: 60%; padding-right: 100px; }
+#+HTML_HEAD: }
+#+HTML_HEAD: </style>
+
+#+HTML: <h2 style="color: red; font-weight: bold; text-shadow: 0 0 1px #ee0000"><img style="width: 98%" src="asset/dream.png"></h4>
+
+#+HTML: <div id="main">
+
+#+HTML: <section id="toc">
+
+#+HTML: <h3>当前任务</h3>
+#+INCLUDE: "000/tasks.org::#active" :only-contents t
+
+#+HTML: <h3>链接资源</h3>
+#+INCLUDE: "000/.links.org" :lines "2-"
+
+#+HTML: <div><br>
+#+HTML: <h3>笔记目录 <small>(<a href="https://github.com/yaollllllsan/" target="_blank">Github 首页</a>)</small></h3>
+#+INCLUDE: ".sitemap.org" :lines "4-"
+#+HTML: </div>
+
+#+HTML: </section>
+
+#+HTML: <aside>
+#+INCLUDE: "000/.group.org"
+#+HTML: </aside>
+
+#+HTML: </div>

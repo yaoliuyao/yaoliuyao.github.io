@@ -22,21 +22,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9a553ac">1. 全局变量的问题</a></li>
-<li><a href="#org781196d">2. alert/confirm/prompt 弹窗</a></li>
-<li><a href="#org103259c">3. setTimeout/setInterval 计划任务</a></li>
-<li><a href="#org7cc682d">4. window.open/close/moveTo 窗口控制</a></li>
-<li><a href="#org5bd4f9b">5. window.screen 获取显示器方面信息</a></li>
-<li><a href="#org659d1f1">6. window.navigator 获取浏览器基本信息</a></li>
-<li><a href="#orga5d51e0">7. window.history 浏览历史</a></li>
-<li><a href="#orgc5b0b6a">8. window.location 页面 URL</a></li>
+<li><a href="#org5f7b403">1. 全局变量的问题</a></li>
+<li><a href="#orge3c6c84">2. alert/confirm/prompt 弹窗</a></li>
+<li><a href="#org4c12e6e">3. setTimeout/setInterval 计划任务</a></li>
+<li><a href="#org8994b52">4. window.open/close/moveTo 窗口控制</a></li>
+<li><a href="#org33e6243">5. window.screen 获取显示器方面信息</a></li>
+<li><a href="#orgb87ead7">6. window.navigator 获取浏览器基本信息</a></li>
+<li><a href="#org95f495d">7. window.history 浏览历史</a></li>
+<li><a href="#org5abca29">8. window.location 页面 URL</a></li>
 </ul>
 </div>
 </nav>
 
 
-<section id="outline-container-org9a553ac" class="outline-2">
-<h2 id="org9a553ac"><span class="section-number-2">1</span> 全局变量的问题</h2>
+<section id="outline-container-org5f7b403" class="outline-2">
+<h2 id="org5f7b403"><span class="section-number-2">1</span> 全局变量的问题</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#25152;&#26377;&#30340;&#20840;&#23616;&#21464;&#37327;</span>
@@ -74,8 +74,8 @@ window.open<span style="color: #707183;">(</span><span style="color: #8b2252;">'
 </div>
 </section>
 
-<section id="outline-container-org781196d" class="outline-2">
-<h2 id="org781196d"><span class="section-number-2">2</span> alert/confirm/prompt 弹窗</h2>
+<section id="outline-container-orge3c6c84" class="outline-2">
+<h2 id="orge3c6c84"><span class="section-number-2">2</span> alert/confirm/prompt 弹窗</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 尽量少用。
@@ -138,8 +138,8 @@ console.log<span style="color: #707183;">(</span>tom<span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-org103259c" class="outline-2">
-<h2 id="org103259c"><span class="section-number-2">3</span> setTimeout/setInterval 计划任务</h2>
+<section id="outline-container-org4c12e6e" class="outline-2">
+<h2 id="org4c12e6e"><span class="section-number-2">3</span> setTimeout/setInterval 计划任务</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 计时器、秒表。
@@ -194,8 +194,8 @@ clearInterval<span style="color: #707183;">(</span>a<span style="color: #707183;
 </div>
 </div>
 </section>
-<section id="outline-container-org7cc682d" class="outline-2">
-<h2 id="org7cc682d"><span class="section-number-2">4</span> window.open/close/moveTo 窗口控制</h2>
+<section id="outline-container-org8994b52" class="outline-2">
+<h2 id="org8994b52"><span class="section-number-2">4</span> window.open/close/moveTo 窗口控制</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 打开、关闭、移动:
@@ -215,8 +215,8 @@ window.close<span style="color: #707183;">()</span>;
 </div>
 </section>
 
-<section id="outline-container-org5bd4f9b" class="outline-2">
-<h2 id="org5bd4f9b"><span class="section-number-2">5</span> window.screen 获取显示器方面信息</h2>
+<section id="outline-container-org33e6243" class="outline-2">
+<h2 id="org33e6243"><span class="section-number-2">5</span> window.screen 获取显示器方面信息</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 只是提供了一些，跟显示器相关的参数。
@@ -236,11 +236,11 @@ window.screen.height;
 </div>
 </section>
 
-<section id="outline-container-org659d1f1" class="outline-2">
-<h2 id="org659d1f1"><span class="section-number-2">6</span> window.navigator 获取浏览器基本信息</h2>
+<section id="outline-container-orgb87ead7" class="outline-2">
+<h2 id="orgb87ead7"><span class="section-number-2">6</span> window.navigator 获取浏览器基本信息</h2>
 </section>
-<section id="outline-container-orga5d51e0" class="outline-2">
-<h2 id="orga5d51e0"><span class="section-number-2">7</span> window.history 浏览历史</h2>
+<section id="outline-container-org95f495d" class="outline-2">
+<h2 id="org95f495d"><span class="section-number-2">7</span> window.history 浏览历史</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 控制浏览器的浏览历史，前进或者后退:
@@ -276,8 +276,8 @@ setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">fu
 </div>
 </section>
 
-<section id="outline-container-orgc5b0b6a" class="outline-2">
-<h2 id="orgc5b0b6a"><span class="section-number-2">8</span> window.location 页面 URL</h2>
+<section id="outline-container-org5abca29" class="outline-2">
+<h2 id="org5abca29"><span class="section-number-2">8</span> window.location 页面 URL</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 身份证:
