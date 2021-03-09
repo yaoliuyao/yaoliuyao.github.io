@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-03-09 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servlet and JSP</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliusan/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">Servlet and JSP</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8154ba6">1. JCP 以及规范</a></li>
+<li><a href="#org428da29">2. Servlet (核心)</a>
+<ul>
+<li><a href="#org15b2fbf">2.1. Servlet 接口 / HttpServlet 类</a></li>
+<li><a href="#orgdbe4e5e">2.2. Request/Response</a></li>
+<li><a href="#orga24d999">2.3. HttpSession</a>
+<ul>
+<li><a href="#org5f0b2ac">2.3.1. Cookie</a></li>
+<li><a href="#org8a8a707">2.3.2. Session 的基本使用</a></li>
+<li><a href="#org712b880">2.3.3. Session 的基本原理</a></li>
+</ul>
+</li>
+<li><a href="#org5b162cf">2.4. ServletContext</a></li>
+<li><a href="#org1405c8d">2.5. ContextPath 项目上下文路径</a></li>
+</ul>
+</li>
+<li><a href="#orgbfe18a3">3. Filter (过滤器)</a>
+<ul>
+<li><a href="#orgb0ed50f">3.1. 什么是过滤器</a></li>
+<li><a href="#org56fb3cc">3.2. 基本示例</a></li>
+<li><a href="#org67725c3">3.3. 配置方式</a></li>
+</ul>
+</li>
+<li><a href="#orgb33a14c">4. EventListener (监听器)</a></li>
+<li><a href="#org00cf366">5. JSP (Java Server Page)</a>
+<ul>
+<li><a href="#org96976d3">5.1. JSP 本质就是一个 Servlet</a></li>
+<li><a href="#org144694b">5.2. 基本用法</a></li>
+<li><a href="#org7e16ff9">5.3. 内置对象</a></li>
+<li><a href="#org5d0b053">5.4. JSP 指令</a></li>
+<li><a href="#org9b7de39">5.5. JSP 动作</a></li>
+<li><a href="#org2c5651e">5.6. EL 表达式</a></li>
+<li><a href="#org2c7e878">5.7. JSTL 标签</a>
+<ul>
+<li><a href="#org3100f41">5.7.1. 条件判断 (c:if)</a></li>
+<li><a href="#org4a30a1d">5.7.2. 循环语句 (c:forEach)</a></li>
+<li><a href="#orgcf9c0b4">5.7.3. 其他的核心标签</a>
+<ul>
+<li><a href="#org77298a9">5.7.3.1. c:choose/when/otherwise</a></li>
+<li><a href="#org2869e75">5.7.3.2. c:forTokens</a></li>
+<li><a href="#orgbf3f6d6">5.7.3.3. c:url</a></li>
+<li><a href="#org9be0ecf">5.7.3.4. c:set/c:remove</a></li>
+<li><a href="#orge6575ba">5.7.3.5. c:import</a></li>
+</ul>
+</li>
+<li><a href="#orga31a6da">5.7.4. 格式化 (fmt)</a></li>
+<li><a href="#orgbfa8399">5.7.5. 函数标签 (fn)</a></li>
+<li><a href="#org681de12">5.7.6. [示例] jstlDemo.jsp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf86400d">6. 生命周期 (单例、按需加载)</a></li>
+<li><a href="#orgf286019">7. 配置小结</a>
+<ul>
+<li><a href="#org9fe5df1">7.1. web.xml</a></li>
+<li><a href="#orgf81a628">7.2. 注解 (Annotation)</a></li>
+</ul>
+</li>
+<li><a href="#org9d0f31d">8. 乱码问题</a>
+<ul>
+<li><a href="#org3d90476">8.1. 请求乱码</a></li>
+<li><a href="#orgbeadda8">8.2. 返回乱码</a></li>
+</ul>
+</li>
+<li><a href="#org6c71041">9. 文件夹结构</a></li>
+</ul>
+</div>
+</nav>
+
+
+<section id="outline-container-org8154ba6" class="outline-2">
+<h2 id="org8154ba6"><span class="section-number-2">1</span> JCP 以及规范</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+JCP (Java Community Process) 是 Java 技术的标准化组织。
+</p>
+
+<p>
+规范/标准:
+</p>
+<ul class="org-ul">
+<li>pdf 文件</li>
+<li>包含 interface 的 jar 包</li>
+</ul>
+
+<p>
+Servlet3.1 规范 <a href="https://github.com/waylau/servlet-3.1-specification">中文版</a> <a href="https://jcp.org/en/jsr/detail?id=340">英文版</a>。
+</p>
+
+<p>
+Servlet 规范是 JCP 组织推出的一套，如何使用 Java 进行 Web 编程的规范。
+它本身只包含一份概念的 pdf，还有一个包含着基本接口的 Jar 包。
+</p>
+<ul class="org-ul">
+<li><a href="asset/Servlet3.1-Specification.pdf">Servlet3.1-Specification.pdf</a></li>
+<li><a href="asset/servlet-api.jar">servlet-api.jar</a> [$TOMCAT/lib/servlet-api.jar]</li>
+<li><a href="asset/jsp-api.jar">jsp-api.jar</a>     [$TOMCAT/lib/jsp-api.jar]</li>
+</ul>
+
+<p>
+Servlet 规范是对所有人开放的，只要你愿意，你就可以按照规范上的规定，自行去设计相关的基于 Java 的 Web 服务器。
+</p>
+
+<p>
+其中，比较流行的是:
+</p>
+<ul class="org-ul">
+<li>Apache Tomcat</li>
+<li>Jetty</li>
+<li>Weblogic</li>
+<li>Websphere</li>
+<li>JBoss</li>
+</ul>
+
+<p>
+它们是基于 Java 进行 Web 编程的服务器，也被称作 <b>Servlet 容器</b>。
+</p>
+</div>
+</section>
+
+<section id="outline-container-org428da29" class="outline-2">
+<h2 id="org428da29"><span class="section-number-2">2</span> Servlet (核心)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org15b2fbf" class="outline-3">
+<h3 id="org15b2fbf"><span class="section-number-3">2.1</span> Servlet 接口 / HttpServlet 类</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+如果要使用 Java 提供一个 Web 服务，只需要:
+</p>
+<ul class="org-ul">
+<li>写一个类，这个类实现 <code>Servlet</code> 接口即可。在 Servlet 接口的 service 方法内，处理请求，并返回结果到客户端</li>
+<li>上述实现的类就是一个 Servlet，然后只需要将其编译并部署到 Servlet 容器里即可。
+部署的意思是放到 Servlet 容器的指定位置，并配置合适的访问的 url</li>
+<li>常见的 Servlet 容器是 Tomcat，它不仅具备解析 Servlet 类的功能，还能提供基本的 Web 服务器功能</li>
+</ul>
+
+<p>
+由上可见，如果提供服务，只需要实现接口:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #008b8b;">@WebServlet</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"/woshishui"</span><span style="color: #707183;">)</span>
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">WoshiYigeServlet</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">Servlet</span> <span style="color: #707183;">{</span>
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">init</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ServletConfig</span> <span style="color: #a0522d;">config</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">ServletException</span> <span style="color: #7388d6;">{</span>
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#27491;&#22312;&#34987;&#21021;&#22987;&#21270;&#65292;&#25105;&#26159; WoshiYigeServlet &#31867;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">destroy</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">ServletConfig</span> <span style="color: #0000ff;">getServletConfig</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">null</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">getServletInfo</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">null</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">service</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ServletRequest</span> <span style="color: #a0522d;">req</span>, <span style="color: #228b22;">ServletResponse</span> <span style="color: #a0522d;">res</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">ServletException</span>, <span style="color: #228b22;">IOException</span> <span style="color: #7388d6;">{</span>
+        res.getWriter<span style="color: #909183;">()</span>.write<span style="color: #909183;">(</span><span style="color: #8b2252;">"hello, world"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+可实际上，我们大多数 Web 服务都是基于 Http 请求的。
+HTTP 协议有自己的一些独特规则，比如 http method 等，所以为了能更方便处理基于 HTTP 协议的服务，
+标准中又提供了一个针对性的 HttpServlet 类。
+</p>
+
+<p>
+一般来说，我们创建 Servlet，只需要继承这个类即可。
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #008b8b;">@WebServlet</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"/nishishui"</span><span style="color: #707183;">)</span>
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">NishiYigeServlet</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">HttpServlet</span> <span style="color: #707183;">{</span>
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">init</span><span style="color: #7388d6;">()</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">ServletException</span> <span style="color: #7388d6;">{</span>
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#27491;&#22312;&#34987;&#21021;&#22987;&#21270;&#65292;&#25105;&#26159; WoshiYigeServlet &#31867;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">protected</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">doGet</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">HttpServletRequest</span> <span style="color: #a0522d;">req</span>, <span style="color: #228b22;">HttpServletResponse</span> <span style="color: #a0522d;">resp</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">ServletException</span>, <span style="color: #228b22;">IOException</span> <span style="color: #7388d6;">{</span>
+        resp.getWriter<span style="color: #909183;">()</span>.write<span style="color: #909183;">(</span><span style="color: #8b2252;">"hello, world"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+之后，就不需要理会 service 方法了，而是将相应的逻辑写到对应 http method 的 doGet/doPost/doDelete 等方法中即可。
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">MyServlet</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">HttpServlet</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">@Override</span>
+    doGet<span style="color: #7388d6;">(</span><span style="color: #228b22;">req</span>, <span style="color: #228b22;">resp</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #0000ff;">@Override</span>
+    doPost<span style="color: #7388d6;">(</span><span style="color: #228b22;">req</span>, <span style="color: #228b22;">resp</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+即:
+</p>
+<pre class="example">
+请求 -&gt; 根据 /url 得到对应 Servlet -&gt; 调用对应 doGet/doPost 方法 -&gt; 响应给用户
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgdbe4e5e" class="outline-3">
+<h3 id="orgdbe4e5e"><span class="section-number-3">2.2</span> Request/Response</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+HttpServletRequest/HttpServletResponse:
+</p>
+<ul class="org-ul">
+<li>request/response，是在请求到达服务器的时候，服务器自动创建的两个对象</li>
+<li>request 包含的是一些跟请求相关的数据和操作</li>
+<li>response 包含的是一些跟响应相关的数据和操作</li>
+<li>每次请求响应结束之后，服务器就会将这个 request/response 同时销毁</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga24d999" class="outline-3">
+<h3 id="orga24d999"><span class="section-number-3">2.3</span> HttpSession</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Web 请求都是基于 HTTP 协议的。
+</p>
+
+<p>
+HTTP 协议最大的一个特点，就是无状态的:
+</p>
+<ul class="org-ul">
+<li>一个请求到底是谁发送的，服务器不 care</li>
+<li>如果一个人多次向服务器发送请求，服务器也压根分辨不出来</li>
+</ul>
+
+<p>
+但是，在实际的业务中，我们却需要让服务器能够识别来自不同人的请求。
+</p>
+
+<p>
+比如说，购物，如果一个人登录、浏览商品，所有的操作都应该聚合起来，
+多次请求加入购物车，后面买单。
+</p>
+
+<p>
+我们就需要有一定的手段，能够让服务器跟踪一个人的所有操作，这就是所谓的 <b>会话</b>。
+而跟踪一个人所有的请求操作的行为，就是 <b>会话跟踪</b>。
+</p>
+
+<p>
+实现会话跟踪的方式有若干，最常用的是:
+</p>
+<ol class="org-ol">
+<li>URL 重写</li>
+<li>浏览器的 Cookie 功能</li>
+</ol>
+</div>
+
+<div id="outline-container-org5f0b2ac" class="outline-4">
+<h4 id="org5f0b2ac"><span class="section-number-4">2.3.1</span> Cookie</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+表面是小饼干的意思。
+</p>
+
+<p>
+Cookie 是浏览器具备的一种功能，它能够为特定的 host 在本地保存一段小的数据。
+</p>
+
+<p>
+而每次有到这个 host 的请求的时候，浏览器会 <b>自动</b> 将匹配 host 的所有的保存的数据，一起发送到服务器。
+</p>
+
+<p>
+关键词:
+</p>
+<ul class="org-ul">
+<li>浏览器端</li>
+<li>自动发送</li>
+<li>凭证</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8a8a707" class="outline-4">
+<h4 id="org8a8a707"><span class="section-number-4">2.3.2</span> Session 的基本使用</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+Java Web 就可以利用 URL Rewrite 的机制，或者 Cookie 的机制，实现所谓的 Session。
+</p>
+
+<p>
+基本使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#33719;&#21462; Session &#23545;&#35937;</span>
+<span style="color: #b22222;">//</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#26029;&#19978;&#20256;&#30340; Cookie &#37324;&#65292;&#26377;&#27809;&#26377;&#19968;&#27573; JSESSIONID &#30340;&#25968;&#25454;&#12290;</span>
+<span style="color: #b22222;">//</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#27809;&#26377;:</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1. TOMCAT &#20250;&#29983;&#25104;&#19968;&#27573;&#38543;&#26426;&#30340;&#23383;&#31526;&#20018;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#36890;&#36807; resp.setHeader('set-cookie') &#26041;&#24335;&#36827;&#34892;&#21709;&#24212;&#12290;&#27983;&#35272;&#22120;&#23558;&#20250;&#23558;&#36820;&#22238;&#30340; JSESSIONID &#20445;&#23384;&#21040; Cookie &#20013;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">3. TOMCAT &#38543;&#21518;&#65292;&#20026;&#36825;&#20010; JSESSIONID &#21019;&#24314;&#19968;&#20010;&#23545;&#35937;&#65292;Session &#23545;&#35937;&#65292;&#20445;&#23384;&#22312;&#20869;&#23384;&#20013;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">4. &#36820;&#22238;&#36825;&#20010;&#26032;&#21019;&#24314;&#30340;&#23545;&#35937;&#12290;&#20043;&#21518;&#23601;&#21487;&#20197;&#22312;&#37324;&#38754;&#20445;&#23384;&#19968;&#20123;&#25968;&#25454;&#20102;</span>
+<span style="color: #b22222;">//</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26377;&#30340;&#35805;:</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#30452;&#25509;&#36820;&#22238;&#36825;&#20010; session &#23545;&#35937;</span>
+<span style="color: #228b22;">HttpSession</span> <span style="color: #a0522d;">session</span> = request.getSession<span style="color: #707183;">()</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
+session.setAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">User</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#33719;&#21462;</span>
+<span style="color: #228b22;">User</span> <span style="color: #a0522d;">user</span> = <span style="color: #707183;">(</span><span style="color: #228b22;">User</span><span style="color: #707183;">)</span> session.getAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#31227;&#38500;</span>
+session.setAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx"</span>, <span style="color: #008b8b;">null</span><span style="color: #707183;">)</span>;
+session.removeAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22833;&#25928;</span>
+session.invalidate<span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+session 具备有效期:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#22312; 30000 &#31186;&#20043;&#21518;&#65292;&#22914;&#26524;&#19968;&#30452;&#27809;&#25805;&#20316;&#65292;TOMCAT &#23601;&#20250;&#23558;&#36825;&#20010; SESSIOn &#32473;&#27585;&#25481;</span>
+session.setMaxInactiveInterval<span style="color: #707183;">(</span>30000<span style="color: #707183;">)</span>;
+session.getMaxInactiveInterval<span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+当然，也可以使用 Web.xml 的方式进行全局设置:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#21333;&#20301;&#26159;&#20998;&#38047;&#65292;&#35201;&#26681;&#25454;&#33258;&#24049;&#30340;&#19994;&#21153;&#38656;&#27714;&#25913;&#25104;&#21512;&#36866;&#30340;&#20540; </span><span style="color: #b22222;">--&gt;</span>
+&lt;<span style="color: #0000ff;">session-config</span>&gt;
+  &lt;<span style="color: #0000ff;">session-timeout</span>&gt;30&lt;/<span style="color: #0000ff;">session-timeout</span>&gt;
+&lt;/<span style="color: #0000ff;">session-config</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org712b880" class="outline-4">
+<h4 id="org712b880"><span class="section-number-4">2.3.3</span> Session 的基本原理</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Session 是 Tomcat 服务器，根据 JSESSIONID，为每个会话，在内存中创建的一个数据对象。
+它是一个 Java 对象，最主要的方法是 setAttribute/getAttribute。
+</p>
+
+<p>
+第一次请求的时候，响应:
+</p>
+
+
+<figure id="org0d09448">
+<img src="img/oimg_20200725_081639.png" alt="oimg_20200725_081639.png">
+
+</figure>
+
+
+<p>
+后面的每次请求，JSESSIONID 会随着请求一起被发送:
+</p>
+
+
+<figure id="org0f786c8">
+<img src="img/oimg_20200725_082112.png" alt="oimg_20200725_082112.png">
+
+</figure>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org5b162cf" class="outline-3">
+<h3 id="org5b162cf"><span class="section-number-3">2.4</span> ServletContext</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+在整个 Tomcat 运行的过程中，只会创建唯一的一个 ServletContext 对象。
+</p>
+
+<p>
+它主要用来表示 Tomcat 在运行的时候的一些基本信息（配置信息、临时数据）。
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #228b22;">ServletContext</span> <span style="color: #a0522d;">context</span> = req.getServletContext<span style="color: #707183;">()</span>;
+context.getRealPath<span style="color: #707183;">(</span><span style="color: #8b2252;">"/"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+它也具备下面的相关方法:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">context.getAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx"</span><span style="color: #707183;">)</span>;
+context.setAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx"</span>, yyy<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+通过上述方法保存的数据:
+</p>
+<ul class="org-ul">
+<li>存在时间，就是 Tomcat 运行的整个期间</li>
+<li>可以被所有访问者进行获取或设置。所以叫共享数据、全局数据</li>
+<li>除非特殊情况，不要将数据放到 ServletContext 里面</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1405c8d" class="outline-3">
+<h3 id="org1405c8d"><span class="section-number-3">2.5</span> ContextPath 项目上下文路径</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+/book/add 中的 /book，是因为我们部署到 tomcat 上面使用的是 /book 作为前缀。
+</p>
+
+<p>
+但是如果在 tomcat 上部署发生变化的时候，这个可能会变的。
+</p>
+
+<p>
+因此，不建议写死，而是，在任何使用 /book 的地方，利用:
+</p>
+<pre class="example">
+request.getContextPath()
+</pre>
+
+
+<p>
+来获取、拼接、使用这个路径。
+</p>
+
+<p>
+在 JSP 中的话:
+</p>
+<pre class="example">
+&lt;%= request.getContextPath() %&gt;
+${pageContext.request.contextPath}
+${pageContext.request.getContextPath()}
+</pre>
+
+
+<p>
+<del>${request.contextPath}</del> 因为 request 不能作为隐式对象。
+</p>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgbfe18a3" class="outline-2">
+<h2 id="orgbfe18a3"><span class="section-number-2">3</span> Filter (过滤器)</h2>
+<div class="outline-text-2" id="text-3">
+<pre class="example">
+它只是一种将 Servlet 中一些重复的逻辑提取出来，进行简化的方法。
+</pre>
+</div>
+
+<div id="outline-container-orgb0ed50f" class="outline-3">
+<h3 id="orgb0ed50f"><span class="section-number-3">3.1</span> 什么是过滤器</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+过滤器:
+</p>
+<ul class="org-ul">
+<li>是一个类，需要实现 <code>javax.servlet.Filter</code> 接口</li>
+<li>需要通过 <code>@WebFilter</code> 或 web.xml 进行配置，从而委托给 tomcat</li>
+</ul>
+
+<p>
+场景:
+</p>
+<ul class="org-ul">
+<li>编码的设置</li>
+<li>访问日志</li>
+<li>登录检测</li>
+<li>权限检查</li>
+</ul>
+
+<p>
+另外:
+</p>
+<ul class="org-ul">
+<li>定义的 Filter 将会在对应的 Servlet#service 方法之前、之后被调用</li>
+<li>过滤器可以配置多个 (无限个)，多个将逐次执行（链式）</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org56fb3cc" class="outline-3">
+<h3 id="org56fb3cc"><span class="section-number-3">3.2</span> 基本示例</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #008b8b;">@WebFilter</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"/*"</span><span style="color: #707183;">)</span>
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">EncodingFilter</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">Filter</span> <span style="color: #707183;">{</span>
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">doFilter</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ServletRequest</span> <span style="color: #a0522d;">request</span>, <span style="color: #228b22;">ServletResponse</span> <span style="color: #a0522d;">response</span>, <span style="color: #228b22;">FilterChain</span> <span style="color: #a0522d;">chain</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">IOException</span>, <span style="color: #228b22;">ServletException</span> <span style="color: #7388d6;">{</span>
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#36827;&#20837;&#22823;&#38376;&#21475;&#65292;&#25509;&#21463;&#26816;&#26597;"</span><span style="color: #909183;">)</span>;
+        request.setCharacterEncoding<span style="color: #909183;">(</span><span style="color: #8b2252;">"utf-8"</span><span style="color: #909183;">)</span>;
+        response.setCharacterEncoding<span style="color: #909183;">(</span><span style="color: #8b2252;">"utf-8"</span><span style="color: #909183;">)</span>;
+        response.setContentType<span style="color: #909183;">(</span><span style="color: #8b2252;">"text/html;charset=utf8"</span><span style="color: #909183;">)</span>;
+
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#26816;&#26597;&#23436;&#27605;&#65292;&#25918;&#34892;"</span><span style="color: #909183;">)</span>;
+        chain.doFilter<span style="color: #909183;">(</span>request, response<span style="color: #909183;">)</span>;
+
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20320;&#35201;&#31163;&#24320;&#65292;&#25343;&#22909;&#38450;&#30123;&#25163;&#20876;&#65292;&#19979;&#27425;&#20877;&#26469;&#65292;&#25308;&#25308;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">init</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">FilterConfig</span> <span style="color: #a0522d;">filterConfig</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">ServletException</span> <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">destroy</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org67725c3" class="outline-3">
+<h3 id="org67725c3"><span class="section-number-3">3.3</span> 配置方式</h3>
+<div class="outline-text-3" id="text-3-3">
+<ol class="org-ol">
+<li>注解 (Annotation)</li>
+<li>传统的 web.xml 方式</li>
+<li>混合使用</li>
+</ol>
+
+<p>
+注解的方式:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #008b8b;">@WebFilter</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"/&#35201;&#21305;&#37197;&#30340;&#36335;&#24452;"</span><span style="color: #707183;">)</span>
+<span style="color: #008b8b;">@WebFilter</span><span style="color: #707183;">(</span>urlPatterns = <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"/edit"</span>, <span style="color: #8b2252;">"/list"</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<p>
+传统的 XML 方式:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">filter</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-name</span>&gt;fangf&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-class</span>&gt;book.filter.FangwenRizhiFilter&lt;/<span style="color: #0000ff;">filter-class</span>&gt;
+&lt;/<span style="color: #0000ff;">filter</span>&gt;
+&lt;<span style="color: #0000ff;">filter-mapping</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-name</span>&gt;fangf&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+  &lt;<span style="color: #0000ff;">url-pattern</span>&gt;/*&lt;/<span style="color: #0000ff;">url-pattern</span>&gt;
+&lt;/<span style="color: #0000ff;">filter-mapping</span>&gt;
+</pre>
+</div>
+
+<p>
+在 xml 中，是按照定义的顺序，来决定多个过滤器的执行次序:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#20808;&#25191;&#34892;&#32534;&#30721;&#30340;&#35774;&#32622; </span><span style="color: #b22222;">--&gt;</span>
+&lt;<span style="color: #0000ff;">filter</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-name</span>&gt;encodef&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-class</span>&gt;book.filter.EncodingFilter&lt;/<span style="color: #0000ff;">filter-class</span>&gt;
+&lt;/<span style="color: #0000ff;">filter</span>&gt;
+&lt;<span style="color: #0000ff;">filter-mapping</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-name</span>&gt;encodef&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+  &lt;<span style="color: #0000ff;">url-pattern</span>&gt;/*&lt;/<span style="color: #0000ff;">url-pattern</span>&gt;
+&lt;/<span style="color: #0000ff;">filter-mapping</span>&gt;
+
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#20877;&#21435;&#20445;&#23384;&#35775;&#38382;&#20449;&#24687; </span><span style="color: #b22222;">--&gt;</span>
+&lt;<span style="color: #0000ff;">filter</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-name</span>&gt;fangf&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-class</span>&gt;book.filter.FangwenRizhiFilter&lt;/<span style="color: #0000ff;">filter-class</span>&gt;
+&lt;/<span style="color: #0000ff;">filter</span>&gt;
+&lt;<span style="color: #0000ff;">filter-mapping</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-name</span>&gt;fangf&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+  &lt;<span style="color: #0000ff;">url-pattern</span>&gt;/*&lt;/<span style="color: #0000ff;">url-pattern</span>&gt;
+&lt;/<span style="color: #0000ff;">filter-mapping</span>&gt;
+</pre>
+</div>
+
+<p>
+使用注解的方式，目前是不能确保多个过滤器的执行顺序的。
+可以混合使用注解或 xml 方式:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">@WebFilter("/*") </span><span style="color: #b22222;">--&gt;</span>
+&lt;<span style="color: #0000ff;">filter</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-name</span>&gt;EncodingFilter&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-class</span>&gt;book.filter.EncodingFilter&lt;/<span style="color: #0000ff;">filter-class</span>&gt;
+&lt;/<span style="color: #0000ff;">filter</span>&gt;
+&lt;<span style="color: #0000ff;">filter</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-name</span>&gt;FangwenRizhiFilter&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-class</span>&gt;book.filter.FangwenRizhiFilter&lt;/<span style="color: #0000ff;">filter-class</span>&gt;
+&lt;/<span style="color: #0000ff;">filter</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgb33a14c" class="outline-2">
+<h2 id="orgb33a14c"><span class="section-number-2">4</span> EventListener (监听器)</h2>
+<div class="outline-text-2" id="text-4">
+<pre class="example">
+Servlet 是用来监听回应外部的用户请求。
+EventListener 是用来监听应对服务器内部的一些变化。
+</pre>
+
+
+<p>
+内部的事件:
+</p>
+<ul class="org-ul">
+<li><p>
+容器启动、关闭的时候
+</p>
+<pre class="example">
+ServletContextListener
+</pre></li>
+<li><p>
+request 对象创建、销毁的时候
+</p>
+<pre class="example">
+ServletRequestListener
+</pre></li>
+<li><p>
+response 对象创建、销毁的时候
+</p>
+<pre class="example">
+ServletResponseListener
+</pre></li>
+<li><p>
+session 对象创建、销毁、激活、失效的时候
+</p>
+<pre class="example">
+HttpSessionListener/HttpSessionActivationListener/...
+</pre></li>
+<li><p>
+request/session/application 设置、删除、更新值的时候
+</p>
+<pre class="example">
+ServletRequestAttributeListener
+HttpSessionAttributeListener
+ServletContextAttributeListener
+</pre></li>
+</ul>
+
+<p>
+使用步骤:
+</p>
+<ol class="org-ol">
+<li>创建一个类，实现上面相应的功能 <b>接口</b></li>
+<li>跟 Tomcat 注册激活上述的类:
+<ul class="org-ul">
+<li><p>
+注解:
+</p>
+<pre class="example">
+@WebListener
+</pre></li>
+<li><p>
+web.xml:
+</p>
+<pre class="example">
+&lt;listener&gt;ccc.YourListener&lt;/listener&gt;
+</pre></li>
+</ul></li>
+</ol>
+
+<p>
+示例，在容器启动的时候，将 <b>上下文路径</b> 保存到 ServletContext 中方便后续在 JSP 中使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #008b8b;">@WebListener</span>
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">StartupListener</span> <span style="color: #a020f0;">implements</span> <span style="color: #228b22;">ServletContextListener</span> <span style="color: #707183;">{</span>
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">contextInitialized</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ServletContextEvent</span> <span style="color: #a0522d;">sce</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">ServletContext</span> <span style="color: #a0522d;">context</span> = sce.getServletContext<span style="color: #909183;">()</span>;
+        context.setAttribute<span style="color: #909183;">(</span><span style="color: #8b2252;">"r"</span>, context.getContextPath<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #008b8b;">@Override</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">contextDestroyed</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ServletContextEvent</span> <span style="color: #a0522d;">sce</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org00cf366" class="outline-2">
+<h2 id="org00cf366"><span class="section-number-2">5</span> JSP (Java Server Page)</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+为什么要有 JSP:
+</p>
+<ol class="org-ol">
+<li>如果使用 HTTP 进行通信，我们要响应给客户端的，一般就是符合 html 格式的文本字符串</li>
+<li>如果只使用 Servlet，也可以通过拼接的方式得到这个 html 字符串，但字符串拼接的方式是在让人不愉快</li>
+<li>我们需要一种类似 <b>模板</b> 的技术，能更好、更容易将服务器产生的数据渲染成一个合适的 html</li>
+</ol>
+</div>
+
+<div id="outline-container-org96976d3" class="outline-3">
+<h3 id="org96976d3"><span class="section-number-3">5.1</span> JSP 本质就是一个 Servlet</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+如果用户访问某个 JSP 文件，TOMCAT 会自动将其 <b>翻译</b> 成一个标准的 Servlet，然后使用它响应用户。
+</p>
+
+<pre class="example">
+E:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\work\Catalina\localhost\book\org\apache\jsp
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"java.sql.ResultSet"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"java.sql.PreparedStatement"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"utils.DBHelper"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"java.sql.Connection"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"java.util.Date"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">language</span>=<span style="color: #8b2252;">"java"</span>
+        <span style="color: #a0522d;">contentType</span>=<span style="color: #8b2252;">"text/html; charset=utf-8"</span>
+        <span style="color: #a0522d;">pageEncoding</span>=<span style="color: #8b2252;">"utf-8"</span>%<span style="color: #707183;">&gt;</span>
+&lt;<span style="color: #a020f0;">!DOCTYPE</span> html&gt;
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">meta</span> <span style="color: #a0522d;">charset</span>=<span style="color: #8b2252;">"utf-8"</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">Insert title here</span><span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #0000ff;">li </span><span style="color: #707183;">{</span>
+        <span style="color: #a020f0;">color</span>: <span style="color: #ffffff; background-color: #ff0000;">red</span>;
+    <span style="color: #707183;">}</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    window.onload = <span style="color: #a020f0;">function</span> <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+        <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">ul</span> = document.querySelector<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'ul'</span><span style="color: #7388d6;">)</span>;
+        document.querySelector<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'ul'</span><span style="color: #7388d6;">)</span>.onclick = <span style="color: #7388d6;">(</span>e<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+            alert<span style="color: #909183;">(</span><span style="color: #8b2252;">"ul &#19968;&#20849;&#26377;&#22810;&#23569;&#20010;&#23376;&#20803;&#32032;: "</span> + ul.children.length<span style="color: #909183;">)</span>;
+        <span style="color: #7388d6;">}</span>;
+    <span style="color: #707183;">}</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>%
+    int age = 19;
+%<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">h3</span><span style="color: #707183;">&gt;</span><span style="font-style: italic; text-decoration: underline;">hello world</span><span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">h3</span><span style="color: #707183;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>welcome come here.<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>% if <span style="color: #7388d6;">(</span>age <span style="color: #88090B;">&gt;</span> 18<span style="color: #88090B;">)</span> <span style="color: #707183;">{</span> %&gt;
+    <span style="color: #7388d6;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #7388d6;">&gt;</span>nian ling tai da,bushei guankan<span style="color: #7388d6;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #7388d6;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span>% <span style="color: #88090B;">}</span> else <span style="color: #7388d6;">{</span> %<span style="color: #88090B;">&gt;</span>
+    <span style="color: #7388d6;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #7388d6;">&gt;</span>this a very good video<span style="color: #7388d6;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #7388d6;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span>% <span style="color: #88090B;">}</span> %<span style="color: #88090B;">&gt;</span>
+
+    <span style="color: #707183;">&lt;</span>%
+    // woshi yige zhushi.
+        System.out.println<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"helloo world"</span><span style="color: #7388d6;">)</span>;
+        out.print<span style="color: #7388d6;">(</span>new Date<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
+out.write<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"kkkkk"</span><span style="color: #7388d6;">)</span>;
+    %<span style="color: #707183;">&gt;</span>
+
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>%
+    String sql = <span style="color: #8b2252;">"select bookName from book"</span>;
+    try <span style="color: #7388d6;">(</span>Connection conn = DBHelper.getConnection<span style="color: #909183;">()</span>;
+            PreparedStatement ps = conn.prepareStatement<span style="color: #909183;">(</span>sql<span style="color: #909183;">)</span>;
+            ResultSet rs = ps.executeQuery<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        while <span style="color: #909183;">(</span>rs.next<span style="color: #709870;">()</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+    %<span style="color: #88090B;">&gt;</span>
+        <span style="color: #909183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #909183;">&gt;</span>
+        <span style="color: #909183;">&lt;</span>% out.write<span style="color: #709870;">(</span>rs.getString<span style="color: #907373;">(</span>1<span style="color: #907373;">)</span><span style="color: #709870;">)</span>; %<span style="color: #909183;">&gt;</span>
+        <span style="color: #909183;">&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #909183;">&gt;</span>
+    <span style="color: #909183;">&lt;</span>%
+        <span style="color: #88090B;">}</span>
+    <span style="color: #7388d6;">}</span>
+    %<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+
+<p>
+将会被翻译成:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">  <span style="color: #b22222;">/*</span>
+<span style="color: #b22222;">   * Generated by the Jasper component of Apache Tomcat</span>
+<span style="color: #b22222;">   * Version: Apache Tomcat/8.5.57</span>
+<span style="color: #b22222;">   * Generated at: 2020-07-18 01:14:59 UTC</span>
+<span style="color: #b22222;">   * Note: The last modified time of this file was set to</span>
+<span style="color: #b22222;">   *       the last modified time of the source file after</span>
+<span style="color: #b22222;">   *       generation to assist with modification tracking.</span>
+<span style="color: #b22222;">   */</span>
+  <span style="color: #a020f0;">package</span> org.apache.<span style="color: #008b8b;">jsp</span>;
+
+  <span style="color: #a020f0;">import</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.*;
+  <span style="color: #a020f0;">import</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">http</span>.*;
+  <span style="color: #a020f0;">import</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">jsp</span>.*;
+  <span style="color: #a020f0;">import</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">sql</span>.<span style="color: #228b22;">ResultSet</span>;
+  <span style="color: #a020f0;">import</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">sql</span>.<span style="color: #228b22;">PreparedStatement</span>;
+  <span style="color: #a020f0;">import</span> <span style="color: #008b8b;">utils</span>.<span style="color: #228b22;">DBHelper</span>;
+  <span style="color: #a020f0;">import</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">sql</span>.<span style="color: #228b22;">Connection</span>;
+  <span style="color: #a020f0;">import</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Date</span>;
+
+  <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">final</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">xxx_jsp</span> <span style="color: #a020f0;">extends</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">jasper</span>.<span style="color: #008b8b;">runtime</span>.<span style="color: #228b22;">HttpJspBase</span> <span style="color: #a020f0;">implements</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">jasper</span>.<span style="color: #008b8b;">runtime</span>.<span style="color: #228b22;">JspSourceDependent</span>, <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">jasper</span>.<span style="color: #008b8b;">runtime</span>.<span style="color: #228b22;">JspSourceImports</span> <span style="color: #707183;">{</span>
+
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">jsp</span>.<span style="color: #228b22;">JspFactory</span> <span style="color: #a0522d;">_jspxFactory</span> = <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">jsp</span>.JspFactory.getDefaultFactory<span style="color: #7388d6;">()</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">static</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Map</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">String</span>,<span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">Long</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">_jspx_dependants</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Set</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">String</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">_jspx_imports_packages</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Set</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">String</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">_jspx_imports_classes</span>;
+
+    <span style="color: #a020f0;">static</span> <span style="color: #7388d6;">{</span>
+      _jspx_imports_packages = <span style="color: #a020f0;">new</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">HashSet</span><span style="color: #909183;">&lt;&gt;()</span>;
+      _jspx_imports_packages.add<span style="color: #909183;">(</span><span style="color: #8b2252;">"javax.servlet"</span><span style="color: #909183;">)</span>;
+      _jspx_imports_packages.add<span style="color: #909183;">(</span><span style="color: #8b2252;">"javax.servlet.http"</span><span style="color: #909183;">)</span>;
+      _jspx_imports_packages.add<span style="color: #909183;">(</span><span style="color: #8b2252;">"javax.servlet.jsp"</span><span style="color: #909183;">)</span>;
+      _jspx_imports_classes = <span style="color: #a020f0;">new</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">HashSet</span><span style="color: #909183;">&lt;&gt;()</span>;
+      _jspx_imports_classes.add<span style="color: #909183;">(</span><span style="color: #8b2252;">"utils.DBHelper"</span><span style="color: #909183;">)</span>;
+      _jspx_imports_classes.add<span style="color: #909183;">(</span><span style="color: #8b2252;">"java.sql.Connection"</span><span style="color: #909183;">)</span>;
+      _jspx_imports_classes.add<span style="color: #909183;">(</span><span style="color: #8b2252;">"java.sql.ResultSet"</span><span style="color: #909183;">)</span>;
+      _jspx_imports_classes.add<span style="color: #909183;">(</span><span style="color: #8b2252;">"java.util.Date"</span><span style="color: #909183;">)</span>;
+      _jspx_imports_classes.add<span style="color: #909183;">(</span><span style="color: #8b2252;">"java.sql.PreparedStatement"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">volatile</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">el</span>.<span style="color: #228b22;">ExpressionFactory</span> <span style="color: #a0522d;">_el_expressionfactory</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">volatile</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">tomcat</span>.<span style="color: #228b22;">InstanceManager</span> <span style="color: #a0522d;">_jsp_instancemanager</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Map</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">String</span>,<span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">Long</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">getDependants</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> _jspx_dependants; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Set</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">String</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">getPackageImports</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> _jspx_imports_packages; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">Set</span><span style="color: #7388d6;">&lt;</span><span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">String</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">getClassImports</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> _jspx_imports_classes; <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">el</span>.<span style="color: #228b22;">ExpressionFactory</span> <span style="color: #0000ff;">_jsp_getExpressionFactory</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+      <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_el_expressionfactory == <span style="color: #008b8b;">null</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">synchronized</span> <span style="color: #709870;">(</span><span style="color: #a020f0;">this</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+          <span style="color: #a020f0;">if</span> <span style="color: #907373;">(</span>_el_expressionfactory == <span style="color: #008b8b;">null</span><span style="color: #907373;">)</span> <span style="color: #907373;">{</span>
+            _el_expressionfactory = _jspxFactory.getJspApplicationContext<span style="color: #6276ba;">(</span>getServletConfig<span style="color: #858580;">()</span>.getServletContext<span style="color: #858580;">()</span><span style="color: #6276ba;">)</span>.getExpressionFactory<span style="color: #6276ba;">()</span>;
+          <span style="color: #907373;">}</span>
+        <span style="color: #709870;">}</span>
+      <span style="color: #909183;">}</span>
+      <span style="color: #a020f0;">return</span> _el_expressionfactory;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">tomcat</span>.<span style="color: #228b22;">InstanceManager</span> <span style="color: #0000ff;">_jsp_getInstanceManager</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+      <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_jsp_instancemanager == <span style="color: #008b8b;">null</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">synchronized</span> <span style="color: #709870;">(</span><span style="color: #a020f0;">this</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+          <span style="color: #a020f0;">if</span> <span style="color: #907373;">(</span>_jsp_instancemanager == <span style="color: #008b8b;">null</span><span style="color: #907373;">)</span> <span style="color: #907373;">{</span>
+            _jsp_instancemanager = <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">jasper</span>.<span style="color: #008b8b;">runtime</span>.InstanceManagerFactory.getInstanceManager<span style="color: #6276ba;">(</span>getServletConfig<span style="color: #858580;">()</span><span style="color: #6276ba;">)</span>;
+          <span style="color: #907373;">}</span>
+        <span style="color: #709870;">}</span>
+      <span style="color: #909183;">}</span>
+      <span style="color: #a020f0;">return</span> _jsp_instancemanager;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">_jspInit</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">_jspDestroy</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Service &#26041;&#27861;!</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">_jspService</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">final</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">http</span>.<span style="color: #228b22;">HttpServletRequest</span> <span style="color: #a0522d;">request</span>, <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">http</span>.<span style="color: #228b22;">HttpServletResponse</span> <span style="color: #a0522d;">response</span><span style="color: #7388d6;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">io</span>.<span style="color: #228b22;">IOException</span>, <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #228b22;">ServletException</span> <span style="color: #7388d6;">{</span>
+
+      <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">String</span> <span style="color: #a0522d;">_jspx_method</span> = request.getMethod<span style="color: #909183;">()</span>;
+      <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>!<span style="color: #8b2252;">"GET"</span>.equals<span style="color: #709870;">(</span>_jspx_method<span style="color: #709870;">)</span> &amp;&amp; !<span style="color: #8b2252;">"POST"</span>.equals<span style="color: #709870;">(</span>_jspx_method<span style="color: #709870;">)</span> &amp;&amp; !<span style="color: #8b2252;">"HEAD"</span>.equals<span style="color: #709870;">(</span>_jspx_method<span style="color: #709870;">)</span> &amp;&amp; !<span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">DispatcherType</span>.ERROR.equals<span style="color: #709870;">(</span>request.getDispatcherType<span style="color: #907373;">()</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        response.sendError<span style="color: #709870;">(</span><span style="color: #008b8b;">HttpServletResponse</span>.SC_METHOD_NOT_ALLOWED, <span style="color: #8b2252;">"JSP &#21482;&#20801;&#35768; GET&#12289;POST &#25110; HEAD&#12290;Jasper &#36824;&#20801;&#35768; OPTIONS"</span><span style="color: #709870;">)</span>;
+        <span style="color: #a020f0;">return</span>;
+      <span style="color: #909183;">}</span>
+
+      <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">jsp</span>.<span style="color: #228b22;">PageContext</span> <span style="color: #a0522d;">pageContext</span>;
+      <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">http</span>.<span style="color: #228b22;">HttpSession</span> <span style="color: #a0522d;">session</span> = <span style="color: #008b8b;">null</span>;
+      <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #228b22;">ServletContext</span> <span style="color: #a0522d;">application</span>;
+      <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #228b22;">ServletConfig</span> <span style="color: #a0522d;">config</span>;
+      <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">jsp</span>.<span style="color: #228b22;">JspWriter</span> <span style="color: #a0522d;">out</span> = <span style="color: #008b8b;">null</span>;
+      <span style="color: #a020f0;">final</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">Object</span> <span style="color: #a0522d;">page</span> = <span style="color: #a020f0;">this</span>;
+      <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">jsp</span>.<span style="color: #228b22;">JspWriter</span> <span style="color: #a0522d;">_jspx_out</span> = <span style="color: #008b8b;">null</span>;
+      <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">jsp</span>.<span style="color: #228b22;">PageContext</span> <span style="color: #a0522d;">_jspx_page_context</span> = <span style="color: #008b8b;">null</span>;
+
+      <span style="color: #a020f0;">try</span> <span style="color: #909183;">{</span>
+        response.setContentType<span style="color: #709870;">(</span><span style="color: #8b2252;">"text/html; charset=utf-8"</span><span style="color: #709870;">)</span>;
+        pageContext = _jspxFactory.getPageContext<span style="color: #709870;">(</span><span style="color: #a020f0;">this</span>, request, response, <span style="color: #008b8b;">null</span>, <span style="color: #008b8b;">true</span>, 8192, <span style="color: #008b8b;">true</span><span style="color: #709870;">)</span>;
+        _jspx_page_context = pageContext;
+        application = pageContext.getServletContext<span style="color: #709870;">()</span>;
+        config = pageContext.getServletConfig<span style="color: #709870;">()</span>;
+        session = pageContext.getSession<span style="color: #709870;">()</span>;
+        out = pageContext.getOut<span style="color: #709870;">()</span>;
+        _jspx_out = out;
+
+
+<span style="color: #b22222;">///// </span><span style="color: #b22222;">&#20174;&#36825;&#37324;&#24320;&#22987;&#65292;&#23601;&#26159; jsp &#20013;&#25105;&#20204;&#30340;&#20869;&#23481; /////</span>
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;!DOCTYPE html&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;html&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;head&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;meta charset=\"utf-8\"&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;title&gt;Insert title here&lt;/title&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;style&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\tli {\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t\tcolor: red;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t}\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;/style&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;script&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\twindow.onload = function () {\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t\tvar ul = document.querySelector('ul');\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t\tdocument.querySelector('ul').onclick= (e) =&gt; {\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t\t\talert(\"ul &#19968;&#20849;&#26377;&#22810;&#23569;&#20010;&#23376;&#20803;&#32032;: \" + ul.children.length);\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t\t};\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t}\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;/script&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;/head&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+
+      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span> = 19;
+
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;body&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t&lt;h3&gt;hello world&lt;/h3&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t&lt;p&gt;welcome come here.&lt;/p&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t\r\n"</span><span style="color: #709870;">)</span>;
+   <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>age &gt; 18<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+        out.write<span style="color: #907373;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #907373;">)</span>;
+        out.write<span style="color: #907373;">(</span><span style="color: #8b2252;">"\t&lt;p&gt;nian ling tai da,bushei guankan&lt;/p&gt;\r\n"</span><span style="color: #907373;">)</span>;
+   <span style="color: #709870;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #709870;">{</span>
+        out.write<span style="color: #907373;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #907373;">)</span>;
+        out.write<span style="color: #907373;">(</span><span style="color: #8b2252;">"\t&lt;p&gt;this a very good video&lt;/p&gt;\r\n"</span><span style="color: #907373;">)</span>;
+   <span style="color: #709870;">}</span>
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t"</span><span style="color: #709870;">)</span>;
+
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">woshi yige zhushi.</span>
+          System.out.println<span style="color: #709870;">(</span><span style="color: #8b2252;">"helloo world"</span><span style="color: #709870;">)</span>;
+          out.print<span style="color: #709870;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Date</span><span style="color: #907373;">()</span><span style="color: #709870;">)</span>;
+  out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"kkkkk"</span><span style="color: #709870;">)</span>;
+
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;ul&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\t"</span><span style="color: #709870;">)</span>;
+
+      <span style="color: #228b22;">String</span> <span style="color: #a0522d;">sql</span> = <span style="color: #8b2252;">"select bookName from book"</span>;
+      <span style="color: #a020f0;">try</span> <span style="color: #709870;">(</span><span style="color: #228b22;">Connection</span> <span style="color: #a0522d;">conn</span> = DBHelper.getConnection<span style="color: #907373;">()</span>;
+              <span style="color: #228b22;">PreparedStatement</span> <span style="color: #a0522d;">ps</span> = conn.prepareStatement<span style="color: #907373;">(</span>sql<span style="color: #907373;">)</span>;
+              <span style="color: #228b22;">ResultSet</span> <span style="color: #a0522d;">rs</span> = ps.executeQuery<span style="color: #907373;">()</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+          <span style="color: #a020f0;">while</span> <span style="color: #907373;">(</span>rs.next<span style="color: #6276ba;">()</span><span style="color: #907373;">)</span> <span style="color: #907373;">{</span>
+
+        out.write<span style="color: #6276ba;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #6276ba;">)</span>;
+        out.write<span style="color: #6276ba;">(</span><span style="color: #8b2252;">"\t\t&lt;li&gt;\r\n"</span><span style="color: #6276ba;">)</span>;
+        out.write<span style="color: #6276ba;">(</span><span style="color: #8b2252;">"\t\t"</span><span style="color: #6276ba;">)</span>;
+   out.write<span style="color: #6276ba;">(</span>rs.getString<span style="color: #858580;">(</span>1<span style="color: #858580;">)</span><span style="color: #6276ba;">)</span>;
+        out.write<span style="color: #6276ba;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #6276ba;">)</span>;
+        out.write<span style="color: #6276ba;">(</span><span style="color: #8b2252;">"\t\t&lt;/li&gt;\r\n"</span><span style="color: #6276ba;">)</span>;
+        out.write<span style="color: #6276ba;">(</span><span style="color: #8b2252;">"\t"</span><span style="color: #6276ba;">)</span>;
+
+          <span style="color: #907373;">}</span>
+      <span style="color: #709870;">}</span>
+
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;/ul&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;/body&gt;\r\n"</span><span style="color: #709870;">)</span>;
+        out.write<span style="color: #709870;">(</span><span style="color: #8b2252;">"&lt;/html&gt;"</span><span style="color: #709870;">)</span>;
+<span style="color: #b22222;">///// </span><span style="color: #b22222;">&#22312;&#36825;&#37324;&#32467;&#26463;&#65292;&#20197;&#19978;&#20869;&#23481;&#30001; Tomcat &#20174; JSP &#32763;&#35793;&#32780;&#25104;&#24182;&#25554;&#20837; /////</span>
+
+
+      <span style="color: #909183;">}</span> <span style="color: #a020f0;">catch</span> <span style="color: #909183;">(</span><span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">lang</span>.<span style="color: #228b22;">Throwable</span> <span style="color: #a0522d;">t</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>!<span style="color: #907373;">(</span>t <span style="color: #a020f0;">instanceof</span> <span style="color: #008b8b;">javax</span>.<span style="color: #008b8b;">servlet</span>.<span style="color: #008b8b;">jsp</span>.SkipPageException<span style="color: #907373;">)</span><span style="color: #709870;">){</span>
+          out = _jspx_out;
+          <span style="color: #a020f0;">if</span> <span style="color: #907373;">(</span>out != <span style="color: #008b8b;">null</span> &amp;&amp; out.getBufferSize<span style="color: #6276ba;">()</span> != 0<span style="color: #907373;">)</span>
+            <span style="color: #a020f0;">try</span> <span style="color: #907373;">{</span>
+              <span style="color: #a020f0;">if</span> <span style="color: #6276ba;">(</span>response.isCommitted<span style="color: #858580;">()</span><span style="color: #6276ba;">)</span> <span style="color: #6276ba;">{</span>
+                out.flush<span style="color: #858580;">()</span>;
+              <span style="color: #6276ba;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #6276ba;">{</span>
+                out.clearBuffer<span style="color: #858580;">()</span>;
+              <span style="color: #6276ba;">}</span>
+            <span style="color: #907373;">}</span> <span style="color: #a020f0;">catch</span> <span style="color: #907373;">(</span><span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">io</span>.<span style="color: #228b22;">IOException</span> <span style="color: #a0522d;">e</span><span style="color: #907373;">)</span> <span style="color: #907373;">{}</span>
+          <span style="color: #a020f0;">if</span> <span style="color: #907373;">(</span>_jspx_page_context != <span style="color: #008b8b;">null</span><span style="color: #907373;">)</span> _jspx_page_context.handlePageException<span style="color: #907373;">(</span>t<span style="color: #907373;">)</span>;
+          <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServletException</span><span style="color: #907373;">(</span>t<span style="color: #907373;">)</span>;
+        <span style="color: #709870;">}</span>
+      <span style="color: #909183;">}</span> <span style="color: #a020f0;">finally</span> <span style="color: #909183;">{</span>
+        _jspxFactory.releasePageContext<span style="color: #709870;">(</span>_jspx_page_context<span style="color: #709870;">)</span>;
+      <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+  <span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org144694b" class="outline-3">
+<h3 id="org144694b"><span class="section-number-3">5.2</span> 基本用法</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>%-- &#25105;&#26159;&#27880;&#37322; --%<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%
+  &#20889;&#25105;&#20204;&#30340; java &#20195;&#30721;&#65292;&#27809;&#26377;&#20219;&#20309;&#38480;&#21046;;
+  &#20889;&#25105;&#20204;&#30340; java &#20195;&#30721;&#65292;&#27809;&#26377;&#20219;&#20309;&#38480;&#21046;;
+  &#20889;&#25105;&#20204;&#30340; java &#20195;&#30721;&#65292;&#27809;&#26377;&#20219;&#20309;&#38480;&#21046;;
+  out.println<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&lt;li&gt;xxx&lt;/li&gt;"</span><span style="color: #7388d6;">)</span>;
+%<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>% out.println<span style="color: #7388d6;">(</span>book.getName<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>; %<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%= book.getName<span style="color: #7388d6;">()</span> %<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>xxx<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7e16ff9" class="outline-3">
+<h3 id="org7e16ff9"><span class="section-number-3">5.3</span> 内置对象</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+我们通过上一章，可以看到，在我们的 JSP 渲染成的 Servlet 的 service 方面，有一些列的定义和初始化:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">_jspService</span><span style="color: #707183;">(</span><span style="color: #a020f0;">final</span> <span style="color: #228b22;">HttpServletRequest</span> <span style="color: #a0522d;">request</span>, <span style="color: #a020f0;">final</span> <span style="color: #228b22;">HttpServletResponse</span> <span style="color: #a0522d;">response</span><span style="color: #707183;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">IOException</span>, <span style="color: #228b22;">ServletException</span> <span style="color: #707183;">{</span>
+    <span style="color: #228b22;">PageContext</span> <span style="color: #a0522d;">pageContext</span>;      <span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
+    <span style="color: #228b22;">HttpSession</span> <span style="color: #a0522d;">session</span> = <span style="color: #008b8b;">null</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">4</span>
+    <span style="color: #228b22;">ServletContext</span> <span style="color: #a0522d;">application</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">5</span>
+    <span style="color: #228b22;">ServletConfig</span> <span style="color: #a0522d;">config</span>;         <span style="color: #b22222;">// </span><span style="color: #b22222;">6</span>
+    <span style="color: #228b22;">JspWriter</span> <span style="color: #a0522d;">out</span> = <span style="color: #008b8b;">null</span>;         <span style="color: #b22222;">// </span><span style="color: #b22222;">7</span>
+    <span style="color: #228b22;">Object</span> <span style="color: #a0522d;">page</span> = <span style="color: #a020f0;">this</span>;           <span style="color: #b22222;">// </span><span style="color: #b22222;">8</span>
+    <span style="color: #228b22;">JspWriter</span> <span style="color: #a0522d;">_jspx_out</span> = <span style="color: #008b8b;">null</span>;
+    <span style="color: #228b22;">PageContext</span> <span style="color: #a0522d;">_jspx_page_context</span> = <span style="color: #008b8b;">null</span>;
+
+    <span style="color: #a020f0;">try</span> <span style="color: #7388d6;">{</span>
+        response.setContentType<span style="color: #909183;">(</span><span style="color: #8b2252;">"text/html; charset=utf-8"</span><span style="color: #909183;">)</span>;
+        pageContext = _jspxFactory.getPageContext<span style="color: #909183;">(</span><span style="color: #a020f0;">this</span>, request, response, <span style="color: #008b8b;">null</span>, <span style="color: #008b8b;">true</span>, 8192, <span style="color: #008b8b;">true</span><span style="color: #909183;">)</span>;
+        _jspx_page_context = pageContext;
+        application = pageContext.getServletContext<span style="color: #909183;">()</span>;
+        config = pageContext.getServletConfig<span style="color: #909183;">()</span>;
+        session = pageContext.getSession<span style="color: #909183;">()</span>;
+        out = pageContext.getOut<span style="color: #909183;">()</span>;
+        _jspx_out = out;
+
+        <span style="color: #b22222;">///// </span><span style="color: #b22222;">&#19979;&#38754;&#19968;&#27573;&#26159;&#20174;&#25105;&#20204;&#20889;&#30340; JSP &#32763;&#35793;&#32780;&#25104;&#24182;&#25554;&#20837; /////</span>
+        out.write<span style="color: #909183;">(</span><span style="color: #8b2252;">"&lt;html&gt;"</span><span style="color: #909183;">)</span>;
+        out.write<span style="color: #909183;">(</span><span style="color: #8b2252;">"&lt;/html&gt;"</span><span style="color: #909183;">)</span>;
+        <span style="color: #b22222;">///// </span><span style="color: #b22222;">&#22312;&#36825;&#37324;&#25554;&#20837;&#32467;&#26463; ///////</span>
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">...</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+由此可知，在 JSP 中，我们是可以直接使用到上述初始化的这些对象的:
+</p>
+<ol class="org-ol">
+<li>pageContext      (仅在 jsp 范围之内有效的一个对象)</li>
+<li>request/response (HttpServletRequest/HttpServletResponse)</li>
+<li>session          (HttpSession)</li>
+<li>application      (ServletContext)</li>
+<li>config           (ServletConfig)</li>
+<li>out              (PrintWriter)</li>
+<li>page             (代表被翻译成的那个 Servlet 对象)</li>
+</ol>
+
+<p>
+这些，有时候我们叫它们为 JSP 的内置对象。
+</p>
+
+<p>
+记住，会用 (可选: 进一步可以了解原理)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5d0b053" class="outline-3">
+<h3 id="org5d0b053"><span class="section-number-3">5.4</span> JSP 指令</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li><code>&lt;%@ include file="xxx.jsp" %&gt;</code></li>
+<li><code>&lt;%@ taglib prefix="c" uri="xxx.tld" %&gt;</code></li>
+<li><code>&lt;%@ page import/errorPage/language/pageEncoding/contentType... %&gt;</code> key/value</li>
+</ul>
+
+<p>
+示例:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"book.bean.Account"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"book.bean.Book"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"java.util.List"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">language</span>=<span style="color: #8b2252;">"java"</span> <span style="color: #a0522d;">contentType</span>=<span style="color: #8b2252;">"text/html; charset=utf-8"</span> <span style="color: #a0522d;">pageEncoding</span>=<span style="color: #8b2252;">"utf-8"</span>%<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>%@ include <span style="color: #a0522d;">file</span>=<span style="color: #8b2252;">"footer.jsp"</span> %<span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+
+<p>
+定义的 footer 片段:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">pageEncoding</span>=<span style="color: #8b2252;">"UTF-8"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">footer</span> <span style="color: #a0522d;">style</span>=<span style="color: #8b2252;">"border-top: 1px darkgrey solid; padding: 5px; text-align: center; margin-top: 5em"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>&#29256;&#26435;&#25152;&#26377;: &#21335;&#26041;IT&#23398;&#38498; 163 &#29677;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">footer</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9b7de39" class="outline-3">
+<h3 id="org9b7de39"><span class="section-number-3">5.5</span> JSP 动作</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+仅是为了锦上添花:
+</p>
+<ul class="org-ul">
+<li><code>&lt;jsp:forward/include&gt;</code> request.getRequestDispatcher("/xxx").forward/include();</li>
+<li><code>&lt;jsp:param&gt;</code></li>
+<li><code>&lt;jsp:useBean/setProperty/getProperty...&gt;</code></li>
+</ul>
+
+<p>
+示例:
+</p>
+
+<div  class='mca1'>
+<div>
+<p>
+
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>%
+ String url = <span style="color: #8b2252;">"user.jsp?username=Boss&amp;password=19911"</span>;
+ request.getRequestDispatcher<span style="color: #7388d6;">(</span>url<span style="color: #7388d6;">)</span>.forward<span style="color: #7388d6;">(</span>request, response<span style="color: #7388d6;">)</span>;
+%<span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+<p>
+
+</div>
+<div>
+
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #483d8b;">jsp</span>:<span style="color: #0000ff;">forward</span> <span style="color: #a0522d;">page</span>=<span style="color: #8b2252;">"user.jsp"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">jsp</span>:<span style="color: #0000ff;">param</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"Boss"</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"username"</span>/<span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">jsp</span>:<span style="color: #0000ff;">param</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"19911"</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"password"</span>/<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">jsp</span>:<span style="color: #0000ff;">forward</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+
+</div>
+
+</div>
+
+
+<div  class='mc11'>
+<div>
+<p>
+
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>%
+  Cart cart = null;
+  Object o = session.getAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"cart"</span><span style="color: #7388d6;">)</span>;
+  if <span style="color: #7388d6;">(</span>o == null<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+     cart = new Cart<span style="color: #909183;">()</span>;
+  <span style="color: #7388d6;">}</span> else <span style="color: #7388d6;">{</span>
+     cart = <span style="color: #909183;">(</span>Cart<span style="color: #909183;">)</span> o;
+  <span style="color: #7388d6;">}</span>
+  cart.xxx;
+
+  cart.getAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"xxx"</span><span style="color: #7388d6;">)</span>;
+  cart.setAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"xxx"</span>, 222<span style="color: #7388d6;">)</span>;
+%<span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+<p>
+
+</div>
+<div>
+
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #483d8b;">jsp</span>:<span style="color: #0000ff;">useBean</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"cart"</span> <span style="color: #a0522d;">scope</span>=<span style="color: #8b2252;">"session"</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"Carts"</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">jsp</span>:<span style="color: #0000ff;">getProperty</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"cart"</span> <span style="color: #a0522d;">propertie</span>=<span style="color: #8b2252;">"xxx"</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">jsp</span>:<span style="color: #0000ff;">setProperty</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"cart"</span> <span style="color: #a0522d;">propertie</span>=<span style="color: #8b2252;">"xxx"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"333"</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<p>
+问题:
+</p>
+<ul class="org-ul">
+<li>&lt;%@ include %&gt;  跟 &lt;jsp:forward&gt; 有什么区别?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2c5651e" class="outline-3">
+<h3 id="org2c5651e"><span class="section-number-3">5.6</span> EL 表达式</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+EL (Expression Language) 表达式就是嵌入到 JSP 文件中的、
+结构为 <code>${xxx.yyy}</code> 的一种表达式语法。主要为了简化数据的获取。
+</p>
+
+<pre class="example">
+JSP 的主要任务，就是 1) 拿到数据 2) 渲染出来
+</pre>
+
+
+<p>
+拿到数据:
+</p>
+<ul class="org-ul">
+<li>req.getAttribute("xxx")</li>
+<li>session.getAttribute("account")</li>
+<li>application.getAttribute("xxxxxxx")</li>
+<li>req.getParameter("x")</li>
+<li>req.getHeader("xxx");</li>
+<li>req.getCookies()</li>
+</ul>
+
+<p>
+麻烦的原始写法:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">Book book;
+Object o = req.getAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>o == <span style="color: #008b8b;">null</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    book = <span style="color: #008b8b;">null</span>;
+<span style="color: #707183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #707183;">{</span>
+    book = <span style="color: #7388d6;">(</span>Book<span style="color: #7388d6;">)</span> o;
+<span style="color: #707183;">}</span>
+out.println<span style="color: #707183;">(</span><span style="color: #8b2252;">"&lt;li&gt;"</span>
+             + book.getPrice<span style="color: #7388d6;">()</span>
+             + <span style="color: #8b2252;">"&lt;/li&gt;"</span><span style="color: #707183;">)</span>;
+
+
+Student student = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"zhangsan"</span><span style="color: #707183;">)</span>;
+pageContext.setAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"zhangsan"</span>, student<span style="color: #707183;">)</span>;
+application.setAttribute<span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx"</span>, student<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+使用 el 表达式之后的简化:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#20174; request </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>requestScope.book.price<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>requestScope<span style="color: #7388d6;">[</span>"book"<span style="color: #7388d6;">]</span>.price<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>requestScope<span style="color: #7388d6;">[</span>"book"<span style="color: #7388d6;">]</span>.getPrice<span style="color: #7388d6;">()</span><span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#20174; session </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>sessionScope.book.price<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#20854;&#20182; </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>pageScope.book.price<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>aplicationScope.book.price<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#26356;&#31616;&#21333; </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#36825;&#26679;&#20889;&#65292;&#23558;&#20250;&#20381;&#27425;&#20174; pageScope/requestScope/sessionScope/applicationScope &#23547;&#25214;&#30456;&#24212;&#25968;&#25454; </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>book.price<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+
+<p>
+其他应用:
+</p>
+<div class="org-src-container">
+<pre class="src src-html">$<span style="color: #707183;">{</span>param.xxx<span style="color: #707183;">}</span>             // req.getParameter<span style="color: #707183;">(</span>"xxx"<span style="color: #707183;">)</span>;
+$<span style="color: #707183;">{</span>paramValues.xxx<span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>header<span style="color: #7388d6;">[</span>"user-agent"<span style="color: #7388d6;">]</span><span style="color: #707183;">}</span>  // req.getHeader<span style="color: #707183;">(</span>"user-agent"<span style="color: #707183;">)</span>;
+$<span style="color: #707183;">{</span>cookie.JSESSIONID<span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>initParam.drive<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+在 el 表达式中，可以进行简单的运算:
+</p>
+<div class="org-src-container">
+<pre class="src src-html">$<span style="color: #707183;">{</span>1 + 1<span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>book.price + 10086<span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>pageScope.lianggeshu || !yigeshu == 33333<span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>empty books<span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>empty books ? "0" : books.length<span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>book.price &gt; 100 ? "&#22826;&#36149;&#20102;!" : "&#25402;&#22909;&#30340;"<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c7e878" class="outline-3">
+<h3 id="org2c7e878"><span class="section-number-3">5.7</span> JSTL 标签</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+JSP Standard Tag Library (JSP 标准标签库)。
+</p>
+
+<p>
+<a href="https://repo1.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar">https://repo1.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar</a>
+</p>
+
+<p>
+首先将其下载，<a href="../asset/jstl-1.2.jar">本地下载地址</a>，然后，将其放置到 WEB-LIB/lib 下 (跟 jdbc.jar 排排坐)。
+</p>
+
+<p>
+然后需要在相应的 jsp 文件中，引入它:
+</p>
+<pre class="example">
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+</pre>
+</div>
+
+<div id="outline-container-org3100f41" class="outline-4">
+<h4 id="org3100f41"><span class="section-number-4">5.7.1</span> 条件判断 (c:if)</h4>
+<div class="outline-text-4" id="text-5-7-1">
+
+<div  class='mc11'>
+<div>
+<p>
+
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${empty sessionScope.account}"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>&#35831;&#24744;&#28857;&#20987;&#30331;&#38470;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${sessionScope.account != null}"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>&#36134;&#21495;: $<span style="color: #707183;">{</span>account.username<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>&#23494;&#30721;: $<span style="color: #707183;">{</span>account.password<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+<p>
+
+</div>
+<div>
+
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>%
+    if <span style="color: #7388d6;">(</span>session.getAttribute<span style="color: #909183;">(</span><span style="color: #8b2252;">"account"</span><span style="color: #909183;">)</span> == null<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+%<span style="color: #88090B;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #7388d6;">&gt;</span>
+&#35831;&#24744;&#28857;&#20987;&#30331;&#38470;
+<span style="color: #7388d6;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #7388d6;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span>%
+    <span style="color: #88090B;">}</span> else <span style="color: #7388d6;">{</span>
+%<span style="color: #88090B;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #7388d6;">&gt;</span>
+    <span style="color: #7388d6;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #7388d6;">&gt;</span>&#36134;&#21495;: $<span style="color: #7388d6;">{</span>account.username<span style="color: #7388d6;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #7388d6;">&gt;</span>
+    <span style="color: #7388d6;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #7388d6;">&gt;</span>&#23494;&#30721;: $<span style="color: #7388d6;">{</span>account.password<span style="color: #7388d6;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #7388d6;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #7388d6;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span>%
+    <span style="color: #88090B;">}</span>
+%<span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4a30a1d" class="outline-4">
+<h4 id="org4a30a1d"><span class="section-number-4">5.7.2</span> 循环语句 (c:forEach)</h4>
+<div class="outline-text-4" id="text-5-7-2">
+
+<div  class='mc11'>
+<div>
+<p>
+
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span> <span style="color: #a0522d;">items</span>=<span style="color: #8b2252;">"${books}"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"book"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">out</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"${book.bookName}"</span> /<span style="color: #707183;">&gt;</span>
+      /
+      <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">out</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"${book.price}"</span> /<span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span> <span style="color: #a0522d;">items</span>=<span style="color: #8b2252;">"${books}"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"book"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span> $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}</span> / $<span style="color: #707183;">{</span>book.price<span style="color: #707183;">}</span> <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+<span style="color: #b22222;">&lt;!--  </span><span style="color: #b22222;">begin="2" step="1" end="5" </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span> <span style="color: #a0522d;">items</span>=<span style="color: #8b2252;">"${books}"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"book"</span> <span style="color: #a0522d;">varStatus</span>=<span style="color: #8b2252;">"s"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${s.first}"</span><span style="color: #707183;">&gt;</span>
+    -----------------------------------
+    <span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${book.price &gt; 1000}"</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>s.count<span style="color: #707183;">}</span> :  $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}</span> / $<span style="color: #707183;">{</span>book.price<span style="color: #707183;">}</span> <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+<p>
+
+</div>
+<div>
+
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%
+    List<span style="color: #7388d6;">&lt;</span><span style="color: #0000ff;">Book</span><span style="color: #7388d6;">&gt;</span> books = <span style="color: #7388d6;">(</span>List<span style="color: #909183;">&lt;</span><span style="color: #0000ff;">Book</span><span style="color: #909183;">&gt;</span><span style="color: #7388d6;">)</span> request.getAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"books"</span><span style="color: #7388d6;">)</span>;
+    for <span style="color: #7388d6;">(</span>Book book: books<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+%<span style="color: #88090B;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #7388d6;">&gt;&lt;</span>%= book.getBookName<span style="color: #909183;">()</span> %<span style="color: #7388d6;">&gt;</span> / <span style="color: #7388d6;">&lt;</span>%= book.getPrice<span style="color: #909183;">()</span> %<span style="color: #7388d6;">&gt;&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #7388d6;">&gt;</span>
+<span style="color: #7388d6;">&lt;</span>%
+    <span style="color: #88090B;">}</span>
+%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<p>
+varStatus 用来表示循环中的一些状态信息:
+</p>
+<ul class="org-ul">
+<li>current 当前这次迭代的（集合中的）项</li>
+<li>index 当前这次迭代从 0 开始的迭代索引</li>
+<li>count 当前这次迭代从 1 开始的迭代计数</li>
+<li>first 用来表明当前这轮迭代是否为第一次迭代的标志</li>
+<li>last  用来表明当前这轮迭代是否为最后一次迭代的标志</li>
+</ul>
+
+<p>
+<code>&lt;c:out&gt;</code> 用来表示输出变量内容，很多时候，可以直接用 el 表达式代替它。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcf9c0b4" class="outline-4">
+<h4 id="orgcf9c0b4"><span class="section-number-4">5.7.3</span> 其他的核心标签</h4>
+<div class="outline-text-4" id="text-5-7-3">
+</div>
+<div id="outline-container-org77298a9" class="outline-5">
+<h5 id="org77298a9"><span class="section-number-5">5.7.3.1</span> c:choose/when/otherwise</h5>
+<div class="outline-text-5" id="text-5-7-3-1">
+<p>
+条件判断 Switch (加强版的 c:if)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java">&lt;c:forEach items=<span style="color: #8b2252;">"${books}"</span> var=<span style="color: #8b2252;">"book"</span> varStatus=<span style="color: #8b2252;">"s"</span> begin=<span style="color: #8b2252;">"2"</span> step=<span style="color: #8b2252;">"1"</span>&gt;
+    &lt;c:choose&gt;
+        &lt;c:when test=<span style="color: #8b2252;">"${book.price &gt; 1000}"</span>&gt;
+            <span style="color: #707183;">&lt;</span><span style="color: #228b22;">li</span><span style="color: #707183;">&gt;</span>&#36149;&#30340;&#20070;:  $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}</span>&lt;/li&gt;
+        &lt;/c:when&gt;
+        &lt;c:when test=<span style="color: #8b2252;">"${book.price &lt; 100}"</span>&gt;
+            <span style="color: #707183;">&lt;</span><span style="color: #228b22;">li</span><span style="color: #707183;">&gt;</span>&#25512;&#33616;&#20070;&#31821;:  $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}</span>&lt;/li&gt;
+        &lt;/c:when&gt;
+        &lt;c:otherwise&gt;
+            <span style="color: #707183;">&lt;</span><span style="color: #228b22;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>s.count<span style="color: #707183;">}</span> :  $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}</span> / $<span style="color: #707183;">{</span>book.price<span style="color: #707183;">}</span> &lt;/li&gt;
+        &lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+&lt;/c:forEach&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2869e75" class="outline-5">
+<h5 id="org2869e75"><span class="section-number-5">5.7.3.2</span> c:forTokens</h5>
+<div class="outline-text-5" id="text-5-7-3-2">
+<p>
+是 c:forEach 的一种特殊情况，用来将字符串分割并且逐个进行处理的一种循环
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forTokens</span> <span style="color: #a0522d;">items</span>=<span style="color: #8b2252;">"123:456:abc:ddddddd:&#21704;&#21704;"</span> <span style="color: #a0522d;">delims</span>=<span style="color: #8b2252;">":"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"e"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>e<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forTokens</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbf3f6d6" class="outline-5">
+<h5 id="orgbf3f6d6"><span class="section-number-5">5.7.3.3</span> c:url</h5>
+<div class="outline-text-5" id="text-5-7-3-3">
+<p>
+是用标签的形式更灵活拼接 url
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">// &#22914;&#26524;&#19981;&#24102; var &#30340;&#35805;&#65292;&#23558;&#20250;&#22312;&#21407;&#22320;&#29983;&#25104;&#19968;&#20010; url
+// &#22914;&#26524;&#24102; var &#30340;&#35805;&#65292;&#37027;&#20040;&#23558;&#20250;&#25226; url &#25918;&#21040; aaa &#21464;&#37327;&#20013;&#65292;&#21518;&#32493;&#23601;&#21487;&#20197; $aaa &#30340;&#26041;&#24335;&#20351;&#29992;&#20102;
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">url</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"/add"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"aaa"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">param</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"hello"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"1111"</span> /<span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">param</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"world"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"2222"</span> /<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">url</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">a</span> <span style="color: #a0522d;">href</span>=<span style="color: #8b2252;">"${aaa}"</span><span style="color: #707183;">&gt;</span>hahaha<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">a</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9be0ecf" class="outline-5">
+<h5 id="org9be0ecf"><span class="section-number-5">5.7.3.4</span> c:set/c:remove</h5>
+<div class="outline-text-5" id="text-5-7-3-4">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>% session.setAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"aaa"</span>, 2333<span style="color: #7388d6;">)</span>; %<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">set</span> <span style="color: #a0522d;">property</span>=<span style="color: #8b2252;">"aaa"</span> <span style="color: #a0522d;">scope</span>=<span style="color: #8b2252;">"session"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"2333"</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">set</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge6575ba" class="outline-5">
+<h5 id="orge6575ba"><span class="section-number-5">5.7.3.5</span> c:import</h5>
+<div class="outline-text-5" id="text-5-7-3-5">
+<p>
+请问，这三个有啥区别:
+</p>
+<ol class="org-ol">
+<li>&lt;%@ include file="xxx.jsp" %&gt;</li>
+<li>&lt;jsp:include path="xxx.jsp" &gt;</li>
+<li>&lt;c:import url="xxx.jsp"&gt;&lt;/c:import&gt;</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga31a6da" class="outline-4">
+<h4 id="orga31a6da"><span class="section-number-4">5.7.4</span> 格式化 (fmt)</h4>
+<div class="outline-text-4" id="text-5-7-4">
+<p>
+首先，引进:
+</p>
+<pre class="example">
+&lt;%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %&gt;
+</pre>
+
+
+<p>
+接下来，使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #483d8b;">fmt</span>:<span style="color: #0000ff;">formatNumber</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"4000000"</span> /<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">fmt</span>:<span style="color: #0000ff;">formatNumber</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"4000000"</span> <span style="color: #a0522d;">pattern</span>=<span style="color: #8b2252;">"###,##"</span> /<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">fmt</span>:<span style="color: #0000ff;">formatNumber</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"4000000"</span> <span style="color: #a0522d;">type</span>=<span style="color: #8b2252;">"currency"</span> <span style="color: #a0522d;">currencySymbol</span>=<span style="color: #8b2252;">"$"</span> /<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">fmt</span>:<span style="color: #0000ff;">formatDate</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"&lt;%= new java.util.Date() %&gt;"</span> <span style="color: #a0522d;">pattern</span>=<span style="color: #8b2252;">"yyyy &#24180; MM &#26376; HH:mm:ss"</span> /<span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbfa8399" class="outline-4">
+<h4 id="orgbfa8399"><span class="section-number-4">5.7.5</span> 函数标签 (fn)</h4>
+<div class="outline-text-4" id="text-5-7-5">
+<p>
+首先，引进:
+</p>
+<pre class="example">
+&lt;%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %&gt;
+</pre>
+
+
+<p>
+接下来，使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-html">$<span style="color: #707183;">{</span>fn:length<span style="color: #7388d6;">(</span>"hello"<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>fn:indexOf<span style="color: #7388d6;">(</span>"hello", "l"<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>fn:replace<span style="color: #7388d6;">(</span>"hello", "l", "L"<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>fn:toUpperCase<span style="color: #7388d6;">(</span>"hello"<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>fn:trim<span style="color: #7388d6;">(</span>"   hello  "<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${fn:contains('hello', 'h')}"</span><span style="color: #707183;">&gt;</span>
+    hello &#37324;&#38754;&#26159;&#26377; h &#30340;
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org681de12" class="outline-4">
+<h4 id="org681de12"><span class="section-number-4">5.7.6</span> [示例] jstlDemo.jsp</h4>
+<div class="outline-text-4" id="text-5-7-6">
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"book.bean.Account"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"book.bean.Book"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"java.util.List"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"book.dao.BookDAO"</span>%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@taglib <span style="color: #a0522d;">prefix</span>=<span style="color: #8b2252;">"c"</span> <span style="color: #a0522d;">uri</span>=<span style="color: #8b2252;">"http://java.sun.com/jsp/jstl/core"</span> %<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@taglib <span style="color: #a0522d;">prefix</span>=<span style="color: #8b2252;">"fmt"</span> <span style="color: #a0522d;">uri</span>=<span style="color: #8b2252;">"http://java.sun.com/jsp/jstl/fmt"</span> %<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@taglib <span style="color: #a0522d;">prefix</span>=<span style="color: #8b2252;">"fn"</span> <span style="color: #a0522d;">uri</span>=<span style="color: #8b2252;">"http://java.sun.com/jsp/jstl/functions"</span> %<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">language</span>=<span style="color: #8b2252;">"java"</span> <span style="color: #a0522d;">contentType</span>=<span style="color: #8b2252;">"text/html; charset=utf-8"</span> <span style="color: #a0522d;">pageEncoding</span>=<span style="color: #8b2252;">"utf-8"</span>%<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>%
+    request.setAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"books"</span>, new BookDAO<span style="color: #909183;">()</span>.list<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
+
+    Account account = new Account<span style="color: #7388d6;">()</span>;
+    account.setUsername<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"tomcat"</span><span style="color: #7388d6;">)</span>;
+    account.setPassword<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"jerry"</span><span style="color: #7388d6;">)</span>;
+    session.setAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"account"</span>, account<span style="color: #7388d6;">)</span>;
+%<span style="color: #707183;">&gt;</span>
+
+&lt;<span style="color: #a020f0;">!DOCTYPE</span> html&gt;
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">meta</span> <span style="color: #a0522d;">charset</span>=<span style="color: #8b2252;">"utf-8"</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span><span style="font-weight: bold; text-decoration: underline;">JSTL &#31034;&#20363;</span><span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">title</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+JSTL &#31034;&#20363;
+
+<span style="color: #707183;">&lt;</span>%-- &#21028;&#26029; if --%<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${empty sessionScope.account}"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>&#35831;&#24744;&#28857;&#20987;&#30331;&#38470;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">p</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${sessionScope.account != null}"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>&#36134;&#21495;: $<span style="color: #707183;">{</span>account.username<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>&#23494;&#30721;: $<span style="color: #707183;">{</span>account.password<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">h5</span><span style="color: #707183;">&gt;</span><span style="text-decoration: underline;">&#20070;&#31821;&#21015;&#34920;</span><span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">h5</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span> <span style="color: #a0522d;">items</span>=<span style="color: #8b2252;">"${books}"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"book"</span> <span style="color: #a0522d;">varStatus</span>=<span style="color: #8b2252;">"s"</span> <span style="color: #a0522d;">begin</span>=<span style="color: #8b2252;">"2"</span> <span style="color: #a0522d;">step</span>=<span style="color: #8b2252;">"1"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${s.first}"</span><span style="color: #707183;">&gt;</span>
+    -----------------------------------
+    <span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${book.price &gt; 1000}"</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>s.count<span style="color: #707183;">}</span> :  $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}</span> / $<span style="color: #707183;">{</span>book.price<span style="color: #707183;">}</span> <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">ul</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">hr</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>%-- &#21152;&#24378;&#29256;&#30340; c:if/else; switch --%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span> <span style="color: #a0522d;">items</span>=<span style="color: #8b2252;">"${books}"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"book"</span> <span style="color: #a0522d;">varStatus</span>=<span style="color: #8b2252;">"s"</span> <span style="color: #a0522d;">begin</span>=<span style="color: #8b2252;">"2"</span> <span style="color: #a0522d;">step</span>=<span style="color: #8b2252;">"1"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">choose</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">when</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${book.price &gt; 1000}"</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>&#36149;&#30340;&#20070;:  $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">when</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">when</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${book.price &lt; 100}"</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>&#25512;&#33616;&#20070;&#31821;:  $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">when</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">otherwise</span><span style="color: #707183;">&gt;</span>
+            <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>s.count<span style="color: #707183;">}</span> :  $<span style="color: #707183;">{</span>book.bookName<span style="color: #707183;">}</span> / $<span style="color: #707183;">{</span>book.price<span style="color: #707183;">}</span> <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+        <span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">otherwise</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">choose</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forEach</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">hr</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>%-- forEach &#30340;&#19968;&#31181;&#29305;&#27530; --%<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forTokens</span> <span style="color: #a0522d;">items</span>=<span style="color: #8b2252;">"123:456:abc:ddddddd:&#21704;&#21704;"</span> <span style="color: #a0522d;">delims</span>=<span style="color: #8b2252;">":"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"e"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>$<span style="color: #707183;">{</span>e<span style="color: #707183;">}&lt;</span>/<span style="color: #0000ff;">li</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">forTokens</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">hr</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">url</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"/add"</span> <span style="color: #a0522d;">var</span>=<span style="color: #8b2252;">"aaa"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">param</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"hello"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"1111"</span> /<span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">param</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"world"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"2222"</span> /<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">url</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">a</span> <span style="color: #a0522d;">href</span>=<span style="color: #8b2252;">"${aaa}"</span><span style="color: #707183;">&gt;</span>hahaha<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">a</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">hr</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>% session.setAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"aaa"</span>, 2333<span style="color: #7388d6;">)</span>; %<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>%--c:set <span style="color: #a0522d;">property</span>=<span style="color: #8b2252;">"aaa"</span> <span style="color: #a0522d;">scope</span>=<span style="color: #8b2252;">"session"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"2333"</span> var<span style="color: #707183;">&gt;&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">set</span><span style="color: #707183;">&gt;</span> --%&gt;
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">hr</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>%--
+<span style="color: #7388d6;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">import</span> <span style="color: #a0522d;">url</span>=<span style="color: #8b2252;">"aaa.jsp"</span> <span style="color: #7388d6;">&gt;&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">import</span><span style="color: #7388d6;">&gt;</span>
+--%<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">hr</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">fmt</span>:<span style="color: #0000ff;">formatNumber</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"4000000"</span> /<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">fmt</span>:<span style="color: #0000ff;">formatNumber</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"4000000"</span> <span style="color: #a0522d;">pattern</span>=<span style="color: #8b2252;">"###,##"</span> /<span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">fmt</span>:<span style="color: #0000ff;">formatNumber</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"4000000"</span> <span style="color: #a0522d;">type</span>=<span style="color: #8b2252;">"currency"</span> <span style="color: #a0522d;">currencySymbol</span>=<span style="color: #8b2252;">"$"</span> /<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">hr</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">fmt</span>:<span style="color: #0000ff;">formatDate</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"&lt;%= new java.util.Date() %&gt;"</span> <span style="color: #a0522d;">pattern</span>=<span style="color: #8b2252;">"yyyy &#24180; MM &#26376; HH:mm:ss"</span> /<span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">hr</span><span style="color: #707183;">&gt;</span>
+
+$<span style="color: #707183;">{</span>fn:length<span style="color: #7388d6;">(</span>"hello"<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>fn:indexOf<span style="color: #7388d6;">(</span>"hello", "l"<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>fn:replace<span style="color: #7388d6;">(</span>"hello", "l", "L"<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>fn:toUpperCase<span style="color: #7388d6;">(</span>"hello"<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+$<span style="color: #707183;">{</span>fn:trim<span style="color: #7388d6;">(</span>"   hello  "<span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span> <span style="color: #a0522d;">test</span>=<span style="color: #8b2252;">"${fn:contains('hello', 'h')}"</span><span style="color: #707183;">&gt;</span>
+    hello &#37324;&#38754;&#26159;&#26377; h &#30340;
+<span style="color: #707183;">&lt;</span>/<span style="color: #483d8b;">c</span>:<span style="color: #0000ff;">if</span><span style="color: #707183;">&gt;</span>
+
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgf86400d" class="outline-2">
+<h2 id="orgf86400d"><span class="section-number-2">6</span> 生命周期 (单例、按需加载)</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>单实例模式，简称单例模式，也就是一个类只会创建一个实例。每个 Servlet 只会有一个实例，创建之后被放到了容器里</li>
+<li>懒加载模式，默认情况下 Servlet/Filter/jsp 等是不会随着服务器启动而被实例化的，而是在第一个人访问的时候，才会触发创建实例的过程。后续再有人用的时候直接拿来用就可以了</li>
+<li>Servlet 初始化、销毁，对应 <code>init/destroy</code> 方法</li>
+</ul>
+
+<p>
+另外，如果想让某个 Servlet 随着容器启动被实例化，可以显式指明:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">servlet</span>&gt;
+  &lt;<span style="color: #0000ff;">servlet-class</span>&gt;book.web.BookXxxServlet&lt;/<span style="color: #0000ff;">servlet-class</span>&gt;
+  &lt;<span style="color: #0000ff;">load-on-startup</span>&gt;1&lt;/<span style="color: #0000ff;">load-on-startup</span>&gt; <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">load it! </span><span style="color: #b22222;">--&gt;</span>
+&lt;/<span style="color: #0000ff;">servlet</span>&gt;
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgf286019" class="outline-2">
+<h2 id="orgf286019"><span class="section-number-2">7</span> 配置小结</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org9fe5df1" class="outline-3">
+<h3 id="org9fe5df1"><span class="section-number-3">7.1</span> web.xml</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+传统方式，通用、表达力强。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-xml"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#26631;&#20934;&#22836;&#37096; </span><span style="color: #b22222;">--&gt;</span>
+&lt;<span style="color: #a020f0;">?xml</span> <span style="color: #a0522d;">version</span>="1.0" <span style="color: #a0522d;">encoding</span>="UTF-8"?&gt;
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#26681;&#26631;&#31614; web-app </span><span style="color: #b22222;">--&gt;</span>
+&lt;<span style="color: #0000ff;">web-app</span> <span style="color: #a0522d;">version</span>=<span style="color: #8b2252;">"3.1"</span> <span style="color: #a0522d;">xmlns</span>=<span style="color: #8b2252;">"http://xmlns.jcp.org/xml/ns/javaee"</span> <span style="color: #483d8b;">xmlns</span>:<span style="color: #a0522d;">xsi</span>=<span style="color: #8b2252;">"http://www.w3.org/2001/XMLSchema-instance"</span> <span style="color: #483d8b;">xsi</span>:<span style="color: #a0522d;">schemaLocation</span>=<span style="color: #8b2252;">"http://xmlns.jcp.org/xml/ns/javaee                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span>&gt;
+
+  <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#40664;&#35748;&#39029;&#38754; </span><span style="color: #b22222;">--&gt;</span>
+  &lt;<span style="color: #0000ff;">welcome-file-list</span>&gt;
+    &lt;<span style="color: #0000ff;">welcome-file</span>&gt;index.html&lt;/<span style="color: #0000ff;">welcome-file</span>&gt;
+    &lt;<span style="color: #0000ff;">welcome-file</span>&gt;list&lt;/<span style="color: #0000ff;">welcome-file</span>&gt;
+  &lt;/<span style="color: #0000ff;">welcome-file-list</span>&gt;
+
+  <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#30417;&#21548;&#22120; </span><span style="color: #b22222;">--&gt;</span>
+  &lt;<span style="color: #0000ff;">listener</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"book.listener.StartupListener"</span> /&gt;
+
+  <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Servlet </span><span style="color: #b22222;">--&gt;</span>
+  &lt;<span style="color: #0000ff;">servlet</span>&gt;
+    &lt;<span style="color: #0000ff;">servlet-name</span>&gt;book_list&lt;/<span style="color: #0000ff;">servlet-name</span>&gt;
+    &lt;<span style="color: #0000ff;">servlet-class</span>&gt;book.web.BookListServlet&lt;/<span style="color: #0000ff;">servlet-class</span>&gt;
+  &lt;/<span style="color: #0000ff;">servlet</span>&gt;
+  &lt;<span style="color: #0000ff;">servlet-mapping</span>&gt;
+    &lt;<span style="color: #0000ff;">servlet-name</span>&gt;book_list&lt;/<span style="color: #0000ff;">servlet-name</span>&gt;
+    &lt;<span style="color: #0000ff;">url-pattern</span>&gt;/list&lt;/<span style="color: #0000ff;">url-pattern</span>&gt;
+  &lt;/<span style="color: #0000ff;">servlet-mapping</span>&gt;
+
+  <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">[&#21487;&#36873;] &#20063;&#21487;&#20197;&#20026; Servlet &#20256;&#36882;&#19968;&#20123;&#21442;&#25968; </span><span style="color: #b22222;">--&gt;</span>
+  &lt;<span style="color: #0000ff;">servlet</span>&gt;
+    &lt;<span style="color: #0000ff;">servlet-name</span>&gt;book_xxx&lt;/<span style="color: #0000ff;">servlet-name</span>&gt;
+    &lt;<span style="color: #0000ff;">servlet-class</span>&gt;book.web.BookXxxServlet&lt;/<span style="color: #0000ff;">servlet-class</span>&gt;
+    <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#36825;&#20010;&#21442;&#25968;&#65292;&#21487;&#20197;&#22312; Servlet &#20013;&#36890;&#36807; getServletConfig &#24471;&#21040; </span><span style="color: #b22222;">--&gt;</span>
+    &lt;<span style="color: #0000ff;">init-param</span>&gt;
+      &lt;<span style="color: #0000ff;">param-name</span>&gt;aaa&lt;/<span style="color: #0000ff;">param-name</span>&gt;
+      &lt;<span style="color: #0000ff;">param-value</span>&gt;111&lt;/<span style="color: #0000ff;">param-value</span>&gt;
+    &lt;/<span style="color: #0000ff;">init-param</span>&gt;
+    <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#38543;&#30528;&#23481;&#22120;&#21551;&#21160;&#32780;&#21021;&#22987;&#21270; </span><span style="color: #b22222;">--&gt;</span>
+    &lt;<span style="color: #0000ff;">load-on-startup</span>&gt;1&lt;/<span style="color: #0000ff;">load-on-startup</span>&gt;
+  &lt;/<span style="color: #0000ff;">servlet</span>&gt;
+
+  <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#36807;&#28388;&#22120; </span><span style="color: #b22222;">--&gt;</span>
+  &lt;<span style="color: #0000ff;">filter</span>&gt;
+    &lt;<span style="color: #0000ff;">filter-name</span>&gt;thisIsEncodingFilter&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+    &lt;<span style="color: #0000ff;">filter-class</span>&gt;book.filter.EncodingFilter&lt;/<span style="color: #0000ff;">filter-class</span>&gt;
+  &lt;/<span style="color: #0000ff;">filter</span>&gt;
+  &lt;<span style="color: #0000ff;">filter-mapping</span>&gt;
+    &lt;<span style="color: #0000ff;">filter-name</span>&gt;thisIsEncodingFilter&lt;/<span style="color: #0000ff;">filter-name</span>&gt;
+    &lt;<span style="color: #0000ff;">url-pattern</span>&gt;/*&lt;/<span style="color: #0000ff;">url-pattern</span>&gt;
+  &lt;/<span style="color: #0000ff;">filter-mapping</span>&gt;
+
+  <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#38169;&#35823;&#39029;&#38754;&#30340;&#35774;&#32622; </span><span style="color: #b22222;">--&gt;</span>
+  &lt;<span style="color: #0000ff;">error-page</span>&gt;
+    &lt;<span style="color: #0000ff;">error-code</span>&gt;404&lt;/<span style="color: #0000ff;">error-code</span>&gt; <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#22914;&#26524;&#21457;&#29983; 404 &#39029;&#38754;&#25214;&#19981;&#21040;&#65292;&#40664;&#35748;&#36339;&#21040;&#36825;&#20010;&#39029;&#38754; </span><span style="color: #b22222;">--&gt;</span>
+    &lt;<span style="color: #0000ff;">location</span>&gt;/myerror404.jsp&lt;/<span style="color: #0000ff;">location</span>&gt;
+  &lt;/<span style="color: #0000ff;">error-page</span>&gt;
+  &lt;<span style="color: #0000ff;">error-page</span>&gt;
+    &lt;<span style="color: #0000ff;">exception-type</span>&gt;java.lang.Exception&lt;/<span style="color: #0000ff;">exception-type</span>&gt; <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#22914;&#26524;&#26377;&#30340;&#24322;&#24120;&#27809;&#26377;&#34987;&#22788;&#29702;&#65292;&#21017;&#36825;&#37324;&#26159;&#26368;&#21518;&#20828;&#24213;&#30340; </span><span style="color: #b22222;">--&gt;</span>
+    &lt;<span style="color: #0000ff;">location</span>&gt;/exception.jsp&lt;/<span style="color: #0000ff;">location</span>&gt;
+  &lt;/<span style="color: #0000ff;">error-page</span>&gt;
+
+  <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#35774;&#32622; Session &#36807;&#26399;&#26102;&#38388; </span><span style="color: #b22222;">--&gt;</span>
+  &lt;<span style="color: #0000ff;">session-config</span>&gt;
+    &lt;<span style="color: #0000ff;">session-timeout</span>&gt;30&lt;/<span style="color: #0000ff;">session-timeout</span>&gt;
+  &lt;/<span style="color: #0000ff;">session-config</span>&gt;
+&lt;/<span style="color: #0000ff;">web-app</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf81a628" class="outline-3">
+<h3 id="orgf81a628"><span class="section-number-3">7.2</span> 注解 (Annotation)</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+放到类上，简单方便。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #008b8b;">@WebServlet</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"/xxx"</span><span style="color: #707183;">)</span>
+<span style="color: #008b8b;">@WebServlet</span><span style="color: #707183;">(</span>value = <span style="color: #8b2252;">"/xxx"</span><span style="color: #707183;">)</span>
+<span style="color: #008b8b;">@WebServlet</span><span style="color: #707183;">(</span>urlPatterns = <span style="color: #7388d6;">{</span><span style="color: #8b2252;">"/xxx"</span><span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #008b8b;">@WebFilter</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"/*"</span><span style="color: #707183;">)</span>
+<span style="color: #008b8b;">@WebFilter</span><span style="color: #707183;">(</span><span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"/admin/*"</span>, <span style="color: #8b2252;">"/add"</span>, <span style="color: #8b2252;">"/del"</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #008b8b;">@WebListener</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org9d0f31d" class="outline-2">
+<h2 id="org9d0f31d"><span class="section-number-2">8</span> 乱码问题</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org3d90476" class="outline-3">
+<h3 id="org3d90476"><span class="section-number-3">8.1</span> 请求乱码</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+<pre class="src src-java">req.setCharacterEncoding<span style="color: #707183;">(</span><span style="color: #8b2252;">"utf-8"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbeadda8" class="outline-3">
+<h3 id="orgbeadda8"><span class="section-number-3">8.2</span> 返回乱码</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+只需要两步:
+</p>
+
+<p>
+首先，强制将所有数据使用 UTF8 的格式进行返回:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">resp.setCharacterEncoding<span style="color: #707183;">(</span><span style="color: #8b2252;">"utf-8"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+其次，告知请求的浏览器，使用 UTF8 的格式处理我们返回的数据。下面两种方法是等价的:
+</p>
+<ul class="org-ul">
+<li>可以在返回的 html 中，包含 <code>&lt;meta charset=utf8&gt;</code></li>
+<li>也可以在 Servlet 中指定: <code>resp.setContentType("text/html;charset=utf8")</code></li>
+</ul>
+
+<p>
+总而言之，前后处理数据的格式 <b>要一致</b>，通用的 UTF8 是最好的通用编码格式。
+在任何的 Servlet 返回前，只需要添加如下两句即可:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">resp.setCharacterEncoding<span style="color: #707183;">(</span><span style="color: #8b2252;">"utf-8"</span><span style="color: #707183;">)</span>;
+resp.setContentType<span style="color: #707183;">(</span><span style="color: #8b2252;">"text/html;charset=utf8"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="outline-container-org6c71041" class="outline-2">
+<h2 id="org6c71041"><span class="section-number-2">9</span> 文件夹结构</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+需要明白的:
+</p>
+<ul class="org-ul">
+<li>为什么需要分方法、分类、分包</li>
+<li>怎么去进行划分</li>
+</ul>
+
+
+<figure id="orgc95cd63">
+<img src="img/folder-arch.png" alt="folder-arch.png">
+
+</figure>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> book;
+</pre>
+</div>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-03-09</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>
