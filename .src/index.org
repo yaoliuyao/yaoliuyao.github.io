@@ -2,7 +2,7 @@
 
 #+HTML_HEAD: <meta http-equiv="Cache-Control" content="no-store">
 #+HTML_HEAD: <link rel="stylesheet" href="/html/asset/common.css?8912">
-#+HTML_HEAD: <link rel="stylesheet" href="/yaoliusan/html/asset/common.css?8912">
+#+HTML_HEAD: <link rel="stylesheet" href="/yaoliuyao/html/asset/common.css?8912">
 #+HTML_HEAD: <script async=true src="https://imfine.cc/script/ga/163.js"></script>
 #+HTML_HEAD: <style>
 #+HTML_HEAD: #org-div-home-and-up { display:none; }
@@ -34,7 +34,7 @@
 # #+INCLUDE: "000/.links.org" :lines "2-"
 
 #+HTML: <div><br>
-#+HTML: <h3>笔记目录 <small>(<a href="https://github.com/yaollllllsan/" target="_blank">Github</a>)</small></h3>
+#+HTML: <h3>笔记目录 <small>(<a href="https://github.com/yaoliuyao/" target="_blank">Github</a>)</small></h3>
 #+INCLUDE: ".sitemap.org" :lines "4-8"
 #+HTML: </div>
 

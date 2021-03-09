@@ -1,4 +1,4 @@
-;; YAOLIUSAN
+;; YAOLIUSAN -> YAOLIUYAO
 
 (setq ic/up "imxx.top")
 
@@ -9,8 +9,8 @@
 (setq ic/package-load-alist '(("vterm" . nil)))
 
 (setq ic/favorites '(("tasks.org"               "e:/home/notes/.src/000/tasks.org")
-                     ("host: Github"            "https://github.com/yaollllllsan")
-                     ("host/note: YaollllllSan" "https://yaollllllsan.github.io")))
+                     ("host: Github"            "https://github.com/yaoliuyao")
+                     ("host/note: YaoliuYao"    "https://yaoliuyao.github.io")))
 
 (setq org-directory "e:/home/notes/.src/"
       note-publish-directory "e:/home/notes/html/"

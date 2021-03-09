@@ -1,14 +1,14 @@
 ((nil
-  (user-full-name . "yaoliusan")
+  (user-full-name . "yaoliuyao.net")
   (org-html-head-include-default-style . nil)
   (org-html-htmlize-output-type . inline-css)
   (org-publish-sitemap-custom-function . org-publish-sitemap-2)
   (org-html-head . "<link rel='stylesheet' href='/html/asset/common.css?3344' />
-<link rel='stylesheet' href='/yaoliusan/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliuyao/html/asset/common.css?3344' />
 <script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
-<script src='/yaoliusan/html/asset/common.js'></script>\n")
+<script src='/yaoliuyao/html/asset/common.js'></script>\n")
   (eval . (setq-local org-publish-project-alist
                       `(("_notes_yao63"
                          :base-directory "."
