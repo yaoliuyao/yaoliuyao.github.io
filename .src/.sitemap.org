@@ -2,7 +2,7 @@
 
 - [[file:index.org][163]]
 - dotnet
-  - [[file:dotnet/csharp.org][C#/.net]]
+  - [[file:dotnet/a-dotnet-env.org][.NET 平台]]
 - 旧笔记(163)
   - [[file:旧笔记(163)/index.org][163]]
   - 000
