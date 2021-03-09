@@ -20,7 +20,7 @@
 #+HTML_HEAD: }
 #+HTML_HEAD: </style>
 
-#+HTML: <h2 style="color: red; font-weight: bold; text-shadow: 0 0 1px #ee0000"><img style="width: 98%" src="asset/dream.png"></h4>
+#+HTML: <h2 style="color: red; font-weight: bold; text-shadow: 0 0 1px #ee0000"><img style="width: 98%" src="../asset/dream.png"></h4>
 
 #+HTML: <div id="main">
 
