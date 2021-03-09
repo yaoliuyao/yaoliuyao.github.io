@@ -1,6 +1,9 @@
 #+TITLE: Sitemap for project _notes_yao63
 
 - [[file:index.org][163]]
+- 000
+  - [[file:000/161.org][班级信息]]
+  - [[file:000/tasks.org][任务]]
 - dotnet
   - [[file:dotnet/a-dotnet-env.org][.NET 平台]]
   - [[file:dotnet/b-csharp.org][C# 编程语言]]
