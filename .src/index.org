@@ -35,7 +35,7 @@
 
 #+HTML: <div><br>
 #+HTML: <h3>笔记目录 <small>(<a href="https://github.com/yaoliuyao/" target="_blank">Github</a>)</small></h3>
-#+INCLUDE: ".sitemap.org" :lines "24-"
+#+INCLUDE: ".sitemap.org" :lines "44-"
 #+HTML: </div>
 
 #+HTML: <div><br>
