@@ -27,20 +27,20 @@
 
 #+HTML: <section id="toc">
 
-# #+HTML: <h3>当前任务</h3>
-# #+INCLUDE: "000/tasks.org::#active" :only-contents t
+#+HTML: <h3>当前任务</h3>
+#+INCLUDE: "111/tasks.org::#active" :only-contents t
 
 # #+HTML: <h3>链接资源</h3>
 # #+INCLUDE: "000/.links.org" :lines "2-"
 
 #+HTML: <div><br>
 #+HTML: <h3>笔记目录 <small>(<a href="https://github.com/yaoliuyao/" target="_blank">Github</a>)</small></h3>
-#+INCLUDE: ".sitemap.org" :lines "4-11"
+#+INCLUDE: ".sitemap.org" :lines "4-"
 #+HTML: </div>
 
 #+HTML: <div><br>
 #+HTML: <h3>其他链接</h3>
-#+HTML: <ul><li><a href="旧笔记(163)/index.html">backup of 163's notes</a></li></ul>
+#+HTML: <ul><li><a href="0-163-notes/index.html">backup of 163's notes</a></li></ul>
 #+HTML: </div>
 
 #+HTML: </section>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-03-10 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tomcat</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliuyao/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliuyao/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">Tomcat</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1e2441b">1. Tomcat 的目录结构</a></li>
+<li><a href="#org3eaeee5">2. Tomcat8 修改控制台乱码</a></li>
+<li><a href="#org79c93d9">3. Tomcat 修改端口号</a></li>
+</ul>
+</div>
+</nav>
+
+
+
+<section id="outline-container-org1e2441b" class="outline-2">
+<h2 id="org1e2441b"><span class="section-number-2">1</span> Tomcat 的目录结构</h2>
+<div class="outline-text-2" id="text-1">
+
+<figure id="orge3ba8d9">
+<img src="img/tomcat-ov.png" alt="tomcat-ov.png">
+
+</figure>
+
+<pre class="example" id="org680472a">
+bin - ary          二进制
+conf - iguration   配置
+lib - rary         库
+logs               日志
+temp - orary       临时
+</pre>
+</div>
+</section>
+
+<section id="outline-container-org3eaeee5" class="outline-2">
+<h2 id="org3eaeee5"><span class="section-number-2">2</span> Tomcat8 修改控制台乱码</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+修改 $TOMCAT/conf/logging.properties 下面这句，设为 GBK 编码:
+</p>
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #a0522d;">java.util.logging.ConsoleHandler.encoding</span> = GBK
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org79c93d9" class="outline-2">
+<h2 id="org79c93d9"><span class="section-number-2">3</span> Tomcat 修改端口号</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+修改 $TOMCAT/conf/server.xml 下面这句:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #0000ff;">Connector</span> <span style="color: #a0522d;">port</span>=<span style="color: #8b2252;">"9999"</span> <span style="color: #a0522d;">protocol</span>=<span style="color: #8b2252;">"HTTP/1.1"</span>...
+</pre>
+</div>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-03-10</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>

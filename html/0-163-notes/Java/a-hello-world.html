@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-03-10 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hello Java</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliuyao/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliuyao/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">Hello Java</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgecb6202">1. 图书资料</a></li>
+<li><a href="#org1025997">2. 第一件事</a></li>
+<li><a href="#org68f0c2d">3. 第一行代码</a></li>
+<li><a href="#orge232879">4. 方法内部有什么？</a>
+<ul>
+<li><a href="#orgaaa666e">4.1. 语句 (做某件事，声明、设定、调用方法等普通语句)</a></li>
+<li><a href="#org8779396">4.2. 循环 (反复做某件事，for/while/doWhile)</a></li>
+<li><a href="#org32c0ed5">4.3. 条件分支 (在适当的条件下做某件事, if/switch)</a></li>
+<li><a href="#org520c483">4.4. [TestCase] DooBeeDooBeeDo</a></li>
+<li><a href="#org79800f7">4.5. [TestCase] Beer Song, 啤酒之歌</a></li>
+<li><a href="#org5e3aa96">4.6. [TestCase] 带你一起去装酷</a></li>
+</ul>
+</li>
+<li><a href="#org8b5ac69">5. 没有鱼的鱼香肉丝 (Class vs Object)</a>
+<ul>
+<li><a href="#orgb61c56b">5.1. 椅子大战 (阿珠 vs 阿花 vs [阿娇])</a></li>
+<li><a href="#org63301e2">5.2. [游戏] 猜数字</a></li>
+</ul>
+</li>
+<li><a href="#orgc4d323b">6. 变量与类型</a>
+<ul>
+<li><a href="#orge05b34d">6.1. 这段代码为啥会出错？</a></li>
+</ul>
+</li>
+<li><a href="#org3906bb0">7. 对象的内部: 方法和实例变量</a></li>
+<li><a href="#org4506571">8. getter/setter, 封装 (Capsulation) 的开始</a></li>
+<li><a href="#orgf3e07dd">9. 数组</a></li>
+<li><a href="#org1c118af">10. 转换</a></li>
+</ul>
+</div>
+</nav>
+
+
+<section id="outline-container-orgecb6202" class="outline-2">
+<h2 id="orgecb6202"><span class="section-number-2">1</span> 图书资料</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="../asset/Head First Java 中文版.pdf">Head First Java 中文版</a></li>
+<li>Think in Java (Java 编程思想)</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org1025997" class="outline-2">
+<h2 id="org1025997"><span class="section-number-2">2</span> 第一件事</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+安装环境:
+</p>
+<ul class="org-ul">
+<li>如果你只是一个用户的话，你只需要安装软件 jre (Java 运行环境)，得到一个主要命令 <code>java</code></li>
+<li>如果你是一个开发者的话，你需要安装 jdk (Java 开发套装, Java Development Kit)，得到额外的命令 <code>javac</code></li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org68f0c2d" class="outline-2">
+<h2 id="org68f0c2d"><span class="section-number-2">3</span> 第一行代码</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+必须要穿衣服的 Java:
+</p>
+<ul class="org-ul">
+<li>源文件 (*.java)</li>
+<li>类 (Class)</li>
+<li>方法 (Method)</li>
+<li>语句 (Statement)</li>
+</ul>
+
+<p>
+第一步，编写代码 X.java:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">X</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">bark1</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">naim</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">bark</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26041;&#27861;&#26368;&#37325;&#35201;&#30340;&#26159;&#20837;&#21442;&#21644;&#36820;&#22238;&#20540;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20854;&#20182;&#30340;&#20462;&#39280;&#65292;&#27604;&#22914;:</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">- public &#34920;&#31034;&#21487;&#20197;&#20844;&#24320;&#35775;&#38382;&#30340;&#26435;&#38480;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">- static &#34920;&#31034;&#65292;&#36825;&#20010;&#26041;&#27861;&#26159;&#8220;&#38745;&#24577;&#30340;&#8221;&#65292;&#20063;&#23601;&#26159;&#35828;&#65292;&#23427;&#23601;&#22312;&#37027;&#37324;&#19981;&#22686;&#19981;&#28781;&#65292;&#19981;&#38656;&#35201; new &#23601;&#21487;&#20197;&#35843;&#29992;</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">String</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">args &#34920;&#31034;&#30340;&#26159;&#20256;&#20837;&#30340;&#21442;&#25968;</span>
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"Hello "</span> + args<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#32422;&#20250;: "</span> + args<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+第二步，编译 (javac):
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #228b22;">javac</span> X.<span style="color: #a0522d;">java</span>  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24685;&#21916;&#24744;&#33719;&#21462;&#19968;&#20010; X.class &#25991;&#20214;</span>
+</pre>
+</div>
+
+<p>
+第三步，运行 (java):
+</p>
+<div class="org-src-container">
+<pre class="src src-java">java X <span style="color: #228b22;">&#23567;&#32418;</span> <span style="color: #a0522d;">&#26202;&#19978;&#19968;&#36215;&#30475;&#39118;&#26223;</span>?
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orge232879" class="outline-2">
+<h2 id="orge232879"><span class="section-number-2">4</span> 方法内部有什么？</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgaaa666e" class="outline-3">
+<h3 id="orgaaa666e"><span class="section-number-3">4.1</span> 语句 (做某件事，声明、设定、调用方法等普通语句)</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = 3;
+<span style="color: #228b22;">String</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"Dirk"</span>;
+x = x * 17;
+System.out.print<span style="color: #707183;">(</span><span style="color: #8b2252;">"x is "</span> + x<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">double</span> <span style="color: #a0522d;">d</span> = Math.random<span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8779396" class="outline-3">
+<h3 id="org8779396"><span class="section-number-3">4.2</span> 循环 (反复做某件事，for/while/doWhile)</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = 13;
+<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span>x &gt; 12<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    System.out.println<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"hhaha"</span><span style="color: #7388d6;">)</span>;
+    x = x - 1;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = 0; x &lt; 10; x = x + 1<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    System.out.print<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"x is now "</span> + x<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org32c0ed5" class="outline-3">
+<h3 id="org32c0ed5"><span class="section-number-3">4.3</span> 条件分支 (在适当的条件下做某件事, if/switch)</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = 13;
+<span style="color: #228b22;">String</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"Dirk"</span>;
+
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>x == 10<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    System.out.println<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"x must be 10"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #707183;">{</span>
+    System.out.println<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"x isn't 10"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>x &lt; 3<span style="color: #7388d6;">)</span> &amp; <span style="color: #7388d6;">(</span>name.equals<span style="color: #909183;">(</span><span style="color: #8b2252;">"Dirk"</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    System.out.println<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"Gently"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+System.out.println<span style="color: #707183;">(</span><span style="color: #8b2252;">"this line runs no matter what"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org520c483" class="outline-3">
+<h3 id="org520c483"><span class="section-number-3">4.4</span> [TestCase] DooBeeDooBeeDo</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+填空，要求输出 DooBeeDooBeeDo:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span> <span style="color: #707183;">(</span><span style="color: #228b22;">String</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = 1;
+    <span style="color: #a020f0;">while</span> <span style="color: #7388d6;">(</span>x &lt; <span style="color: #228b22;">__</span> <span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        System.out.__<span style="color: #909183;">(</span><span style="color: #8b2252;">"Doo"</span><span style="color: #909183;">)</span>;
+        System.out.__<span style="color: #909183;">(</span><span style="color: #8b2252;">"Bee"</span><span style="color: #909183;">)</span>;
+        x = x + 1; <span style="color: #b22222;">// </span><span style="color: #b22222;">2</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>x == __ <span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        System.out.print<span style="color: #909183;">(</span><span style="color: #8b2252;">"Do"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79800f7" class="outline-3">
+<h3 id="org79800f7"><span class="section-number-3">4.5</span> [TestCase] Beer Song, 啤酒之歌</h3>
+<div class="outline-text-3" id="text-4-5">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span> <span style="color: #707183;">(</span><span style="color: #228b22;">String</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">beerNum</span> = 99;
+    <span style="color: #228b22;">String</span> <span style="color: #a0522d;">word</span> = <span style="color: #8b2252;">"bottles"</span>;
+
+    <span style="color: #a020f0;">while</span> <span style="color: #7388d6;">(</span>beerNum &gt; 0<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>beerNum == 1<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            word = <span style="color: #8b2252;">"bottle"</span>;
+        <span style="color: #909183;">}</span>
+        System.out.println<span style="color: #909183;">(</span>beerNum + <span style="color: #8b2252;">" "</span> + word + <span style="color: #8b2252;">" of beer on the wall"</span><span style="color: #909183;">)</span>;
+        System.out.println<span style="color: #909183;">(</span>beerNum + <span style="color: #8b2252;">" "</span> + word + <span style="color: #8b2252;">" of beer."</span><span style="color: #909183;">)</span>;
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"Take one down."</span><span style="color: #909183;">)</span>;
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"Pass it around."</span><span style="color: #909183;">)</span>;
+        beerNum = beerNum - 1;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>beerNum &gt; 0<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            System.out.println<span style="color: #709870;">(</span>beerNum + <span style="color: #8b2252;">" "</span> + word + <span style="color: #8b2252;">" of beer on the wall"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #909183;">{</span>
+            System.out.println<span style="color: #709870;">(</span><span style="color: #8b2252;">"No more bottles of beer on the wall"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5e3aa96" class="outline-3">
+<h3 id="org5e3aa96"><span class="section-number-3">4.6</span> [TestCase] 带你一起去装酷</h3>
+<div class="outline-text-3" id="text-4-6">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span> <span style="color: #707183;">(</span><span style="color: #228b22;">String</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23383;&#31526;&#20018;&#25968;&#32452;</span>
+    <span style="color: #228b22;">String</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">wordListOne</span> = <span style="color: #7388d6;">{</span>
+        <span style="color: #8b2252;">"24/7"</span>,<span style="color: #8b2252;">"multiTier"</span>,<span style="color: #8b2252;">"30,000 foot"</span>,<span style="color: #8b2252;">"B-to-B"</span>,<span style="color: #8b2252;">"win-win"</span>,<span style="color: #8b2252;">"frontend"</span>,
+        <span style="color: #8b2252;">"web-based"</span>,<span style="color: #8b2252;">"pervasive"</span>, <span style="color: #8b2252;">"smart"</span>, <span style="color: #8b2252;">"sixsigma"</span>,<span style="color: #8b2252;">"critical-path"</span>, <span style="color: #8b2252;">"dynamic"</span>
+    <span style="color: #7388d6;">}</span>;
+    <span style="color: #228b22;">String</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">wordListTwo</span> = <span style="color: #7388d6;">{</span>
+        <span style="color: #8b2252;">"empowered"</span>, <span style="color: #8b2252;">"sticky"</span>,
+        <span style="color: #8b2252;">"value-added"</span>, <span style="color: #8b2252;">"oriented"</span>, <span style="color: #8b2252;">"centric"</span>, <span style="color: #8b2252;">"distributed"</span>,
+        <span style="color: #8b2252;">"clustered"</span>, <span style="color: #8b2252;">"branded"</span>,<span style="color: #8b2252;">"outside-the-box"</span>, <span style="color: #8b2252;">"positioned"</span>,
+        <span style="color: #8b2252;">"networked"</span>, <span style="color: #8b2252;">"focused"</span>, <span style="color: #8b2252;">"leveraged"</span>, <span style="color: #8b2252;">"aligned"</span>,
+        <span style="color: #8b2252;">"targeted"</span>, <span style="color: #8b2252;">"shared"</span>, <span style="color: #8b2252;">"cooperative"</span>, <span style="color: #8b2252;">"accelerated"</span>
+    <span style="color: #7388d6;">}</span>;
+    <span style="color: #228b22;">String</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">wordListThree</span> = <span style="color: #7388d6;">{</span>
+        <span style="color: #8b2252;">"process"</span>, <span style="color: #8b2252;">"tippingpoint"</span>, <span style="color: #8b2252;">"solution"</span>, <span style="color: #8b2252;">"architecture"</span>,
+        <span style="color: #8b2252;">"core competency"</span>, <span style="color: #8b2252;">"strategy"</span>, <span style="color: #8b2252;">"mindshare"</span>, <span style="color: #8b2252;">"portal"</span>, <span style="color: #8b2252;">"space"</span>,
+        <span style="color: #8b2252;">"vision"</span>, <span style="color: #8b2252;">"paradigm"</span>, <span style="color: #8b2252;">"mission"</span>
+    <span style="color: #7388d6;">}</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20998;&#21035;&#33719;&#21462;&#38271;&#24230;</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">oneLength</span> = wordListOne.length;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">twoLength</span> = wordListTwo.length;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">threeLength</span> = wordListThree.length;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#33719;&#21462;&#19968;&#20010;&#38543;&#26426;&#25968;</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rand1</span> = <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">(</span>Math.random<span style="color: #909183;">()</span> * oneLength<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rand2</span> = <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">(</span>Math.random<span style="color: #909183;">()</span> * twoLength<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rand3</span> = <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">(</span>Math.random<span style="color: #909183;">()</span> * threeLength<span style="color: #7388d6;">)</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25343;&#21462;&#38543;&#26426;&#20803;&#32032;&#65292;&#25340;&#25104;&#19968;&#21477;&#37239;&#37239;&#30340;&#35805;</span>
+    <span style="color: #228b22;">String</span> <span style="color: #a0522d;">phrase</span> = wordListOne<span style="color: #7388d6;">[</span>rand1<span style="color: #7388d6;">]</span> + <span style="color: #8b2252;">" "</span> + wordListTwo<span style="color: #7388d6;">[</span>rand2<span style="color: #7388d6;">]</span> + <span style="color: #8b2252;">" "</span> + wordListThree<span style="color: #7388d6;">[</span>rand3<span style="color: #7388d6;">]</span>;
+    System.out.println<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"What we need is a "</span> + phrase<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org8b5ac69" class="outline-2">
+<h2 id="org8b5ac69"><span class="section-number-2">5</span> 没有鱼的鱼香肉丝 (Class vs Object)</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>类 (class) 是对象 (object) 的蓝图 (设计稿)</li>
+<li>JVM (厨子) 根据类 (菜谱) 的描述创建出具体的对象 (鱼香肉丝)</li>
+</ul>
+</div>
+
+<div id="outline-container-orgb61c56b" class="outline-3">
+<h3 id="orgb61c56b"><span class="section-number-3">5.1</span> 椅子大战 (阿珠 vs 阿花 vs [阿娇])</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+阿珠的代码:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000ff;">rotate</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">type</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">y</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">1 &#27491;&#26041;&#24418; 2 &#22278;&#24418; 3 &#19977;&#35282;&#24418;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36873;&#25321; 360</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>type == &#20081;&#19971;&#20843;&#31967;<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">ksdj</span>
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>type == &#19977;&#35282;&#24418;<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>type == &#27491;&#19977;&#35282;&#24418;<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">ksjdksjdfksj</span>
+        <span style="color: #909183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">ksdjfksdjfksdjfksdj</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">&#21407;&#20808;</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #0000ff;">playSound</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">type</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25773;&#25918;&#30456;&#24212;&#30340;&#38899;&#39057;&#25991;&#20214;</span>
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>type == &#22278;&#24418;<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>type == &#27491;&#19977;&#35282;&#24418;<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">ksjdksjdfksj</span>
+        <span style="color: #909183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">ksdjfksdjfksdjfksdj</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+rotate<span style="color: #707183;">(</span>1, 0, 0<span style="color: #707183;">)</span>;
+playSound<span style="color: #707183;">(</span>1<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+阿花的代码:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Shape</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">rotate</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> kkkkkkk <span style="color: #7388d6;">}</span>
+    <span style="color: #0000ff;">playSound</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> kkkkk <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Square</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">Share</span> <span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Triangle</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">rotate</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #b22222;">/* </span><span style="color: #b22222;">&#33258;&#24049;&#30340;&#26059;&#36716;&#26041;&#24335;</span><span style="color: #b22222;"> */</span> <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">ZhengTriangle</span> <span style="color: #a020f0;">extends</span> <span style="color: #228b22;">Triangle</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">eat</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Circle</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">playSound</span> <span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #b22222;">/* </span><span style="color: #b22222;">&#33258;&#24049;&#30340;&#21457;&#22768;&#26041;&#24335;</span><span style="color: #b22222;"> */</span> <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Amoeba</span> <span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">xPoint</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">yPoint</span>;
+
+    <span style="color: #0000ff;">rotate</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>
+    <span style="color: #0000ff;">playSound</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+裁判说:
+</p>
+<ul class="org-ul">
+<li>阿珠的代码，思路简单直接，是面向过程的典型写法</li>
+<li>阿珠的代码，层层 if/else 扭成一团，容易出错，不易扩展和修改，随着代码变多越来越难维护</li>
+<li>阿花的代码，非常自然的面向对象写法</li>
+<li>阿花的代码，通过一个个的类，将不同的逻辑 <b>隔离</b> 开来，又通过继承， <b>复用</b> 了某些逻辑防止冗余</li>
+<li>阿花的代码，由于代码的隔离性，可以放心大胆添加新的功能而不需要担心对其他的代码造成破坏。
+项目越大，好处越多</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org63301e2" class="outline-3">
+<h3 id="org63301e2"><span class="section-number-3">5.2</span> [游戏] 猜数字</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+游戏的主体逻辑 GuessGame:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">GuessGame</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">startGame</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">Player</span> <span style="color: #a0522d;">p1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Player</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">Player</span> <span style="color: #a0522d;">p2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Player</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">Player</span> <span style="color: #a0522d;">p3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Player</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">guessp1</span> = 0; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992;&#21464;&#37327;&#34920;&#36798;&#29468;&#27979;&#30340;&#20540;</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">guessp2</span> = 0;
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">guessp3</span> = 0;
+
+        <span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">p1isRight</span> = <span style="color: #008b8b;">false</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#29468;&#20013;&#19982;&#21542;</span>
+        <span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">p2isRight</span> = <span style="color: #008b8b;">false</span>;
+        <span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">p3isRight</span> = <span style="color: #008b8b;">false</span>;
+
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">targetNumber</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">int</span><span style="color: #909183;">)</span> <span style="color: #909183;">(</span>Math.random<span style="color: #709870;">()</span> * 10<span style="color: #909183;">)</span>;
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#35201;&#29468;&#27979;&#30340;&#25968;&#23383;&#26159;: "</span> + targetNumber<span style="color: #909183;">)</span>;
+
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#29468;&#27979;&#65292;&#20174; 0 &#21040; 9..."</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">while</span><span style="color: #909183;">(</span><span style="color: #008b8b;">true</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            guessp1 = p1.guess<span style="color: #709870;">()</span>;
+            System.out.println<span style="color: #709870;">(</span><span style="color: #8b2252;">"P1 &#29468;&#30340;&#26159;: "</span> + guessp1<span style="color: #709870;">)</span>;
+
+            guessp2 = p2.guess<span style="color: #709870;">()</span>;
+            System.out.println<span style="color: #709870;">(</span><span style="color: #8b2252;">"P2 &#29468;&#30340;&#26159;: "</span> + guessp2<span style="color: #709870;">)</span>;
+
+            guessp3 = p3.guess<span style="color: #709870;">()</span>;
+            System.out.println<span style="color: #709870;">(</span><span style="color: #8b2252;">"P3 &#29468;&#30340;&#26159;: "</span> + guessp3<span style="color: #709870;">)</span>;
+
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>guessp1 == targetNumber<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+                p1isRight = <span style="color: #008b8b;">true</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>guessp2 == targetNumber<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+                p2isRight = <span style="color: #008b8b;">true</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>guessp3 == targetNumber<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+                p3isRight = <span style="color: #008b8b;">true</span>;
+            <span style="color: #709870;">}</span>
+
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>p1isRight || p2isRight || p3isRight<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+                System.out.println<span style="color: #907373;">(</span><span style="color: #8b2252;">"Wo~~~~"</span><span style="color: #907373;">)</span>;
+                p1.qingzhu<span style="color: #907373;">()</span>;
+                p2.qingzhu<span style="color: #907373;">()</span>;
+                p3.qingzhu<span style="color: #907373;">()</span>;
+                <span style="color: #a020f0;">break</span>;
+            <span style="color: #709870;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #709870;">{</span>
+                System.out.println<span style="color: #907373;">(</span><span style="color: #8b2252;">"&#37117;&#29468;&#38169;&#20102;&#65292;&#32487;&#32493;&#29468;"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+玩家的相关动作 Player:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Player</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">guess</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">number</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">int</span><span style="color: #909183;">)</span> <span style="color: #909183;">(</span>Math.random<span style="color: #709870;">()</span> * 8<span style="color: #909183;">)</span>;
+        System.out.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#29468;&#24212;&#35813;&#26159;: "</span> + number<span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> number;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">qingzhu</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+      <span style="color: #b22222;">// </span><span style="color: #b22222;">............</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+游戏入口 GameLauncher:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">GameLauncher</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">String</span>... <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31243;&#24207;&#30340;&#25191;&#34892;&#20837;&#21475;</span>
+        <span style="color: #228b22;">GuessGame</span> <span style="color: #a0522d;">game</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">GuessGame</span><span style="color: #909183;">()</span>;
+        game.startGame<span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<section id="outline-container-orgc4d323b" class="outline-2">
+<h2 id="orgc4d323b"><span class="section-number-2">6</span> 变量与类型</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+类型分两种:
+</p>
+<ul class="org-ul">
+<li>primitive 类型:
+<ul class="org-ul">
+<li>boolean</li>
+<li>char (2)</li>
+<li>byte(1)/short(2)/int(4)/long(8)</li>
+<li>float(4)/double(8)</li>
+</ul></li>
+<li>Reference 类型
+<ul class="org-ul">
+<li>除了上述的基本类型，其他都是引用类型</li>
+<li>可以想象成遥控器</li>
+<li>字符串是引用类型</li>
+<li>数组也是引用类型</li>
+</ul></li>
+</ul>
+
+<p>
+Dog[] dogs = new Dog[7];
+</p>
+
+
+<figure id="org54d28d4">
+<img src="img/oimg_20201014_075539.png" alt="oimg_20201014_075539.png">
+
+</figure>
+
+
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">buer</span>;
+buer = <span style="color: #008b8b;">true</span>;
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span>;
+x = 234;
+
+<span style="color: #228b22;">byte</span> <span style="color: #a0522d;">b</span> = 89;
+<span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">isFun</span> = <span style="color: #008b8b;">true</span>;
+<span style="color: #228b22;">double</span> <span style="color: #a0522d;">d</span> = 3456.98;
+<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> = &#270;f&#271;;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">z</span> = x;
+<span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">isPunkRock</span>;
+isPunkRock = <span style="color: #008b8b;">false</span>;
+<span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">powerOn</span>;
+powerOn = isFun;
+<span style="color: #228b22;">long</span> <span style="color: #a0522d;">big</span> = 3456789;
+<span style="color: #228b22;">float</span> <span style="color: #a0522d;">f</span> = 32.5f; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#27880;&#24847;&#65292;&#24517;&#39035;&#20197; f &#32467;&#23614;</span>
+
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>0.1 + 0.2 == 0.3<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    System.out.println<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #707183;">{</span>
+    System.out.println<span style="color: #7388d6;">(</span>0.1 + 0.2<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge05b34d" class="outline-3">
+<h3 id="orge05b34d"><span class="section-number-3">6.1</span> 这段代码为啥会出错？</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+建立正确的内存观:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Books</span> <span style="color: #707183;">{</span>
+    <span style="color: #228b22;">String</span> <span style="color: #a0522d;">title</span>;
+    <span style="color: #228b22;">String</span> <span style="color: #a0522d;">author</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Main</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">String</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">Books</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">books</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Books</span><span style="color: #909183;">[</span>3<span style="color: #909183;">]</span>;
+
+<span style="color: #b22222;">//        </span><span style="color: #b22222;">books[0] = new Books();</span>
+<span style="color: #b22222;">//        </span><span style="color: #b22222;">books[1] = new Books();</span>
+<span style="color: #b22222;">//        </span><span style="color: #b22222;">books[2] = new Books();</span>
+
+        books<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span>.title = <span style="color: #8b2252;">"Java"</span>;
+        books<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span>.title = <span style="color: #8b2252;">"Gatsby"</span>;
+        books<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span>.title = <span style="color: #8b2252;">"Cookbook"</span>;
+
+        books<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span>.author = <span style="color: #8b2252;">"bob"</span>;
+        books<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span>.author = <span style="color: #8b2252;">"sue"</span>;
+        books<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span>.author = <span style="color: #8b2252;">"ian"</span>;
+
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = 0;
+        <span style="color: #a020f0;">while</span> <span style="color: #909183;">(</span>x &lt; 3<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            System.out.print<span style="color: #709870;">(</span>books<span style="color: #907373;">[</span>x<span style="color: #907373;">]</span>.title<span style="color: #709870;">)</span>;
+            System.out.print<span style="color: #709870;">(</span><span style="color: #8b2252;">" by "</span><span style="color: #709870;">)</span>;
+            System.out.println<span style="color: #709870;">(</span>books<span style="color: #907373;">[</span>x<span style="color: #907373;">]</span>.author<span style="color: #709870;">)</span>;
+            x = x + 1;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<section id="outline-container-org3906bb0" class="outline-2">
+<h2 id="org3906bb0"><span class="section-number-2">7</span> 对象的内部: 方法和实例变量</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+对象组成:
+</p>
+<ul class="org-ul">
+<li>实例变量 (状态)</li>
+<li>方法 (行为)</li>
+</ul>
+
+<p>
+类:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Dog</span> <span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20869;&#37096;&#29366;&#24577;&#65292;&#23454;&#20363;&#21464;&#37327;</span>
+    <span style="color: #228b22;">String</span> <span style="color: #a0522d;">name</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">weight</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#34892;&#20026;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#34892;&#20026;&#21463; 1) &#20869;&#37096;&#29366;&#24577; 2) &#22806;&#37096;&#21442;&#25968; &#21452;&#37325;&#24433;&#21709;</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">makeNoice</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">times</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38544;&#34255;&#35821;&#21477; times = 111111111</span>
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; <span style="color: #228b22;">times</span>; i++<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>weight &gt; 100<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+                System.out.println<span style="color: #907373;">(</span><span style="color: #8b2252;">"&#21483;"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #709870;">{</span>
+                System.out.println<span style="color: #907373;">(</span><span style="color: #8b2252;">"wooooo."</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">return</span> 0;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+实例:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#26681;&#25454;&#35774;&#35745;&#22270;&#65292;&#23436;&#25104;&#35774;&#35745;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26681;&#25454;&#33756;&#35889;&#65292;&#28818;&#33756;</span>
+<span style="color: #228b22;">Dog</span> <span style="color: #a0522d;">dog</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dog</span><span style="color: #707183;">()</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21021;&#22987;&#21270;&#20854;&#20869;&#37096;&#29366;&#24577;</span>
+dog.weight = 33;
+dog.name = <span style="color: #8b2252;">"&#23567;&#26126;"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23637;&#31034;&#20854;&#34892;&#20026; (&#20256;&#20837;&#20102;&#22806;&#37096;&#30340;&#25968;&#25454; 111111111)</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">result</span> = dog.makeNoice<span style="color: #707183;">(</span>111111111<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+变量分为两种:
+</p>
+<ol class="org-ol">
+<li>实例的变量
+<ul class="org-ul">
+<li>如果没有初始化值，JVM 会给其赋予默认值:
+<ul class="org-ul">
+<li>int: 0</li>
+<li>float: 0.0</li>
+<li>boolean: false</li>
+<li>对象: null</li>
+</ul></li>
+</ul></li>
+<li>方法内部的变量 (又称局部变量)
+<ul class="org-ul">
+<li>不允许不初始化，否则，编译不通过</li>
+</ul></li>
+</ol>
+</div>
+</section>
+
+<section id="outline-container-org4506571" class="outline-2">
+<h2 id="org4506571"><span class="section-number-2">8</span> getter/setter, 封装 (Capsulation) 的开始</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+两种说法:
+</p>
+<ul class="org-ul">
+<li>逻辑上，将一些强相关的数据以及它对应的方法放在一起，便于管理</li>
+<li>安全性，将一些没必要给别人看的藏起来，将一些需要给别人看的暴露出来</li>
+</ul>
+
+<p>
+怎样才能将数据进行隐藏呢:
+</p>
+<ol class="org-ol">
+<li>将实例变量标志为 private (private/默认/protected/public)</li>
+<li>通过方法达到间接操作数据的目的 (getter/setter)</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Dog</span> <span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31169;&#26377;&#21270;</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">weight</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25552;&#20379;&#25509;&#21475;</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setWeight</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">weight</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>weight &gt; 0 &amp;&amp; weight &lt; 100<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">this</span>.weight = weight;
+        <span style="color: #909183;">}</span> <span style="color: #a020f0;">else</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">RuntimeException</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#24744;&#26159;&#19981;&#26159;&#23545;&#20307;&#37325;&#26377;&#25152;&#35823;&#35299;&#21834;?"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">getWeight</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        System.err.println<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#35686;&#21578;&#65292;&#26377;&#20154;&#22312;&#20599;&#31397;&#20320;&#30340;&#20307;&#37325;&#65281;&#65281;&#65281;&#65281;"</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> weight;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+例子:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Cat</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">name</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">String</span> <span style="color: #a0522d;">type</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">float</span> <span style="color: #a0522d;">weight</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">growup</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">getId</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> id;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setId</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">this</span>.id = id;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">getName</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> name;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setName</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">String</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>name.equals<span style="color: #709870;">(</span><span style="color: #8b2252;">""</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">this</span>.name = <span style="color: #8b2252;">"hahaha"</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">this</span>.name = name;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">getType</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> type;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setType</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">String</span> <span style="color: #a0522d;">type</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">this</span>.type = type;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">float</span> <span style="color: #0000ff;">getWeight</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> weight;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setWeight</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">float</span> <span style="color: #a0522d;">weight</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">this</span>.weight = weight;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">boolean</span> <span style="color: #0000ff;">isGrowup</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> growup;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">setGrowup</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">boolean</span> <span style="color: #a0522d;">growup</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">this</span>.growup = growup;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</section>
+
+
+
+<section id="outline-container-orgf3e07dd" class="outline-2">
+<h2 id="orgf3e07dd"><span class="section-number-2">9</span> 数组</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">aaa</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #707183;">[</span>4<span style="color: #707183;">]</span>;
+aaa<span style="color: #707183;">[</span>0<span style="color: #707183;">]</span> = 1;
+aaa<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> = 122;
+aaa<span style="color: #707183;">[</span>2<span style="color: #707183;">]</span> = 3;
+aaa<span style="color: #707183;">[</span>3<span style="color: #707183;">]</span> = 1;
+
+<span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">bbb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #707183;">{</span>1, 2, 3, 4<span style="color: #707183;">}</span>;
+<span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">ccc</span> = <span style="color: #707183;">{</span>1, 2, 3, 4<span style="color: #707183;">}</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">var ccc = [1, 2, 3, 4]; var ccc = { k: v }</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org1c118af" class="outline-2">
+<h2 id="org1c118af"><span class="section-number-2">10</span> 转换</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#23383;&#31526;&#20018;&#36716;&#25442;&#20026;&#25972;&#25968;&#12289;&#28014;&#28857;&#25968;&#31561;</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = Integer.parseInt<span style="color: #707183;">(</span><span style="color: #8b2252;">"2332323"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">float</span> <span style="color: #a0522d;">r</span> = Float.parseFloat<span style="color: #707183;">(</span><span style="color: #8b2252;">"2332323"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-03-10</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>
