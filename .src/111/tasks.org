@@ -7,8 +7,9 @@
 :CUSTOM_ID: active
 :END:
 
-熟悉 VS，尝试创建各种类型的项目:
-- 控制台应用 (Console)
+熟悉 VS2019，尝试创建各种类型的项目:
+- 控制台应用 for .NET Framework (Console)
+- 控制台应用 for .NET Core (Console)
 - 窗体应用 (WinForm)
 - 桌面应用程序 (WPF)
 - Web 应用 (MVC)
