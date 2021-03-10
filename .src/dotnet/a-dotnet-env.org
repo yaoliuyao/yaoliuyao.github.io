@@ -53,3 +53,36 @@ Java:
 - 下载并安装 .net core 的 runtime + sdk
 - 安装 VSCode 并安装 C# 的插件  
   
+
+* .NET 平台的项目
+** Console 控制台应用
+
+基于命令行窗口的应用。
+
+** WinForm 窗体应用
+
+基本特点:
+- 简单，直观
+- 效率高，比较快
+
+** WPF 应用程序
+
+- MVVM
+- 数据驱动
+- 通过 xaml 文件进行视图分离
+
+** ASP.NET WebForm
+
+比较老的，跟 WinForm 类似的一种 BS 开发方式。
+
+** ASP.NET MVC
+
+使用 MVC 三层结构，对逻辑和视图进行有效分离。
+
+** Xamarin
+
+移动开发，安卓或 iOS
+
+** Unity3D
+
+游戏开发

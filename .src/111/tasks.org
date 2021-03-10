@@ -1,10 +1,19 @@
 #+TITLE: 任务和作业
 
 
-* [2021-03-09 Tue]
+
+* [2021-03-10 Wed]
 :PROPERTIES:
 :CUSTOM_ID: active
 :END:
+
+熟悉 VS，尝试创建各种类型的项目:
+- 控制台应用 (Console)
+- 窗体应用 (WinForm)
+- 桌面应用程序 (WPF)
+- Web 应用 (MVC)
+
+* [2021-03-09 Tue]
 
 采集 C# 和 dotnet 相关的招聘信息，了解企业需求，做好学习准备。
 
