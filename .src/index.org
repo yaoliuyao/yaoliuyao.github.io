@@ -31,7 +31,7 @@
 #+INCLUDE: "111/tasks.org::#active" :only-contents t
 
 # #+HTML: <h3>链接资源</h3>
-# #+INCLUDE: "000/.links.org" :lines "2-"
+# #+INCLUDE: "111/.links.org" :lines "2-"
 
 #+HTML: <div><br>
 #+HTML: <h3>笔记目录 <small>(<a href="https://github.com/yaoliuyao/" target="_blank">Github</a>)</small></h3>
@@ -46,7 +46,7 @@
 #+HTML: </section>
 
 # #+HTML: <aside>
-# #+INCLUDE: "000/.group.org"
+# #+INCLUDE: "111/.group.org"
 # #+HTML: </aside>
 
 #+HTML: </div>
