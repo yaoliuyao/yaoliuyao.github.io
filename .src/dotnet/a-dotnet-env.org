@@ -52,7 +52,16 @@ Java:
 使用 .net core 开发:
 - 下载并安装 .net core 的 runtime + sdk
 - 安装 VSCode 并安装 C# 的插件  
-  
+
+dotnet 命令:
+#+begin_src sh
+  dotnet new console # 在当前文件夹创建一个 Console 类型的项目
+  dotnet new mvc/wpf # 创建其他类型的项目
+  dotnet new console -o Hello # 创建一个 Hello 文件夹，包含 Console 类型的项目
+
+  dotnet build
+  dotnet run  # dotnet build && cd ... && xxx.exe
+#+end_src  
 
 * .NET 平台的项目
 ** Console 控制台应用
@@ -86,3 +95,4 @@ Java:
 ** Unity3D
 
 游戏开发
+
