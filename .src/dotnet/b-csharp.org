@@ -1,1 +1,26 @@
 #+TITLE: C# 编程语言
+
+
+
+* case
+
+#+begin_src csharp
+  string aFriend = "比尔";
+  string bFriend = "小明";
+  Console.WriteLine("Hello {1}, 我是 {0}", aFriend, bFriend);
+  Console.WriteLine($"Hello {bFriend}, 我是 {aFriend}");
+  Console.WriteLine("Hello " + bFriend + ", 我是 " + aFriend);
+
+  Console.WriteLine("Hello " + bFriend + ", 我有 " + (aFriend.Length + 3) + " 长");
+  Console.WriteLine($"Hello {bFriend}, 我有 {aFriend.Length + 3} 长");
+
+  string greeting = "      Hello World!       ";
+  string greetingTrimed = greeting.Trim();
+  Console.WriteLine($"[{greetingTrimed},{greeting}]");
+
+  string songLyrics = "You say goodbye, and I say hello";
+  Console.WriteLine(songLyrics.Contains("goodbye"));
+  Console.WriteLine(songLyrics.Contains("greetings"));
+  Console.WriteLine(songLyrics.StartsWith("You"));
+  Console.WriteLine(songLyrics.EndsWith("goodbye"));
+#+end_src

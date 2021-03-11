@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-09 -->
+<!-- 2021-03-11 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C# 编程语言</title>
@@ -38,10 +38,47 @@
 <div id="content">
 <header>
 <h1 class="title">C# 编程语言</h1>
-</header></div>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga4e8b1d">1. case</a></li>
+</ul>
+</div>
+</nav>
+
+
+
+<section id="outline-container-orga4e8b1d" class="outline-2">
+<h2 id="orga4e8b1d"><span class="section-number-2">1</span> case</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">aFriend</span> = <span style="color: #8b2252;">"&#27604;&#23572;"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">bFriend</span> = <span style="color: #8b2252;">"&#23567;&#26126;"</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Hello {1}, &#25105;&#26159; {0}"</span>, aFriend, bFriend<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"Hello {bFriend}, &#25105;&#26159; {aFriend}"</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Hello "</span> + bFriend + <span style="color: #8b2252;">", &#25105;&#26159; "</span> + aFriend<span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Hello "</span> + bFriend + <span style="color: #8b2252;">", &#25105;&#26377; "</span> + <span style="color: #7388d6;">(</span>aFriend.Length + 3<span style="color: #7388d6;">)</span> + <span style="color: #8b2252;">" &#38271;"</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"Hello {bFriend}, &#25105;&#26377; {aFriend.Length + 3} &#38271;"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">greeting</span> = <span style="color: #8b2252;">"      Hello World!       "</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">greetingTrimed</span> = greeting.<span style="color: #0000ff;">Trim</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"[{greetingTrimed},{greeting}]"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">songLyrics</span> = <span style="color: #8b2252;">"You say goodbye, and I say hello"</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>songLyrics.<span style="color: #0000ff;">Contains</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"goodbye"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>songLyrics.<span style="color: #0000ff;">Contains</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"greetings"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>songLyrics.<span style="color: #0000ff;">StartsWith</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"You"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>songLyrics.<span style="color: #0000ff;">EndsWith</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"goodbye"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</section>
+</div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-09</p>
+<p class="date">Created: 2021-03-11</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
