@@ -78,7 +78,7 @@ PS, dotnet 命令:
 
 ** 书籍和文档
 
-- MSDN (墙裂推荐): https://docs.microsoft.com/zh-cn/dotnet/csharp/
+- MSDN (墙裂推荐): https://docs.microsoft.com/zh-cn/dotnet/
 - C# 入门经典: https://item.jd.com/12508114.html
 - C# 图解教程: https://item.jd.com/12601789.html
 - C# 高级编程 (红皮书): https://item.jd.com/45998158124.html
