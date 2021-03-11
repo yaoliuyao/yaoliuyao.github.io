@@ -44,16 +44,29 @@
 
 ** 跨平台开发 (.net core + vscode)
 
-Java:
-- jdk (Java Development Kit) 开发包
-- jre (Java Runtime Environment)  运行环境
-- eclipse
+首先，安装 .Net Core 的开发环境
+- https://dotnet.microsoft.com/download
+- 下载安装 SDK 即可。安装完毕，得到一个 dotnet 命令
+  : dotnet
 
-使用 .net core 开发:
-- 下载并安装 .net core 的 runtime + sdk
-- 安装 VSCode 并安装 C# 的插件  
+其次，安装并配置 VSCode:
+- https://code.visualstudio.com/
+- 打开 VSCode，在插件市场，搜索 C# 插件并安装
 
-dotnet 命令:
+最后，就可以使用 ~dotnet~ 命令进行项目的创建和运行，使用 VSCode 进行代码的编写了:
+#+begin_src sh
+  # 1. 先创建项目
+  cd Workdir
+  dotnet new console -o MyHello
+
+  # 2. 使用 VSCode 打开项目，并进行编辑
+  code MyHello
+
+  # 3. 使用 dotnet 命令编译并允许
+  dotnet run
+#+end_src
+
+PS, dotnet 命令:
 #+begin_src sh
   dotnet new console # 在当前文件夹创建一个 Console 类型的项目
   dotnet new mvc/wpf # 创建其他类型的项目
