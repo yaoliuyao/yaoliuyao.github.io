@@ -27,7 +27,7 @@
 
 #+HTML: <section id="toc">
 
-#+HTML: <h3>当前任务 <span style="font-size: 16px">(<a href="111/tasks.html">全部任务</a>)</span></h3>
+#+HTML: <h3>当前任务 <span style="font-size: 14px">(<a href="111/tasks.html">全部任务</a>)</span></h3>
 #+INCLUDE: "111/tasks.org::#active" :only-contents t
 
 # #+HTML: <h3>链接资源</h3>
