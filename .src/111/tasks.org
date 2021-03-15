@@ -110,6 +110,12 @@
   }
 #+end_src
 
+程序执行结果示例:
+
+#+ATTR_HTML: :width 400
+[[file:img/tipcal-result-demo.png]]
+
+
 * [2021-03-10 Wed]
 
 熟悉 VS2019，尝试创建各种类型的项目:
