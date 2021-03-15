@@ -70,7 +70,7 @@
 参考输出:
 </p>
 
-<figure id="org93c2e73">
+<figure id="org8bf1935">
 <img src="111/img/oimg_20210311_080143.png" alt="oimg_20210311_080143.png" width="200">
 
 </figure>
@@ -132,7 +132,7 @@
 </p>
 
 
-<figure id="org1281942">
+<figure id="orgeebef6c">
 <img src="111/img/geshui.png" alt="geshui.png" width="400">
 
 </figure>
@@ -143,6 +143,35 @@
 <ul class="org-ul">
 <li>到 2021年3月15日，过了 3 天，一共有 11 个人完成</li>
 </ul>
+
+<p>
+核心代码:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">Main &#26041;&#27861;&#26159;&#31243;&#24207;&#30340;&#20837;&#21475;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">args &#34920;&#31034;&#20174;&#25511;&#21046;&#21488;&#20256;&#26469;&#30340;&#21442;&#25968;&#25968;&#25454;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#27604;&#22914;&#65292;&#22312; CMD &#31383;&#21475;&#36755;&#20837; TipCalculator 222 333 444&#65292;&#37027;&#20040;:</span>
+<span style="color: #b22222;">//   </span><span style="color: #b22222;">- args[0] &#23601;&#26159;&#23383;&#31526;&#20018; 222</span>
+<span style="color: #b22222;">//   </span><span style="color: #b22222;">- args[1] &#23601;&#26159;&#23383;&#31526;&#20018; 333</span>
+<span style="color: #b22222;">//   </span><span style="color: #b22222;">- args[2] &#23601;&#26159;&#23383;&#31526;&#20018; 444</span>
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23383;&#31526;&#20018;&#26159;&#29992;&#26469;&#25551;&#36848;&#19990;&#30028;&#30340;&#26041;&#24335;&#65292;&#23427;&#19981;&#33021;&#21442;&#19982;&#25968;&#23398;&#35745;&#31639;&#12290;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22240;&#27492;&#35201;&#35745;&#31639;&#65292;&#38656;&#35201;&#20808;&#36716;&#25442;&#25104;&#21512;&#36866;&#30340;&#26684;&#24335;&#65292;&#27604;&#22914; double &#31867;&#22411;</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36134;&#21333;</span>
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">bill</span> = <span style="color: #228b22;">double</span>.<span style="color: #0000ff;">Parse</span><span style="color: #7388d6;">(</span>args<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23567;&#36153;&#35745;&#31639;</span>
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">rate</span> = 0.18;
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tip</span> = bill * rate;
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23454;&#38469;&#36134;&#21333;&#35745;&#31639;</span>
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">realBill</span> = bill + tip;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36755;&#20986;</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"{0}"</span>, realBill<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 
 <div><br>
 <h3>笔记目录 <small>(<a href="https://github.com/yaoliuyao/" target="_blank">Github</a>)</small></h3>

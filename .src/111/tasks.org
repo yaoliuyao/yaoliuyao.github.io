@@ -40,6 +40,33 @@
 小结:
 - 到 2021年3月15日，过了 3 天，一共有 11 个人完成
 
+核心代码:
+#+begin_src csharp
+  // Main 方法是程序的入口
+  // args 表示从控制台传来的参数数据
+  // 比如，在 CMD 窗口输入 TipCalculator 222 333 444，那么:
+  //   - args[0] 就是字符串 222
+  //   - args[1] 就是字符串 333
+  //   - args[2] 就是字符串 444
+  static void Main(string[] args)
+  {
+      // 字符串是用来描述世界的方式，它不能参与数学计算。
+      // 因此要计算，需要先转换成合适的格式，比如 double 类型
+
+      // 账单
+      double bill = double.Parse(args[0]);
+      // 小费计算
+      double rate = 0.18;
+      double tip = bill * rate;
+      // 实际账单计算
+      double realBill = bill + tip;
+
+      // 输出
+      Console.WriteLine("{0}", realBill);
+  }
+#+end_src
+
+
 * [2021-03-10 Wed]
 
 熟悉 VS2019，尝试创建各种类型的项目:
