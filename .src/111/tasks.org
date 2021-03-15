@@ -66,6 +66,49 @@
   }
 #+end_src
 
+在基础代码上进行优化:
+#+begin_src csharp
+  // 目标:
+  // 1. 让程序更健壮，避免不必要的异常抛出
+  // 2. 让输出更加美观，用户体验更友好
+
+  static void Main(string[] args)
+  {
+      // 声明一个变量，用来保存转换后的账单数目
+      double bill;
+
+      // 检查用户输入，如果输入不合理，给予提醒并退出程序
+      // double.Parse 和 double.TryParse 都是用来将 string 类型的数据转换为 double 类型:
+      //  - Parse 是通过异常处理的方式捕获转换失败的情况
+      //  - TryParse 是通过返回值为 true/false 的方式判断转换成功与否。并结合 out 参数存储转换后的值
+      // if 是一种基本的程序流程，表示只有满足条件的时候，其代码块才会被执行。它是对顺序结构的补充
+      // return 表示退出当前方法的运行。如果在 Main 方法中，则表示退出程序的运行
+      //
+      // 下面一句的意思是: 如果输入的参数不是 1 个，或者输入的参数不能转换为 double，那么提醒用户并退出
+      if (args.Length != 1 || !double.TryParse(args[0], out bill))
+      {
+          Console.WriteLine("您的输入有误，正确的调用方法是:\nTipCalculator 账单数额");
+          return;
+      }
+
+      // 小费以及实际账单的基本计算
+      double rate = 0.18;
+      double tip = bill * rate;
+      double realBill = bill + tip;
+
+      // 进行格式化输出，即将某个类型的数值，转换成预期格式的字符串:
+      // - 使用 $ 符号，可以对变量进行内插操作
+      // - 通过 {a:X} 可以使用 C# 预设的某些转换规则进行转换。比如 C 表示货币，P 表示百分比
+      // - 使用 {a,N} 的方式，让转换后的字符串满足 N 的长度。如果不满足，使用空格补齐。-N 表示左对齐
+      // - 可以结合使用，语法为 {a,N:X...}，比如 {rate,10:P1} 表示按照百分比显示、小数保留一位、补齐为 10 的长度
+      // string.PadRight 是内置的一个字符串操作的 API，表示将字符串使用某个字符补齐为多少长度
+      Console.WriteLine();
+      Console.WriteLine($"账单总额: {bill,10:C}");
+      Console.WriteLine($"小费数额: {tip,10:C} ({rate:P1})");
+      Console.WriteLine("".PadRight(30, '┈'));
+      Console.WriteLine($"账单实付: {realBill,10:C}");
+  }
+#+end_src
 
 * [2021-03-10 Wed]
 
