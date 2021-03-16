@@ -2,7 +2,8 @@
 
 
 
-* 个税计算器
+* 个税计算器 (简化版)
+** 批注版本
 
 #+begin_src csharp
   namespace Tax
@@ -11,27 +12,31 @@
       {
           static void Main(string[] args)
           {
+              // 变量的命名不要太随意!
               double a = 0.03;
               double b = 0.05;
               double c = 0.2;
               double d = 0.45;
-              double n;
+
+              double n; // 税前收入
+
               if (args.Length != 1 || !double.TryParse(args[0], out n))
               {
                   Console.WriteLine("去输入正确的格式：Tax 应发工资");
                   return;
               }
+              // else 没有必要
               else if (n < 5000)
               {
-                  double tax1 = n;
+                  double tax1 = n; // 此变量的意义? 代码混淆
                   Console.WriteLine($"应发工资：{n,10:c}");
                   Console.WriteLine($"应交税/税率：{0,10:c}({0:p})");
                   Console.WriteLine("".PadRight(30, '-'));
                   Console.WriteLine($"实发工资：{n:c}");
               }
-              else if (n < 10000)
+              else if (n < 10000) // 隐藏意思 1w > n >= 5k
               {
-                  double tax2 = (n - 5000) * a;
+                  double tax2 = (n - 5000) * a; // 读到这里，才知晓 a 表示税率
                   Console.WriteLine($"应发工资：{n,10:c}");
                   Console.WriteLine($"应交税/税率：{tax2,10:c}({a:p})");
                   Console.WriteLine("".PadRight(30, '-'));
@@ -39,6 +44,8 @@
               }
               else if (n < 20000)
               {
+                  // 一定要善于模仿、山寨、抄袭，总之 C-c/C-v
+                  // 模仿并不可耻，可耻的是，长年累月，没有任何进步
                   double tax3 = (n - 10000) * b + 5000 * a;
                   Console.WriteLine($"应发工资：{n,10:c}");
                   Console.WriteLine($"应交税/税率：{tax3,10:c}({b:p})");
@@ -53,9 +60,12 @@
                   Console.WriteLine("".PadRight(30, '-'));
                   Console.WriteLine($"实发工资：{n - tax4:c}");
               }
-
               else if (n > 100000)
               {
+                  // 冗余代码太多了，没必要的冗余会导致:
+                  // - 开发起来，花费时间太多
+                  // - 阅读起来，不是那么友好
+                  // - 维护起来，越来越麻烦 (shi山)
                   double tax6 = (n - 100000) * d + 80000 * c + 10000 * b + 5000 * a;
                   Console.WriteLine($"应发工资：{n,10:c}");
                   Console.WriteLine($"应交税/税率：{tax6,10:c}({d:p})");
@@ -65,6 +75,74 @@
           }
       }
   }
+#+end_src
+
+** 原始版本
+
+#+begin_src csharp
+  using System;
+
+  namespace Tax
+  {
+      class Program
+      {
+          static void Main(string[] args)
+          {
+              double a = 0.03;
+              double b = 0.05;
+              double c = 0.2;
+              double d = 0.45;
+              double n;
+              if (args.Length != 1 || !double.TryParse(args[0], out n))
+              {
+                  Console.WriteLine("去输入正确的格式：Tax 税前收入");
+                  return;
+              }
+              else if (n < 5000)
+              {
+                  double tax1 = n;
+                  Console.WriteLine($"税前收入：{n,10:c}");
+                  Console.WriteLine($"应交税/税率：{0,10:c}({0:p})");
+                  Console.WriteLine("".PadRight(30, '-'));
+                  Console.WriteLine($"实发工资：{n:c}");
+              }
+              else if (n < 10000)
+              {
+                  double tax2 = (n - 5000) * a;
+                  Console.WriteLine($"税前收入：{n, 10:c}");
+                  Console.WriteLine($"应交税/税率：{tax2,10:c}({a:p})");
+                  Console.WriteLine("".PadRight(30, '-'));
+                  Console.WriteLine($"实发工资：{n - tax2:c}");
+              }
+              else if (n < 20000)
+              {
+                  double tax3 = (n - 10000) * b + 5000 * a;
+                  Console.WriteLine($"税前收入：{n,10:c}");
+                  Console.WriteLine($"应交税/税率：{tax3,10:c}({b:p})");
+                  Console.WriteLine("".PadRight(30, '-'));
+                  Console.WriteLine($"实发工资：{n - tax3:c}");
+              }
+              else if (n < 100000)
+              {
+                  double tax4 = (n - 20000) * c + 10000 * b + 5000 * a;
+                  Console.WriteLine($"税前收入：{n,10:c}");
+                  Console.WriteLine($"应交税/税率：{tax4,10:c}({c:p})");
+                  Console.WriteLine("".PadRight(30, '-'));
+                  Console.WriteLine($"实发工资：{n - tax4:c}");
+              }
+
+              else if (n > 100000)
+              {
+                  double tax6 = (n - 100000) * d + 80000 * c + 10000 * b + 5000 * a;
+                  Console.WriteLine($"税前收入：{n,   10:c}");
+                  Console.WriteLine($"应交税/税率：{tax6,10:c}({d:p})");
+                  Console.WriteLine("".PadRight(30, '-'));
+                  Console.WriteLine($"实发工资：{n - tax6:c}");
+              }
+          }
+      }
+  }
+
 #+end_src
 
 * 小费计算器
