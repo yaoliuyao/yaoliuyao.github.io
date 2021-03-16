@@ -6,8 +6,8 @@
 * [2021-03-11 Thu]
 :PROPERTIES:
 :CUSTOM_ID: active
+:ID:       6c800397-9525-4a5d-b857-4356fb81f85c
 :END:
-
 
 写一个小程序，计算工资的税后收入。要求:
 - cmd 下面输入 ~程序.exe 税前收入~，然后输出扣税情况和实际税后收入
@@ -38,6 +38,9 @@
 - 2021年3月16日，第一节检查，一共有 8 个人 *未完成*
 
 * [2021-03-10 Wed]
+:PROPERTIES:
+:ID:       43150a1f-a4af-4f99-a30d-f4ef8f253c02
+:END:
 
 熟悉 VS2019，尝试创建各种类型的项目:
 - 控制台应用 for .NET Framework (Console)
