@@ -69,68 +69,68 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
-
-<span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Tax</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
-    <span style="color: #7388d6;">{</span>
-        <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span><span style="color: #709870;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #909183;">)</span>
-        <span style="color: #909183;">{</span>
-            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">a</span> = 0.03;
-            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b</span> = 0.05;
-            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c</span> = 0.2;
-            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">d</span> = 0.45;
-            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">n</span>;
-            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>args.Length != 1 || !<span style="color: #228b22;">double</span>.<span style="color: #0000ff;">TryParse</span><span style="color: #907373;">(</span><span style="color: #228b22;">args</span><span style="color: #6276ba;">[</span>0<span style="color: #6276ba;">]</span>, <span style="color: #a020f0;">out</span> <span style="color: #228b22;">n</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
-            <span style="color: #709870;">{</span>
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#21435;&#36755;&#20837;&#27491;&#30830;&#30340;&#26684;&#24335;&#65306;Tax &#31246;&#21069;&#25910;&#20837;"</span><span style="color: #907373;">)</span>;
-                <span style="color: #a020f0;">return</span>;
-            <span style="color: #709870;">}</span>
-            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &lt; 5000<span style="color: #709870;">)</span>
-            <span style="color: #709870;">{</span>
-                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax1</span> = n;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n,10:c}"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{0,10:c}({0:p})"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n:c}"</span><span style="color: #907373;">)</span>;
-            <span style="color: #709870;">}</span>
-            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &lt; 10000<span style="color: #709870;">)</span>
-            <span style="color: #709870;">{</span>
-                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax2</span> = <span style="color: #907373;">(</span>n - 5000<span style="color: #907373;">)</span> * a;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n, 10:c}"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{tax2,10:c}({a:p})"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n - tax2:c}"</span><span style="color: #907373;">)</span>;
-            <span style="color: #709870;">}</span>
-            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &lt; 20000<span style="color: #709870;">)</span>
-            <span style="color: #709870;">{</span>
-                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax3</span> = <span style="color: #907373;">(</span>n - 10000<span style="color: #907373;">)</span> * b + 5000 * a;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n,10:c}"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{tax3,10:c}({b:p})"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n - tax3:c}"</span><span style="color: #907373;">)</span>;
-            <span style="color: #709870;">}</span>
-            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &lt; 100000<span style="color: #709870;">)</span>
-            <span style="color: #709870;">{</span>
-                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax4</span> = <span style="color: #907373;">(</span>n - 20000<span style="color: #907373;">)</span> * c + 10000 * b + 5000 * a;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n,10:c}"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{tax4,10:c}({c:p})"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n - tax4:c}"</span><span style="color: #907373;">)</span>;
-            <span style="color: #709870;">}</span>
-
-            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &gt; 100000<span style="color: #709870;">)</span>
-            <span style="color: #709870;">{</span>
-                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax6</span> = <span style="color: #907373;">(</span>n - 100000<span style="color: #907373;">)</span> * d + 80000 * c + 10000 * b + 5000 * a;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n,   10:c}"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{tax6,10:c}({d:p})"</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n - tax6:c}"</span><span style="color: #907373;">)</span>;
-            <span style="color: #709870;">}</span>
-        <span style="color: #909183;">}</span>
-    <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Tax</span>
+<span class="linenr"> 4: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 5: </span>    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span class="linenr"> 6: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 7: </span>        <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span><span style="color: #709870;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #909183;">)</span>
+<span class="linenr"> 8: </span>        <span style="color: #909183;">{</span>
+<span class="linenr"> 9: </span>            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">a</span> = 0.03;
+<span class="linenr">10: </span>            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b</span> = 0.05;
+<span class="linenr">11: </span>            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c</span> = 0.2;
+<span class="linenr">12: </span>            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">d</span> = 0.45;
+<span class="linenr">13: </span>            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">n</span>;
+<span class="linenr">14: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>args.Length != 1 || !<span style="color: #228b22;">double</span>.<span style="color: #0000ff;">TryParse</span><span style="color: #907373;">(</span><span style="color: #228b22;">args</span><span style="color: #6276ba;">[</span>0<span style="color: #6276ba;">]</span>, <span style="color: #a020f0;">out</span> <span style="color: #228b22;">n</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+<span class="linenr">15: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">16: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#21435;&#36755;&#20837;&#27491;&#30830;&#30340;&#26684;&#24335;&#65306;Tax &#31246;&#21069;&#25910;&#20837;"</span><span style="color: #907373;">)</span>;
+<span class="linenr">17: </span>                <span style="color: #a020f0;">return</span>;
+<span class="linenr">18: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">19: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &lt; 5000<span style="color: #709870;">)</span>
+<span class="linenr">20: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">21: </span>                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax1</span> = n;
+<span class="linenr">22: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n,10:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">23: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{0,10:c}({0:p})"</span><span style="color: #907373;">)</span>;
+<span class="linenr">24: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
+<span class="linenr">25: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">26: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">27: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &lt; 10000<span style="color: #709870;">)</span>
+<span class="linenr">28: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">29: </span>                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax2</span> = <span style="color: #907373;">(</span>n - 5000<span style="color: #907373;">)</span> * a;
+<span class="linenr">30: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n, 10:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">31: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{tax2,10:c}({a:p})"</span><span style="color: #907373;">)</span>;
+<span class="linenr">32: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
+<span class="linenr">33: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n - tax2:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">34: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">35: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &lt; 20000<span style="color: #709870;">)</span>
+<span class="linenr">36: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">37: </span>                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax3</span> = <span style="color: #907373;">(</span>n - 10000<span style="color: #907373;">)</span> * b + 5000 * a;
+<span class="linenr">38: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n,10:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">39: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{tax3,10:c}({b:p})"</span><span style="color: #907373;">)</span>;
+<span class="linenr">40: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
+<span class="linenr">41: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n - tax3:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">42: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">43: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &lt; 100000<span style="color: #709870;">)</span>
+<span class="linenr">44: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">45: </span>                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax4</span> = <span style="color: #907373;">(</span>n - 20000<span style="color: #907373;">)</span> * c + 10000 * b + 5000 * a;
+<span class="linenr">46: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n,10:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">47: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{tax4,10:c}({c:p})"</span><span style="color: #907373;">)</span>;
+<span class="linenr">48: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
+<span class="linenr">49: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n - tax4:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">50: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">51: </span>
+<span class="linenr">52: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>n &gt; 100000<span style="color: #709870;">)</span>
+<span class="linenr">53: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">54: </span>                <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax6</span> = <span style="color: #907373;">(</span>n - 100000<span style="color: #907373;">)</span> * d + 80000 * c + 10000 * b + 5000 * a;
+<span class="linenr">55: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;&#65306;{n,   10:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">56: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#24212;&#20132;&#31246;/&#31246;&#29575;&#65306;{tax6,10:c}({d:p})"</span><span style="color: #907373;">)</span>;
+<span class="linenr">57: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #6276ba;">(</span>30, <span style="color: #8b2252;">'-'</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
+<span class="linenr">58: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#23454;&#21457;&#24037;&#36164;&#65306;{n - tax6:c}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">59: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">60: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">61: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">62: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>

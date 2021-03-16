@@ -19,14 +19,15 @@
   | > 10w  | 45% |
 - 如果输入的税前收入为空，提示用户出错
 
-其他:
+补充说明:
 - 写程序要遵循 *多模仿、多动手* 的原则
 - 书读百遍其义自见，代码也是一样，多敲自然熟练
-- 个税计算器: https://gerensuodeshui.cn/
-- 个税计算方式: http://jcc.bjmu.edu.cn/docs/20190227173119070720.pdf
-- 个人所得税税率表:
-  #+ATTR_HTML: :width 400
-  [[file:img/geshui.png]]
+- 后续，需要将程序改为使用真正的个税计算方式:
+  + 个税计算器: https://gerensuodeshui.cn/
+  + 个税计算方式: http://jcc.bjmu.edu.cn/docs/20190227173119070720.pdf
+  + 个人所得税税率表:
+     #+ATTR_HTML: :width 400
+     [[file:img/geshui.png]]
 
 小结:
 - 2021年3月11日，布置作业
