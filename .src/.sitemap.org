@@ -64,3 +64,4 @@
   - [[file:dotnet/a-dotnet-env.org][.NET 平台]]
   - [[file:dotnet/b-csharp.org][C# 编程语言]]
   - [[file:dotnet/e-aspnet.org][ASP.NET MVC]]
+  - [[file:dotnet/z-cases.org][一万行代码]]
