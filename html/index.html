@@ -58,87 +58,40 @@
 
 <h3>当前任务 <span style="font-size: 14px">(<a href="111/tasks.html">全部任务</a>)</span></h3>
 <p>
-写一个小程序，计算工资的税后收入。要求:
+作业:
 </p>
 <ol class="org-ol">
-<li><p>
-CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和实际税后收入。参考输出:
-</p>
-
-<figure id="org92cc085">
-<img src="111/img/tipcal-result-demo.png" alt="tipcal-result-demo.png" width="400">
-
-</figure></li>
-<li><p>
-个人所得税的计算，暂时按照下列简化的方案:
-</p>
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">(0, 5k]</td>
-<td class="org-right">0</td>
-</tr>
-
-<tr>
-<td class="org-left">(5k, 1w]</td>
-<td class="org-right">3%</td>
-</tr>
-
-<tr>
-<td class="org-left">(1w, 2w]</td>
-<td class="org-right">5%</td>
-</tr>
-
-<tr>
-<td class="org-left">(2w, 10w]</td>
-<td class="org-right">20%</td>
-</tr>
-
-<tr>
-<td class="org-left">(10w, ∞]</td>
-<td class="org-right">45%</td>
-</tr>
-</tbody>
-</table></li>
-<li>如果输入的税前收入为空或者不是数字，提示用户出错</li>
+<li>练习今天的代码。组长做好监督，落实每个人动手实践</li>
+<li>调研电费的计算方式。明天请第五组给出具体计算方案</li>
 </ol>
 
 <p>
-补充说明:
+计算阶梯电费:
 </p>
-<ul class="org-ul">
-<li>写程序要遵循 <b>多模仿、多动手</b> 的原则</li>
-<li>书读百遍其义自见，代码也是一样，多敲自然熟练</li>
-<li>后续，需要将程序改为使用真正的个税计算方式:
-<ul class="org-ul">
-<li>个税计算器: <a href="https://gerensuodeshui.cn/">https://gerensuodeshui.cn/</a></li>
-<li>个税计算方式: <a href="http://jcc.bjmu.edu.cn/docs/20190227173119070720.pdf">http://jcc.bjmu.edu.cn/docs/20190227173119070720.pdf</a></li>
-<li><p>
-个人所得税税率表:
-</p>
-
-<figure id="orga33fd80">
-<img src="111/img/geshui.png" alt="geshui.png" width="400">
-
-</figure></li>
-</ul></li>
-</ul>
+<pre class="example" id="org051cba5">
+以广东省为例按照每户每月电量分档划分为夏季标准和非夏季标准。其中：
+（1）夏季标准（5月－10月）：
+第一档电量为每户每月0－260度的用电量，其电价不作调整；
+第二档电量为每户每月261－600度的用电量，其电价每度加价0.05元；
+第三档电量为每户每月601度及以上的用电量，其电价每度加价0.30元。
+（2）非夏季标准（1-4月、11-12月）：
+第一档电量为每户每月0－200度的用电量，其电价不作调整；
+第二档电量为每户每月201－400度的用电量，其电价每度加价0.05元；
+第三档电量为每户每月401度及以上的用电量，其电价每度加价0.30元。
+计算公式：
+总电费＝第一档电费+第二档电费+第三档电费
+第一档电费=第一档标准以内的电量×第一档电价
+第二档电费=超出第一档标准并且在第二档标准以内的电量×（第一档电价+0.05元/度）
+第三档电费=超出第二档标准的电量×（第一档电价+0.3元/度）计算。
+但由于不同地市的电价不同，具体的电价执行标准您可关注“南方电网95598”公众平台，点击服务咨询&gt; 电价信息选择用电区域的城市&gt;查看详细电价表，即可查询到电价信息了。
+</pre>
 
 <p>
-小结:
+参考:
 </p>
 <ul class="org-ul">
-<li>2021年3月11日，布置作业</li>
-<li>2021年3月15日，第一节检查，只有 11 个人完成</li>
-<li>2021年3月16日，第一节检查，还有 8 个人 <b>未完成</b></li>
-<li>2021年3月17日，良辰吉日，都做完了!</li>
+<li><a href="https://www.jisuan.mobi/pmBm1mzBmmmzuxXJ.html">https://www.jisuan.mobi/pmBm1mzBmmmzuxXJ.html</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/88106207">https://zhuanlan.zhihu.com/p/88106207</a></li>
 </ul>
 
 <div><br>

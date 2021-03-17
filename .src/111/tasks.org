@@ -3,6 +3,13 @@
 
 
 * [2021-03-17 Wed]
+:PROPERTIES:
+:CUSTOM_ID: active
+:END:
+
+作业:
+1. 练习今天的代码。组长做好监督，落实每个人动手实践
+2. 调研电费的计算方式。明天请第五组给出具体计算方案
 
 计算阶梯电费:
 #+begin_example
@@ -29,7 +36,6 @@
 
 * [2021-03-11 Thu]
 :PROPERTIES:
-:CUSTOM_ID: active
 :ID:       6c800397-9525-4a5d-b857-4356fb81f85c
 :END:
 
