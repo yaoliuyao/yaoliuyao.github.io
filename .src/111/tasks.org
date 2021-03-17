@@ -23,6 +23,10 @@
 但由于不同地市的电价不同，具体的电价执行标准您可关注“南方电网95598”公众平台，点击服务咨询> 电价信息选择用电区域的城市>查看详细电价表，即可查询到电价信息了。
 #+end_example
 
+参考:
+- https://www.jisuan.mobi/pmBm1mzBmmmzuxXJ.html
+- https://zhuanlan.zhihu.com/p/88106207
+
 * [2021-03-11 Thu]
 :PROPERTIES:
 :CUSTOM_ID: active

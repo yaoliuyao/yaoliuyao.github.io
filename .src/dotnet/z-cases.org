@@ -213,6 +213,55 @@
 
 ** 优化版本
 
+#+begin_src csharp
+  using System;
+
+  namespace Tax
+  {
+      class Program
+      {
+          static void Main(string[] args)
+          {
+              // 1. 接收参数
+              double money;
+              if (args.Length != 1 || !double.TryParse(args[0], out money))
+              {
+                  Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
+                  return;
+              }
+
+              // 2. 按照接收的参数进行计算
+              double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+              double rate, tax; // 以什么样的税率，收多少税
+              if (money <= 5000) {
+                  rate = 0;
+                  tax = 0;
+              } else if (money < 10000) {
+                  rate = rates[0];
+                  tax = (money - 5000) * rate; // 姑且认为税是这样计算的
+              } else if (money < 20000) {
+                  rate = rates[1];
+                  tax = (money - 10000) * rate + 5000 * rates[0];
+              } else if (money < 100000) {
+                  rate = rates[2];
+                  tax = (money - 20000) * rate + 10000 * rates[1] + 5000 * rates[0];
+              } else {
+                  rate = rates[3];
+                  tax = (money - 100000) * rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+              }
+
+              // 3. 对结果进行输出
+              Console.WriteLine();
+              Console.WriteLine($"税前收入: {money,10:C}");
+              Console.WriteLine($"应付税收: {tax,10:C} ({rate:P1})");
+              Console.WriteLine("".PadRight(30, '┈'));
+              Console.WriteLine($"税后收入: {money - tax,10:C}");
+          }
+      }
+  }
+
+#+end_src
+
 ** 小结
 
 * 小费计算器
