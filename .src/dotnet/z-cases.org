@@ -218,13 +218,7 @@
 
 ** 通过方法对逻辑进行提取
 
-[[file:img/tax-cal-2-1.png]]
-
-
-
-[[file:img/tax-cal-2-2.png]]
-
-
+[[file:img/tax-cal-2.gif]]
 
 ** 小结
 
