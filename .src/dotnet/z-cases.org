@@ -72,7 +72,7 @@
   }
 #+end_src
 
-** 批注版本
+** 原始版本的批注
 
 #+begin_src csharp
   namespace Tax
@@ -144,6 +144,71 @@
           }
       }
   }
+#+end_src
+
+** 第四组优化版
+
+#+begin_src csharp
+  using System;
+
+  // 命名要规范 ≠ 命名必须使用英文
+  // 没必要因为英文失去了编程的信心
+  // 如果能力可以，使用英文是推荐的，但是如果有些吃力，拼音也可以啊
+  // 意思是: 如果能穿品牌出去自然好，但是没钱的话，干干净净也不丢人
+
+  // 写代码，最重要的是有思路，也就是知道自己要做什么
+  // 我们要做的事情是: 计算税后收入
+  // - 第一步，接收税前收入的金额
+  // - 第二步，按照 [ 税收 = 税前收入 * 恰当的税率 ] 的方式计算税率
+  // - 第三步，通过 [ 税后收入 = 税前收入 - 税收 ] 的方式计算税后收入
+  // - 最后，花样输出
+
+  namespace Tax
+  {
+      class Program
+      {
+          static void Main(string[] args)
+          {
+              double slv;   //税率
+              double ynsk;  //应纳税款
+              double gongzi; //工资
+
+              if (args.Length != 1 || !double.TryParse(args[0], out gongzi))
+              {
+                  Console.WriteLine("去输入正确的格式：Tax 税前收入");
+                  return;
+              }
+
+              if (gongzi < 10000)
+              {
+                  slv = 0.03;
+                  ynsk = (gongzi - 5000) * slv;
+              }
+              else if (gongzi < 20000)
+              {
+                  slv = 0.05;
+                  ynsk = (gongzi - 5000) * slv;
+              }
+              else if (gongzi < 100000)
+              {
+                  slv = 0.2;
+                  ynsk = (gongzi - 5000) * slv;
+              }
+              else
+              {
+                  slv = 0.45;
+                  ynsk = (gongzi - 5000) * slv;
+              }
+
+              Console.WriteLine();
+              Console.WriteLine($"税前收入：{gongzi,5:c}");
+              Console.WriteLine($"应交税/税率：{ynsk,5:c}({slv:p})");
+              Console.WriteLine("".PadRight(30, '-'));
+              Console.WriteLine($"税后工资：{ gongzi - ynsk,5:c}");
+          }
+      }
+  }
+
 #+end_src
 
 ** 优化版本
