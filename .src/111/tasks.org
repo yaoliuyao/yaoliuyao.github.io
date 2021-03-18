@@ -34,6 +34,13 @@
 - https://www.jisuan.mobi/pmBm1mzBmmmzuxXJ.html
 - https://zhuanlan.zhihu.com/p/88106207
 
+小结:
+- 2021年3月18日检查，有下列人员未完成代码的敲写:
+  + 第三组: 陈柏炜
+  + 第四组: 冯瑞芮
+  + 第五组: 韩雷明
+  + 第六组: 蔡桂德
+
 * [2021-03-11 Thu]
 :PROPERTIES:
 :ID:       6c800397-9525-4a5d-b857-4356fb81f85c
