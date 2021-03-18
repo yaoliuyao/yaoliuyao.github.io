@@ -216,9 +216,78 @@
 [[file:img/tax-cal.png]]
 
 
-** 通过方法对逻辑进行提取
+** 通过方法对逻辑进行提取 (图片版)
 
 [[file:img/tax-cal-2.gif]]
+
+** 通过方法对逻辑进行提取 (代码版)
+
+#+begin_src csharp
+  using System;
+
+  namespace Tax
+  {
+      class Program
+      {
+          static void Main(string[] args)
+          {
+              // 1. 接收参数
+              double money;
+              if (args.Length != 1 || !double.TryParse(args[0], out money))
+              {
+                  Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
+                  return;
+              }
+
+              // 2. 按照接收的参数进行计算
+              double[] result = CalculateTax(money);
+
+              // 3. 对结果进行输出
+              PrintToConsole(money, result[0], result[1]);
+
+          }
+          static double[] CalculateTax(double money)
+          {
+              double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+              double rate, tax;
+              if (money <= 5000)
+              {
+                  rate = 0;
+                  tax = 0;
+              }
+              else if (money < 10000)
+              {
+                  rate = rates[0];
+                  tax = (money - 5000) * rate;
+              }
+              else if (money < 20000)
+              {
+                  rate = rates[1];
+                  tax = (money - 10000) * rate + 5000 * rates[0];
+              }
+              else if (money < 100000)
+              {
+                  rate = rates[2];
+                  tax = (money - 20000) * rate + 10000 * rates[1] + 5000 * rates[0];
+              }
+              else
+              {
+                  rate = rates[3];
+                  tax = (money - 100000) * rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+              }
+              return new double[] { rate, tax };
+          }
+          static void PrintToConsole(double money, double rate, double tax)
+          {
+              Console.WriteLine();
+              Console.WriteLine($"税前收入: {money,10:C}");
+              Console.WriteLine($"应付税收: {tax,10:C} ({rate:P1})");
+              Console.WriteLine("".PadRight(30, '┈'));
+              Console.WriteLine($"税后收入: {money - tax,10:C}");
+          }
+      }
+  }
+#+end_src
 
 ** 小结
 
