@@ -42,19 +42,69 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#active">1. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-18 Thu]</span></span></a></li>
-<li><a href="#org8c97091">2. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-17 Wed]</span></span></a></li>
-<li><a href="#orgb263d56">3. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-11 Thu]</span></span></a></li>
-<li><a href="#org321e3c2">4. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-10 Wed]</span></span></a></li>
-<li><a href="#orgb92e313">5. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-09 Tue]</span></span></a></li>
+<li><a href="#active">1. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-19 Fri]</span></span></a></li>
+<li><a href="#orged3af95">2. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-18 Thu]</span></span></a></li>
+<li><a href="#org8c97091">3. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-17 Wed]</span></span></a></li>
+<li><a href="#orgb263d56">4. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-11 Thu]</span></span></a></li>
+<li><a href="#org321e3c2">5. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-10 Wed]</span></span></a></li>
+<li><a href="#orgb92e313">6. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-09 Tue]</span></span></a></li>
 </ul>
 </div>
 </nav>
 
 
+
 <section id="outline-container-active" class="outline-2">
-<h2 id="active"><span class="section-number-2">1</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-18 Thu]</span></span></h2>
+<h2 id="active"><span class="section-number-2">1</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-19 Fri]</span></span></h2>
 <div class="outline-text-2" id="text-active">
+<p>
+首先，敲代码并理解对象的使用。
+</p>
+
+<p>
+其次，电量计算:
+</p>
+<pre class="example" id="org35b887e">
+题目：写一个控制台小程序，能指定计算某月的用电费，
+如果输入的用电量和月份为空或者不是数字，提示用户出错
+
+夏季5-10月：
+第一档电量：每户每月0-260度，电价不作调整；
+第二档电量：每户每月261-600度，电价每度加价0.05元；
+第三档电量：每户每月601度及以上，电价每度加价0.30元；
+
+非夏季1-4月、11-12月：
+第一档电量：每户每月0-200度，电价不作调整；
+第二档电量：每户每月201-400度，电价每度加价0.05元；
+第三档电量：每户每月401度及以上，电价每度加价0.30元；
+
+计算公式：
+总电费=第一档电费+第二档电费+第三档电费
+第一档电费 = 第一档标准以内的电量 x 第一档电价
+第二档电费 = 超出第一档标准并且在第二档标准以内的电量 x 第二档电价
+第三档电费 = 超出第二档标准的电量 x 第三档电价
+
+用电分类：
+第一档 0.600
+第二档 0.650
+第三档 0.900
+
+
+输出参考：
+5月份用电量650KWh
+第一档电费:         $174.20
+第二档电费:         $244.80
+第三档电费:         $48.50
+------------------------------------
+总计:                   $467.50
+</pre>
+</div>
+</section>
+
+
+<section id="outline-container-orged3af95" class="outline-2">
+<h2 id="orged3af95"><span class="section-number-2">2</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-18 Thu]</span></span></h2>
+<div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>书面总结一下，将代码块提取为单独的方法，有哪些好处和坏处 (多多益善)</li>
 <li>完成今天的代码，明天检查。请组长做好监督 (类与对象)</li>
@@ -72,8 +122,8 @@
 </section>
 
 <section id="outline-container-org8c97091" class="outline-2">
-<h2 id="org8c97091"><span class="section-number-2">2</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-17 Wed]</span></span></h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org8c97091"><span class="section-number-2">3</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-17 Wed]</span></span></h2>
+<div class="outline-text-2" id="text-3">
 <p>
 作业:
 </p>
@@ -99,7 +149,7 @@
 <p>
 计算阶梯电费:
 </p>
-<pre class="example" id="org8a94a8f">
+<pre class="example" id="orgad70b3c">
 以广东省为例按照每户每月电量分档划分为夏季标准和非夏季标准。其中：
 （1）夏季标准（5月－10月）：
 第一档电量为每户每月0－260度的用电量，其电价不作调整；
@@ -128,8 +178,8 @@
 </section>
 
 <section id="outline-container-orgb263d56" class="outline-2">
-<h2 id="orgb263d56"><span class="section-number-2">3</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-11 Thu]</span></span></h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgb263d56"><span class="section-number-2">4</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-11 Thu]</span></span></h2>
+<div class="outline-text-2" id="text-4">
 <p>
 写一个小程序，计算工资的税后收入。要求:
 </p>
@@ -138,7 +188,7 @@
 CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和实际税后收入。参考输出:
 </p>
 
-<figure id="orgb21272a">
+<figure id="org1f3e22c">
 <img src="img/tipcal-result-demo.png" alt="tipcal-result-demo.png" width="400">
 
 </figure></li>
@@ -197,7 +247,7 @@ CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和
 个人所得税税率表:
 </p>
 
-<figure id="orgf5bdc91">
+<figure id="orga673947">
 <img src="img/geshui.png" alt="geshui.png" width="400">
 
 </figure></li>
@@ -217,8 +267,8 @@ CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和
 </section>
 
 <section id="outline-container-org321e3c2" class="outline-2">
-<h2 id="org321e3c2"><span class="section-number-2">4</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-10 Wed]</span></span></h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org321e3c2"><span class="section-number-2">5</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-10 Wed]</span></span></h2>
+<div class="outline-text-2" id="text-5">
 <p>
 熟悉 VS2019，尝试创建各种类型的项目:
 </p>
@@ -233,8 +283,8 @@ CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和
 </section>
 
 <section id="outline-container-orgb92e313" class="outline-2">
-<h2 id="orgb92e313"><span class="section-number-2">5</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-09 Tue]</span></span></h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="orgb92e313"><span class="section-number-2">6</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-09 Tue]</span></span></h2>
+<div class="outline-text-2" id="text-6">
 <p>
 采集 C# 和 dotnet 相关的招聘信息，了解企业需求，做好学习准备。
 </p>
