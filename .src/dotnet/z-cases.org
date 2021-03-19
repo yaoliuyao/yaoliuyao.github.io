@@ -295,8 +295,7 @@
 
 ** 通过类对代码逻辑进行进一步分离2 (图片版)
 
-
-[[file:img/tax-cal-4.png]]
+[[file:img/tax-cal-5.gif]]
 
 
 ** 小结
