@@ -365,9 +365,10 @@
           Console.WriteLine($"Excle输出税后收入: {money - tax,10:C}");
       }
   }
-#+end_src
 
-[[file:img/tax-cal-3.png]]
+  class TipCalculator { ... }
+  class PowerFeeCalculator { ... }
+#+end_src
 
 ** 让类中的各个方法，能共享某些数据
 
