@@ -461,6 +461,9 @@
 
 引入独立的存储空间，将方法共享的数据进行隔离:
 
+#+ATTR_HTML: :width 400
+[[file:img/tax-cal3.png]]
+
 #+begin_src csharp
   using System;
 
