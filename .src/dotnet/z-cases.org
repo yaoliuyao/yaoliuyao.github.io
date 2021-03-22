@@ -216,11 +216,11 @@
 [[file:img/tax-cal.png]]
 
 
-** 通过方法对逻辑进行提取 (图片版)
+** 通过方法对逻辑进行提取
 
-[[file:img/tax-cal-2.gif]]
-
-** 通过方法对逻辑进行提取 (代码版)
+将某些代码块单独 *分离* 出来，并用一个名字代表，这就是所谓的方法。
+在原先执行代码块的地方，使用这个名字代替，这就是方法调用。
+通过这种方法调用方式，将程序变成了结构式的了，方便了重用和维护。
 
 #+begin_src csharp
   using System;
@@ -289,21 +289,259 @@
   }
 #+end_src
 
-** 通过类对代码逻辑进行进一步分离 (图片版)
+** 通过类对代码逻辑进行进一步分离
+
+方法越来越多，需要按照功能进行分门别类。这样就更具备组织性了。
+
+#+begin_src csharp
+  using System;
+
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          // 1. 接收参数
+          double money;
+          if (args.Length != 1 || !double.TryParse(args[0], out money))
+          {
+              Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
+              return;
+          }
+
+          // 税收的计算
+          double[] result = TaxCal.CalculateTax(money);
+          TaxCal.PrintToConsole(money, result[0], result[1]);
+          TaxCal.ExportToExcel(money, result[0], result[1]);
+      }
+  }
+
+  class TaxCal
+  {
+      static public double[] CalculateTax(double money)
+      {
+          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          double rate, tax;
+          if (money <= 5000)
+          {
+              rate = 0;
+              tax = 0;
+          }
+          else if (money < 10000)
+          {
+              rate = rates[0];
+              tax = (money - 5000) * rate;
+          }
+          else if (money < 20000)
+          {
+              rate = rates[1];
+              tax = (money - 10000) * rate + 5000 * rates[0];
+          }
+          else if (money < 100000)
+          {
+              rate = rates[2];
+              tax = (money - 20000) * rate + 10000 * rates[1] + 5000 * rates[0];
+          }
+          else
+          {
+              rate = rates[3];
+              tax = (money - 100000) * rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+          }
+          return new double[] {rate, tax};
+      }
+      static public void PrintToConsole(double money, double rate, double tax)
+      {
+          Console.WriteLine();
+          Console.WriteLine($"税前收入: {money,10:C}");
+          Console.WriteLine($"应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"税后收入: {money - tax,10:C}");
+      }
+      static public void ExportToExcel(double money, double rate, double tax)
+      {
+          Console.WriteLine();
+          Console.WriteLine($"Excle输出税前收入: {money,10:C}");
+          Console.WriteLine($"Excle输出应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"Excle输出税后收入: {money - tax,10:C}");
+      }
+  }
+#+end_src
 
 [[file:img/tax-cal-3.png]]
 
-** 通过类对代码逻辑进行进一步分离2 (图片版)
+** 让类中的各个方法，能共享某些数据
 
-[[file:img/tax-cal-5.gif]]
+在类中定义变量缓存每次方法调用的中间结果，下一个方法调用也可以直接使用这些缓存的结果。
+这样，方法调用间就产生了关联，调用的时候不需要传递那么多参数。
 
+#+begin_src csharp
+  using System;
 
-** 引入对象保证调用的数据安全 (图片版)
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          // 1. 接收参数
+          double money;
+          if (args.Length != 1 || !double.TryParse(args[0], out money))
+          {
+              Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
+              return;
+          }
+
+          // 税收的计算
+          TaxCal.money = money;
+          TaxCal.CalculateTax();
+          TaxCal.PrintToConsole();
+          TaxCal.ExportToExcel();
+
+          TaxCal.money = 23232;
+          TaxCal.CalculateTax();
+          TaxCal.PrintToConsole();
+      }
+  }
+
+  class TaxCal
+  {
+      static public double money;
+      static private double rate;
+      static private double tax;
+
+      static public void CalculateTax()
+      {
+          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          //double rate, tax;
+          if (money <= 5000)
+          {
+              rate = 0;
+              tax = 0;
+          }
+          else if (money < 10000)
+          {
+              rate = rates[0];
+              tax = (money - 5000) * rate;
+          }
+          else if (money < 20000)
+          {
+              rate = rates[1];
+              tax = (money - 10000) * rate + 5000 * rates[0];
+          }
+          else if (money < 100000)
+          {
+              rate = rates[2];
+              tax = (money - 20000) * rate + 10000 * rates[1] + 5000 * rates[0];
+          }
+          else
+          {
+              rate = rates[3];
+              tax = (money - 100000) * rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+          }
+      }
+      static public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"税前收入: {money,10:C}");
+          Console.WriteLine($"应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"税后收入: {money - tax,10:C}");
+      }
+      static public void ExportToExcel()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"Excle输出税前收入: {money,10:C}");
+          Console.WriteLine($"Excle输出应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"Excle输出税后收入: {money - tax,10:C}");
+      }
+  }
+#+end_src
+
+** 引入对象保证调用的数据安全
 
 引入独立的存储空间，将方法共享的数据进行隔离:
 
-#+OI: local @ 2021-03-19 07:16:14
-[[file:img/tax-cal-9.png]]
+#+begin_src csharp
+  using System;
+
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          // 1. 接收参数
+          double money;
+          if (args.Length != 1 || !double.TryParse(args[0], out money))
+          {
+              Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
+              return;
+          }
+
+          TaxCal tc1 = new TaxCal();
+          tc1.money = money;
+          tc1.CalculateTax();
+          tc1.PrintToConsole();
+
+          TaxCal tc2 = new TaxCal();
+          tc2.money = 33333;
+          tc2.CalculateTax();
+          tc2.ExportToExcel();
+
+          tc1.ExportToExcel();
+      }
+  }
+
+  class TaxCal
+  {
+      public double money;
+      private double rate;
+      private double tax;
+
+      public void CalculateTax()
+      {
+          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          if (money <= 5000)
+          {
+              rate = 0;
+              tax = 0;
+          }
+          else if (money < 10000)
+          {
+              rate = rates[0];
+              tax = (money - 5000) * rate;
+          }
+          else if (money < 20000)
+          {
+              rate = rates[1];
+              tax = (money - 10000) * rate + 5000 * rates[0];
+          }
+          else if (money < 100000)
+          {
+              rate = rates[2];
+              tax = (money - 20000) * rate + 10000 * rates[1] + 5000 * rates[0];
+          }
+          else
+          {
+              rate = rates[3];
+              tax = (money - 100000) * rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+          }
+      }
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"税前收入: {money,10:C}");
+          Console.WriteLine($"应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"税后收入: {money - tax,10:C}");
+      }
+      public void ExportToExcel()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"Excle输出税前收入: {money,10:C}");
+          Console.WriteLine($"Excle输出应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"Excle输出税后收入: {money - tax,10:C}");
+      }
+  }
+#+end_src
 
 ** 小结
 
