@@ -2,10 +2,25 @@
 
 
 
-* [2021-03-19 Fri]
+* [2021-03-22 Mon]
 :PROPERTIES:
 :CUSTOM_ID: active
 :END:
+
+#+begin_src csharp
+  TaxCal tc1 = new TaxCal();
+  tc1.Money = 8000;
+
+  tc1.PrintToConsole();
+  tc1.ExportToExcel();
+
+  // 修改代码，使得下面第一句不能够执行，但第二句能执行
+  // 也就是，可以从 tc1 中返回 Money 对应的税收和税率
+  tc1.Tax = 3333;
+  Console.WriteLine("{0}", tc1.Tax);
+#+end_src
+
+* [2021-03-19 Fri]
 
 首先，敲代码并理解对象的使用。
 
