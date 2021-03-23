@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-22 -->
+<!-- 2021-03-23 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>任务和作业</title>
@@ -42,13 +42,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#active">1. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-22 Mon]</span></span></a></li>
-<li><a href="#org5ca1ce2">2. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-19 Fri]</span></span></a></li>
-<li><a href="#orged3af95">3. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-18 Thu]</span></span></a></li>
-<li><a href="#org8c97091">4. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-17 Wed]</span></span></a></li>
-<li><a href="#orgb263d56">5. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-11 Thu]</span></span></a></li>
-<li><a href="#org321e3c2">6. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-10 Wed]</span></span></a></li>
-<li><a href="#orgb92e313">7. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-09 Tue]</span></span></a></li>
+<li><a href="#active">1. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-22 周一]</span></span></a></li>
+<li><a href="#org5ca1ce2">2. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-19 周五]</span></span></a></li>
+<li><a href="#orged3af95">3. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-18 周四]</span></span></a></li>
+<li><a href="#org8c97091">4. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-17 周三]</span></span></a></li>
+<li><a href="#orgb263d56">5. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-11 周四]</span></span></a></li>
+<li><a href="#org321e3c2">6. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-10 周三]</span></span></a></li>
+<li><a href="#orgb92e313">7. <span class="timestamp-wrapper"><span class="timestamp">[2021-03-09 周二]</span></span></a></li>
 </ul>
 </div>
 </nav>
@@ -56,7 +56,7 @@
 
 
 <section id="outline-container-active" class="outline-2">
-<h2 id="active"><span class="section-number-2">1</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-22 Mon]</span></span></h2>
+<h2 id="active"><span class="section-number-2">1</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-22 周一]</span></span></h2>
 <div class="outline-text-2" id="text-active">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">TaxCal</span> <span style="color: #a0522d;">tc1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TaxCal</span><span style="color: #707183;">()</span>;
@@ -67,6 +67,10 @@ tc1.<span style="color: #0000ff;">ExportToExcel</span><span style="color: #70718
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20462;&#25913;&#20195;&#30721;&#65292;&#20351;&#24471;&#19979;&#38754;&#31532;&#19968;&#21477;&#19981;&#33021;&#22815;&#25191;&#34892;&#65292;&#20294;&#31532;&#20108;&#21477;&#33021;&#25191;&#34892;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20063;&#23601;&#26159;&#65292;&#21487;&#20197;&#20174; tc1 &#20013;&#36820;&#22238; Money &#23545;&#24212;&#30340;&#31246;&#25910;&#21644;&#31246;&#29575;</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524; Tax &#26159; public &#30340;&#35805;&#65292;&#37027;&#20040;&#20174;&#22806;&#37096;&#33021; read &#21448;&#33021; write</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524; Tax &#26159; private &#30340;&#35805;&#65292;&#37027;&#20040;&#20174;&#22806;&#37096;&#19981;&#33021; read &#21448;&#19981;&#33021; write</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25105;&#20204;&#38656;&#35201;&#19968;&#31181;&#26041;&#24335;&#65292;&#20174;&#22806;&#37096;&#21482;&#33021; read &#19981;&#33021; write&#65292;&#22914;&#20309;&#23454;&#29616;?</span>
 tc1.Tax = 3333;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}"</span>, tc1.Tax<span style="color: #707183;">)</span>;
 </pre>
@@ -75,7 +79,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org5ca1ce2" class="outline-2">
-<h2 id="org5ca1ce2"><span class="section-number-2">2</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-19 Fri]</span></span></h2>
+<h2 id="org5ca1ce2"><span class="section-number-2">2</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-19 周五]</span></span></h2>
 <div class="outline-text-2" id="text-2">
 <p>
 首先，敲代码并理解对象的使用。
@@ -84,7 +88,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 其次，电费计算 (题目描述由第 5 小组提供):
 </p>
-<pre class="example" id="org68a7e5a">
+<pre class="example" id="orgfdc6d1b">
 题目：写一个控制台小程序，能指定计算某月的用电费，
 如果输入的用电量和月份为空或者不是数字，提示用户出错
 
@@ -130,7 +134,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-orged3af95" class="outline-2">
-<h2 id="orged3af95"><span class="section-number-2">3</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-18 Thu]</span></span></h2>
+<h2 id="orged3af95"><span class="section-number-2">3</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-18 周四]</span></span></h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>书面总结一下，将代码块提取为单独的方法，有哪些好处和坏处 (多多益善)</li>
@@ -149,7 +153,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org8c97091" class="outline-2">
-<h2 id="org8c97091"><span class="section-number-2">4</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-17 Wed]</span></span></h2>
+<h2 id="org8c97091"><span class="section-number-2">4</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-17 周三]</span></span></h2>
 <div class="outline-text-2" id="text-4">
 <p>
 作业:
@@ -176,7 +180,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 计算阶梯电费:
 </p>
-<pre class="example" id="org1536b39">
+<pre class="example" id="org27cee31">
 以广东省为例按照每户每月电量分档划分为夏季标准和非夏季标准。其中：
 （1）夏季标准（5月－10月）：
 第一档电量为每户每月0－260度的用电量，其电价不作调整；
@@ -205,7 +209,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-orgb263d56" class="outline-2">
-<h2 id="orgb263d56"><span class="section-number-2">5</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-11 Thu]</span></span></h2>
+<h2 id="orgb263d56"><span class="section-number-2">5</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-11 周四]</span></span></h2>
 <div class="outline-text-2" id="text-5">
 <p>
 写一个小程序，计算工资的税后收入。要求:
@@ -215,7 +219,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和实际税后收入。参考输出:
 </p>
 
-<figure id="org9fb201c">
+<figure id="org81a2494">
 <img src="img/tipcal-result-demo.png" alt="tipcal-result-demo.png" width="400">
 
 </figure></li>
@@ -274,7 +278,7 @@ CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和
 个人所得税税率表:
 </p>
 
-<figure id="org9f3e11d">
+<figure id="orgb05ef37">
 <img src="img/geshui.png" alt="geshui.png" width="400">
 
 </figure></li>
@@ -294,7 +298,7 @@ CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和
 </section>
 
 <section id="outline-container-org321e3c2" class="outline-2">
-<h2 id="org321e3c2"><span class="section-number-2">6</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-10 Wed]</span></span></h2>
+<h2 id="org321e3c2"><span class="section-number-2">6</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-10 周三]</span></span></h2>
 <div class="outline-text-2" id="text-6">
 <p>
 熟悉 VS2019，尝试创建各种类型的项目:
@@ -310,7 +314,7 @@ CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和
 </section>
 
 <section id="outline-container-orgb92e313" class="outline-2">
-<h2 id="orgb92e313"><span class="section-number-2">7</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-09 Tue]</span></span></h2>
+<h2 id="orgb92e313"><span class="section-number-2">7</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-03-09 周二]</span></span></h2>
 <div class="outline-text-2" id="text-7">
 <p>
 采集 C# 和 dotnet 相关的招聘信息，了解企业需求，做好学习准备。
@@ -354,7 +358,7 @@ CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-22</p>
+<p class="date">Created: 2021-03-23</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

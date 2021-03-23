@@ -16,6 +16,10 @@
 
   // 修改代码，使得下面第一句不能够执行，但第二句能执行
   // 也就是，可以从 tc1 中返回 Money 对应的税收和税率
+
+  // 如果 Tax 是 public 的话，那么从外部能 read 又能 write
+  // 如果 Tax 是 private 的话，那么从外部不能 read 又不能 write
+  // 我们需要一种方式，从外部只能 read 不能 write，如何实现?
   tc1.Tax = 3333;
   Console.WriteLine("{0}", tc1.Tax);
 #+end_src
