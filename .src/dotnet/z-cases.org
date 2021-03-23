@@ -552,6 +552,17 @@
 - Private 保证数据从外部无法访问
 - 通过 GetTax() 方法将内部数据的访问有限地暴露出来
 
+#+begin_src csharp
+  TaxCal tc1 = new TaxCal();
+  tc1.SetMoney(8000);
+  Console.WriteLine(tc1.GetMoney());
+
+  tc1.PrintToConsole();
+  tc1.ExportToExcel();
+  tc1.SetMoney(333333333);
+  Console.WriteLine(">>> {0}", tc1.GetRate());
+#+end_src
+
 [[file:img/tax-cal5.png]]
 
 

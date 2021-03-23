@@ -293,7 +293,7 @@
 <h3 id="org3bb68fd"><span class="section-number-3">1.4</span> 优化版本</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<figure id="org57ba458">
+<figure id="org8baf255">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -568,7 +568,7 @@
 </p>
 
 
-<figure id="org6359bb6">
+<figure id="org0ae7291">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -667,8 +667,20 @@
 <li>通过 GetTax() 方法将内部数据的访问有限地暴露出来</li>
 </ul>
 
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">TaxCal</span> <span style="color: #a0522d;">tc1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TaxCal</span><span style="color: #707183;">()</span>;
+tc1.<span style="color: #0000ff;">SetMoney</span><span style="color: #707183;">(</span>8000<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>tc1.<span style="color: #0000ff;">GetMoney</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
 
-<figure id="org29bbe81">
+tc1.<span style="color: #0000ff;">PrintToConsole</span><span style="color: #707183;">()</span>;
+tc1.<span style="color: #0000ff;">ExportToExcel</span><span style="color: #707183;">()</span>;
+tc1.<span style="color: #0000ff;">SetMoney</span><span style="color: #707183;">(</span>333333333<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&gt;&gt;&gt; {0}"</span>, tc1.<span style="color: #0000ff;">GetRate</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+
+<figure id="org327bfca">
 <img src="img/tax-cal5.png" alt="tax-cal5.png">
 
 </figure>
