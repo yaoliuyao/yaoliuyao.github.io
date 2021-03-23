@@ -547,6 +547,10 @@
   }
 #+end_src
 
+** 继续优化
+
+[[file:img/tax-cal4.png]]
+
 ** 小结
 
 * 小费计算器
