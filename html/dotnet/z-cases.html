@@ -52,7 +52,7 @@
 <li><a href="#org7dc2746">1.6. 通过类对代码逻辑进行进一步分离</a></li>
 <li><a href="#orgdad117b">1.7. 让类中的各个方法，能共享某些数据</a></li>
 <li><a href="#orge977447">1.8. 引入对象保证调用的数据安全</a></li>
-<li><a href="#org63035b4">1.9. 继续优化</a></li>
+<li><a href="#org6f2466c">1.9. 通过 private + Method 的方式，保证数据的访问安全</a></li>
 <li><a href="#org55812d7">1.10. 小结</a></li>
 </ul>
 </li>
@@ -293,7 +293,7 @@
 <h3 id="org3bb68fd"><span class="section-number-3">1.4</span> 优化版本</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<figure id="org18a3826">
+<figure id="org39b0ce1">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -568,7 +568,7 @@
 </p>
 
 
-<figure id="org5695452">
+<figure id="org06563fe">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -659,11 +659,17 @@
 </div>
 </div>
 
-<div id="outline-container-org63035b4" class="outline-3">
-<h3 id="org63035b4"><span class="section-number-3">1.9</span> 继续优化</h3>
+<div id="outline-container-org6f2466c" class="outline-3">
+<h3 id="org6f2466c"><span class="section-number-3">1.9</span> 通过 private + Method 的方式，保证数据的访问安全</h3>
 <div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li>Private 保证数据从外部无法访问</li>
+<li>通过 GetTax() 方法将内部数据的访问有限地暴露出来</li>
+</ul>
 
-<figure id="org4580454">
+
+
+<figure id="orgb00baa8">
 <img src="img/tax-cal4.png" alt="tax-cal4.png">
 
 </figure>

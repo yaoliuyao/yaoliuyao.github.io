@@ -547,7 +547,11 @@
   }
 #+end_src
 
-** 继续优化
+** 通过 private + Method 的方式，保证数据的访问安全
+
+- Private 保证数据从外部无法访问
+- 通过 GetTax() 方法将内部数据的访问有限地暴露出来
+
 
 [[file:img/tax-cal4.png]]
 
