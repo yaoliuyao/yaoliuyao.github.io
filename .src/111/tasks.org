@@ -8,7 +8,7 @@
 :END:
 
 1. *亲手* 敲今天上课的代码，*至少* 一遍
-2. 思考，如何将代码中的冗余 CalculateTax 给精简掉
+2. 思考并实现将代码中的冗余 CalculateTax 给精简掉
 3. 自己总结一下，如何才能进行有效的封装
 
 [[file:../dotnet/img/tax-cal5.png]]
