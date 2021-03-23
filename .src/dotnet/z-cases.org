@@ -552,8 +552,8 @@
 - Private 保证数据从外部无法访问
 - 通过 GetTax() 方法将内部数据的访问有限地暴露出来
 
+[[file:img/tax-cal5.png]]
 
-[[file:img/tax-cal4.png]]
 
 ** 小结
 
