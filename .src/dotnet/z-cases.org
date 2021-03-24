@@ -677,18 +677,6 @@
 
 [[file:img/cal-tax-5.gif]]
 
-*** 版本 1 (勤)
-
-#+ATTR_HTML: :width 400
-[[file:img/tax-cal-clean1.png]]
-
-
-*** 版本 2 (懒)
-
-#+ATTR_HTML: :width 400
-[[file:img/tax-cal-clean2.png]]
-
-
 ** 小结
 
 * 小费计算器
