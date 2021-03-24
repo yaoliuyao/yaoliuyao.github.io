@@ -547,7 +547,7 @@
   }
 #+end_src
 
-** 通过 private + Method 的方式，保证数据的访问安全
+** 通过 [private Field + public Method] 的方式，保证数据的访问安全
 
 面向对象的数据的封装 (数据的安全):
 - 对象是按照类的模板创建的包含了若干数据的一段存储空间
@@ -563,20 +563,109 @@
   + 可控的读跟写: 1) 将字段设为 private 2) 创建两个方法，一个用来读 (Get)，一个用来写 (Set)
 - 于是，上述的这种模式，*private 字段 + public 方法*，成为了一种标准的编程实践
 
-
 #+begin_src csharp
-  TaxCal tc1 = new TaxCal();
-  tc1.SetMoney(8000);
-  Console.WriteLine(tc1.GetMoney());
+  using System;
 
-  tc1.PrintToConsole();
-  tc1.ExportToExcel();
-  tc1.SetMoney(333333333);
-  Console.WriteLine(">>> {0}", tc1.GetRate());
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          double money;
+          if (args.Length != 1 || !double.TryParse(args[0], out money))
+          {
+              Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
+              return;
+          }
+
+          TaxCal tc1 = new TaxCal();
+          tc1.SetMoney(8000);
+          Console.WriteLine(tc1.GetMoney());
+
+          tc1.PrintToConsole();
+          tc1.ExportToExcel();
+          tc1.SetMoney(333333333);
+          Console.WriteLine(">>> {0}", tc1.GetRate());
+      }
+  }
+
+  class TaxCal
+  {
+      private double Money;
+      private double Rate;
+      private double Tax;
+
+      public double GetMoney()
+      {
+          return Money;
+      }
+      public void SetMoney(double duoshao)
+      {
+          if (duoshao < 0)
+          {
+              throw new Exception("错了，要退出");
+          }
+          Money = duoshao;
+      }
+      public double GetTax()
+      {
+          CalculateTax();
+          return Tax;
+      }
+      public double GetRate()
+      {
+          CalculateTax();
+          return Rate;
+      }
+
+      public void CalculateTax()
+      {
+          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          if (Money <= 5000)
+          {
+              Rate = 0;
+              Tax = 0;
+          }
+          else if (Money < 10000)
+          {
+              Rate = rates[0];
+              Tax = (Money - 5000) * Rate;
+          }
+          else if (Money < 20000)
+          {
+              Rate = rates[1];
+              Tax = (Money - 10000) * Rate + 5000 * rates[0];
+          }
+          else if (Money < 100000)
+          {
+              Rate = rates[2];
+              Tax = (Money - 20000) * Rate + 10000 * rates[1] + 5000 * rates[0];
+          }
+          else
+          {
+              Rate = rates[3];
+              Tax = (Money - 100000) * Rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+          }
+      }
+      public void PrintToConsole()
+      {
+          CalculateTax();
+          Console.WriteLine();
+          Console.WriteLine($"税前收入: {Money,10:C}");
+          Console.WriteLine($"应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"税后收入: {Money - Tax,10:C}");
+      }
+      public void ExportToExcel()
+      {
+          CalculateTax();
+          Console.WriteLine();
+          Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
+          Console.WriteLine($"Excle输出应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"Excle输出税后收入: {Money - Tax,10:C}");
+      }
+  }
 #+end_src
-
-[[file:img/tax-cal5.png]]
-
 
 ** 小结
 
