@@ -563,6 +563,7 @@
   + 可控的读跟写: 1) 将字段设为 private 2) 创建两个方法，一个用来读 (Get)，一个用来写 (Set)
 - 于是，上述的这种模式，*private 字段 + public 方法*，成为了一种标准的编程实践
 
+
 #+begin_src csharp
   TaxCal tc1 = new TaxCal();
   tc1.SetMoney(8000);
