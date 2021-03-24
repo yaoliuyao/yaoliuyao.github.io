@@ -674,6 +674,9 @@
 #+end_src
 
 ** 减少代码冗余 (CalculteTax)
+
+[[file:img/cal-tax-5.gif]]
+
 *** 版本 1 (勤)
 
 #+ATTR_HTML: :width 400
