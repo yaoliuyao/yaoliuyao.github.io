@@ -50,9 +50,9 @@
 <li><a href="#org49b351e">1.4. <b>分离</b> 计算跟输出，优化代码结构</a></li>
 <li><a href="#orgb6cbaae">1.5. 通过 <b>方法</b> 对逻辑进行提取</a></li>
 <li><a href="#org55b7ec1">1.6. 通过 <b>类</b> 对代码逻辑进行进一步分离</a></li>
-<li><a href="#orgdad117b">1.7. 让类中的各个方法，能共享某些数据</a></li>
+<li><a href="#org34df978">1.7. 让类中的各个方法，能 <b>共享数据</b></a></li>
 <li><a href="#org08f827d">1.8. 引入 <b>对象</b> 保证调用的数据安全</a></li>
-<li><a href="#org2c91150">1.9. 通过 [private Field + public Method] 的方式，<b>保护</b> 数据安全</a></li>
+<li><a href="#orgaa138af">1.9. 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</a></li>
 <li><a href="#org60a34f5">1.10. 小结</a></li>
 </ul>
 </li>
@@ -293,7 +293,7 @@
 <h3 id="org49b351e"><span class="section-number-3">1.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<figure id="org47cda7d">
+<figure id="org9662660">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -467,8 +467,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgdad117b" class="outline-3">
-<h3 id="orgdad117b"><span class="section-number-3">1.7</span> 让类中的各个方法，能共享某些数据</h3>
+<div id="outline-container-org34df978" class="outline-3">
+<h3 id="org34df978"><span class="section-number-3">1.7</span> 让类中的各个方法，能 <b>共享数据</b></h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 在类中定义变量缓存每次方法调用的中间结果，下一个方法调用也可以直接使用这些缓存的结果。
@@ -568,7 +568,7 @@
 </p>
 
 
-<figure id="org2b6f963">
+<figure id="org127c34e">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -659,8 +659,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2c91150" class="outline-3">
-<h3 id="org2c91150"><span class="section-number-3">1.9</span> 通过 [private Field + public Method] 的方式，<b>保护</b> 数据安全</h3>
+<div id="outline-container-orgaa138af" class="outline-3">
+<h3 id="orgaa138af"><span class="section-number-3">1.9</span> 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 面向对象的数据的封装 (数据的安全):
@@ -685,7 +685,7 @@
 </ul>
 
 
-<figure id="orgcb05c52">
+<figure id="org88c1797">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
