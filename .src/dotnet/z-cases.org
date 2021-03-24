@@ -602,7 +602,8 @@
       {
           if (duoshao < 0)
           {
-              throw new Exception("错了，要退出");
+              Console.WriteLine("\n参数输入格式不正确！");
+              Environment.Exit(0);
           }
           Money = duoshao;
       }
