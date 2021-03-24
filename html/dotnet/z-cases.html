@@ -293,7 +293,7 @@
 <h3 id="org49b351e"><span class="section-number-3">1.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<figure id="org9662660">
+<figure id="orgbfa0818">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -568,7 +568,7 @@
 </p>
 
 
-<figure id="org127c34e">
+<figure id="org8fda990">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -681,14 +681,18 @@
 <li>只写: 1) 将字段设置为 private 2) 创建一个 public 的方法，在这个方法中可以为字段赋值</li>
 <li>可控的读跟写: 1) 将字段设为 private 2) 创建两个方法，一个用来读 (Get)，一个用来写 (Set)</li>
 </ul></li>
-<li>于是，上述的这种模式，<b>private 字段 + public 方法</b>，成为了一种标准的编程实践</li>
 </ul>
 
 
-<figure id="org88c1797">
+<figure id="orgc0f6f78">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
+
+
+<p>
+于是，上述的这种模式，<b>private 字段 + public 方法</b>，成为了一种标准的编程实践:
+</p>
 
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
