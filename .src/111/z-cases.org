@@ -860,6 +860,11 @@
   }
 #+end_src
 
+** 来自语法糖的力量: 通过 *Property* 简化代码
+
+#+ATTR_HTML: :width 600
+[[file:img/tax-xxxx.png]]
+
 ** 小结
 
 * 小费计算器
