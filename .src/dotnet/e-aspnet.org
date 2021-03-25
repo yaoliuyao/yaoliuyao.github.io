@@ -1,3 +1,0 @@
-#+TITLE: ASP.NET MVC
-
-

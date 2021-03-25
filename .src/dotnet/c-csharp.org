@@ -1,0 +1,70 @@
+#+TITLE: C# Core
+
+
+* 类跟对象 (Class/Instance)
+** 属性 (Property)
+
+属性本身就是 [private Field + public Method] 一种语法糖
+- 它能减少太多冗余的模板代码；它能简化对字符的访问，让代码更简洁
+- 但是不要忘了，它跟 getter/setter 方法的方式本质是一样的。最后还是通过编译器将我们写的属性代码转换成了 getter/setter 方法的形式
+
+示例:
+#+begin_src csharp
+  class Rect
+  {
+      public double Width { get; set; }
+      public double Height { get; set; }
+      public double Area
+      {
+          get
+          {
+              return Width * Height;
+          }
+      }
+
+      // private double Height;
+      // public double GetHeight ()
+      // {
+      //     return Height;
+      // }
+      // public void SetHeight (double h);
+      // {
+      //     Height = h;
+      // }
+  }
+
+  class Program
+  {
+      static void Main()
+      {
+          Rect r = new Rect();
+          r.Width = 2000;
+          r.Height = 333;
+          Console.WriteLine("面积是: {0}", r.Area);
+      }
+  }
+#+end_src
+
+
+* 其他
+
+#+begin_src csharp
+  string aFriend = "比尔";
+  string bFriend = "小明";
+  Console.WriteLine("Hello {1}, 我是 {0}", aFriend, bFriend);
+  Console.WriteLine($"Hello {bFriend}, 我是 {aFriend}");
+  Console.WriteLine("Hello " + bFriend + ", 我是 " + aFriend);
+
+  Console.WriteLine("Hello " + bFriend + ", 我有 " + (aFriend.Length + 3) + " 长");
+  Console.WriteLine($"Hello {bFriend}, 我有 {aFriend.Length + 3} 长");
+
+  string greeting = "      Hello World!       ";
+  string greetingTrimed = greeting.Trim();
+  Console.WriteLine($"[{greetingTrimed},{greeting}]");
+
+  string songLyrics = "You say goodbye, and I say hello";
+  Console.WriteLine(songLyrics.Contains("goodbye"));
+  Console.WriteLine(songLyrics.Contains("greetings"));
+  Console.WriteLine(songLyrics.StartsWith("You"));
+  Console.WriteLine(songLyrics.EndsWith("goodbye"));
+#+end_src

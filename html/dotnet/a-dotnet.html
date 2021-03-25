@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-03-25 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>.NET</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="孙悟空">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliuyao/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliuyao/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+        "HTML-CSS": { scale: 100, linebreaks: { automatic: "false" }, webFont: "TeX" },
+        SVG: {scale: 100, linebreaks: { automatic: "false" }, font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"}, MultLineWidth: "85%", TagSide: "right", TagIndent: ".8em" }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML" async></script>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">.NET</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org96d87cc">1. 简史</a></li>
+<li><a href="#org5a891eb">2. 开发方式</a>
+<ul>
+<li><a href="#orga3fa177">2.1. 原始方式</a></li>
+<li><a href="#org69fd68f">2.2. 解锁开发的完全能力 (Visual Studio)</a></li>
+<li><a href="#org2ea99d6">2.3. 跨平台开发 (.net core + vscode)</a></li>
+<li><a href="#org30b55e3">2.4. 书籍和文档</a></li>
+</ul>
+</li>
+<li><a href="#org5ecc3e9">3. .NET 平台的项目</a>
+<ul>
+<li><a href="#org7622a80">3.1. Console 控制台应用</a></li>
+<li><a href="#org0d35306">3.2. WinForm 窗体应用</a></li>
+<li><a href="#orgac9bf73">3.3. WPF 应用程序</a></li>
+<li><a href="#org584ac91">3.4. ASP.NET WebForm</a></li>
+<li><a href="#orgea82e6b">3.5. ASP.NET MVC</a></li>
+<li><a href="#orgdb336e5">3.6. Xamarin</a></li>
+<li><a href="#org1ed6d7d">3.7. Unity3D</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+
+
+<section id="outline-container-org96d87cc" class="outline-2">
+<h2 id="org96d87cc"><span class="section-number-2">1</span> 简史</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>1998 年左右，Java 风靡世界。面向对象，一次编译处处运行 (解决了 C++ 之类的一些痛点)</li>
+<li>微软基于 Java 搞出了一个 J++ 的东西。陷入官司。推出了 C# 语言</li>
+<li>因此，C# 借鉴了很多语言: Java/C++/Pascal&#x2026;
+<ul class="org-ul">
+<li>摸着 Java 过河，很多坑被 Java 踩过之后，不需要再踩</li>
+<li>微软专有的，历史包袱，开发成本相对低多了</li>
+</ul></li>
+<li>.net framework，微软在 Windows 上的专有技术，C# 的发挥受限于 .net 平台</li>
+<li>.net core 从 .net framework 中被剥离出来，成为开源、免费、跨平台的解决方案</li>
+<li>.net5，自此合二为一</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org5a891eb" class="outline-2">
+<h2 id="org5a891eb"><span class="section-number-2">2</span> 开发方式</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orga3fa177" class="outline-3">
+<h3 id="orga3fa177"><span class="section-number-3">2.1</span> 原始方式</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+安装完 Windows 之后，自带的 csc 在 C:\Windows\Microsoft.NET\版本号 下面。
+</p>
+
+<p>
+所以，可以使用记事本等任何顺手的文本编辑器，创建并打开编辑一个 Hello.cs 的文件:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Hello</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Test</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span>
+            System.Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"hello, csharp"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+接下来，就可以编译，并运行了:
+</p>
+<pre class="example">
+C:\Windows\...\csc.exe Hello.cs
+Hello.exe
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org69fd68f" class="outline-3">
+<h3 id="org69fd68f"><span class="section-number-3">2.2</span> 解锁开发的完全能力 (Visual Studio)</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+如果在 Windows 下面进行开发的话。最好的环境就是 VS。
+</p>
+
+<p>
+三个版本:
+</p>
+<ol class="org-ol">
+<li>社区版</li>
+<li>专业版</li>
+<li>企业版</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org2ea99d6" class="outline-3">
+<h3 id="org2ea99d6"><span class="section-number-3">2.3</span> 跨平台开发 (.net core + vscode)</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+首先，安装 .Net Core 的开发环境
+</p>
+<ul class="org-ul">
+<li><a href="https://dotnet.microsoft.com/download">https://dotnet.microsoft.com/download</a></li>
+<li><p>
+下载安装 SDK 即可。安装完毕，得到一个 dotnet 命令
+</p>
+<pre class="example">
+dotnet
+</pre></li>
+</ul>
+
+<p>
+其次，安装并配置 VSCode:
+</p>
+<ul class="org-ul">
+<li><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></li>
+<li>打开 VSCode，在插件市场，搜索 C# 插件并安装</li>
+</ul>
+
+<p>
+最后，就可以使用 <code>dotnet</code> 命令进行项目的创建和运行，使用 VSCode 进行代码的编写了:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">1. &#20808;&#21019;&#24314;&#39033;&#30446;</span>
+<span style="color: #483d8b;">cd</span> Workdir
+dotnet new console -o MyHello
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">2. &#20351;&#29992; VSCode &#25171;&#24320;&#39033;&#30446;&#65292;&#24182;&#36827;&#34892;&#32534;&#36753;</span>
+code MyHello
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">3. &#20351;&#29992; dotnet &#21629;&#20196;&#32534;&#35793;&#24182;&#20801;&#35768;</span>
+dotnet run
+</pre>
+</div>
+
+<p>
+PS, dotnet 命令:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">dotnet new console <span style="color: #b22222;"># </span><span style="color: #b22222;">&#22312;&#24403;&#21069;&#25991;&#20214;&#22841;&#21019;&#24314;&#19968;&#20010; Console &#31867;&#22411;&#30340;&#39033;&#30446;</span>
+dotnet new mvc/wpf <span style="color: #b22222;"># </span><span style="color: #b22222;">&#21019;&#24314;&#20854;&#20182;&#31867;&#22411;&#30340;&#39033;&#30446;</span>
+dotnet new console -o Hello <span style="color: #b22222;"># </span><span style="color: #b22222;">&#21019;&#24314;&#19968;&#20010; Hello &#25991;&#20214;&#22841;&#65292;&#21253;&#21547; Console &#31867;&#22411;&#30340;&#39033;&#30446;</span>
+
+dotnet build
+dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;">dotnet build &amp;&amp; cd ... &amp;&amp; xxx.exe</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org30b55e3" class="outline-3">
+<h3 id="org30b55e3"><span class="section-number-3">2.4</span> 书籍和文档</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>MSDN (墙裂推荐): <a href="https://docs.microsoft.com/zh-cn/dotnet/">https://docs.microsoft.com/zh-cn/dotnet/</a></li>
+<li>C# 入门经典: <a href="https://item.jd.com/12508114.html">https://item.jd.com/12508114.html</a></li>
+<li>C# 图解教程: <a href="https://item.jd.com/12601789.html">https://item.jd.com/12601789.html</a></li>
+<li>C# 高级编程 (红皮书): <a href="https://item.jd.com/45998158124.html">https://item.jd.com/45998158124.html</a></li>
+<li>CLR via C#: <a href="https://item.jd.com/1403938154.html">https://item.jd.com/1403938154.html</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org5ecc3e9" class="outline-2">
+<h2 id="org5ecc3e9"><span class="section-number-2">3</span> .NET 平台的项目</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org7622a80" class="outline-3">
+<h3 id="org7622a80"><span class="section-number-3">3.1</span> Console 控制台应用</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+基于命令行窗口的应用。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0d35306" class="outline-3">
+<h3 id="org0d35306"><span class="section-number-3">3.2</span> WinForm 窗体应用</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+基本特点:
+</p>
+<ul class="org-ul">
+<li>简单，直观</li>
+<li>效率高，比较快</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgac9bf73" class="outline-3">
+<h3 id="orgac9bf73"><span class="section-number-3">3.3</span> WPF 应用程序</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>MVVM</li>
+<li>数据驱动</li>
+<li>通过 xaml 文件进行视图分离</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org584ac91" class="outline-3">
+<h3 id="org584ac91"><span class="section-number-3">3.4</span> ASP.NET WebForm</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+比较老的，跟 WinForm 类似的一种 BS 开发方式。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgea82e6b" class="outline-3">
+<h3 id="orgea82e6b"><span class="section-number-3">3.5</span> ASP.NET MVC</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+使用 MVC 三层结构，对逻辑和视图进行有效分离。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdb336e5" class="outline-3">
+<h3 id="orgdb336e5"><span class="section-number-3">3.6</span> Xamarin</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+移动开发，安卓或 iOS
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1ed6d7d" class="outline-3">
+<h3 id="org1ed6d7d"><span class="section-number-3">3.7</span> Unity3D</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+游戏开发
+</p>
+</div>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 孙悟空</p>
+<p class="date">Created: 2021-03-25</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>
