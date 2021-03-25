@@ -60,8 +60,8 @@
 - 111
   - [[file:111/161.org][班级信息]]
   - [[file:111/tasks.org][任务和作业]]
+  - [[file:111/z-cases.org][一万行代码]]
 - dotnet
   - [[file:dotnet/a-dotnet-env.org][.NET 平台]]
   - [[file:dotnet/b-csharp.org][C# 编程语言]]
   - [[file:dotnet/e-aspnet.org][ASP.NET MVC]]
-  - [[file:dotnet/z-cases.org][一万行代码]]
