@@ -865,6 +865,12 @@
 #+ATTR_HTML: :width 600
 [[file:img/tax-xxxx.png]]
 
+Lazy 版本:
+
+#+ATTR_HTML: :width 600
+[[file:img/ksdjfksjdfk.png]]
+
+
 ** 小结
 
 * 小费计算器
