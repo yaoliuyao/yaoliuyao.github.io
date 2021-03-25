@@ -63,5 +63,5 @@
   - [[file:111/z-cases.org][一万行代码]]
 - dotnet
   - [[file:dotnet/a-dotnet.org][.NET]]
-  - [[file:dotnet/c-csharp.org][C# Core]]
+  - [[file:dotnet/e-csharp.org][C♯]]
   - [[file:dotnet/f-aspnet.org][ASP.NET]]
