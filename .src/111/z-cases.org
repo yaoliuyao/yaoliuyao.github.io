@@ -673,7 +673,7 @@
   }
 #+end_src
 
-** 减少代码冗余，Lazy and Eager
+** 减少代码冗余，*Lazy* and *Eager*
 
 #+begin_src csharp
   class Program
