@@ -673,9 +673,192 @@
   }
 #+end_src
 
-** 减少代码冗余 (CalculteTax)
+** 减少代码冗余，Lazy and Eager
 
-[[file:img/cal-tax-5.gif]]
+#+begin_src csharp
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          double money;
+          if (args.Length != 1 || !double.TryParse(args[0], out money))
+          {
+              Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
+              return;
+          }
+
+          TaxCal tc1 = new TaxCal();
+          tc1.SetMoney(money);
+          Console.WriteLine(tc1.GetTax());
+          tc1.PrintToConsole();
+      }
+  }
+#+end_src
+
+#+begin_src csharp
+  class TaxCal
+  {
+      private double Money;
+      private double Rate;
+      private double Tax;
+
+      public double GetMoney()
+      {
+          return Money;
+      }
+      public void SetMoney(double duoshao)
+      {
+          if (duoshao < 0)
+          {
+              Console.WriteLine("\n参数输入格式不正确！");
+              Environment.Exit(0);
+          }
+          Money = duoshao;
+          CalculateTax(); // 更新对象中的 Tax 和 Rate
+      }
+      public double GetRate()
+      {
+          return Rate;
+      }
+      public double GetTax()
+      {
+          return Tax;
+      }
+
+      public void CalculateTax()
+      {
+          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          if (Money <= 5000)
+          {
+              Rate = 0;
+              Tax = 0;
+          }
+          else if (Money < 10000)
+          {
+              Rate = rates[0];
+              Tax = (Money - 5000) * Rate;
+          }
+          else if (Money < 20000)
+          {
+              Rate = rates[1];
+              Tax = (Money - 10000) * Rate + 5000 * rates[0];
+          }
+          else if (Money < 100000)
+          {
+              Rate = rates[2];
+              Tax = (Money - 20000) * Rate + 10000 * rates[1] + 5000 * rates[0];
+          }
+          else
+          {
+              Rate = rates[3];
+              Tax = (Money - 100000) * Rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+          }
+      }
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"税前收入: {Money,10:C}");
+          Console.WriteLine($"应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"税后收入: {Money - Tax,10:C}");
+      }
+      public void ExportToExcel()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
+          Console.WriteLine($"Excle输出应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"Excle输出税后收入: {Money - Tax,10:C}");
+      }
+  }
+#+end_src
+
+#+begin_src csharp
+  class TaxCalLazy
+  {
+      private double Money;
+
+      public double GetMoney()
+      {
+          return Money;
+      }
+      public void SetMoney(double duoshao)
+      {
+          if (duoshao < 0)
+          {
+              Console.WriteLine("\n参数输入格式不正确！");
+              Environment.Exit(0);
+          }
+          Money = duoshao;
+      }
+
+      public double GetTax()
+      {
+          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          if (Money <= 5000)
+          {
+              return 0;
+          }
+          else if (Money < 10000)
+          {
+              return (Money - 5000) * rates[0];
+          }
+          else if (Money < 20000)
+          {
+              return (Money - 10000) * rates[1] + 5000 * rates[0];
+          }
+          else if (Money < 100000)
+          {
+              return (Money - 20000) * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+          }
+          else
+          {
+              return (Money - 100000) * rates[3] + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+          }
+      }
+      public double GetRate()
+      {
+          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          if (Money <= 5000)
+          {
+              return 0;
+          }
+          else if (Money < 10000)
+          {
+              return rates[0];
+          }
+          else if (Money < 20000)
+          {
+              return rates[1];
+          }
+          else if (Money < 100000)
+          {
+              return rates[2];
+          }
+          else
+          {
+              return rates[3];
+          }
+      }
+
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"税前收入: {Money,10:C}");
+          Console.WriteLine($"应付税收: {GetTax(),10:C} ({GetRate():P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"税后收入: {Money - GetTax(),10:C}");
+      }
+      public void ExportToExcel()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
+          Console.WriteLine($"Excle输出应付税收: {GetTax(),10:C} ({GetRate():P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"Excle输出税后收入: {Money - GetTax(),10:C}");
+      }
+  }
+#+end_src
 
 ** 小结
 

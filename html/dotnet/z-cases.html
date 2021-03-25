@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-24 -->
+<!-- 2021-03-25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>一万行代码</title>
@@ -53,7 +53,7 @@
 <li><a href="#org34df978">1.7. 让类中的各个方法，能 <b>共享数据</b></a></li>
 <li><a href="#org08f827d">1.8. 引入 <b>对象</b> 保证调用的数据安全</a></li>
 <li><a href="#orgaa138af">1.9. 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</a></li>
-<li><a href="#org846aecf">1.10. 减少代码冗余 (CalculteTax)</a></li>
+<li><a href="#orgf154b1d">1.10. 减少代码冗余，Lazy and Eager</a></li>
 <li><a href="#org60a34f5">1.11. 小结</a></li>
 </ul>
 </li>
@@ -294,7 +294,7 @@
 <h3 id="org49b351e"><span class="section-number-3">1.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<figure id="orgf2bfd0b">
+<figure id="org085c14c">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -569,7 +569,7 @@
 </p>
 
 
-<figure id="org6ac263c">
+<figure id="orge0de033">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -685,7 +685,7 @@
 </ul>
 
 
-<figure id="orgaee481e">
+<figure id="orgd8d0790">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -803,14 +803,196 @@
 </div>
 </div>
 
-<div id="outline-container-org846aecf" class="outline-3">
-<h3 id="org846aecf"><span class="section-number-3">1.10</span> 减少代码冗余 (CalculteTax)</h3>
+<div id="outline-container-orgf154b1d" class="outline-3">
+<h3 id="orgf154b1d"><span class="section-number-3">1.10</span> 减少代码冗余，Lazy and Eager</h3>
 <div class="outline-text-3" id="text-1-10">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">double</span> <span style="color: #a0522d;">money</span>;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>args.Length != 1 || !<span style="color: #228b22;">double</span>.<span style="color: #0000ff;">TryParse</span><span style="color: #709870;">(</span><span style="color: #228b22;">args</span><span style="color: #907373;">[</span>0<span style="color: #907373;">]</span>, <span style="color: #a020f0;">out</span> <span style="color: #228b22;">money</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#24744;&#30340;&#36755;&#20837;&#26377;&#35823;&#65292;&#27491;&#30830;&#30340;&#35843;&#29992;&#26041;&#27861;&#26159;:\nTaxCalculator &#31246;&#21069;&#25910;&#20837;"</span><span style="color: #709870;">)</span>;
+            <span style="color: #a020f0;">return</span>;
+        <span style="color: #909183;">}</span>
 
-<figure id="org9ab8600">
-<img src="img/cal-tax-5.gif" alt="cal-tax-5.gif">
+        <span style="color: #228b22;">TaxCal</span> <span style="color: #a0522d;">tc1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TaxCal</span><span style="color: #909183;">()</span>;
+        tc1.<span style="color: #0000ff;">SetMoney</span><span style="color: #909183;">(</span><span style="color: #228b22;">money</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>tc1.<span style="color: #0000ff;">GetTax</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+        tc1.<span style="color: #0000ff;">PrintToConsole</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 
-</figure>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TaxCal</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Money</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Rate</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Tax</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">GetMoney</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> Money;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">SetMoney</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span> <span style="color: #a0522d;">duoshao</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>duoshao &lt; 0<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"\n&#21442;&#25968;&#36755;&#20837;&#26684;&#24335;&#19981;&#27491;&#30830;&#65281;"</span><span style="color: #709870;">)</span>;
+            Environment.<span style="color: #0000ff;">Exit</span><span style="color: #709870;">(</span>0<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        Money = duoshao;
+        <span style="color: #0000ff;">CalculateTax</span><span style="color: #909183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26356;&#26032;&#23545;&#35937;&#20013;&#30340; Tax &#21644; Rate</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">GetRate</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> Rate;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">GetTax</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> Tax;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">CalculateTax</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">double</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">rates</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #909183;">[]</span> <span style="color: #909183;">{</span> 0.03, 0.05, 0.2, 0.45 <span style="color: #909183;">}</span>;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt;= 5000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Rate = 0;
+            Tax = 0;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 10000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Rate = rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+            Tax = <span style="color: #709870;">(</span>Money - 5000<span style="color: #709870;">)</span> * Rate;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 20000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Rate = rates<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span>;
+            Tax = <span style="color: #709870;">(</span>Money - 10000<span style="color: #709870;">)</span> * Rate + 5000 * rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 100000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Rate = rates<span style="color: #709870;">[</span>2<span style="color: #709870;">]</span>;
+            Tax = <span style="color: #709870;">(</span>Money - 20000<span style="color: #709870;">)</span> * Rate + 10000 * rates<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span> + 5000 * rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span>
+        <span style="color: #909183;">{</span>
+            Rate = rates<span style="color: #709870;">[</span>3<span style="color: #709870;">]</span>;
+            Tax = <span style="color: #709870;">(</span>Money - 100000<span style="color: #709870;">)</span> * Rate + 80000 * rates<span style="color: #709870;">[</span>2<span style="color: #709870;">]</span> + 10000 * rates<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span> + 5000 * rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#24212;&#20184;&#31246;&#25910;: {Tax,10:C} ({Rate:P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31246;&#21518;&#25910;&#20837;: {Money - Tax,10:C}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {Tax,10:C} ({Rate:P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {Money - Tax,10:C}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TaxCalLazy</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Money</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">GetMoney</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> Money;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">SetMoney</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span> <span style="color: #a0522d;">duoshao</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>duoshao &lt; 0<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"\n&#21442;&#25968;&#36755;&#20837;&#26684;&#24335;&#19981;&#27491;&#30830;&#65281;"</span><span style="color: #709870;">)</span>;
+            Environment.<span style="color: #0000ff;">Exit</span><span style="color: #709870;">(</span>0<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        Money = duoshao;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">GetTax</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">double</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">rates</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #909183;">[]</span> <span style="color: #909183;">{</span> 0.03, 0.05, 0.2, 0.45 <span style="color: #909183;">}</span>;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt;= 5000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> 0;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 10000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> <span style="color: #709870;">(</span>Money - 5000<span style="color: #709870;">)</span> * rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 20000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> <span style="color: #709870;">(</span>Money - 10000<span style="color: #709870;">)</span> * rates<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span> + 5000 * rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 100000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> <span style="color: #709870;">(</span>Money - 20000<span style="color: #709870;">)</span> * rates<span style="color: #709870;">[</span>2<span style="color: #709870;">]</span> + 10000 * rates<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span> + 5000 * rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> <span style="color: #709870;">(</span>Money - 100000<span style="color: #709870;">)</span> * rates<span style="color: #709870;">[</span>3<span style="color: #709870;">]</span> + 80000 * rates<span style="color: #709870;">[</span>2<span style="color: #709870;">]</span> + 10000 * rates<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span> + 5000 * rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">GetRate</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">double</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">rates</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #909183;">[]</span> <span style="color: #909183;">{</span> 0.03, 0.05, 0.2, 0.45 <span style="color: #909183;">}</span>;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt;= 5000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> 0;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 10000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> rates<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 20000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> rates<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Money &lt; 100000<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> rates<span style="color: #709870;">[</span>2<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> rates<span style="color: #709870;">[</span>3<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#24212;&#20184;&#31246;&#25910;: {GetTax(),10:C} ({GetRate():P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31246;&#21518;&#25910;&#20837;: {Money - GetTax(),10:C}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {GetTax(),10:C} ({GetRate():P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {Money - GetTax(),10:C}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 
@@ -902,7 +1084,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-24</p>
+<p class="date">Created: 2021-03-25</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
