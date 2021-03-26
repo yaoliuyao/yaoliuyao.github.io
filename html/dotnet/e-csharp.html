@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-25 -->
+<!-- 2021-03-26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -44,7 +44,8 @@
 <ul>
 <li><a href="#orgb52a020">1. 类跟对象 (Class/Instance)</a>
 <ul>
-<li><a href="#orgc23f090">1.1. 属性 (Property)</a></li>
+<li><a href="#org366c635">1.1. 方法 (Method)</a></li>
+<li><a href="#orgc23f090">1.2. 属性 (Property)</a></li>
 </ul>
 </li>
 <li><a href="#org2ec65d1">2. 其他</a></li>
@@ -57,9 +58,68 @@
 <h2 id="orgb52a020"><span class="section-number-2">1</span> 类跟对象 (Class/Instance)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgc23f090" class="outline-3">
-<h3 id="orgc23f090"><span class="section-number-3">1.1</span> 属性 (Property)</h3>
+<div id="outline-container-org366c635" class="outline-3">
+<h3 id="org366c635"><span class="section-number-3">1.1</span> 方法 (Method)</h3>
 <div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>方法是一个具备名字的代码块</li>
+<li>通过 <code>方法名()</code> 的方式实现方法调用，
+也就是在调用的地方将方法名代表的代码块里的代码进行运行</li>
+<li>方法的三要素:
+<ol class="org-ol">
+<li>一个名字 (方法名)</li>
+<li>传入的数据 (传入参数) 入参写在方法名后面的括号里。如果没有入参，括号保持为空即可</li>
+<li>传出的数据 (返回值) 方法内部，使用 return 表示返回的数据。在方法名前面，添加返回的类型。
+如果方法内部没有任何 return 表示方法没有返回值，需要在方法前面添加 void 表示这种情况</li>
+</ol></li>
+</ul>
+
+<p>
+方法的定义，示例:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26041;&#27861;&#30340;&#22768;&#26126;&#12289;&#23450;&#20041;</span>
+    <span style="color: #228b22;">int</span> <span style="color: #0000ff;">&#22686;&#21152;</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span><span style="color: #7388d6;">)</span>  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26041;&#27861;&#21517;&#20026; [&#22686;&#21152;]&#65292;&#20837;&#21442;&#20026; [a]</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> a + 1;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238;&#20540;&#20026; [a + 1]</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #228b22;">double</span> <span style="color: #0000ff;">&#21152;&#27861;</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#26377;&#22810;&#20010;&#20837;&#21442;</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> a + b;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #228b22;">double</span> <span style="color: #0000ff;">&#27809;&#26377;&#20837;&#21442;</span> <span style="color: #7388d6;">()</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#27809;&#26377;&#20837;&#21442;</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> 111.111; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238; double &#31867;&#22411;&#30340;&#25968;&#25454;</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#27809;&#26377;&#36820;&#22238;&#25968;&#25454;</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">&#27809;&#26377;&#36820;&#22238;&#25968;&#25454;&#20351;&#29992; void &#34920;&#31034;</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">name</span><span style="color: #909183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26041;&#27861;&#20307;&#20869;&#65292;&#27809;&#26377;&#20219;&#20309; return &#35821;&#21477;&#65292;&#25152;&#20197;&#26041;&#27861;&#27809;&#26377;&#36820;&#22238;&#20219;&#20309;&#25968;&#25454;</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#27809;&#26377;&#36820;&#22238;&#20540;&#20063;&#27809;&#26377;&#20837;&#21442;</span> <span style="color: #7388d6;">()</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36825;&#20010;&#26041;&#27861;&#65292;&#23601;&#26159;&#27809;&#26377;&#36820;&#22238;&#20540;&#20063;&#27809;&#26377;&#20837;&#21442;</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hello, world"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26041;&#27861;&#30340;&#35843;&#29992;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992;&#26041;&#27861;&#30340;&#21517;&#23383;&#35843;&#29992;&#26041;&#27861;:</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">- &#20837;&#21442;&#30340;&#20010;&#25968;&#21644;&#39034;&#24207;&#35201;&#36319;&#19978;&#36848;&#23450;&#20041;&#30340;&#19968;&#33268;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">- &#36820;&#22238;&#20540;&#30340;&#31867;&#22411;&#35201;&#36319;&#19978;&#36848;&#23450;&#20041;&#30340;&#19968;&#33268;&#65292;&#22914;&#26524; void &#31867;&#22411;&#30340;&#20989;&#25968;&#26159;&#19981;&#33021;&#25509;&#21463;&#20854;&#36820;&#22238;&#20540;&#30340;</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span> = &#22686;&#21152;<span style="color: #7388d6;">(</span>11<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">b</span> = &#21152;&#27861;<span style="color: #7388d6;">(</span>11, 33<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">c</span> = &#27809;&#26377;&#20837;&#21442;<span style="color: #7388d6;">()</span>;
+    &#27809;&#26377;&#36820;&#22238;&#25968;&#25454;<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"H&amp;M"</span><span style="color: #7388d6;">)</span>;
+    &#27809;&#26377;&#36820;&#22238;&#20540;&#20063;&#27809;&#26377;&#20837;&#21442;<span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc23f090" class="outline-3">
+<h3 id="orgc23f090"><span class="section-number-3">1.2</span> 属性 (Property)</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 属性本身就是 [private Field + public Method] 一种语法糖:
 </p>
@@ -141,7 +201,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-25</p>
+<p class="date">Created: 2021-03-26</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
