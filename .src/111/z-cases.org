@@ -910,17 +910,17 @@
           else if (Money < 20000)
           {
               Rate = rates[1];
-              Tax = (Money - 10000) * Rate + 5000 * rates[0];
+              Tax = (Money - 10000) * Rate ...;
           }
           else if (Money < 100000)
           {
               Rate = rates[2];
-              Tax = (Money - 20000) * Rate + 10000 * rates[1] + 5000 * rates[0];
+              Tax = (Money - 20000) * Rate ...;
           }
           else
           {
               Rate = rates[3];
-              Tax = (Money - 100000) * Rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+              Tax = (Money - 100000) * Rate ...;
           }
       }
       public void PrintToConsole()
