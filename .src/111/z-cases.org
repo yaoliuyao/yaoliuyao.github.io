@@ -1110,69 +1110,73 @@ class TaxCal
 #+begin_src csharp
   class TaxCalLazy
   {
-      private double Money;
-
-      public double GetMoney()
+      private double _money;
+      public double Money
       {
-          return Money;
-      }
-      public void SetMoney(double duoshao)
-      {
-          if (duoshao < 0)
+          get { return _money; }
+          set
           {
-              Console.WriteLine("\n参数输入格式不正确！");
-              Environment.Exit(0);
+              if (value < 0)
+              {
+                  Console.WriteLine("\n参数输入格式不正确！");
+                  Environment.Exit(0);
 
-          }
-          Money = duoshao;
-      }
-
-      public double GetTax()
-      {
-          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
-          if (Money <= 5000)
-          {
-              return 0;
-          }
-          else if (Money < 10000)
-          {
-              return (Money - 5000) * rates[0];
-          }
-          else if (Money < 20000)
-          {
-              return (Money - 10000) * rates[1] + 5000 * rates[0];
-          }
-          else if (Money < 100000)
-          {
-              return (Money - 20000) * rates[2] + 10000 * rates[1] + 5000 * rates[0];
-          }
-          else
-          {
-              return (Money - 100000) * rates[3] + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+              }
+              _money = value;
           }
       }
-      public double GetRate()
+      public double Tax
       {
-          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
-          if (Money <= 5000)
+          get
           {
-              return 0;
+              double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+              if (Money <= 5000)
+              {
+                  return 0;
+              }
+              else if (Money < 10000)
+              {
+                  return (Money - 5000) * rates[0];
+              }
+              else if (Money < 20000)
+              {
+                  return (Money - 10000) * rates[1] + 5000 * rates[0];
+              }
+              else if (Money < 100000)
+              {
+                  return (Money - 20000) * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+              }
+              else
+              {
+                  return (Money - 100000) * rates[3] + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+              }
           }
-          else if (Money < 10000)
+      }
+      public double Rate
+      {
+          get
           {
-              return rates[0];
-          }
-          else if (Money < 20000)
-          {
-              return rates[1];
-          }
-          else if (Money < 100000)
-          {
-              return rates[2];
-          }
-          else
-          {
-              return rates[3];
+              double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+              if (Money <= 5000)
+              {
+                  return 0;
+              }
+              else if (Money < 10000)
+              {
+                  return rates[0];
+              }
+              else if (Money < 20000)
+              {
+                  return rates[1];
+              }
+              else if (Money < 100000)
+              {
+                  return rates[2];
+              }
+              else
+              {
+                  return rates[3];
+              }
           }
       }
 
@@ -1180,17 +1184,17 @@ class TaxCal
       {
           Console.WriteLine();
           Console.WriteLine($"税前收入: {Money,10:C}");
-          Console.WriteLine($"应付税收: {GetTax(),10:C} ({GetRate():P1})");
+          Console.WriteLine($"应付税收: {Tax,10:C} ({Rate:P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"税后收入: {Money - GetTax(),10:C}");
+          Console.WriteLine($"税后收入: {Money - Tax,10:C}");
       }
       public void ExportToExcel()
       {
           Console.WriteLine();
           Console.WriteLine($"税前收入: {Money,10:C}");
-          Console.WriteLine($"应付税收: {GetTax(),10:C} ({GetRate():P1})");
+          Console.WriteLine($"应付税收: {Tax,10:C} ({Rate:P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"税后收入: {Money - GetTax(),10:C}");
+          Console.WriteLine($"税后收入: {Money - Tax,10:C}");
       }
   }
 #+end_src
