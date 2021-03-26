@@ -862,6 +862,7 @@
 
 ** 来自语法糖的力量: 通过 *Property* 简化代码
 
+Eager:
 #+begin_div :class mc11
 
 #+begin_src csharp
@@ -1014,6 +1015,7 @@ class TaxCal
 #+end_src
 #+end_div
 
+Lazy:
 #+begin_div :class mc11
 
 #+begin_src csharp
