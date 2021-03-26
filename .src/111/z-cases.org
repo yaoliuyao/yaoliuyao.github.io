@@ -896,7 +896,7 @@
 
       public void CalculateTax()
       {
-          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          double[] rates = new double[]{0.03, 0.05, 0.2, 0.45};
           if (Money <= 5000)
           {
               Rate = 0;
@@ -934,10 +934,10 @@
       public void ExportToExcel()
       {
           Console.WriteLine();
-          Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
-          Console.WriteLine($"Excle输出应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine($"税前收入: {Money,10:C}");
+          Console.WriteLine($"应付税收: {Tax,10:C} ({Rate:P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"Excle输出税后收入: {Money - Tax,10:C}");
+          Console.WriteLine($"税后收入: {Money - Tax,10:C}");
       }
   }
 #+end_src
@@ -1005,10 +1005,10 @@ class TaxCal
     public void ExportToExcel()
     {
         Console.WriteLine();
-        Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
-        Console.WriteLine($"Excle输出应付税收: {Tax,10:C} ({Rate:P1})");
+        Console.WriteLine($"税前收入: {Money,10:C}");
+        Console.WriteLine($"应付税收: {Tax,10:C} ({Rate:P1})");
         Console.WriteLine("".PadRight(30, '┈'));
-        Console.WriteLine($"Excle输出税后收入: {Money - Tax,10:C}");
+        Console.WriteLine($"税后收入: {Money - Tax,10:C}");
     }
 }
 #+end_src
