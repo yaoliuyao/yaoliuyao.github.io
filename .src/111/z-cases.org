@@ -359,10 +359,10 @@
       static public void ExportToExcel(double money, double rate, double tax)
       {
           Console.WriteLine();
-          Console.WriteLine($"Excle输出税前收入: {money,10:C}");
-          Console.WriteLine($"Excle输出应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine($"Excel输出税前收入: {money,10:C}");
+          Console.WriteLine($"Excel输出应付税收: {tax,10:C} ({rate:P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"Excle输出税后收入: {money - tax,10:C}");
+          Console.WriteLine($"Excel输出税后收入: {money - tax,10:C}");
       }
   }
 
@@ -449,10 +449,10 @@
       static public void ExportToExcel()
       {
           Console.WriteLine();
-          Console.WriteLine($"Excle输出税前收入: {money,10:C}");
-          Console.WriteLine($"Excle输出应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine($"Excel输出税前收入: {money,10:C}");
+          Console.WriteLine($"Excel输出应付税收: {tax,10:C} ({rate:P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"Excle输出税后收入: {money - tax,10:C}");
+          Console.WriteLine($"Excel输出税后收入: {money - tax,10:C}");
       }
   }
 #+end_src
@@ -539,10 +539,10 @@
       public void ExportToExcel()
       {
           Console.WriteLine();
-          Console.WriteLine($"Excle输出税前收入: {money,10:C}");
-          Console.WriteLine($"Excle输出应付税收: {tax,10:C} ({rate:P1})");
+          Console.WriteLine($"Excel输出税前收入: {money,10:C}");
+          Console.WriteLine($"Excel输出应付税收: {tax,10:C} ({rate:P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"Excle输出税后收入: {money - tax,10:C}");
+          Console.WriteLine($"Excel输出税后收入: {money - tax,10:C}");
       }
   }
 #+end_src
@@ -665,10 +665,10 @@
       {
           CalculateTax();
           Console.WriteLine();
-          Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
-          Console.WriteLine($"Excle输出应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine($"Excel输出税前收入: {Money,10:C}");
+          Console.WriteLine($"Excel输出应付税收: {Tax,10:C} ({Rate:P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"Excle输出税后收入: {Money - Tax,10:C}");
+          Console.WriteLine($"Excel输出税后收入: {Money - Tax,10:C}");
       }
   }
 #+end_src
@@ -765,10 +765,10 @@
       public void ExportToExcel()
       {
           Console.WriteLine();
-          Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
-          Console.WriteLine($"Excle输出应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine($"Excel输出税前收入: {Money,10:C}");
+          Console.WriteLine($"Excel输出应付税收: {Tax,10:C} ({Rate:P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"Excle输出税后收入: {Money - Tax,10:C}");
+          Console.WriteLine($"Excel输出税后收入: {Money - Tax,10:C}");
       }
   }
 #+end_src
@@ -852,10 +852,10 @@
       public void ExportToExcel()
       {
           Console.WriteLine();
-          Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
-          Console.WriteLine($"Excle输出应付税收: {GetTax(),10:C} ({GetRate():P1})");
+          Console.WriteLine($"Excel输出税前收入: {Money,10:C}");
+          Console.WriteLine($"Excel输出应付税收: {GetTax(),10:C} ({GetRate():P1})");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"Excle输出税后收入: {Money - GetTax(),10:C}");
+          Console.WriteLine($"Excel输出税后收入: {Money - GetTax(),10:C}");
       }
   }
 #+end_src

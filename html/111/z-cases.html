@@ -300,7 +300,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">1.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<figure id="org9a8e375">
+<figure id="org422f3d0">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -460,10 +460,10 @@
     <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span> <span style="color: #a0522d;">money</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">rate</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">tax</span><span style="color: #7388d6;">)</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {money,10:C}"</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {tax,10:C} ({rate:P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {tax,10:C} ({rate:P1})"</span><span style="color: #909183;">)</span>;
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {money - tax,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {money - tax,10:C}"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 
@@ -556,10 +556,10 @@
     <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {money,10:C}"</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {tax,10:C} ({rate:P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {tax,10:C} ({rate:P1})"</span><span style="color: #909183;">)</span>;
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {money - tax,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {money - tax,10:C}"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
@@ -575,7 +575,7 @@
 </p>
 
 
-<figure id="orgca6e2fc">
+<figure id="orge442fcc">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -655,10 +655,10 @@
     <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {money,10:C}"</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {tax,10:C} ({rate:P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {tax,10:C} ({rate:P1})"</span><span style="color: #909183;">)</span>;
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {money - tax,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {money - tax,10:C}"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
@@ -691,7 +691,7 @@
 </ul>
 
 
-<figure id="orgf8acdf8">
+<figure id="org5fc50db">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -798,10 +798,10 @@
     <span style="color: #7388d6;">{</span>
         <span style="color: #0000ff;">CalculateTax</span><span style="color: #909183;">()</span>;
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {Tax,10:C} ({Rate:P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {Tax,10:C} ({Rate:P1})"</span><span style="color: #909183;">)</span>;
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {Money - Tax,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {Money - Tax,10:C}"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
@@ -903,10 +903,10 @@
     <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {Tax,10:C} ({Rate:P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {Tax,10:C} ({Rate:P1})"</span><span style="color: #909183;">)</span>;
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {Money - Tax,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {Money - Tax,10:C}"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
@@ -991,10 +991,10 @@
     <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {GetTax(),10:C} ({GetRate():P1})"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21069;&#25910;&#20837;: {Money,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#24212;&#20184;&#31246;&#25910;: {GetTax(),10:C} ({GetRate():P1})"</span><span style="color: #909183;">)</span>;
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excle&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {Money - GetTax(),10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"Excel&#36755;&#20986;&#31246;&#21518;&#25910;&#20837;: {Money - GetTax(),10:C}"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
