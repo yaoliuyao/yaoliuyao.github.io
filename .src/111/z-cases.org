@@ -862,16 +862,155 @@
 
 ** 来自语法糖的力量: 通过 *Property* 简化代码
 
-Eager 版本:
+#+begin_div :mc11
 
-#+ATTR_HTML: :width 600
-[[file:img/tax-xxxx.png]]
+#+begin_src csharp
+  class TaxCal
+  {
+      private double Money;
+      private double Rate;
+      private double Tax;
 
-Lazy 版本:
+      public double GetMoney()
+      {
+          return Money;
+      }
+      public void SetMoney(double duoshao)
+      {
+          if (duoshao < 0)
+          {
+              Console.WriteLine("\n参数输入格式不正确！");
+              Environment.Exit(0);
+          }
+          Money = duoshao;
+          CalculateTax(); // 更新对象中的 Tax 和 Rate
+      }
+      public double GetRate()
+      {
+          return Rate;
+      }
+      public double GetTax()
+      {
+          return Tax;
+      }
 
-#+ATTR_HTML: :width 600
-[[file:img/ksdjfksjdfk.png]]
+      public void CalculateTax()
+      {
+          double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          if (Money <= 5000)
+          {
+              Rate = 0;
+              Tax = 0;
+          }
+          else if (Money < 10000)
+          {
+              Rate = rates[0];
+              Tax = (Money - 5000) * Rate;
+          }
+          else if (Money < 20000)
+          {
+              Rate = rates[1];
+              Tax = (Money - 10000) * Rate + 5000 * rates[0];
+          }
+          else if (Money < 100000)
+          {
+              Rate = rates[2];
+              Tax = (Money - 20000) * Rate + 10000 * rates[1] + 5000 * rates[0];
+          }
+          else
+          {
+              Rate = rates[3];
+              Tax = (Money - 100000) * Rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+          }
+      }
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"税前收入: {Money,10:C}");
+          Console.WriteLine($"应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"税后收入: {Money - Tax,10:C}");
+      }
+      public void ExportToExcel()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
+          Console.WriteLine($"Excle输出应付税收: {Tax,10:C} ({Rate:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"Excle输出税后收入: {Money - Tax,10:C}");
+      }
+  }
+#+end_src
 
+#+begin_src csharp
+class TaxCal
+{
+    private double _money; // 用来承载后面的数据，税前收入
+    public double Money
+    {
+        get { return _money; } // xxxx.Money
+        set                    // xxxx.Money = 3333;
+        {
+            if (value < 0)
+            {
+                Console.WriteLine("\n参数输入格式不正确！");
+                Environment.Exit(0);
+            }
+            _money = value;
+            CalculateTax();
+        }
+    }
+    public double Rate { get; private set; }
+    public double Tax { get; private set; }
+
+    public void CalculateTax()
+    {
+        double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+        if (Money <= 5000)
+        {
+            Rate = 0;
+            Tax = 0;
+        }
+        else if (Money < 10000)
+        {
+            Rate = rates[0];
+            Tax = (Money - 5000) * Rate;
+        }
+        else if (Money < 20000)
+        {
+            Rate = rates[1];
+            Tax = (Money - 10000) * Rate + 5000 * rates[0];
+        }
+        else if (Money < 100000)
+        {
+            Rate = rates[2];
+            Tax = (Money - 20000) * Rate + 10000 * rates[1] + 5000 * rates[0];
+        }
+        else
+        {
+            Rate = rates[3];
+            Tax = (Money - 100000) * Rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+        }
+    }
+    public void PrintToConsole()
+    {
+        Console.WriteLine();
+        Console.WriteLine($"税前收入: {Money,10:C}");
+        Console.WriteLine($"应付税收: {Tax,10:C} ({Rate:P1})");
+        Console.WriteLine("".PadRight(30, '┈'));
+        Console.WriteLine($"税后收入: {Money - Tax,10:C}");
+    }
+    public void ExportToExcel()
+    {
+        Console.WriteLine();
+        Console.WriteLine($"Excle输出税前收入: {Money,10:C}");
+        Console.WriteLine($"Excle输出应付税收: {Tax,10:C} ({Rate:P1})");
+        Console.WriteLine("".PadRight(30, '┈'));
+        Console.WriteLine($"Excle输出税后收入: {Money - Tax,10:C}");
+    }
+}
+#+end_src
+#+end_div
 
 ** 小结
 
