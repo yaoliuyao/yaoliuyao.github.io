@@ -862,7 +862,7 @@
 
 ** 来自语法糖的力量: 通过 *Property* 简化代码
 
-#+begin_div :mc11
+#+begin_div :class mc11
 
 #+begin_src csharp
   class TaxCal
