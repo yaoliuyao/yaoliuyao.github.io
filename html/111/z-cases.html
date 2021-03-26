@@ -54,7 +54,12 @@
 <li><a href="#orgcc540ed">1.8. 引入 <b>对象</b> 保证调用的数据安全</a></li>
 <li><a href="#org65fb869">1.9. 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</a></li>
 <li><a href="#orgde5bb43">1.10. 减少代码冗余，<b>Lazy</b> and <b>Eager</b></a></li>
-<li><a href="#org8471e2c">1.11. 来自语法糖的力量: 通过 <b>Property</b> 简化代码</a></li>
+<li><a href="#org8471e2c">1.11. 来自语法糖的力量: 通过 <b>Property</b> 简化代码</a>
+<ul>
+<li><a href="#orgb622c00">1.11.1. Eager Version</a></li>
+<li><a href="#orgd125720">1.11.2. Lazy Version</a></li>
+</ul>
+</li>
 <li><a href="#org5338d34">1.12. 小结</a></li>
 </ul>
 </li>
@@ -295,7 +300,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">1.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<figure id="orgf10f586">
+<figure id="org9a8e375">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -570,7 +575,7 @@
 </p>
 
 
-<figure id="orgaa68343">
+<figure id="orgca6e2fc">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -686,7 +691,7 @@
 </ul>
 
 
-<figure id="org48f6a3d">
+<figure id="orgf8acdf8">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -1000,9 +1005,10 @@
 <div id="outline-container-org8471e2c" class="outline-3">
 <h3 id="org8471e2c"><span class="section-number-3">1.11</span> 来自语法糖的力量: 通过 <b>Property</b> 简化代码</h3>
 <div class="outline-text-3" id="text-1-11">
-<p>
-Eager:
-</p>
+</div>
+<div id="outline-container-orgb622c00" class="outline-4">
+<h4 id="orgb622c00"><span class="section-number-4">1.11.1</span> Eager Version</h4>
+<div class="outline-text-4" id="text-1-11-1">
 
 <div  class='mc11'>
 <div>
@@ -1169,10 +1175,12 @@ Eager:
 </div>
 
 </div>
+</div>
+</div>
 
-<p>
-Lazy:
-</p>
+<div id="outline-container-orgd125720" class="outline-4">
+<h4 id="orgd125720"><span class="section-number-4">1.11.2</span> Lazy Version</h4>
+<div class="outline-text-4" id="text-1-11-2">
 
 <div  class='mc11'>
 <div>
@@ -1372,6 +1380,7 @@ Lazy:
 
 </div>
 
+</div>
 </div>
 </div>
 </div>
