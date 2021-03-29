@@ -178,21 +178,30 @@
 <div id="outline-container-orgaa068c3" class="outline-3">
 <h3 id="orgaa068c3"><span class="section-number-3">1.3</span> 构造方法/构造器 (Constructor)</h3>
 <div class="outline-text-3" id="text-1-3">
-<ul class="org-ul">
-<li>对象的实例化，分为下面:
+<p>
+对象的实例化，分为下面几个步骤:
+</p>
 <ol class="org-ol">
 <li>在内存中，分配相应的空间</li>
 <li>按照类型进行相关字段的初始化工作</li>
 <li>调用相应的 <b>构造方法</b>，进行相关初始化工作</li>
-</ol></li>
+</ol>
+
+<p>
+所谓的构造方法，就是类中定义的一个特殊方法。它用来对实例空间进行若干初始化工作:
+</p>
+<ul class="org-ul">
 <li>构造方法可以写多个，即可以重载 (overload)</li>
-<li>我们也可以不写任何构造方法，那么编译器在编译的时候，会自动帮我们插入一个无参的空的。
-但是，如果你在类中，定义了任何的构造方法，那么编译器就不会帮你再生成了。</li>
+<li>我们也可以不写任何构造方法，那么编译器在编译的时候，会自动帮我们插入一个 <b>无参的空的</b>。
+但是，如果你在类中，定义了任何的构造方法，那么编译器就不会帮你再生成了</li>
 </ul>
 
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">X</span>
 <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">X</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
     <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">X</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">2</span>
     <span style="color: #7388d6;">{</span>
     <span style="color: #7388d6;">}</span>
