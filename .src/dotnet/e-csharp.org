@@ -131,6 +131,15 @@
   }
 #+end_src
 
+** 静态 (Static)
+
+将归属权，交给类。调用的时候，使用 ~类名.xxx~ 方式。
+
+** 将数据设置为不变的 (const/readonly)
+
+- 有什么区别
+- 分别怎么用  
+
 * 其他
 
 #+begin_src csharp
