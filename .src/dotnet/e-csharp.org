@@ -164,8 +164,8 @@ readonly:
 
       public double QiuMianJi(double r)
       {
-          pppi = 333;  // 𐄂
-          PI = 333;    // 𐄂
+          pppi = 333;  // x
+          PI = 333;    // x
           return pppi * r * r;
       }
   }
