@@ -1293,7 +1293,7 @@ class TaxCal
 
 世界大势，合久必分，分久必合。使用对象将数据进行有效分离，使用 static 将某些数据进行共享。
 
-另外，通过 const/readonly 保证数据不会被随意修改。
+共享了就有被误操作的风险，所以，可以通过 const/readonly 保证数据不会被随意修改。
 
 #+begin_src csharp
   using System;
