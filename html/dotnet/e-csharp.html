@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-29 -->
+<!-- 2021-03-30 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -64,8 +64,10 @@
 <div id="outline-container-org366c635" class="outline-3">
 <h3 id="org366c635"><span class="section-number-3">1.1</span> 方法 (Method)</h3>
 <div class="outline-text-3" id="text-1-1">
+<p>
+方法是一个具备名字的代码块:
+</p>
 <ul class="org-ul">
-<li>方法是一个具备名字的代码块</li>
 <li>通过 <code>方法名()</code> 的方式实现方法调用，
 也就是在调用的地方将方法名代表的代码块里的代码进行运行</li>
 <li>方法的三要素:
@@ -75,6 +77,15 @@
 <li>传出的数据 (返回值) 方法内部，使用 return 表示返回的数据。在方法名前面，添加返回的类型。
 如果方法内部没有任何 return 表示方法没有返回值，需要在方法前面添加 void 表示这种情况</li>
 </ol></li>
+</ul>
+
+
+<p>
+方法的重载 (overload):
+</p>
+<ul class="org-ul">
+<li>一个类中，可以有同名的方法。需要有不同的参数 (这样才能区分调用)</li>
+<li>请叙述一下 overload 和 override 有什么区别</li>
 </ul>
 
 <p>
@@ -234,10 +245,45 @@
 <div id="outline-container-org1f361ce" class="outline-3">
 <h3 id="org1f361ce"><span class="section-number-3">1.5</span> 将数据设置为不变的 (const/readonly)</h3>
 <div class="outline-text-3" id="text-1-5">
+<p>
+const:
+</p>
 <ul class="org-ul">
-<li>有什么区别</li>
-<li>分别怎么用</li>
+<li>即常量</li>
+<li>基于编译期的替换，运行期是没有任何这个变量的信息的</li>
+<li>相对来说，它不需要占用存储，而且不需要运行时检查，所以效率高</li>
+<li>它的使用限制较多，比如，只能将一些简单的值赋予它</li>
+<li>不能添加 static 修饰，但可以使用 <code>类名.PI</code> 来访问</li>
 </ul>
+
+<p>
+readonly:
+</p>
+<ul class="org-ul">
+<li>限定变量只能读，不能修改</li>
+<li>可以修饰任何的字段，不管是不是静态的</li>
+<li>相对来说，需要占用空间、需要运行时检查，效率会低一些</li>
+<li><b>注意</b>，使用 readonly 修饰数组等变量，虽然可以防止数组被重新赋值，但不能避免里面的元素被修改</li>
+</ul>
+
+<p>
+有内鬼，停止交易:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Congming</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">const</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">PI</span> = 3.1415926;
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">pppi</span> = 3.14;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">QiuMianJi</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span> <span style="color: #a0522d;">r</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        pppi = 333;  <span style="color: #b22222;">// </span><span style="color: #b22222;">x</span>
+        PI = 333;    <span style="color: #b22222;">// </span><span style="color: #b22222;">x</span>
+        <span style="color: #a020f0;">return</span> pppi * r * r;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </section>
@@ -271,7 +317,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-29</p>
+<p class="date">Created: 2021-03-30</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
