@@ -42,34 +42,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge7e608e">1. 个税计算器 (简化版) 源</a>
+<li><a href="#orgf78b284">1. 阶梯电费计算</a></li>
+<li><a href="#orge7e608e">2. 个税计算器 (简化版) 源</a>
 <ul>
-<li><a href="#org4dc2546">1.1. 原始版本，<b>顺序</b> 执行</a></li>
-<li><a href="#orgc47d8a0">1.2. 原始版本的批注</a></li>
-<li><a href="#org8404f50">1.3. 第四组优化版</a></li>
-<li><a href="#org543e4ff">1.4. <b>分离</b> 计算跟输出，优化代码结构</a></li>
-<li><a href="#org2ecdb8b">1.5. 通过 <b>方法</b> 对逻辑进行提取</a></li>
-<li><a href="#org1c63ff0">1.6. 通过 <b>类</b> 对代码逻辑进行进一步分离</a></li>
-<li><a href="#orgf5dc26a">1.7. 让类中的各个方法，能 <b>共享数据</b></a></li>
-<li><a href="#orgcc540ed">1.8. 引入 <b>对象</b> 保证调用的数据安全</a></li>
-<li><a href="#org65fb869">1.9. 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</a></li>
-<li><a href="#orgde5bb43">1.10. 减少代码冗余，<b>Lazy</b> and <b>Eager</b></a></li>
-<li><a href="#org8471e2c">1.11. 来自语法糖的力量: 通过 <b>Property</b> 简化代码</a>
+<li><a href="#org4dc2546">2.1. 原始版本，<b>顺序</b> 执行</a></li>
+<li><a href="#orgc47d8a0">2.2. 原始版本的批注</a></li>
+<li><a href="#org8404f50">2.3. 第四组优化版</a></li>
+<li><a href="#org543e4ff">2.4. <b>分离</b> 计算跟输出，优化代码结构</a></li>
+<li><a href="#org2ecdb8b">2.5. 通过 <b>方法</b> 对逻辑进行提取</a></li>
+<li><a href="#org1c63ff0">2.6. 通过 <b>类</b> 对代码逻辑进行进一步分离</a></li>
+<li><a href="#orgf5dc26a">2.7. 让类中的各个方法，能 <b>共享数据</b></a></li>
+<li><a href="#orgcc540ed">2.8. 引入 <b>对象</b> 保证调用的数据安全</a></li>
+<li><a href="#org65fb869">2.9. 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</a></li>
+<li><a href="#orgde5bb43">2.10. 减少代码冗余，<b>Lazy</b> and <b>Eager</b></a></li>
+<li><a href="#org8471e2c">2.11. 来自语法糖的力量: 通过 <b>Property</b> 简化代码</a>
 <ul>
-<li><a href="#orgb622c00">1.11.1. Eager Version</a></li>
-<li><a href="#orgd125720">1.11.2. Lazy Version</a></li>
+<li><a href="#orgb622c00">2.11.1. Eager Version</a></li>
+<li><a href="#orgd125720">2.11.2. Lazy Version</a></li>
 </ul>
 </li>
-<li><a href="#org586b89c">1.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
-<li><a href="#orgcf23f6d">1.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
-<li><a href="#org5338d34">1.14. 小结</a></li>
+<li><a href="#org586b89c">2.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
+<li><a href="#orgcf23f6d">2.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
+<li><a href="#org5338d34">2.14. 小结</a></li>
 </ul>
 </li>
-<li><a href="#org59717f8">2. 小费计算器</a>
+<li><a href="#org59717f8">3. 小费计算器</a>
 <ul>
-<li><a href="#org963911c">2.1. 核心代码</a></li>
-<li><a href="#org66a1d13">2.2. 在核心代码上进行优化</a></li>
-<li><a href="#org2021d28">2.3. 结构化重构</a></li>
+<li><a href="#org963911c">3.1. 核心代码</a></li>
+<li><a href="#org66a1d13">3.2. 在核心代码上进行优化</a></li>
+<li><a href="#org2021d28">3.3. 结构化重构</a></li>
 </ul>
 </li>
 </ul>
@@ -78,13 +79,125 @@
 
 
 
-<section id="outline-container-orge7e608e" class="outline-2">
-<h2 id="orge7e608e"><span class="section-number-2">1</span> 个税计算器 (简化版) <a href="tasks.html#ID-6c800397-9525-4a5d-b857-4356fb81f85c">源</a></h2>
+<section id="outline-container-orgf78b284" class="outline-2">
+<h2 id="orgf78b284"><span class="section-number-2">1</span> 阶梯电费计算</h2>
 <div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">&#30005;&#36153;&#35745;&#31639;</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#30693;&#36947;&#30340;&#25968;&#25454;</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">_&#26376;&#20221;</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">_&#30005;&#25968;</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#35745;&#31639;&#20986;&#26469;&#30340;&#25968;&#25454;</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#19968;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#20108;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#19977;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#24635;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22522;&#20934;&#25968;&#25454;</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#26723;&#36153;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 0.600, 0.650, 0.900 <span style="color: #7388d6;">}</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">&#26376;&#20221;</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">get</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">return</span> _&#26376;&#20221;; <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">set</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span><span style="color: #008b8b;">value</span> &lt; 0 || <span style="color: #008b8b;">value</span> &gt; 12<span style="color: #709870;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">?</span>
+            <span style="color: #709870;">{</span>
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#21442;&#25968;&#36755;&#20837;&#38169;&#35823;&#12290;"</span><span style="color: #907373;">)</span>;
+                Environment.<span style="color: #0000ff;">Exit</span><span style="color: #907373;">(</span>0<span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+            _&#26376;&#20221; = <span style="color: #008b8b;">value</span>;
+            &#35745;&#31639;&#30005;&#36153;<span style="color: #709870;">()</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#30005;&#25968;</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">get</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">return</span> _&#30005;&#25968;; <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">set</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span><span style="color: #008b8b;">value</span> &lt; 0<span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#21442;&#25968;&#36755;&#20837;&#38169;&#35823;&#12290;"</span><span style="color: #907373;">)</span>;
+                Environment.<span style="color: #0000ff;">Exit</span><span style="color: #907373;">(</span>0<span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+            _&#30005;&#25968; = <span style="color: #008b8b;">value</span>;
+            &#35745;&#31639;&#30005;&#36153;<span style="color: #709870;">()</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#35745;&#31639;&#30005;&#36153;</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_&#26376;&#20221; &gt;= 5 &amp;&amp; _&#26376;&#20221; &lt;= 10<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>_&#30005;&#25968; &lt;= 260<span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                &#31532;&#19968;&#26723;&#30005;&#36153; = _&#30005;&#25968; * &#26723;&#36153;<span style="color: #907373;">[</span>0<span style="color: #907373;">]</span>;
+                &#31532;&#20108;&#26723;&#30005;&#36153; = 0;
+                &#31532;&#19977;&#26723;&#30005;&#36153; = 0;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>_&#30005;&#25968; &lt;= 600<span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                &#31532;&#19968;&#26723;&#30005;&#36153; = 260 * &#26723;&#36153;<span style="color: #907373;">[</span>0<span style="color: #907373;">]</span>;
+                &#31532;&#20108;&#26723;&#30005;&#36153; = <span style="color: #907373;">(</span>_&#30005;&#25968; - 260<span style="color: #907373;">)</span> * <span style="color: #907373;">(</span><span style="color: #228b22;">&#26723;&#36153;</span><span style="color: #6276ba;">[</span>1<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+                &#31532;&#19977;&#26723;&#30005;&#36153; = 0;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>_&#30005;&#25968; &gt; 600<span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                &#31532;&#19968;&#26723;&#30005;&#36153; = 260 * &#26723;&#36153;<span style="color: #907373;">[</span>0<span style="color: #907373;">]</span>;
+                &#31532;&#20108;&#26723;&#30005;&#36153; = <span style="color: #907373;">(</span>600 - 260<span style="color: #907373;">)</span> * <span style="color: #907373;">(</span><span style="color: #228b22;">&#26723;&#36153;</span><span style="color: #6276ba;">[</span>1<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+                &#31532;&#19977;&#26723;&#30005;&#36153; = <span style="color: #907373;">(</span>_&#30005;&#25968; - 600<span style="color: #907373;">)</span> * <span style="color: #907373;">(</span><span style="color: #228b22;">&#26723;&#36153;</span><span style="color: #6276ba;">[</span>2<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>_&#30005;&#25968; &gt; 0 &amp;&amp; _&#30005;&#25968; &lt;= 200<span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                &#31532;&#19968;&#26723;&#30005;&#36153; = _&#30005;&#25968; * &#26723;&#36153;<span style="color: #907373;">[</span>0<span style="color: #907373;">]</span>;
+                &#31532;&#20108;&#26723;&#30005;&#36153; = 0;
+                &#31532;&#19977;&#26723;&#30005;&#36153; = 0;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>_&#30005;&#25968; &gt; 200 &amp;&amp; _&#30005;&#25968; &lt;= 400<span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                &#31532;&#19968;&#26723;&#30005;&#36153; = 200 * &#26723;&#36153;<span style="color: #907373;">[</span>0<span style="color: #907373;">]</span>;
+                &#31532;&#20108;&#26723;&#30005;&#36153; = <span style="color: #907373;">(</span>_&#30005;&#25968; - 200<span style="color: #907373;">)</span> * <span style="color: #907373;">(</span><span style="color: #228b22;">&#26723;&#36153;</span><span style="color: #6276ba;">[</span>1<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+                &#31532;&#19977;&#26723;&#30005;&#36153; = 0;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>_&#30005;&#25968; &gt; 400<span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                &#31532;&#19968;&#26723;&#30005;&#36153; = 200 * &#26723;&#36153;<span style="color: #907373;">[</span>0<span style="color: #907373;">]</span>;
+                &#31532;&#20108;&#26723;&#30005;&#36153; = <span style="color: #907373;">(</span>400 - 200<span style="color: #907373;">)</span> * <span style="color: #907373;">(</span><span style="color: #228b22;">&#26723;&#36153;</span><span style="color: #6276ba;">[</span>1<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+                &#31532;&#19977;&#26723;&#30005;&#36153; = <span style="color: #907373;">(</span>_&#30005;&#25968; - 400<span style="color: #907373;">)</span> * <span style="color: #907373;">(</span><span style="color: #228b22;">&#26723;&#36153;</span><span style="color: #6276ba;">[</span>2<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+        &#24635;&#30005;&#36153; = &#31532;&#19968;&#26723;&#30005;&#36153; + &#31532;&#20108;&#26723;&#30005;&#36153; + &#31532;&#19977;&#26723;&#30005;&#36153;;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{_&#26376;&#20221;} &#26376;&#30340;&#29992;&#30005;&#37327;&#26159;: {_&#30005;&#25968;} KWh"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19968;&#26723;&#30005;&#36153;: { &#31532;&#19968;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#20108;&#26723;&#30005;&#36153;: { &#31532;&#20108;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19977;&#26723;&#30005;&#36153;: { &#31532;&#19977;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#24635;&#35745;: { &#24635;&#30005;&#36153;,10:C} "</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orge7e608e" class="outline-2">
+<h2 id="orge7e608e"><span class="section-number-2">2</span> 个税计算器 (简化版) <a href="tasks.html#ID-6c800397-9525-4a5d-b857-4356fb81f85c">源</a></h2>
+<div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-org4dc2546" class="outline-3">
-<h3 id="org4dc2546"><span class="section-number-3">1.1</span> 原始版本，<b>顺序</b> 执行</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="org4dc2546"><span class="section-number-3">2.1</span> 原始版本，<b>顺序</b> 执行</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 这是第二小组提供的代码:
 </p>
@@ -158,8 +271,8 @@
 </div>
 
 <div id="outline-container-orgc47d8a0" class="outline-3">
-<h3 id="orgc47d8a0"><span class="section-number-3">1.2</span> 原始版本的批注</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="orgc47d8a0"><span class="section-number-3">2.2</span> 原始版本的批注</h3>
+<div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Tax</span>
 <span style="color: #707183;">{</span>
@@ -236,8 +349,8 @@
 </div>
 
 <div id="outline-container-org8404f50" class="outline-3">
-<h3 id="org8404f50"><span class="section-number-3">1.3</span> 第四组优化版</h3>
-<div class="outline-text-3" id="text-1-3">
+<h3 id="org8404f50"><span class="section-number-3">2.3</span> 第四组优化版</h3>
+<div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
 
@@ -305,10 +418,10 @@
 </div>
 
 <div id="outline-container-org543e4ff" class="outline-3">
-<h3 id="org543e4ff"><span class="section-number-3">1.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
-<div class="outline-text-3" id="text-1-4">
+<h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
+<div class="outline-text-3" id="text-2-4">
 
-<figure id="org6ce68a7">
+<figure id="orgd798b24">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -317,8 +430,8 @@
 
 
 <div id="outline-container-org2ecdb8b" class="outline-3">
-<h3 id="org2ecdb8b"><span class="section-number-3">1.5</span> 通过 <b>方法</b> 对逻辑进行提取</h3>
-<div class="outline-text-3" id="text-1-5">
+<h3 id="org2ecdb8b"><span class="section-number-3">2.5</span> 通过 <b>方法</b> 对逻辑进行提取</h3>
+<div class="outline-text-3" id="text-2-5">
 <p>
 将某些代码块单独 <b>分离</b> 出来，并用一个名字代表，这就是所谓的方法。
 在原先执行代码块的地方，使用这个名字代替，这就是方法调用。
@@ -396,8 +509,8 @@
 </div>
 
 <div id="outline-container-org1c63ff0" class="outline-3">
-<h3 id="org1c63ff0"><span class="section-number-3">1.6</span> 通过 <b>类</b> 对代码逻辑进行进一步分离</h3>
-<div class="outline-text-3" id="text-1-6">
+<h3 id="org1c63ff0"><span class="section-number-3">2.6</span> 通过 <b>类</b> 对代码逻辑进行进一步分离</h3>
+<div class="outline-text-3" id="text-2-6">
 <p>
 方法越来越多，需要按照功能进行分门别类。这样就更具备组织性了。
 </p>
@@ -483,8 +596,8 @@
 </div>
 
 <div id="outline-container-orgf5dc26a" class="outline-3">
-<h3 id="orgf5dc26a"><span class="section-number-3">1.7</span> 让类中的各个方法，能 <b>共享数据</b></h3>
-<div class="outline-text-3" id="text-1-7">
+<h3 id="orgf5dc26a"><span class="section-number-3">2.7</span> 让类中的各个方法，能 <b>共享数据</b></h3>
+<div class="outline-text-3" id="text-2-7">
 <p>
 在类中定义变量缓存每次方法调用的中间结果，下一个方法调用也可以直接使用这些缓存的结果。
 这样，方法调用间就产生了关联，调用的时候不需要传递那么多参数。
@@ -576,14 +689,14 @@
 </div>
 
 <div id="outline-container-orgcc540ed" class="outline-3">
-<h3 id="orgcc540ed"><span class="section-number-3">1.8</span> 引入 <b>对象</b> 保证调用的数据安全</h3>
-<div class="outline-text-3" id="text-1-8">
+<h3 id="orgcc540ed"><span class="section-number-3">2.8</span> 引入 <b>对象</b> 保证调用的数据安全</h3>
+<div class="outline-text-3" id="text-2-8">
 <p>
 引入独立的存储空间，将方法共享的数据进行隔离:
 </p>
 
 
-<figure id="orge798485">
+<figure id="org5f482e3">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -675,8 +788,8 @@
 </div>
 
 <div id="outline-container-org65fb869" class="outline-3">
-<h3 id="org65fb869"><span class="section-number-3">1.9</span> 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</h3>
-<div class="outline-text-3" id="text-1-9">
+<h3 id="org65fb869"><span class="section-number-3">2.9</span> 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</h3>
+<div class="outline-text-3" id="text-2-9">
 <p>
 面向对象的数据的封装 (数据的安全):
 </p>
@@ -699,7 +812,7 @@
 </ul>
 
 
-<figure id="org06951b6">
+<figure id="org1f803eb">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -818,8 +931,8 @@
 </div>
 
 <div id="outline-container-orgde5bb43" class="outline-3">
-<h3 id="orgde5bb43"><span class="section-number-3">1.10</span> 减少代码冗余，<b>Lazy</b> and <b>Eager</b></h3>
-<div class="outline-text-3" id="text-1-10">
+<h3 id="orgde5bb43"><span class="section-number-3">2.10</span> 减少代码冗余，<b>Lazy</b> and <b>Eager</b></h3>
+<div class="outline-text-3" id="text-2-10">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -1011,12 +1124,12 @@
 </div>
 
 <div id="outline-container-org8471e2c" class="outline-3">
-<h3 id="org8471e2c"><span class="section-number-3">1.11</span> 来自语法糖的力量: 通过 <b>Property</b> 简化代码</h3>
-<div class="outline-text-3" id="text-1-11">
+<h3 id="org8471e2c"><span class="section-number-3">2.11</span> 来自语法糖的力量: 通过 <b>Property</b> 简化代码</h3>
+<div class="outline-text-3" id="text-2-11">
 </div>
 <div id="outline-container-orgb622c00" class="outline-4">
-<h4 id="orgb622c00"><span class="section-number-4">1.11.1</span> Eager Version</h4>
-<div class="outline-text-4" id="text-1-11-1">
+<h4 id="orgb622c00"><span class="section-number-4">2.11.1</span> Eager Version</h4>
+<div class="outline-text-4" id="text-2-11-1">
 
 <div  class='mc11'>
 <div>
@@ -1187,8 +1300,8 @@
 </div>
 
 <div id="outline-container-orgd125720" class="outline-4">
-<h4 id="orgd125720"><span class="section-number-4">1.11.2</span> Lazy Version</h4>
-<div class="outline-text-4" id="text-1-11-2">
+<h4 id="orgd125720"><span class="section-number-4">2.11.2</span> Lazy Version</h4>
+<div class="outline-text-4" id="text-2-11-2">
 
 <div  class='mc11'>
 <div>
@@ -1394,8 +1507,8 @@
 </div>
 
 <div id="outline-container-org586b89c" class="outline-3">
-<h3 id="org586b89c"><span class="section-number-3">1.12</span> 使用 <b>Constructor</b> 进行对象的个性化构建</h3>
-<div class="outline-text-3" id="text-1-12">
+<h3 id="org586b89c"><span class="section-number-3">2.12</span> 使用 <b>Constructor</b> 进行对象的个性化构建</h3>
+<div class="outline-text-3" id="text-2-12">
 <p>
 使用构造方法，让对象在创建的时候，进行必要的初始化工作。
 </p>
@@ -1490,8 +1603,8 @@
 </div>
 
 <div id="outline-container-orgcf23f6d" class="outline-3">
-<h3 id="orgcf23f6d"><span class="section-number-3">1.13</span> 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</h3>
-<div class="outline-text-3" id="text-1-13">
+<h3 id="orgcf23f6d"><span class="section-number-3">2.13</span> 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</h3>
+<div class="outline-text-3" id="text-2-13">
 <p>
 世界大势，合久必分，分久必合。使用对象将数据进行有效分离，使用 static 将某些数据归属于类，从而在实例间进行共享。
 </p>
@@ -1606,17 +1719,17 @@
 
 
 <div id="outline-container-org5338d34" class="outline-3">
-<h3 id="org5338d34"><span class="section-number-3">1.14</span> 小结</h3>
+<h3 id="org5338d34"><span class="section-number-3">2.14</span> 小结</h3>
 </div>
 </section>
 
 <section id="outline-container-org59717f8" class="outline-2">
-<h2 id="org59717f8"><span class="section-number-2">2</span> 小费计算器</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org59717f8"><span class="section-number-2">3</span> 小费计算器</h2>
+<div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org963911c" class="outline-3">
-<h3 id="org963911c"><span class="section-number-3">2.1</span> 核心代码</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org963911c"><span class="section-number-3">3.1</span> 核心代码</h3>
+<div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">Main &#26041;&#27861;&#26159;&#31243;&#24207;&#30340;&#20837;&#21475;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">args &#34920;&#31034;&#20174;&#25511;&#21046;&#21488;&#20256;&#26469;&#30340;&#21442;&#25968;&#25968;&#25454;</span>
@@ -1646,8 +1759,8 @@
 </div>
 
 <div id="outline-container-org66a1d13" class="outline-3">
-<h3 id="org66a1d13"><span class="section-number-3">2.2</span> 在核心代码上进行优化</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="org66a1d13"><span class="section-number-3">3.2</span> 在核心代码上进行优化</h3>
+<div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#30446;&#26631;:</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#35753;&#31243;&#24207;&#26356;&#20581;&#22766;&#65292;&#36991;&#20813;&#19981;&#24517;&#35201;&#30340;&#24322;&#24120;&#25243;&#20986;</span>
@@ -1695,8 +1808,8 @@
 </div>
 
 <div id="outline-container-org2021d28" class="outline-3">
-<h3 id="org2021d28"><span class="section-number-3">2.3</span> 结构化重构</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="org2021d28"><span class="section-number-3">3.3</span> 结构化重构</h3>
+<div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCal</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
