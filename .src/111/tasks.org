@@ -79,7 +79,7 @@ PS:
 
 * [2021-03-19 Fri]
 :PROPERTIES:
-:ID:       jietidianfei
+:CUSTOM_ID:       jietidianfei
 :END:
 
 首先，敲代码并理解对象的使用。
