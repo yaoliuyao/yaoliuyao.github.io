@@ -124,73 +124,53 @@
       public double 第一档电费 { get; private set; }
       public double 第二档电费 { get; private set; }
       public double 第三档电费 { get; private set; }
-      public double 总电费 { get; private set; }
+      public double 总电费 { get => 第一档电费 + 第二档电费 + 第三档电费; }
 
       // 基准数据
       public static readonly int[] 夏季档位 = new int[] { 260, 600 };
       public static readonly int[] 冬季档位 = new int[] { 200, 400 };
       public static readonly double[] 档费 = new double[] { 0.600, 0.650, 0.900 };
 
-      public int 月份
+      public void 月和电(int 月, double 电)
       {
-          get { return _月份; }
-          set
+          if (月 < 1 || 月 > 12 || 电 < 0)
           {
-              if (value < 0 || value > 12) // ?
-              {
-                  Console.WriteLine("参数输入错误。");
-                  Environment.Exit(0);
-              }
-              _月份 = value;
-              计算电费();
+              Console.WriteLine("参数输入错误。");
+              Environment.Exit(0);
           }
-      }
-
-      public double 电数
-      {
-          get { return _电数; }
-          set
-          {
-              if (value < 0)
-              {
-                  Console.WriteLine("参数输入错误。");
-                  Environment.Exit(0);
-              }
-              _电数 = value;
-              计算电费();
-          }
+          _月份 = 月;
+          _电数 = 电;
+          计算电费();
       }
 
       public void 计算电费()
       {
-          int a = 是夏季() ? 夏季档位[0] : 冬季档位[0];
-          int b = 是夏季() ? 夏季档位[1] : 冬季档位[1];
+          int p1 = 是夏季() ? 夏季档位[0] : 冬季档位[0];
+          int p2 = 是夏季() ? 夏季档位[1] : 冬季档位[1];
 
-          if (电数 < a)
+          if (_电数 < p1)
           {
-              第一档电费 = 电数 * 档费[0];
+              第一档电费 = _电数 * 档费[0];
               第二档电费 = 0;
               第三档电费 = 0;
           }
-          else if (电数 < b)
+          else if (_电数 < p2)
           {
-              第一档电费 = a * 档费[0];
-              第二档电费 = (电数 - a) * 档费[1];
+              第一档电费 = p1 * 档费[0];
+              第二档电费 = (_电数 - p1) * 档费[1];
               第三档电费 = 0;
           }
-          else if (电数 > b)
+          else
           {
-              第一档电费 = a * 档费[0];
-              第二档电费 = (b - a) * 档费[1];
-              第三档电费 = (电数 - b) * 档费[2];
-
+              第一档电费 = p1 * 档费[0];
+              第二档电费 = (p2 - p1) * 档费[1];
+              第三档电费 = (_电数 - p2) * 档费[2];
           }
-          总电费 = 第一档电费 + 第二档电费 + 第三档电费;
       }
 
       public bool 是夏季()
       {
-          return 月份 >= 5 && 月份 <= 10;
+          return _月份 >= 5 && _月份 <= 10;
       }
 
       public void PrintToConsole()
@@ -205,7 +185,6 @@
       }
   }
 #+end_src
-
 
 ** 第二种
 

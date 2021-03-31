@@ -217,91 +217,70 @@
 <span class="linenr"> 8: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#19968;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
 <span class="linenr"> 9: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#20108;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
 <span class="linenr">10: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#19977;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
-<span class="linenr">11: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#24635;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+<span class="linenr">11: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#24635;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; &#31532;&#19968;&#26723;&#30005;&#36153; + &#31532;&#20108;&#26723;&#30005;&#36153; + &#31532;&#19977;&#26723;&#30005;&#36153;; <span style="color: #7388d6;">}</span>
 <span class="linenr">12: </span>
 <span class="linenr">13: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22522;&#20934;&#25968;&#25454;</span>
 <span class="linenr">14: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#22799;&#23395;&#26723;&#20301;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 260, 600 <span style="color: #7388d6;">}</span>;
 <span class="linenr">15: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#20908;&#23395;&#26723;&#20301;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 200, 400 <span style="color: #7388d6;">}</span>;
 <span class="linenr">16: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#26723;&#36153;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 0.600, 0.650, 0.900 <span style="color: #7388d6;">}</span>;
 <span class="linenr">17: </span>
-<span class="linenr">18: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">&#26376;&#20221;</span>
+<span class="linenr">18: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#26376;&#21644;&#30005;</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">&#26376;</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#30005;</span><span style="color: #7388d6;">)</span>
 <span class="linenr">19: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">20: </span>        <span style="color: #a020f0;">get</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">return</span> _&#26376;&#20221;; <span style="color: #909183;">}</span>
-<span class="linenr">21: </span>        <span style="color: #a020f0;">set</span>
-<span class="linenr">22: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">23: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span><span style="color: #008b8b;">value</span> &lt; 0 || <span style="color: #008b8b;">value</span> &gt; 12<span style="color: #709870;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">?</span>
-<span class="linenr">24: </span>            <span style="color: #709870;">{</span>
-<span class="linenr">25: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#21442;&#25968;&#36755;&#20837;&#38169;&#35823;&#12290;"</span><span style="color: #907373;">)</span>;
-<span class="linenr">26: </span>                Environment.<span style="color: #0000ff;">Exit</span><span style="color: #907373;">(</span>0<span style="color: #907373;">)</span>;
-<span class="linenr">27: </span>            <span style="color: #709870;">}</span>
-<span class="linenr">28: </span>            _&#26376;&#20221; = <span style="color: #008b8b;">value</span>;
-<span class="linenr">29: </span>            &#35745;&#31639;&#30005;&#36153;<span style="color: #709870;">()</span>;
-<span class="linenr">30: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">31: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">32: </span>
-<span class="linenr">33: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#30005;&#25968;</span>
-<span class="linenr">34: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">35: </span>        <span style="color: #a020f0;">get</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">return</span> _&#30005;&#25968;; <span style="color: #909183;">}</span>
-<span class="linenr">36: </span>        <span style="color: #a020f0;">set</span>
-<span class="linenr">37: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">38: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span><span style="color: #008b8b;">value</span> &lt; 0<span style="color: #709870;">)</span>
-<span class="linenr">39: </span>            <span style="color: #709870;">{</span>
-<span class="linenr">40: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#21442;&#25968;&#36755;&#20837;&#38169;&#35823;&#12290;"</span><span style="color: #907373;">)</span>;
-<span class="linenr">41: </span>                Environment.<span style="color: #0000ff;">Exit</span><span style="color: #907373;">(</span>0<span style="color: #907373;">)</span>;
-<span class="linenr">42: </span>            <span style="color: #709870;">}</span>
-<span class="linenr">43: </span>            _&#30005;&#25968; = <span style="color: #008b8b;">value</span>;
-<span class="linenr">44: </span>            &#35745;&#31639;&#30005;&#36153;<span style="color: #709870;">()</span>;
-<span class="linenr">45: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">46: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">47: </span>
-<span class="linenr">48: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#35745;&#31639;&#30005;&#36153;</span><span style="color: #7388d6;">()</span>
-<span class="linenr">49: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">50: </span>        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span> = &#26159;&#22799;&#23395;<span style="color: #909183;">()</span> ? &#22799;&#23395;&#26723;&#20301;<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span> : &#20908;&#23395;&#26723;&#20301;<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span>;
-<span class="linenr">51: </span>        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span> = &#26159;&#22799;&#23395;<span style="color: #909183;">()</span> ? &#22799;&#23395;&#26723;&#20301;<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span> : &#20908;&#23395;&#26723;&#20301;<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span>;
-<span class="linenr">52: </span>
-<span class="linenr">53: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>&#30005;&#25968; &lt; a<span style="color: #909183;">)</span>
-<span class="linenr">54: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">55: </span>            &#31532;&#19968;&#26723;&#30005;&#36153; = &#30005;&#25968; * &#26723;&#36153;<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
-<span class="linenr">56: </span>            &#31532;&#20108;&#26723;&#30005;&#36153; = 0;
-<span class="linenr">57: </span>            &#31532;&#19977;&#26723;&#30005;&#36153; = 0;
-<span class="linenr">58: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">59: </span>        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>&#30005;&#25968; &lt; b<span style="color: #909183;">)</span>
-<span class="linenr">60: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">61: </span>            &#31532;&#19968;&#26723;&#30005;&#36153; = a * &#26723;&#36153;<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
-<span class="linenr">62: </span>            &#31532;&#20108;&#26723;&#30005;&#36153; = <span style="color: #709870;">(</span>&#30005;&#25968; - a<span style="color: #709870;">)</span> * &#26723;&#36153;<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span>;
-<span class="linenr">63: </span>            &#31532;&#19977;&#26723;&#30005;&#36153; = 0;
-<span class="linenr">64: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">65: </span>        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>&#30005;&#25968; &gt; b<span style="color: #909183;">)</span>
-<span class="linenr">66: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">67: </span>            &#31532;&#19968;&#26723;&#30005;&#36153; = a * &#26723;&#36153;<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
-<span class="linenr">68: </span>            &#31532;&#20108;&#26723;&#30005;&#36153; = <span style="color: #709870;">(</span>b - a<span style="color: #709870;">)</span> * &#26723;&#36153;<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span>;
-<span class="linenr">69: </span>            &#31532;&#19977;&#26723;&#30005;&#36153; = <span style="color: #709870;">(</span>&#30005;&#25968; - b<span style="color: #709870;">)</span> * &#26723;&#36153;<span style="color: #709870;">[</span>2<span style="color: #709870;">]</span>;
-<span class="linenr">70: </span>
-<span class="linenr">71: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">72: </span>        &#24635;&#30005;&#36153; = &#31532;&#19968;&#26723;&#30005;&#36153; + &#31532;&#20108;&#26723;&#30005;&#36153; + &#31532;&#19977;&#26723;&#30005;&#36153;;
-<span class="linenr">73: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">74: </span>
-<span class="linenr">75: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">&#26159;&#22799;&#23395;</span><span style="color: #7388d6;">()</span>
-<span class="linenr">76: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">77: </span>        <span style="color: #a020f0;">return</span> &#26376;&#20221; &gt;= 5 &amp;&amp; &#26376;&#20221; &lt;= 10;
-<span class="linenr">78: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">79: </span>
-<span class="linenr">80: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>
-<span class="linenr">81: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">82: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
-<span class="linenr">83: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{_&#26376;&#20221;} &#26376;&#30340;&#29992;&#30005;&#37327;&#26159;: {_&#30005;&#25968;} KWh"</span><span style="color: #909183;">)</span>;
-<span class="linenr">84: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19968;&#26723;&#30005;&#36153;: { &#31532;&#19968;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
-<span class="linenr">85: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#20108;&#26723;&#30005;&#36153;: { &#31532;&#20108;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
-<span class="linenr">86: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19977;&#26723;&#30005;&#36153;: { &#31532;&#19977;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
-<span class="linenr">87: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
-<span class="linenr">88: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#24635;&#35745;: { &#24635;&#30005;&#36153;,10:C} "</span><span style="color: #909183;">)</span>;
-<span class="linenr">89: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">90: </span><span style="color: #707183;">}</span>
+<span class="linenr">20: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>&#26376; &lt; 1 || &#26376; &gt; 12 || &#30005; &lt; 0<span style="color: #909183;">)</span>
+<span class="linenr">21: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">22: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#21442;&#25968;&#36755;&#20837;&#38169;&#35823;&#12290;"</span><span style="color: #709870;">)</span>;
+<span class="linenr">23: </span>            Environment.<span style="color: #0000ff;">Exit</span><span style="color: #709870;">(</span>0<span style="color: #709870;">)</span>;
+<span class="linenr">24: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">25: </span>        _&#26376;&#20221; = &#26376;;
+<span class="linenr">26: </span>        _&#30005;&#25968; = &#30005;;
+<span class="linenr">27: </span>        &#35745;&#31639;&#30005;&#36153;<span style="color: #909183;">()</span>;
+<span class="linenr">28: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">29: </span>
+<span class="linenr">30: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#35745;&#31639;&#30005;&#36153;</span><span style="color: #7388d6;">()</span>
+<span class="linenr">31: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">32: </span>        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">p1</span> = &#26159;&#22799;&#23395;<span style="color: #909183;">()</span> ? &#22799;&#23395;&#26723;&#20301;<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span> : &#20908;&#23395;&#26723;&#20301;<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span>;
+<span class="linenr">33: </span>        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">p2</span> = &#26159;&#22799;&#23395;<span style="color: #909183;">()</span> ? &#22799;&#23395;&#26723;&#20301;<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span> : &#20908;&#23395;&#26723;&#20301;<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span>;
+<span class="linenr">34: </span>
+<span class="linenr">35: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_&#30005;&#25968; &lt; p1<span style="color: #909183;">)</span>
+<span class="linenr">36: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">37: </span>            &#31532;&#19968;&#26723;&#30005;&#36153; = _&#30005;&#25968; * &#26723;&#36153;<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+<span class="linenr">38: </span>            &#31532;&#20108;&#26723;&#30005;&#36153; = 0;
+<span class="linenr">39: </span>            &#31532;&#19977;&#26723;&#30005;&#36153; = 0;
+<span class="linenr">40: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">41: </span>        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_&#30005;&#25968; &lt; p2<span style="color: #909183;">)</span>
+<span class="linenr">42: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">43: </span>            &#31532;&#19968;&#26723;&#30005;&#36153; = p1 * &#26723;&#36153;<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+<span class="linenr">44: </span>            &#31532;&#20108;&#26723;&#30005;&#36153; = <span style="color: #709870;">(</span>_&#30005;&#25968; - p1<span style="color: #709870;">)</span> * &#26723;&#36153;<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span>;
+<span class="linenr">45: </span>            &#31532;&#19977;&#26723;&#30005;&#36153; = 0;
+<span class="linenr">46: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">47: </span>        <span style="color: #a020f0;">else</span>
+<span class="linenr">48: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">49: </span>            &#31532;&#19968;&#26723;&#30005;&#36153; = p1 * &#26723;&#36153;<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>;
+<span class="linenr">50: </span>            &#31532;&#20108;&#26723;&#30005;&#36153; = <span style="color: #709870;">(</span>p2 - p1<span style="color: #709870;">)</span> * &#26723;&#36153;<span style="color: #709870;">[</span>1<span style="color: #709870;">]</span>;
+<span class="linenr">51: </span>            &#31532;&#19977;&#26723;&#30005;&#36153; = <span style="color: #709870;">(</span>_&#30005;&#25968; - p2<span style="color: #709870;">)</span> * &#26723;&#36153;<span style="color: #709870;">[</span>2<span style="color: #709870;">]</span>;
+<span class="linenr">52: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">53: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">54: </span>
+<span class="linenr">55: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">&#26159;&#22799;&#23395;</span><span style="color: #7388d6;">()</span>
+<span class="linenr">56: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">57: </span>        <span style="color: #a020f0;">return</span> _&#26376;&#20221; &gt;= 5 &amp;&amp; _&#26376;&#20221; &lt;= 10;
+<span class="linenr">58: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">59: </span>
+<span class="linenr">60: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>
+<span class="linenr">61: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">62: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+<span class="linenr">63: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{_&#26376;&#20221;} &#26376;&#30340;&#29992;&#30005;&#37327;&#26159;: {_&#30005;&#25968;} KWh"</span><span style="color: #909183;">)</span>;
+<span class="linenr">64: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19968;&#26723;&#30005;&#36153;: { &#31532;&#19968;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">65: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#20108;&#26723;&#30005;&#36153;: { &#31532;&#20108;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">66: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19977;&#26723;&#30005;&#36153;: { &#31532;&#19977;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">67: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+<span class="linenr">68: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#24635;&#35745;: { &#24635;&#30005;&#36153;,10:C} "</span><span style="color: #909183;">)</span>;
+<span class="linenr">69: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">70: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
 </div>
-
 
 <div id="outline-container-org5e9a37a" class="outline-3">
 <h3 id="org5e9a37a"><span class="section-number-3">1.3</span> 第二种</h3>
@@ -616,7 +595,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="org711b063">
+<figure id="org9a343de">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -891,7 +870,7 @@
 </p>
 
 
-<figure id="org9aa70e1">
+<figure id="org43b8497">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -1007,7 +986,7 @@
 </ul>
 
 
-<figure id="orgcf41805">
+<figure id="orgfd24724">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
