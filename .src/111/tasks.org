@@ -17,7 +17,7 @@
 
 第一题，就 20 行代码而已!
 
-#+ATTR_HTML: :width 300
+#+ATTR_HTML: :width 400
 [[file:img/tip-calc.png]]
 
 * [2021-03-29 Mon]
