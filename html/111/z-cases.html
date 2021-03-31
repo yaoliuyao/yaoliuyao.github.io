@@ -220,15 +220,15 @@
 <span class="linenr">14: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22522;&#20934;&#25968;&#25454;</span>
 <span class="linenr">15: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#26723;&#36153;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 0.600, 0.650, 0.900 <span style="color: #7388d6;">}</span>;
 <span class="linenr">16: </span>
-<span class="linenr">17: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#35774;&#32622;&#26376;&#20221;&#21644;&#30005;&#25968;</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">month</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">amount</span><span style="color: #7388d6;">)</span>
+<span class="linenr">17: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#35774;&#32622;&#26376;&#20221;&#21644;&#30005;&#25968;</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">&#26376;</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#25968;</span><span style="color: #7388d6;">)</span>
 <span class="linenr">18: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">19: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>month &lt; 0 || month &gt; 12 || amount &lt; 0<span style="color: #909183;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">?</span>
+<span class="linenr">19: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>&#26376; &lt; 1 || &#26376; &gt; 12 || &#25968; &lt; 0<span style="color: #909183;">)</span>
 <span class="linenr">20: </span>        <span style="color: #909183;">{</span>
 <span class="linenr">21: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#21442;&#25968;&#36755;&#20837;&#38169;&#35823;&#12290;"</span><span style="color: #709870;">)</span>;
 <span class="linenr">22: </span>            Environment.<span style="color: #0000ff;">Exit</span><span style="color: #709870;">(</span>0<span style="color: #709870;">)</span>;
 <span class="linenr">23: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">24: </span>        _&#26376;&#20221; = month;
-<span class="linenr">25: </span>        _&#30005;&#25968; = amount;
+<span class="linenr">24: </span>        _&#26376;&#20221; = &#26376;;
+<span class="linenr">25: </span>        _&#30005;&#25968; = &#25968;;
 <span class="linenr">26: </span>        &#21047;&#26032;&#38454;&#26799;&#24230;&#25968;<span style="color: #909183;">()</span>;
 <span class="linenr">27: </span>    <span style="color: #7388d6;">}</span>
 <span class="linenr">28: </span>
@@ -513,7 +513,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="org7b72607">
+<figure id="org6b7f167">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -788,7 +788,7 @@
 </p>
 
 
-<figure id="orgd6217c4">
+<figure id="orgb727326">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -904,7 +904,7 @@
 </ul>
 
 
-<figure id="org310d2df">
+<figure id="orgc28cab3">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>

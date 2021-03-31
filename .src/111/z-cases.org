@@ -130,15 +130,15 @@
       // 基准数据
       public static readonly double[] 档费 = new double[] { 0.600, 0.650, 0.900 };
 
-      public void 设置月份和电数(int month, double amount)
+      public void 设置月份和电数(int 月, double 数)
       {
-          if (month < 0 || month > 12 || amount < 0) // ?
+          if (月 < 1 || 月 > 12 || 数 < 0)
           {
               Console.WriteLine("参数输入错误。");
               Environment.Exit(0);
           }
-          _月份 = month;
-          _电数 = amount;
+          _月份 = 月;
+          _电数 = 数;
           刷新阶梯度数();
       }
 
