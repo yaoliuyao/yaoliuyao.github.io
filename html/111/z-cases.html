@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-30 -->
+<!-- 2021-03-31 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>一万行代码</title>
@@ -65,7 +65,13 @@
 <li><a href="#org5338d34">1.14. 小结</a></li>
 </ul>
 </li>
-<li><a href="#org59717f8">2. 小费计算器</a></li>
+<li><a href="#org59717f8">2. 小费计算器</a>
+<ul>
+<li><a href="#org963911c">2.1. 核心代码</a></li>
+<li><a href="#org66a1d13">2.2. 在核心代码上进行优化</a></li>
+<li><a href="#org2021d28">2.3. 结构化重构</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -302,7 +308,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">1.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<figure id="org0f554b9">
+<figure id="org6ce68a7">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -577,7 +583,7 @@
 </p>
 
 
-<figure id="org3d35e16">
+<figure id="orge798485">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -693,7 +699,7 @@
 </ul>
 
 
-<figure id="orgabfd23b">
+<figure id="org06951b6">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -1607,9 +1613,10 @@
 <section id="outline-container-org59717f8" class="outline-2">
 <h2 id="org59717f8"><span class="section-number-2">2</span> 小费计算器</h2>
 <div class="outline-text-2" id="text-2">
-<p>
-核心代码:
-</p>
+</div>
+<div id="outline-container-org963911c" class="outline-3">
+<h3 id="org963911c"><span class="section-number-3">2.1</span> 核心代码</h3>
+<div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">Main &#26041;&#27861;&#26159;&#31243;&#24207;&#30340;&#20837;&#21475;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">args &#34920;&#31034;&#20174;&#25511;&#21046;&#21488;&#20256;&#26469;&#30340;&#21442;&#25968;&#25968;&#25454;</span>
@@ -1635,10 +1642,12 @@
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-在基础代码上进行优化:
-</p>
+<div id="outline-container-org66a1d13" class="outline-3">
+<h3 id="org66a1d13"><span class="section-number-3">2.2</span> 在核心代码上进行优化</h3>
+<div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#30446;&#26631;:</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#35753;&#31243;&#24207;&#26356;&#20581;&#22766;&#65292;&#36991;&#20813;&#19981;&#24517;&#35201;&#30340;&#24322;&#24120;&#25243;&#20986;</span>
@@ -1683,11 +1692,41 @@
 </pre>
 </div>
 </div>
+</div>
+
+<div id="outline-container-org2021d28" class="outline-3">
+<h3 id="org2021d28"><span class="section-number-3">2.3</span> 结构化重构</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCal</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">TipCal</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span> <span style="color: #a0522d;">bill</span><span style="color: #7388d6;">)</span>
+<span class="linenr"> 4: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 5: </span>        Bill = bill;
+<span class="linenr"> 6: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>    <span style="color: #a020f0;">const</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">RATE</span> = 0.18;
+<span class="linenr"> 9: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Bill</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+<span class="linenr">10: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Tip</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">return</span> Bill * RATE; <span style="color: #909183;">}</span> <span style="color: #7388d6;">}</span>
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Print</span><span style="color: #7388d6;">()</span>
+<span class="linenr">13: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">14: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+<span class="linenr">15: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#36134;&#21333;&#24635;&#39069;: {Bill,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">16: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#23567;&#36153;&#25968;&#39069;: {Tip,10:C} ({RATE:P1})"</span><span style="color: #909183;">)</span>;
+<span class="linenr">17: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+<span class="linenr">18: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#36134;&#21333;&#23454;&#20184;: {Bill + Tip,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">19: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">20: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-30</p>
+<p class="date">Created: 2021-03-31</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

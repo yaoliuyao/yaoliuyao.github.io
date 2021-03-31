@@ -1402,8 +1402,8 @@ class TaxCal
 ** 小结
 
 * 小费计算器
+** 核心代码
 
-核心代码:
 #+begin_src csharp
   // Main 方法是程序的入口
   // args 表示从控制台传来的参数数据
@@ -1429,7 +1429,8 @@ class TaxCal
   }
 #+end_src
 
-在基础代码上进行优化:
+** 在核心代码上进行优化
+
 #+begin_src csharp
   // 目标:
   // 1. 让程序更健壮，避免不必要的异常抛出
@@ -1470,5 +1471,30 @@ class TaxCal
       Console.WriteLine($"小费数额: {tip,10:C} ({rate:P1})");
       Console.WriteLine("".PadRight(30, '┈'));
       Console.WriteLine($"账单实付: {realBill,10:C}");
+  }
+#+end_src
+
+** 结构化重构
+
+#+begin_src csharp -n
+  class TipCal
+  {
+      public TipCal(double bill)
+      {
+          Bill = bill;
+      }
+
+      const double RATE = 0.18;
+      public double Bill { get; private set; }
+      public double Tip { get { return Bill * RATE; } }
+
+      public void Print()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"账单总额: {Bill,10:C}");
+          Console.WriteLine($"小费数额: {Tip,10:C} ({RATE:P1})");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"账单实付: {Bill + Tip,10:C}");
+      }
   }
 #+end_src
