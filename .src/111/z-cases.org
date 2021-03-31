@@ -1,10 +1,10 @@
 #+TITLE: 一万行代码
 
 
-
 * 阶梯电费计算 [[id:4a153c21-482b-42d1-ae46-c015dd6ae419][源]]
-** 第一种
+** 第一种方式
 
+这种方式由第三小组提供:
 #+begin_src csharp -n
   class 电费计算
   {
@@ -26,7 +26,7 @@
           get { return _月份; }
           set
           {
-              if (value < 0 || value > 12) // ?
+              if (value < 1 || value > 12)
               {
                   Console.WriteLine("参数输入错误。");
                   Environment.Exit(0);

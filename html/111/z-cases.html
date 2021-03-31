@@ -44,7 +44,7 @@
 <ul>
 <li><a href="#org4dff1f5">1. 阶梯电费计算 源</a>
 <ul>
-<li><a href="#org3dadc1b">1.1. 第一种</a></li>
+<li><a href="#org61bd50b">1.1. 第一种方式</a></li>
 <li><a href="#org5e9a37a">1.2. 第二种</a></li>
 </ul>
 </li>
@@ -83,14 +83,16 @@
 </nav>
 
 
-
 <section id="outline-container-org4dff1f5" class="outline-2">
 <h2 id="org4dff1f5"><span class="section-number-2">1</span> 阶梯电费计算 <a href="tasks.html#ID-4a153c21-482b-42d1-ae46-c015dd6ae419">源</a></h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org3dadc1b" class="outline-3">
-<h3 id="org3dadc1b"><span class="section-number-3">1.1</span> 第一种</h3>
+<div id="outline-container-org61bd50b" class="outline-3">
+<h3 id="org61bd50b"><span class="section-number-3">1.1</span> 第一种方式</h3>
 <div class="outline-text-3" id="text-1-1">
+<p>
+这种方式由第三小组提供:
+</p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr">  1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">&#30005;&#36153;&#35745;&#31639;</span>
 <span class="linenr">  2: </span><span style="color: #707183;">{</span>
@@ -112,7 +114,7 @@
 <span class="linenr"> 18: </span>        <span style="color: #a020f0;">get</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">return</span> _&#26376;&#20221;; <span style="color: #909183;">}</span>
 <span class="linenr"> 19: </span>        <span style="color: #a020f0;">set</span>
 <span class="linenr"> 20: </span>        <span style="color: #909183;">{</span>
-<span class="linenr"> 21: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span><span style="color: #008b8b;">value</span> &lt; 0 || <span style="color: #008b8b;">value</span> &gt; 12<span style="color: #709870;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">?</span>
+<span class="linenr"> 21: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span><span style="color: #008b8b;">value</span> &lt; 1 || <span style="color: #008b8b;">value</span> &gt; 12<span style="color: #709870;">)</span>
 <span class="linenr"> 22: </span>            <span style="color: #709870;">{</span>
 <span class="linenr"> 23: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#21442;&#25968;&#36755;&#20837;&#38169;&#35823;&#12290;"</span><span style="color: #907373;">)</span>;
 <span class="linenr"> 24: </span>                Environment.<span style="color: #0000ff;">Exit</span><span style="color: #907373;">(</span>0<span style="color: #907373;">)</span>;
@@ -513,7 +515,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="org63afe9d">
+<figure id="org62b2ac5">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -788,7 +790,7 @@
 </p>
 
 
-<figure id="orgdbc8d6b">
+<figure id="org43646a3">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -904,7 +906,7 @@
 </ul>
 
 
-<figure id="org8caec81">
+<figure id="orgd5c53ea">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
