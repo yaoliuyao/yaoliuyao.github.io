@@ -299,21 +299,21 @@
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">&#30005;&#36153;&#35745;&#31639;</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
-<span class="linenr"> 3: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#30693;&#36947;&#30340;&#25968;&#25454;</span>
-<span class="linenr"> 4: </span>    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">_&#26376;&#20221;</span>;
-<span class="linenr"> 5: </span>    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">_&#30005;&#25968;</span>;
-<span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#35745;&#31639;&#20986;&#26469;&#30340;&#25968;&#25454;</span>
-<span class="linenr"> 8: </span>    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">_&#38454;&#26799;&#24230;&#25968;</span>;
-<span class="linenr"> 9: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#19968;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _&#38454;&#26799;&#24230;&#25968;<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span> * &#26723;&#36153;<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
-<span class="linenr">10: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#20108;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _&#38454;&#26799;&#24230;&#25968;<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span> * &#26723;&#36153;<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
-<span class="linenr">11: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#19977;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _&#38454;&#26799;&#24230;&#25968;<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span> * &#26723;&#36153;<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
-<span class="linenr">12: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#24635;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; &#31532;&#19968;&#26723;&#30005;&#36153; + &#31532;&#20108;&#26723;&#30005;&#36153; + &#31532;&#19977;&#26723;&#30005;&#36153;; <span style="color: #7388d6;">}</span>
-<span class="linenr">13: </span>
-<span class="linenr">14: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22522;&#20934;&#25968;&#25454;</span>
-<span class="linenr">15: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#22799;&#23395;&#26723;&#20301;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 260, 600 <span style="color: #7388d6;">}</span>;
-<span class="linenr">16: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#20908;&#23395;&#26723;&#20301;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 200, 400 <span style="color: #7388d6;">}</span>;
-<span class="linenr">17: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#26723;&#36153;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 0.600, 0.650, 0.900 <span style="color: #7388d6;">}</span>;
+<span class="linenr"> 3: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22522;&#20934;&#25968;&#25454;</span>
+<span class="linenr"> 4: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#22799;&#23395;&#26723;&#20301;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 260, 600 <span style="color: #7388d6;">}</span>;
+<span class="linenr"> 5: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#20908;&#23395;&#26723;&#20301;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 200, 400 <span style="color: #7388d6;">}</span>;
+<span class="linenr"> 6: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#26723;&#36153;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 0.600, 0.650, 0.900 <span style="color: #7388d6;">}</span>;
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#30693;&#36947;&#30340;&#25968;&#25454;</span>
+<span class="linenr"> 9: </span>    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">_&#26376;&#20221;</span>;
+<span class="linenr">10: </span>    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">_&#30005;&#25968;</span>;
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#35745;&#31639;&#20986;&#26469;&#30340;&#25968;&#25454;</span>
+<span class="linenr">13: </span>    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">_&#38454;&#26799;&#24230;&#25968;</span>;
+<span class="linenr">14: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#19968;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _&#38454;&#26799;&#24230;&#25968;<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span> * &#26723;&#36153;<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
+<span class="linenr">15: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#20108;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _&#38454;&#26799;&#24230;&#25968;<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span> * &#26723;&#36153;<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
+<span class="linenr">16: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#31532;&#19977;&#26723;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _&#38454;&#26799;&#24230;&#25968;<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span> * &#26723;&#36153;<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
+<span class="linenr">17: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#24635;&#30005;&#36153;</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; &#31532;&#19968;&#26723;&#30005;&#36153; + &#31532;&#20108;&#26723;&#30005;&#36153; + &#31532;&#19977;&#26723;&#30005;&#36153;; <span style="color: #7388d6;">}</span>
 <span class="linenr">18: </span>
 <span class="linenr">19: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#35774;&#32622;&#26376;&#20221;&#21644;&#30005;&#25968;</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">&#26376;</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">&#25968;</span><span style="color: #7388d6;">)</span>
 <span class="linenr">20: </span>    <span style="color: #7388d6;">{</span>
@@ -595,7 +595,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="org6f34715">
+<figure id="orge399a19">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -870,7 +870,7 @@
 </p>
 
 
-<figure id="org33afe64">
+<figure id="org283f018">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -986,7 +986,7 @@
 </ul>
 
 
-<figure id="org4a4ea27">
+<figure id="orgfe935f9">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
