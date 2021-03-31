@@ -2,10 +2,15 @@
 
 
 
-* [2021-03-29 Mon]
+* [2021-03-30 Tue]
 :PROPERTIES:
 :CUSTOM_ID: active
 :END:
+
+1. 将小费计算器的代码，重构为合理的类的结构
+2. 实现阶梯电费计算。至少要用两种方式 (参照个税计算的第一个和最后一个版本)
+
+* [2021-03-29 Mon]
 
 1. 敲代码，理解 constructor 和 static 
 2. 区分 readonly 和 const 使用
