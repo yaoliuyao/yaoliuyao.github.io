@@ -3,8 +3,9 @@
 
 
 * 阶梯电费计算
+** 第一种
 
-#+begin_src csharp
+#+begin_src csharp -n
   class 电费计算
   {
       // 需要知道的数据
@@ -95,6 +96,84 @@
               }
           }
           总电费 = 第一档电费 + 第二档电费 + 第三档电费;
+      }
+
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"{_月份} 月的用电量是: {_电数} KWh");
+          Console.WriteLine($"第一档电费: { 第一档电费,10:C}");
+          Console.WriteLine($"第二档电费: { 第二档电费,10:C}");
+          Console.WriteLine($"第三档电费: { 第三档电费,10:C}");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"总计: { 总电费,10:C} ");
+      }
+  }
+#+end_src
+
+** 第二种
+
+#+begin_src csharp -n
+  class 电费计算
+  {
+      // 需要知道的数据
+      private int _月份;
+      private double _电数;
+      private double[] _阶梯度数 = new double[3];
+
+      // 需要计算出来的数据
+      public double 第一档电费 { get => _阶梯度数[0] * 档费[0]; }
+      public double 第二档电费 { get => _阶梯度数[0] * 档费[0]; }
+      public double 第三档电费 { get => _阶梯度数[0] * 档费[0]; }
+      public double 总电费 { get => 第一档电费 + 第二档电费 + 第三档电费; }
+
+      // 基准数据
+      public static readonly double[] 档费 = new double[] { 0.600, 0.650, 0.900 };
+
+      public void 设置月份和电数 (int month, double amount)
+      {
+          if (month < 0 || month > 12 || amount < 0) // ?
+          {
+              Console.WriteLine("参数输入错误。");
+              Environment.Exit(0);
+           }
+           _月份 = month;
+           _电数 = amount;
+            计算阶梯度数();
+      }
+
+      public void 计算阶梯度数()
+      {
+          if (_月份 >= 5 && _月份 <= 10)
+          {
+              if (_电数 <= 260)
+              {
+                  _阶梯度数 = new double[]{  _电数, 0, 0 };
+              }
+              else if (_电数 <= 600)
+              {
+                  _阶梯度数 = new double[] { 260, _电数 - 260, 0 };
+              }
+              else if (_电数 > 600)
+              {
+                  _阶梯度数 = new double[] { 260, 600 - 260, _电数 - 600 };
+              }
+          }
+          else
+          {
+              if (_电数 <= 200)
+              {
+                  _阶梯度数 = new double[] { _电数, 0, 0 };
+              }
+              else if (_电数 <= 400)
+              {
+                  _阶梯度数 = new double[] { 200, _电数 - 200, 0 };
+              }
+              else if (_电数 > 400)
+              {
+                  _阶梯度数 = new double[] { 200, 400 - 260, _电数 - 400 };
+              }
+          }
       }
 
       public void PrintToConsole()
