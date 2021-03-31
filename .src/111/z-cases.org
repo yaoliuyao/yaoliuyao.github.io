@@ -2,7 +2,7 @@
 
 
 * 阶梯电费计算
-** 第一种方式
+** 第一种解决方案
 
 这种方式由第三小组提供:
 #+begin_src csharp -n
@@ -111,8 +111,13 @@
   }
 #+end_src
 
-** 第一种改进版
+** 第一种方案的优化版
 
+经过集思广益，整个班级一起修改，在上述的版本上进行优化:
+- 减少了代码的冗余，让代码更清晰
+- 将档位等数据提取为字段，方便管理和维护
+
+代码如下:
 #+begin_src csharp -n 
   class 电费计算
   {
@@ -186,7 +191,7 @@
   }
 #+end_src
 
-** 第二种
+** 这是另一种方案
 
 #+begin_src csharp -n
   class 电费计算
@@ -203,52 +208,42 @@
       public double 总电费 { get => 第一档电费 + 第二档电费 + 第三档电费; }
 
       // 基准数据
+      public static readonly int[] 夏季档位 = new int[] { 260, 600 };
+      public static readonly int[] 冬季档位 = new int[] { 200, 400 };
       public static readonly double[] 档费 = new double[] { 0.600, 0.650, 0.900 };
 
       public void 设置月份和电数(int 月, double 数)
       {
           if (月 < 1 || 月 > 12 || 数 < 0)
-          {
-              Console.WriteLine("参数输入错误。");
-              Environment.Exit(0);
-          }
-          _月份 = 月;
-          _电数 = 数;
+              抱怨并退出("参数输入错误");
+          (_月份, _电数) = (月, 数);
           刷新阶梯度数();
       }
 
       public void 刷新阶梯度数()
       {
-          if (_月份 >= 5 && _月份 <= 10)
+          (int p1, int p2) = 夏天否() ? (夏季档位[0], 夏季档位[1]) : (冬季档位[0], 冬季档位[1]);
+
+          if (_电数 <= p1)
           {
-              if (_电数 <= 260)
-              {
-                  _阶梯度数 = new double[] { _电数, 0, 0 };
-              }
-              else if (_电数 <= 600)
-              {
-                  _阶梯度数 = new double[] { 260, _电数 - 260, 0 };
-              }
-              else
-              {
-                  _阶梯度数 = new double[] { 260, 600 - 260, _电数 - 600 };
-              }
+              _阶梯度数 = new double[] { _电数, 0, 0 };
+          }
+          else if (_电数 <= p2)
+          {
+              _阶梯度数 = new double[] { p1, _电数 - p1, 0 };
           }
           else
           {
-              if (_电数 <= 200)
-              {
-                  _阶梯度数 = new double[] { _电数, 0, 0 };
-              }
-              else if (_电数 <= 400)
-              {
-                  _阶梯度数 = new double[] { 200, _电数 - 200, 0 };
-              }
-              else
-              {
-                  _阶梯度数 = new double[] { 200, 400 - 200, _电数 - 400 };
-              }
+              _阶梯度数 = new double[] { p1, p2 - p1, _电数 - p2 };
           }
+      }
+
+      public bool 夏天否() => _月份 >= 5 && _月份 <= 10;
+
+      public static void 抱怨并退出(string 抱怨内容)
+      {
+          Console.WriteLine(抱怨内容);
+          Environment.Exit(0);
       }
 
       public void PrintToConsole()
