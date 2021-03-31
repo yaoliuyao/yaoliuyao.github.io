@@ -1,7 +1,7 @@
 #+TITLE: 一万行代码
 
 
-* 阶梯电费计算 [[id:jietidianfei][源]]
+* 阶梯电费计算
 ** 第一种方式
 
 这种方式由第三小组提供:
@@ -110,6 +110,102 @@
       }
   }
 #+end_src
+
+** 第一种改进版
+
+#+begin_src csharp -n 
+  class 电费计算
+  {
+      // 需要知道的数据
+      private int _月份;
+      private double _电数;
+
+      // 需要计算出来的数据
+      public double 第一档电费 { get; private set; }
+      public double 第二档电费 { get; private set; }
+      public double 第三档电费 { get; private set; }
+      public double 总电费 { get; private set; }
+
+      // 基准数据
+      public static readonly int[] 夏季档位 = new int[] { 260, 600 };
+      public static readonly int[] 冬季档位 = new int[] { 200, 400 };
+      public static readonly double[] 档费 = new double[] { 0.600, 0.650, 0.900 };
+
+      public int 月份
+      {
+          get { return _月份; }
+          set
+          {
+              if (value < 0 || value > 12) // ?
+              {
+                  Console.WriteLine("参数输入错误。");
+                  Environment.Exit(0);
+              }
+              _月份 = value;
+              计算电费();
+          }
+      }
+
+      public double 电数
+      {
+          get { return _电数; }
+          set
+          {
+              if (value < 0)
+              {
+                  Console.WriteLine("参数输入错误。");
+                  Environment.Exit(0);
+              }
+              _电数 = value;
+              计算电费();
+          }
+      }
+
+      public void 计算电费()
+      {
+          int a = 是夏季() ? 夏季档位[0] : 冬季档位[0];
+          int b = 是夏季() ? 夏季档位[1] : 冬季档位[1];
+
+          if (电数 < a)
+          {
+              第一档电费 = 电数 * 档费[0];
+              第二档电费 = 0;
+              第三档电费 = 0;
+          }
+          else if (电数 < b)
+          {
+              第一档电费 = a * 档费[0];
+              第二档电费 = (电数 - a) * 档费[1];
+              第三档电费 = 0;
+          }
+          else if (电数 > b)
+          {
+              第一档电费 = a * 档费[0];
+              第二档电费 = (b - a) * 档费[1];
+              第三档电费 = (电数 - b) * 档费[2];
+
+          }
+          总电费 = 第一档电费 + 第二档电费 + 第三档电费;
+      }
+
+      public bool 是夏季()
+      {
+          return 月份 >= 5 && 月份 <= 10;
+      }
+
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"{_月份} 月的用电量是: {_电数} KWh");
+          Console.WriteLine($"第一档电费: { 第一档电费,10:C}");
+          Console.WriteLine($"第二档电费: { 第二档电费,10:C}");
+          Console.WriteLine($"第三档电费: { 第三档电费,10:C}");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"总计: { 总电费,10:C} ");
+      }
+  }
+#+end_src
+
 
 ** 第二种
 
