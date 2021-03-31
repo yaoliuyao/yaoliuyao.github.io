@@ -216,10 +216,21 @@
       {
           if (月 < 1 || 月 > 12 || 数 < 0) 抱怨并退出("参数输入错误");
           (_月份, _电数) = (月, 数);
-          刷新阶梯度数();
+          计算阶梯度数();
       }
 
-      public void 刷新阶梯度数()
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"{_月份} 月的用电量是: {_电数} KWh");
+          Console.WriteLine($"第一档电费: {第一档电费,10:C}");
+          Console.WriteLine($"第二档电费: {第二档电费,10:C}");
+          Console.WriteLine($"第三档电费: {第三档电费,10:C}");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"总计: {总电费,10:C} ");
+      }
+
+      void 计算阶梯度数()
       {
           (int p1, int p2) = 夏天否() ? (夏季档位[0], 夏季档位[1]) : (冬季档位[0], 冬季档位[1]);
 
@@ -237,23 +248,12 @@
           }
       }
 
-      public bool 夏天否() => _月份 >= 5 && _月份 <= 10;
+      bool 夏天否() => _月份 >= 5 && _月份 <= 10;
 
-      public static void 抱怨并退出(string 抱怨内容)
+      void 抱怨并退出(string 抱怨内容)
       {
           Console.WriteLine(抱怨内容);
           Environment.Exit(0);
-      }
-
-      public void PrintToConsole()
-      {
-          Console.WriteLine();
-          Console.WriteLine($"{_月份} 月的用电量是: {_电数} KWh");
-          Console.WriteLine($"第一档电费: {第一档电费,10:C}");
-          Console.WriteLine($"第二档电费: {第二档电费,10:C}");
-          Console.WriteLine($"第三档电费: {第三档电费,10:C}");
-          Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"总计: {总电费,10:C} ");
       }
   }
 #+end_src
