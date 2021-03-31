@@ -123,8 +123,8 @@
 
       // 需要计算出来的数据
       public double 第一档电费 { get => _阶梯度数[0] * 档费[0]; }
-      public double 第二档电费 { get => _阶梯度数[0] * 档费[0]; }
-      public double 第三档电费 { get => _阶梯度数[0] * 档费[0]; }
+      public double 第二档电费 { get => _阶梯度数[1] * 档费[1]; }
+      public double 第三档电费 { get => _阶梯度数[2] * 档费[2]; }
       public double 总电费 { get => 第一档电费 + 第二档电费 + 第三档电费; }
 
       // 基准数据
