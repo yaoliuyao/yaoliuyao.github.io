@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-31 -->
+<!-- 2021-04-01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>一万行代码</title>
@@ -47,6 +47,7 @@
 <li><a href="#org81bc40e">1.1. 第一种解决方案</a></li>
 <li><a href="#org69d0d44">1.2. 第一种方案的优化版</a></li>
 <li><a href="#org5bb2aeb">1.3. 这是另一种方案</a></li>
+<li><a href="#org94d16a8">1.4. 第二种方案的英文变量版本</a></li>
 </ul>
 </li>
 <li><a href="#orge7e608e">2. 个税计算器 (简化版) 源</a>
@@ -301,7 +302,7 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">&#30005;&#36153;&#35745;&#31639;</span>
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ElectricBillCal</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
 <span class="linenr"> 3: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22522;&#20934;&#25968;&#25454;</span>
 <span class="linenr"> 4: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">&#22799;&#23395;&#26723;&#20301;</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 260, 600 <span style="color: #7388d6;">}</span>;
@@ -326,43 +327,118 @@
 <span class="linenr">23: </span>        &#35745;&#31639;&#38454;&#26799;&#24230;&#25968;<span style="color: #909183;">()</span>;
 <span class="linenr">24: </span>    <span style="color: #7388d6;">}</span>
 <span class="linenr">25: </span>
-<span class="linenr">26: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>
+<span class="linenr">26: </span>    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#35745;&#31639;&#38454;&#26799;&#24230;&#25968;</span><span style="color: #7388d6;">()</span>
 <span class="linenr">27: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">28: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
-<span class="linenr">29: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{_&#26376;&#20221;} &#26376;&#30340;&#29992;&#30005;&#37327;&#26159;: {_&#30005;&#25968;} KWh"</span><span style="color: #909183;">)</span>;
-<span class="linenr">30: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19968;&#26723;&#30005;&#36153;: {&#31532;&#19968;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
-<span class="linenr">31: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#20108;&#26723;&#30005;&#36153;: {&#31532;&#20108;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
-<span class="linenr">32: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19977;&#26723;&#30005;&#36153;: {&#31532;&#19977;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
-<span class="linenr">33: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
-<span class="linenr">34: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#24635;&#35745;: {&#24635;&#30005;&#36153;,10:C} "</span><span style="color: #909183;">)</span>;
-<span class="linenr">35: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">36: </span>
-<span class="linenr">37: </span>    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#35745;&#31639;&#38454;&#26799;&#24230;&#25968;</span><span style="color: #7388d6;">()</span>
-<span class="linenr">38: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">39: </span>        <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">p1</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">p2</span><span style="color: #909183;">)</span> = &#22799;&#22825;&#21542;<span style="color: #909183;">()</span> ? <span style="color: #909183;">(</span><span style="color: #228b22;">&#22799;&#23395;&#26723;&#20301;</span><span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>, <span style="color: #228b22;">&#22799;&#23395;&#26723;&#20301;</span><span style="color: #709870;">[</span>1<span style="color: #709870;">]</span><span style="color: #909183;">)</span> : <span style="color: #909183;">(</span><span style="color: #228b22;">&#20908;&#23395;&#26723;&#20301;</span><span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>, <span style="color: #228b22;">&#20908;&#23395;&#26723;&#20301;</span><span style="color: #709870;">[</span>1<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
-<span class="linenr">40: </span>
-<span class="linenr">41: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_&#30005;&#25968; &lt;= p1<span style="color: #909183;">)</span>
-<span class="linenr">42: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">43: </span>            _&#38454;&#26799;&#24230;&#25968; = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> _&#30005;&#25968;, 0, 0 <span style="color: #709870;">}</span>;
-<span class="linenr">44: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">45: </span>        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_&#30005;&#25968; &lt;= p2<span style="color: #909183;">)</span>
-<span class="linenr">46: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">47: </span>            _&#38454;&#26799;&#24230;&#25968; = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> p1, _&#30005;&#25968; - p1, 0 <span style="color: #709870;">}</span>;
-<span class="linenr">48: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">49: </span>        <span style="color: #a020f0;">else</span>
-<span class="linenr">50: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">51: </span>            _&#38454;&#26799;&#24230;&#25968; = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> p1, p2 - p1, _&#30005;&#25968; - p2 <span style="color: #709870;">}</span>;
-<span class="linenr">52: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">28: </span>        <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">p1</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">p2</span><span style="color: #909183;">)</span> = &#22799;&#22825;&#21542;<span style="color: #909183;">()</span> ? <span style="color: #909183;">(</span><span style="color: #228b22;">&#22799;&#23395;&#26723;&#20301;</span><span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>, <span style="color: #228b22;">&#22799;&#23395;&#26723;&#20301;</span><span style="color: #709870;">[</span>1<span style="color: #709870;">]</span><span style="color: #909183;">)</span> : <span style="color: #909183;">(</span><span style="color: #228b22;">&#20908;&#23395;&#26723;&#20301;</span><span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>, <span style="color: #228b22;">&#20908;&#23395;&#26723;&#20301;</span><span style="color: #709870;">[</span>1<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+<span class="linenr">29: </span>
+<span class="linenr">30: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_&#30005;&#25968; &lt;= p1<span style="color: #909183;">)</span>
+<span class="linenr">31: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">32: </span>            _&#38454;&#26799;&#24230;&#25968; = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> _&#30005;&#25968;, 0, 0 <span style="color: #709870;">}</span>;
+<span class="linenr">33: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">34: </span>        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_&#30005;&#25968; &lt;= p2<span style="color: #909183;">)</span>
+<span class="linenr">35: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">36: </span>            _&#38454;&#26799;&#24230;&#25968; = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> p1, _&#30005;&#25968; - p1, 0 <span style="color: #709870;">}</span>;
+<span class="linenr">37: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">38: </span>        <span style="color: #a020f0;">else</span>
+<span class="linenr">39: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">40: </span>            _&#38454;&#26799;&#24230;&#25968; = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> p1, p2 - p1, _&#30005;&#25968; - p2 <span style="color: #709870;">}</span>;
+<span class="linenr">41: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">42: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">43: </span>
+<span class="linenr">44: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>
+<span class="linenr">45: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">46: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+<span class="linenr">47: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{_&#26376;&#20221;} &#26376;&#30340;&#29992;&#30005;&#37327;&#26159;: {_&#30005;&#25968;} KWh"</span><span style="color: #909183;">)</span>;
+<span class="linenr">48: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19968;&#26723;&#30005;&#36153;: {&#31532;&#19968;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">49: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#20108;&#26723;&#30005;&#36153;: {&#31532;&#20108;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">50: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19977;&#26723;&#30005;&#36153;: {&#31532;&#19977;&#26723;&#30005;&#36153;,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">51: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+<span class="linenr">52: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#24635;&#35745;: {&#24635;&#30005;&#36153;,10:C} "</span><span style="color: #909183;">)</span>;
 <span class="linenr">53: </span>    <span style="color: #7388d6;">}</span>
 <span class="linenr">54: </span>
 <span class="linenr">55: </span>    <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">&#22799;&#22825;&#21542;</span><span style="color: #7388d6;">()</span> =&gt; _&#26376;&#20221; &gt;= 5 &amp;&amp; _&#26376;&#20221; &lt;= 10;
 <span class="linenr">56: </span>
-<span class="linenr">57: </span>    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#25265;&#24616;&#24182;&#36864;&#20986;</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">&#25265;&#24616;&#20869;&#23481;</span><span style="color: #7388d6;">)</span>
+<span class="linenr">57: </span>    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#25265;&#24616;&#24182;&#36864;&#20986;</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">&#25265;&#24616;&#20869;&#23481;</span><span style="color: #7388d6;">)</span>
 <span class="linenr">58: </span>    <span style="color: #7388d6;">{</span>
 <span class="linenr">59: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">&#25265;&#24616;&#20869;&#23481;</span><span style="color: #909183;">)</span>;
 <span class="linenr">60: </span>        Environment.<span style="color: #0000ff;">Exit</span><span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>;
 <span class="linenr">61: </span>    <span style="color: #7388d6;">}</span>
 <span class="linenr">62: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org94d16a8" class="outline-3">
+<h3 id="org94d16a8"><span class="section-number-3">1.4</span> 第二种方案的英文变量版本</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+用英文进行命名，还是比较主流和正规的。需要的只是简单的英文而已，写多了就熟了:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ElectricBillCalc</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22522;&#20934;&#25968;&#25454;</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">SummerLevels</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 260, 600 <span style="color: #7388d6;">}</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">WinnerLevels</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 200, 400 <span style="color: #7388d6;">}</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">readonly</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">LevelRates</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> 0.600, 0.650, 0.900 <span style="color: #7388d6;">}</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#30693;&#36947;&#30340;&#25968;&#25454;</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">_month</span>;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">_used</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#35745;&#31639;&#20986;&#26469;&#30340;&#25968;&#25454;</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">double</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">_LvUsed</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Lv1Cost</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _LvUsed<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span> * LevelRates<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Lv2Cost</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _LvUsed<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span> * LevelRates<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Lv3Cost</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; _LvUsed<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span> * LevelRates<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">TotalCost</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span> =&gt; Lv1Cost + Lv2Cost + Lv3Cost; <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">SetMonthAndUsed</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">month</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">used</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>month &lt; 1 || month &gt; 12 || used &lt; 0<span style="color: #909183;">)</span> <span style="color: #0000ff;">QuitWithReason</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#21442;&#25968;&#36755;&#20837;&#38169;&#35823;"</span><span style="color: #909183;">)</span>;
+        <span style="color: #909183;">(</span><span style="color: #228b22;">_month</span>, <span style="color: #228b22;">_used</span><span style="color: #909183;">)</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">month</span>, <span style="color: #228b22;">used</span><span style="color: #909183;">)</span>;
+        <span style="color: #0000ff;">CalculateLvUsed</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">CalculateLvUsed</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">p1</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">p2</span><span style="color: #909183;">)</span> = <span style="color: #0000ff;">IsSummer</span><span style="color: #909183;">()</span> ? <span style="color: #909183;">(</span><span style="color: #228b22;">SummerLevels</span><span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>, <span style="color: #228b22;">SummerLevels</span><span style="color: #709870;">[</span>1<span style="color: #709870;">]</span><span style="color: #909183;">)</span> : <span style="color: #909183;">(</span><span style="color: #228b22;">WinnerLevels</span><span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>, <span style="color: #228b22;">WinnerLevels</span><span style="color: #709870;">[</span>1<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_used &lt;= p1<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            _LvUsed = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> _used, 0, 0 <span style="color: #709870;">}</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>_used &lt;= p2<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            _LvUsed = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> p1, _used - p1, 0 <span style="color: #709870;">}</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span>
+        <span style="color: #909183;">{</span>
+            _LvUsed = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">double</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> p1, p2 - p1, _used - p2 <span style="color: #709870;">}</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{_month} &#26376;&#30340;&#29992;&#30005;&#37327;&#26159;: {_used} KWh"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19968;&#26723;&#30005;&#36153;: {Lv1Cost,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#20108;&#26723;&#30005;&#36153;: {Lv2Cost,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#31532;&#19977;&#26723;&#30005;&#36153;: {Lv3Cost,10:C}"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#24635;&#35745;: {TotalCost,10:C} "</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">IsSummer</span><span style="color: #7388d6;">()</span> =&gt; _month &gt;= 5 &amp;&amp; _month &lt;= 10;
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">QuitWithReason</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">reason</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">reason</span><span style="color: #909183;">)</span>;
+        Environment.<span style="color: #0000ff;">Exit</span><span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -599,7 +675,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="orgabc88fe">
+<figure id="org30da6c7">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -874,7 +950,7 @@
 </p>
 
 
-<figure id="org7f4f18b">
+<figure id="org76094fe">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -990,7 +1066,7 @@
 </ul>
 
 
-<figure id="org82f2746">
+<figure id="org96f1f97">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -2017,7 +2093,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-31</p>
+<p class="date">Created: 2021-04-01</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

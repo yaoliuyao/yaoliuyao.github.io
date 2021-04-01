@@ -1,6 +1,6 @@
 #+TITLE: 一万行代码
 
-
+ 
 * 阶梯电费计算
 ** 第一种解决方案
 
@@ -196,7 +196,7 @@
 基于阶梯度数，应该更加合理:
 
 #+begin_src csharp -n
-  class 电费计算
+  class ElectricBillCal
   {
       // 基准数据
       public static readonly int[] 夏季档位 = new int[] { 260, 600 };
@@ -221,17 +221,6 @@
           计算阶梯度数();
       }
 
-      public void PrintToConsole()
-      {
-          Console.WriteLine();
-          Console.WriteLine($"{_月份} 月的用电量是: {_电数} KWh");
-          Console.WriteLine($"第一档电费: {第一档电费,10:C}");
-          Console.WriteLine($"第二档电费: {第二档电费,10:C}");
-          Console.WriteLine($"第三档电费: {第三档电费,10:C}");
-          Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"总计: {总电费,10:C} ");
-      }
-
       void 计算阶梯度数()
       {
           (int p1, int p2) = 夏天否() ? (夏季档位[0], 夏季档位[1]) : (冬季档位[0], 冬季档位[1]);
@@ -250,11 +239,91 @@
           }
       }
 
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"{_月份} 月的用电量是: {_电数} KWh");
+          Console.WriteLine($"第一档电费: {第一档电费,10:C}");
+          Console.WriteLine($"第二档电费: {第二档电费,10:C}");
+          Console.WriteLine($"第三档电费: {第三档电费,10:C}");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"总计: {总电费,10:C} ");
+      }
+
       bool 夏天否() => _月份 >= 5 && _月份 <= 10;
 
-      void 抱怨并退出(string 抱怨内容)
+      static void 抱怨并退出(string 抱怨内容)
       {
           Console.WriteLine(抱怨内容);
+          Environment.Exit(0);
+      }
+  }
+#+end_src
+
+** 第二种方案的英文变量版本
+
+用英文进行命名，还是比较主流和正规的。需要的只是简单的英文而已，写多了就熟了:
+
+#+begin_src csharp
+  class ElectricBillCalc
+  {
+      // 基准数据
+      public static readonly int[] SummerLevels = new int[] { 260, 600 };
+      public static readonly int[] WinnerLevels = new int[] { 200, 400 };
+      public static readonly double[] LevelRates = new double[] { 0.600, 0.650, 0.900 };
+
+      // 需要知道的数据
+      private int _month;
+      private double _used;
+
+      // 需要计算出来的数据
+      private double[] _LvUsed;
+      public double Lv1Cost { get => _LvUsed[0] * LevelRates[0]; }
+      public double Lv2Cost { get => _LvUsed[1] * LevelRates[1]; }
+      public double Lv3Cost { get => _LvUsed[2] * LevelRates[2]; }
+      public double TotalCost { get => Lv1Cost + Lv2Cost + Lv3Cost; }
+
+      public void SetMonthAndUsed(int month, double used)
+      {
+          if (month < 1 || month > 12 || used < 0) QuitWithReason("参数输入错误");
+          (_month, _used) = (month, used);
+          CalculateLvUsed();
+      }
+
+      void CalculateLvUsed()
+      {
+          (int p1, int p2) = IsSummer() ? (SummerLevels[0], SummerLevels[1]) : (WinnerLevels[0], WinnerLevels[1]);
+
+          if (_used <= p1)
+          {
+              _LvUsed = new double[] { _used, 0, 0 };
+          }
+          else if (_used <= p2)
+          {
+              _LvUsed = new double[] { p1, _used - p1, 0 };
+          }
+          else
+          {
+              _LvUsed = new double[] { p1, p2 - p1, _used - p2 };
+          }
+      }
+
+      public void PrintToConsole()
+      {
+          Console.WriteLine();
+          Console.WriteLine($"{_month} 月的用电量是: {_used} KWh");
+          Console.WriteLine($"第一档电费: {Lv1Cost,10:C}");
+          Console.WriteLine($"第二档电费: {Lv2Cost,10:C}");
+          Console.WriteLine($"第三档电费: {Lv3Cost,10:C}");
+          Console.WriteLine("".PadRight(30, '┈'));
+          Console.WriteLine($"总计: {TotalCost,10:C} ");
+      }
+
+      bool IsSummer() => _month >= 5 && _month <= 10;
+
+      static void QuitWithReason(string reason)
+      {
+          Console.WriteLine(reason);
           Environment.Exit(0);
       }
   }
