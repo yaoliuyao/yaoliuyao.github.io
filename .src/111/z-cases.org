@@ -269,7 +269,7 @@
   {
       // 基准数据
       public static readonly int[] SummerLevels = { 260, 600 };
-      public static readonly int[] WinnerLevels = { 200, 400 };
+      public static readonly int[] WinterLevels = { 200, 400 };
       public static readonly double[] Rates = { 0.600, 0.650, 0.900 };
 
       // 需要知道的数据
@@ -277,11 +277,11 @@
       private double _used;
 
       // 需要计算出来的数据
-      private double[] _LvUsed;
-      public double Lv1Cost { get => _LvUsed[0] * Rates[0]; }
-      public double Lv2Cost { get => _LvUsed[1] * Rates[1]; }
-      public double Lv3Cost { get => _LvUsed[2] * Rates[2]; }
-      public double TotalCost { get => Lv1Cost + Lv2Cost + Lv3Cost; }
+      private double[] lvUsed;
+      public double Lv1Cost { get => lvUsed[0] * Rates[0]; }
+      public double Lv2Cost { get => lvUsed[1] * Rates[1]; }
+      public double Lv3Cost { get => lvUsed[2] * Rates[2]; }
+      public double Bill { get => Lv1Cost + Lv2Cost + Lv3Cost; }
 
       public void SetMonthAndUsed(int month, double used)
       {
@@ -292,19 +292,19 @@
 
       void CalculateLvUsed()
       {
-          (int p1, int p2) = IsSummer() ? (SummerLevels[0], SummerLevels[1]) : (WinnerLevels[0], WinnerLevels[1]);
+          (int p1, int p2) = IsSummer() ? (SummerLevels[0], SummerLevels[1]) : (WinterLevels[0], WinterLevels[1]);
 
           if (_used <= p1)
           {
-              _LvUsed = new [] { _used, 0, 0 };
+              lvUsed = new [] { _used, 0, 0 };
           }
           else if (_used <= p2)
           {
-              _LvUsed = new [] { p1, _used - p1, 0 };
+              lvUsed = new [] { p1, _used - p1, 0 };
           }
           else
           {
-              _LvUsed = new [] { p1, p2 - p1, _used - p2 };
+              lvUsed = new [] { p1, p2 - p1, _used - p2 };
           }
       }
 
@@ -316,7 +316,7 @@
           Console.WriteLine($"第二档电费: {Lv2Cost,10:C}");
           Console.WriteLine($"第三档电费: {Lv3Cost,10:C}");
           Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"总计: {TotalCost,10:C} ");
+          Console.WriteLine($"总计: {Bill,10:C} ");
       }
 
       bool IsSummer() => _month >= 5 && _month <= 10;
