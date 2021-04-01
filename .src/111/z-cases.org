@@ -264,7 +264,7 @@
 
 用英文进行命名，还是比较主流和正规的。需要的只是简单的英文而已，写多了就熟了:
 
-#+begin_src csharp
+#+begin_src csharp -k -n
   class ElectricBillCalc
   {
       // 基准数据
