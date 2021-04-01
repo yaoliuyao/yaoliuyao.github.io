@@ -268,9 +268,9 @@
   class ElectricBillCalc
   {
       // 基准数据
-      public static readonly int[] SummerLevels = new int[] { 260, 600 };
-      public static readonly int[] WinnerLevels = new int[] { 200, 400 };
-      public static readonly double[] LevelRates = new double[] { 0.600, 0.650, 0.900 };
+      public static readonly int[] SummerLevels = { 260, 600 };
+      public static readonly int[] WinnerLevels = { 200, 400 };
+      public static readonly double[] Rates = { 0.600, 0.650, 0.900 };
 
       // 需要知道的数据
       private int _month;
@@ -278,9 +278,9 @@
 
       // 需要计算出来的数据
       private double[] _LvUsed;
-      public double Lv1Cost { get => _LvUsed[0] * LevelRates[0]; }
-      public double Lv2Cost { get => _LvUsed[1] * LevelRates[1]; }
-      public double Lv3Cost { get => _LvUsed[2] * LevelRates[2]; }
+      public double Lv1Cost { get => _LvUsed[0] * Rates[0]; }
+      public double Lv2Cost { get => _LvUsed[1] * Rates[1]; }
+      public double Lv3Cost { get => _LvUsed[2] * Rates[2]; }
       public double TotalCost { get => Lv1Cost + Lv2Cost + Lv3Cost; }
 
       public void SetMonthAndUsed(int month, double used)
@@ -296,15 +296,15 @@
 
           if (_used <= p1)
           {
-              _LvUsed = new double[] { _used, 0, 0 };
+              _LvUsed = new [] { _used, 0, 0 };
           }
           else if (_used <= p2)
           {
-              _LvUsed = new double[] { p1, _used - p1, 0 };
+              _LvUsed = new [] { p1, _used - p1, 0 };
           }
           else
           {
-              _LvUsed = new double[] { p1, p2 - p1, _used - p2 };
+              _LvUsed = new [] { p1, p2 - p1, _used - p2 };
           }
       }
 
