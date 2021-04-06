@@ -182,7 +182,7 @@ readonly:
   }
 #+end_src
 
-* BCL (Base-Class Library)
+* BCL (Base-Class Library) 基础类库
 ** Console
 
 #+ATTR_HTML: :width 400
