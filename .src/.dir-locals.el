@@ -19,7 +19,7 @@
                          :recursive t
                          :headline-levels 5
                          :with-toc 5
-                         :author "孙悟空"
+                         :author "悟饭"
                          :html-metadata-timestamp-format "%Y-%m-%d"
                          :html-preamble t
                          :auto-sitemap t
