@@ -1,11 +1,19 @@
 #+TITLE: 任务和作业
 
 
-
-* [2021-03-31 Wed]
+* [2021-04-06 Tue]
 :PROPERTIES:
 :CUSTOM_ID: active
 :END:
+
+完成 TipCalc 中杀马特版本的 Print:
+- 1: 红色
+- 2: 绿色
+- 3: 黄色
+- q: 或 esc 退出
+- 其他: 原来的颜色
+
+* [2021-03-31 Wed]
 
 - 敲代码
 - 敲代码
