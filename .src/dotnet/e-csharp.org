@@ -182,6 +182,12 @@ readonly:
   }
 #+end_src
 
+* BCL (Base-Class Library)
+** Console
+
+#+ATTR_HTML: :width 400
+[[file:img/oimg_20210406_040714.png]]
+
 * 其他
 
 #+begin_src csharp
