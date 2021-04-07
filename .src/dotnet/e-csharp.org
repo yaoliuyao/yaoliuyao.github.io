@@ -188,20 +188,24 @@ readonly:
 Console.ReadKey:
 #+begin_src csharp -n
   Console.WriteLine();
-  while (true)
+  while (true) // 通过 while 循环可以实现不断输入不断看到输入结果的过程
   {
-      ConsoleKeyInfo key = Console.ReadKey(true);
+      // ReadKey 是微软封装在 Console 里的一个方法，用来读取控制台上的按键
+      // 我们不需要关心它怎么实现的，我们只需要关心它如何使用
+      // 微软在实现里，将我们按下的键的信息，封装到了一个叫 ConsoleKeyInfo 的数据包里 (实例对象)
+      // 调用 ReadKey 之后，就可以通过 key 所提供的可访问接口判断按键信息了
+      ConsoleKeyInfo key = Console.ReadKey(true); // true 的意思是，不在屏幕上显示键入的字符
       if (key.Key == ConsoleKey.D1)
       {
           Console.WriteLine("您输入了一个 1");
       }
       else if (key.Key == ConsoleKey.S)
       {
-          Console.Beep();
+          Console.Beep(); // Beep 是微软实现在 Console 里的一个方法，用来让控制台发出声音
       }
       else if (key.KeyChar == 'd')
       {
-          Console.Beep(600, 200);
+          Console.Beep(600, 200); // Beep 方法是重载的，它可以携带参数
       }
       else if (key.KeyChar == 'f')
       {

@@ -327,34 +327,38 @@ Console.ReadKey:
 </p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span>Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">()</span>;
-<span class="linenr"> 2: </span><span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">true</span><span style="color: #707183;">)</span>
+<span class="linenr"> 2: </span><span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">true</span><span style="color: #707183;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36890;&#36807; while &#24490;&#29615;&#21487;&#20197;&#23454;&#29616;&#19981;&#26029;&#36755;&#20837;&#19981;&#26029;&#30475;&#21040;&#36755;&#20837;&#32467;&#26524;&#30340;&#36807;&#31243;</span>
 <span class="linenr"> 3: </span><span style="color: #707183;">{</span>
-<span class="linenr"> 4: </span>    <span style="color: #228b22;">ConsoleKeyInfo</span> <span style="color: #a0522d;">key</span> = Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #7388d6;">(</span><span style="color: #008b8b;">true</span><span style="color: #7388d6;">)</span>;
-<span class="linenr"> 5: </span>    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.D1<span style="color: #7388d6;">)</span>
-<span class="linenr"> 6: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr"> 7: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24744;&#36755;&#20837;&#20102;&#19968;&#20010; 1"</span><span style="color: #909183;">)</span>;
-<span class="linenr"> 8: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr"> 9: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.S<span style="color: #7388d6;">)</span>
+<span class="linenr"> 4: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">ReadKey &#26159;&#24494;&#36719;&#23553;&#35013;&#22312; Console &#37324;&#30340;&#19968;&#20010;&#26041;&#27861;&#65292;&#29992;&#26469;&#35835;&#21462;&#25511;&#21046;&#21488;&#19978;&#30340;&#25353;&#38190;</span>
+<span class="linenr"> 5: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25105;&#20204;&#19981;&#38656;&#35201;&#20851;&#24515;&#23427;&#24590;&#20040;&#23454;&#29616;&#30340;&#65292;&#25105;&#20204;&#21482;&#38656;&#35201;&#20851;&#24515;&#23427;&#22914;&#20309;&#20351;&#29992;</span>
+<span class="linenr"> 6: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24494;&#36719;&#22312;&#23454;&#29616;&#37324;&#65292;&#23558;&#25105;&#20204;&#25353;&#19979;&#30340;&#38190;&#30340;&#20449;&#24687;&#65292;&#23553;&#35013;&#21040;&#20102;&#19968;&#20010;&#21483; ConsoleKeyInfo &#30340;&#25968;&#25454;&#21253;&#37324; (&#23454;&#20363;&#23545;&#35937;)</span>
+<span class="linenr"> 7: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#35843;&#29992; ReadKey &#20043;&#21518;&#65292;&#23601;&#21487;&#20197;&#36890;&#36807; key &#25152;&#25552;&#20379;&#30340;&#21487;&#35775;&#38382;&#25509;&#21475;&#21028;&#26029;&#25353;&#38190;&#20449;&#24687;&#20102;</span>
+<span class="linenr"> 8: </span>    <span style="color: #228b22;">ConsoleKeyInfo</span> <span style="color: #a0522d;">key</span> = Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #7388d6;">(</span><span style="color: #008b8b;">true</span><span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">true &#30340;&#24847;&#24605;&#26159;&#65292;&#19981;&#22312;&#23631;&#24149;&#19978;&#26174;&#31034;&#38190;&#20837;&#30340;&#23383;&#31526;</span>
+<span class="linenr"> 9: </span>    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.D1<span style="color: #7388d6;">)</span>
 <span class="linenr">10: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">11: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">()</span>;
+<span class="linenr">11: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24744;&#36755;&#20837;&#20102;&#19968;&#20010; 1"</span><span style="color: #909183;">)</span>;
 <span class="linenr">12: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">13: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.KeyChar == <span style="color: #8b2252;">'d'</span><span style="color: #7388d6;">)</span>
+<span class="linenr">13: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.S<span style="color: #7388d6;">)</span>
 <span class="linenr">14: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">15: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">(</span>600, 200<span style="color: #909183;">)</span>;
+<span class="linenr">15: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Beep &#26159;&#24494;&#36719;&#23454;&#29616;&#22312; Console &#37324;&#30340;&#19968;&#20010;&#26041;&#27861;&#65292;&#29992;&#26469;&#35753;&#25511;&#21046;&#21488;&#21457;&#20986;&#22768;&#38899;</span>
 <span class="linenr">16: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">17: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.KeyChar == <span style="color: #8b2252;">'f'</span><span style="color: #7388d6;">)</span>
+<span class="linenr">17: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.KeyChar == <span style="color: #8b2252;">'d'</span><span style="color: #7388d6;">)</span>
 <span class="linenr">18: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">19: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">(</span>200, 200<span style="color: #909183;">)</span>;
+<span class="linenr">19: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">(</span>600, 200<span style="color: #909183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Beep &#26041;&#27861;&#26159;&#37325;&#36733;&#30340;&#65292;&#23427;&#21487;&#20197;&#25658;&#24102;&#21442;&#25968;</span>
 <span class="linenr">20: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">21: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.Enter<span style="color: #7388d6;">)</span>
+<span class="linenr">21: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.KeyChar == <span style="color: #8b2252;">'f'</span><span style="color: #7388d6;">)</span>
 <span class="linenr">22: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">23: </span>        <span style="color: #a020f0;">break</span>;
+<span class="linenr">23: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">(</span>200, 200<span style="color: #909183;">)</span>;
 <span class="linenr">24: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">25: </span>    <span style="color: #a020f0;">else</span>
+<span class="linenr">25: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.Enter<span style="color: #7388d6;">)</span>
 <span class="linenr">26: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">27: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"key: {key}, keyChar: {key.KeyChar}, key: {key.Key}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">27: </span>        <span style="color: #a020f0;">break</span>;
 <span class="linenr">28: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">29: </span><span style="color: #707183;">}</span>
+<span class="linenr">29: </span>    <span style="color: #a020f0;">else</span>
+<span class="linenr">30: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">31: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"key: {key}, keyChar: {key.KeyChar}, key: {key.Key}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">32: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">33: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
