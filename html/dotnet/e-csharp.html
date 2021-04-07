@@ -368,11 +368,38 @@ Console.ReadKey:
 <div id="outline-container-orgf8ba168" class="outline-3">
 <h3 id="orgf8ba168"><span class="section-number-3">2.2</span> Random/Thread</h3>
 <div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span>
+<span style="color: #707183;">{</span>
+    ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Yellow
+<span style="color: #707183;">}</span>;
 
-<figure id="orgd3d0cd3">
-<img src="img/oimg_20210407_033202.png" alt="oimg_20210407_033202.png" width="400">
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0;
+<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">true</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.WriteLine("hello {0}", DateTime.Now);</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">var timer = new Timer(null, TimeSpan(1), TimeSpan(2));</span>
+    Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #7388d6;">(</span>1000<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#39064;&#22806;&#35805;&#65292;&#36825;&#20010; 1000 &#27627;&#31186;&#24182;&#19981;&#26159;&#38750;&#24120;&#20934;&#30830;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Task.Delay(1000).Wait();</span>
 
-</figure>
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(colors[i]);</span>
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">i = i + 1;</span>
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">if (i == 3) i = 0;</span>
+
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(colors[i]);</span>
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">i = (i + 1) % 3;</span>
+
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(colors[(i++) % 3]);</span>
+
+    System.<span style="color: #228b22;">Random</span> <span style="color: #a0522d;">random</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">System</span>.<span style="color: #0000ff;">Random</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = random.<span style="color: #0000ff;">Next</span><span style="color: #7388d6;">(</span>colors.Length<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Next(3): 0, 1, 2</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>colors<span style="color: #909183;">[</span>r<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+
+    Console.<span style="color: #0000ff;">Clear</span><span style="color: #7388d6;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#28165;&#31354;&#23631;&#24149;</span>
+    Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #7388d6;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#37325;&#32622;&#39068;&#33394;</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </section>

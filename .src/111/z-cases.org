@@ -330,13 +330,21 @@
   }
 #+end_src
 
-** skdjsfks
+** 学习怎么调用别人封装好的类和方法
 
+#+begin_quote
+完成 ElectricBillCalc 中杀马特版本的 Print:
+- 1: 红色
+- 2: 绿色
+- 3: 黄色
+- q: 或 esc 退出
+- 回车: 每秒变一种颜色，适当增加声音效果 (beep)
+- 其他: 原来的颜色
+#+end_quote
 
 [[file:img/elec-2.png]]
 
 [[file:img/elec-1.png]]
-
 
 * 个税计算器 (简化版) [[id:6c800397-9525-4a5d-b857-4356fb81f85c][源]]
 ** 原始版本，*顺序* 执行

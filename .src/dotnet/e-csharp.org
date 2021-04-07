@@ -224,8 +224,37 @@ Console.ReadKey:
 
 ** Random/Thread
 
-#+ATTR_HTML: :width 400
-[[file:img/oimg_20210407_033202.png]]
+#+begin_src csharp
+  ConsoleColor[] colors = new ConsoleColor[]
+  {
+      ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Yellow
+  };
+
+  int i = 0;
+  while (true)
+  {
+      // Console.WriteLine("hello {0}", DateTime.Now);
+      // var timer = new Timer(null, TimeSpan(1), TimeSpan(2));
+      Thread.Sleep(1000); // 题外话，这个 1000 毫秒并不是非常准确
+      // Task.Delay(1000).Wait();
+
+      //Console.WriteLine(colors[i]);
+      //i = i + 1;
+      //if (i == 3) i = 0;
+
+      //Console.WriteLine(colors[i]);
+      //i = (i + 1) % 3;
+
+      //Console.WriteLine(colors[(i++) % 3]);
+
+      System.Random random = new System.Random();
+      int r = random.Next(colors.Length); // Next(3): 0, 1, 2
+      Console.WriteLine(colors[r]);
+
+      Console.Clear(); // 清空屏幕
+      Console.ResetColor(); // 重置颜色
+  }
+#+end_src
 
 * 其他
 
