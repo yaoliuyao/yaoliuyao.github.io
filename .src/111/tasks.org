@@ -1,10 +1,15 @@
 #+TITLE: 任务和作业
 
 
-* [2021-04-06 Tue]
+* [2021-04-07 Wed]
 :PROPERTIES:
 :CUSTOM_ID: active
 :END:
+
+- 敲今天的代码，敲到熟。务必做到能够独立 +默+ 写出来的程度
+- 只有上面一个作业，务必做到熟练
+
+* [2021-04-06 Tue]
 
 完成 ElectricBillCalc 中杀马特版本的 Print:
 - 1: 红色
