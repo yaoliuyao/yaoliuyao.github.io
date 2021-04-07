@@ -330,6 +330,14 @@
   }
 #+end_src
 
+** skdjsfks
+
+
+[[file:img/elec-2.png]]
+
+[[file:img/elec-1.png]]
+
+
 * 个税计算器 (简化版) [[id:6c800397-9525-4a5d-b857-4356fb81f85c][源]]
 ** 原始版本，*顺序* 执行
 
