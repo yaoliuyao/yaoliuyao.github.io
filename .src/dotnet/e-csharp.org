@@ -185,8 +185,38 @@ readonly:
 * BCL (Base-Class Library) 基础类库
 ** Console
 
-#+ATTR_HTML: :width 400
-[[file:img/oimg_20210406_040714.png]]
+Console.ReadKey:
+#+begin_src csharp -n
+  Console.WriteLine();
+  while (true)
+  {
+      ConsoleKeyInfo key = Console.ReadKey(true);
+      if (key.Key == ConsoleKey.D1)
+      {
+          Console.WriteLine("您输入了一个 1");
+      }
+      else if (key.Key == ConsoleKey.S)
+      {
+          Console.Beep();
+      }
+      else if (key.KeyChar == 'd')
+      {
+          Console.Beep(600, 200);
+      }
+      else if (key.KeyChar == 'f')
+      {
+          Console.Beep(200, 200);
+      }
+      else if (key.Key == ConsoleKey.Enter)
+      {
+          break;
+      }
+      else
+      {
+          Console.WriteLine($"key: {key}, keyChar: {key.KeyChar}, key: {key.Key}");
+      }
+  }
+#+end_src
 
 * 其他
 

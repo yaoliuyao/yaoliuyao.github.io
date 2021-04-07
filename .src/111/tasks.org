@@ -6,7 +6,7 @@
 :CUSTOM_ID: active
 :END:
 
-完成 TipCalc 中杀马特版本的 Print:
+完成 ElectricBillCalc 中杀马特版本的 Print:
 - 1: 红色
 - 2: 绿色
 - 3: 黄色

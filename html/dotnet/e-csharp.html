@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-06 -->
+<!-- 2021-04-07 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -322,11 +322,41 @@ readonly:
 <div id="outline-container-org00a0d93" class="outline-3">
 <h3 id="org00a0d93"><span class="section-number-3">2.1</span> Console</h3>
 <div class="outline-text-3" id="text-2-1">
-
-<figure id="org10448c8">
-<img src="img/oimg_20210406_040714.png" alt="oimg_20210406_040714.png" width="400">
-
-</figure>
+<p>
+Console.ReadKey:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span>Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">()</span>;
+<span class="linenr"> 2: </span><span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">true</span><span style="color: #707183;">)</span>
+<span class="linenr"> 3: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 4: </span>    <span style="color: #228b22;">ConsoleKeyInfo</span> <span style="color: #a0522d;">key</span> = Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #7388d6;">(</span><span style="color: #008b8b;">true</span><span style="color: #7388d6;">)</span>;
+<span class="linenr"> 5: </span>    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.D1<span style="color: #7388d6;">)</span>
+<span class="linenr"> 6: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 7: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24744;&#36755;&#20837;&#20102;&#19968;&#20010; 1"</span><span style="color: #909183;">)</span>;
+<span class="linenr"> 8: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr"> 9: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.S<span style="color: #7388d6;">)</span>
+<span class="linenr">10: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">11: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">()</span>;
+<span class="linenr">12: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">13: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.KeyChar == <span style="color: #8b2252;">'d'</span><span style="color: #7388d6;">)</span>
+<span class="linenr">14: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">15: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">(</span>600, 200<span style="color: #909183;">)</span>;
+<span class="linenr">16: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">17: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.KeyChar == <span style="color: #8b2252;">'f'</span><span style="color: #7388d6;">)</span>
+<span class="linenr">18: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">19: </span>        Console.<span style="color: #0000ff;">Beep</span><span style="color: #909183;">(</span>200, 200<span style="color: #909183;">)</span>;
+<span class="linenr">20: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">21: </span>    <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>key.Key == ConsoleKey.Enter<span style="color: #7388d6;">)</span>
+<span class="linenr">22: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">23: </span>        <span style="color: #a020f0;">break</span>;
+<span class="linenr">24: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">25: </span>    <span style="color: #a020f0;">else</span>
+<span class="linenr">26: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">27: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"key: {key}, keyChar: {key.KeyChar}, key: {key.Key}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">28: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">29: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </section>
@@ -360,7 +390,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-06</p>
+<p class="date">Created: 2021-04-07</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
