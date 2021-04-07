@@ -463,17 +463,61 @@
 </ul>
 </blockquote>
 
-
-<figure id="org11a2842">
-<img src="img/elec-2.png" alt="elec-2.png">
-
-</figure>
-
-
-<figure id="orgb77512f">
-<img src="img/elec-1.png" alt="elec-1.png">
-
-</figure>
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr">210: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintFantasy</span><span style="color: #707183;">()</span>
+<span class="linenr">211: </span><span style="color: #707183;">{</span>
+<span class="linenr">212: </span>    <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">213: </span>    <span style="color: #a020f0;">while</span><span style="color: #7388d6;">(</span><span style="color: #008b8b;">true</span><span style="color: #7388d6;">)</span>
+<span class="linenr">214: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">215: </span>        <span style="color: #228b22;">ConsoleKeyInfo</span> <span style="color: #a0522d;">key</span> = Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #909183;">()</span>;
+<span class="linenr">216: </span>        Console.<span style="color: #0000ff;">Clear</span><span style="color: #909183;">()</span>;
+<span class="linenr">217: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>key.Key == ConsoleKey.D1<span style="color: #909183;">)</span>
+<span class="linenr">218: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">219: </span>            <span style="color: #0000ff;">PrintToConsoleWithColor</span><span style="color: #709870;">(</span>ConsoleColor.Red<span style="color: #709870;">)</span>;
+<span class="linenr">220: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">221: </span>        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>key.Key == ConsoleKey.D2<span style="color: #909183;">)</span>
+<span class="linenr">222: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">223: </span>            <span style="color: #0000ff;">PrintToConsoleWithColor</span><span style="color: #709870;">(</span>ConsoleColor.Green<span style="color: #709870;">)</span>;
+<span class="linenr">224: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">225: </span>        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>key.Key == ConsoleKey.D3<span style="color: #909183;">)</span>
+<span class="linenr">226: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">227: </span>            <span style="color: #0000ff;">PrintToConsoleWithColor</span><span style="color: #709870;">(</span>ConsoleColor.Yellow<span style="color: #709870;">)</span>;
+<span class="linenr">228: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">229: </span>        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span><span style="color: #909183;">(</span>key.Key == ConsoleKey.Enter<span style="color: #909183;">)</span>
+<span class="linenr">230: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">231: </span>            <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0;
+<span class="linenr">232: </span>            <span style="color: #a020f0;">while</span> <span style="color: #709870;">(</span><span style="color: #008b8b;">true</span><span style="color: #709870;">)</span>
+<span class="linenr">233: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">234: </span>                <span style="color: #228b22;">ConsoleColor</span><span style="color: #907373;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #a020f0;">new</span><span style="color: #907373;">[]</span> <span style="color: #907373;">{</span> ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue <span style="color: #907373;">}</span>;
+<span class="linenr">235: </span>                Console.<span style="color: #0000ff;">Clear</span><span style="color: #907373;">()</span>;
+<span class="linenr">236: </span>                i = <span style="color: #907373;">(</span>i + 1<span style="color: #907373;">)</span> % colors.Length;
+<span class="linenr">237: </span>                <span style="color: #a020f0;">if</span> <span style="color: #907373;">(</span>i == 1<span style="color: #907373;">)</span>
+<span class="linenr">238: </span>                <span style="color: #907373;">{</span>
+<span class="linenr">239: </span>                    Console.<span style="color: #0000ff;">Beep</span><span style="color: #6276ba;">(</span>90, 50<span style="color: #6276ba;">)</span>;
+<span class="linenr">240: </span>                <span style="color: #907373;">}</span>
+<span class="linenr">241: </span>                <span style="color: #a020f0;">else</span>
+<span class="linenr">242: </span>                <span style="color: #907373;">{</span>
+<span class="linenr">243: </span>                    Console.<span style="color: #0000ff;">Beep</span><span style="color: #6276ba;">(</span>40, 50<span style="color: #6276ba;">)</span>;
+<span class="linenr">244: </span>                <span style="color: #907373;">}</span>
+<span class="linenr">245: </span>                <span style="color: #0000ff;">PrintToConsoleWithColor</span><span style="color: #907373;">(</span>colors<span style="color: #6276ba;">[</span>i<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+<span class="linenr">246: </span>                Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #907373;">(</span>300<span style="color: #907373;">)</span>;
+<span class="linenr">247: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">248: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">249: </span>        <span style="color: #a020f0;">else</span>
+<span class="linenr">250: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">251: </span>            <span style="color: #0000ff;">PrintToConsole</span><span style="color: #709870;">()</span>;
+<span class="linenr">252: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">253: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">254: </span><span style="color: #707183;">}</span>
+<span class="linenr">255: </span>
+<span class="linenr">256: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsoleWithColor</span><span style="color: #707183;">(</span><span style="color: #228b22;">ConsoleColor</span> <span style="color: #a0522d;">color</span><span style="color: #707183;">)</span>
+<span class="linenr">257: </span><span style="color: #707183;">{</span>
+<span class="linenr">258: </span>    Console.ForegroundColor = color;
+<span class="linenr">259: </span>    <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">260: </span>    Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">261: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </section>
@@ -708,7 +752,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="orgf67b32a">
+<figure id="org25073d8">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -983,7 +1027,7 @@
 </p>
 
 
-<figure id="org9cce8e1">
+<figure id="orgf54a03c">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -1099,7 +1143,7 @@
 </ul>
 
 
-<figure id="org1574a47">
+<figure id="org4c29842">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
