@@ -357,15 +357,15 @@
           Console.Clear();
           if (key.Key == ConsoleKey.D1)
           {
-              PrintToConsoleWithColor(ConsoleColor.Red);
+              PrintToConsole(ConsoleColor.Red);
           }
           else if (key.Key == ConsoleKey.D2)
           {
-              PrintToConsoleWithColor(ConsoleColor.Green);
+              PrintToConsole(ConsoleColor.Green);
           }
           else if (key.Key == ConsoleKey.D3)
           {
-              PrintToConsoleWithColor(ConsoleColor.Yellow);
+              PrintToConsole(ConsoleColor.Yellow);
           }
           else if(key.Key == ConsoleKey.Enter)
           {
@@ -383,7 +383,7 @@
                   {
                       Console.Beep(40, 50);
                   }
-                  PrintToConsoleWithColor(colors[i]);
+                  PrintToConsole(colors[i]);
                   Thread.Sleep(300);
               }
           }
@@ -394,7 +394,7 @@
       }
   }
 
-  public void PrintToConsoleWithColor(ConsoleColor color)
+  public void PrintToConsole(ConsoleColor color)
   {
       Console.ForegroundColor = color;
       PrintToConsole();
