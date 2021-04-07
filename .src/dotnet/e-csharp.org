@@ -222,6 +222,11 @@ Console.ReadKey:
   }
 #+end_src
 
+** Random/Thread
+
+#+ATTR_HTML: :width 400
+[[file:img/oimg_20210407_033202.png]]
+
 * 其他
 
 #+begin_src csharp
