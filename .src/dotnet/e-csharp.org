@@ -296,6 +296,36 @@ readonly:
   }
 #+end_src
 
+示例三:
+#+begin_src csharp -n
+  // 除了声音外，添加视觉效果
+  // 原理是一样的
+  int[] freqs = new [] { 200, 300, 100, 600 };
+  ConsoleColor[] colors = new[] { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue, ConsoleColor.Yellow };
+
+  for (int i = 0; i < 1000; i++)
+  {
+      int p = i % freqs.Length;
+      for (int j = 0; j < freqs.Length; j++)
+      {
+          if (j == p)
+          {
+              Console.ForegroundColor = colors[p];
+          }
+          else
+          {
+              Console.ResetColor();
+          }
+          Console.SetCursorPosition(j * 3, 0);
+          Console.Write("●");
+      }
+      Console.Beep(freqs[p], 50);
+
+      Thread.Sleep(500 - (p) * 50);
+  }
+  Console.WriteLine();
+#+end_src
+
 * 其他
 
 #+begin_src csharp
