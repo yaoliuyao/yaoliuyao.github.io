@@ -183,7 +183,7 @@ readonly:
 #+end_src
 
 * BCL (Base-Class Library) 基础类库
-** Console
+** Console/控制台
 
 相关方法和属性:
 - Console.Write/WriteLine，用来向控制台输出内容
