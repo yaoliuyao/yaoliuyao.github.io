@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-07 -->
+<!-- 2021-04-08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -58,7 +58,12 @@
 <li><a href="#orgf8ba168">2.2. Random/Thread</a></li>
 </ul>
 </li>
-<li><a href="#org2ec65d1">3. 其他</a></li>
+<li><a href="#org138689f">3. 技巧记录</a>
+<ul>
+<li><a href="#org19fdba0">3.1. 求余</a></li>
+</ul>
+</li>
+<li><a href="#org2ec65d1">4. 其他</a></li>
 </ul>
 </div>
 </nav>
@@ -404,9 +409,47 @@ Console.ReadKey:
 </div>
 </section>
 
-<section id="outline-container-org2ec65d1" class="outline-2">
-<h2 id="org2ec65d1"><span class="section-number-2">3</span> 其他</h2>
+<section id="outline-container-org138689f" class="outline-2">
+<h2 id="org138689f"><span class="section-number-2">3</span> 技巧记录</h2>
 <div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org19fdba0" class="outline-3">
+<h3 id="org19fdba0"><span class="section-number-3">3.1</span> 求余</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+示例一:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr">1: </span><span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 1000; i++<span style="color: #707183;">)</span>
+<span class="linenr">2: </span><span style="color: #707183;">{</span>
+<span class="linenr">3: </span>    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">f</span> = <span style="color: #7388d6;">(</span><span style="color: #909183;">(</span>i % 8<span style="color: #909183;">)</span> * 30<span style="color: #7388d6;">)</span> + 100;
+<span class="linenr">4: </span>    Console.<span style="color: #0000ff;">Beep</span><span style="color: #7388d6;">(</span>f, 50<span style="color: #7388d6;">)</span>;
+<span class="linenr">5: </span>    Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #7388d6;">(</span>800 - <span style="color: #909183;">(</span>i % 8<span style="color: #909183;">)</span> * 50<span style="color: #7388d6;">)</span>;
+<span class="linenr">6: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+示例二，求余和数组的结合使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">freqs</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #707183;">{</span> 200, 300, 100, 600 <span style="color: #707183;">}</span>;
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 1000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">f</span> = freqs<span style="color: #7388d6;">[</span>i % freqs.Length<span style="color: #7388d6;">]</span>;
+    Console.<span style="color: #0000ff;">Beep</span><span style="color: #7388d6;">(</span>f, 50<span style="color: #7388d6;">)</span>;
+    Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #7388d6;">(</span>800 - <span style="color: #909183;">(</span>i % freqs.Length<span style="color: #909183;">)</span> * 50<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org2ec65d1" class="outline-2">
+<h2 id="org2ec65d1"><span class="section-number-2">4</span> 其他</h2>
+<div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">aFriend</span> = <span style="color: #8b2252;">"&#27604;&#23572;"</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">bFriend</span> = <span style="color: #8b2252;">"&#23567;&#26126;"</span>;
@@ -433,7 +476,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-07</p>
+<p class="date">Created: 2021-04-08</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

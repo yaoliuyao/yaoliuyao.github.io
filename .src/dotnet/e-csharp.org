@@ -256,6 +256,31 @@ Console.ReadKey:
   }
 #+end_src
 
+* 技巧记录
+** 求余
+
+示例一:
+#+begin_src csharp -n
+  for (int i = 0; i < 1000; i++)
+  {
+      int f = ((i % 8) * 30) + 100;
+      Console.Beep(f, 50);
+      Thread.Sleep(800 - (i % 8) * 50);
+  }
+#+end_src
+
+示例二，求余和数组的结合使用:
+#+begin_src csharp
+  int[] freqs = new int[] { 200, 300, 100, 600 };
+
+  for (int i = 0; i < 1000; i++)
+  {
+      int f = freqs[i % freqs.Length];
+      Console.Beep(f, 50);
+      Thread.Sleep(800 - (i % freqs.Length) * 50);
+  }
+#+end_src
+
 * 其他
 
 #+begin_src csharp
