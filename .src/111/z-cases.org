@@ -265,7 +265,7 @@
 
 用英文进行命名，还是比较主流和正规的。需要的只是简单的英文而已，写多了就熟了:
 
-#+begin_src csharp -k -n
+#+begin_src csharp -n
   class ElectricBillCalc
   {
       // 基准数据
@@ -318,6 +318,11 @@
           Console.WriteLine($"第三档电费: {Lv3Cost,10:C}");
           Console.WriteLine("".PadRight(30, '┈'));
           Console.WriteLine($"总计: {Bill,10:C} ");
+      }
+
+      public void ExportToExcel()
+      {
+          // todo
       }
 
       bool IsSummer() => _month >= 5 && _month <= 10;
