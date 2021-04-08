@@ -185,7 +185,20 @@ readonly:
 * BCL (Base-Class Library) 基础类库
 ** Console
 
-Console.ReadKey:
+相关方法和属性:
+- Console.Write/WriteLine，用来向控制台输出内容
+- Console.Clear，用来清空屏幕内容
+- Console.ForegroundColor/BackgroudColor/ResetColor，用来设置控制台颜色
+- Console.ReadLine，用来从控制台读取用户输入的字符串
+- Console.ReadKey，用来读取按键，返回一个 ConsoleKeyInfo 对象
+- Console.Beep，用来让控制台发出声音
+
+相关类和结构:
+- Console
+- ConsoleColor
+- ConsoleKey/ConsoleKeyInfo
+
+示例:
 #+begin_src csharp -n
   Console.WriteLine();
   while (true) // 通过 while 循环可以实现不断输入不断看到输入结果的过程

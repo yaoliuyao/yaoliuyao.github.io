@@ -329,7 +329,28 @@ readonly:
 <h3 id="org00a0d93"><span class="section-number-3">2.1</span> Console</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-Console.ReadKey:
+相关方法和属性:
+</p>
+<ul class="org-ul">
+<li>Console.Write/WriteLine，用来向控制台输出内容</li>
+<li>Console.Clear，用来清空屏幕内容</li>
+<li>Console.ForegroundColor/BackgroudColor/ResetColor，用来设置控制台颜色</li>
+<li>Console.ReadLine，用来从控制台读取用户输入的字符串</li>
+<li>Console.ReadKey，用来读取按键，返回一个 ConsoleKeyInfo 对象</li>
+<li>Console.Beep，用来让控制台发出声音</li>
+</ul>
+
+<p>
+相关类和结构:
+</p>
+<ul class="org-ul">
+<li>Console</li>
+<li>ConsoleColor</li>
+<li>ConsoleKey/ConsoleKeyInfo</li>
+</ul>
+
+<p>
+示例:
 </p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span>Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">()</span>;
