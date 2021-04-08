@@ -259,7 +259,7 @@ Console.ReadKey:
 * 技巧和示例
 ** 求余
 
-示例一:
+示例一，求余经常用来将某个数 *转换* 为 0-N 区间的一个数:
 #+begin_src csharp -n
   for (int i = 0; i < 1000; i++)
   {
