@@ -433,14 +433,14 @@ Console.ReadKey:
 示例二，求余和数组的结合使用:
 </p>
 <div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">freqs</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #707183;">{</span> 200, 300, 100, 600 <span style="color: #707183;">}</span>;
-
-<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 1000; i++<span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">f</span> = freqs<span style="color: #7388d6;">[</span>i % freqs.Length<span style="color: #7388d6;">]</span>;
-    Console.<span style="color: #0000ff;">Beep</span><span style="color: #7388d6;">(</span>f, 50<span style="color: #7388d6;">)</span>;
-    Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #7388d6;">(</span>800 - <span style="color: #909183;">(</span>i % freqs.Length<span style="color: #909183;">)</span> * 50<span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span>
+<pre class="src src-csharp"><span class="linenr">1: </span><span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">freqs</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #707183;">[]</span> <span style="color: #707183;">{</span> 200, 300, 100, 600 <span style="color: #707183;">}</span>;
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 1000; i++<span style="color: #707183;">)</span>
+<span class="linenr">4: </span><span style="color: #707183;">{</span>
+<span class="linenr">5: </span>    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">f</span> = freqs<span style="color: #7388d6;">[</span>i % freqs.Length<span style="color: #7388d6;">]</span>;
+<span class="linenr">6: </span>    Console.<span style="color: #0000ff;">Beep</span><span style="color: #7388d6;">(</span>f, 50<span style="color: #7388d6;">)</span>;
+<span class="linenr">7: </span>    Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #7388d6;">(</span>800 - <span style="color: #909183;">(</span>i % freqs.Length<span style="color: #909183;">)</span> * 50<span style="color: #7388d6;">)</span>;
+<span class="linenr">8: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>

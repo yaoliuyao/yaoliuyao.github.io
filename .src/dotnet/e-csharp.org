@@ -270,7 +270,7 @@ Console.ReadKey:
 #+end_src
 
 示例二，求余和数组的结合使用:
-#+begin_src csharp
+#+begin_src csharp -n
   int[] freqs = new int[] { 200, 300, 100, 600 };
 
   for (int i = 0; i < 1000; i++)
