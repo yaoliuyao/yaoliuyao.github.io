@@ -256,7 +256,7 @@ Console.ReadKey:
   }
 #+end_src
 
-* 技巧记录
+* 技巧和示例
 ** 求余
 
 示例一:
