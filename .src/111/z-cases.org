@@ -412,67 +412,58 @@
 #+begin_src csharp -n
   public void ExportToExcel3()
   {
-      HSSFWorkbook book = new HSSFWorkbook();    // 工作簿
+      var book = new HSSFWorkbook();    // 工作簿
 
       var sheet1 = book.CreateSheet("信息表");   // 工作表
       var sheet2 = book.CreateSheet("信息表2");  // 工作表
 
       // 第一行 (标题)
 
+      var row1Values = new[] { "月份", "度数", "一档费用", "二挡费用", "三档费用", "总费用" };
+      var row2Values = new[] { _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill };
+
       var row1 = sheet1.CreateRow(0);
-      row1.Height = 700;
-
-      var cell10 = row1.CreateCell(0);
-      var cell11 = row1.CreateCell(1);
-      var cell12 = row1.CreateCell(2);
-      var cell13 = row1.CreateCell(3);
-      var cell14 = row1.CreateCell(4);
-      var cell15 = row1.CreateCell(5);
-      var cell16 = row1.CreateCell(6);
-
-      cell10.SetCellValue("月份");
-      cell11.SetCellValue("度数");
-      cell12.SetCellValue("一档费用");
-      cell13.SetCellValue("二档费用");
-      cell14.SetCellValue("三档费用");
-      cell15.SetCellValue("总费用");
-      cell16.SetCellValue("更新时间");
-
-      var style = book.CreateCellStyle();
-      style.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
-      style.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thick;
-      style.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
-      style.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
-      style.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
-      style.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
-      row1.Cells.ForEach(c => c.CellStyle = style);
-
-      // 第二行 (数据)
-
       var row2 = sheet1.CreateRow(1);
+
+      var style1 = book.CreateCellStyle(); // 对象，封装了样式方面的数据
+      style1.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Red.Index;
+      style1.BorderBottom = NPOI.SS.UserModel.BorderStyle.Double;
+      style1.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
+      style1.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
+      style1.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
+      style1.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
+
+      var style2 = book.CreateCellStyle();
+      style2.CloneStyleFrom(style1);
+      style2.FillPattern = NPOI.SS.UserModel.FillPattern.NoFill;
+      style2.FillBackgroundColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
+
+      row1.Height = 700;
       row2.Height = 500;
 
-      var cell20 = row2.CreateCell(0);
-      var cell21 = row2.CreateCell(1);
-      var cell22 = row2.CreateCell(2);
-      var cell23 = row2.CreateCell(3);
-      var cell24 = row2.CreateCell(4);
-      var cell25 = row2.CreateCell(5);
-      var cell26 = row2.CreateCell(6);
+      for (int i = 0; i < row1Values.Length; i++)
+      {
+          var cell1 = row1.CreateCell(i);
+          cell1.SetCellValue(row1Values[i]);
+          cell1.CellStyle = style1;
 
-      cell20.SetCellValue(_month);
-      cell21.SetCellValue(_used);
-      cell22.SetCellValue(Lv1Cost);
-      cell23.SetCellValue(Lv2Cost);
-      cell24.SetCellValue(Lv3Cost);
-      cell25.SetCellValue(Bill);
-      cell26.SetCellFormula("now()");
+          var cell2 = row2.CreateCell(i);
+          cell2.SetCellValue(row2Values[i]);
+          cell2.CellStyle = style2;
+      }
 
       // 保存
       Console.WriteLine("开始导出...");
-      FileStream file = new FileStream(@"D:\test.xls", FileMode.Create);
-      book.Write(file);
-      file.Close();
+      var fileName = $"D:\\test.xls";
+      try
+      {
+          using var file = new FileStream(fileName, FileMode.Create);
+          book.Write(file);
+      }
+      catch (Exception e)
+      {
+          Console.WriteLine($"文件保存失败，请重试。\n失败的原因: {e.Message}");
+      }
       book.Close();
   }
 #+end_src
