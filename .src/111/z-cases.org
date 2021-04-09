@@ -418,9 +418,17 @@
 
       // 第一行 (标题)
 
-      var row1 = sheet1.CreateRow(3);
+      var row1 = sheet1.CreateRow(0);
+      row1.Height = 700;
+
+      var style = book.CreateCellStyle();
+      style.BottomBorderColor = 125;
+      style.FillForegroundColor = 225;
+      style.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Top;
+      row1.RowStyle = style;
 
       var cell10 = row1.CreateCell(0);
+      cell10.CellStyle = style;
       var cell11 = row1.CreateCell(1);
       var cell12 = row1.CreateCell(2);
       var cell13 = row1.CreateCell(3);
@@ -434,6 +442,7 @@
       cell13.SetCellValue("二档费用");
       cell14.SetCellValue("三档费用");
       cell15.SetCellValue("总费用");
+      cell16.SetCellValue("更新时间");
 
       // 第二行 (数据)
 
@@ -453,11 +462,12 @@
       cell23.SetCellValue(Lv2Cost);
       cell24.SetCellValue(Lv3Cost);
       cell25.SetCellValue(Bill);
+      cell26.SetCellFormula("now()");
 
       // 保存
 
       Console.WriteLine("开始导出...");
-      FileStream file = new FileStream(@"D:\test.xls",FileMode.Create);
+      FileStream file = new FileStream(@"D:\test.xls", FileMode.Create);
       book.Write(file);
       file.Close();
       book.Close();
