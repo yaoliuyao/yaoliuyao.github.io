@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-08 -->
+<!-- 2021-04-09 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>一万行代码</title>
@@ -49,6 +49,7 @@
 <li><a href="#orgfd9029b">1.3. 第二种方案</a></li>
 <li><a href="#org94d16a8">1.4. 第二种方案的英文变量版本</a></li>
 <li><a href="#org8533bcf">1.5. 学习怎么调用别人封装好的类和方法</a></li>
+<li><a href="#org8f5c15f">1.6. ExportToExcel</a></li>
 </ul>
 </li>
 <li><a href="#orge7e608e">2. 个税计算器 (简化版) 源</a>
@@ -532,6 +533,67 @@
 </div>
 </div>
 </div>
+
+<div id="outline-container-org8f5c15f" class="outline-3">
+<h3 id="org8f5c15f"><span class="section-number-3">1.6</span> ExportToExcel</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel3</span><span style="color: #707183;">()</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #228b22;">HSSFWorkbook</span> <span style="color: #a0522d;">book</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HSSFWorkbook</span><span style="color: #7388d6;">()</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#31807;</span>
+<span class="linenr"> 4: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet1</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;"</span><span style="color: #7388d6;">)</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
+<span class="linenr"> 5: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet2</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;2"</span><span style="color: #7388d6;">)</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#34892; (&#26631;&#39064;)</span>
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>3<span style="color: #7388d6;">)</span>;
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell10</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>0<span style="color: #7388d6;">)</span>;
+<span class="linenr">12: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell11</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
+<span class="linenr">13: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell12</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>2<span style="color: #7388d6;">)</span>;
+<span class="linenr">14: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell13</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>3<span style="color: #7388d6;">)</span>;
+<span class="linenr">15: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell14</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>4<span style="color: #7388d6;">)</span>;
+<span class="linenr">16: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell15</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>5<span style="color: #7388d6;">)</span>;
+<span class="linenr">17: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell16</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>6<span style="color: #7388d6;">)</span>;
+<span class="linenr">18: </span>
+<span class="linenr">19: </span>    cell10.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#26376;&#20221;"</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">20: </span>    cell11.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24230;&#25968;"</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">21: </span>    cell12.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#19968;&#26723;&#36153;&#29992;"</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">22: </span>    cell13.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20108;&#26723;&#36153;&#29992;"</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">23: </span>    cell14.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#19977;&#26723;&#36153;&#29992;"</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">24: </span>    cell15.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24635;&#36153;&#29992;"</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">25: </span>
+<span class="linenr">26: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#20108;&#34892; (&#25968;&#25454;)</span>
+<span class="linenr">27: </span>
+<span class="linenr">28: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
+<span class="linenr">29: </span>
+<span class="linenr">30: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell20</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>0<span style="color: #7388d6;">)</span>;
+<span class="linenr">31: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell21</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
+<span class="linenr">32: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell22</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>2<span style="color: #7388d6;">)</span>;
+<span class="linenr">33: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell23</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>3<span style="color: #7388d6;">)</span>;
+<span class="linenr">34: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell24</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>4<span style="color: #7388d6;">)</span>;
+<span class="linenr">35: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell25</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>5<span style="color: #7388d6;">)</span>;
+<span class="linenr">36: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell26</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>6<span style="color: #7388d6;">)</span>;
+<span class="linenr">37: </span>
+<span class="linenr">38: </span>    cell20.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span>_month<span style="color: #7388d6;">)</span>;
+<span class="linenr">39: </span>    cell21.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span>_used<span style="color: #7388d6;">)</span>;
+<span class="linenr">40: </span>    cell22.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span>Lv1Cost<span style="color: #7388d6;">)</span>;
+<span class="linenr">41: </span>    cell23.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span>Lv2Cost<span style="color: #7388d6;">)</span>;
+<span class="linenr">42: </span>    cell24.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span>Lv3Cost<span style="color: #7388d6;">)</span>;
+<span class="linenr">43: </span>    cell25.<span style="color: #0000ff;">SetCellValue</span><span style="color: #7388d6;">(</span>Bill<span style="color: #7388d6;">)</span>;
+<span class="linenr">44: </span>
+<span class="linenr">45: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
+<span class="linenr">46: </span>
+<span class="linenr">47: </span>    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#23548;&#20986;..."</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">48: </span>    <span style="color: #228b22;">FileStream</span> <span style="color: #a0522d;">file</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileStream</span><span style="color: #7388d6;">(</span>@<span style="color: #8b2252;">"D:\test.xls"</span>,FileMode.Create<span style="color: #7388d6;">)</span>;
+<span class="linenr">49: </span>    book.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span>file<span style="color: #7388d6;">)</span>;
+<span class="linenr">50: </span>    file.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">51: </span>    book.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">52: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-orge7e608e" class="outline-2">
@@ -764,7 +826,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="org13b906e">
+<figure id="org48c78a3">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -1039,7 +1101,7 @@
 </p>
 
 
-<figure id="org6fe0037">
+<figure id="orgf777924">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -1155,7 +1217,7 @@
 </ul>
 
 
-<figure id="org4ceec5a">
+<figure id="org7fcdf0f">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -2182,7 +2244,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-08</p>
+<p class="date">Created: 2021-04-09</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

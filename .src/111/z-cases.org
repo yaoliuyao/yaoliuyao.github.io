@@ -407,6 +407,63 @@
   }
 #+end_src
 
+** ExportToExcel
+
+#+begin_src csharp -n
+  public void ExportToExcel3()
+  {
+      HSSFWorkbook book = new HSSFWorkbook();    // 工作簿
+      var sheet1 = book.CreateSheet("信息表");   // 工作表
+      var sheet2 = book.CreateSheet("信息表2");  // 工作表
+
+      // 第一行 (标题)
+
+      var row1 = sheet1.CreateRow(3);
+
+      var cell10 = row1.CreateCell(0);
+      var cell11 = row1.CreateCell(1);
+      var cell12 = row1.CreateCell(2);
+      var cell13 = row1.CreateCell(3);
+      var cell14 = row1.CreateCell(4);
+      var cell15 = row1.CreateCell(5);
+      var cell16 = row1.CreateCell(6);
+
+      cell10.SetCellValue("月份");
+      cell11.SetCellValue("度数");
+      cell12.SetCellValue("一档费用");
+      cell13.SetCellValue("二档费用");
+      cell14.SetCellValue("三档费用");
+      cell15.SetCellValue("总费用");
+
+      // 第二行 (数据)
+
+      var row2 = sheet1.CreateRow(1);
+
+      var cell20 = row2.CreateCell(0);
+      var cell21 = row2.CreateCell(1);
+      var cell22 = row2.CreateCell(2);
+      var cell23 = row2.CreateCell(3);
+      var cell24 = row2.CreateCell(4);
+      var cell25 = row2.CreateCell(5);
+      var cell26 = row2.CreateCell(6);
+
+      cell20.SetCellValue(_month);
+      cell21.SetCellValue(_used);
+      cell22.SetCellValue(Lv1Cost);
+      cell23.SetCellValue(Lv2Cost);
+      cell24.SetCellValue(Lv3Cost);
+      cell25.SetCellValue(Bill);
+
+      // 保存
+
+      Console.WriteLine("开始导出...");
+      FileStream file = new FileStream(@"D:\test.xls",FileMode.Create);
+      book.Write(file);
+      file.Close();
+      book.Close();
+  }
+#+end_src
+
 * 个税计算器 (简化版) [[id:6c800397-9525-4a5d-b857-4356fb81f85c][源]]
 ** 原始版本，*顺序* 执行
 
