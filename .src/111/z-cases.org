@@ -413,6 +413,7 @@
   public void ExportToExcel3()
   {
       HSSFWorkbook book = new HSSFWorkbook();    // 工作簿
+
       var sheet1 = book.CreateSheet("信息表");   // 工作表
       var sheet2 = book.CreateSheet("信息表2");  // 工作表
 
@@ -421,14 +422,7 @@
       var row1 = sheet1.CreateRow(0);
       row1.Height = 700;
 
-      var style = book.CreateCellStyle();
-      style.BottomBorderColor = 125;
-      style.FillForegroundColor = 225;
-      style.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Top;
-      row1.RowStyle = style;
-
       var cell10 = row1.CreateCell(0);
-      cell10.CellStyle = style;
       var cell11 = row1.CreateCell(1);
       var cell12 = row1.CreateCell(2);
       var cell13 = row1.CreateCell(3);
@@ -444,9 +438,19 @@
       cell15.SetCellValue("总费用");
       cell16.SetCellValue("更新时间");
 
+      var style = book.CreateCellStyle();
+      style.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
+      style.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thick;
+      style.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
+      style.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
+      style.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
+      style.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
+      row1.Cells.ForEach(c => c.CellStyle = style);
+
       // 第二行 (数据)
 
       var row2 = sheet1.CreateRow(1);
+      row2.Height = 500;
 
       var cell20 = row2.CreateCell(0);
       var cell21 = row2.CreateCell(1);
@@ -465,7 +469,6 @@
       cell26.SetCellFormula("now()");
 
       // 保存
-
       Console.WriteLine("开始导出...");
       FileStream file = new FileStream(@"D:\test.xls", FileMode.Create);
       book.Write(file);
