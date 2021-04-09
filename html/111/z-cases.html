@@ -49,7 +49,8 @@
 <li><a href="#orgfd9029b">1.3. 第二种方案</a></li>
 <li><a href="#org94d16a8">1.4. 第二种方案的英文变量版本</a></li>
 <li><a href="#org8533bcf">1.5. 学习怎么调用别人封装好的类和方法</a></li>
-<li><a href="#org8f5c15f">1.6. ExportToExcel</a></li>
+<li><a href="#org3fb19ad">1.6. ExportToExcel - 1</a></li>
+<li><a href="#orgae1a9df">1.7. ExportToExcel - 2</a></li>
 </ul>
 </li>
 <li><a href="#orge7e608e">2. 个税计算器 (简化版) 源</a>
@@ -534,8 +535,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8f5c15f" class="outline-3">
-<h3 id="org8f5c15f"><span class="section-number-3">1.6</span> ExportToExcel</h3>
+<div id="outline-container-org3fb19ad" class="outline-3">
+<h3 id="org3fb19ad"><span class="section-number-3">1.6</span> ExportToExcel - 1</h3>
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel3</span><span style="color: #707183;">()</span>
@@ -603,6 +604,58 @@
 <span class="linenr">63: </span>    file.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
 <span class="linenr">64: </span>    book.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
 <span class="linenr">65: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgae1a9df" class="outline-3">
+<h3 id="orgae1a9df"><span class="section-number-3">1.7</span> ExportToExcel - 2</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel3</span><span style="color: #707183;">()</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #228b22;">HSSFWorkbook</span> <span style="color: #a0522d;">book</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HSSFWorkbook</span><span style="color: #7388d6;">()</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#31807;</span>
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet1</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;"</span><span style="color: #7388d6;">)</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
+<span class="linenr"> 6: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet2</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;2"</span><span style="color: #7388d6;">)</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#34892; (&#26631;&#39064;)</span>
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1Values</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"&#26376;&#20221;"</span>, <span style="color: #8b2252;">"&#24230;&#25968;"</span>, <span style="color: #8b2252;">"&#19968;&#26723;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#20108;&#25377;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#19977;&#26723;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#24635;&#36153;&#29992;"</span> <span style="color: #7388d6;">}</span>;
+<span class="linenr">11: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2Values</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill <span style="color: #7388d6;">}</span>;
+<span class="linenr">12: </span>
+<span class="linenr">13: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
+<span class="linenr">14: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>2<span style="color: #7388d6;">)</span>;
+<span class="linenr">15: </span>
+<span class="linenr">16: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">style</span> = book.<span style="color: #0000ff;">CreateCellStyle</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">17: </span>    style.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
+<span class="linenr">18: </span>    style.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thick;
+<span class="linenr">19: </span>    style.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
+<span class="linenr">20: </span>    style.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
+<span class="linenr">21: </span>    style.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
+<span class="linenr">22: </span>    style.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
+<span class="linenr">23: </span>
+<span class="linenr">24: </span>    row1.Height = 700;
+<span class="linenr">25: </span>    row2.Height = 500;
+<span class="linenr">26: </span>
+<span class="linenr">27: </span>    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; row1Values.Length; i++<span style="color: #7388d6;">)</span>
+<span class="linenr">28: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">29: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell1</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
+<span class="linenr">30: </span>        cell1.<span style="color: #0000ff;">SetCellValue</span><span style="color: #909183;">(</span>row1Values<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+<span class="linenr">31: </span>        cell1.CellStyle = style;
+<span class="linenr">32: </span>
+<span class="linenr">33: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell2</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
+<span class="linenr">34: </span>        cell2.<span style="color: #0000ff;">SetCellValue</span><span style="color: #909183;">(</span>row2Values<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+<span class="linenr">35: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">36: </span>
+<span class="linenr">37: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
+<span class="linenr">38: </span>    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#23548;&#20986;..."</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">39: </span>    <span style="color: #228b22;">FileStream</span> <span style="color: #a0522d;">file</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileStream</span><span style="color: #7388d6;">(</span>@<span style="color: #8b2252;">"D:\test.xls"</span>, FileMode.Create<span style="color: #7388d6;">)</span>;
+<span class="linenr">40: </span>    book.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span>file<span style="color: #7388d6;">)</span>;
+<span class="linenr">41: </span>    file.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">42: </span>    book.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">43: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -839,7 +892,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="org3d1dddc">
+<figure id="orga7b4fcf">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -1114,7 +1167,7 @@
 </p>
 
 
-<figure id="org479a963">
+<figure id="orgac8d802">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -1230,7 +1283,7 @@
 </ul>
 
 
-<figure id="org51678a3">
+<figure id="org406aaaf">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
