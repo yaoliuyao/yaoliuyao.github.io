@@ -8,7 +8,7 @@
 :END:
 
 #+begin_export html
-<p style="color: red; font-size: 200px">敲代码!!!</p>
+<p style="color: red; font-size: 120px">敲代码!!!</p>
 #+end_export
 
 * [2021-04-09 Fri]
