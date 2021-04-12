@@ -7,7 +7,9 @@
 :CUSTOM_ID: active
 :END:
 
-#+ATTR_HTML: <h1 style="color: red;">敲代码!!!</h1>
+#+begin_export html
+<h1 style="color: red;">敲代码!!!</h1>
+#+end_export
 
 * [2021-04-09 Fri]
 
