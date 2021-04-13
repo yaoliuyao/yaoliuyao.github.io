@@ -491,6 +491,7 @@ C# 操纵 Excel 的方法:
 
 - 如果 Excel 文件存在，直接使用
 - 如果 Excel 不存在，先创建并初始化，再使用
+- 点击查看思路 ([[file:img/exporttoexcel-1.png][图片]])
 
 提示:
 - 务必要确保资源被合理释放 (~using~) !!!
