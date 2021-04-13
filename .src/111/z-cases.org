@@ -335,7 +335,7 @@
   }
 #+end_src
 
-** 学习怎么调用别人封装好的类和方法
+** 学习怎么使用别人的封装 (Console)
 
 #+begin_quote
 完成 ElectricBillCalc 中杀马特版本的 Print:
@@ -407,7 +407,7 @@
   }
 #+end_src
 
-** 学习怎么调用别人的封装 (ExportToExcel)
+** 学习怎么使用别人的封装 (ExportToExcel)
 
 C# 操纵 Excel 的方法:
 - 内置的 Interop 包，需要安装 Office 后才可以使用
