@@ -566,6 +566,25 @@
   }
 #+end_src
 
+#+begin_src csharp
+  static void Main()
+  {
+      while (true)
+      {
+          Console.Write("请输入月份: ");
+          int yue = int.Parse(Console.ReadLine());
+
+          Console.Write("请输入用电量: ");
+          double liang = double.Parse(Console.ReadLine());
+
+          // 使用自己的封装
+          var ec = new ElectricBillCalc();
+          ec.SetMonthAndUsed(yue, liang);
+          ec.ExportToExcel3();
+      }
+  }
+#+end_src
+
 * 个税计算器 (简化版) [[id:6c800397-9525-4a5d-b857-4356fb81f85c][源]]
 ** 原始版本，*顺序* 执行
 

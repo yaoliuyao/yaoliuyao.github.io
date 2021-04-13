@@ -704,6 +704,26 @@
 <span class="linenr">45: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">while</span> <span style="color: #7388d6;">(</span><span style="color: #008b8b;">true</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#35831;&#36755;&#20837;&#26376;&#20221;: "</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">yue</span> = <span style="color: #228b22;">int</span>.<span style="color: #0000ff;">Parse</span><span style="color: #909183;">(</span>Console.<span style="color: #0000ff;">ReadLine</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#35831;&#36755;&#20837;&#29992;&#30005;&#37327;: "</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">double</span> <span style="color: #a0522d;">liang</span> = <span style="color: #228b22;">double</span>.<span style="color: #0000ff;">Parse</span><span style="color: #909183;">(</span>Console.<span style="color: #0000ff;">ReadLine</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992;&#33258;&#24049;&#30340;&#23553;&#35013;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">ec</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ElectricBillCalc</span><span style="color: #909183;">()</span>;
+        ec.<span style="color: #0000ff;">SetMonthAndUsed</span><span style="color: #909183;">(</span>yue, liang<span style="color: #909183;">)</span>;
+        ec.<span style="color: #0000ff;">ExportToExcel3</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </section>
@@ -938,7 +958,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="orgb93c06d">
+<figure id="orga14137d">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -1213,7 +1233,7 @@
 </p>
 
 
-<figure id="org5f36ea7">
+<figure id="org90ea0d3">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -1329,7 +1349,7 @@
 </ul>
 
 
-<figure id="orgd87ed58">
+<figure id="org09df349">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
