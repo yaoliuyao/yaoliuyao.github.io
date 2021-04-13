@@ -411,7 +411,7 @@
 
 C# 操纵 Excel 的方法:
 - 内置的 Interop 包，需要安装 Office 后才可以使用
-- 开源独立的 NPOI 包，需要在 NuGet 中下载并引入项目
+- 开源独立的 NPOI 包，需要在 NuGet 中下载并引入到项目
 
 使用 NPOI 进行数据导出的示例:
 #+begin_src csharp -n
