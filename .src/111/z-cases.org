@@ -407,52 +407,65 @@
   }
 #+end_src
 
-** ExportToExcel - 1
+** 学习怎么调用别人的封装 (ExportToExcel)
 
+C# 操纵 Excel 的方法:
+- 内置的 Interop 包，需要安装 Office 后才可以使用
+- 开源独立的 NPOI 包，需要在 NuGet 中下载并引入项目
+
+使用 NPOI 进行数据导出的示例:
 #+begin_src csharp -n
-  public void ExportToExcel3()
+  public void ExportToExcel()
   {
       var book = new HSSFWorkbook();    // 工作簿
-
       var sheet1 = book.CreateSheet("信息表");   // 工作表
       var sheet2 = book.CreateSheet("信息表2");  // 工作表
 
-      // 第一行 (标题)
+      // 数据和样式
 
       var row1Values = new[] { "月份", "度数", "一档费用", "二挡费用", "三档费用", "总费用" };
       var row2Values = new[] { _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill };
 
-      var row1 = sheet1.CreateRow(0);
-      var row2 = sheet1.CreateRow(1);
-
       var style1 = book.CreateCellStyle(); // 对象，封装了样式方面的数据
       style1.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Red.Index;
-      style1.BorderBottom = NPOI.SS.UserModel.BorderStyle.Double;
+      style1.BorderBottom = BorderStyle.Double;
       style1.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
-      style1.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
-      style1.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
-      style1.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
+      style1.FillPattern = FillPattern.SolidForeground;
+      style1.Alignment = HorizontalAlignment.Center;
+      style1.VerticalAlignment = VerticalAlignment.Center;
 
       var style2 = book.CreateCellStyle();
       style2.CloneStyleFrom(style1);
-      style2.FillPattern = NPOI.SS.UserModel.FillPattern.NoFill;
-      style2.FillBackgroundColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
+      style2.FillPattern = FillPattern.NoFill;
+
+      // 创建行
+
+      var row1 = sheet1.CreateRow(0);
+      var row2 = sheet1.CreateRow(1);
 
       row1.Height = 700;
       row2.Height = 500;
+
+      // 头部行
 
       for (int i = 0; i < row1Values.Length; i++)
       {
           var cell1 = row1.CreateCell(i);
           cell1.SetCellValue(row1Values[i]);
           cell1.CellStyle = style1;
+      }
 
+      // 数据行
+
+      for (int i = 0; i < row2Values.Length; i++)
+      { 
           var cell2 = row2.CreateCell(i);
           cell2.SetCellValue(row2Values[i]);
           cell2.CellStyle = style2;
       }
 
       // 保存
+
       Console.WriteLine("开始导出...");
       var fileName = $"D:\\test.xls";
       try
@@ -468,55 +481,21 @@
   }
 #+end_src
 
-** ExportToExcel - 2
+注意:
+- 资源类变量 (文件等)，用完之后，一定记得要释放 (Close)。为了确保释放成功，应该将释放语句放到 finally 块中
+- 可以使用 ~using~ 语法糖简化释放
+- 实现相关功能，需要先有思路，后有代码。不要着急写代码，先搞明白自己要做的事情是什么，要怎么去做
+- 有了思路，却写不出来代码的根本原因是，写的少，对语法不熟悉
 
-#+begin_src csharp -n
-  public void ExportToExcel3()
-  {
-      HSSFWorkbook book = new HSSFWorkbook();    // 工作簿
+** 优化 ExportToExcel 为直接使用已存在的文件
 
-      var sheet1 = book.CreateSheet("信息表");   // 工作表
-      var sheet2 = book.CreateSheet("信息表2");  // 工作表
+- 如果 Excel 文件存在，直接使用
+- 如果 Excel 不存在，先创建并初始化，再使用
 
-      // 第一行 (标题)
-
-      var row1Values = new[] { "月份", "度数", "一档费用", "二挡费用", "三档费用", "总费用" };
-      var row2Values = new[] { _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill };
-
-      var row1 = sheet1.CreateRow(1);
-      var row2 = sheet1.CreateRow(2);
-
-      var style = book.CreateCellStyle();
-      style.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
-      style.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thick;
-      style.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
-      style.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
-      style.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
-      style.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
-
-      row1.Height = 700;
-      row2.Height = 500;
-
-      for (int i = 0; i < row1Values.Length; i++)
-      {
-          var cell1 = row1.CreateCell(i);
-          cell1.SetCellValue(row1Values[i]);
-          cell1.CellStyle = style;
-
-          var cell2 = row2.CreateCell(i);
-          cell2.SetCellValue(row2Values[i]);
-      }
-
-      // 保存
-      Console.WriteLine("开始导出...");
-      FileStream file = new FileStream(@"D:\test.xls", FileMode.Create);
-      book.Write(file);
-      file.Close();
-      book.Close();
-  }
-#+end_src
-
-** ExportToExcel - 3
+提示:
+- 务必要确保资源被合理释放 (~using~) !!!
+- ~File.Exists~ 用来判断文件存不存在
+- ~File.OpenRead/OpenWrite~ 用来打开文件，分别用作读和写。是简化的写法
 
 #+begin_src csharp -n
   public void ExportToExcel3()

@@ -49,9 +49,8 @@
 <li><a href="#orgfd9029b">1.3. 第二种方案</a></li>
 <li><a href="#org94d16a8">1.4. 第二种方案的英文变量版本</a></li>
 <li><a href="#org8533bcf">1.5. 学习怎么调用别人封装好的类和方法</a></li>
-<li><a href="#org3fb19ad">1.6. ExportToExcel - 1</a></li>
-<li><a href="#orgae1a9df">1.7. ExportToExcel - 2</a></li>
-<li><a href="#orgf24a01a">1.8. ExportToExcel - 3</a></li>
+<li><a href="#org9ab49fa">1.6. 学习怎么调用别人的封装 (ExportToExcel)</a></li>
+<li><a href="#org66a845c">1.7. 优化 ExportToExcel 为直接使用已存在的文件</a></li>
 </ul>
 </li>
 <li><a href="#orge7e608e">2. 个税计算器 (简化版) 源</a>
@@ -536,126 +535,117 @@
 </div>
 </div>
 
-<div id="outline-container-org3fb19ad" class="outline-3">
-<h3 id="org3fb19ad"><span class="section-number-3">1.6</span> ExportToExcel - 1</h3>
+<div id="outline-container-org9ab49fa" class="outline-3">
+<h3 id="org9ab49fa"><span class="section-number-3">1.6</span> 学习怎么调用别人的封装 (ExportToExcel)</h3>
 <div class="outline-text-3" id="text-1-6">
+<p>
+C# 操纵 Excel 的方法:
+</p>
+<ul class="org-ul">
+<li>内置的 Interop 包，需要安装 Office 后才可以使用</li>
+<li>开源独立的 NPOI 包，需要在 NuGet 中下载并引入项目</li>
+</ul>
+
+<p>
+使用 NPOI 进行数据导出的示例:
+</p>
 <div class="org-src-container">
-<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel3</span><span style="color: #707183;">()</span>
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #707183;">()</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
 <span class="linenr"> 3: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">book</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HSSFWorkbook</span><span style="color: #7388d6;">()</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#31807;</span>
-<span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet1</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;"</span><span style="color: #7388d6;">)</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
-<span class="linenr"> 6: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet2</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;2"</span><span style="color: #7388d6;">)</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
-<span class="linenr"> 7: </span>
-<span class="linenr"> 8: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#34892; (&#26631;&#39064;)</span>
-<span class="linenr"> 9: </span>
-<span class="linenr">10: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1Values</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"&#26376;&#20221;"</span>, <span style="color: #8b2252;">"&#24230;&#25968;"</span>, <span style="color: #8b2252;">"&#19968;&#26723;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#20108;&#25377;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#19977;&#26723;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#24635;&#36153;&#29992;"</span> <span style="color: #7388d6;">}</span>;
-<span class="linenr">11: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2Values</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill <span style="color: #7388d6;">}</span>;
-<span class="linenr">12: </span>
-<span class="linenr">13: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>0<span style="color: #7388d6;">)</span>;
-<span class="linenr">14: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
-<span class="linenr">15: </span>
-<span class="linenr">16: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">style1</span> = book.<span style="color: #0000ff;">CreateCellStyle</span><span style="color: #7388d6;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23545;&#35937;&#65292;&#23553;&#35013;&#20102;&#26679;&#24335;&#26041;&#38754;&#30340;&#25968;&#25454;</span>
-<span class="linenr">17: </span>    style1.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Red.Index;
-<span class="linenr">18: </span>    style1.BorderBottom = NPOI.SS.UserModel.BorderStyle.Double;
-<span class="linenr">19: </span>    style1.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
-<span class="linenr">20: </span>    style1.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
-<span class="linenr">21: </span>    style1.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
-<span class="linenr">22: </span>    style1.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
+<span class="linenr"> 4: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet1</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;"</span><span style="color: #7388d6;">)</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
+<span class="linenr"> 5: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet2</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;2"</span><span style="color: #7388d6;">)</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25968;&#25454;&#21644;&#26679;&#24335;</span>
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1Values</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"&#26376;&#20221;"</span>, <span style="color: #8b2252;">"&#24230;&#25968;"</span>, <span style="color: #8b2252;">"&#19968;&#26723;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#20108;&#25377;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#19977;&#26723;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#24635;&#36153;&#29992;"</span> <span style="color: #7388d6;">}</span>;
+<span class="linenr">10: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2Values</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill <span style="color: #7388d6;">}</span>;
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">style1</span> = book.<span style="color: #0000ff;">CreateCellStyle</span><span style="color: #7388d6;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23545;&#35937;&#65292;&#23553;&#35013;&#20102;&#26679;&#24335;&#26041;&#38754;&#30340;&#25968;&#25454;</span>
+<span class="linenr">13: </span>    style1.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Red.Index;
+<span class="linenr">14: </span>    style1.BorderBottom = BorderStyle.Double;
+<span class="linenr">15: </span>    style1.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
+<span class="linenr">16: </span>    style1.FillPattern = FillPattern.SolidForeground;
+<span class="linenr">17: </span>    style1.Alignment = HorizontalAlignment.Center;
+<span class="linenr">18: </span>    style1.VerticalAlignment = VerticalAlignment.Center;
+<span class="linenr">19: </span>
+<span class="linenr">20: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">style2</span> = book.<span style="color: #0000ff;">CreateCellStyle</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">21: </span>    style2.<span style="color: #0000ff;">CloneStyleFrom</span><span style="color: #7388d6;">(</span>style1<span style="color: #7388d6;">)</span>;
+<span class="linenr">22: </span>    style2.FillPattern = FillPattern.NoFill;
 <span class="linenr">23: </span>
-<span class="linenr">24: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">style2</span> = book.<span style="color: #0000ff;">CreateCellStyle</span><span style="color: #7388d6;">()</span>;
-<span class="linenr">25: </span>    style2.<span style="color: #0000ff;">CloneStyleFrom</span><span style="color: #7388d6;">(</span>style1<span style="color: #7388d6;">)</span>;
-<span class="linenr">26: </span>    style2.FillPattern = NPOI.SS.UserModel.FillPattern.NoFill;
-<span class="linenr">27: </span>    style2.FillBackgroundColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
+<span class="linenr">24: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21019;&#24314;&#34892;</span>
+<span class="linenr">25: </span>
+<span class="linenr">26: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>0<span style="color: #7388d6;">)</span>;
+<span class="linenr">27: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
 <span class="linenr">28: </span>
 <span class="linenr">29: </span>    row1.Height = 700;
 <span class="linenr">30: </span>    row2.Height = 500;
 <span class="linenr">31: </span>
-<span class="linenr">32: </span>    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; row1Values.Length; i++<span style="color: #7388d6;">)</span>
-<span class="linenr">33: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">34: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell1</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
-<span class="linenr">35: </span>        cell1.<span style="color: #0000ff;">SetCellValue</span><span style="color: #909183;">(</span>row1Values<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
-<span class="linenr">36: </span>        cell1.CellStyle = style1;
-<span class="linenr">37: </span>
-<span class="linenr">38: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell2</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
-<span class="linenr">39: </span>        cell2.<span style="color: #0000ff;">SetCellValue</span><span style="color: #909183;">(</span>row2Values<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
-<span class="linenr">40: </span>        cell2.CellStyle = style2;
-<span class="linenr">41: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">32: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22836;&#37096;&#34892;</span>
+<span class="linenr">33: </span>
+<span class="linenr">34: </span>    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; row1Values.Length; i++<span style="color: #7388d6;">)</span>
+<span class="linenr">35: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">36: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell1</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
+<span class="linenr">37: </span>        cell1.<span style="color: #0000ff;">SetCellValue</span><span style="color: #909183;">(</span>row1Values<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+<span class="linenr">38: </span>        cell1.CellStyle = style1;
+<span class="linenr">39: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">40: </span>
+<span class="linenr">41: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25968;&#25454;&#34892;</span>
 <span class="linenr">42: </span>
-<span class="linenr">43: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
-<span class="linenr">44: </span>    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#23548;&#20986;..."</span><span style="color: #7388d6;">)</span>;
-<span class="linenr">45: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">fileName</span> = $<span style="color: #8b2252;">"D:\\test.xls"</span>;
-<span class="linenr">46: </span>    <span style="color: #a020f0;">try</span>
-<span class="linenr">47: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">48: </span>        <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> file = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileStream</span><span style="color: #909183;">(</span>fileName, FileMode.Create<span style="color: #909183;">)</span>;
-<span class="linenr">49: </span>        book.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span>file<span style="color: #909183;">)</span>;
-<span class="linenr">50: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">51: </span>    <span style="color: #a020f0;">catch</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">Exception</span> <span style="color: #a0522d;">e</span><span style="color: #7388d6;">)</span>
-<span class="linenr">52: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">53: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#25991;&#20214;&#20445;&#23384;&#22833;&#36133;&#65292;&#35831;&#37325;&#35797;&#12290;\n&#22833;&#36133;&#30340;&#21407;&#22240;: {e.Message}"</span><span style="color: #909183;">)</span>;
-<span class="linenr">54: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">55: </span>    book.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
-<span class="linenr">56: </span><span style="color: #707183;">}</span>
+<span class="linenr">43: </span>    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; row2Values.Length; i++<span style="color: #7388d6;">)</span>
+<span class="linenr">44: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">45: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell2</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
+<span class="linenr">46: </span>        cell2.<span style="color: #0000ff;">SetCellValue</span><span style="color: #909183;">(</span>row2Values<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+<span class="linenr">47: </span>        cell2.CellStyle = style2;
+<span class="linenr">48: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">49: </span>
+<span class="linenr">50: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
+<span class="linenr">51: </span>
+<span class="linenr">52: </span>    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#23548;&#20986;..."</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">53: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">fileName</span> = $<span style="color: #8b2252;">"D:\\test.xls"</span>;
+<span class="linenr">54: </span>    <span style="color: #a020f0;">try</span>
+<span class="linenr">55: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">56: </span>        <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> file = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileStream</span><span style="color: #909183;">(</span>fileName, FileMode.Create<span style="color: #909183;">)</span>;
+<span class="linenr">57: </span>        book.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span>file<span style="color: #909183;">)</span>;
+<span class="linenr">58: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">59: </span>    <span style="color: #a020f0;">catch</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">Exception</span> <span style="color: #a0522d;">e</span><span style="color: #7388d6;">)</span>
+<span class="linenr">60: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">61: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#25991;&#20214;&#20445;&#23384;&#22833;&#36133;&#65292;&#35831;&#37325;&#35797;&#12290;\n&#22833;&#36133;&#30340;&#21407;&#22240;: {e.Message}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">62: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">63: </span>    book.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">64: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
+
+<p>
+注意:
+</p>
+<ul class="org-ul">
+<li>资源类变量 (文件等)，用完之后，一定记得要释放 (Close)。为了确保释放成功，应该将释放语句放到 finally 块中</li>
+<li>可以使用 <code>using</code> 语法糖简化释放</li>
+<li>实现相关功能，需要先有思路，后有代码。不要着急写代码，先搞明白自己要做的事情是什么，要怎么去做</li>
+<li>有了思路，却写不出来代码的根本原因是，写的少，对语法不熟悉</li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-orgae1a9df" class="outline-3">
-<h3 id="orgae1a9df"><span class="section-number-3">1.7</span> ExportToExcel - 2</h3>
+<div id="outline-container-org66a845c" class="outline-3">
+<h3 id="org66a845c"><span class="section-number-3">1.7</span> 优化 ExportToExcel 为直接使用已存在的文件</h3>
 <div class="outline-text-3" id="text-1-7">
-<div class="org-src-container">
-<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel3</span><span style="color: #707183;">()</span>
-<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
-<span class="linenr"> 3: </span>    <span style="color: #228b22;">HSSFWorkbook</span> <span style="color: #a0522d;">book</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HSSFWorkbook</span><span style="color: #7388d6;">()</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#31807;</span>
-<span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet1</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;"</span><span style="color: #7388d6;">)</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
-<span class="linenr"> 6: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sheet2</span> = book.<span style="color: #0000ff;">CreateSheet</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20449;&#24687;&#34920;2"</span><span style="color: #7388d6;">)</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#24037;&#20316;&#34920;</span>
-<span class="linenr"> 7: </span>
-<span class="linenr"> 8: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#34892; (&#26631;&#39064;)</span>
-<span class="linenr"> 9: </span>
-<span class="linenr">10: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1Values</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"&#26376;&#20221;"</span>, <span style="color: #8b2252;">"&#24230;&#25968;"</span>, <span style="color: #8b2252;">"&#19968;&#26723;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#20108;&#25377;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#19977;&#26723;&#36153;&#29992;"</span>, <span style="color: #8b2252;">"&#24635;&#36153;&#29992;"</span> <span style="color: #7388d6;">}</span>;
-<span class="linenr">11: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2Values</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill <span style="color: #7388d6;">}</span>;
-<span class="linenr">12: </span>
-<span class="linenr">13: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row1</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
-<span class="linenr">14: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row2</span> = sheet1.<span style="color: #0000ff;">CreateRow</span><span style="color: #7388d6;">(</span>2<span style="color: #7388d6;">)</span>;
-<span class="linenr">15: </span>
-<span class="linenr">16: </span>    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">style</span> = book.<span style="color: #0000ff;">CreateCellStyle</span><span style="color: #7388d6;">()</span>;
-<span class="linenr">17: </span>    style.BottomBorderColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
-<span class="linenr">18: </span>    style.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thick;
-<span class="linenr">19: </span>    style.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index;
-<span class="linenr">20: </span>    style.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
-<span class="linenr">21: </span>    style.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
-<span class="linenr">22: </span>    style.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
-<span class="linenr">23: </span>
-<span class="linenr">24: </span>    row1.Height = 700;
-<span class="linenr">25: </span>    row2.Height = 500;
-<span class="linenr">26: </span>
-<span class="linenr">27: </span>    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; row1Values.Length; i++<span style="color: #7388d6;">)</span>
-<span class="linenr">28: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">29: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell1</span> = row1.<span style="color: #0000ff;">CreateCell</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
-<span class="linenr">30: </span>        cell1.<span style="color: #0000ff;">SetCellValue</span><span style="color: #909183;">(</span>row1Values<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
-<span class="linenr">31: </span>        cell1.CellStyle = style;
-<span class="linenr">32: </span>
-<span class="linenr">33: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell2</span> = row2.<span style="color: #0000ff;">CreateCell</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span>;
-<span class="linenr">34: </span>        cell2.<span style="color: #0000ff;">SetCellValue</span><span style="color: #909183;">(</span>row2Values<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
-<span class="linenr">35: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">36: </span>
-<span class="linenr">37: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
-<span class="linenr">38: </span>    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#23548;&#20986;..."</span><span style="color: #7388d6;">)</span>;
-<span class="linenr">39: </span>    <span style="color: #228b22;">FileStream</span> <span style="color: #a0522d;">file</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileStream</span><span style="color: #7388d6;">(</span>@<span style="color: #8b2252;">"D:\test.xls"</span>, FileMode.Create<span style="color: #7388d6;">)</span>;
-<span class="linenr">40: </span>    book.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span>file<span style="color: #7388d6;">)</span>;
-<span class="linenr">41: </span>    file.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
-<span class="linenr">42: </span>    book.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
-<span class="linenr">43: </span><span style="color: #707183;">}</span>
-</pre>
-</div>
-</div>
-</div>
+<ul class="org-ul">
+<li>如果 Excel 文件存在，直接使用</li>
+<li>如果 Excel 不存在，先创建并初始化，再使用</li>
+</ul>
 
-<div id="outline-container-orgf24a01a" class="outline-3">
-<h3 id="orgf24a01a"><span class="section-number-3">1.8</span> ExportToExcel - 3</h3>
-<div class="outline-text-3" id="text-1-8">
+<p>
+提示:
+</p>
+<ul class="org-ul">
+<li>务必要确保资源被合理释放 (<code>using</code>) !!!</li>
+<li><code>File.Exists</code> 用来判断文件存不存在</li>
+<li><code>File.OpenRead/OpenWrite</code> 用来打开文件，分别用作读和写。是简化的写法</li>
+</ul>
+
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel3</span><span style="color: #707183;">()</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
@@ -958,7 +948,7 @@
 <h3 id="org543e4ff"><span class="section-number-3">2.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-2-4">
 
-<figure id="org7d38a93">
+<figure id="org913e9ed">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -1233,7 +1223,7 @@
 </p>
 
 
-<figure id="orga5123a7">
+<figure id="org7378208">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -1349,7 +1339,7 @@
 </ul>
 
 
-<figure id="org558fb1c">
+<figure id="org4508f4f">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
