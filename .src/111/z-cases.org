@@ -516,6 +516,56 @@
   }
 #+end_src
 
+** ExportToExcel - 3
+
+#+begin_src csharp -n
+  public void ExportToExcel3()
+  {
+      var fileName = @"e:\xxxxx.xls";
+
+      IWorkbook workbook;
+      ISheet sheet;
+
+      if (File.Exists(fileName)) // 如果文件存在，那么打开使用它
+      {
+          Console.WriteLine("开始打开...");
+          using var sr = File.OpenRead(fileName);
+          workbook = new HSSFWorkbook(sr);
+          sheet = workbook.GetSheetAt(0);
+      }
+      else // 如果文件不存在，创建并使用它
+      {
+          Console.WriteLine("开始创建...");
+          workbook = new HSSFWorkbook();
+          sheet = workbook.CreateSheet();
+
+          Console.WriteLine("初始化头部...");
+          var heads = new[] { "月份", "度数", "一档费用", "二挡费用", "三档费用", "总费用" };
+          var headRow = sheet.CreateRow(0);
+          for (int i = 0; i < heads.Length; i++)
+          {
+              headRow.CreateCell(i).SetCellValue(heads[i]);
+          }
+      }
+
+      // 插入数据
+      Console.WriteLine("开始插入...");
+      var values = new[] { _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill };
+      var row = sheet.CreateRow(sheet.LastRowNum + 1);
+      for (int i = 0; i < values.Length; i++)
+      {
+          row.CreateCell(i).SetCellValue(values[i]);
+      }
+
+      // 保存 Excel
+      Console.WriteLine("开始保存...");
+      using var sw = File.OpenWrite(fileName);
+      workbook.Write(sw);
+
+      Console.WriteLine("导出成功!");
+  }
+#+end_src
+
 * 个税计算器 (简化版) [[id:6c800397-9525-4a5d-b857-4356fb81f85c][源]]
 ** 原始版本，*顺序* 执行
 
