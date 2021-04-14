@@ -1,0 +1,48 @@
+#+TITLE: 答疑 (Q & A)
+
+
+
+* 资源的释放
+
+- 资源，是指需要在操作系统中打开，用完之后，需要手动释放的对象
+- 为什么需要手动释放呢？因为 .NET 平台不是万能的。虽然 .NET 平台有垃圾回收器，你不再需要的
+  对象，它会自动帮你清理掉，但是有些东西它是无法确定你到底还需不需要，所以无法帮助你自动处理。
+  你也只能手动释放或关闭
+- 对于一些资源，必须要手动释放或关闭
+
+#+begin_src csharp
+  // 创建的任何对象，都是可以被垃圾回收器 (GC) 自动释放
+  // 因此，我们只需要 new 然后使用就可以了，其他的内存管理无需你关心
+  var a = new Book();
+
+  // 像文件这样的资源，打开之后，必须要手动释放
+  var fs = File.OpenRead(fileName);
+  Console.WriteLine(5/0); // 代表使用 (2)
+  fs.Close();            // 手动关闭/释放
+
+  // 上述的代码是有问题的，因为，如果 (2) 出现错误的话，那么释放的语句就无法执行
+  // 为了解决这个问题，可以使用 finally 语法，对整个资源释放的代码进行重构
+  FileStream fs = null;
+  try
+  {
+      fs = File.OpenRead(fileName);
+      Console.WriteLine(5/0);
+      Console.WriteLine("其他你所需要做的事情");
+  }
+  finally
+  {
+      if (fs != null)
+      {
+          try
+          {
+              fs.Close();
+          }
+          catch
+          {
+              Console.WriteLine("关闭失败");
+          }
+      }
+  }
+#+end_src
+
+
