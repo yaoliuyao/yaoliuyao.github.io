@@ -56,15 +56,15 @@
 <ul>
 <li><a href="#org62cc525">2.1. Console/控制台</a></li>
 <li><a href="#orgf8ba168">2.2. Random/Thread</a></li>
+<li><a href="#org6bf851a">2.3. IDisposable/资源</a></li>
 </ul>
 </li>
-<li><a href="#org6bf851a">3. IDisposable/资源</a></li>
-<li><a href="#org41d732e">4. 技巧和示例</a>
+<li><a href="#org41d732e">3. 技巧和示例</a>
 <ul>
-<li><a href="#org19fdba0">4.1. 求余</a></li>
+<li><a href="#org19fdba0">3.1. 求余</a></li>
 </ul>
 </li>
-<li><a href="#org2ec65d1">5. 其他</a></li>
+<li><a href="#org2ec65d1">4. 其他</a></li>
 </ul>
 </div>
 </nav>
@@ -429,11 +429,10 @@ readonly:
 </div>
 </div>
 </div>
-</section>
 
-<section id="outline-container-org6bf851a" class="outline-2">
-<h2 id="org6bf851a"><span class="section-number-2">3</span> IDisposable/资源</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org6bf851a" class="outline-3">
+<h3 id="org6bf851a"><span class="section-number-3">2.3</span> IDisposable/资源</h3>
+<div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>资源，是指需要在操作系统中打开，用完之后，需要手动释放的对象</li>
 <li>为什么需要手动释放呢？因为 .NET 平台不是万能的。虽然 .NET 平台有垃圾回收器，你不再需要的
@@ -505,15 +504,16 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </pre>
 </div>
 </div>
+</div>
 </section>
 
 <section id="outline-container-org41d732e" class="outline-2">
-<h2 id="org41d732e"><span class="section-number-2">4</span> 技巧和示例</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org41d732e"><span class="section-number-2">3</span> 技巧和示例</h2>
+<div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org19fdba0" class="outline-3">
-<h3 id="org19fdba0"><span class="section-number-3">4.1</span> 求余</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org19fdba0"><span class="section-number-3">3.1</span> 求余</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 求余经常用来将某个数 <b>转换</b> 为 0-N 区间的一个数。
 </p>
@@ -583,8 +583,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org2ec65d1" class="outline-2">
-<h2 id="org2ec65d1"><span class="section-number-2">5</span> 其他</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org2ec65d1"><span class="section-number-2">4</span> 其他</h2>
+<div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">aFriend</span> = <span style="color: #8b2252;">"&#27604;&#23572;"</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">bFriend</span> = <span style="color: #8b2252;">"&#23567;&#26126;"</span>;
