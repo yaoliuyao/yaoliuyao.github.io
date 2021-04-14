@@ -7,9 +7,7 @@
 :CUSTOM_ID: active
 :END:
 
-#+begin_export html
-<p style="color: red; font-size: 120px">敲代码!!!</p>
-#+end_export
+敲代码.
 
 * [2021-04-09 Fri]
 
