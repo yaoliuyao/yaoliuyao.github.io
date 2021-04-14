@@ -442,12 +442,24 @@ readonly:
 <li>对于一些资源，必须要手动释放或关闭</li>
 </ul>
 
+<p>
+对于普通的对象，是可以被 GC 自动回收的:
+</p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#21019;&#24314;&#30340;&#20219;&#20309;&#23545;&#35937;&#65292;&#37117;&#26159;&#21487;&#20197;&#34987;&#22403;&#22334;&#22238;&#25910;&#22120; (GC) &#33258;&#21160;&#37322;&#25918;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22240;&#27492;&#65292;&#25105;&#20204;&#21482;&#38656;&#35201; new &#28982;&#21518;&#20351;&#29992;&#23601;&#21487;&#20197;&#20102;&#65292;&#20854;&#20182;&#30340;&#20869;&#23384;&#31649;&#29702;&#26080;&#38656;&#20320;&#20851;&#24515;</span>
-<span style="color: #228b22;">var</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #7388d6;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21019;&#24314;&#22810;&#23569;&#20010;&#37117;&#20250;&#34987;&#33258;&#21160;&#37322;&#25918;&#65292;&#32477;&#23545;&#23433;&#20840;</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20687;&#25991;&#20214;&#36825;&#26679;&#30340;&#36164;&#28304;&#65292;&#25171;&#24320;&#20043;&#21518;&#65292;&#24517;&#39035;&#35201;&#25163;&#21160;&#37322;&#25918;</span>
+<p>
+但是对于一些依赖系统的资源，必须要手动释放:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20687;&#25991;&#20214;&#36825;&#26679;&#30340;&#36164;&#28304;&#65292;&#25171;&#24320;&#20043;&#21518;&#65292;&#24517;&#39035;&#35201;&#25163;&#21160;&#37322;&#25918;</span>
 <span style="color: #228b22;">var</span> <span style="color: #a0522d;">fs</span> = File.<span style="color: #0000ff;">OpenRead</span><span style="color: #707183;">(</span>fileName<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>5/0<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20195;&#34920;&#20351;&#29992; (2)</span>
 fs.<span style="color: #0000ff;">Close</span><span style="color: #707183;">()</span>;             <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25163;&#21160;&#20851;&#38381;/&#37322;&#25918;</span>
