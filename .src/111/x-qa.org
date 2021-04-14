@@ -18,7 +18,7 @@
   // 像文件这样的资源，打开之后，必须要手动释放
   var fs = File.OpenRead(fileName);
   Console.WriteLine(5/0); // 代表使用 (2)
-  fs.Close();            // 手动关闭/释放
+  fs.Close();             // 手动关闭/释放
 
   // 上述的代码是有问题的，因为，如果 (2) 出现错误的话，那么释放的语句就无法执行
   // 为了解决这个问题，可以使用 finally 语法，对整个资源释放的代码进行重构
@@ -26,6 +26,7 @@
   try
   {
       fs = File.OpenRead(fileName);
+      Console.WriteLine(fs);
       Console.WriteLine(5/0);
       Console.WriteLine("其他你所需要做的事情");
   }
@@ -43,6 +44,22 @@
           }
       }
   }
+
+  // 可以使用 using 对上述代码进行简化
+  // 必须让 FileStream 里面实现一个叫 Close 的方法
+  // 为了保证你必须实现一个 Close 方法，你必须要实现 IDisposable 接口
+  using (FileStream fs = File.OpenRead(fileName))
+  {
+      Console.WriteLine(fs);
+      Console.WriteLine(5/0);
+      Console.WriteLine("其他你所需要做的事情");
+  }
+
+  // 最新的 C# 版本又给了新的糖
+  using FileStream fs = File.OpenRead(fileName); // fs 在后面碰到 } 后，会自动释放
+  Console.WriteLine(fs);
+  Console.WriteLine(5/0);
+  Console.WriteLine("其他你所需要做的事情");
 #+end_src
 
 

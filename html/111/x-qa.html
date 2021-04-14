@@ -68,7 +68,7 @@
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20687;&#25991;&#20214;&#36825;&#26679;&#30340;&#36164;&#28304;&#65292;&#25171;&#24320;&#20043;&#21518;&#65292;&#24517;&#39035;&#35201;&#25163;&#21160;&#37322;&#25918;</span>
 <span style="color: #228b22;">var</span> <span style="color: #a0522d;">fs</span> = File.<span style="color: #0000ff;">OpenRead</span><span style="color: #707183;">(</span>fileName<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>5/0<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20195;&#34920;&#20351;&#29992; (2)</span>
-fs.<span style="color: #0000ff;">Close</span><span style="color: #707183;">()</span>;            <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25163;&#21160;&#20851;&#38381;/&#37322;&#25918;</span>
+fs.<span style="color: #0000ff;">Close</span><span style="color: #707183;">()</span>;             <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25163;&#21160;&#20851;&#38381;/&#37322;&#25918;</span>
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19978;&#36848;&#30340;&#20195;&#30721;&#26159;&#26377;&#38382;&#39064;&#30340;&#65292;&#22240;&#20026;&#65292;&#22914;&#26524; (2) &#20986;&#29616;&#38169;&#35823;&#30340;&#35805;&#65292;&#37027;&#20040;&#37322;&#25918;&#30340;&#35821;&#21477;&#23601;&#26080;&#27861;&#25191;&#34892;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20026;&#20102;&#35299;&#20915;&#36825;&#20010;&#38382;&#39064;&#65292;&#21487;&#20197;&#20351;&#29992; finally &#35821;&#27861;&#65292;&#23545;&#25972;&#20010;&#36164;&#28304;&#37322;&#25918;&#30340;&#20195;&#30721;&#36827;&#34892;&#37325;&#26500;</span>
@@ -76,6 +76,7 @@ fs.<span style="color: #0000ff;">Close</span><span style="color: #707183;">()</s
 <span style="color: #a020f0;">try</span>
 <span style="color: #707183;">{</span>
     fs = File.<span style="color: #0000ff;">OpenRead</span><span style="color: #7388d6;">(</span>fileName<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>fs<span style="color: #7388d6;">)</span>;
     Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>5/0<span style="color: #7388d6;">)</span>;
     Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20854;&#20182;&#20320;&#25152;&#38656;&#35201;&#20570;&#30340;&#20107;&#24773;"</span><span style="color: #7388d6;">)</span>;
 <span style="color: #707183;">}</span>
@@ -93,6 +94,22 @@ fs.<span style="color: #0000ff;">Close</span><span style="color: #707183;">()</s
         <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#20351;&#29992; using &#23545;&#19978;&#36848;&#20195;&#30721;&#36827;&#34892;&#31616;&#21270;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#24517;&#39035;&#35753; FileStream &#37324;&#38754;&#23454;&#29616;&#19968;&#20010;&#21483; Close &#30340;&#26041;&#27861;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20026;&#20102;&#20445;&#35777;&#20320;&#24517;&#39035;&#23454;&#29616;&#19968;&#20010; Close &#26041;&#27861;&#65292;&#20320;&#24517;&#39035;&#35201;&#23454;&#29616; IDisposable &#25509;&#21475;</span>
+<span style="color: #a020f0;">using</span> <span style="color: #707183;">(</span><span style="color: #228b22;">FileStream</span> <span style="color: #a0522d;">fs</span> = File.<span style="color: #0000ff;">OpenRead</span><span style="color: #7388d6;">(</span>fileName<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>fs<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>5/0<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20854;&#20182;&#20320;&#25152;&#38656;&#35201;&#20570;&#30340;&#20107;&#24773;"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26368;&#26032;&#30340; C# &#29256;&#26412;&#21448;&#32473;&#20102;&#26032;&#30340;&#31958;</span>
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">FileStream</span> f<span style="color: #a0522d;">s</span> = <span style="color: #a0522d;">File</span>.<span style="color: #a0522d;">OpenRead</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fileName</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">fs &#22312;&#21518;&#38754;&#30896;&#21040; } &#21518;&#65292;&#20250;&#33258;&#21160;&#37322;&#25918;</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>fs<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>5/0<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#20854;&#20182;&#20320;&#25152;&#38656;&#35201;&#20570;&#30340;&#20107;&#24773;"</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
