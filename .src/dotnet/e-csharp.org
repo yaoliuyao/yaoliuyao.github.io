@@ -44,12 +44,12 @@ if:
 
 switch:
 #+begin_src csharp
-  switch
+  switch (exp)
   {
-      case bool:
+      case a:
           做什么;
           break;
-      case bool:
+      case b:
           做什么;
           break;
   }
