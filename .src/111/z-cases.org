@@ -4,6 +4,7 @@
 
 
 * 导出为 Excel 的总结
+** Repeat Yourself
 
 电费:
 #+begin_src csharp -n
@@ -123,6 +124,28 @@
       }
       using var sw = File.OpenWrite(fileName);
       workbook.Write(sw);
+  }
+#+end_src
+
+** 分离!
+
+#+begin_src csharp
+  public void ExcelExcel(string fileName)
+  {
+      IWorkbook workbook = OpenOrCreateWorkbook(fileName);
+      ISheet sheet = workbook.GetSheetAt(0);
+
+      // 头
+      if (sheet.LastRowNum == 0)
+      {
+          CreateRowForSheet(sheet, 0, new[] { "账单总额", "小费数额", "小费税率", "账单实付" });
+      }
+
+      // 数据
+      CreateRowForSheet(sheet, sheet.LastRowNum + 1, new string[] { Bill.ToString(), Tip.ToString(), RATE.ToString(), (Bill + Tip).ToString() });
+
+      // 保存
+      SaveAndCloseWorkbook(workbook, fileName);
   }
 #+end_src
 
