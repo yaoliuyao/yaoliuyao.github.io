@@ -1,6 +1,60 @@
 #+TITLE: C♯
 
 
+* 控制流程
+** 条件判断/分支
+
+- 规则 (rule)
+
+if:
+#+begin_src csharp
+  // if
+  if (bool)
+  {
+  }
+
+  // if / else
+  if (bool)
+  {
+  }
+  else
+  {
+  }
+
+  // if / else if / ... / else
+  if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else
+  {
+  }
+#+end_src
+
+switch:
+#+begin_src csharp
+  switch
+  {
+      case bool:
+          做什么;
+          break;
+      case bool:
+          做什么;
+          break;
+  }
+#+end_src
+
 * 类跟对象 (Class/Instance)
 ** 字段 (Field)
 
