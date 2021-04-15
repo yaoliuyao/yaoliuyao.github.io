@@ -2,6 +2,130 @@
 
 
 
+
+* 导出为 Excel 的总结
+
+电费:
+#+begin_src csharp -n
+  public void ExportToExcel(string fileName)
+  {
+      IWorkbook workbook;
+      ISheet sheet;
+
+      if (File.Exists(fileName)) // 如果文件存在，那么打开使用它
+      {
+          Console.WriteLine("开始打开...");
+          using var sr = File.OpenRead(fileName);
+          workbook = new HSSFWorkbook(sr);
+          sheet = workbook.GetSheetAt(0);
+      }
+      else // 如果文件不存在，创建并使用它
+      {
+          Console.WriteLine("开始创建...");
+          workbook = new HSSFWorkbook();
+          sheet = workbook.CreateSheet();
+
+          Console.WriteLine("初始化头部...");
+          var heads = new[] { "月份", "度数", "一档费用", "二挡费用", "三档费用", "总费用" };
+          var headRow = sheet.CreateRow(0);
+          for (int i = 0; i < heads.Length; i++)
+          {
+              headRow.CreateCell(i).SetCellValue(heads[i]);
+          }
+      }
+
+      // 插入数据
+      Console.WriteLine("开始插入...");
+      var values = new[] { _month, _used, Lv1Cost, Lv2Cost, Lv3Cost, Bill };
+      var row = sheet.CreateRow(sheet.LastRowNum + 1);
+      for (int i = 0; i < values.Length; i++)
+      {
+          row.CreateCell(i).SetCellValue(values[i]);
+      }
+
+      // 保存 Excel
+      Console.WriteLine("开始保存...");
+      using FileStream sw = File.OpenWrite(fileName);
+      workbook.Write(sw);
+
+      Console.WriteLine("导出成功!");
+  }
+#+end_src
+
+个税:
+#+begin_src csharp -n
+  public void ExportToExcel2()
+  {
+      var fileName = @"D:\xxxx.xls";
+      IWorkbook workbook;
+      ISheet sheet;
+      if (File.Exists(fileName))
+      {
+          using var sr = File.OpenRead(fileName);
+          workbook = new HSSFWorkbook(sr);
+          sheet = workbook.GetSheetAt(0);
+      }
+      else
+      {
+          workbook = new HSSFWorkbook();
+          sheet = workbook.CreateSheet();
+
+          var head = new[] { "税前收入", "应交税", "税后收入" };
+          var headRow = sheet.CreateRow(0);
+          for(int i = 0; i < head.Length; i++)
+          {
+              headRow.CreateCell(i).SetCellValue(head[i]);
+          }
+      }
+
+      var heads = new[] { Money, Tax, Money - Tax };
+      var row = sheet.CreateRow(sheet.LastRowNum + 1);
+      for (int i = 0; i < heads.Length; i++)
+      {
+          row.CreateCell(i).SetCellValue(heads[i]);
+      }
+
+      using var sw = File.OpenWrite(fileName);
+      workbook.Write(sw);
+  }
+#+end_src
+
+小费:
+#+begin_src csharp -n
+  public void ExcelExcel()
+  {
+      var fileName = @"D:\eee.xls";
+      IWorkbook workbook;
+      ISheet sheet;
+      if (File.Exists(fileName))
+      {
+          using var sr = File.OpenRead(fileName);
+          workbook = new HSSFWorkbook(sr);
+          sheet = workbook.GetSheetAt(0);
+      }
+      else
+      {
+          workbook = new HSSFWorkbook();
+          sheet = workbook.CreateSheet();
+
+          var headValues = new[] { "账单总额", "小费数额", "小费税率", "账单实付" };
+          var head = sheet.CreateRow(0);
+          for (int i = 0; i < headValues.Length; i++)
+          {
+              head.CreateCell(i).SetCellValue(headValues[i]);
+          }
+      }
+      var row1Values = new[] { Bill, Tip, RATE, Bill + Tip };
+      var row1 = sheet.CreateRow(sheet.LastRowNum + 1);
+      for (int i = 0; i < row1Values.Length; i++)
+      {
+          row1.CreateCell(i).SetCellValue(row1Values[i]);
+      }
+      using var sw = File.OpenWrite(fileName);
+      workbook.Write(sw);
+  }
+#+end_src
+
 * 阶梯电费计算
 ** 第一种解决方案
 
