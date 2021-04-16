@@ -134,6 +134,7 @@
   {
       // ...
 
+      // 分离出来的逻辑
       public IWorkbook OpenOrCreateWorkbook(string fileName)
       {
           if (File.Exists(fileName))
@@ -150,7 +151,6 @@
               return workbook;
           }
       }
-
       public void SaveAndCloseWorkbook(IWorkbook workbook, string fileName)
       {
           Console.WriteLine("开始保存...");
@@ -168,7 +168,6 @@
               workbook.Close();
           }
       }
-
       public void CreateRowForSheet(ISheet sheet, int rownum, string[] data)
       {
           Console.Write("开始插入数据行...");
@@ -182,22 +181,30 @@
           Console.WriteLine();
       }
 
-      public void Export(string fileName)
+      // 可以清爽地调用
+      public void Export1(string fileName)
       {
           IWorkbook workbook = OpenOrCreateWorkbook(fileName);
           ISheet sheet = workbook.GetSheetAt(0);
 
           // 头
-          if (sheet.LastRowNum == 0)
-          {
-              CreateRowForSheet(sheet, 0, new[] { "账单总额", "小费数额", "小费税率", "账单实付" });
-          }
+          if (sheet.LastRowNum == 0) { CreateRowForSheet(sheet, 0, new[] { "账单总额", "小费数额", "小费税率", "账单实付" }); }
 
           // 数据
           var data = new[] { Bill, Tip, RATE, Bill + Tip };
           CreateRowForSheet(sheet, sheet.LastRowNum + 1, (from i in data select i.ToString()).ToArray());
 
           // 保存
+          SaveAndCloseWorkbook(workbook, fileName);
+      }
+      public void Export2(string fileName)
+      {
+          IWorkbook workbook = OpenOrCreateWorkbook(fileName);
+          ISheet sheet = workbook.GetSheetAt(0);
+
+          if (sheet.LastRowNum == 0)
+              CreateRowForSheet(sheet, 0, new[] { "Bill", "Fee", "Payment" });
+          CreateRowForSheet(sheet, sheet.LastRowNum + 1, (from i in (new[] { Bill, Tip, Bill + Tip }) select i.ToString()).ToArray());
           SaveAndCloseWorkbook(workbook, fileName);
       }
   }
