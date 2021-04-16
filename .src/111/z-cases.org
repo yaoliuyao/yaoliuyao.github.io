@@ -127,25 +127,79 @@
   }
 #+end_src
 
-** 分离!
+** 当逻辑在不同方法中 Repeat，将其 *分离* 为单独的方法
 
-#+begin_src csharp
-  public void ExcelExcel(string fileName)
+#+begin_src csharp -n
+  class TipCalc
   {
-      IWorkbook workbook = OpenOrCreateWorkbook(fileName);
-      ISheet sheet = workbook.GetSheetAt(0);
+      // ...
 
-      // 头
-      if (sheet.LastRowNum == 0)
+      public IWorkbook OpenOrCreateWorkbook(string fileName)
       {
-          CreateRowForSheet(sheet, 0, new[] { "账单总额", "小费数额", "小费税率", "账单实付" });
+          if (File.Exists(fileName))
+          {
+              Console.WriteLine("文件存在，现在开始打开...");
+              using var sr = File.OpenRead(fileName);
+              return new HSSFWorkbook(sr);
+          }
+          else
+          {
+              Console.WriteLine("文件不存在，现在开始创建新的 WOrkbook 对象");
+              var workbook = new HSSFWorkbook();
+              workbook.CreateSheet();
+              return workbook;
+          }
       }
 
-      // 数据
-      CreateRowForSheet(sheet, sheet.LastRowNum + 1, new string[] { Bill.ToString(), Tip.ToString(), RATE.ToString(), (Bill + Tip).ToString() });
+      public void SaveAndCloseWorkbook(IWorkbook workbook, string fileName)
+      {
+          Console.WriteLine("开始保存...");
+          try
+          {
+              using var sw = File.OpenWrite(fileName);
+              workbook.Write(sw);
+          }
+          catch
+          {
+              Console.WriteLine("保存出错");
+          }
+          finally
+          {
+              workbook.Close();
+          }
+      }
 
-      // 保存
-      SaveAndCloseWorkbook(workbook, fileName);
+      public void CreateRowForSheet(ISheet sheet, int rownum, string[] data)
+      {
+          Console.Write("开始插入数据行...");
+          var row = sheet.CreateRow(rownum);
+
+          for (int i = 0; i < data.Length; i++)
+          {
+              Console.Write($"{i}  ");
+              row.CreateCell(i).SetCellValue(data[i]);
+          }
+          Console.WriteLine();
+      }
+
+      public void Export(string fileName)
+      {
+          IWorkbook workbook = OpenOrCreateWorkbook(fileName);
+          ISheet sheet = workbook.GetSheetAt(0);
+
+          // 头
+          if (sheet.LastRowNum == 0)
+          {
+              CreateRowForSheet(sheet, 0, new[] { "账单总额", "小费数额", "小费税率", "账单实付" });
+          }
+
+          // 数据
+          var data = new[] { Bill, Tip, RATE, Bill + Tip };
+          CreateRowForSheet(sheet, sheet.LastRowNum + 1, (from i in data select i.ToString()).ToArray());
+
+          // 保存
+          SaveAndCloseWorkbook(workbook, fileName);
+      }
   }
 #+end_src
 
