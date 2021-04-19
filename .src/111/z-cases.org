@@ -1059,62 +1059,6 @@
 *** 或者可以 *继承*
 
 #+begin_src csharp -n
-  class ExcelHelper
-  {
-      public bool isShowMessage = true;
-
-      public IWorkbook OpenOrCreateWorkbook(string fileName)
-      {
-          if (File.Exists(fileName))
-          {
-              if (isShowMessage)
-              {
-                  Console.WriteLine("文件存在，现在开始打开...");
-              }
-              using var sr = File.OpenRead(fileName);
-              return new HSSFWorkbook(sr);
-          }
-          else
-          {
-              Console.WriteLine("文件不存在，现在开始创建新的 WOrkbook 对象");
-              var workbook = new HSSFWorkbook();
-              workbook.CreateSheet();
-              return workbook;
-          }
-      }
-
-      public void SaveAndCloseWorkbook(IWorkbook workbook, string fileName)
-      {
-          Console.WriteLine("开始保存...");
-          try
-          {
-              using var sw = File.OpenWrite(fileName);
-              workbook.Write(sw);
-          }
-          catch
-          {
-              Console.WriteLine("保存出错");
-          }
-          finally
-          {
-              workbook.Close();
-          }
-      }
-
-      public void CreateRowForSheet(ISheet sheet, int rownum, string[] data)
-      {
-          Console.Write("开始插入数据行...");
-          var row = sheet.CreateRow(rownum);
-
-          for (int i = 0; i < data.Length; i++)
-          {
-              Console.Write($"{i}  ");
-              row.CreateCell(i).SetCellValue(data[i]);
-          }
-          Console.WriteLine();
-      }
-  }
-
   class TipCalc : ExcelHelper
   {
       public TipCalc(double bill)
