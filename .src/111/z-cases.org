@@ -1190,11 +1190,6 @@
           // 保存
           SaveAndCloseWorkbook(workbook, fileName);
       }
-
-      public void ExcelExcel2(string fileName)
-      {
-          OpenOrCreateWorkbook(fileName);
-      }
   }
 
   class TaxCalc : ExcelHelper
