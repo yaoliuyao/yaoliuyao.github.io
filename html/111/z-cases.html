@@ -46,8 +46,13 @@
 <ul>
 <li><a href="#orge0dfb86">1.1. Repeat Yourself</a></li>
 <li><a href="#org4f209d2">1.2. 当逻辑在不同方法中 Repeat，将其 <b>分离</b> 为单独的方法</a></li>
-<li><a href="#org4c434c9">1.3. 当方法在不同类中 Repeat</a></li>
-<li><a href="#orge3998e0">1.4. 首先将重复的方法 <b>分离</b> 到单独的类中</a></li>
+<li><a href="#org4c434c9">1.3. 当方法在不同类中 Repeat</a>
+<ul>
+<li><a href="#orge3998e0">1.3.1. 首先将重复的方法 <b>分离</b> 到单独的类中</a></li>
+<li><a href="#org1e01fcc">1.3.2. 然后可以 <b>组合</b></a></li>
+<li><a href="#org75bbfaf">1.3.3. 或者可以 <b>继承</b></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org633dab8">2. 阶梯电费计算</a>
@@ -788,13 +793,12 @@
 </pre>
 </div>
 </div>
-</div>
 
 
 
-<div id="outline-container-orge3998e0" class="outline-3">
-<h3 id="orge3998e0"><span class="section-number-3">1.4</span> 首先将重复的方法 <b>分离</b> 到单独的类中</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-orge3998e0" class="outline-4">
+<h4 id="orge3998e0"><span class="section-number-4">1.3.1</span> 首先将重复的方法 <b>分离</b> 到单独的类中</h4>
+<div class="outline-text-4" id="text-1-3-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ExcelHelper</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
@@ -852,6 +856,27 @@
 <span class="linenr">54: </span>    <span style="color: #7388d6;">}</span>
 <span class="linenr">55: </span><span style="color: #707183;">}</span>
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1e01fcc" class="outline-4">
+<h4 id="org1e01fcc"><span class="section-number-4">1.3.2</span> 然后可以 <b>组合</b></h4>
+<div class="outline-text-4" id="text-1-3-2">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr">1: </span><span style="color: #b22222;">//</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org75bbfaf" class="outline-4">
+<h4 id="org75bbfaf"><span class="section-number-4">1.3.3</span> 或者可以 <b>继承</b></h4>
+<div class="outline-text-4" id="text-1-3-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr">1: </span><span style="color: #b22222;">//</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1717,7 +1742,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org543e4ff"><span class="section-number-3">3.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-3-4">
 
-<figure id="org32d668e">
+<figure id="org9a3fc2b">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -1992,7 +2017,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org9cb7a6e">
+<figure id="org85116cd">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -2108,7 +2133,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org32a5cd1">
+<figure id="org870a9d8">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>

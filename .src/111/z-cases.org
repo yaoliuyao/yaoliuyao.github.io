@@ -672,7 +672,7 @@
 
 
 
-** 首先将重复的方法 *分离* 到单独的类中
+*** 首先将重复的方法 *分离* 到单独的类中
 
 #+begin_src csharp -n
   class ExcelHelper
@@ -730,6 +730,18 @@
           Console.WriteLine();
       }
   }
+#+end_src
+
+*** 然后可以 *组合*
+
+#+begin_src csharp -n
+  //
+#+end_src
+
+*** 或者可以 *继承*
+
+#+begin_src csharp -n
+  //
 #+end_src
 
 * 阶梯电费计算
