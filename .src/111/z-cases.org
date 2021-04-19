@@ -212,7 +212,7 @@
   }
 #+end_src
 
-** Repeat in Class
+** 当方法在不同类中 Repeat
 
 #+begin_src csharp -n
   class TipCalc
