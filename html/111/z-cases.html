@@ -47,6 +47,7 @@
 <li><a href="#orge0dfb86">1.1. Repeat Yourself</a></li>
 <li><a href="#org4f209d2">1.2. 当逻辑在不同方法中 Repeat，将其 <b>分离</b> 为单独的方法</a></li>
 <li><a href="#org4c434c9">1.3. 当方法在不同类中 Repeat</a></li>
+<li><a href="#orge3998e0">1.4. 首先将重复的方法 <b>分离</b> 到单独的类中</a></li>
 </ul>
 </li>
 <li><a href="#org633dab8">2. 阶梯电费计算</a>
@@ -784,6 +785,72 @@
 <span class="linenr">451: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
 <span class="linenr">452: </span>    <span style="color: #7388d6;">}</span>
 <span class="linenr">453: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orge3998e0" class="outline-3">
+<h3 id="orge3998e0"><span class="section-number-3">1.4</span> 首先将重复的方法 <b>分离</b> 到单独的类中</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ExcelHelper</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">isShowMessage</span> = <span style="color: #008b8b;">true</span>;
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IWorkbook</span> <span style="color: #0000ff;">OpenOrCreateWorkbook</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
+<span class="linenr"> 6: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 7: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>File.<span style="color: #0000ff;">Exists</span><span style="color: #709870;">(</span><span style="color: #228b22;">fileName</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+<span class="linenr"> 8: </span>        <span style="color: #909183;">{</span>
+<span class="linenr"> 9: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>isShowMessage<span style="color: #709870;">)</span>
+<span class="linenr">10: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">11: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#25991;&#20214;&#23384;&#22312;&#65292;&#29616;&#22312;&#24320;&#22987;&#25171;&#24320;..."</span><span style="color: #907373;">)</span>;
+<span class="linenr">12: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">13: </span>            <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> sr = File.<span style="color: #0000ff;">OpenRead</span><span style="color: #709870;">(</span><span style="color: #228b22;">fileName</span><span style="color: #709870;">)</span>;
+<span class="linenr">14: </span>            <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HSSFWorkbook</span><span style="color: #709870;">(</span><span style="color: #228b22;">sr</span><span style="color: #709870;">)</span>;
+<span class="linenr">15: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">16: </span>        <span style="color: #a020f0;">else</span>
+<span class="linenr">17: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">18: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#25991;&#20214;&#19981;&#23384;&#22312;&#65292;&#29616;&#22312;&#24320;&#22987;&#21019;&#24314;&#26032;&#30340; WOrkbook &#23545;&#35937;"</span><span style="color: #709870;">)</span>;
+<span class="linenr">19: </span>            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">workbook</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HSSFWorkbook</span><span style="color: #709870;">()</span>;
+<span class="linenr">20: </span>            workbook.<span style="color: #0000ff;">CreateSheet</span><span style="color: #709870;">()</span>;
+<span class="linenr">21: </span>            <span style="color: #a020f0;">return</span> workbook;
+<span class="linenr">22: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">23: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">24: </span>
+<span class="linenr">25: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">SaveAndCloseWorkbook</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">IWorkbook</span> <span style="color: #a0522d;">workbook</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
+<span class="linenr">26: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">27: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#20445;&#23384;..."</span><span style="color: #909183;">)</span>;
+<span class="linenr">28: </span>        <span style="color: #a020f0;">try</span>
+<span class="linenr">29: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">30: </span>            <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> sw = File.<span style="color: #0000ff;">OpenWrite</span><span style="color: #709870;">(</span><span style="color: #228b22;">fileName</span><span style="color: #709870;">)</span>;
+<span class="linenr">31: </span>            workbook.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #228b22;">sw</span><span style="color: #709870;">)</span>;
+<span class="linenr">32: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">33: </span>        <span style="color: #a020f0;">catch</span>
+<span class="linenr">34: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">35: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#20445;&#23384;&#20986;&#38169;"</span><span style="color: #709870;">)</span>;
+<span class="linenr">36: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">37: </span>        <span style="color: #a020f0;">finally</span>
+<span class="linenr">38: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">39: </span>            workbook.<span style="color: #0000ff;">Close</span><span style="color: #709870;">()</span>;
+<span class="linenr">40: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">41: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">42: </span>
+<span class="linenr">43: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rownum</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">data</span><span style="color: #7388d6;">)</span>
+<span class="linenr">44: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">45: </span>        Console.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#25554;&#20837;&#25968;&#25454;&#34892;..."</span><span style="color: #909183;">)</span>;
+<span class="linenr">46: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row</span> = sheet.<span style="color: #0000ff;">CreateRow</span><span style="color: #909183;">(</span><span style="color: #228b22;">rownum</span><span style="color: #909183;">)</span>;
+<span class="linenr">47: </span>
+<span class="linenr">48: </span>        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; data.Length; i++<span style="color: #909183;">)</span>
+<span class="linenr">49: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">50: </span>            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"{i}  "</span><span style="color: #709870;">)</span>;
+<span class="linenr">51: </span>            row.<span style="color: #0000ff;">CreateCell</span><span style="color: #709870;">(</span><span style="color: #228b22;">i</span><span style="color: #709870;">)</span>.<span style="color: #0000ff;">SetCellValue</span><span style="color: #709870;">(</span><span style="color: #228b22;">data</span><span style="color: #907373;">[</span>i<span style="color: #907373;">]</span><span style="color: #709870;">)</span>;
+<span class="linenr">52: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">53: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+<span class="linenr">54: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">55: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -1650,7 +1717,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org543e4ff"><span class="section-number-3">3.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-3-4">
 
-<figure id="orgd3057b3">
+<figure id="org32d668e">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -1925,7 +1992,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="orgb172e8b">
+<figure id="org9cb7a6e">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -2041,7 +2108,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org6b79791">
+<figure id="org32a5cd1">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
