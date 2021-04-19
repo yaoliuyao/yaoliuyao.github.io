@@ -215,7 +215,6 @@
 ** Repeat in Class
 
 #+begin_src csharp -n
-
   class TipCalc
   {
       public TipCalc(double bill)
