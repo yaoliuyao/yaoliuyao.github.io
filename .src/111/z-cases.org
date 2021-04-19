@@ -213,6 +213,7 @@
 #+end_src
 
 ** 当方法在不同类中 Repeat
+*** 在类中 Repeat Yourself
 
 #+begin_src csharp -n
   class TipCalc
