@@ -998,7 +998,7 @@
   }
 #+end_src
 
-** 继续 DRY
+** 继续抽象 ExportToExcel (DRY)
 *** 使用 *组合* 方式实现
 
 #+begin_src csharp -n
