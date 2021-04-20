@@ -998,6 +998,133 @@
   }
 #+end_src
 
+** 继续 DRY
+*** 使用 *组合* 方式实现
+
+#+begin_src csharp -n
+  namespace X
+  {
+      class ExcelHelper
+      {
+          public bool isShowMessage = true;
+
+          public IWorkbook OpenOrCreateWorkbook(string fileName)
+          {
+              if (File.Exists(fileName))
+              {
+                  if (isShowMessage)
+                  {
+                      Console.WriteLine("文件存在，现在开始打开...");
+                  }
+                  using var sr = File.OpenRead(fileName);
+                  return new HSSFWorkbook(sr);
+              }
+              else
+              {
+                  Console.WriteLine("文件不存在，现在开始创建新的 WOrkbook 对象");
+                  var workbook = new HSSFWorkbook();
+                  workbook.CreateSheet();
+                  return workbook;
+              }
+          }
+
+          public void SaveAndCloseWorkbook(IWorkbook workbook, string fileName)
+          {
+              Console.WriteLine("开始保存...");
+              try
+              {
+                  using var sw = File.OpenWrite(fileName);
+                  workbook.Write(sw);
+              }
+              catch
+              {
+                  Console.WriteLine("保存出错");
+              }
+              finally
+              {
+                  workbook.Close();
+              }
+          }
+
+          public void CreateRowForSheet(ISheet sheet, int rownum, string[] data)
+          {
+              Console.Write("开始插入数据行...");
+              var row = sheet.CreateRow(rownum);
+
+              for (int i = 0; i < data.Length; i++)
+              {
+                  Console.Write($"{i}  ");
+                  row.CreateCell(i).SetCellValue(data[i]);
+              }
+              Console.WriteLine();
+          }
+
+          public void ExportToExcel(string fileName, string[] heads, string[] values)
+          {
+              IWorkbook workbook = OpenOrCreateWorkbook(fileName);
+              ISheet sheet = workbook.GetSheetAt(0);
+
+              // 头
+              if (sheet.LastRowNum == 0)
+              {
+                  CreateRowForSheet(sheet, 0, heads);
+              }
+
+              // 数据
+              CreateRowForSheet(sheet, sheet.LastRowNum + 1, values);
+
+              // 保存
+              SaveAndCloseWorkbook(workbook, fileName);
+          }
+      }
+
+      class TipCalc
+      {
+          ExcelHelper helper = new ExcelHelper();
+
+          // ...
+        
+          public void ExcelExcel(string fileName)
+          {
+              helper.ExportToExcel(fileName,
+                  new[] {"账单总额", "小费数额", "小费税率", "账单实付"},
+                  new[] {Bill.ToString(), Tip.ToString(), RATE.ToString(), (Bill + Tip).ToString()}
+              );
+          }
+      }
+
+      class TaxCalc
+      {
+          ExcelHelper helper = new ExcelHelper();
+
+          // ...
+
+          public void ExportToExcel2(string fileName)
+          {
+              helper.ExportToExcel(fileName,
+                  new[] { "税前收入", "应交税", "税后收入" },
+                  new[] { Money.ToString(), Tax.ToString(), (Money - Tax).ToString() }
+              );
+          }
+      }
+
+      class ElectricBillCalc
+      {
+          ExcelHelper helper = new ExcelHelper();
+
+          // ...
+
+          public void ExportToExcel(string fileName)
+          {
+              helper.ExportToExcel(fileName,
+                  new[] { "月份", "度数", "一档费用", "二挡费用", "三档费用", "总费用" },
+                  new[] { _month.ToString(), _used.ToString(), Lv1Cost.ToString(), Lv2Cost.ToString(), Lv3Cost.ToString(), Bill.ToString() }
+              );
+          }
+      }
+  }
+#+end_src
+
 * 阶梯电费计算
 ** 第一种解决方案
 
