@@ -477,6 +477,7 @@ readonly:
       public void 自我介绍()
       {
           Name();
+          Console.WriteLine("----");
           base.Name();
       }
   }
