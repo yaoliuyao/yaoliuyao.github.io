@@ -1182,7 +1182,7 @@
       public TipCalc(double bill)
       {
           Bill = bill;
-          heads = new[] { "费用" };
+          heads = new[] { "工资" };
           values = new[] { Tip.ToString()};
       }
       // ...
