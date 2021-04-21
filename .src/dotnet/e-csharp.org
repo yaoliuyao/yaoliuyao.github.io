@@ -445,25 +445,47 @@ readonly:
   Console.WriteLine();
 #+end_src
 
-* 其他
+* 模拟题
+** 继承相关
 
+请问下面程序的输出是什么:
 #+begin_src csharp
-  string aFriend = "比尔";
-  string bFriend = "小明";
-  Console.WriteLine("Hello {1}, 我是 {0}", aFriend, bFriend);
-  Console.WriteLine($"Hello {bFriend}, 我是 {aFriend}");
-  Console.WriteLine("Hello " + bFriend + ", 我是 " + aFriend);
+  class A
+  {
+      public string name = "aaa";
 
-  Console.WriteLine("Hello " + bFriend + ", 我有 " + (aFriend.Length + 3) + " 长");
-  Console.WriteLine($"Hello {bFriend}, 我有 {aFriend.Length + 3} 长");
+      public void Name()
+      {
+          Console.WriteLine("我是 {0}", name);
+      }
 
-  string greeting = "      Hello World!       ";
-  string greetingTrimed = greeting.Trim();
-  Console.WriteLine($"[{greetingTrimed},{greeting}]");
+      public void 自我介绍()
+      {
+          Name();
+      }
+  }
 
-  string songLyrics = "You say goodbye, and I say hello";
-  Console.WriteLine(songLyrics.Contains("goodbye"));
-  Console.WriteLine(songLyrics.Contains("greetings"));
-  Console.WriteLine(songLyrics.StartsWith("You"));
-  Console.WriteLine(songLyrics.EndsWith("goodbye"));
+  class B : A
+  {
+      void Name()
+      {
+          Console.WriteLine("你是 {0}", name);
+      }
+
+      string name = "bbb";
+
+      public void 自我介绍()
+      {
+          base.Name();
+      }
+  }
+
+  class Program
+  {
+      static void Main()
+      {
+          new B().自我介绍();
+      }
+  }
 #+end_src
+

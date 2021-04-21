@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-15 -->
+<!-- 2021-04-21 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -69,7 +69,11 @@
 <li><a href="#org19fdba0">4.1. 求余</a></li>
 </ul>
 </li>
-<li><a href="#org2ec65d1">5. 其他</a></li>
+<li><a href="#org813f18a">5. 模拟题</a>
+<ul>
+<li><a href="#org3dc09eb">5.1. 继承相关</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -656,36 +660,63 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </section>
 
-<section id="outline-container-org2ec65d1" class="outline-2">
-<h2 id="org2ec65d1"><span class="section-number-2">5</span> 其他</h2>
+<section id="outline-container-org813f18a" class="outline-2">
+<h2 id="org813f18a"><span class="section-number-2">5</span> 模拟题</h2>
 <div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org3dc09eb" class="outline-3">
+<h3 id="org3dc09eb"><span class="section-number-3">5.1</span> 继承相关</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+请问下面程序的输出是什么:
+</p>
 <div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">aFriend</span> = <span style="color: #8b2252;">"&#27604;&#23572;"</span>;
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">bFriend</span> = <span style="color: #8b2252;">"&#23567;&#26126;"</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Hello {1}, &#25105;&#26159; {0}"</span>, aFriend, bFriend<span style="color: #707183;">)</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"Hello {bFriend}, &#25105;&#26159; {aFriend}"</span><span style="color: #707183;">)</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Hello "</span> + bFriend + <span style="color: #8b2252;">", &#25105;&#26159; "</span> + aFriend<span style="color: #707183;">)</span>;
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">A</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"aaa"</span>;
 
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"Hello "</span> + bFriend + <span style="color: #8b2252;">", &#25105;&#26377; "</span> + <span style="color: #7388d6;">(</span>aFriend.Length + 3<span style="color: #7388d6;">)</span> + <span style="color: #8b2252;">" &#38271;"</span><span style="color: #707183;">)</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"Hello {bFriend}, &#25105;&#26377; {aFriend.Length + 3} &#38271;"</span><span style="color: #707183;">)</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26159; {0}"</span>, <span style="color: #228b22;">name</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
 
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">greeting</span> = <span style="color: #8b2252;">"      Hello World!       "</span>;
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">greetingTrimed</span> = greeting.<span style="color: #0000ff;">Trim</span><span style="color: #707183;">()</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"[{greetingTrimed},{greeting}]"</span><span style="color: #707183;">)</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#33258;&#25105;&#20171;&#32461;</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #0000ff;">Name</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
 
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">songLyrics</span> = <span style="color: #8b2252;">"You say goodbye, and I say hello"</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>songLyrics.<span style="color: #0000ff;">Contains</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"goodbye"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>songLyrics.<span style="color: #0000ff;">Contains</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"greetings"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>songLyrics.<span style="color: #0000ff;">StartsWith</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"You"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>songLyrics.<span style="color: #0000ff;">EndsWith</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"goodbye"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">B</span> : <span style="color: #228b22;">A</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20320;&#26159; {0}"</span>, name<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"bbb"</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#33258;&#25105;&#20171;&#32461;</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">base</span>.<span style="color: #0000ff;">Name</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">new</span> <span style="color: #228b22;">B</span><span style="color: #909183;">()</span>.&#33258;&#25105;&#20171;&#32461;<span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
 </pre>
+</div>
 </div>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-15</p>
+<p class="date">Created: 2021-04-21</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
