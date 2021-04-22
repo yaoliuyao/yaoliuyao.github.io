@@ -60,6 +60,7 @@
 <li><a href="#org851c361">1.4.2. 使用 <b>继承</b> 方式实现 (你的是我的)</a></li>
 <li><a href="#org2645f44">1.4.3. 使用 <b>继承</b> 方式实现 (公共的字段)</a></li>
 <li><a href="#orgf2f5f09">1.4.4. 使用 <b>继承</b> 方式实现 (化虚为实)</a></li>
+<li><a href="#org07b736b">1.4.5. 使用 <b>继承</b> 方式实现 (进击的继承)</a></li>
 </ul>
 </li>
 <li><a href="#orgf12b2e4">1.5. xxxx</a></li>
@@ -1362,7 +1363,7 @@
 </p>
 
 
-<figure id="orgee577d1">
+<figure id="orgced4326">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -1410,6 +1411,181 @@
 <span class="linenr">31: </span>    <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetHeads</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"&#36134;&#21333;"</span>, <span style="color: #8b2252;">"&#36153;&#29575;"</span>, <span style="color: #8b2252;">"&#23567;&#36153;"</span>, <span style="color: #8b2252;">"&#24212;&#20184;"</span> <span style="color: #7388d6;">}</span>;
 <span class="linenr">32: </span>    <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetValues</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> Bill.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>, RATE.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>, Tip.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>, <span style="color: #909183;">(</span>Bill + Tip<span style="color: #909183;">)</span>.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span> <span style="color: #7388d6;">}</span>;
 <span class="linenr">33: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org07b736b" class="outline-4">
+<h4 id="org07b736b"><span class="section-number-4">1.4.5</span> 使用 <b>继承</b> 方式实现 (进击的继承)</h4>
+<div class="outline-text-4" id="text-1-4-5">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ExcelHelper</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">isShowMessage</span> = <span style="color: #008b8b;">true</span>;
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IWorkbook</span> <span style="color: #0000ff;">OpenOrCreateWorkbook</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
+<span class="linenr"> 6: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 7: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>File.<span style="color: #0000ff;">Exists</span><span style="color: #709870;">(</span><span style="color: #228b22;">fileName</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+<span class="linenr"> 8: </span>        <span style="color: #909183;">{</span>
+<span class="linenr"> 9: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>isShowMessage<span style="color: #709870;">)</span>
+<span class="linenr">10: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">11: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#25991;&#20214;&#23384;&#22312;&#65292;&#29616;&#22312;&#24320;&#22987;&#25171;&#24320;..."</span><span style="color: #907373;">)</span>;
+<span class="linenr">12: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">13: </span>            <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> sr = File.<span style="color: #0000ff;">OpenRead</span><span style="color: #709870;">(</span><span style="color: #228b22;">fileName</span><span style="color: #709870;">)</span>;
+<span class="linenr">14: </span>            <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HSSFWorkbook</span><span style="color: #709870;">(</span><span style="color: #228b22;">sr</span><span style="color: #709870;">)</span>;
+<span class="linenr">15: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">16: </span>        <span style="color: #a020f0;">else</span>
+<span class="linenr">17: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">18: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#25991;&#20214;&#19981;&#23384;&#22312;&#65292;&#29616;&#22312;&#24320;&#22987;&#21019;&#24314;&#26032;&#30340; WOrkbook &#23545;&#35937;"</span><span style="color: #709870;">)</span>;
+<span class="linenr">19: </span>            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">workbook</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HSSFWorkbook</span><span style="color: #709870;">()</span>;
+<span class="linenr">20: </span>            workbook.<span style="color: #0000ff;">CreateSheet</span><span style="color: #709870;">()</span>;
+<span class="linenr">21: </span>            <span style="color: #a020f0;">return</span> workbook;
+<span class="linenr">22: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">23: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">24: </span>
+<span class="linenr">25: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">SaveAndCloseWorkbook</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">IWorkbook</span> <span style="color: #a0522d;">workbook</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
+<span class="linenr">26: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">27: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#20445;&#23384;..."</span><span style="color: #909183;">)</span>;
+<span class="linenr">28: </span>        <span style="color: #a020f0;">try</span>
+<span class="linenr">29: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">30: </span>            <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> sw = File.<span style="color: #0000ff;">OpenWrite</span><span style="color: #709870;">(</span><span style="color: #228b22;">fileName</span><span style="color: #709870;">)</span>;
+<span class="linenr">31: </span>            workbook.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #228b22;">sw</span><span style="color: #709870;">)</span>;
+<span class="linenr">32: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">33: </span>        <span style="color: #a020f0;">catch</span>
+<span class="linenr">34: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">35: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#20445;&#23384;&#20986;&#38169;"</span><span style="color: #709870;">)</span>;
+<span class="linenr">36: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">37: </span>        <span style="color: #a020f0;">finally</span>
+<span class="linenr">38: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">39: </span>            workbook.<span style="color: #0000ff;">Close</span><span style="color: #709870;">()</span>;
+<span class="linenr">40: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">41: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">42: </span>
+<span class="linenr">43: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IRow</span> <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">rownum</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">data</span><span style="color: #7388d6;">)</span>
+<span class="linenr">44: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">45: </span>        Console.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24320;&#22987;&#25554;&#20837;&#25968;&#25454;&#34892;..."</span><span style="color: #909183;">)</span>;
+<span class="linenr">46: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row</span> = sheet.<span style="color: #0000ff;">CreateRow</span><span style="color: #909183;">(</span><span style="color: #228b22;">rownum</span><span style="color: #909183;">)</span>;
+<span class="linenr">47: </span>
+<span class="linenr">48: </span>        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; data.Length; i++<span style="color: #909183;">)</span>
+<span class="linenr">49: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">50: </span>            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"{i}  "</span><span style="color: #709870;">)</span>;
+<span class="linenr">51: </span>            row.<span style="color: #0000ff;">CreateCell</span><span style="color: #709870;">(</span><span style="color: #228b22;">i</span><span style="color: #709870;">)</span>.<span style="color: #0000ff;">SetCellValue</span><span style="color: #709870;">(</span><span style="color: #228b22;">data</span><span style="color: #907373;">[</span>i<span style="color: #907373;">]</span><span style="color: #709870;">)</span>;
+<span class="linenr">52: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">53: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+<span class="linenr">54: </span>
+<span class="linenr">55: </span>        <span style="color: #a020f0;">return</span> row;
+<span class="linenr">56: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">57: </span>
+<span class="linenr">58: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">SetStyleForRow</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">IRow</span> <span style="color: #a0522d;">row</span>, <span style="color: #228b22;">ICellStyle</span> <span style="color: #a0522d;">style</span><span style="color: #7388d6;">)</span>
+<span class="linenr">59: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">60: </span>        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; row.LastCellNum; i++<span style="color: #909183;">)</span>
+<span class="linenr">61: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">62: </span>            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell</span> = row.<span style="color: #0000ff;">GetCell</span><span style="color: #709870;">(</span><span style="color: #228b22;">i</span><span style="color: #709870;">)</span>;
+<span class="linenr">63: </span>            cell.CellStyle = style;
+<span class="linenr">64: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">65: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">66: </span>
+<span class="linenr">67: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetHeads</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #008b8b;">null</span>;
+<span class="linenr">68: </span>
+<span class="linenr">69: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetValues</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #008b8b;">null</span>;
+<span class="linenr">70: </span>
+<span class="linenr">71: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">IRow</span> <span style="color: #0000ff;">ExportToHead</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span><span style="color: #7388d6;">)</span>
+<span class="linenr">72: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">73: </span>        <span style="color: #a020f0;">return</span> <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span>, 0, <span style="color: #0000ff;">GetHeads</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+<span class="linenr">74: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">75: </span>
+<span class="linenr">76: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">IRow</span> <span style="color: #0000ff;">ExportToBody</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span><span style="color: #7388d6;">)</span>
+<span class="linenr">77: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">78: </span>        <span style="color: #a020f0;">return</span> <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span>, sheet.LastRowNum + 1, <span style="color: #0000ff;">GetValues</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+<span class="linenr">79: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">80: </span>
+<span class="linenr">81: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
+<span class="linenr">82: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">83: </span>        <span style="color: #228b22;">IWorkbook</span> <span style="color: #a0522d;">workbook</span> = <span style="color: #0000ff;">OpenOrCreateWorkbook</span><span style="color: #909183;">(</span><span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
+<span class="linenr">84: </span>        <span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span> = workbook.<span style="color: #0000ff;">GetSheetAt</span><span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>;
+<span class="linenr">85: </span>
+<span class="linenr">86: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22836;</span>
+<span class="linenr">87: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>sheet.LastRowNum == 0<span style="color: #909183;">)</span>
+<span class="linenr">88: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">89: </span>            <span style="color: #0000ff;">ExportToHead</span><span style="color: #709870;">(</span><span style="color: #228b22;">sheet</span><span style="color: #709870;">)</span>;
+<span class="linenr">90: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">91: </span>
+<span class="linenr">92: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25968;&#25454;</span>
+<span class="linenr">93: </span>        <span style="color: #0000ff;">ExportToBody</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span><span style="color: #909183;">)</span>;
+<span class="linenr">94: </span>
+<span class="linenr">95: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
+<span class="linenr">96: </span>        <span style="color: #0000ff;">SaveAndCloseWorkbook</span><span style="color: #909183;">(</span><span style="color: #228b22;">workbook</span>, <span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
+<span class="linenr">97: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">98: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalc</span> : <span style="color: #228b22;">ExcelHelper</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">TipCalc</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span> <span style="color: #a0522d;">bill</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span> Bill = bill; <span style="color: #7388d6;">}</span>
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>    <span style="color: #a020f0;">const</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">RATE</span> = 0.18;
+<span class="linenr"> 6: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Bill</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+<span class="linenr"> 7: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Tip</span> =&gt; Bill * RATE;
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Print</span><span style="color: #7388d6;">()</span>
+<span class="linenr">10: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">11: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+<span class="linenr">12: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#36134;&#21333;&#24635;&#39069;: {Bill,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">13: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#23567;&#36153;&#25968;&#39069;: {Tip,10:C} ({RATE:P1})"</span><span style="color: #909183;">)</span>;
+<span class="linenr">14: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">""</span>.<span style="color: #0000ff;">PadRight</span><span style="color: #709870;">(</span>30, <span style="color: #8b2252;">'&#9480;'</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+<span class="linenr">15: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#36134;&#21333;&#23454;&#20184;: {Bill + Tip,10:C}"</span><span style="color: #909183;">)</span>;
+<span class="linenr">16: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">17: </span>
+<span class="linenr">18: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintFantasy</span><span style="color: #7388d6;">()</span>
+<span class="linenr">19: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">20: </span>        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+<span class="linenr">21: </span>        <span style="color: #a020f0;">while</span> <span style="color: #909183;">(</span><span style="color: #008b8b;">true</span><span style="color: #909183;">)</span>
+<span class="linenr">22: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">23: </span>            <span style="color: #228b22;">ConsoleKeyInfo</span> <span style="color: #a0522d;">key</span> = Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #709870;">(</span><span style="color: #008b8b;">true</span><span style="color: #709870;">)</span>;
+<span class="linenr">24: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>key.Key == ConsoleKey.D1<span style="color: #709870;">)</span>
+<span class="linenr">25: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">26: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#24744;&#36755;&#20837;&#20102;&#19968;&#20010; 1"</span><span style="color: #907373;">)</span>;
+<span class="linenr">27: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">28: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>key.Key == ConsoleKey.S<span style="color: #709870;">)</span>
+<span class="linenr">29: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">30: </span>                Console.<span style="color: #0000ff;">Beep</span><span style="color: #907373;">()</span>;
+<span class="linenr">31: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">32: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>key.KeyChar == <span style="color: #8b2252;">'d'</span><span style="color: #709870;">)</span>
+<span class="linenr">33: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">34: </span>                Console.<span style="color: #0000ff;">Beep</span><span style="color: #907373;">(</span>600, 200<span style="color: #907373;">)</span>;
+<span class="linenr">35: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">36: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>key.KeyChar == <span style="color: #8b2252;">'f'</span><span style="color: #709870;">)</span>
+<span class="linenr">37: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">38: </span>                Console.<span style="color: #0000ff;">Beep</span><span style="color: #907373;">(</span>200, 200<span style="color: #907373;">)</span>;
+<span class="linenr">39: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">40: </span>            <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>key.Key == ConsoleKey.Enter<span style="color: #709870;">)</span>
+<span class="linenr">41: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">42: </span>                <span style="color: #a020f0;">break</span>;
+<span class="linenr">43: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">44: </span>            <span style="color: #a020f0;">else</span>
+<span class="linenr">45: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">46: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"{key}, keyChar: {key.KeyChar}, key: {key.Key}"</span><span style="color: #907373;">)</span>;
+<span class="linenr">47: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">48: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">49: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">50: </span>
+<span class="linenr">51: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetHeads</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> <span style="color: #8b2252;">"&#36134;&#21333;"</span>, <span style="color: #8b2252;">"&#36153;&#29575;"</span>, <span style="color: #8b2252;">"&#23567;&#36153;"</span>, <span style="color: #8b2252;">"&#24212;&#20184;"</span> <span style="color: #7388d6;">}</span>;
+<span class="linenr">52: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetValues</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #a020f0;">new</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span> Bill.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>, RATE.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>, Tip.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>, <span style="color: #909183;">(</span>Bill + Tip<span style="color: #909183;">)</span>.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span> <span style="color: #7388d6;">}</span>;
+<span class="linenr">53: </span>
+<span class="linenr">54: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">IRow</span> <span style="color: #0000ff;">ExportToHead</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span><span style="color: #7388d6;">)</span>
+<span class="linenr">55: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">56: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">row</span> = <span style="color: #a020f0;">base</span>.<span style="color: #0000ff;">ExportToHead</span><span style="color: #909183;">(</span>sheet<span style="color: #909183;">)</span>;
+<span class="linenr">57: </span>        <span style="color: #b22222;">//</span><span style="color: #b22222;">var row = CreateRowForSheet(sheet, 0, GetHeads());</span>
+<span class="linenr">58: </span>        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">style</span> = sheet.Workbook.<span style="color: #0000ff;">CreateCellStyle</span><span style="color: #909183;">()</span>;
+<span class="linenr">59: </span>        style.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
+<span class="linenr">60: </span>        style.FillPattern = FillPattern.Diamonds;
+<span class="linenr">61: </span>        <span style="color: #0000ff;">SetStyleForRow</span><span style="color: #909183;">(</span>row, style<span style="color: #909183;">)</span>;
+<span class="linenr">62: </span>        <span style="color: #a020f0;">return</span> row;
+<span class="linenr">63: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">64: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -2640,7 +2816,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org543e4ff"><span class="section-number-3">3.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-3-4">
 
-<figure id="orgd7170b0">
+<figure id="org5c91429">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -2915,7 +3091,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="orgfa5d0ef">
+<figure id="orgfefc216">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -3031,7 +3207,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="orge03d89e">
+<figure id="org46e31e2">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
