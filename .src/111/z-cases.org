@@ -1320,57 +1320,10 @@
   }
 #+end_src
 
-#+begin_src csharp -n
+#+begin_src csharp -n 67
   class TipCalc : ExcelHelper
   {
-      public TipCalc(double bill) { Bill = bill; }
-
-      const double RATE = 0.18;
-      public double Bill { get; private set; }
-      public double Tip => Bill * RATE;
-
-      public void Print()
-      {
-          Console.WriteLine();
-          Console.WriteLine($"账单总额: {Bill,10:C}");
-          Console.WriteLine($"小费数额: {Tip,10:C} ({RATE:P1})");
-          Console.WriteLine("".PadRight(30, '┈'));
-          Console.WriteLine($"账单实付: {Bill + Tip,10:C}");
-      }
-
-      public void PrintFantasy()
-      {
-          Console.WriteLine();
-          while (true)
-          {
-              ConsoleKeyInfo key = Console.ReadKey(true);
-              if (key.Key == ConsoleKey.D1)
-              {
-                  Console.WriteLine("您输入了一个 1");
-              }
-              else if (key.Key == ConsoleKey.S)
-              {
-                  Console.Beep();
-              }
-              else if (key.KeyChar == 'd')
-              {
-                  Console.Beep(600, 200);
-              }
-              else if (key.KeyChar == 'f')
-              {
-                  Console.Beep(200, 200);
-              }
-              else if (key.Key == ConsoleKey.Enter)
-              {
-                  break;
-              }
-              else
-              {
-                  Console.WriteLine($"{key}, keyChar: {key.KeyChar}, key: {key.Key}");
-              }
-          }
-      }
-
+    // ...
       public override string[] GetHeads() => new[] { "账单", "费率", "小费", "应付" };
       public override string[] GetValues() => new[] { Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString() };
 
