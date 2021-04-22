@@ -1199,6 +1199,8 @@
 
 *** 使用 *继承* 方式实现 (Round 3)
 
+使用虚方法 (virtual/override)，让父类能访问派生类的方法。
+
 #+begin_src csharp -n
   class ExcelHelper
   {
