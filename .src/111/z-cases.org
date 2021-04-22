@@ -1300,19 +1300,11 @@
           }
       }
 
+      // public virtual string[] GetValues() { return null; }
       public virtual string[] GetHeads() => null;
-
       public virtual string[] GetValues() => null;
-
-      public virtual IRow ExportToHead(ISheet sheet)
-      {
-          return CreateRowForSheet(sheet, 0, GetHeads());
-      }
-
-      public virtual IRow ExportToBody(ISheet sheet)
-      {
-          return CreateRowForSheet(sheet, sheet.LastRowNum + 1, GetValues());
-      }
+      public virtual IRow ExportToHead(ISheet sheet) => CreateRowForSheet(sheet, 0, GetHeads());
+      public virtual IRow ExportToBody(ISheet sheet) => CreateRowForSheet(sheet, sheet.LastRowNum + 1, GetValues());
 
       public virtual void ExportToExcel(string fileName)
       {

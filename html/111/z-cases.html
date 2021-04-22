@@ -1363,7 +1363,7 @@
 </p>
 
 
-<figure id="orgced4326">
+<figure id="org399fd8a">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -1486,38 +1486,30 @@
 <span class="linenr">64: </span>        <span style="color: #909183;">}</span>
 <span class="linenr">65: </span>    <span style="color: #7388d6;">}</span>
 <span class="linenr">66: </span>
-<span class="linenr">67: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetHeads</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #008b8b;">null</span>;
-<span class="linenr">68: </span>
+<span class="linenr">67: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">public virtual string[] GetValues() { return null; }</span>
+<span class="linenr">68: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetHeads</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #008b8b;">null</span>;
 <span class="linenr">69: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetValues</span><span style="color: #7388d6;">()</span> =&gt; <span style="color: #008b8b;">null</span>;
-<span class="linenr">70: </span>
-<span class="linenr">71: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">IRow</span> <span style="color: #0000ff;">ExportToHead</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span><span style="color: #7388d6;">)</span>
-<span class="linenr">72: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">73: </span>        <span style="color: #a020f0;">return</span> <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span>, 0, <span style="color: #0000ff;">GetHeads</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
-<span class="linenr">74: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">75: </span>
-<span class="linenr">76: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">IRow</span> <span style="color: #0000ff;">ExportToBody</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span><span style="color: #7388d6;">)</span>
-<span class="linenr">77: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">78: </span>        <span style="color: #a020f0;">return</span> <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span>, sheet.LastRowNum + 1, <span style="color: #0000ff;">GetValues</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
-<span class="linenr">79: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">80: </span>
-<span class="linenr">81: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
-<span class="linenr">82: </span>    <span style="color: #7388d6;">{</span>
-<span class="linenr">83: </span>        <span style="color: #228b22;">IWorkbook</span> <span style="color: #a0522d;">workbook</span> = <span style="color: #0000ff;">OpenOrCreateWorkbook</span><span style="color: #909183;">(</span><span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
-<span class="linenr">84: </span>        <span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span> = workbook.<span style="color: #0000ff;">GetSheetAt</span><span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>;
-<span class="linenr">85: </span>
-<span class="linenr">86: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22836;</span>
-<span class="linenr">87: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>sheet.LastRowNum == 0<span style="color: #909183;">)</span>
-<span class="linenr">88: </span>        <span style="color: #909183;">{</span>
-<span class="linenr">89: </span>            <span style="color: #0000ff;">ExportToHead</span><span style="color: #709870;">(</span><span style="color: #228b22;">sheet</span><span style="color: #709870;">)</span>;
-<span class="linenr">90: </span>        <span style="color: #909183;">}</span>
-<span class="linenr">91: </span>
-<span class="linenr">92: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25968;&#25454;</span>
-<span class="linenr">93: </span>        <span style="color: #0000ff;">ExportToBody</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span><span style="color: #909183;">)</span>;
-<span class="linenr">94: </span>
-<span class="linenr">95: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
-<span class="linenr">96: </span>        <span style="color: #0000ff;">SaveAndCloseWorkbook</span><span style="color: #909183;">(</span><span style="color: #228b22;">workbook</span>, <span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
-<span class="linenr">97: </span>    <span style="color: #7388d6;">}</span>
-<span class="linenr">98: </span><span style="color: #707183;">}</span>
+<span class="linenr">70: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">IRow</span> <span style="color: #0000ff;">ExportToHead</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span><span style="color: #7388d6;">)</span> =&gt; <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">sheet</span>, 0, <span style="color: #0000ff;">GetHeads</span><span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">71: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">IRow</span> <span style="color: #0000ff;">ExportToBody</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span><span style="color: #7388d6;">)</span> =&gt; <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">sheet</span>, sheet.LastRowNum + 1, <span style="color: #0000ff;">GetValues</span><span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
+<span class="linenr">72: </span>
+<span class="linenr">73: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
+<span class="linenr">74: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">75: </span>        <span style="color: #228b22;">IWorkbook</span> <span style="color: #a0522d;">workbook</span> = <span style="color: #0000ff;">OpenOrCreateWorkbook</span><span style="color: #909183;">(</span><span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
+<span class="linenr">76: </span>        <span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span> = workbook.<span style="color: #0000ff;">GetSheetAt</span><span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>;
+<span class="linenr">77: </span>
+<span class="linenr">78: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22836;</span>
+<span class="linenr">79: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>sheet.LastRowNum == 0<span style="color: #909183;">)</span>
+<span class="linenr">80: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">81: </span>            <span style="color: #0000ff;">ExportToHead</span><span style="color: #709870;">(</span><span style="color: #228b22;">sheet</span><span style="color: #709870;">)</span>;
+<span class="linenr">82: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">83: </span>
+<span class="linenr">84: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25968;&#25454;</span>
+<span class="linenr">85: </span>        <span style="color: #0000ff;">ExportToBody</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span><span style="color: #909183;">)</span>;
+<span class="linenr">86: </span>
+<span class="linenr">87: </span>        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20445;&#23384;</span>
+<span class="linenr">88: </span>        <span style="color: #0000ff;">SaveAndCloseWorkbook</span><span style="color: #909183;">(</span><span style="color: #228b22;">workbook</span>, <span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
+<span class="linenr">89: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">90: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 
@@ -2816,7 +2808,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org543e4ff"><span class="section-number-3">3.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-3-4">
 
-<figure id="org5c91429">
+<figure id="org393047b">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -3091,7 +3083,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="orgfefc216">
+<figure id="org318dbab">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -3207,7 +3199,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org46e31e2">
+<figure id="orgd8a1533">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
