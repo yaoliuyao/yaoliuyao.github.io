@@ -1164,17 +1164,11 @@
       {
           IWorkbook workbook = OpenOrCreateWorkbook(fileName);
           ISheet sheet = workbook.GetSheetAt(0);
-
-          // 头
           if (sheet.LastRowNum == 0)
           {
               CreateRowForSheet(sheet, 0, heads);
           }
-
-          // 数据
           CreateRowForSheet(sheet, sheet.LastRowNum + 1, values);
-
-          // 保存
           SaveAndCloseWorkbook(workbook, fileName);
       }
   }
@@ -1185,7 +1179,7 @@
       {
           Bill = bill;
           heads = new[] { "工资" };
-          values = new[] { Tip.ToString()};
+          values = new[] { Tip.ToString() };
       }
       // ...
   }
