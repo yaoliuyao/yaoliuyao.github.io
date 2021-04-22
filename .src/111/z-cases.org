@@ -1231,15 +1231,8 @@
   {
       // ...
 
-      public override string[] GetHeads()
-      {
-          return new[] { "账单", "费率", "小费", "应付" };
-      }
-
-      public override string[] GetValues()
-      {
-          return new[] { Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString() };
-      }
+      override string[] GetHeads() => new[] { "账单", "费率", "小费", "应付" };
+      override string[] GetValues() => new[] { Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString() };
   }
 #+end_src
 
