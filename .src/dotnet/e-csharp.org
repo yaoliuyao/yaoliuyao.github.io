@@ -476,7 +476,7 @@ readonly:
 
       public void 自我介绍()
       {
-          Name();
+          this.Name();
           Console.WriteLine("----");
           base.Name();
       }
@@ -486,7 +486,8 @@ readonly:
   {
       static void Main()
       {
-          new B().自我介绍();
+          B b = new B();
+          b.自我介绍();
       }
   }
 #+end_src

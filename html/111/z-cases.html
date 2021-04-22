@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-21 -->
+<!-- 2021-04-22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>一万行代码</title>
@@ -59,6 +59,7 @@
 <li><a href="#orgb89d804">1.4.1. 使用 <b>组合</b> 方式实现</a></li>
 <li><a href="#org6d3ef11">1.4.2. 使用 <b>继承</b> 方式实现 (Round 1)</a></li>
 <li><a href="#org6241330">1.4.3. 使用 <b>继承</b> 方式实现 (Round 2)</a></li>
+<li><a href="#orga3c0444">1.4.4. 使用 <b>继承</b> 方式实现 (Round 3)</a></li>
 </ul>
 </li>
 <li><a href="#orgf12b2e4">1.5. xxxx</a></li>
@@ -1316,6 +1317,10 @@
 <p>
 充分利用继承的特性，将不同的部分抽出为字段:
 </p>
+<ul class="org-ul">
+<li>优点是: 简单直接</li>
+<li>缺点是: 非常不灵活，不实用。易出错</li>
+</ul>
 
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ExcelHelper</span>
@@ -1363,10 +1368,58 @@
 </p>
 
 
-<figure id="org066deaf">
+<figure id="orgfd00f95">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
+</div>
+</div>
+
+<div id="outline-container-orga3c0444" class="outline-4">
+<h4 id="orga3c0444"><span class="section-number-4">1.4.4</span> 使用 <b>继承</b> 方式实现 (Round 3)</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ExcelHelper</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
+<span class="linenr"> 4: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetHeads</span><span style="color: #7388d6;">()</span>
+<span class="linenr"> 5: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 6: </span>        <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">null</span>;
+<span class="linenr"> 7: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetValues</span><span style="color: #7388d6;">()</span>
+<span class="linenr">10: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">11: </span>        <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">null</span>;
+<span class="linenr">12: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">13: </span>
+<span class="linenr">14: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
+<span class="linenr">15: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">16: </span>        <span style="color: #228b22;">IWorkbook</span> <span style="color: #a0522d;">workbook</span> = <span style="color: #0000ff;">OpenOrCreateWorkbook</span><span style="color: #909183;">(</span><span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
+<span class="linenr">17: </span>        <span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span> = workbook.<span style="color: #0000ff;">GetSheetAt</span><span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>;
+<span class="linenr">18: </span>        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>sheet.LastRowNum == 0<span style="color: #909183;">)</span>
+<span class="linenr">19: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">20: </span>            <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #709870;">(</span><span style="color: #228b22;">sheet</span>, 0, <span style="color: #0000ff;">GetHeads</span><span style="color: #907373;">()</span><span style="color: #709870;">)</span>;
+<span class="linenr">21: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">22: </span>        <span style="color: #0000ff;">CreateRowForSheet</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span>, sheet.LastRowNum + 1, <span style="color: #0000ff;">GetValues</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+<span class="linenr">23: </span>        <span style="color: #0000ff;">SaveAndCloseWorkbook</span><span style="color: #909183;">(</span><span style="color: #228b22;">workbook</span>, <span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
+<span class="linenr">24: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">25: </span><span style="color: #707183;">}</span>
+<span class="linenr">26: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalc</span> : <span style="color: #228b22;">ExcelHelper</span>
+<span class="linenr">27: </span><span style="color: #707183;">{</span>
+<span class="linenr">28: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
+<span class="linenr">29: </span>
+<span class="linenr">30: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetHeads</span><span style="color: #7388d6;">()</span>
+<span class="linenr">31: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">32: </span>        <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span><span style="color: #909183;">[]</span> <span style="color: #909183;">{</span> <span style="color: #8b2252;">"&#36134;&#21333;"</span>, <span style="color: #8b2252;">"&#36153;&#29575;"</span>, <span style="color: #8b2252;">"&#23567;&#36153;"</span>, <span style="color: #8b2252;">"&#24212;&#20184;"</span> <span style="color: #909183;">}</span>;
+<span class="linenr">33: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">34: </span>
+<span class="linenr">35: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #0000ff;">GetValues</span><span style="color: #7388d6;">()</span>
+<span class="linenr">36: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">37: </span>        <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span><span style="color: #909183;">[]</span> <span style="color: #909183;">{</span> Bill.<span style="color: #0000ff;">ToString</span><span style="color: #709870;">()</span>, RATE.<span style="color: #0000ff;">ToString</span><span style="color: #709870;">()</span>, Tip.<span style="color: #0000ff;">ToString</span><span style="color: #709870;">()</span>, <span style="color: #709870;">(</span>Bill + Tip<span style="color: #709870;">)</span>.<span style="color: #0000ff;">ToString</span><span style="color: #709870;">()</span> <span style="color: #909183;">}</span>;
+<span class="linenr">38: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">39: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -2595,7 +2648,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org543e4ff"><span class="section-number-3">3.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-3-4">
 
-<figure id="orgd72efd2">
+<figure id="org2300b9b">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -2870,7 +2923,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org42d12b1">
+<figure id="org2b5be53">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -2986,7 +3039,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org95aac62">
+<figure id="org6407242">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -4013,7 +4066,7 @@ C# 操纵 Excel 的方法:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-21</p>
+<p class="date">Created: 2021-04-22</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

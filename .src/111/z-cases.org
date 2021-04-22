@@ -1149,6 +1149,8 @@
 *** 使用 *继承* 方式实现 (Round 2)
 
 充分利用继承的特性，将不同的部分抽出为字段:
+- 优点是: 简单直接
+- 缺点是: 非常不灵活，不实用。易出错
 
 #+begin_src csharp -n
   class ExcelHelper
@@ -1194,6 +1196,50 @@
 
 #+ATTR_HTML: :width 400px
 [[file:img/inherit-1.png]]
+
+*** 使用 *继承* 方式实现 (Round 3)
+
+#+begin_src csharp -n
+  class ExcelHelper
+  {
+      // ...
+      public virtual string[] GetHeads()
+      {
+          return null;
+      }
+
+      public virtual string[] GetValues()
+      {
+          return null;
+      }
+
+      public void ExportToExcel(string fileName)
+      {
+          IWorkbook workbook = OpenOrCreateWorkbook(fileName);
+          ISheet sheet = workbook.GetSheetAt(0);
+          if (sheet.LastRowNum == 0)
+          {
+              CreateRowForSheet(sheet, 0, GetHeads());
+          }
+          CreateRowForSheet(sheet, sheet.LastRowNum + 1, GetValues());
+          SaveAndCloseWorkbook(workbook, fileName);
+      }
+  }
+  class TipCalc : ExcelHelper
+  {
+      // ...
+
+      public override string[] GetHeads()
+      {
+          return new[] { "账单", "费率", "小费", "应付" };
+      }
+
+      public override string[] GetValues()
+      {
+          return new[] { Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString() };
+      }
+  }
+#+end_src
 
 ** xxxx
 
