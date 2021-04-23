@@ -1340,49 +1340,57 @@
   }
 #+end_src
 
-** xxxx
+** 珠联璧合: 组合 + 继承
+*** ConsoleHelper
 
-#+begin_src csharp
+#+begin_src csharp -n
   using System;
-  using System.Threading;
-  using System.Threading.Tasks;
-  using NPOI.HSSF.UserModel;
-  using NPOI.SS.UserModel;
-  using System.IO;
-  using System.Linq;
 
-  class Program
+  namespace Nfit161
   {
-      static void Main(string[] args)
+      class ConsoleHelper
       {
-          //double bill;
-          //if (args.Length != 1 || !double.TryParse(args[0], out bill))
-          //{
-          //    Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
-          //    return;
-          //}
+          public static void QuitWithReason(string reason)
+          {
+              Console.WriteLine(reason);
+              Environment.Exit(0);
+          }
 
-          var ec = new Y.TipCalc(2000);
-          ec.ExportToExcel(@"e:\33333333333.xls");
+          public static void Write(string text, ConsoleColor color)
+          {
+              Console.ForegroundColor = color;
+              Console.Write(text);
+              Console.ResetColor();
+          }
 
-          var ed = new Y.ElectricBillCalc();
-          ed.SetMonthAndUsed(2, 20000);
-          ed.ExportToExcel(@"e:\44444444444.xls");
-
+          public static void WriteLine(string text, ConsoleColor color)
+          {
+              Write(text, color);
+              Console.WriteLine();
+          }
       }
   }
+#+end_src
 
-  namespace Y
+*** ExcelHelper
+
+#+begin_src csharp -n
+  using System;
+  using System.IO;
+  using NPOI.HSSF.UserModel;
+  using NPOI.SS.UserModel;
+
+  namespace Nfit161
   {
       class ExcelHelper
       {
-          public bool isShowMessage = true;
+          public bool IsShowMessage = true;
 
           public IWorkbook OpenOrCreateWorkbook(string fileName)
           {
               if (File.Exists(fileName))
               {
-                  if (isShowMessage)
+                  if (IsShowMessage)
                   {
                       Console.WriteLine("文件存在，现在开始打开...");
                   }
@@ -1391,7 +1399,7 @@
               }
               else
               {
-                  Console.WriteLine("文件不存在，现在开始创建新的 WOrkbook 对象");
+                  Console.WriteLine("文件不存在，现在开始创建新的 Workbook 对象");
                   var workbook = new HSSFWorkbook();
                   workbook.CreateSheet();
                   return workbook;
@@ -1416,7 +1424,7 @@
               }
           }
 
-          public void CreateRowForSheet(ISheet sheet, int rownum, string[] data)
+          public IRow CreateRowForSheet(ISheet sheet, int rownum, string[] data)
           {
               Console.Write("开始插入数据行...");
               var row = sheet.CreateRow(rownum);
@@ -1427,28 +1435,70 @@
                   row.CreateCell(i).SetCellValue(data[i]);
               }
               Console.WriteLine();
+
+              return row;
           }
 
-          public void ExportToExcel(string fileName)
+          public void SetStyleForRow(IRow row, ICellStyle style)
           {
-              IWorkbook workbook = OpenOrCreateWorkbook(fileName);
+              for (int i = 0; i < row.LastCellNum; i++)
+              {
+                  var cell = row.GetCell(i);
+                  cell.CellStyle = style;
+              }
+          }
+      }
+  }
+
+#+end_src
+
+*** Calculator
+
+#+begin_src csharp -n
+  using System;
+  using System.Threading;
+  using NPOI.SS.UserModel;
+
+  namespace Nfit161
+  {
+      class Calculator
+      {
+          public ExcelHelper ExcelHelper = new ExcelHelper();
+
+          public virtual string[] GetHeads() => null;
+
+          public virtual string[] GetValues() => null;
+
+          public virtual IRow ExportToHead(ISheet sheet)
+          {
+              return ExcelHelper.CreateRowForSheet(sheet, 0, GetHeads());
+          }
+
+          public virtual IRow ExportToBody(ISheet sheet)
+          {
+              return ExcelHelper.CreateRowForSheet(sheet, sheet.LastRowNum + 1, GetValues());
+          }
+
+          public virtual void ExportToExcel(string fileName)
+          {
+              IWorkbook workbook = ExcelHelper.OpenOrCreateWorkbook(fileName);
               ISheet sheet = workbook.GetSheetAt(0);
 
               // 头
               if (sheet.LastRowNum == 0)
               {
-                  //CreateRowForSheet(sheet, 0, heads);
+                  ExportToHead(sheet);
               }
 
               // 数据
-              //CreateRowForSheet(sheet, sheet.LastRowNum + 1, values);
+              ExportToBody(sheet);
 
               // 保存
-              SaveAndCloseWorkbook(workbook, fileName);
+              ExcelHelper.SaveAndCloseWorkbook(workbook, fileName);
           }
       }
 
-      class TipCalc : ExcelHelper
+      class TipCalc : Calculator
       {
           public TipCalc(double bill)
           {
@@ -1456,12 +1506,8 @@
           }
 
           const double RATE = 0.18;
-
           public double Bill { get; private set; }
-          public double Tip
-          {
-              get { return Bill * RATE; }
-          }
+          public double Tip => Bill * RATE;
 
           public void Print()
           {
@@ -1504,9 +1550,23 @@
                   }
               }
           }
+
+          public override IRow ExportToHead(ISheet sheet)
+          {
+              //var row = CreateRowForSheet(sheet, 0, GetHeads());
+              var row = base.ExportToHead(sheet);
+              var style = sheet.Workbook.CreateCellStyle();
+              style.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
+              style.FillPattern = FillPattern.Diamonds;
+              ExcelHelper.SetStyleForRow(row, style);
+              return row;
+          }
+
+          public override string[] GetHeads() => new[] { "账单", "费率", "小费", "应付" };
+          public override string[] GetValues() => new[] { Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString() };
       }
 
-      class TaxCalc : ExcelHelper
+      class TaxCalc : Calculator
       {
           public TaxCalc(double m)
           {
@@ -1580,7 +1640,7 @@
           }
       }
 
-      class ElectricBillCalc : ExcelHelper
+      class ElectricBillCalc : Calculator
       {
           // 基准数据
           public static readonly int[] SummerLevels = { 260, 600 };
@@ -1593,14 +1653,16 @@
 
           // 需要计算出来的数据
           private double[] lvUsed;
-          public double Lv1Cost { get => lvUsed[0] * Rates[0]; }
-          public double Lv2Cost { get => lvUsed[1] * Rates[1]; }
-          public double Lv3Cost { get => lvUsed[2] * Rates[2]; }
-          public double Bill { get => Lv1Cost + Lv2Cost + Lv3Cost; }
+
+          public double Lv1Cost => lvUsed[0] * Rates[0];
+          public double Lv2Cost => lvUsed[1] * Rates[1];
+          public double Lv3Cost => lvUsed[2] * Rates[2];
+          public double Bill => Lv1Cost + Lv2Cost + Lv3Cost;
 
           public void SetMonthAndUsed(int month, double used)
           {
-              if (month < 1 || month > 12 || used < 0) QuitWithReason("参数输入错误");
+              if (month < 1 || month > 12 || used < 0)
+                  ConsoleHelper.QuitWithReason("参数输入错误");
               (_month, _used) = (month, used);
               CalculateLvUsed();
           }
@@ -1624,12 +1686,6 @@
           }
 
           bool IsSummer() => _month >= 5 && _month <= 10;
-
-          static void QuitWithReason(string reason)
-          {
-              Console.WriteLine(reason);
-              Environment.Exit(0);
-          }
 
           public void PrintFantasy()
           {
@@ -1666,6 +1722,7 @@
                           {
                               Console.Beep(40, 50);
                           }
+
                           Console.Clear();
                           PrintToConsole(colors[i]);
                           Thread.Sleep(300);
@@ -1695,6 +1752,40 @@
               Console.WriteLine("".PadRight(30, '┈'));
               Console.WriteLine($"总计: {Bill,10:C} ");
           }
+
+          public override string[] GetHeads() => new[] { "月", "量", "费用" };
+          public override string[] GetValues() => new[] { _month.ToString(), _used.ToString(), Bill.ToString() };
+      }
+  }
+#+end_src
+
+*** Main
+
+#+begin_src csharp
+  using System;
+  using Nfit161;
+
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          //double bill;
+          //if (args.Length != 1 || !double.TryParse(args[0], out bill))
+          //{
+          //    Console.WriteLine("您的输入有误，正确的调用方法是:\nTaxCalculator 税前收入");
+          //    return;
+          //}
+
+          //var ec = new Y.TipCalc(2000);
+          //ec.ExportToExcel(@"e:\33333333333.xls");
+
+          //var ed = new Y.ElectricBillCalc();
+          //ed.SetMonthAndUsed(3, 24000);
+          //ed.ExportToExcel(@"e:\44444444444.xls");
+
+          Console.WriteLine("hello");
+          ConsoleHelper.WriteLine("cccccccccccccccooolor", ConsoleColor.DarkMagenta);
+          Console.WriteLine("world");
       }
   }
 #+end_src
