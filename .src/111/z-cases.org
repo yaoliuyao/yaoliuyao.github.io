@@ -1386,7 +1386,7 @@
       {
           public bool IsShowMessage = true;
 
-          public IWorkbook OpenOrCreateWorkbook(string fileName)
+          public IWorkbook OpenOrCreate(string fileName)
           {
               if (File.Exists(fileName))
               {
@@ -1406,7 +1406,7 @@
               }
           }
 
-          public void SaveAndCloseWorkbook(IWorkbook workbook, string fileName)
+          public void SaveAndClose(IWorkbook workbook, string fileName)
           {
               Console.WriteLine("开始保存...");
               try
@@ -1424,24 +1424,22 @@
               }
           }
 
-          public IRow CreateRowForSheet(ISheet sheet, int rownum, string[] data)
+          public void InsertRow(string[] data, ISheet sheet, int? rownum = null)
           {
               Console.Write("开始插入数据行...");
-              var row = sheet.CreateRow(rownum);
+              var row = sheet.CreateRow(rownum ?? sheet.LastRowNum + 1);
 
-              for (int i = 0; i < data.Length; i++)
+              for (var i = 0; i < data.Length; i++)
               {
                   Console.Write($"{i}  ");
                   row.CreateCell(i).SetCellValue(data[i]);
               }
               Console.WriteLine();
-
-              return row;
           }
 
           public void SetStyleForRow(IRow row, ICellStyle style)
           {
-              for (int i = 0; i < row.LastCellNum; i++)
+              for (var i = 0; i < row.LastCellNum; i++)
               {
                   var cell = row.GetCell(i);
                   cell.CellStyle = style;
@@ -1449,7 +1447,6 @@
           }
       }
   }
-
 #+end_src
 
 *** Calculator
@@ -1471,24 +1468,21 @@
 
           public virtual void ExportToExcel(string fileName)
           {
-              IWorkbook workbook = ExcelHelper.OpenOrCreateWorkbook(fileName);
+              IWorkbook workbook = ExcelHelper.OpenOrCreate(fileName);
               ISheet sheet = workbook.GetSheetAt(0);
 
               // 插入
               ExportToBody(sheet);
 
               // 保存
-              ExcelHelper.SaveAndCloseWorkbook(workbook, fileName);
+              ExcelHelper.SaveAndClose(workbook, fileName);
           }
       }
 
       class TipCalc : Calculator
       {
-          public TipCalc(double bill)
-          {
-              Bill = bill;
-          }
-
+          public TipCalc(double bill) => Bill = bill;
+        
           const double RATE = 0.18;
           public double Bill { get; private set; }
           public double Tip => Bill * RATE;
@@ -1507,7 +1501,7 @@
               Console.WriteLine();
               while (true)
               {
-                  ConsoleKeyInfo key = Console.ReadKey(true);
+                  var key = Console.ReadKey(true);
                   if (key.Key == ConsoleKey.D1)
                   {
                       Console.WriteLine("您输入了一个 1");
@@ -1538,35 +1532,26 @@
           public override void ExportToBody(ISheet sheet)
           {
               if (sheet.LastRowNum == 0)
-              {
-                  ExcelHelper.CreateRowForSheet(sheet, 0, new[] {"账单", "费率", "小费", "应付"});
-              }
+                  ExcelHelper.InsertRow(new[] { "账单", "费率", "小费", "应付" }, sheet, 0);
 
-              ExcelHelper.CreateRowForSheet(sheet, sheet.LastRowNum + 1,
-                  new[] {Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString()});
+              ExcelHelper.InsertRow(new[] { Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString() }, sheet);
           }
       }
 
       class TaxCalc : Calculator
       {
-          public TaxCalc(double m)
-          {
-              Money = m;
-          }
+          public TaxCalc(double m) => Money = m;
 
           private double _money; // 用来承载后面的数据，税前收入
-          private static readonly double[] rates = new double[] { 0.03, 0.05, 0.2, 0.45 };
+          private static readonly double[] Rates = { 0.03, 0.05, 0.2, 0.45 };
 
           public double Money
           {
-              get => _money; // xxxx.Money
-              set                    // xxxx.Money = 3333;
+              get => _money;
+              set
               {
                   if (value < 0)
-                  {
-                      Console.WriteLine("\n参数输入格式不正确！");
-                      Environment.Exit(0);
-                  }
+                      ConsoleHelper.QuitWithReason("参数输入格式不正确！");
                   _money = value;
                   CalculateTax();
               }
@@ -1576,30 +1561,28 @@
 
           public void CalculateTax()
           {
-              if (Money <= 5000)
+              switch (Money)
               {
-                  Rate = 0;
-                  Tax = 0;
-              }
-              else if (Money < 10000)
-              {
-                  Rate = rates[0];
-                  Tax = (Money - 5000) * Rate;
-              }
-              else if (Money < 20000)
-              {
-                  Rate = rates[1];
-                  Tax = (Money - 10000) * Rate + 5000 * rates[0];
-              }
-              else if (Money < 100000)
-              {
-                  Rate = rates[2];
-                  Tax = (Money - 20000) * Rate + 10000 * rates[1] + 5000 * rates[0];
-              }
-              else
-              {
-                  Rate = rates[3];
-                  Tax = (Money - 100000) * Rate + 80000 * rates[2] + 10000 * rates[1] + 5000 * rates[0];
+                  case <= 5000:
+                      Rate = 0;
+                      Tax = 0;
+                      break;
+                  case < 10000:
+                      Rate = Rates[0];
+                      Tax = (Money - 5000) * Rate;
+                      break;
+                  case < 20000:
+                      Rate = Rates[1];
+                      Tax = (Money - 10000) * Rate + 5000 * Rates[0];
+                      break;
+                  case < 100000:
+                      Rate = Rates[2];
+                      Tax = (Money - 20000) * Rate + 10000 * Rates[1] + 5000 * Rates[0];
+                      break;
+                  default:
+                      Rate = Rates[3];
+                      Tax = (Money - 100000) * Rate + 80000 * Rates[2] + 10000 * Rates[1] + 5000 * Rates[0];
+                      break;
               }
           }
 
@@ -1612,12 +1595,12 @@
               Console.WriteLine($"税后收入: {Money - Tax,10:C}");
           }
 
-          public static void ShowRates()
+          public override void ExportToBody(ISheet sheet)
           {
-              foreach (double r in rates)
-              {
-                  Console.WriteLine($"- {r}");
-              }
+              if (sheet.LastRowNum == 0)
+                  ExcelHelper.InsertRow(new[] { "税前收入", "税率", "税额", "税后收入" }, sheet, 0);
+
+              ExcelHelper.InsertRow(new[] { Money.ToString(), Rate.ToString(), Tax.ToString(), (Money + Tax).ToString() }, sheet);
           }
       }
 
@@ -1633,11 +1616,11 @@
           private double _used;
 
           // 需要计算出来的数据
-          private double[] lvUsed;
+          private double[] _lvUsed;
 
-          public double Lv1Cost => lvUsed[0] * Rates[0];
-          public double Lv2Cost => lvUsed[1] * Rates[1];
-          public double Lv3Cost => lvUsed[2] * Rates[2];
+          public double Lv1Cost => _lvUsed[0] * Rates[0];
+          public double Lv2Cost => _lvUsed[1] * Rates[1];
+          public double Lv3Cost => _lvUsed[2] * Rates[2];
           public double Bill => Lv1Cost + Lv2Cost + Lv3Cost;
 
           public void SetMonthAndUsed(int month, double used)
@@ -1654,15 +1637,15 @@
 
               if (_used <= p1)
               {
-                  lvUsed = new[] { _used, 0, 0 };
+                  _lvUsed = new[] { _used, 0, 0 };
               }
               else if (_used <= p2)
               {
-                  lvUsed = new[] { p1, _used - p1, 0 };
+                  _lvUsed = new[] { p1, _used - p1, 0 };
               }
               else
               {
-                  lvUsed = new[] { p1, p2 - p1, _used - p2 };
+                  _lvUsed = new[] { p1, p2 - p1, _used - p2 };
               }
           }
 
@@ -1673,45 +1656,39 @@
               PrintToConsole();
               while (true)
               {
-                  ConsoleKeyInfo key = Console.ReadKey();
+                  var key = Console.ReadKey();
                   Console.Clear();
 
-                  if (key.Key == ConsoleKey.D1)
+                  switch (key.Key)
                   {
-                      PrintToConsole(ConsoleColor.Red);
-                  }
-                  else if (key.Key == ConsoleKey.D2)
-                  {
-                      PrintToConsole(ConsoleColor.Green);
-                  }
-                  else if (key.Key == ConsoleKey.D3)
-                  {
-                      PrintToConsole(ConsoleColor.Yellow);
-                  }
-                  else if (key.Key == ConsoleKey.Enter)
-                  {
-                      int i = 0;
-                      while (true)
-                      {
-                          ConsoleColor[] colors = new[] { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue };
-                          i = (i + 1) % colors.Length;
-                          if (i == 1)
+                      case ConsoleKey.D1:
+                          PrintToConsole(ConsoleColor.Red);
+                          break;
+                      case ConsoleKey.D2:
+                          PrintToConsole(ConsoleColor.Green);
+                          break;
+                      case ConsoleKey.D3:
+                          PrintToConsole(ConsoleColor.Yellow);
+                          break;
+                      case ConsoleKey.Enter:
                           {
-                              Console.Beep(90, 50);
+                              var i = 0;
+                              while (true)
+                              {
+                                  ConsoleColor[] colors = new[] { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue };
+                                  i = (i + 1) % colors.Length;
+                                  if (i == 1)
+                                      Console.Beep(90, 50);
+                                  else
+                                      Console.Beep(40, 50);
+                                  Console.Clear();
+                                  PrintToConsole(colors[i]);
+                                  Thread.Sleep(300);
+                              }
                           }
-                          else
-                          {
-                              Console.Beep(40, 50);
-                          }
-
-                          Console.Clear();
-                          PrintToConsole(colors[i]);
-                          Thread.Sleep(300);
-                      }
-                  }
-                  else
-                  {
-                      PrintToConsole();
+                      default:
+                          PrintToConsole();
+                          break;
                   }
               }
           }
@@ -1737,10 +1714,9 @@
           public override void ExportToBody(ISheet sheet)
           {
               if (sheet.LastRowNum == 0)
-                  ExcelHelper.CreateRowForSheet(sheet, 0, new[] {"月", "量", "费用"});
+                  ExcelHelper.InsertRow(new[] { "月", "量", "费用" }, sheet, 0);
 
-              ExcelHelper.CreateRowForSheet(sheet, sheet.LastRowNum + 1,
-                  new[] {_month.ToString(), _used.ToString(), Bill.ToString()});
+              ExcelHelper.InsertRow(new[] { _month.ToString(), _used.ToString(), Bill.ToString() }, sheet);
           }
       }
   }
