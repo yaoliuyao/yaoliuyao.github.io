@@ -1465,18 +1465,8 @@
       {
           public ExcelHelper ExcelHelper = new ExcelHelper();
 
-          public virtual string[] GetHeads() => null;
-
-          public virtual string[] GetValues() => null;
-
-          public virtual IRow ExportToHead(ISheet sheet)
+          public virtual void ExportToBody(ISheet sheet)
           {
-              return ExcelHelper.CreateRowForSheet(sheet, 0, GetHeads());
-          }
-
-          public virtual IRow ExportToBody(ISheet sheet)
-          {
-              return ExcelHelper.CreateRowForSheet(sheet, sheet.LastRowNum + 1, GetValues());
           }
 
           public virtual void ExportToExcel(string fileName)
@@ -1484,13 +1474,7 @@
               IWorkbook workbook = ExcelHelper.OpenOrCreateWorkbook(fileName);
               ISheet sheet = workbook.GetSheetAt(0);
 
-              // 头
-              if (sheet.LastRowNum == 0)
-              {
-                  ExportToHead(sheet);
-              }
-
-              // 数据
+              // 插入
               ExportToBody(sheet);
 
               // 保存
@@ -1551,19 +1535,16 @@
               }
           }
 
-          public override IRow ExportToHead(ISheet sheet)
+          public override void ExportToBody(ISheet sheet)
           {
-              //var row = CreateRowForSheet(sheet, 0, GetHeads());
-              var row = base.ExportToHead(sheet);
-              var style = sheet.Workbook.CreateCellStyle();
-              style.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Green.Index;
-              style.FillPattern = FillPattern.Diamonds;
-              ExcelHelper.SetStyleForRow(row, style);
-              return row;
-          }
+              if (sheet.LastRowNum == 0)
+              {
+                  ExcelHelper.CreateRowForSheet(sheet, 0, new[] {"账单", "费率", "小费", "应付"});
+              }
 
-          public override string[] GetHeads() => new[] { "账单", "费率", "小费", "应付" };
-          public override string[] GetValues() => new[] { Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString() };
+              ExcelHelper.CreateRowForSheet(sheet, sheet.LastRowNum + 1,
+                  new[] {Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString()});
+          }
       }
 
       class TaxCalc : Calculator
@@ -1753,8 +1734,14 @@
               Console.WriteLine($"总计: {Bill,10:C} ");
           }
 
-          public override string[] GetHeads() => new[] { "月", "量", "费用" };
-          public override string[] GetValues() => new[] { _month.ToString(), _used.ToString(), Bill.ToString() };
+          public override void ExportToBody(ISheet sheet)
+          {
+              if (sheet.LastRowNum == 0)
+                  ExcelHelper.CreateRowForSheet(sheet, 0, new[] {"月", "量", "费用"});
+
+              ExcelHelper.CreateRowForSheet(sheet, sheet.LastRowNum + 1,
+                  new[] {_month.ToString(), _used.ToString(), Bill.ToString()});
+          }
       }
   }
 #+end_src
