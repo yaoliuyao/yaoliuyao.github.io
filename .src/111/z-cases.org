@@ -1482,7 +1482,7 @@
       class TipCalc : Calculator
       {
           public TipCalc(double bill) => Bill = bill;
-        
+
           const double RATE = 0.18;
           public double Bill { get; private set; }
           public double Tip => Bill * RATE;
