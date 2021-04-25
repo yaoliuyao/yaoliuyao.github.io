@@ -1341,6 +1341,11 @@
 #+end_src
 
 ** 珠联璧合: 组合 + 继承
+
+#+ATTR_HTML: :width 400
+[[file:img/calcs-1.png]]
+
+
 *** ConsoleHelper
 
 #+begin_src csharp -n
