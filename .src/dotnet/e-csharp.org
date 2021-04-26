@@ -285,6 +285,31 @@ readonly:
   d.Say();
 #+end_src
 
+虚不虚?
+#+begin_src csharp
+  class A
+  {
+      public string Name() { return "hello"; }
+      public virtual void Say() { Console.WriteLine(this.Name()); }
+  }
+  class B : A
+  {
+      public new virtual string Name() { return "world"; }
+      public override void Say() { Console.WriteLine("heihei" + Name()); base.Say(); }
+  }
+  class C : B
+  {
+      public override string Name() { return "who"; }
+      public override void Say() { Console.WriteLine("hahaha" + Name()); }
+  }
+  class D : C
+  {
+      public override string Name() { return "ryou"; }
+  }
+
+  A a = new D();
+  a.Say();
+#+end_src
 
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台

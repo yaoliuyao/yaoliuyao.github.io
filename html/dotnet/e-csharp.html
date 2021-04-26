@@ -457,10 +457,38 @@ d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span>;
 </pre>
 </div>
+
+<p>
+虚不虚?
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">A</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"hello"</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Say</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #a020f0;">this</span>.<span style="color: #0000ff;">Name</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">B</span> : <span style="color: #228b22;">A</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">new</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span> <span style="color: #228b22;">Name</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"world"</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Say</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"heihei"</span> + <span style="color: #0000ff;">Name</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>; <span style="color: #a020f0;">base</span>.<span style="color: #0000ff;">Say</span><span style="color: #909183;">()</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">C</span> : <span style="color: #228b22;">B</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"who"</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Say</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hahaha"</span> + <span style="color: #0000ff;">Name</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">D</span> : <span style="color: #228b22;">C</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"ryou"</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">A</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">D</span><span style="color: #707183;">()</span>;
+a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
 </div>
 </div>
 </section>
-
 
 <section id="outline-container-org6aeeeff" class="outline-2">
 <h2 id="org6aeeeff"><span class="section-number-2">3</span> BCL (Base-Class Library) 基础类库</h2>
