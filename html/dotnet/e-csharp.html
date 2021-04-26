@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-22 -->
+<!-- 2021-04-26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -55,6 +55,7 @@
 <li><a href="#orgaa068c3">2.4. 构造方法/构造器 (Constructor)</a></li>
 <li><a href="#orgd518392">2.5. 静态 (Static)</a></li>
 <li><a href="#org1f361ce">2.6. 将数据设置为不变的 (const/readonly)</a></li>
+<li><a href="#orgd2c8a57">2.7. 继承 (Inheritance)</a></li>
 </ul>
 </li>
 <li><a href="#org6aeeeff">3. BCL (Base-Class Library) 基础类库</a>
@@ -398,7 +399,68 @@ readonly:
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgd2c8a57" class="outline-3">
+<h3 id="orgd2c8a57"><span class="section-number-3">2.7</span> 继承 (Inheritance)</h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>继承表示，我的是我的，你的也是我的。使用 : 语法表示继承关系</li>
+<li>继承主要用来消除冗余，让逻辑得以复用。逻辑上来说，跟自然界的分门别类是对应一致的</li>
+<li>new 对象的时候，会 <b>开辟空间、初始化字段、调用构造器</b>。如果存在继承关系的话，创建的实例是分为多部分的</li>
+<li>调用实例上的某个方法 A，如果 A 调用了另一个方法 B，这时候，优先会使用 A 自身部分上面定义的 B。
+如果想让 A 调用的 B 是派生类 <b>最下面</b> 的 B 的话，使用 <code>virutal/override</code> 将 B 设置为 <b>虚函数</b> 即可。
+子类中存在的相同方法，如果不是 override 的，那么将会是 new 的。new 可以不写</li>
+<li>在 C# 中，只允许有一个父类，即单继承</li>
+<li>所有类的根基类是 <b>object</b>。object 中定义了 ToString/GetType/Equal 等方法。
+因此，所有的对象都拥有这几个方法</li>
+<li>在方法中，使用 <b>this</b> 表示当前的对象，使用 <b>base</b> 表示父类部分。base.Xxx 表示调用父类部分的 Xxx</li>
+<li>使用 private 修饰的数据不能被继承使用，这时候应该使用 protected</li>
+</ul>
+
+<p>
+基本语法:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">A</span> : <span style="color: #228b22;">object</span> <span style="color: #707183;">{</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Say</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #909183;">)</span>;<span style="color: #7388d6;">}</span> <span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">B</span> : <span style="color: #228b22;">A</span> <span style="color: #707183;">{}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">C</span> : <span style="color: #228b22;">B</span> <span style="color: #707183;">{</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Say</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"world"</span><span style="color: #909183;">)</span>;<span style="color: #7388d6;">}</span> <span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">D</span> : <span style="color: #228b22;">C</span> <span style="color: #707183;">{}</span>
+<span style="color: #228b22;">D</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">D</span><span style="color: #707183;">()</span>;
+d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+虚函数:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">A</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"hello"</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Say</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #a020f0;">this</span>.<span style="color: #0000ff;">Name</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">B</span> : <span style="color: #228b22;">A</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"world"</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">void</span> <span style="color: #228b22;">Say</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"heihei"</span> + <span style="color: #0000ff;">Name</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>; <span style="color: #a020f0;">base</span>.<span style="color: #0000ff;">Say</span><span style="color: #909183;">()</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">C</span> : <span style="color: #228b22;">B</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"who"</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Say</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hahaha"</span> + <span style="color: #0000ff;">Name</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">D</span> : <span style="color: #228b22;">C</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Name</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"ryou"</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">D</span><span style="color: #707183;">()</span>;
+d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
 </section>
+
 
 <section id="outline-container-org6aeeeff" class="outline-2">
 <h2 id="org6aeeeff"><span class="section-number-2">3</span> BCL (Base-Class Library) 基础类库</h2>
@@ -719,7 +781,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-22</p>
+<p class="date">Created: 2021-04-26</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

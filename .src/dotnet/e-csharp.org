@@ -236,6 +236,56 @@ readonly:
   }
 #+end_src
 
+** 继承 (Inheritance)
+
+- 继承表示，我的是我的，你的也是我的。使用 : 语法表示继承关系
+- 继承主要用来消除冗余，让逻辑得以复用。逻辑上来说，跟自然界的分门别类是对应一致的
+- new 对象的时候，会 *开辟空间、初始化字段、调用构造器*。如果存在继承关系的话，创建的实例是分为多部分的
+- 调用实例上的某个方法 A，如果 A 调用了另一个方法 B，这时候，优先会使用 A 自身部分上面定义的 B。
+  如果想让 A 调用的 B 是派生类 *最下面* 的 B 的话，使用 ~virutal/override~ 将 B 设置为 *虚函数* 即可。
+  子类中存在的相同方法，如果不是 override 的，那么将会是 new 的。new 可以不写
+- 在 C# 中，只允许有一个父类，即单继承
+- 所有类的根基类是 *object*。object 中定义了 ToString/GetType/Equal 等方法。
+  因此，所有的对象都拥有这几个方法
+- 在方法中，使用 *this* 表示当前的对象，使用 *base* 表示父类部分。base.Xxx 表示调用父类部分的 Xxx
+- 使用 private 修饰的数据不能被继承使用，这时候应该使用 protected
+
+基本语法:
+#+begin_src csharp
+  class A : object { void Say() {Console.WriteLine("hello");} }
+  class B : A {}
+  class C : B { void Say() {Console.WriteLine("world");} }
+  class D : C {}
+  D d = new D();
+  d.Say();
+#+end_src
+
+虚函数:
+#+begin_src csharp
+  class A
+  {
+      public string Name() { return "hello"; }
+      public void Say() { Console.WriteLine(this.Name()); }
+  }
+  class B : A
+  {
+      public virtual string Name() { return "world"; }
+      public new void Say() { Console.WriteLine("heihei" + Name()); base.Say(); }
+  }
+  class C : B
+  {
+      public override string Name() { return "who"; }
+      public virtual void Say() { Console.WriteLine("hahaha" + Name()); }
+  }
+  class D : C
+  {
+      public override string Name() { return "ryou"; }
+  }
+  var d = new D();
+  d.Say();
+#+end_src
+
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
