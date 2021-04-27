@@ -362,9 +362,9 @@ switch:
 <ul class="org-ul">
 <li>如果不显式继承某个类，那么继承的将是 object。即可以忽略掉 <code>: Object</code></li>
 <li>如果不显式添加构造器，那么编译器会自动插入一个无参的。即可以省略掉 <code>public Son() {}</code></li>
-<li>如果不显式指定构造器顺序，那么任意构造器都会首先执行父类的无参构造器，即省略掉了 : <code>base()</code></li>
-<li>如果显式指定构造器顺序，那么可以手动添加 <code>base(xxx)</code> 或者 <code>this(xxx)</code></li>
-<li>基本的规则是，从下往上寻找，然后从上往下执行。这样就构成了 <b>构造器链</b></li>
+<li>如果不显式指定构造器顺序，那么任意构造器都会首先执行父类的无参构造器。即可以省略掉 <code>: base()</code></li>
+<li>显式指定构造器顺序，需要手动添加 <code>: base(xxx)</code> 或者 <code>: this(xxx)</code></li>
+<li>基本的规则是: 从下往上寻找，然后从上往下执行。这样就构成了 <b>构造器链</b></li>
 </ul>
 
 <div class="org-src-container">
@@ -374,12 +374,10 @@ switch:
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26159;&#20320;&#29239;&#29239;"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
-
     <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">GP</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">address</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29239;&#29239;&#25105;&#30340;&#22320;&#22336;&#26159; {0}"</span>, <span style="color: #228b22;">address</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
-
     <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">GP</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">address</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29239;&#29239; {0} &#30340;&#22320;&#22336;&#26159; {0}"</span>, <span style="color: #228b22;">name</span>, <span style="color: #228b22;">address</span><span style="color: #909183;">)</span>;
@@ -391,12 +389,10 @@ switch:
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26159;&#29240;&#29240;"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
-
     <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">PP</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">address</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29240;&#29240;&#25105;&#30340;&#22320;&#22336;&#26159; {0}"</span>, address<span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
-
     <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">PP</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">address</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29240;&#29240; {0} &#30340;&#22320;&#22336;&#26159; {0}"</span>, name, address<span style="color: #909183;">)</span>;
@@ -419,7 +415,6 @@ switch:
     <span style="color: #7388d6;">}</span>
 
 <span style="color: #707183;">}</span>
-
 <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Son</span> : <span style="color: #228b22;">You</span>
 <span style="color: #707183;">{</span>
 <span style="color: #707183;">}</span>

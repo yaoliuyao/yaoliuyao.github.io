@@ -205,9 +205,9 @@ switch:
 
 - 如果不显式继承某个类，那么继承的将是 object。即可以忽略掉 ~: Object~
 - 如果不显式添加构造器，那么编译器会自动插入一个无参的。即可以省略掉 ~public Son() {}~
-- 如果不显式指定构造器顺序，那么任意构造器都会首先执行父类的无参构造器，即省略掉了 : ~base()~
-- 如果显式指定构造器顺序，那么可以手动添加 ~base(xxx)~ 或者 ~this(xxx)~
-- 基本的规则是，从下往上寻找，然后从上往下执行。这样就构成了 *构造器链*
+- 如果不显式指定构造器顺序，那么任意构造器都会首先执行父类的无参构造器。即可以省略掉 ~: base()~
+- 显式指定构造器顺序，需要手动添加 ~: base(xxx)~ 或者 ~: this(xxx)~
+- 基本的规则是: 从下往上寻找，然后从上往下执行。这样就构成了 *构造器链*
 
 #+begin_src csharp
   class GP
@@ -216,12 +216,10 @@ switch:
       {
           Console.WriteLine("我是你爷爷");
       }
-
       public GP(string address) : base()
       {
           Console.WriteLine("爷爷我的地址是 {0}", address);
       }
-
       public GP(string name, string address) : base()
       {
           Console.WriteLine("爷爷 {0} 的地址是 {0}", name, address);
@@ -233,12 +231,10 @@ switch:
       {
           Console.WriteLine("我是爸爸");
       }
-
       public PP(string address) : base() // 3
       {
           Console.WriteLine("爸爸我的地址是 {0}", address);
       }
-
       public PP(string name, string address) : base()
       {
           Console.WriteLine("爸爸 {0} 的地址是 {0}", name, address);
@@ -261,7 +257,6 @@ switch:
       }
 
   }
-
   class Son : You
   {
   }
