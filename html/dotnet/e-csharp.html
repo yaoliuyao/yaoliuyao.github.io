@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-26 -->
+<!-- 2021-04-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -73,6 +73,7 @@
 <li><a href="#org813f18a">5. 模拟题</a>
 <ul>
 <li><a href="#org3dc09eb">5.1. 继承相关</a></li>
+<li><a href="#org1407fdc">5.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
 </ul>
 </li>
 </ul>
@@ -337,6 +338,78 @@ switch:
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+
+<p>
+构造器链:
+</p>
+<ul class="org-ul">
+<li>如果不显式继承某个类，那么继承的将是 object。即可以忽略掉 <code>: Object</code></li>
+<li>如果不显式添加构造器，那么编译器会自动插入一个无参的。即可以省略掉 <code>public Son() {}</code></li>
+<li>如果不显式指定构造器顺序，那么任意构造器都会首先执行父类的无参构造器，即省略掉了 : <code>base()</code></li>
+<li>如果显式指定构造器顺序，那么可以手动添加 <code>base(xxx)</code> 或者 <code>this(xxx)</code></li>
+<li>基本的规则是，从下往上寻找，然后从上往下执行。这样就构成了 <b>构造器链</b></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">GP</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">GP</span><span style="color: #7388d6;">()</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">4</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26159;&#20320;&#29239;&#29239;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">GP</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">address</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29239;&#29239;&#25105;&#30340;&#22320;&#22336;&#26159; {0}"</span>, <span style="color: #228b22;">address</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">GP</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">address</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29239;&#29239; {0} &#30340;&#22320;&#22336;&#26159; {0}"</span>, <span style="color: #228b22;">name</span>, <span style="color: #228b22;">address</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">PP</span> : <span style="color: #228b22;">GP</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">PP</span><span style="color: #7388d6;">()</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26159;&#29240;&#29240;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">PP</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">address</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29240;&#29240;&#25105;&#30340;&#22320;&#22336;&#26159; {0}"</span>, address<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">PP</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">address</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29240;&#29240; {0} &#30340;&#22320;&#22336;&#26159; {0}"</span>, name, address<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">You</span> : <span style="color: #228b22;">PP</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">You</span><span style="color: #7388d6;">()</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#30340;&#20799;&#23376;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">You</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">this</span><span style="color: #7388d6;">(</span>name, <span style="color: #8b2252;">"&#24191;&#35199;"</span><span style="color: #7388d6;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">1</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>name<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">You</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">addr</span><span style="color: #7388d6;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #7388d6;">(</span>addr<span style="color: #7388d6;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">2</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"{0} &#30340; {1}"</span>, addr, name<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Son</span> : <span style="color: #228b22;">You</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">You</span> <span style="color: #a0522d;">u</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">You</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24352;&#19977;"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
 </div>
 </div>
 
@@ -404,17 +477,16 @@ readonly:
 <h3 id="orgd2c8a57"><span class="section-number-3">2.7</span> 继承 (Inheritance)</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
-<li>继承表示，我的是我的，你的也是我的。使用 : 语法表示继承关系</li>
-<li>继承主要用来消除冗余，让逻辑得以复用。逻辑上来说，跟自然界的分门别类是对应一致的</li>
+<li>继承表示，我的是我的，你的也是我的。使用 <code>:</code> 语法表示继承关系</li>
+<li>继承主要用来消除冗余，让逻辑得以 <b>复用</b>。逻辑上来说，跟自然界的分门别类是对应一致的</li>
 <li>new 对象的时候，会 <b>开辟空间、初始化字段、调用构造器</b>。如果存在继承关系的话，创建的实例是分为多部分的</li>
 <li>调用实例上的某个方法 A，如果 A 调用了另一个方法 B，这时候，优先会使用 A 自身部分上面定义的 B。
 如果想让 A 调用的 B 是派生类 <b>最下面</b> 的 B 的话，使用 <code>virutal/override</code> 将 B 设置为 <b>虚函数</b> 即可。
 子类中存在的相同方法，如果不是 override 的，那么将会是 new 的。new 可以不写</li>
-<li>在 C# 中，只允许有一个父类，即单继承</li>
-<li>所有类的根基类是 <b>object</b>。object 中定义了 ToString/GetType/Equal 等方法。
-因此，所有的对象都拥有这几个方法</li>
+<li>在 C# 中，只允许有一个父类，即 <b>单继承</b></li>
+<li>所有类的根基类是 <b>object</b>。object 中定义了 ToString/GetType/Equal 等方法。因此，所有的对象都拥有这几个方法</li>
 <li>在方法中，使用 <b>this</b> 表示当前的对象，使用 <b>base</b> 表示父类部分。base.Xxx 表示调用父类部分的 Xxx</li>
-<li>使用 private 修饰的数据不能被继承使用，这时候应该使用 protected</li>
+<li>使用 private 修饰的数据不能被继承使用，这时候应该使用 <b>protected</b></li>
 </ul>
 
 <p>
@@ -484,6 +556,37 @@ d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 
 <span style="color: #228b22;">A</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">D</span><span style="color: #707183;">()</span>;
 a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">GrandPP</span>
+<span style="color: #707183;">{</span>
+
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">PP</span> : <span style="color: #228b22;">GrandPP</span>
+<span style="color: #707183;">{</span>
+
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">You</span> : <span style="color: #228b22;">PP</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">You</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"."</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">You</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>name<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">You</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">addr</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>name + <span style="color: #8b2252;">":"</span> + addr<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">new</span> <span style="color: #228b22;">You</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">new</span> <span style="color: #228b22;">You</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24352;&#19977;"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">new</span> <span style="color: #228b22;">You</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24352;&#19977;"</span>, <span style="color: #8b2252;">"&#28246;&#21335;"</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
@@ -805,11 +908,23 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 </div>
+
+
+<div id="outline-container-org1407fdc" class="outline-3">
+<h3 id="org1407fdc"><span class="section-number-3">5.2</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+重构 = 重新构造 = 将代码进行重写，让结构发生变化的行为
+= 一般来说，是因为现有的代码不合理，所以呢，重新调整一下
+= 一般来说，重构只是为了改变代码结构或代码质量，它不会对程序的运行逻辑进行改变
+</p>
+</div>
+</div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-26</p>
+<p class="date">Created: 2021-04-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
