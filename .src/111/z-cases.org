@@ -1754,6 +1754,29 @@
   }
 #+end_src
 
+** 我们需要一致的规则: 抽象方法
+
+#+begin_src csharp -n
+  abstract class Calculator
+  {
+      public ExcelHelper ExcelHelper = new ExcelHelper();
+
+      public virtual void ExportToBody(ISheet sheet) {}
+
+      public virtual void ExportToExcel(string fileName)
+      {
+          IWorkbook workbook = ExcelHelper.OpenOrCreate(fileName);
+          ISheet sheet = workbook.GetSheetAt(0);
+          ExportToBody(sheet);
+          ExcelHelper.SaveAndClose(workbook, fileName);
+      }
+
+      // 子类必须要实现这些方法!
+      public abstract void PrintToConsole();
+      public abstract void Help();
+  }
+#+end_src
+
 * 阶梯电费计算
 ** 第一种解决方案
 

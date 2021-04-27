@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-26 -->
+<!-- 2021-04-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>一万行代码</title>
@@ -71,6 +71,7 @@
 <li><a href="#org55b64dc">1.5.4. Main</a></li>
 </ul>
 </li>
+<li><a href="#org7f01018">1.6. 我们需要一致的规则: 抽象方法</a></li>
 </ul>
 </li>
 <li><a href="#org633dab8">2. 阶梯电费计算</a>
@@ -1366,7 +1367,7 @@
 </p>
 
 
-<figure id="org66c6a8e">
+<figure id="org5e90cd6">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -1538,7 +1539,7 @@
 <h3 id="orgc763eb2"><span class="section-number-3">1.5</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-1-5">
 
-<figure id="org02aabc1">
+<figure id="orgb29a0c7">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -1970,6 +1971,33 @@
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7f01018" class="outline-3">
+<h3 id="org7f01018"><span class="section-number-3">1.6</span> 我们需要一致的规则: 抽象方法</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Calculator</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">ExcelHelper</span> <span style="color: #a0522d;">ExcelHelper</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ExcelHelper</span><span style="color: #7388d6;">()</span>;
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToBody</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{}</span>
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ExportToExcel</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fileName</span><span style="color: #7388d6;">)</span>
+<span class="linenr"> 8: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 9: </span>        <span style="color: #228b22;">IWorkbook</span> <span style="color: #a0522d;">workbook</span> = ExcelHelper.<span style="color: #0000ff;">OpenOrCreate</span><span style="color: #909183;">(</span><span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
+<span class="linenr">10: </span>        <span style="color: #228b22;">ISheet</span> <span style="color: #a0522d;">sheet</span> = workbook.<span style="color: #0000ff;">GetSheetAt</span><span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>;
+<span class="linenr">11: </span>        <span style="color: #0000ff;">ExportToBody</span><span style="color: #909183;">(</span><span style="color: #228b22;">sheet</span><span style="color: #909183;">)</span>;
+<span class="linenr">12: </span>        ExcelHelper.<span style="color: #0000ff;">SaveAndClose</span><span style="color: #909183;">(</span><span style="color: #228b22;">workbook</span>, <span style="color: #228b22;">fileName</span><span style="color: #909183;">)</span>;
+<span class="linenr">13: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">14: </span>
+<span class="linenr">15: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23376;&#31867;&#24517;&#39035;&#35201;&#23454;&#29616;&#36825;&#20123;&#26041;&#27861;!</span>
+<span class="linenr">16: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">abstract</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintToConsole</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">17: </span>    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">abstract</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Help</span><span style="color: #7388d6;">()</span>;
+<span class="linenr">18: </span><span style="color: #707183;">}</span>
+</pre>
 </div>
 </div>
 </div>
@@ -2835,7 +2863,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org543e4ff"><span class="section-number-3">3.4</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-3-4">
 
-<figure id="orgeed89ab">
+<figure id="orgd1052ac">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -3110,7 +3138,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org44080bc">
+<figure id="orgf1f996e">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -3226,7 +3254,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org1eda1ba">
+<figure id="org75fc29f">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -4253,7 +4281,7 @@ C# 操纵 Excel 的方法:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-26</p>
+<p class="date">Created: 2021-04-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
