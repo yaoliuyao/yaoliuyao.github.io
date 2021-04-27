@@ -61,7 +61,12 @@
 </li>
 <li><a href="#orgd518392">2.5. 静态 (Static)</a></li>
 <li><a href="#org1f361ce">2.6. 将数据设置为不变的 (const/readonly)</a></li>
-<li><a href="#orgd2c8a57">2.7. 继承 (Inheritance)</a></li>
+<li><a href="#orgd2c8a57">2.7. 继承 (Inheritance)</a>
+<ul>
+<li><a href="#org2f228dd">2.7.1. 虚方法 (virtual/override)</a></li>
+<li><a href="#org018b274">2.7.2. 抽象方法 (abstract)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org6aeeeff">3. BCL (Base-Class Library) 基础类库</a>
@@ -514,7 +519,11 @@ readonly:
 d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span>;
 </pre>
 </div>
+</div>
 
+<div id="outline-container-org2f228dd" class="outline-4">
+<h4 id="org2f228dd"><span class="section-number-4">2.7.1</span> 虚方法 (virtual/override)</h4>
+<div class="outline-text-4" id="text-2-7-1">
 <p>
 虚函数:
 </p>
@@ -601,6 +610,54 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 <span style="color: #a020f0;">new</span> <span style="color: #228b22;">You</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24352;&#19977;"</span><span style="color: #707183;">)</span>;
 <span style="color: #a020f0;">new</span> <span style="color: #228b22;">You</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24352;&#19977;"</span>, <span style="color: #8b2252;">"&#28246;&#21335;"</span><span style="color: #707183;">)</span>;
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org018b274" class="outline-4">
+<h4 id="org018b274"><span class="section-number-4">2.7.2</span> 抽象方法 (abstract)</h4>
+<div class="outline-text-4" id="text-2-7-2">
+<ul class="org-ul">
+<li>继承下来的，不一定是权利，也有可能是义务。俗语有云 <b>父债子偿</b></li>
+<li>通过在父类中，将某个方法用 <code>abstract</code> 修饰，表示它是债务&#x2026;</li>
+<li>抽象方法可以 (1) 约束子类的行为 (2) 将父类中无法实现的功能，交给子类去实现</li>
+<li>抽象类是不能被实例化的</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Baba</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Money</span> = 0.1;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">virtual</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Sanjuhua</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#28418;&#20142;&#30340;&#22899;&#23401;&#23376;&#37117;&#27604;&#36739;&#21361;&#38505;"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26377;&#24456;&#22810;&#38065;&#65292;&#34255;&#22312;&#26576;&#20010;&#22320;&#26041;"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20294;&#25105;&#19981;&#21578;&#35785;&#20320;&#22312;&#21738;&#37324;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">abstract</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#33457;&#20809;&#36825;&#20123;&#38065;</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">You</span> : <span style="color: #228b22;">Baba</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Sanjuhua</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#28418;&#20142;&#30340;&#22899;&#23401;&#23376;&#26159;&#20540;&#24471;&#25105;&#20204;&#33457;&#19968;&#29983;&#21435;&#36861;&#27714;&#30340;"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26377;&#24456;&#22810;&#38065;&#65292;&#23601;&#25918;&#22312;&#20013;&#22269;&#38134;&#34892;&#30340;&#38065;&#24211;&#37324;"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20294;&#19981;&#35201;&#25226;&#38065;&#25918;&#30524;&#37324;&#65292;&#20316;&#20026;&#30495;&#30007;&#20154;&#65292;&#35201;&#25954;&#20110; 996&#65292;&#22857;&#29486;&#20154;&#29983;&#20215;&#20540;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#33457;&#20809;&#36825;&#20123;&#38065;</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#31532;&#19968;&#22825;&#65292;&#33457;&#20102; 3 &#20159;"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#31532;&#20108;&#22825;&#65292;&#33457;&#20102; 33 &#20159;"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#31532;&#19977;&#22825;&#65292;&#33457;&#20102; 333 &#20159;"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#31532;&#22235;&#22825;&#65292;&#26790;&#37266;&#20102;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </div>

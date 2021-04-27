@@ -325,6 +325,8 @@ readonly:
   d.Say();
 #+end_src
 
+*** 虚方法 (virtual/override)
+
 虚函数:
 #+begin_src csharp
   class A
@@ -404,6 +406,47 @@ readonly:
   new You();
   new You("张三");
   new You("张三", "湖南");
+#+end_src
+
+*** 抽象方法 (abstract)
+
+- 继承下来的，不一定是权利，也有可能是义务。俗语有云 *父债子偿*
+- 通过在父类中，将某个方法用 ~abstract~ 修饰，表示它是债务...
+- 抽象方法可以 (1) 约束子类的行为 (2) 将父类中无法实现的功能，交给子类去实现
+- 抽象类是不能被实例化的
+
+#+begin_src csharp
+  abstract class Baba
+  {
+      public double Money = 0.1;
+
+      public virtual void Sanjuhua()
+      {
+          Console.WriteLine("漂亮的女孩子都比较危险");
+          Console.WriteLine("我有很多钱，藏在某个地方");
+          Console.WriteLine("但我不告诉你在哪里");
+      }
+
+      public abstract void 花光这些钱();
+  }
+
+  class You : Baba
+  {
+      public override void Sanjuhua()
+      {
+          Console.WriteLine("漂亮的女孩子是值得我们花一生去追求的");
+          Console.WriteLine("我有很多钱，就放在中国银行的钱库里");
+          Console.WriteLine("但不要把钱放眼里，作为真男人，要敢于 996，奉献人生价值");
+      }
+
+      public override void 花光这些钱()
+      {
+          Console.WriteLine("第一天，花了 3 亿");
+          Console.WriteLine("第二天，花了 33 亿");
+          Console.WriteLine("第三天，花了 333 亿");
+          Console.WriteLine("第四天，梦醒了");
+      }
+  }
 #+end_src
 
 * BCL (Base-Class Library) 基础类库
