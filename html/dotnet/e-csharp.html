@@ -52,7 +52,13 @@
 <li><a href="#org73e4f84">2.1. 字段 (Field)</a></li>
 <li><a href="#org366c635">2.2. 方法 (Method)</a></li>
 <li><a href="#orgc23f090">2.3. 属性 (Property)</a></li>
-<li><a href="#orgaa068c3">2.4. 构造方法/构造器 (Constructor)</a></li>
+<li><a href="#orgaa068c3">2.4. 构造方法/构造器 (Constructor)</a>
+<ul>
+<li><a href="#orge727744">2.4.1. 对象的实例化</a></li>
+<li><a href="#org2102d67">2.4.2. 构造方法</a></li>
+<li><a href="#org42925dc">2.4.3. 构造器链</a></li>
+</ul>
+</li>
 <li><a href="#orgd518392">2.5. 静态 (Static)</a></li>
 <li><a href="#org1f361ce">2.6. 将数据设置为不变的 (const/readonly)</a></li>
 <li><a href="#orgd2c8a57">2.7. 继承 (Inheritance)</a></li>
@@ -299,6 +305,10 @@ switch:
 <div id="outline-container-orgaa068c3" class="outline-3">
 <h3 id="orgaa068c3"><span class="section-number-3">2.4</span> 构造方法/构造器 (Constructor)</h3>
 <div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-orge727744" class="outline-4">
+<h4 id="orge727744"><span class="section-number-4">2.4.1</span> 对象的实例化</h4>
+<div class="outline-text-4" id="text-2-4-1">
 <p>
 对象的实例化，分为下面几个步骤:
 </p>
@@ -307,7 +317,12 @@ switch:
 <li>按照类型进行相关字段的初始化工作</li>
 <li>调用相应的 <b>构造方法</b>，进行相关初始化工作</li>
 </ol>
+</div>
+</div>
 
+<div id="outline-container-org2102d67" class="outline-4">
+<h4 id="org2102d67"><span class="section-number-4">2.4.2</span> 构造方法</h4>
+<div class="outline-text-4" id="text-2-4-2">
 <p>
 所谓的构造方法，就是类中定义的一个特殊方法。它用来对实例空间进行若干初始化工作:
 </p>
@@ -338,10 +353,12 @@ switch:
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-构造器链:
-</p>
+<div id="outline-container-org42925dc" class="outline-4">
+<h4 id="org42925dc"><span class="section-number-4">2.4.3</span> 构造器链</h4>
+<div class="outline-text-4" id="text-2-4-3">
 <ul class="org-ul">
 <li>如果不显式继承某个类，那么继承的将是 object。即可以忽略掉 <code>: Object</code></li>
 <li>如果不显式添加构造器，那么编译器会自动插入一个无参的。即可以省略掉 <code>public Son() {}</code></li>
@@ -409,6 +426,7 @@ switch:
 
 <span style="color: #228b22;">You</span> <span style="color: #a0522d;">u</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">You</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24352;&#19977;"</span><span style="color: #707183;">)</span>;
 </pre>
+</div>
 </div>
 </div>
 </div>
