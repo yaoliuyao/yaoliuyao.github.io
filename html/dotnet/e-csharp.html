@@ -705,9 +705,10 @@ IComparable 用来为两个对象进行比较提供比较的规则:
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">wo</span> = <span style="color: #a020f0;">this</span>;
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">ni</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">Person</span><span style="color: #909183;">)</span> obj;
 
-        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>wo.Salary &gt; ni.Salary<span style="color: #909183;">)</span> <span style="color: #a020f0;">return</span> -1;
-        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>wo.Salary &lt; ni.Salary<span style="color: #909183;">)</span> <span style="color: #a020f0;">return</span> 1;
-        <span style="color: #a020f0;">return</span> 0;
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">if (wo.Salary &gt; ni.Salary) return -1;</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">if (wo.Salary &lt; ni.Salary) return 1;</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">return 0;</span>
+        <span style="color: #a020f0;">return</span> wo.Salary - ni.Salary;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 
@@ -901,8 +902,8 @@ fs.<span style="color: #0000ff;">Close</span><span style="color: #707183;">()</s
 <span style="color: #707183;">}</span>
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#20351;&#29992; using &#23545;&#19978;&#36848;&#20195;&#30721;&#36827;&#34892;&#31616;&#21270;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#24517;&#39035;&#35753; FileStream &#37324;&#38754;&#23454;&#29616;&#19968;&#20010;&#21483; Close &#30340;&#26041;&#27861;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20026;&#20102;&#20445;&#35777;&#20320;&#24517;&#39035;&#23454;&#29616;&#19968;&#20010; Close &#26041;&#27861;&#65292;&#20320;&#24517;&#39035;&#35201;&#23454;&#29616; IDisposable &#25509;&#21475;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#24517;&#39035;&#35753; FileStream &#37324;&#38754;&#23454;&#29616;&#19968;&#20010;&#21483; Dispose &#30340;&#26041;&#27861;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20026;&#20102;&#20445;&#35777;&#20320;&#24517;&#39035;&#23454;&#29616;&#19968;&#20010; Dispose &#26041;&#27861;&#65292;&#20320;&#24517;&#39035;&#35201;&#23454;&#29616; IDisposable &#25509;&#21475;</span>
 <span style="color: #a020f0;">using</span> <span style="color: #707183;">(</span><span style="color: #228b22;">FileStream</span> <span style="color: #a0522d;">fs</span> = File.<span style="color: #0000ff;">OpenRead</span><span style="color: #7388d6;">(</span>fileName<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 <span style="color: #707183;">{</span>
     Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>fs<span style="color: #7388d6;">)</span>;

@@ -479,9 +479,10 @@ IComparable 用来为两个对象进行比较提供比较的规则:
           var wo = this;
           var ni = (Person) obj;
 
-          if (wo.Salary > ni.Salary) return -1;
-          if (wo.Salary < ni.Salary) return 1;
-          return 0;
+          // if (wo.Salary > ni.Salary) return -1;
+          // if (wo.Salary < ni.Salary) return 1;
+          // return 0;
+          return wo.Salary - ni.Salary;
       }
   }
 
@@ -642,8 +643,8 @@ IComparable 用来为两个对象进行比较提供比较的规则:
   }
 
   // 可以使用 using 对上述代码进行简化
-  // 必须让 FileStream 里面实现一个叫 Close 的方法
-  // 为了保证你必须实现一个 Close 方法，你必须要实现 IDisposable 接口
+  // 必须让 FileStream 里面实现一个叫 Dispose 的方法
+  // 为了保证你必须实现一个 Dispose 方法，你必须要实现 IDisposable 接口
   using (FileStream fs = File.OpenRead(fileName))
   {
       Console.WriteLine(fs);
