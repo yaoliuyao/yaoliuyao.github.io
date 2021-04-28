@@ -1777,7 +1777,7 @@
   }
 #+end_src
 
-** 有了接口，就有了工业标准，就有了团队协作
+** 有了接口，就有了 +工业+ 标准，就有了分工和协作
 
 #+begin_src csharp -n
   using System;
@@ -1786,7 +1786,7 @@
 
   namespace Nfit161
   {
-      // 最高指令
+      // 架构级别
 
       interface IHelpable
       {
@@ -1799,9 +1799,9 @@
           void ExportToExcel(string fileName);
       }
 
-      // 组长级别
+      // 大佬级别
 
-      abstract class CalculatorGeneral : ICalculator
+      abstract class CalculatorBase : ICalculator
       {
           public abstract void Help();
           public abstract void PrintToConsole();
@@ -1823,7 +1823,7 @@
 
       // 搬砖级别
 
-      class TipCalculator : CalculatorGeneral
+      class TipCalculator : CalculatorBase
       {
           public TipCalculator(double bill) => Bill = bill;
 
@@ -1853,7 +1853,7 @@
           }
       }
 
-      class TaxCalculator : CalculatorGeneral
+      class TaxCalculator : CalculatorBase
       {
           public override void Help()
           {
@@ -1868,7 +1868,7 @@
           }
       }
 
-      class ElectricBillCalculator : CalculatorGeneral
+      class ElectricBillCalculator : CalculatorBase
       {
           public override void Help()
           {
@@ -1883,8 +1883,7 @@
           }
       }
 
-
-      // 测试团队
+      // 测试级别
 
       class CalculatorTest
       {
