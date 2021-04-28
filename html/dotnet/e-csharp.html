@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-27 -->
+<!-- 2021-04-28 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -67,6 +67,7 @@
 <li><a href="#org018b274">2.7.2. 抽象方法 (abstract)</a></li>
 </ul>
 </li>
+<li><a href="#org5b66536">2.8. 接口 (Interface)</a></li>
 </ul>
 </li>
 <li><a href="#org6aeeeff">3. BCL (Base-Class Library) 基础类库</a>
@@ -661,6 +662,58 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 </div>
 </div>
+
+<div id="outline-container-org5b66536" class="outline-3">
+<h3 id="org5b66536"><span class="section-number-3">2.8</span> 接口 (Interface)</h3>
+<div class="outline-text-3" id="text-2-8">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span> : <span style="color: #228b22;">IComparable</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Name</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Salary</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Age</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">Person</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">sal</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Name = name;
+        Salary = sal;
+        Age = age;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">wo.CompareTo(ni); // 2 0 -1</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">CompareTo</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">object</span>? <span style="color: #a0522d;">obj</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">wo</span> = <span style="color: #a020f0;">this</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">ni</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">Person</span><span style="color: #909183;">)</span> obj;
+
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>wo.Salary &gt; ni.Salary<span style="color: #909183;">)</span>
+            <span style="color: #a020f0;">return</span> -1;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>wo.Salary &lt; ni.Salary<span style="color: #909183;">)</span>
+            <span style="color: #a020f0;">return</span> 1;
+        <span style="color: #a020f0;">return</span> 0;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">p1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"a-&#23567;&#26126;"</span>, 20000, 50<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">p2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"c-&#23567;&#24352;"</span>, 7000, 25<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">p3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"b-&#23567;&#29579;"</span>, 15000, 35<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">p4</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"d-&#23567;&#32418;"</span>, 7500, 19<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">p5</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"e-&#23567;&#24378;"</span>, 5000, 22<span style="color: #7388d6;">)</span>;
+
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">persons</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span>p1, p2, p3, p4, p5<span style="color: #7388d6;">}</span>;
+
+    Array.<span style="color: #0000ff;">Sort</span><span style="color: #7388d6;">(</span>persons<span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">foreach</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">p</span> <span style="color: #a020f0;">in</span> persons<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{p.Name}: {p.Age} &#23681;, &#25910;&#20837;&#20026; {p.Salary}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-org6aeeeff" class="outline-2">
@@ -994,7 +1047,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-27</p>
+<p class="date">Created: 2021-04-28</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

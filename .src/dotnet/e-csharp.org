@@ -449,6 +449,54 @@ readonly:
   }
 #+end_src
 
+** 接口 (Interface)
+
+#+begin_src csharp
+  class Person : IComparable
+  {
+      public string Name { get; set; }
+      public double Salary { get; set; }
+      public int Age { get; set; }
+
+      public Person(string name, double sal, int age)
+      {
+          Name = name;
+          Salary = sal;
+          Age = age;
+      }
+      // wo.CompareTo(ni); // 2 0 -1
+      public int CompareTo(object? obj)
+      {
+          var wo = this;
+          var ni = (Person) obj;
+
+          if (wo.Salary > ni.Salary)
+              return -1;
+          if (wo.Salary < ni.Salary)
+              return 1;
+          return 0;
+      }
+  }
+
+  static void Main(string[] args)
+  {
+      var p1 = new Person("a-小明", 20000, 50);
+      var p2 = new Person("c-小张", 7000, 25);
+      var p3 = new Person("b-小王", 15000, 35);
+      var p4 = new Person("d-小红", 7500, 19);
+      var p5 = new Person("e-小强", 5000, 22);
+
+      var persons = new Person[] {p1, p2, p3, p4, p5};
+
+      Array.Sort(persons);
+
+      foreach (var p in persons)
+      {
+          Console.WriteLine($"{p.Name}: {p.Age} 岁, 收入为 {p.Salary}");
+      }
+  }
+#+end_src
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
