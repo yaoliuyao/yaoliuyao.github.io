@@ -67,7 +67,11 @@
 <li><a href="#org018b274">2.7.2. 抽象方法 (abstract)</a></li>
 </ul>
 </li>
-<li><a href="#org5b66536">2.8. 接口 (Interface)</a></li>
+<li><a href="#org5b66536">2.8. 接口 (Interface)</a>
+<ul>
+<li><a href="#org8442a53">2.8.1. IComparable 接口使用示例</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org6aeeeff">3. BCL (Base-Class Library) 基础类库</a>
@@ -666,6 +670,21 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 <div id="outline-container-org5b66536" class="outline-3">
 <h3 id="org5b66536"><span class="section-number-3">2.8</span> 接口 (Interface)</h3>
 <div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>接口本质就是一个可以进行多继承的纯的抽象类。它是单继承的一种例外</li>
+<li>使用 interface 关键词声明接口，接口里面只能包含方法</li>
+<li>不需要使用 public 修饰符，因为接口里所有方法默认都是公开的。方法不需要有方法体</li>
+<li>接口实际上就是一种 <b>合同</b>，它起到的作用是制定统一的 <b>规则</b></li>
+<li>接口有很多好处: blahblahblah&#x2026;.</li>
+</ul>
+</div>
+
+<div id="outline-container-org8442a53" class="outline-4">
+<h4 id="org8442a53"><span class="section-number-4">2.8.1</span> IComparable 接口使用示例</h4>
+<div class="outline-text-4" id="text-2-8-1">
+<p>
+IComparable 用来为两个对象进行比较提供比较的规则:
+</p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span> : <span style="color: #228b22;">IComparable</span>
 <span style="color: #707183;">{</span>
@@ -679,16 +698,14 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
         Salary = sal;
         Age = age;
     <span style="color: #7388d6;">}</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">wo.CompareTo(ni); // 2 0 -1</span>
+
     <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">CompareTo</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">object</span>? <span style="color: #a0522d;">obj</span><span style="color: #7388d6;">)</span>
     <span style="color: #7388d6;">{</span>
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">wo</span> = <span style="color: #a020f0;">this</span>;
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">ni</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">Person</span><span style="color: #909183;">)</span> obj;
 
-        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>wo.Salary &gt; ni.Salary<span style="color: #909183;">)</span>
-            <span style="color: #a020f0;">return</span> -1;
-        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>wo.Salary &lt; ni.Salary<span style="color: #909183;">)</span>
-            <span style="color: #a020f0;">return</span> 1;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>wo.Salary &gt; ni.Salary<span style="color: #909183;">)</span> <span style="color: #a020f0;">return</span> -1;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>wo.Salary &lt; ni.Salary<span style="color: #909183;">)</span> <span style="color: #a020f0;">return</span> 1;
         <span style="color: #a020f0;">return</span> 0;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
@@ -711,6 +728,7 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
+</div>
 </div>
 </div>
 </div>
