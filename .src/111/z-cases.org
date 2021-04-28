@@ -1777,6 +1777,132 @@
   }
 #+end_src
 
+** 有了接口，就有了工业标准，就有了团队协作
+
+#+begin_src csharp -n
+  using System;
+  using System.Threading;
+  using NPOI.SS.UserModel;
+
+  namespace Nfit161
+  {
+      // 最高指令
+
+      interface IHelpable
+      {
+          void Help();
+      }
+
+      interface ICalculator : IHelpable
+      {
+          void PrintToConsole();
+          void ExportToExcel(string fileName);
+      }
+
+      // 组长级别
+
+      abstract class CalculatorGeneral : ICalculator
+      {
+          public abstract void Help();
+          public abstract void PrintToConsole();
+
+          protected ExcelHelper ExcelHelper = new ExcelHelper();
+
+          public virtual void ExportToExcel(string fileName)
+          {
+              IWorkbook workbook = ExcelHelper.OpenOrCreate(fileName);
+              ISheet sheet = workbook.GetSheetAt(0);
+              ExportToBody(sheet);
+              ExcelHelper.SaveAndClose(workbook, fileName);
+          }
+
+          protected virtual void ExportToBody(ISheet sheet)
+          {
+          }
+      }
+
+      // 搬砖级别
+
+      class TipCalculator : CalculatorGeneral
+      {
+          public TipCalculator(double bill) => Bill = bill;
+
+          const double RATE = 0.18;
+          public double Bill { get; private set; }
+          public double Tip => Bill * RATE;
+
+          public override void Help()
+          {
+              Console.WriteLine("这是一个消费计算器，其使用方式为 ...");
+          }
+
+          public override void PrintToConsole()
+          {
+              Console.WriteLine();
+              Console.WriteLine($"账单总额: {Bill,10:C}");
+              Console.WriteLine($"小费数额: {Tip,10:C} ({RATE:P1})");
+              Console.WriteLine("".PadRight(30, '┈'));
+              Console.WriteLine($"账单实付: {Bill + Tip,10:C}");
+          }
+
+          protected override void ExportToBody(ISheet sheet)
+          {
+              if (sheet.LastRowNum == 0)
+                  ExcelHelper.InsertRow(new[] { "账单", "费率", "小费", "应付" }, sheet, 0);
+              ExcelHelper.InsertRow(new[] { Bill.ToString(), RATE.ToString(), Tip.ToString(), (Bill + Tip).ToString() }, sheet);
+          }
+      }
+
+      class TaxCalculator : CalculatorGeneral
+      {
+          public override void Help()
+          {
+          }
+
+          public override void PrintToConsole()
+          {
+          }
+
+          protected override void ExportToBody(ISheet sheet)
+          {
+          }
+      }
+
+      class ElectricBillCalculator : CalculatorGeneral
+      {
+          public override void Help()
+          {
+          }
+
+          public override void PrintToConsole()
+          {
+          }
+
+          protected override void ExportToBody(ISheet sheet)
+          {
+          }
+      }
+
+
+      // 测试团队
+
+      class CalculatorTest
+      {
+          public void Test1()
+          {
+              var calcs = new ICalculator[] {new TipCalculator(2222), new ElectricBillCalculator(), new TaxCalculator()};
+
+              foreach (var c in calcs)
+              {
+                  c.Help();
+                  c.PrintToConsole();
+                  c.ExportToExcel("xxx");
+              }
+          }
+      }
+  }
+#+end_src
+
 * 阶梯电费计算
 ** 第一种解决方案
 
