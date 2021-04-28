@@ -449,7 +449,7 @@ readonly:
   }
 #+end_src
 
-** 接口 (Interface)
+* 接口 (Interface)
 
 - 接口本质就是一个可以进行 *多继承* 的纯的抽象类。它是单继承的一种例外
 - 使用 interface 关键词声明接口，接口里面只能包含方法
@@ -457,7 +457,7 @@ readonly:
 - 接口实际上就是一种 *合同*，它起到的作用是制定统一的 *规则*
 - 接口有很多好处: blahblahblah... 面向接口编程是一种好的编程实践
 
-*** IComparable 接口使用示例
+** IComparable 接口使用示例
 
 IComparable 用来为两个对象进行比较提供比较的规则:
 #+begin_src csharp

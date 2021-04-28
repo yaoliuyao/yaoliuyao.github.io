@@ -67,29 +67,29 @@
 <li><a href="#org018b274">2.7.2. 抽象方法 (abstract)</a></li>
 </ul>
 </li>
-<li><a href="#org5b66536">2.8. 接口 (Interface)</a>
-<ul>
-<li><a href="#org8442a53">2.8.1. IComparable 接口使用示例</a></li>
 </ul>
 </li>
+<li><a href="#org5b66536">3. 接口 (Interface)</a>
+<ul>
+<li><a href="#org8442a53">3.1. IComparable 接口使用示例</a></li>
 </ul>
 </li>
-<li><a href="#org6aeeeff">3. BCL (Base-Class Library) 基础类库</a>
+<li><a href="#org6aeeeff">4. BCL (Base-Class Library) 基础类库</a>
 <ul>
-<li><a href="#org62cc525">3.1. Console/控制台</a></li>
-<li><a href="#orgf8ba168">3.2. Random/Thread</a></li>
-<li><a href="#org6bf851a">3.3. IDisposable/资源</a></li>
+<li><a href="#org62cc525">4.1. Console/控制台</a></li>
+<li><a href="#orgf8ba168">4.2. Random/Thread</a></li>
+<li><a href="#org6bf851a">4.3. IDisposable/资源</a></li>
 </ul>
 </li>
-<li><a href="#org41d732e">4. 技巧和示例</a>
+<li><a href="#org41d732e">5. 技巧和示例</a>
 <ul>
-<li><a href="#org19fdba0">4.1. 求余</a></li>
+<li><a href="#org19fdba0">5.1. 求余</a></li>
 </ul>
 </li>
-<li><a href="#org813f18a">5. 模拟题</a>
+<li><a href="#org813f18a">6. 模拟题</a>
 <ul>
-<li><a href="#org3dc09eb">5.1. 继承相关</a></li>
-<li><a href="#org1407fdc">5.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
+<li><a href="#org3dc09eb">6.1. 继承相关</a></li>
+<li><a href="#org1407fdc">6.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
 </ul>
 </li>
 </ul>
@@ -666,10 +666,11 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 </div>
 </div>
+</section>
 
-<div id="outline-container-org5b66536" class="outline-3">
-<h3 id="org5b66536"><span class="section-number-3">2.8</span> 接口 (Interface)</h3>
-<div class="outline-text-3" id="text-2-8">
+<section id="outline-container-org5b66536" class="outline-2">
+<h2 id="org5b66536"><span class="section-number-2">3</span> 接口 (Interface)</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>接口本质就是一个可以进行 <b>多继承</b> 的纯的抽象类。它是单继承的一种例外</li>
 <li>使用 interface 关键词声明接口，接口里面只能包含方法</li>
@@ -679,9 +680,9 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </ul>
 </div>
 
-<div id="outline-container-org8442a53" class="outline-4">
-<h4 id="org8442a53"><span class="section-number-4">2.8.1</span> IComparable 接口使用示例</h4>
-<div class="outline-text-4" id="text-2-8-1">
+<div id="outline-container-org8442a53" class="outline-3">
+<h3 id="org8442a53"><span class="section-number-3">3.1</span> IComparable 接口使用示例</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 IComparable 用来为两个对象进行比较提供比较的规则:
 </p>
@@ -731,16 +732,15 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </div>
 </div>
 </div>
-</div>
 </section>
 
 <section id="outline-container-org6aeeeff" class="outline-2">
-<h2 id="org6aeeeff"><span class="section-number-2">3</span> BCL (Base-Class Library) 基础类库</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org6aeeeff"><span class="section-number-2">4</span> BCL (Base-Class Library) 基础类库</h2>
+<div class="outline-text-2" id="text-4">
 </div>
 <div id="outline-container-org62cc525" class="outline-3">
-<h3 id="org62cc525"><span class="section-number-3">3.1</span> Console/控制台</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org62cc525"><span class="section-number-3">4.1</span> Console/控制台</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 相关方法和属性:
 </p>
@@ -805,8 +805,8 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </div>
 
 <div id="outline-container-orgf8ba168" class="outline-3">
-<h3 id="orgf8ba168"><span class="section-number-3">3.2</span> Random/Thread</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="orgf8ba168"><span class="section-number-3">4.2</span> Random/Thread</h3>
+<div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span>
 <span style="color: #707183;">{</span>
@@ -843,8 +843,8 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </div>
 
 <div id="outline-container-org6bf851a" class="outline-3">
-<h3 id="org6bf851a"><span class="section-number-3">3.3</span> IDisposable/资源</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="org6bf851a"><span class="section-number-3">4.3</span> IDisposable/资源</h3>
+<div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>资源，是指需要在操作系统中打开，用完之后，需要手动释放的对象</li>
 <li>为什么需要手动释放呢？因为 .NET 平台不是万能的。虽然 .NET 平台有垃圾回收器，你不再需要的
@@ -920,12 +920,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org41d732e" class="outline-2">
-<h2 id="org41d732e"><span class="section-number-2">4</span> 技巧和示例</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org41d732e"><span class="section-number-2">5</span> 技巧和示例</h2>
+<div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org19fdba0" class="outline-3">
-<h3 id="org19fdba0"><span class="section-number-3">4.1</span> 求余</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org19fdba0"><span class="section-number-3">5.1</span> 求余</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 求余经常用来将某个数 <b>转换</b> 为 0-N 区间的一个数。
 </p>
@@ -995,12 +995,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org813f18a" class="outline-2">
-<h2 id="org813f18a"><span class="section-number-2">5</span> 模拟题</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org813f18a"><span class="section-number-2">6</span> 模拟题</h2>
+<div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-org3dc09eb" class="outline-3">
-<h3 id="org3dc09eb"><span class="section-number-3">5.1</span> 继承相关</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="org3dc09eb"><span class="section-number-3">6.1</span> 继承相关</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 请问下面程序的输出是什么:
 </p>
@@ -1052,8 +1052,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 
 
 <div id="outline-container-org1407fdc" class="outline-3">
-<h3 id="org1407fdc"><span class="section-number-3">5.2</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="org1407fdc"><span class="section-number-3">6.2</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 重构 = 重新构造 = 将代码进行重写，让结构发生变化的行为
 = 一般来说，是因为现有的代码不合理，所以呢，重新调整一下
