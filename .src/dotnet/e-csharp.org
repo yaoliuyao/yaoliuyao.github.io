@@ -456,6 +456,45 @@ readonly:
   产生不同结果的原因是方法实质调用了不同派生类中的不同实现。
 - 虚方法是实现多态性的主要手段，接口和抽象类是多态的充分体现
 
+#+begin_src csharp
+  // 批量处理 (关心的是共性)
+
+  Animal[] animals = new Animal[3];
+  animals[0] = new Animal();
+  animals[1] = new 美女();
+  animals[2] = new 野兽();
+
+  for (int i = 0; i < animals.Length; i++)
+  {
+      Animal a = animals[i];
+      a.Eat();
+      a.Sleep();
+      a.WakeUp();
+      a.Drink();
+  }
+
+  // 适配的参数类型
+
+  void PlayWith (Animal animal) {
+      Console.WriteLine("我很开心");
+      Console.WriteLine("我在跟 {0} 一起吃东西", dog);
+      animal.Eat();
+      TakePhoto();
+      Fapengyouquan();
+  }
+  PlayWith(new Dog());
+  PlayWith(new Cat());
+  PlayWith(new 美女());
+
+  // 适配的返回值 (约定跟实现的和谐)
+
+  Dog GiveADog()
+  {
+      return new 二哈();
+  }
+  Animal aaa = GiveADog();
+#+end_src
+
 * 接口 (Interface)
 
 - 接口本质就是一个可以进行 *多继承* 的纯的抽象类。它是单继承的一种例外

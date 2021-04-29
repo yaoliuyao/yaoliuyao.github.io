@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-28 -->
+<!-- 2021-04-29 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -679,6 +679,46 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 产生不同结果的原因是方法实质调用了不同派生类中的不同实现。</li>
 <li>虚方法是实现多态性的主要手段，接口和抽象类是多态的充分体现</li>
 </ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#25209;&#37327;&#22788;&#29702; (&#20851;&#24515;&#30340;&#26159;&#20849;&#24615;)</span>
+
+<span style="color: #228b22;">Animal</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">animals</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Animal</span><span style="color: #707183;">[</span>3<span style="color: #707183;">]</span>;
+animals<span style="color: #707183;">[</span>0<span style="color: #707183;">]</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Animal</span><span style="color: #707183;">()</span>;
+animals<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> = <span style="color: #a020f0;">new</span> &#32654;&#22899;<span style="color: #707183;">()</span>;
+animals<span style="color: #707183;">[</span>2<span style="color: #707183;">]</span> = <span style="color: #a020f0;">new</span> &#37326;&#20861;<span style="color: #707183;">()</span>;
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; animals.Length; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">Animal</span> <span style="color: #a0522d;">a</span> = animals<span style="color: #7388d6;">[</span>i<span style="color: #7388d6;">]</span>;
+    a.<span style="color: #0000ff;">Eat</span><span style="color: #7388d6;">()</span>;
+    a.<span style="color: #0000ff;">Sleep</span><span style="color: #7388d6;">()</span>;
+    a.<span style="color: #0000ff;">WakeUp</span><span style="color: #7388d6;">()</span>;
+    a.<span style="color: #0000ff;">Drink</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#36866;&#37197;&#30340;&#21442;&#25968;&#31867;&#22411;</span>
+
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">PlayWith</span> <span style="color: #707183;">(</span><span style="color: #228b22;">Animal</span> <span style="color: #a0522d;">animal</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#25105;&#24456;&#24320;&#24515;"</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#25105;&#22312;&#36319; {0} &#19968;&#36215;&#21507;&#19996;&#35199;"</span>, dog<span style="color: #7388d6;">)</span>;
+    animal.<span style="color: #0000ff;">Eat</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #0000ff;">TakePhoto</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #0000ff;">Fapengyouquan</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #0000ff;">PlayWith</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dog</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+<span style="color: #0000ff;">PlayWith</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Cat</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+<span style="color: #0000ff;">PlayWith</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">&#32654;&#22899;</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#36866;&#37197;&#30340;&#36820;&#22238;&#20540; (&#32422;&#23450;&#36319;&#23454;&#29616;&#30340;&#21644;&#35856;)</span>
+
+<span style="color: #228b22;">Dog</span> <span style="color: #0000ff;">GiveADog</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> &#20108;&#21704;<span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #228b22;">Animal</span> <span style="color: #a0522d;">aaa</span> = <span style="color: #0000ff;">GiveADog</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
 </div>
 </div>
 </section>
@@ -1081,7 +1121,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-04-28</p>
+<p class="date">Created: 2021-04-29</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
