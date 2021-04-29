@@ -493,6 +493,11 @@ readonly:
       return new 二哈();
   }
   Animal aaa = GiveADog();
+
+  // 接口与多态
+
+  IHelpable xxx = new TipCalculator();
+  xxx.Help();
 #+end_src
 
 * 接口 (Interface)
