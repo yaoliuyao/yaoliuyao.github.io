@@ -70,14 +70,14 @@
 </ul>
 </li>
 <li><a href="#orgfde4775">2.9. 多态 (Polymorphism)</a></li>
-<li><a href="#orgd80b6df">2.10. 基类 Object</a>
+<li><a href="#orgdba7928">2.10. 静态类/static</a></li>
+<li><a href="#orgf09339d">2.11. 密封类/sealed</a></li>
+<li><a href="#orgc4575f0">2.12. 分部类/partial</a></li>
+<li><a href="#orgd80b6df">2.13. 基类 Object</a>
 <ul>
-<li><a href="#org2d97e95">2.10.1. ToString</a></li>
+<li><a href="#org2d97e95">2.13.1. ToString</a></li>
 </ul>
 </li>
-<li><a href="#orgdba7928">2.11. 静态类/static</a></li>
-<li><a href="#orgf09339d">2.12. 密封类/sealed</a></li>
-<li><a href="#orgc4575f0">2.13. 分部类/partial</a></li>
 </ul>
 </li>
 <li><a href="#org5b66536">3. 接口 (Interface)</a>
@@ -779,31 +779,9 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-orgd80b6df" class="outline-3">
-<h3 id="orgd80b6df"><span class="section-number-3">2.10</span> 基类 Object</h3>
-<div class="outline-text-3" id="text-2-10">
-</div>
-<div id="outline-container-org2d97e95" class="outline-4">
-<h4 id="org2d97e95"><span class="section-number-4">2.10.1</span> ToString</h4>
-<div class="outline-text-4" id="text-2-10-1">
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalculator</span> : <span style="color: #228b22;">CalculatorBase</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span>
-    <span style="color: #7388d6;">{</span>
-        <span style="color: #a020f0;">return</span> $<span style="color: #8b2252;">"&#25105;&#26159;&#19968;&#20010;&#36134;&#21333;&#31867;&#65292;&#20256;&#20837;&#30340;&#21442;&#25968;&#26159; {Bill}"</span>;
-    <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TipCalculator</span><span style="color: #7388d6;">(</span>200<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
-</pre>
-</div>
-</div>
-</div>
-</div>
-
 <div id="outline-container-orgdba7928" class="outline-3">
-<h3 id="orgdba7928"><span class="section-number-3">2.11</span> 静态类/static</h3>
-<div class="outline-text-3" id="text-2-11">
+<h3 id="orgdba7928"><span class="section-number-3">2.10</span> 静态类/static</h3>
+<div class="outline-text-3" id="text-2-10">
 <p>
 限制里面所有的方法，必须是静态的。典型的代表是 Math 类。
 </p>
@@ -811,8 +789,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgf09339d" class="outline-3">
-<h3 id="orgf09339d"><span class="section-number-3">2.12</span> 密封类/sealed</h3>
-<div class="outline-text-3" id="text-2-12">
+<h3 id="orgf09339d"><span class="section-number-3">2.11</span> 密封类/sealed</h3>
+<div class="outline-text-3" id="text-2-11">
 <p>
 这就从语法上，避免了某个类被继承的可能。
 </p>
@@ -820,8 +798,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgc4575f0" class="outline-3">
-<h3 id="orgc4575f0"><span class="section-number-3">2.13</span> 分部类/partial</h3>
-<div class="outline-text-3" id="text-2-13">
+<h3 id="orgc4575f0"><span class="section-number-3">2.12</span> 分部类/partial</h3>
+<div class="outline-text-3" id="text-2-12">
 <p>
 让类可以写成多部分。在编译的环节，编译器将会帮助我们自动合并之后再编译。
 </p>
@@ -841,6 +819,28 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd80b6df" class="outline-3">
+<h3 id="orgd80b6df"><span class="section-number-3">2.13</span> 基类 Object</h3>
+<div class="outline-text-3" id="text-2-13">
+</div>
+<div id="outline-container-org2d97e95" class="outline-4">
+<h4 id="org2d97e95"><span class="section-number-4">2.13.1</span> ToString</h4>
+<div class="outline-text-4" id="text-2-13-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalculator</span> : <span style="color: #228b22;">CalculatorBase</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> $<span style="color: #8b2252;">"&#25105;&#26159;&#19968;&#20010;&#36134;&#21333;&#31867;&#65292;&#20256;&#20837;&#30340;&#21442;&#25968;&#26159; {Bill}"</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TipCalculator</span><span style="color: #7388d6;">(</span>200<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
 </div>
 </div>
 </div>

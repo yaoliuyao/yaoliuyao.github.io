@@ -532,20 +532,6 @@ readonly:
     xxx.Help();
 #+end_src
 
-** 基类 Object
-*** ToString
-
-#+begin_src csharp
-  class TipCalculator : CalculatorBase
-  {
-      public override string ToString()
-      {
-          return $"我是一个账单类，传入的参数是 {Bill}";
-      }
-  }
-  Console.WriteLine("{0}", new TipCalculator(200));
-#+end_src
-
 ** 静态类/static
 
 限制里面所有的方法，必须是静态的。典型的代表是 Math 类。
@@ -572,6 +558,20 @@ readonly:
       {
       }
   }
+#+end_src
+
+** 基类 Object
+*** ToString
+
+#+begin_src csharp
+  class TipCalculator : CalculatorBase
+  {
+      public override string ToString()
+      {
+          return $"我是一个账单类，传入的参数是 {Bill}";
+      }
+  }
+  Console.WriteLine("{0}", new TipCalculator(200));
 #+end_src
 
 * 接口 (Interface)
