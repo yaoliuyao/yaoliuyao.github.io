@@ -282,7 +282,21 @@ switch:
   }
 #+end_src
 
-** 静态 (Static)
+** 析构方法/析构器 (Deconstructor)
+
+#+begin_src csharp
+  ~TipCalculator()
+  {
+      Console.WriteLine("我死的好惨啊");
+  }
+
+  ~文件()
+  {
+      this.Close();
+  }
+#+end_src
+
+** 静态方法 (Static)
 
 将归属权，交给类。调用的时候，使用 ~类名.xxx~ 方式。
 
@@ -530,6 +544,34 @@ readonly:
       }
   }
   Console.WriteLine("{0}", new TipCalculator(200));
+#+end_src
+
+** 静态类/static
+
+限制里面所有的方法，必须是静态的。典型的代表是 Math 类。
+
+** 密封类/sealed
+
+这就从语法上，避免了某个类被继承的可能。
+
+** 分部类/partial
+
+让类可以写成多部分。在编译的环节，编译器将会帮助我们自动合并之后再编译。
+
+#+begin_src csharp
+  partial class MyLove
+  {
+      public void 你想我吗()
+      {
+      }
+  }
+
+  partial class MyLove
+  {
+      public void 我想你()
+      {
+      }
+  }
 #+end_src
 
 * 接口 (Interface)

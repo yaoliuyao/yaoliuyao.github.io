@@ -60,20 +60,24 @@
 <li><a href="#org8e18a71">2.4.4. 静态构造器</a></li>
 </ul>
 </li>
-<li><a href="#orgd518392">2.5. 静态 (Static)</a></li>
-<li><a href="#org1f361ce">2.6. 将数据设置为不变的 (const/readonly)</a></li>
-<li><a href="#orgd2c8a57">2.7. 继承 (Inheritance)</a>
+<li><a href="#org33dffb7">2.5. 析构方法/析构器 (Deconstructor)</a></li>
+<li><a href="#orgf59a9e5">2.6. 静态方法 (Static)</a></li>
+<li><a href="#org1f361ce">2.7. 将数据设置为不变的 (const/readonly)</a></li>
+<li><a href="#orgd2c8a57">2.8. 继承 (Inheritance)</a>
 <ul>
-<li><a href="#org2f228dd">2.7.1. 虚方法 (virtual/override)</a></li>
-<li><a href="#org018b274">2.7.2. 抽象方法 (abstract)</a></li>
+<li><a href="#org2f228dd">2.8.1. 虚方法 (virtual/override)</a></li>
+<li><a href="#org018b274">2.8.2. 抽象方法 (abstract)</a></li>
 </ul>
 </li>
-<li><a href="#orgfde4775">2.8. 多态 (Polymorphism)</a></li>
-<li><a href="#orgd80b6df">2.9. 基类 Object</a>
+<li><a href="#orgfde4775">2.9. 多态 (Polymorphism)</a></li>
+<li><a href="#orgd80b6df">2.10. 基类 Object</a>
 <ul>
-<li><a href="#org2d97e95">2.9.1. ToString</a></li>
+<li><a href="#org2d97e95">2.10.1. ToString</a></li>
 </ul>
 </li>
+<li><a href="#orgdba7928">2.11. 静态类/static</a></li>
+<li><a href="#orgf09339d">2.12. 密封类/sealed</a></li>
+<li><a href="#orgc4575f0">2.13. 分部类/partial</a></li>
 </ul>
 </li>
 <li><a href="#org5b66536">3. 接口 (Interface)</a>
@@ -467,9 +471,27 @@ switch:
 </div>
 </div>
 
-<div id="outline-container-orgd518392" class="outline-3">
-<h3 id="orgd518392"><span class="section-number-3">2.5</span> 静态 (Static)</h3>
+<div id="outline-container-org33dffb7" class="outline-3">
+<h3 id="org33dffb7"><span class="section-number-3">2.5</span> 析构方法/析构器 (Deconstructor)</h3>
 <div class="outline-text-3" id="text-2-5">
+<div class="org-src-container">
+<pre class="src src-csharp">~<span style="color: #0000ff;">TipCalculator</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#25105;&#27515;&#30340;&#22909;&#24808;&#21834;"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+~&#25991;&#20214;<span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">this</span>.<span style="color: #0000ff;">Close</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf59a9e5" class="outline-3">
+<h3 id="orgf59a9e5"><span class="section-number-3">2.6</span> 静态方法 (Static)</h3>
+<div class="outline-text-3" id="text-2-6">
 <p>
 将归属权，交给类。调用的时候，使用 <code>类名.xxx</code> 方式。
 </p>
@@ -477,8 +499,8 @@ switch:
 </div>
 
 <div id="outline-container-org1f361ce" class="outline-3">
-<h3 id="org1f361ce"><span class="section-number-3">2.6</span> 将数据设置为不变的 (const/readonly)</h3>
-<div class="outline-text-3" id="text-2-6">
+<h3 id="org1f361ce"><span class="section-number-3">2.7</span> 将数据设置为不变的 (const/readonly)</h3>
+<div class="outline-text-3" id="text-2-7">
 <pre class="example">
 通过 private 等操作符可以保护数据的外部访问安全
 通过 const/readonly 可以防止内鬼
@@ -528,8 +550,8 @@ readonly:
 </div>
 
 <div id="outline-container-orgd2c8a57" class="outline-3">
-<h3 id="orgd2c8a57"><span class="section-number-3">2.7</span> 继承 (Inheritance)</h3>
-<div class="outline-text-3" id="text-2-7">
+<h3 id="orgd2c8a57"><span class="section-number-3">2.8</span> 继承 (Inheritance)</h3>
+<div class="outline-text-3" id="text-2-8">
 <ul class="org-ul">
 <li>继承表示，我的是我的，你的也是我的。使用 <code>:</code> 语法表示继承关系</li>
 <li>继承主要用来消除冗余，让逻辑得以 <b>复用</b>。逻辑上来说，跟自然界的分门别类是对应一致的</li>
@@ -558,8 +580,8 @@ d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-org2f228dd" class="outline-4">
-<h4 id="org2f228dd"><span class="section-number-4">2.7.1</span> 虚方法 (virtual/override)</h4>
-<div class="outline-text-4" id="text-2-7-1">
+<h4 id="org2f228dd"><span class="section-number-4">2.8.1</span> 虚方法 (virtual/override)</h4>
+<div class="outline-text-4" id="text-2-8-1">
 <p>
 虚函数:
 </p>
@@ -651,8 +673,8 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-org018b274" class="outline-4">
-<h4 id="org018b274"><span class="section-number-4">2.7.2</span> 抽象方法 (abstract)</h4>
-<div class="outline-text-4" id="text-2-7-2">
+<h4 id="org018b274"><span class="section-number-4">2.8.2</span> 抽象方法 (abstract)</h4>
+<div class="outline-text-4" id="text-2-8-2">
 <ul class="org-ul">
 <li>继承下来的，不一定是权利，也有可能是义务。俗语有云 <b>父债子偿</b></li>
 <li>通过在父类中，将某个方法用 <code>abstract</code> 修饰，表示它是债务&#x2026;</li>
@@ -699,8 +721,8 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-orgfde4775" class="outline-3">
-<h3 id="orgfde4775"><span class="section-number-3">2.8</span> 多态 (Polymorphism)</h3>
-<div class="outline-text-3" id="text-2-8">
+<h3 id="orgfde4775"><span class="section-number-3">2.9</span> 多态 (Polymorphism)</h3>
+<div class="outline-text-3" id="text-2-9">
 <p>
 多态是一个来自生物学上的概念，<a href="https://baike.baidu.com/item/%E5%A4%9A%E6%80%81%E7%8E%B0%E8%B1%A1">参见百度百科</a>:
 </p>
@@ -758,12 +780,12 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-orgd80b6df" class="outline-3">
-<h3 id="orgd80b6df"><span class="section-number-3">2.9</span> 基类 Object</h3>
-<div class="outline-text-3" id="text-2-9">
+<h3 id="orgd80b6df"><span class="section-number-3">2.10</span> 基类 Object</h3>
+<div class="outline-text-3" id="text-2-10">
 </div>
 <div id="outline-container-org2d97e95" class="outline-4">
-<h4 id="org2d97e95"><span class="section-number-4">2.9.1</span> ToString</h4>
-<div class="outline-text-4" id="text-2-9-1">
+<h4 id="org2d97e95"><span class="section-number-4">2.10.1</span> ToString</h4>
+<div class="outline-text-4" id="text-2-10-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalculator</span> : <span style="color: #228b22;">CalculatorBase</span>
 <span style="color: #707183;">{</span>
@@ -775,6 +797,50 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TipCalculator</span><span style="color: #7388d6;">(</span>200<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdba7928" class="outline-3">
+<h3 id="orgdba7928"><span class="section-number-3">2.11</span> 静态类/static</h3>
+<div class="outline-text-3" id="text-2-11">
+<p>
+限制里面所有的方法，必须是静态的。典型的代表是 Math 类。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf09339d" class="outline-3">
+<h3 id="orgf09339d"><span class="section-number-3">2.12</span> 密封类/sealed</h3>
+<div class="outline-text-3" id="text-2-12">
+<p>
+这就从语法上，避免了某个类被继承的可能。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc4575f0" class="outline-3">
+<h3 id="orgc4575f0"><span class="section-number-3">2.13</span> 分部类/partial</h3>
+<div class="outline-text-3" id="text-2-13">
+<p>
+让类可以写成多部分。在编译的环节，编译器将会帮助我们自动合并之后再编译。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">partial</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">MyLove</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#20320;&#24819;&#25105;&#21527;</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">partial</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">MyLove</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#25105;&#24819;&#20320;</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
 </div>
 </div>
 </div>
