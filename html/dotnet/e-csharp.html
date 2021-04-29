@@ -57,6 +57,7 @@
 <li><a href="#orge727744">2.4.1. 对象的实例化</a></li>
 <li><a href="#org0733fe2">2.4.2. 构造器</a></li>
 <li><a href="#org42925dc">2.4.3. 构造器链</a></li>
+<li><a href="#org8e18a71">2.4.4. 静态构造器</a></li>
 </ul>
 </li>
 <li><a href="#orgd518392">2.5. 静态 (Static)</a></li>
@@ -68,6 +69,11 @@
 </ul>
 </li>
 <li><a href="#orgfde4775">2.8. 多态 (Polymorphism)</a></li>
+<li><a href="#orgd80b6df">2.9. 基类 Object</a>
+<ul>
+<li><a href="#org2d97e95">2.9.1. ToString</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org5b66536">3. 接口 (Interface)</a>
@@ -435,6 +441,30 @@ switch:
 </div>
 </div>
 </div>
+
+<div id="outline-container-org8e18a71" class="outline-4">
+<h4 id="org8e18a71"><span class="section-number-4">2.4.4</span> 静态构造器</h4>
+<div class="outline-text-4" id="text-2-4-4">
+<ul class="org-ul">
+<li>构造器是用来初始化 <b>对象</b> 的</li>
+<li>静态构造器是用来初始化 <b>类</b> 的</li>
+<li>对象的初始化工作，是在代码中通过 new Class 的方式触发的</li>
+<li>类的初始化工作，是由 CLR 自动执行的，一般来说，你第一次使用到某个类的时候，这个类就会 <b>被</b> 自动加载</li>
+<li>静态的构造器，只能有一个，而且不能带任何参数</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalculator</span> : <span style="color: #228b22;">CalculatorBase</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #0000ff;">TipCalculator</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26159;&#19968;&#20010;&#24102; static &#30340;&#26500;&#36896;&#22120;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 
 <div id="outline-container-orgd518392" class="outline-3">
@@ -723,6 +753,28 @@ animals<span style="color: #707183;">[</span>2<span style="color: #707183;">]</s
 <span style="color: #228b22;">IHelpable</span> <span style="color: #a0522d;">xxx</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TipCalculator</span><span style="color: #707183;">(</span>222<span style="color: #707183;">)</span>;
 xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</span>;
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd80b6df" class="outline-3">
+<h3 id="orgd80b6df"><span class="section-number-3">2.9</span> 基类 Object</h3>
+<div class="outline-text-3" id="text-2-9">
+</div>
+<div id="outline-container-org2d97e95" class="outline-4">
+<h4 id="org2d97e95"><span class="section-number-4">2.9.1</span> ToString</h4>
+<div class="outline-text-4" id="text-2-9-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalculator</span> : <span style="color: #228b22;">CalculatorBase</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> $<span style="color: #8b2252;">"&#25105;&#26159;&#19968;&#20010;&#36134;&#21333;&#31867;&#65292;&#20256;&#20837;&#30340;&#21442;&#25968;&#26159; {Bill}"</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TipCalculator</span><span style="color: #7388d6;">(</span>200<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
 </div>
 </div>
 </div>

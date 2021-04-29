@@ -264,6 +264,24 @@ switch:
   You u = new You("张三");
 #+end_src
 
+*** 静态构造器
+
+- 构造器是用来初始化 *对象* 的
+- 静态构造器是用来初始化 *类* 的
+- 对象的初始化工作，是在代码中通过 new Class 的方式触发的
+- 类的初始化工作，是由 CLR 自动执行的，一般来说，你第一次使用到某个类的时候，这个类就会 *被* 自动加载
+- 静态的构造器，只能有一个，而且不能带任何参数
+
+#+begin_src csharp
+  class TipCalculator : CalculatorBase
+  {
+      static TipCalculator()
+      {
+          Console.WriteLine("我是一个带 static 的构造器");
+      }
+  }
+#+end_src
+
 ** 静态 (Static)
 
 将归属权，交给类。调用的时候，使用 ~类名.xxx~ 方式。
@@ -498,6 +516,20 @@ readonly:
 
     IHelpable xxx = new TipCalculator(222);
     xxx.Help();
+#+end_src
+
+** 基类 Object
+*** ToString
+
+#+begin_src csharp
+  class TipCalculator : CalculatorBase
+  {
+      public override string ToString()
+      {
+          return $"我是一个账单类，传入的参数是 {Bill}";
+      }
+  }
+  Console.WriteLine("{0}", new TipCalculator(200));
 #+end_src
 
 * 接口 (Interface)
