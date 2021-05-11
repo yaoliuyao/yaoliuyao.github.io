@@ -65,7 +65,7 @@ C# 语言却是 .NET 的亲儿子。
 
 C# 是运行在 .NET 平台上的一种标准语言。它从源代码，到执行，经历了两次编译的过程:
 - 使用 csc/dotnet build 将 xxx.cs 编译成程序集 (IL 代码)
-- 如果用户点击程序运行的话，这时候 CLR 会加载程序集中的 IL，然后将其 JIT (Just In Time) 为 Native 码进行运行
+- 如果用户点击程序运行的话，这时候 CLR 会加载程序集中的 IL，然后将其 JIT (Just In Time) 编译为 Native 码进行运行
 
 
 [[file:img/dotnet-arch.png]]
