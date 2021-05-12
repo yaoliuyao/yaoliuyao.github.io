@@ -57,8 +57,8 @@
 C# 语言却是 .NET 的亲儿子。
 
 为了让不同的编程语言在 .NET 平台上有序协作，微软定义了一系列的规范，称为 *CLI* (Common Language Infrastructure，公共语言基础结构):
-- 它通过 *CLS* (Common Language Standard, 公共语言规范) 制定了各种不同语言运行在平台上需要遵循的一些基本规则
-- 它通过 *CTS* (Common Type Standard，公共类型规范) 制定了 .NET 平台上的类型标准
+- 它通过 *CLS* (Common Language Specification, 公共语言规范) 制定了各种不同语言运行在平台上需要遵循的一些基本规则
+- 它通过 *CTS* (Common Type System，公共类型系统) 制定了 .NET 平台上的类型标准
 - 它通过 *CIL* (Common Language Intermediate，公共语言中间码) 制定了中间码的标准
 - 它还包括了 *CLR* 的一些列执行标准
 - 后来的话，微软将 CLI 交付给了国际化标准化组织。然后，这一系列规范就成了国际标准

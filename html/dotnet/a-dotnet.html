@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-11 -->
+<!-- 2021-05-12 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>.NET</title>
@@ -44,7 +44,7 @@
         TeX: { equationNumbers: {autoNumber: "AMS"}, MultLineWidth: "85%", TagSide: "right", TagIndent: ".8em" }
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML" async></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML" async></script>
 </head>
 <body>
 <div id="content">
@@ -81,7 +81,7 @@
 
 
 <section id="outline-container-orgc84cefe" class="outline-2">
-<h2 id="orgc84cefe"><span class="section-number-2">1</span> 发展历史和平台结构</h2>
+<h2 id="orgc84cefe"><span class="section-number-2">1.</span> 发展历史和平台结构</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 在大约 90 年代，Windows 编程分化出了很多不同分支:
@@ -171,8 +171,8 @@ C# 语言却是 .NET 的亲儿子。
 为了让不同的编程语言在 .NET 平台上有序协作，微软定义了一系列的规范，称为 <b>CLI</b> (Common Language Infrastructure，公共语言基础结构):
 </p>
 <ul class="org-ul">
-<li>它通过 <b>CLS</b> (Common Language Standard, 公共语言规范) 制定了各种不同语言运行在平台上需要遵循的一些基本规则</li>
-<li>它通过 <b>CTS</b> (Common Type Standard，公共类型规范) 制定了 .NET 平台上的类型标准</li>
+<li>它通过 <b>CLS</b> (Common Language Specification, 公共语言规范) 制定了各种不同语言运行在平台上需要遵循的一些基本规则</li>
+<li>它通过 <b>CTS</b> (Common Type System，公共类型系统) 制定了 .NET 平台上的类型标准</li>
 <li>它通过 <b>CIL</b> (Common Language Intermediate，公共语言中间码) 制定了中间码的标准</li>
 <li>它还包括了 <b>CLR</b> 的一些列执行标准</li>
 <li>后来的话，微软将 CLI 交付给了国际化标准化组织。然后，这一系列规范就成了国际标准</li>
@@ -188,7 +188,7 @@ C# 是运行在 .NET 平台上的一种标准语言。它从源代码，到执�
 
 
 
-<figure id="org7b1f68c">
+<figure id="org1d4b34d">
 <img src="img/dotnet-arch.png" alt="dotnet-arch.png">
 
 </figure>
@@ -198,11 +198,11 @@ C# 是运行在 .NET 平台上的一种标准语言。它从源代码，到执�
 
 
 <section id="outline-container-org5a891eb" class="outline-2">
-<h2 id="org5a891eb"><span class="section-number-2">2</span> 开发方式</h2>
+<h2 id="org5a891eb"><span class="section-number-2">2.</span> 开发方式</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-orga3fa177" class="outline-3">
-<h3 id="orga3fa177"><span class="section-number-3">2.1</span> 原始方式</h3>
+<h3 id="orga3fa177"><span class="section-number-3">2.1.</span> 原始方式</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 安装完 Windows 之后，自带的 csc 在 C:\Windows\Microsoft.NET\版本号 下面。
@@ -233,7 +233,7 @@ Hello.exe
 </div>
 
 <div id="outline-container-org69fd68f" class="outline-3">
-<h3 id="org69fd68f"><span class="section-number-3">2.2</span> 解锁开发的完全能力 (Visual Studio)</h3>
+<h3 id="org69fd68f"><span class="section-number-3">2.2.</span> 解锁开发的完全能力 (Visual Studio)</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 如果在 Windows 下面进行开发的话。最好的环境就是 VS。
@@ -251,7 +251,7 @@ Hello.exe
 </div>
 
 <div id="outline-container-org2ea99d6" class="outline-3">
-<h3 id="org2ea99d6"><span class="section-number-3">2.3</span> 跨平台开发 (.net core + vscode)</h3>
+<h3 id="org2ea99d6"><span class="section-number-3">2.3.</span> 跨平台开发 (.net core + vscode)</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 首先，安装 .Net Core 的开发环境
@@ -306,7 +306,7 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </div>
 
 <div id="outline-container-org30b55e3" class="outline-3">
-<h3 id="org30b55e3"><span class="section-number-3">2.4</span> 书籍和文档</h3>
+<h3 id="org30b55e3"><span class="section-number-3">2.4.</span> 书籍和文档</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>MSDN (墙裂推荐): <a href="https://docs.microsoft.com/zh-cn/dotnet/">https://docs.microsoft.com/zh-cn/dotnet/</a></li>
@@ -320,11 +320,11 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </section>
 
 <section id="outline-container-org5ecc3e9" class="outline-2">
-<h2 id="org5ecc3e9"><span class="section-number-2">3</span> .NET 平台的项目</h2>
+<h2 id="org5ecc3e9"><span class="section-number-2">3.</span> .NET 平台的项目</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org7622a80" class="outline-3">
-<h3 id="org7622a80"><span class="section-number-3">3.1</span> Console 控制台应用</h3>
+<h3 id="org7622a80"><span class="section-number-3">3.1.</span> Console 控制台应用</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 基于命令行窗口的应用。
@@ -333,7 +333,7 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </div>
 
 <div id="outline-container-org0d35306" class="outline-3">
-<h3 id="org0d35306"><span class="section-number-3">3.2</span> WinForm 窗体应用</h3>
+<h3 id="org0d35306"><span class="section-number-3">3.2.</span> WinForm 窗体应用</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 基本特点:
@@ -346,7 +346,7 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </div>
 
 <div id="outline-container-orgac9bf73" class="outline-3">
-<h3 id="orgac9bf73"><span class="section-number-3">3.3</span> WPF 应用程序</h3>
+<h3 id="orgac9bf73"><span class="section-number-3">3.3.</span> WPF 应用程序</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>MVVM</li>
@@ -357,7 +357,7 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </div>
 
 <div id="outline-container-org584ac91" class="outline-3">
-<h3 id="org584ac91"><span class="section-number-3">3.4</span> ASP.NET WebForm</h3>
+<h3 id="org584ac91"><span class="section-number-3">3.4.</span> ASP.NET WebForm</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 比较老的，跟 WinForm 类似的一种 BS 开发方式。
@@ -366,7 +366,7 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </div>
 
 <div id="outline-container-orgea82e6b" class="outline-3">
-<h3 id="orgea82e6b"><span class="section-number-3">3.5</span> ASP.NET MVC</h3>
+<h3 id="orgea82e6b"><span class="section-number-3">3.5.</span> ASP.NET MVC</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 使用 MVC 三层结构，对逻辑和视图进行有效分离。
@@ -375,7 +375,7 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </div>
 
 <div id="outline-container-orgdb336e5" class="outline-3">
-<h3 id="orgdb336e5"><span class="section-number-3">3.6</span> Xamarin</h3>
+<h3 id="orgdb336e5"><span class="section-number-3">3.6.</span> Xamarin</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 移动开发，安卓或 iOS
@@ -384,7 +384,7 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </div>
 
 <div id="outline-container-org1ed6d7d" class="outline-3">
-<h3 id="org1ed6d7d"><span class="section-number-3">3.7</span> Unity3D</h3>
+<h3 id="org1ed6d7d"><span class="section-number-3">3.7.</span> Unity3D</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 游戏开发
@@ -395,7 +395,7 @@ dotnet run  <span style="color: #b22222;"># </span><span style="color: #b22222;"
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-11</p>
+<p class="date">Created: 2021-05-12</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
