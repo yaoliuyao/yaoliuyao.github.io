@@ -15,7 +15,7 @@
 #+HTML_HEAD: @media (min-width: 768px) {
 #+HTML_HEAD:   #content { margin-left: auto; margin-right: auto; padding-left: 50px; }
 #+HTML_HEAD:   #postamble { display: none; }
-#+HTML_HEAD:   #main {display: grid; grid-gap: 20px; grid-template-columns: 1fr auto;}
+#+HTML_HEAD:   #main {display: grid; grid-gap: 20px; grid-template-columns: 2fr auto;}
 #+HTML_HEAD:   #toc { min-width: 60%; padding-right: 100px; }
 #+HTML_HEAD:   #main aside { width: 600px; font-size: 1em; }
 #+HTML_HEAD:   #main aside > ol { display: flex; flex-flow: row wrap; }
