@@ -19,7 +19,7 @@
 #+HTML_HEAD:   #toc { min-width: 60%; padding-right: 100px; }
 #+HTML_HEAD:   #main aside { font-size: 1em; }
 #+HTML_HEAD:   #main aside > ol { display: flex; flex-flow: row wrap; width: 545px; box-shadow: 0 0 10px #eee; padding: 20px 0 20px 20px; margin-top: -2em; }
-#+HTML_HEAD:   #main aside > ol > li { margin-bottom: 1em; width: 150px;  }
+#+HTML_HEAD:   #main aside > ol > li { margin-bottom: 1em; width: 150px; margin-left: 15px; }
 #+HTML_HEAD: }
 #+HTML_HEAD: </style>
 
