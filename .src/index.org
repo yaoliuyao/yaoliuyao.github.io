@@ -17,8 +17,8 @@
 #+HTML_HEAD:   #postamble { display: none; }
 #+HTML_HEAD:   #main {display: grid; grid-gap: 20px; grid-template-columns: 2fr auto;}
 #+HTML_HEAD:   #toc { min-width: 60%; padding-right: 100px; }
-#+HTML_HEAD:   #main aside { font-size: 1em; }
-#+HTML_HEAD:   #main aside > ol { display: flex; flex-flow: row wrap; width: 530px; box-shadow: 1px 1px 1px #666; }
+#+HTML_HEAD:   #main aside { font-size: 1em; text-align: center; }
+#+HTML_HEAD:   #main aside > ol { display: flex; flex-flow: row wrap; width: 530px; box-shadow: 0 0 5px #666; }
 #+HTML_HEAD:   #main aside > ol > li { margin-bottom: 1em; width: 150px;  }
 #+HTML_HEAD: }
 #+HTML_HEAD: </style>
