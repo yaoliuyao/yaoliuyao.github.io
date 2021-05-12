@@ -16,10 +16,10 @@
 #+HTML_HEAD:   #content { margin-left: auto; margin-right: auto; padding-left: 50px; }
 #+HTML_HEAD:   #postamble { display: none; }
 #+HTML_HEAD:   #main {display: grid; grid-gap: 20px; grid-template-columns: 1fr auto;}
-#+HTML_HEAD:   #main aside { width: 400px; }
 #+HTML_HEAD:   #toc { min-width: 60%; padding-right: 100px; }
-#+HTML_HEAD:   aside > ol { display: flex; flex-flow: row wrap; }
-#+HTML_HEAD:   aside > ol > li { margin: 2em; }
+#+HTML_HEAD:   #main aside { width: 400px; font-size: 1.2em; }
+#+HTML_HEAD:   #main aside > ol { display: flex; flex-flow: row wrap; }
+#+HTML_HEAD:   #main aside > ol > li { margin: 1em; }
 #+HTML_HEAD: }
 #+HTML_HEAD: </style>
 
