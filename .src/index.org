@@ -18,7 +18,7 @@
 #+HTML_HEAD:   #main {display: grid; grid-gap: 20px; grid-template-columns: 1fr auto;}
 #+HTML_HEAD:   #main aside { width: 400px; }
 #+HTML_HEAD:   #toc { min-width: 60%; padding-right: 100px; }
-#+HTML_HEAD:   aside > ol { display: flex; width: 200px; flex-flow: row wrap; }
+#+HTML_HEAD:   aside > ol { display: flex; flex-flow: row wrap; }
 #+HTML_HEAD:   aside > ol > li { margin: 1em; }
 #+HTML_HEAD: }
 #+HTML_HEAD: </style>
