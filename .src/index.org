@@ -17,9 +17,9 @@
 #+HTML_HEAD:   #postamble { display: none; }
 #+HTML_HEAD:   #main {display: grid; grid-gap: 20px; grid-template-columns: 1fr auto;}
 #+HTML_HEAD:   #toc { min-width: 60%; padding-right: 100px; }
-#+HTML_HEAD:   #main aside { width: 700px; font-size: 1.2em; }
+#+HTML_HEAD:   #main aside { width: 600px; font-size: 1em; }
 #+HTML_HEAD:   #main aside > ol { display: flex; flex-flow: row wrap; }
-#+HTML_HEAD:   #main aside > ol > li { margin-bottom: 1em; width: 180px;  }
+#+HTML_HEAD:   #main aside > ol > li { margin-bottom: 1em; width: 150px;  }
 #+HTML_HEAD: }
 #+HTML_HEAD: </style>
 
