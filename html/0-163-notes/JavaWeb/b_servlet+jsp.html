@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-10 -->
+<!-- 2021-05-12 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Servlet and JSP</title>
 <meta name="generator" content="Org mode">
-<meta name="author" content="孙悟空">
+<meta name="author" content="悟饭">
 <link rel='stylesheet' href='/html/asset/common.css?3344' />
 <link rel='stylesheet' href='/yaoliuyao/html/asset/common.css?3344' />
 <script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
@@ -114,7 +114,7 @@
 
 
 <section id="outline-container-orgcb750f7" class="outline-2">
-<h2 id="orgcb750f7"><span class="section-number-2">1</span> JCP 以及规范</h2>
+<h2 id="orgcb750f7"><span class="section-number-2">1.</span> JCP 以及规范</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 JCP (Java Community Process) 是 Java 技术的标准化组织。
@@ -164,11 +164,11 @@ Servlet 规范是对所有人开放的，只要你愿意，你就可以按照规
 </section>
 
 <section id="outline-container-org1b4b8c1" class="outline-2">
-<h2 id="org1b4b8c1"><span class="section-number-2">2</span> Servlet (核心)</h2>
+<h2 id="org1b4b8c1"><span class="section-number-2">2.</span> Servlet (核心)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-org1f7dc5c" class="outline-3">
-<h3 id="org1f7dc5c"><span class="section-number-3">2.1</span> Servlet 接口 / HttpServlet 类</h3>
+<h3 id="org1f7dc5c"><span class="section-number-3">2.1.</span> Servlet 接口 / HttpServlet 类</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 如果要使用 Java 提供一个 Web 服务，只需要:
@@ -262,7 +262,7 @@ HTTP 协议有自己的一些独特规则，比如 http method 等，所以为�
 </div>
 
 <div id="outline-container-orgd6166a2" class="outline-3">
-<h3 id="orgd6166a2"><span class="section-number-3">2.2</span> Request/Response</h3>
+<h3 id="orgd6166a2"><span class="section-number-3">2.2.</span> Request/Response</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 HttpServletRequest/HttpServletResponse:
@@ -277,7 +277,7 @@ HttpServletRequest/HttpServletResponse:
 </div>
 
 <div id="outline-container-org5015919" class="outline-3">
-<h3 id="org5015919"><span class="section-number-3">2.3</span> HttpSession</h3>
+<h3 id="org5015919"><span class="section-number-3">2.3.</span> HttpSession</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Web 请求都是基于 HTTP 协议的。
@@ -315,7 +315,7 @@ HTTP 协议最大的一个特点，就是无状态的:
 </div>
 
 <div id="outline-container-org48ecaa7" class="outline-4">
-<h4 id="org48ecaa7"><span class="section-number-4">2.3.1</span> Cookie</h4>
+<h4 id="org48ecaa7"><span class="section-number-4">2.3.1.</span> Cookie</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 表面是小饼干的意思。
@@ -341,7 +341,7 @@ Cookie 是浏览器具备的一种功能，它能够为特定的 host 在本地�
 </div>
 
 <div id="outline-container-orgc03650c" class="outline-4">
-<h4 id="orgc03650c"><span class="section-number-4">2.3.2</span> Session 的基本使用</h4>
+<h4 id="orgc03650c"><span class="section-number-4">2.3.2.</span> Session 的基本使用</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 Java Web 就可以利用 URL Rewrite 的机制，或者 Cookie 的机制，实现所谓的 Session。
@@ -404,7 +404,7 @@ session.getMaxInactiveInterval<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-orgfbc8fce" class="outline-4">
-<h4 id="orgfbc8fce"><span class="section-number-4">2.3.3</span> Session 的基本原理</h4>
+<h4 id="orgfbc8fce"><span class="section-number-4">2.3.3.</span> Session 的基本原理</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 Session 是 Tomcat 服务器，根据 JSESSIONID，为每个会话，在内存中创建的一个数据对象。
@@ -416,7 +416,7 @@ Session 是 Tomcat 服务器，根据 JSESSIONID，为每个会话，在内存�
 </p>
 
 
-<figure id="org93455c1">
+<figure id="org8526835">
 <img src="img/oimg_20200725_081639.png" alt="oimg_20200725_081639.png">
 
 </figure>
@@ -427,7 +427,7 @@ Session 是 Tomcat 服务器，根据 JSESSIONID，为每个会话，在内存�
 </p>
 
 
-<figure id="org85efbc9">
+<figure id="org898106c">
 <img src="img/oimg_20200725_082112.png" alt="oimg_20200725_082112.png">
 
 </figure>
@@ -438,7 +438,7 @@ Session 是 Tomcat 服务器，根据 JSESSIONID，为每个会话，在内存�
 
 
 <div id="outline-container-org2bdcad6" class="outline-3">
-<h3 id="org2bdcad6"><span class="section-number-3">2.4</span> ServletContext</h3>
+<h3 id="org2bdcad6"><span class="section-number-3">2.4.</span> ServletContext</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 在整个 Tomcat 运行的过程中，只会创建唯一的一个 ServletContext 对象。
@@ -474,7 +474,7 @@ context.setAttribute<span style="color: #707183;">(</span><span style="color: #8
 </div>
 
 <div id="outline-container-orgbff57e9" class="outline-3">
-<h3 id="orgbff57e9"><span class="section-number-3">2.5</span> ContextPath 项目上下文路径</h3>
+<h3 id="orgbff57e9"><span class="section-number-3">2.5.</span> ContextPath 项目上下文路径</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 /book/add 中的 /book，是因为我们部署到 tomcat 上面使用的是 /book 作为前缀。
@@ -514,7 +514,7 @@ ${pageContext.request.getContextPath()}
 </section>
 
 <section id="outline-container-orgcb6f001" class="outline-2">
-<h2 id="orgcb6f001"><span class="section-number-2">3</span> Filter (过滤器)</h2>
+<h2 id="orgcb6f001"><span class="section-number-2">3.</span> Filter (过滤器)</h2>
 <div class="outline-text-2" id="text-3">
 <pre class="example">
 它只是一种将 Servlet 中一些重复的逻辑提取出来，进行简化的方法。
@@ -522,7 +522,7 @@ ${pageContext.request.getContextPath()}
 </div>
 
 <div id="outline-container-org0fc41ac" class="outline-3">
-<h3 id="org0fc41ac"><span class="section-number-3">3.1</span> 什么是过滤器</h3>
+<h3 id="org0fc41ac"><span class="section-number-3">3.1.</span> 什么是过滤器</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 过滤器:
@@ -553,7 +553,7 @@ ${pageContext.request.getContextPath()}
 </div>
 
 <div id="outline-container-org54e5608" class="outline-3">
-<h3 id="org54e5608"><span class="section-number-3">3.2</span> 基本示例</h3>
+<h3 id="org54e5608"><span class="section-number-3">3.2.</span> 基本示例</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #008b8b;">@WebFilter</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"/*"</span><span style="color: #707183;">)</span>
@@ -584,7 +584,7 @@ ${pageContext.request.getContextPath()}
 </div>
 
 <div id="outline-container-org8c8d6e7" class="outline-3">
-<h3 id="org8c8d6e7"><span class="section-number-3">3.3</span> 配置方式</h3>
+<h3 id="org8c8d6e7"><span class="section-number-3">3.3.</span> 配置方式</h3>
 <div class="outline-text-3" id="text-3-3">
 <ol class="org-ol">
 <li>注解 (Annotation)</li>
@@ -663,7 +663,7 @@ ${pageContext.request.getContextPath()}
 </section>
 
 <section id="outline-container-org553ad8f" class="outline-2">
-<h2 id="org553ad8f"><span class="section-number-2">4</span> EventListener (监听器)</h2>
+<h2 id="org553ad8f"><span class="section-number-2">4.</span> EventListener (监听器)</h2>
 <div class="outline-text-2" id="text-4">
 <pre class="example">
 Servlet 是用来监听回应外部的用户请求。
@@ -754,7 +754,7 @@ web.xml:
 </section>
 
 <section id="outline-container-orgd630f85" class="outline-2">
-<h2 id="orgd630f85"><span class="section-number-2">5</span> JSP (Java Server Page)</h2>
+<h2 id="orgd630f85"><span class="section-number-2">5.</span> JSP (Java Server Page)</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 为什么要有 JSP:
@@ -767,7 +767,7 @@ web.xml:
 </div>
 
 <div id="outline-container-org732237c" class="outline-3">
-<h3 id="org732237c"><span class="section-number-3">5.1</span> JSP 本质就是一个 Servlet</h3>
+<h3 id="org732237c"><span class="section-number-3">5.1.</span> JSP 本质就是一个 Servlet</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 如果用户访问某个 JSP 文件，TOMCAT 会自动将其 <b>翻译</b> 成一个标准的 Servlet，然后使用它响应用户。
@@ -1066,7 +1066,7 @@ out.write<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"kk
 </div>
 
 <div id="outline-container-org9446255" class="outline-3">
-<h3 id="org9446255"><span class="section-number-3">5.2</span> 基本用法</h3>
+<h3 id="org9446255"><span class="section-number-3">5.2.</span> 基本用法</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span>%-- &#25105;&#26159;&#27880;&#37322; --%<span style="color: #707183;">&gt;</span>
@@ -1090,7 +1090,7 @@ out.write<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"kk
 </div>
 
 <div id="outline-container-orgb5a639e" class="outline-3">
-<h3 id="orgb5a639e"><span class="section-number-3">5.3</span> 内置对象</h3>
+<h3 id="orgb5a639e"><span class="section-number-3">5.3.</span> 内置对象</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 我们通过上一章，可以看到，在我们的 JSP 渲染成的 Servlet 的 service 方面，有一些列的定义和初始化:
@@ -1151,7 +1151,7 @@ out.write<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"kk
 </div>
 
 <div id="outline-container-orga72a371" class="outline-3">
-<h3 id="orga72a371"><span class="section-number-3">5.4</span> JSP 指令</h3>
+<h3 id="orga72a371"><span class="section-number-3">5.4.</span> JSP 指令</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li><code>&lt;%@ include file="xxx.jsp" %&gt;</code></li>
@@ -1186,7 +1186,7 @@ out.write<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"kk
 </div>
 
 <div id="outline-container-org8f6a351" class="outline-3">
-<h3 id="org8f6a351"><span class="section-number-3">5.5</span> JSP 动作</h3>
+<h3 id="org8f6a351"><span class="section-number-3">5.5.</span> JSP 动作</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 仅是为了锦上添花:
@@ -1282,7 +1282,7 @@ out.write<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"kk
 </div>
 
 <div id="outline-container-org0eb0e04" class="outline-3">
-<h3 id="org0eb0e04"><span class="section-number-3">5.6</span> EL 表达式</h3>
+<h3 id="org0eb0e04"><span class="section-number-3">5.6.</span> EL 表达式</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 EL (Expression Language) 表达式就是嵌入到 JSP 文件中的、
@@ -1378,7 +1378,7 @@ $<span style="color: #707183;">{</span>book.price &gt; 100 ? "&#22826;&#36149;&#
 </div>
 
 <div id="outline-container-org2f151b7" class="outline-3">
-<h3 id="org2f151b7"><span class="section-number-3">5.7</span> JSTL 标签</h3>
+<h3 id="org2f151b7"><span class="section-number-3">5.7.</span> JSTL 标签</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 JSP Standard Tag Library (JSP 标准标签库)。
@@ -1401,7 +1401,7 @@ JSP Standard Tag Library (JSP 标准标签库)。
 </div>
 
 <div id="outline-container-org977054b" class="outline-4">
-<h4 id="org977054b"><span class="section-number-4">5.7.1</span> 条件判断 (c:if)</h4>
+<h4 id="org977054b"><span class="section-number-4">5.7.1.</span> 条件判断 (c:if)</h4>
 <div class="outline-text-4" id="text-5-7-1">
 
 <div  class='mc11'>
@@ -1456,7 +1456,7 @@ JSP Standard Tag Library (JSP 标准标签库)。
 </div>
 
 <div id="outline-container-org957d548" class="outline-4">
-<h4 id="org957d548"><span class="section-number-4">5.7.2</span> 循环语句 (c:forEach)</h4>
+<h4 id="org957d548"><span class="section-number-4">5.7.2.</span> 循环语句 (c:forEach)</h4>
 <div class="outline-text-4" id="text-5-7-2">
 
 <div  class='mc11'>
@@ -1537,11 +1537,11 @@ varStatus 用来表示循环中的一些状态信息:
 </div>
 
 <div id="outline-container-org744e8ce" class="outline-4">
-<h4 id="org744e8ce"><span class="section-number-4">5.7.3</span> 其他的核心标签</h4>
+<h4 id="org744e8ce"><span class="section-number-4">5.7.3.</span> 其他的核心标签</h4>
 <div class="outline-text-4" id="text-5-7-3">
 </div>
 <div id="outline-container-org866d635" class="outline-5">
-<h5 id="org866d635"><span class="section-number-5">5.7.3.1</span> c:choose/when/otherwise</h5>
+<h5 id="org866d635"><span class="section-number-5">5.7.3.1.</span> c:choose/when/otherwise</h5>
 <div class="outline-text-5" id="text-5-7-3-1">
 <p>
 条件判断 Switch (加强版的 c:if)
@@ -1567,7 +1567,7 @@ varStatus 用来表示循环中的一些状态信息:
 </div>
 
 <div id="outline-container-org84531a6" class="outline-5">
-<h5 id="org84531a6"><span class="section-number-5">5.7.3.2</span> c:forTokens</h5>
+<h5 id="org84531a6"><span class="section-number-5">5.7.3.2.</span> c:forTokens</h5>
 <div class="outline-text-5" id="text-5-7-3-2">
 <p>
 是 c:forEach 的一种特殊情况，用来将字符串分割并且逐个进行处理的一种循环
@@ -1583,7 +1583,7 @@ varStatus 用来表示循环中的一些状态信息:
 </div>
 
 <div id="outline-container-orga80b58e" class="outline-5">
-<h5 id="orga80b58e"><span class="section-number-5">5.7.3.3</span> c:url</h5>
+<h5 id="orga80b58e"><span class="section-number-5">5.7.3.3.</span> c:url</h5>
 <div class="outline-text-5" id="text-5-7-3-3">
 <p>
 是用标签的形式更灵活拼接 url
@@ -1603,7 +1603,7 @@ varStatus 用来表示循环中的一些状态信息:
 </div>
 
 <div id="outline-container-org9a55c23" class="outline-5">
-<h5 id="org9a55c23"><span class="section-number-5">5.7.3.4</span> c:set/c:remove</h5>
+<h5 id="org9a55c23"><span class="section-number-5">5.7.3.4.</span> c:set/c:remove</h5>
 <div class="outline-text-5" id="text-5-7-3-4">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span>% session.setAttribute<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"aaa"</span>, 2333<span style="color: #7388d6;">)</span>; %<span style="color: #707183;">&gt;</span>
@@ -1614,7 +1614,7 @@ varStatus 用来表示循环中的一些状态信息:
 </div>
 
 <div id="outline-container-org83b6409" class="outline-5">
-<h5 id="org83b6409"><span class="section-number-5">5.7.3.5</span> c:import</h5>
+<h5 id="org83b6409"><span class="section-number-5">5.7.3.5.</span> c:import</h5>
 <div class="outline-text-5" id="text-5-7-3-5">
 <p>
 请问，这三个有啥区别:
@@ -1629,7 +1629,7 @@ varStatus 用来表示循环中的一些状态信息:
 </div>
 
 <div id="outline-container-org8791596" class="outline-4">
-<h4 id="org8791596"><span class="section-number-4">5.7.4</span> 格式化 (fmt)</h4>
+<h4 id="org8791596"><span class="section-number-4">5.7.4.</span> 格式化 (fmt)</h4>
 <div class="outline-text-4" id="text-5-7-4">
 <p>
 首先，引进:
@@ -1654,7 +1654,7 @@ varStatus 用来表示循环中的一些状态信息:
 </div>
 
 <div id="outline-container-org346df36" class="outline-4">
-<h4 id="org346df36"><span class="section-number-4">5.7.5</span> 函数标签 (fn)</h4>
+<h4 id="org346df36"><span class="section-number-4">5.7.5.</span> 函数标签 (fn)</h4>
 <div class="outline-text-4" id="text-5-7-5">
 <p>
 首先，引进:
@@ -1683,7 +1683,7 @@ $<span style="color: #707183;">{</span>fn:trim<span style="color: #7388d6;">(</s
 </div>
 
 <div id="outline-container-orgfa3c010" class="outline-4">
-<h4 id="orgfa3c010"><span class="section-number-4">5.7.6</span> [示例] jstlDemo.jsp</h4>
+<h4 id="orgfa3c010"><span class="section-number-4">5.7.6.</span> [示例] jstlDemo.jsp</h4>
 <div class="outline-text-4" id="text-5-7-6">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span>%@page <span style="color: #a0522d;">import</span>=<span style="color: #8b2252;">"book.bean.Account"</span>%<span style="color: #707183;">&gt;</span>
@@ -1813,7 +1813,7 @@ $<span style="color: #707183;">{</span>fn:trim<span style="color: #7388d6;">(</s
 </section>
 
 <section id="outline-container-org6ed0977" class="outline-2">
-<h2 id="org6ed0977"><span class="section-number-2">6</span> 生命周期 (单例、按需加载)</h2>
+<h2 id="org6ed0977"><span class="section-number-2">6.</span> 生命周期 (单例、按需加载)</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>单实例模式，简称单例模式，也就是一个类只会创建一个实例。每个 Servlet 只会有一个实例，创建之后被放到了容器里</li>
@@ -1835,11 +1835,11 @@ $<span style="color: #707183;">{</span>fn:trim<span style="color: #7388d6;">(</s
 </section>
 
 <section id="outline-container-org87ba9cb" class="outline-2">
-<h2 id="org87ba9cb"><span class="section-number-2">7</span> 配置小结</h2>
+<h2 id="org87ba9cb"><span class="section-number-2">7.</span> 配置小结</h2>
 <div class="outline-text-2" id="text-7">
 </div>
 <div id="outline-container-orgaf30304" class="outline-3">
-<h3 id="orgaf30304"><span class="section-number-3">7.1</span> web.xml</h3>
+<h3 id="orgaf30304"><span class="section-number-3">7.1.</span> web.xml</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 传统方式，通用、表达力强。
@@ -1914,7 +1914,7 @@ $<span style="color: #707183;">{</span>fn:trim<span style="color: #7388d6;">(</s
 </div>
 
 <div id="outline-container-org7db1121" class="outline-3">
-<h3 id="org7db1121"><span class="section-number-3">7.2</span> 注解 (Annotation)</h3>
+<h3 id="org7db1121"><span class="section-number-3">7.2.</span> 注解 (Annotation)</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 放到类上，简单方便。
@@ -1936,11 +1936,11 @@ $<span style="color: #707183;">{</span>fn:trim<span style="color: #7388d6;">(</s
 </section>
 
 <section id="outline-container-orgc79c09a" class="outline-2">
-<h2 id="orgc79c09a"><span class="section-number-2">8</span> 乱码问题</h2>
+<h2 id="orgc79c09a"><span class="section-number-2">8.</span> 乱码问题</h2>
 <div class="outline-text-2" id="text-8">
 </div>
 <div id="outline-container-orgd7c48a2" class="outline-3">
-<h3 id="orgd7c48a2"><span class="section-number-3">8.1</span> 请求乱码</h3>
+<h3 id="orgd7c48a2"><span class="section-number-3">8.1.</span> 请求乱码</h3>
 <div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 <pre class="src src-java">req.setCharacterEncoding<span style="color: #707183;">(</span><span style="color: #8b2252;">"utf-8"</span><span style="color: #707183;">)</span>;
@@ -1950,7 +1950,7 @@ $<span style="color: #707183;">{</span>fn:trim<span style="color: #7388d6;">(</s
 </div>
 
 <div id="outline-container-org52c76e0" class="outline-3">
-<h3 id="org52c76e0"><span class="section-number-3">8.2</span> 返回乱码</h3>
+<h3 id="org52c76e0"><span class="section-number-3">8.2.</span> 返回乱码</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 只需要两步:
@@ -1985,7 +1985,7 @@ resp.setContentType<span style="color: #707183;">(</span><span style="color: #8b
 </div>
 </section>
 <section id="outline-container-orgfa97ec5" class="outline-2">
-<h2 id="orgfa97ec5"><span class="section-number-2">9</span> 文件夹结构</h2>
+<h2 id="orgfa97ec5"><span class="section-number-2">9.</span> 文件夹结构</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 需要明白的:
@@ -1996,7 +1996,7 @@ resp.setContentType<span style="color: #707183;">(</span><span style="color: #8b
 </ul>
 
 
-<figure id="orge7f123f">
+<figure id="org2e537db">
 <img src="img/folder-arch.png" alt="folder-arch.png">
 
 </figure>
@@ -2009,8 +2009,8 @@ resp.setContentType<span style="color: #707183;">(</span><span style="color: #8b
 </section>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-10</p>
+<p class="author">Author: 悟饭</p>
+<p class="date">Created: 2021-05-12</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

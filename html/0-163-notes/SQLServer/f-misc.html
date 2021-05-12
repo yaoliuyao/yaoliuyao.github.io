@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-10 -->
+<!-- 2021-05-12 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>练习题</title>
 <meta name="generator" content="Org mode">
-<meta name="author" content="孙悟空">
+<meta name="author" content="悟饭">
 <link rel='stylesheet' href='/html/asset/common.css?3344' />
 <link rel='stylesheet' href='/yaoliuyao/html/asset/common.css?3344' />
 <script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
@@ -71,7 +71,7 @@
 
 
 <section id="outline-container-org90b95dd" class="outline-2">
-<h2 id="org90b95dd"><span class="section-number-2">1</span> emp/dept 测试数据</h2>
+<h2 id="org90b95dd"><span class="section-number-2">1.</span> emp/dept 测试数据</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> DATABASE oa;
@@ -143,11 +143,11 @@ use oa;
 </section>
 
 <section id="outline-container-orgf953f40" class="outline-2">
-<h2 id="orgf953f40"><span class="section-number-2">2</span> SQL 自测</h2>
+<h2 id="orgf953f40"><span class="section-number-2">2.</span> SQL 自测</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-org664cbf1" class="outline-3">
-<h3 id="org664cbf1"><span class="section-number-3">2.1</span> 查询每个部门下有多少员工</h3>
+<h3 id="org664cbf1"><span class="section-number-3">2.1.</span> 查询每个部门下有多少员工</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno, <span style="color: #483d8b;">count</span><span style="color: #707183;">(</span>*<span style="color: #707183;">)</span> <span style="color: #a020f0;">from</span> emp  <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> deptno;
@@ -167,7 +167,7 @@ use oa;
 </div>
 
 <div id="outline-container-org0ef3e0f" class="outline-3">
-<h3 id="org0ef3e0f"><span class="section-number-3">2.2</span> 查询除去 salesman 所有平均工资超过 1500 的部门</h3>
+<h3 id="org0ef3e0f"><span class="section-number-3">2.2.</span> 查询除去 salesman 所有平均工资超过 1500 的部门</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno, <span style="color: #483d8b;">AVG</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">from</span> emp
@@ -186,7 +186,7 @@ use oa;
 </div>
 
 <div id="outline-container-orgc69f28b" class="outline-3">
-<h3 id="orgc69f28b"><span class="section-number-3">2.3</span> 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</h3>
+<h3 id="orgc69f28b"><span class="section-number-3">2.3.</span> 查询在 new york 工作的所有员工的姓名，部门名称和工资信息</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> dname, ename, sal <span style="color: #a020f0;">from</span> emp
@@ -198,7 +198,7 @@ use oa;
 </div>
 
 <div id="outline-container-orgb8b3fd1" class="outline-3">
-<h3 id="orgb8b3fd1"><span class="section-number-3">2.4</span> 查询姓名为 King 的员工的编号，名称跟部门</h3>
+<h3 id="orgb8b3fd1"><span class="section-number-3">2.4.</span> 查询姓名为 King 的员工的编号，名称跟部门</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> empno,ename,dept.dname <span style="color: #a020f0;">from</span> emp
@@ -210,7 +210,7 @@ use oa;
 </div>
 
 <div id="outline-container-org56bc56b" class="outline-3">
-<h3 id="org56bc56b"><span class="section-number-3">2.5</span> 查询各种工作的最低工资</h3>
+<h3 id="org56bc56b"><span class="section-number-3">2.5.</span> 查询各种工作的最低工资</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> job,<span style="color: #483d8b;">min</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span> <span style="color: #a020f0;">as</span> small <span style="color: #a020f0;">from</span> emp <span style="color: #a020f0;">group</span> <span style="color: #a020f0;">by</span> job;
@@ -220,7 +220,7 @@ use oa;
 </div>
 
 <div id="outline-container-orgf7c08fd" class="outline-3">
-<h3 id="orgf7c08fd"><span class="section-number-3">2.6</span> 查询工龄大于 10 年的所有员工信息</h3>
+<h3 id="orgf7c08fd"><span class="section-number-3">2.6.</span> 查询工龄大于 10 年的所有员工信息</h3>
 <div class="outline-text-3" id="text-2-6">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> emp
@@ -231,7 +231,7 @@ use oa;
 </div>
 
 <div id="outline-container-org4210a5e" class="outline-3">
-<h3 id="org4210a5e"><span class="section-number-3">2.7</span> 查询每个部门员工数量，平均工资和平均工作年限</h3>
+<h3 id="org4210a5e"><span class="section-number-3">2.7.</span> 查询每个部门员工数量，平均工资和平均工作年限</h3>
 <div class="outline-text-3" id="text-2-7">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span>
@@ -247,7 +247,7 @@ use oa;
 </div>
 
 <div id="outline-container-orgf10553e" class="outline-3">
-<h3 id="orgf10553e"><span class="section-number-3">2.8</span> 统计各部门每个工种的人数，平均工资</h3>
+<h3 id="orgf10553e"><span class="section-number-3">2.8.</span> 统计各部门每个工种的人数，平均工资</h3>
 <div class="outline-text-3" id="text-2-8">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> deptno,
@@ -262,7 +262,7 @@ use oa;
 </div>
 
 <div id="outline-container-org2f9f611" class="outline-3">
-<h3 id="org2f9f611"><span class="section-number-3">2.9</span> 查询从事同一种工作但不属于同一部门的员工信息</h3>
+<h3 id="org2f9f611"><span class="section-number-3">2.9.</span> 查询从事同一种工作但不属于同一部门的员工信息</h3>
 <div class="outline-text-3" id="text-2-9">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> a.ename, a.empno, b.empno, b.ename
@@ -362,7 +362,7 @@ use oa;
 </div>
 
 <div id="outline-container-org4853228" class="outline-3">
-<h3 id="org4853228"><span class="section-number-3">2.10</span> 查询所有员工工资都大于 1000 的部门的信息及员工信息</h3>
+<h3 id="org4853228"><span class="section-number-3">2.10.</span> 查询所有员工工资都大于 1000 的部门的信息及员工信息</h3>
 <div class="outline-text-3" id="text-2-10">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> emp e
@@ -380,7 +380,7 @@ use oa;
 </div>
 
 <div id="outline-container-org629a2a8" class="outline-3">
-<h3 id="org629a2a8"><span class="section-number-3">2.11</span> 其他题目</h3>
+<h3 id="org629a2a8"><span class="section-number-3">2.11.</span> 其他题目</h3>
 <div class="outline-text-3" id="text-2-11">
 <ul class="org-ul">
 <li>查询入职日期早于其直接上级的所有员工信息。</li>
@@ -401,7 +401,7 @@ use oa;
 </section>
 
 <section id="outline-container-orgefaac03" class="outline-2">
-<h2 id="orgefaac03"><span class="section-number-2">3</span> Lagou.com 测试数据</h2>
+<h2 id="orgefaac03"><span class="section-number-2">3.</span> Lagou.com 测试数据</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="asset/lagou.rar">下载 sql 文件</a>.
@@ -410,11 +410,11 @@ use oa;
 </section>
 
 <section id="outline-container-org09b4d3d" class="outline-2">
-<h2 id="org09b4d3d"><span class="section-number-2">4</span> 奇 vs 偶</h2>
+<h2 id="org09b4d3d"><span class="section-number-2">4.</span> 奇 vs 偶</h2>
 <div class="outline-text-2" id="text-4">
 </div>
 <div id="outline-container-org39b6c78" class="outline-3">
-<h3 id="org39b6c78"><span class="section-number-3">4.1</span> 1/3/5/7 出的题</h3>
+<h3 id="org39b6c78"><span class="section-number-3">4.1.</span> 1/3/5/7 出的题</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>查询在北京，本科及本科以上，在招前端开发工程师的公司</li>
@@ -433,7 +433,7 @@ use oa;
 </div>
 
 <div id="outline-container-orgf9330f5" class="outline-3">
-<h3 id="orgf9330f5"><span class="section-number-3">4.2</span> 2/4/6/8 出的题</h3>
+<h3 id="orgf9330f5"><span class="section-number-3">4.2.</span> 2/4/6/8 出的题</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>查询珠海所在的公司名字以及所需人员，工作经验和岗位以及学历</li>
@@ -453,8 +453,8 @@ use oa;
 </section>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-10</p>
+<p class="author">Author: 悟饭</p>
+<p class="date">Created: 2021-05-12</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

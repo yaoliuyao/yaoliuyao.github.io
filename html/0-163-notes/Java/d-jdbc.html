@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-03-10 -->
+<!-- 2021-05-12 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JDBC 连接数据库</title>
 <meta name="generator" content="Org mode">
-<meta name="author" content="孙悟空">
+<meta name="author" content="悟饭">
 <link rel='stylesheet' href='/html/asset/common.css?3344' />
 <link rel='stylesheet' href='/yaoliuyao/html/asset/common.css?3344' />
 <script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
@@ -81,7 +81,7 @@ JDBC (Java DataBase Connectivity).
 
 
 <section id="outline-container-org114e4cc" class="outline-2">
-<h2 id="org114e4cc"><span class="section-number-2">1</span> DriverManager 驱动管理类</h2>
+<h2 id="org114e4cc"><span class="section-number-2">1.</span> DriverManager 驱动管理类</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 通过它可以对连接进行管理。最常用的就是:
@@ -114,7 +114,7 @@ JDBC (Java DataBase Connectivity).
 </section>
 
 <section id="outline-container-org1952717" class="outline-2">
-<h2 id="org1952717"><span class="section-number-2">2</span> Connection 代表的是一个数据库连接</h2>
+<h2 id="org1952717"><span class="section-number-2">2.</span> Connection 代表的是一个数据库连接</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 后续所有的操作，都必须要基于 Connection 对象。
@@ -133,11 +133,11 @@ JDBC (Java DataBase Connectivity).
 </section>
 
 <section id="outline-container-orge377d29" class="outline-2">
-<h2 id="orge377d29"><span class="section-number-2">3</span> Statement 用来提交某个 SQL 语句</h2>
+<h2 id="orge377d29"><span class="section-number-2">3.</span> Statement 用来提交某个 SQL 语句</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org9400292" class="outline-3">
-<h3 id="org9400292"><span class="section-number-3">3.1</span> statement.execute/executeUpdate/executeQuery()</h3>
+<h3 id="org9400292"><span class="section-number-3">3.1.</span> statement.execute/executeUpdate/executeQuery()</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 execute = executeQuery + executeUpdate
@@ -150,7 +150,7 @@ execute = executeQuery + executeUpdate
 </div>
 
 <div id="outline-container-org263f4cc" class="outline-3">
-<h3 id="org263f4cc"><span class="section-number-3">3.2</span> PreparedStatement 是可以绑定入参的 Statement</h3>
+<h3 id="org263f4cc"><span class="section-number-3">3.2.</span> PreparedStatement 是可以绑定入参的 Statement</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 PreparedStatement 解决掉的问题:
@@ -213,7 +213,7 @@ conn.close<span style="color: #707183;">()</span>;
 </section>
 
 <section id="outline-container-org8c883eb" class="outline-2">
-<h2 id="org8c883eb"><span class="section-number-2">4</span> ResultSet 用来表示结果集</h2>
+<h2 id="org8c883eb"><span class="section-number-2">4.</span> ResultSet 用来表示结果集</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 通用的迭代方法为:
@@ -239,7 +239,7 @@ conn.close<span style="color: #707183;">()</span>;
 </section>
 
 <section id="outline-container-org68a7177" class="outline-2">
-<h2 id="org68a7177"><span class="section-number-2">5</span> 小结</h2>
+<h2 id="org68a7177"><span class="section-number-2">5.</span> 小结</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Connection/Statement/ResultSet 都属于资源，使用完毕，务必要 close 掉</li>
@@ -250,11 +250,11 @@ conn.close<span style="color: #707183;">()</span>;
 </section>
 
 <section id="outline-container-org48417c7" class="outline-2">
-<h2 id="org48417c7"><span class="section-number-2">6</span> [案例] JDBC 连接 SQLServer</h2>
+<h2 id="org48417c7"><span class="section-number-2">6.</span> [案例] JDBC 连接 SQLServer</h2>
 <div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-org83a23a4" class="outline-3">
-<h3 id="org83a23a4"><span class="section-number-3">6.1</span> 创建名字为 xxx 的数据库，创建表 book</h3>
+<h3 id="org83a23a4"><span class="section-number-3">6.1.</span> 创建名字为 xxx 的数据库，创建表 book</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">drop</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">book</span>;
@@ -275,14 +275,14 @@ conn.close<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-orgfcc03cf" class="outline-3">
-<h3 id="orgfcc03cf"><span class="section-number-3">6.2</span> 下载客户端，即 mssql-jdbc.jar</h3>
+<h3 id="orgfcc03cf"><span class="section-number-3">6.2.</span> 下载客户端，即 mssql-jdbc.jar</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 去 <a href="http://mvnrepository.com">http://mvnrepository.com</a> 这个地址下载。
 </p>
 
 
-<figure id="orge6fd41b">
+<figure id="org9f0ba47">
 <img src="img/jdbc-sqlserver-download.png" alt="jdbc-sqlserver-download.png">
 
 </figure>
@@ -303,17 +303,17 @@ conn.close<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org3b5853e" class="outline-3">
-<h3 id="org3b5853e"><span class="section-number-3">6.3</span> 配置 jdbc.jar 到项目中，让项目能够使用它</h3>
+<h3 id="org3b5853e"><span class="section-number-3">6.3.</span> 配置 jdbc.jar 到项目中，让项目能够使用它</h3>
 <div class="outline-text-3" id="text-6-3">
 </div>
 <div id="outline-container-orgc823fa2" class="outline-5">
-<h5 id="orgc823fa2"><span class="section-number-5">6.3.0.1</span> 第一种，直接放到 WebContent/WEB-INF/lib 文件夹下面</h5>
+<h5 id="orgc823fa2"><span class="section-number-5">6.3.0.1.</span> 第一种，直接放到 WebContent/WEB-INF/lib 文件夹下面</h5>
 </div>
 <div id="outline-container-org8b45ac7" class="outline-5">
-<h5 id="org8b45ac7"><span class="section-number-5">6.3.0.2</span> 第二种，配置项目，让项目能够引用到这个 jar 包</h5>
+<h5 id="org8b45ac7"><span class="section-number-5">6.3.0.2.</span> 第二种，配置项目，让项目能够引用到这个 jar 包</h5>
 <div class="outline-text-5" id="text-6-3-0-2">
 
-<figure id="org67f3a08">
+<figure id="org33c66ab">
 <img src="img/jdbc-jar.png" alt="jdbc-jar.png">
 
 </figure>
@@ -326,7 +326,7 @@ conn.close<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-orgcc2cc91" class="outline-3">
-<h3 id="orgcc2cc91"><span class="section-number-3">6.4</span> 万事俱备，开始使用</h3>
+<h3 id="orgcc2cc91"><span class="section-number-3">6.4.</span> 万事俱备，开始使用</h3>
 <div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span><span style="color: #707183;">(</span><span style="color: #228b22;">String</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">Exception</span> <span style="color: #707183;">{</span>
@@ -470,7 +470,7 @@ conn.close<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org2330690" class="outline-3">
-<h3 id="org2330690"><span class="section-number-3">6.5</span> 增加异常的处理，让代码更健壮</h3>
+<h3 id="org2330690"><span class="section-number-3">6.5.</span> 增加异常的处理，让代码更健壮</h3>
 <div class="outline-text-3" id="text-6-5">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">JDBCDemo</span> <span style="color: #707183;">{</span>
@@ -532,7 +532,7 @@ conn.close<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-org68986fb" class="outline-3">
-<h3 id="org68986fb"><span class="section-number-3">6.6</span> 基于上述的代码，对相关的处理逻辑进行封装 (复用)</h3>
+<h3 id="org68986fb"><span class="section-number-3">6.6.</span> 基于上述的代码，对相关的处理逻辑进行封装 (复用)</h3>
 <div class="outline-text-3" id="text-6-6">
 <p>
 业务类:
@@ -608,7 +608,7 @@ conn.close<span style="color: #707183;">()</span>;
 </div>
 
 <div id="outline-container-orga9eff58" class="outline-3">
-<h3 id="orga9eff58"><span class="section-number-3">6.7</span> 使用 Try-With-Resource 进行资源的释放</h3>
+<h3 id="orga9eff58"><span class="section-number-3">6.7.</span> 使用 Try-With-Resource 进行资源的释放</h3>
 <div class="outline-text-3" id="text-6-7">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">JDBCDemo</span> <span style="color: #707183;">{</span>
@@ -642,8 +642,8 @@ conn.close<span style="color: #707183;">()</span>;
 </section>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: 孙悟空</p>
-<p class="date">Created: 2021-03-10</p>
+<p class="author">Author: 悟饭</p>
+<p class="date">Created: 2021-05-12</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
