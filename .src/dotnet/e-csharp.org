@@ -57,10 +57,11 @@ C# 版本演化:
 #+end_src
 
 ** 命名空间
-*** 使用
 
 - 用来解决类型名字的冲突
 - 用来合理组织代码
+
+*** 使用
 
 #+begin_src csharp
   // 类型的使用，可以通过 namespace.类型 来访问到 / full name
@@ -146,7 +147,7 @@ C# 版本演化:
 
 *** BCL/System
 
-处于 System 命名空间的类:
+System 命名空间:
 - System.IO (Input/Output), 文件的处理
 - System.Drawing, 绘制图片
 - System.Collections，集合类型
