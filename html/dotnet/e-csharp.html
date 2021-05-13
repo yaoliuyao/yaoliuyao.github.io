@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-12 -->
+<!-- 2021-05-13 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -43,79 +43,91 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org86184e3">1. 历史跟发展</a></li>
-<li><a href="#org5927721">2. 控制流程</a>
+<li><a href="#orgc1fca9c">2. C#</a>
 <ul>
-<li><a href="#org15d7cf0">2.1. 条件判断/分支</a></li>
-</ul>
-</li>
-<li><a href="#orgb52a020">3. 类跟对象 (Class/Instance)</a>
+<li><a href="#org22dc0fd">2.1. Main</a></li>
+<li><a href="#orgb7d5996">2.2. 命名空间</a>
 <ul>
-<li><a href="#org73e4f84">3.1. 字段 (Field)</a></li>
-<li><a href="#org366c635">3.2. 方法 (Method)</a></li>
-<li><a href="#orgc23f090">3.3. 属性 (Property)</a></li>
-<li><a href="#orgaa068c3">3.4. 构造方法/构造器 (Constructor)</a>
-<ul>
-<li><a href="#orge727744">3.4.1. 对象的实例化</a></li>
-<li><a href="#org0733fe2">3.4.2. 构造器</a></li>
-<li><a href="#org42925dc">3.4.3. 构造器链</a></li>
-<li><a href="#org8e18a71">3.4.4. 静态构造器</a></li>
-</ul>
-</li>
-<li><a href="#org33dffb7">3.5. 析构方法/析构器 (Deconstructor)</a></li>
-<li><a href="#orgf59a9e5">3.6. 静态方法 (Static)</a></li>
-<li><a href="#org1f361ce">3.7. 将数据设置为不变的 (const/readonly)</a></li>
-<li><a href="#orgd2c8a57">3.8. 继承 (Inheritance)</a>
-<ul>
-<li><a href="#org2f228dd">3.8.1. 虚方法 (virtual/override)</a></li>
-<li><a href="#org018b274">3.8.2. 抽象方法 (abstract)</a></li>
-</ul>
-</li>
-<li><a href="#orgfde4775">3.9. 多态 (Polymorphism)</a></li>
-<li><a href="#orgdba7928">3.10. 静态类/static</a></li>
-<li><a href="#orgf09339d">3.11. 密封类/sealed</a></li>
-<li><a href="#orgc4575f0">3.12. 分部类/partial</a></li>
-<li><a href="#orgd80b6df">3.13. 基类 Object</a>
-<ul>
-<li><a href="#org2d97e95">3.13.1. ToString</a></li>
+<li><a href="#orge805a34">2.2.1. 使用</a></li>
+<li><a href="#org2a16f39">2.2.2. 定义</a></li>
+<li><a href="#org14046bc">2.2.3. BCL/System</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5b66536">4. 接口 (Interface)</a>
+<li><a href="#org5927721">3. 控制流程</a>
 <ul>
-<li><a href="#org8442a53">4.1. IComparable 接口使用示例</a></li>
+<li><a href="#org15d7cf0">3.1. 条件判断/分支</a></li>
 </ul>
 </li>
-<li><a href="#org6aeeeff">5. BCL (Base-Class Library) 基础类库</a>
+<li><a href="#orgb52a020">4. 类跟对象 (Class/Instance)</a>
 <ul>
-<li><a href="#org62cc525">5.1. Console/控制台</a></li>
-<li><a href="#orgf8ba168">5.2. Random/Thread</a></li>
-<li><a href="#org6bf851a">5.3. IDisposable/资源</a></li>
+<li><a href="#org73e4f84">4.1. 字段 (Field)</a></li>
+<li><a href="#org366c635">4.2. 方法 (Method)</a></li>
+<li><a href="#orgc23f090">4.3. 属性 (Property)</a></li>
+<li><a href="#orgaa068c3">4.4. 构造方法/构造器 (Constructor)</a>
+<ul>
+<li><a href="#orge727744">4.4.1. 对象的实例化</a></li>
+<li><a href="#org0733fe2">4.4.2. 构造器</a></li>
+<li><a href="#org42925dc">4.4.3. 构造器链</a></li>
+<li><a href="#org8e18a71">4.4.4. 静态构造器</a></li>
 </ul>
 </li>
-<li><a href="#org41d732e">6. 技巧和示例</a>
+<li><a href="#org33dffb7">4.5. 析构方法/析构器 (Deconstructor)</a></li>
+<li><a href="#orgf59a9e5">4.6. 静态方法 (Static)</a></li>
+<li><a href="#org1f361ce">4.7. 将数据设置为不变的 (const/readonly)</a></li>
+<li><a href="#orgd2c8a57">4.8. 继承 (Inheritance)</a>
 <ul>
-<li><a href="#org19fdba0">6.1. 求余</a></li>
+<li><a href="#org2f228dd">4.8.1. 虚方法 (virtual/override)</a></li>
+<li><a href="#org018b274">4.8.2. 抽象方法 (abstract)</a></li>
 </ul>
 </li>
-<li><a href="#org813f18a">7. 模拟题</a>
+<li><a href="#orgfde4775">4.9. 多态 (Polymorphism)</a></li>
+<li><a href="#orgdba7928">4.10. 静态类/static</a></li>
+<li><a href="#orgf09339d">4.11. 密封类/sealed</a></li>
+<li><a href="#orgc4575f0">4.12. 分部类/partial</a></li>
+<li><a href="#orgd80b6df">4.13. 基类 Object</a>
 <ul>
-<li><a href="#org3dc09eb">7.1. 继承相关</a></li>
-<li><a href="#org1407fdc">7.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
+<li><a href="#org2d97e95">4.13.1. ToString</a></li>
 </ul>
 </li>
-<li><a href="#orgc3c7280">8. 问题 (仅作参考)</a>
+</ul>
+</li>
+<li><a href="#org5b66536">5. 接口 (Interface)</a>
 <ul>
-<li><a href="#org1ebc96e">8.1. 什么是抽象类，抽象类有什么用处</a></li>
-<li><a href="#org844c6c2">8.2. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
-<li><a href="#org91f0ad4">8.3. 什么是静态类，什么是密封类，什么是分部类</a></li>
-<li><a href="#orgd31fdb2">8.4. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
-<li><a href="#orgfe7b682">8.5. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
-<li><a href="#org4b27030">8.6. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
-<li><a href="#org5aaae61">8.7. 什么是封装，什么是继承，什么是多态</a></li>
-<li><a href="#orgdd6d266">8.8. 什么是虚方法，它有什么用处</a></li>
-<li><a href="#org0f0c8e9">8.9. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
-<li><a href="#org8a80c9c">8.10. 什么是 DRY，代码复用的手段有哪些</a></li>
+<li><a href="#org8442a53">5.1. IComparable 接口使用示例</a></li>
+</ul>
+</li>
+<li><a href="#org6aeeeff">6. BCL (Base-Class Library) 基础类库</a>
+<ul>
+<li><a href="#org62cc525">6.1. Console/控制台</a></li>
+<li><a href="#orgf8ba168">6.2. Random/Thread</a></li>
+<li><a href="#org6bf851a">6.3. IDisposable/资源</a></li>
+</ul>
+</li>
+<li><a href="#org41d732e">7. 技巧和示例</a>
+<ul>
+<li><a href="#org19fdba0">7.1. 求余</a></li>
+</ul>
+</li>
+<li><a href="#org813f18a">8. 模拟题</a>
+<ul>
+<li><a href="#org3dc09eb">8.1. 继承相关</a></li>
+<li><a href="#org1407fdc">8.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
+</ul>
+</li>
+<li><a href="#orgc3c7280">9. 问题 (仅作参考)</a>
+<ul>
+<li><a href="#org1ebc96e">9.1. 什么是抽象类，抽象类有什么用处</a></li>
+<li><a href="#org844c6c2">9.2. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
+<li><a href="#org91f0ad4">9.3. 什么是静态类，什么是密封类，什么是分部类</a></li>
+<li><a href="#orgd31fdb2">9.4. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
+<li><a href="#orgfe7b682">9.5. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
+<li><a href="#org4b27030">9.6. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
+<li><a href="#org5aaae61">9.7. 什么是封装，什么是继承，什么是多态</a></li>
+<li><a href="#orgdd6d266">9.8. 什么是虚方法，它有什么用处</a></li>
+<li><a href="#org0f0c8e9">9.9. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
+<li><a href="#org8a80c9c">9.10. 什么是 DRY，代码复用的手段有哪些</a></li>
 </ul>
 </li>
 </ul>
@@ -149,13 +161,182 @@ C# 版本演化:
 </div>
 </section>
 
-<section id="outline-container-org5927721" class="outline-2">
-<h2 id="org5927721"><span class="section-number-2">2.</span> 控制流程</h2>
+<section id="outline-container-orgc1fca9c" class="outline-2">
+<h2 id="orgc1fca9c"><span class="section-number-2">2.</span> C#</h2>
 <div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>在 C# 等面向对象的语言中，<b>类型 (Type)</b> 是第一位的</li>
+<li>在 C# 中，不外乎做两件事，第一件是引入别人的类型，第二件是声明自己的类型</li>
+<li>也就是说，整个 C# 项目，是由不同的 <b>类型声明</b> 组成的</li>
+<li>在整个 C# 项目中，需要 <b>有且只有一个</b> 特殊的方法，就是 Main 方法。它是程序执行的起点</li>
+<li>通过引入 <b>命名空间 (namespace)</b> 的概念，用来组织各种类型，从而避免命名冲突</li>
+</ul>
+</div>
+
+<div id="outline-container-org22dc0fd" class="outline-3">
+<h3 id="org22dc0fd"><span class="section-number-3">2.1.</span> Main</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">Main</span> <span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">return</span> &#22914;&#26524;&#27491;&#24120;&#36820;&#22238;&#21017;&#26159; 0&#65292;&#21542;&#21017;&#26159;&#19968;&#20010;&#25972;&#25968;&#20195;&#34920;&#38169;&#35823;&#32534;&#21495;;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span> <span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#30495;&#30340;&#19981;&#20851;&#24515;&#36820;&#22238;&#30340;&#38169;&#35823;&#32534;&#21495;&#30340;&#35805;&#65292;&#21487;&#20197;&#23558;&#36820;&#22238;&#20540;&#35774;&#32622;&#20026; void</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#20351;&#29992; args &#26469;&#25429;&#33719;&#20174;&#25511;&#21046;&#21488;&#36755;&#20837;&#30340;&#21442;&#25968; (&#29992;&#31354;&#26684;&#20998;&#38548;&#30340;&#20803;&#32032;)</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>args.Length &gt; 0 &amp;&amp; args<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span> == <span style="color: #8b2252;">"--help"</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20351;&#29992;&#26041;&#24335;: ./Program"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span> <span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#20320;&#30495;&#30340;&#19981;&#22312;&#20046;&#20256;&#20837;&#21442;&#25968;&#30340;&#35805;&#65292;&#37027;&#20040;&#23558; args &#30465;&#30053;&#25481;&#20063;&#21487;&#20197;</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #a020f0;">async</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">await</span> <span style="color: #0000ff;">XxxAync</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb7d5996" class="outline-3">
+<h3 id="orgb7d5996"><span class="section-number-3">2.2.</span> 命名空间</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-orge805a34" class="outline-4">
+<h4 id="orge805a34"><span class="section-number-4">2.2.1.</span> 使用</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ul class="org-ul">
+<li>用来解决类型名字的冲突</li>
+<li>用来合理组织代码</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#31867;&#22411;&#30340;&#20351;&#29992;&#65292;&#21487;&#20197;&#36890;&#36807; namespace.&#31867;&#22411; &#26469;&#35775;&#38382;&#21040; / full name</span>
+System.<span style="color: #228b22;">String</span> <span style="color: #a0522d;">aaa</span> = System.IO.File.<span style="color: #0000ff;">ReadAllText</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"e:\\aaa.txt"</span><span style="color: #707183;">)</span>;
+System.Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>aaa<span style="color: #707183;">)</span>;
+System.Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#20511;&#21161; using &#21629;&#21517;&#31354;&#38388;&#30340;&#26041;&#24335;&#65292;&#31616;&#21270;&#31867;&#22411;&#30340;&#20351;&#29992;</span>
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">aaa</span> = File.<span style="color: #0000ff;">ReadAllText</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"e:\\aaa.txt"</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>aaa<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#20351;&#29992; using static &#30340;&#35821;&#27861;&#32487;&#32493;&#36827;&#34892;&#31616;&#21270;</span>
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">static</span> S<span style="color: #a0522d;">ystem</span>.<span style="color: #a0522d;">Console</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">static</span> S<span style="color: #a0522d;">ystem</span>.<span style="color: #a0522d;">IO</span>.<span style="color: #a0522d;">File</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">aaa</span> = <span style="color: #0000ff;">ReadAllText</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"e:\\aaa.txt"</span><span style="color: #707183;">)</span>;
+<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>aaa<span style="color: #707183;">)</span>;
+<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#20351;&#29992; using = &#30340;&#26041;&#24335;&#65292;&#20026;&#21629;&#21517;&#31354;&#38388;&#36215;&#19968;&#20010;&#21035;&#21517;&#12290;&#36825;&#31181;&#26041;&#24335;&#19968;&#33324;&#29992;&#26469;&#35299;&#20915;&#20914;&#31361;</span>
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">SI</span> = <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">HisSystem</span>;
+SI.File.<span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">System.IO.File.xxx();</span>
+File.<span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span>;     <span style="color: #b22222;">// </span><span style="color: #b22222;">HisSystem.FIle.xxx();</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2a16f39" class="outline-4">
+<h4 id="org2a16f39"><span class="section-number-4">2.2.2.</span> 定义</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+支持嵌套，支持使用 . 的形式进行简写:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">SI</span> = <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">File</span>
+
+<span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">TaxCalculator</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Hi</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Ih</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">TaxCalculator.Hi.Ih.Boy</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Boy</span>
+            <span style="color: #709870;">{</span>
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Girl</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">TaxCalculator.Hi.Girl</span>
+        <span style="color: #909183;">{</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">A</span>.<span style="color: #a0522d;">B</span>.<span style="color: #a0522d;">C</span>.<span style="color: #a0522d;">D</span>.<span style="color: #a0522d;">E</span>.<span style="color: #a0522d;">F</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">G</span>.<span style="color: #a0522d;">H</span>.<span style="color: #a0522d;">X</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">using</span> <span style="color: #a020f0;">static</span> System.Console;
+            <span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Y</span>
+            <span style="color: #709870;">{</span>
+                <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Hello</span>
+                <span style="color: #907373;">{</span>
+                    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Say</span><span style="color: #6276ba;">()</span>
+                    <span style="color: #6276ba;">{</span>
+                        <span style="color: #0000ff;">WriteLine</span><span style="color: #858580;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #858580;">)</span>;
+                    <span style="color: #6276ba;">}</span>
+                <span style="color: #907373;">}</span>
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">B</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">using</span> System;
+        <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">TaxCalculator.Program</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #709870;">()</span>
+            <span style="color: #709870;">{</span>
+                <span style="color: #228b22;">string</span> <span style="color: #a0522d;">aaa</span> = SI.File.<span style="color: #0000ff;">ReadAllText</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"e:\\aaa.txt"</span><span style="color: #907373;">)</span>;
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #228b22;">aaa</span><span style="color: #907373;">)</span>;
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org14046bc" class="outline-4">
+<h4 id="org14046bc"><span class="section-number-4">2.2.3.</span> BCL/System</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+处于 System 命名空间的类:
+</p>
+<ul class="org-ul">
+<li>System.IO (Input/Output), 文件的处理</li>
+<li>System.Drawing, 绘制图片</li>
+<li>System.Collections，集合类型</li>
+<li>System.Net，网络访问</li>
+<li>System.Text，跟文本相关的内容，比如正则表达式</li>
+<li>System.Threading，多线程</li>
+<li>System.Threading.Tasks，异步编程</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org5927721" class="outline-2">
+<h2 id="org5927721"><span class="section-number-2">3.</span> 控制流程</h2>
+<div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org15d7cf0" class="outline-3">
-<h3 id="org15d7cf0"><span class="section-number-3">2.1.</span> 条件判断/分支</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org15d7cf0"><span class="section-number-3">3.1.</span> 条件判断/分支</h3>
+<div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>规则 (rule)</li>
 </ul>
@@ -219,12 +400,12 @@ switch:
 </section>
 
 <section id="outline-container-orgb52a020" class="outline-2">
-<h2 id="orgb52a020"><span class="section-number-2">3.</span> 类跟对象 (Class/Instance)</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgb52a020"><span class="section-number-2">4.</span> 类跟对象 (Class/Instance)</h2>
+<div class="outline-text-2" id="text-4">
 </div>
 <div id="outline-container-org73e4f84" class="outline-3">
-<h3 id="org73e4f84"><span class="section-number-3">3.1.</span> 字段 (Field)</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org73e4f84"><span class="section-number-3">4.1.</span> 字段 (Field)</h3>
+<div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>作为一个字段，最重要的是 (类型) (名字) = (值)</li>
 <li>可以 <b>选择性</b> 使用其他修饰符，为字段增加 <b>额外</b> 的功能或限制:
@@ -238,8 +419,8 @@ switch:
 </div>
 
 <div id="outline-container-org366c635" class="outline-3">
-<h3 id="org366c635"><span class="section-number-3">3.2.</span> 方法 (Method)</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org366c635"><span class="section-number-3">4.2.</span> 方法 (Method)</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 方法是一个具备名字的代码块:
 </p>
@@ -311,8 +492,8 @@ switch:
 </div>
 
 <div id="outline-container-orgc23f090" class="outline-3">
-<h3 id="orgc23f090"><span class="section-number-3">3.3.</span> 属性 (Property)</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="orgc23f090"><span class="section-number-3">4.3.</span> 属性 (Property)</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 属性本身就是 [private Field + public Method] 一种语法糖:
 </p>
@@ -365,12 +546,12 @@ switch:
 </div>
 
 <div id="outline-container-orgaa068c3" class="outline-3">
-<h3 id="orgaa068c3"><span class="section-number-3">3.4.</span> 构造方法/构造器 (Constructor)</h3>
-<div class="outline-text-3" id="text-3-4">
+<h3 id="orgaa068c3"><span class="section-number-3">4.4.</span> 构造方法/构造器 (Constructor)</h3>
+<div class="outline-text-3" id="text-4-4">
 </div>
 <div id="outline-container-orge727744" class="outline-4">
-<h4 id="orge727744"><span class="section-number-4">3.4.1.</span> 对象的实例化</h4>
-<div class="outline-text-4" id="text-3-4-1">
+<h4 id="orge727744"><span class="section-number-4">4.4.1.</span> 对象的实例化</h4>
+<div class="outline-text-4" id="text-4-4-1">
 <p>
 对象的实例化，分为下面几个步骤:
 </p>
@@ -383,8 +564,8 @@ switch:
 </div>
 
 <div id="outline-container-org0733fe2" class="outline-4">
-<h4 id="org0733fe2"><span class="section-number-4">3.4.2.</span> 构造器</h4>
-<div class="outline-text-4" id="text-3-4-2">
+<h4 id="org0733fe2"><span class="section-number-4">4.4.2.</span> 构造器</h4>
+<div class="outline-text-4" id="text-4-4-2">
 <p>
 所谓的构造方法，就是类中定义的一个特殊方法。它用来对实例空间进行若干初始化工作:
 </p>
@@ -419,8 +600,8 @@ switch:
 </div>
 
 <div id="outline-container-org42925dc" class="outline-4">
-<h4 id="org42925dc"><span class="section-number-4">3.4.3.</span> 构造器链</h4>
-<div class="outline-text-4" id="text-3-4-3">
+<h4 id="org42925dc"><span class="section-number-4">4.4.3.</span> 构造器链</h4>
+<div class="outline-text-4" id="text-4-4-3">
 <ul class="org-ul">
 <li>如果不显式继承某个类，那么继承的将是 object。即可以忽略掉 <code>: Object</code></li>
 <li>如果不显式添加构造器，那么编译器会自动插入一个无参的。即可以省略掉 <code>public Son() {}</code></li>
@@ -488,8 +669,8 @@ switch:
 </div>
 
 <div id="outline-container-org8e18a71" class="outline-4">
-<h4 id="org8e18a71"><span class="section-number-4">3.4.4.</span> 静态构造器</h4>
-<div class="outline-text-4" id="text-3-4-4">
+<h4 id="org8e18a71"><span class="section-number-4">4.4.4.</span> 静态构造器</h4>
+<div class="outline-text-4" id="text-4-4-4">
 <ul class="org-ul">
 <li>构造器是用来初始化 <b>对象</b> 的</li>
 <li>静态构造器是用来初始化 <b>类</b> 的</li>
@@ -513,8 +694,8 @@ switch:
 </div>
 
 <div id="outline-container-org33dffb7" class="outline-3">
-<h3 id="org33dffb7"><span class="section-number-3">3.5.</span> 析构方法/析构器 (Deconstructor)</h3>
-<div class="outline-text-3" id="text-3-5">
+<h3 id="org33dffb7"><span class="section-number-3">4.5.</span> 析构方法/析构器 (Deconstructor)</h3>
+<div class="outline-text-3" id="text-4-5">
 <div class="org-src-container">
 <pre class="src src-csharp">~<span style="color: #0000ff;">TipCalculator</span><span style="color: #707183;">()</span>
 <span style="color: #707183;">{</span>
@@ -531,8 +712,8 @@ switch:
 </div>
 
 <div id="outline-container-orgf59a9e5" class="outline-3">
-<h3 id="orgf59a9e5"><span class="section-number-3">3.6.</span> 静态方法 (Static)</h3>
-<div class="outline-text-3" id="text-3-6">
+<h3 id="orgf59a9e5"><span class="section-number-3">4.6.</span> 静态方法 (Static)</h3>
+<div class="outline-text-3" id="text-4-6">
 <p>
 将归属权，交给类。调用的时候，使用 <code>类名.xxx</code> 方式。
 </p>
@@ -540,8 +721,8 @@ switch:
 </div>
 
 <div id="outline-container-org1f361ce" class="outline-3">
-<h3 id="org1f361ce"><span class="section-number-3">3.7.</span> 将数据设置为不变的 (const/readonly)</h3>
-<div class="outline-text-3" id="text-3-7">
+<h3 id="org1f361ce"><span class="section-number-3">4.7.</span> 将数据设置为不变的 (const/readonly)</h3>
+<div class="outline-text-3" id="text-4-7">
 <pre class="example">
 通过 private 等操作符可以保护数据的外部访问安全
 通过 const/readonly 可以防止内鬼
@@ -591,8 +772,8 @@ readonly:
 </div>
 
 <div id="outline-container-orgd2c8a57" class="outline-3">
-<h3 id="orgd2c8a57"><span class="section-number-3">3.8.</span> 继承 (Inheritance)</h3>
-<div class="outline-text-3" id="text-3-8">
+<h3 id="orgd2c8a57"><span class="section-number-3">4.8.</span> 继承 (Inheritance)</h3>
+<div class="outline-text-3" id="text-4-8">
 <ul class="org-ul">
 <li>继承表示，我的是我的，你的也是我的。使用 <code>:</code> 语法表示继承关系</li>
 <li>继承主要用来消除冗余，让逻辑得以 <b>复用</b>。逻辑上来说，跟自然界的分门别类是对应一致的</li>
@@ -621,8 +802,8 @@ d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-org2f228dd" class="outline-4">
-<h4 id="org2f228dd"><span class="section-number-4">3.8.1.</span> 虚方法 (virtual/override)</h4>
-<div class="outline-text-4" id="text-3-8-1">
+<h4 id="org2f228dd"><span class="section-number-4">4.8.1.</span> 虚方法 (virtual/override)</h4>
+<div class="outline-text-4" id="text-4-8-1">
 <p>
 虚函数:
 </p>
@@ -714,8 +895,8 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-org018b274" class="outline-4">
-<h4 id="org018b274"><span class="section-number-4">3.8.2.</span> 抽象方法 (abstract)</h4>
-<div class="outline-text-4" id="text-3-8-2">
+<h4 id="org018b274"><span class="section-number-4">4.8.2.</span> 抽象方法 (abstract)</h4>
+<div class="outline-text-4" id="text-4-8-2">
 <ul class="org-ul">
 <li>继承下来的，不一定是权利，也有可能是义务。俗语有云 <b>父债子偿</b></li>
 <li>通过在父类中，将某个方法用 <code>abstract</code> 修饰，表示它是债务&#x2026;</li>
@@ -762,8 +943,8 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-orgfde4775" class="outline-3">
-<h3 id="orgfde4775"><span class="section-number-3">3.9.</span> 多态 (Polymorphism)</h3>
-<div class="outline-text-3" id="text-3-9">
+<h3 id="orgfde4775"><span class="section-number-3">4.9.</span> 多态 (Polymorphism)</h3>
+<div class="outline-text-3" id="text-4-9">
 <p>
 多态是一个来自生物学上的概念，<a href="https://baike.baidu.com/item/%E5%A4%9A%E6%80%81%E7%8E%B0%E8%B1%A1">参见百度百科</a>:
 </p>
@@ -819,8 +1000,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-orgdba7928" class="outline-3">
-<h3 id="orgdba7928"><span class="section-number-3">3.10.</span> 静态类/static</h3>
-<div class="outline-text-3" id="text-3-10">
+<h3 id="orgdba7928"><span class="section-number-3">4.10.</span> 静态类/static</h3>
+<div class="outline-text-3" id="text-4-10">
 <p>
 限制里面所有的方法，必须是静态的。典型的代表是 Math 类。
 </p>
@@ -828,8 +1009,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-orgf09339d" class="outline-3">
-<h3 id="orgf09339d"><span class="section-number-3">3.11.</span> 密封类/sealed</h3>
-<div class="outline-text-3" id="text-3-11">
+<h3 id="orgf09339d"><span class="section-number-3">4.11.</span> 密封类/sealed</h3>
+<div class="outline-text-3" id="text-4-11">
 <p>
 这就从语法上，避免了某个类被继承的可能。
 </p>
@@ -837,8 +1018,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-orgc4575f0" class="outline-3">
-<h3 id="orgc4575f0"><span class="section-number-3">3.12.</span> 分部类/partial</h3>
-<div class="outline-text-3" id="text-3-12">
+<h3 id="orgc4575f0"><span class="section-number-3">4.12.</span> 分部类/partial</h3>
+<div class="outline-text-3" id="text-4-12">
 <p>
 让类可以写成多部分。在编译的环节，编译器将会帮助我们自动合并之后再编译。
 </p>
@@ -863,12 +1044,12 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-orgd80b6df" class="outline-3">
-<h3 id="orgd80b6df"><span class="section-number-3">3.13.</span> 基类 Object</h3>
-<div class="outline-text-3" id="text-3-13">
+<h3 id="orgd80b6df"><span class="section-number-3">4.13.</span> 基类 Object</h3>
+<div class="outline-text-3" id="text-4-13">
 </div>
 <div id="outline-container-org2d97e95" class="outline-4">
-<h4 id="org2d97e95"><span class="section-number-4">3.13.1.</span> ToString</h4>
-<div class="outline-text-4" id="text-3-13-1">
+<h4 id="org2d97e95"><span class="section-number-4">4.13.1.</span> ToString</h4>
+<div class="outline-text-4" id="text-4-13-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalculator</span> : <span style="color: #228b22;">CalculatorBase</span>
 <span style="color: #707183;">{</span>
@@ -886,8 +1067,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org5b66536" class="outline-2">
-<h2 id="org5b66536"><span class="section-number-2">4.</span> 接口 (Interface)</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org5b66536"><span class="section-number-2">5.</span> 接口 (Interface)</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>接口本质就是一个可以进行 <b>多继承</b> 的纯的抽象类。它是单继承的一种例外</li>
 <li>使用 interface 关键词声明接口，接口里面只能包含方法。按照习惯，一般使用 IXxx 的方式命名接口</li>
@@ -898,8 +1079,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org8442a53" class="outline-3">
-<h3 id="org8442a53"><span class="section-number-3">4.1.</span> IComparable 接口使用示例</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org8442a53"><span class="section-number-3">5.1.</span> IComparable 接口使用示例</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 IComparable 用来为两个对象进行比较提供比较的规则:
 </p>
@@ -953,12 +1134,12 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </section>
 
 <section id="outline-container-org6aeeeff" class="outline-2">
-<h2 id="org6aeeeff"><span class="section-number-2">5.</span> BCL (Base-Class Library) 基础类库</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org6aeeeff"><span class="section-number-2">6.</span> BCL (Base-Class Library) 基础类库</h2>
+<div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-org62cc525" class="outline-3">
-<h3 id="org62cc525"><span class="section-number-3">5.1.</span> Console/控制台</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="org62cc525"><span class="section-number-3">6.1.</span> Console/控制台</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 相关方法和属性:
 </p>
@@ -1023,8 +1204,8 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </div>
 
 <div id="outline-container-orgf8ba168" class="outline-3">
-<h3 id="orgf8ba168"><span class="section-number-3">5.2.</span> Random/Thread</h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="orgf8ba168"><span class="section-number-3">6.2.</span> Random/Thread</h3>
+<div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span>
 <span style="color: #707183;">{</span>
@@ -1061,8 +1242,8 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </div>
 
 <div id="outline-container-org6bf851a" class="outline-3">
-<h3 id="org6bf851a"><span class="section-number-3">5.3.</span> IDisposable/资源</h3>
-<div class="outline-text-3" id="text-5-3">
+<h3 id="org6bf851a"><span class="section-number-3">6.3.</span> IDisposable/资源</h3>
+<div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>资源，是指需要在操作系统中打开，用完之后，需要手动释放的对象</li>
 <li>为什么需要手动释放呢？因为 .NET 平台不是万能的。虽然 .NET 平台有垃圾回收器，你不再需要的
@@ -1138,12 +1319,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org41d732e" class="outline-2">
-<h2 id="org41d732e"><span class="section-number-2">6.</span> 技巧和示例</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org41d732e"><span class="section-number-2">7.</span> 技巧和示例</h2>
+<div class="outline-text-2" id="text-7">
 </div>
 <div id="outline-container-org19fdba0" class="outline-3">
-<h3 id="org19fdba0"><span class="section-number-3">6.1.</span> 求余</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org19fdba0"><span class="section-number-3">7.1.</span> 求余</h3>
+<div class="outline-text-3" id="text-7-1">
 <p>
 求余经常用来将某个数 <b>转换</b> 为 0-N 区间的一个数。
 </p>
@@ -1213,12 +1394,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org813f18a" class="outline-2">
-<h2 id="org813f18a"><span class="section-number-2">7.</span> 模拟题</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org813f18a"><span class="section-number-2">8.</span> 模拟题</h2>
+<div class="outline-text-2" id="text-8">
 </div>
 <div id="outline-container-org3dc09eb" class="outline-3">
-<h3 id="org3dc09eb"><span class="section-number-3">7.1.</span> 继承相关</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="org3dc09eb"><span class="section-number-3">8.1.</span> 继承相关</h3>
+<div class="outline-text-3" id="text-8-1">
 <p>
 请问下面程序的输出是什么:
 </p>
@@ -1270,8 +1451,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 
 
 <div id="outline-container-org1407fdc" class="outline-3">
-<h3 id="org1407fdc"><span class="section-number-3">7.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="org1407fdc"><span class="section-number-3">8.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
+<div class="outline-text-3" id="text-8-2">
 <p>
 重构 = 重新构造 = 将代码进行重写，让结构发生变化的行为
 = 一般来说，是因为现有的代码不合理，所以呢，重新调整一下
@@ -1282,44 +1463,44 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-orgc3c7280" class="outline-2">
-<h2 id="orgc3c7280"><span class="section-number-2">8.</span> 问题 (仅作参考)</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="orgc3c7280"><span class="section-number-2">9.</span> 问题 (仅作参考)</h2>
+<div class="outline-text-2" id="text-9">
 </div>
 <div id="outline-container-org1ebc96e" class="outline-3">
-<h3 id="org1ebc96e"><span class="section-number-3">8.1.</span> 什么是抽象类，抽象类有什么用处</h3>
+<h3 id="org1ebc96e"><span class="section-number-3">9.1.</span> 什么是抽象类，抽象类有什么用处</h3>
 </div>
 <div id="outline-container-org844c6c2" class="outline-3">
-<h3 id="org844c6c2"><span class="section-number-3">8.2.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
+<h3 id="org844c6c2"><span class="section-number-3">9.2.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
 </div>
 <div id="outline-container-org91f0ad4" class="outline-3">
-<h3 id="org91f0ad4"><span class="section-number-3">8.3.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
+<h3 id="org91f0ad4"><span class="section-number-3">9.3.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
 </div>
 <div id="outline-container-orgd31fdb2" class="outline-3">
-<h3 id="orgd31fdb2"><span class="section-number-3">8.4.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
+<h3 id="orgd31fdb2"><span class="section-number-3">9.4.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
 </div>
 <div id="outline-container-orgfe7b682" class="outline-3">
-<h3 id="orgfe7b682"><span class="section-number-3">8.5.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
+<h3 id="orgfe7b682"><span class="section-number-3">9.5.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
 </div>
 <div id="outline-container-org4b27030" class="outline-3">
-<h3 id="org4b27030"><span class="section-number-3">8.6.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
+<h3 id="org4b27030"><span class="section-number-3">9.6.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
 </div>
 <div id="outline-container-org5aaae61" class="outline-3">
-<h3 id="org5aaae61"><span class="section-number-3">8.7.</span> 什么是封装，什么是继承，什么是多态</h3>
+<h3 id="org5aaae61"><span class="section-number-3">9.7.</span> 什么是封装，什么是继承，什么是多态</h3>
 </div>
 <div id="outline-container-orgdd6d266" class="outline-3">
-<h3 id="orgdd6d266"><span class="section-number-3">8.8.</span> 什么是虚方法，它有什么用处</h3>
+<h3 id="orgdd6d266"><span class="section-number-3">9.8.</span> 什么是虚方法，它有什么用处</h3>
 </div>
 <div id="outline-container-org0f0c8e9" class="outline-3">
-<h3 id="org0f0c8e9"><span class="section-number-3">8.9.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
+<h3 id="org0f0c8e9"><span class="section-number-3">9.9.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
 </div>
 <div id="outline-container-org8a80c9c" class="outline-3">
-<h3 id="org8a80c9c"><span class="section-number-3">8.10.</span> 什么是 DRY，代码复用的手段有哪些</h3>
+<h3 id="org8a80c9c"><span class="section-number-3">9.10.</span> 什么是 DRY，代码复用的手段有哪些</h3>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-12</p>
+<p class="date">Created: 2021-05-13</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -18,6 +18,143 @@ C# 版本演化:
 - 8.0 开始支持默认接口方法，可空引用类型，switch 表达式等 (2019)
 - 9.0 增加了 Record 类型，继续对 switch 表达式等进行简化跟优化 (2021)
 
+* C#
+
+- 在 C# 等面向对象的语言中，*类型 (Type)* 是第一位的
+- 在 C# 中，不外乎做两件事，第一件是引入别人的类型，第二件是声明自己的类型
+- 也就是说，整个 C# 项目，是由不同的 *类型声明* 组成的
+- 在整个 C# 项目中，需要 *有且只有一个* 特殊的方法，就是 Main 方法。它是程序执行的起点
+- 通过引入 *命名空间 (namespace)* 的概念，用来组织各种类型，从而避免命名冲突
+
+** Main
+
+#+begin_src csharp
+  static int Main (string[] args)
+  {
+      return 如果正常返回则是 0，否则是一个整数代表错误编号;
+  }
+
+  static void Main (string[] args)
+  {
+      // 如果真的不关心返回的错误编号的话，可以将返回值设置为 void
+
+      // 可以使用 args 来捕获从控制台输入的参数 (用空格分隔的元素)
+      if (args.Length > 0 && args[0] == "--help")
+      {
+          Console.WriteLine("使用方式: ./Program");
+      }
+  }
+
+  static void Main ()
+  {
+      // 如果你真的不在乎传入参数的话，那么将 args 省略掉也可以
+  }
+
+  static async void Main()
+  {
+      await XxxAync();
+  }
+#+end_src
+
+** 命名空间
+*** 使用
+
+- 用来解决类型名字的冲突
+- 用来合理组织代码
+
+#+begin_src csharp
+  // 类型的使用，可以通过 namespace.类型 来访问到 / full name
+  System.String aaa = System.IO.File.ReadAllText("e:\\aaa.txt");
+  System.Console.WriteLine(aaa);
+  System.Console.WriteLine("hello");
+
+  // 可以借助 using 命名空间的方式，简化类型的使用
+  using System;
+  using System.IO;
+  string aaa = File.ReadAllText("e:\\aaa.txt");
+  Console.WriteLine(aaa);
+  Console.WriteLine("hello");
+
+  // 可以使用 using static 的语法继续进行简化
+  using static System.Console;
+  using static System.IO.File;
+  string aaa = ReadAllText("e:\\aaa.txt");
+  WriteLine(aaa);
+  WriteLine("hello");
+
+  // 可以使用 using = 的方式，为命名空间起一个别名。这种方式一般用来解决冲突
+  using SI = System.IO;
+  using HisSystem;
+  SI.File.xxx();  // System.IO.File.xxx();
+  File.xxx();     // HisSystem.FIle.xxx();
+#+end_src
+
+*** 定义
+
+支持嵌套，支持使用 . 的形式进行简写:
+#+begin_src csharp
+  using SI = System.IO; // File
+
+  namespace TaxCalculator
+  {
+      namespace Hi
+      {
+          namespace Ih // TaxCalculator.Hi.Ih.Boy
+          {
+              class Boy
+              {
+              }
+          }
+          class Girl // TaxCalculator.Hi.Girl
+          {
+          }
+      }
+
+      namespace A.B.C.D.E.F
+      {
+          namespace G.H.X
+          {
+              using static System.Console;
+              namespace Y
+              {
+                  class Hello
+                  {
+                      void Say()
+                      {
+                          WriteLine("hello");
+                      }
+                  }
+              }
+          }
+      }
+
+      namespace B
+      {
+          using System;
+          class Program // TaxCalculator.Program
+          {
+              static void Main()
+              {
+                  string aaa = SI.File.ReadAllText("e:\\aaa.txt");
+                  Console.WriteLine(aaa);
+                  Console.WriteLine("hello");
+              }
+          }
+      }
+  }
+#+end_src
+
+*** BCL/System
+
+处于 System 命名空间的类:
+- System.IO (Input/Output), 文件的处理
+- System.Drawing, 绘制图片
+- System.Collections，集合类型
+- System.Net，网络访问
+- System.Text，跟文本相关的内容，比如正则表达式
+- System.Threading，多线程
+- System.Threading.Tasks，异步编程
+
 * 控制流程
 ** 条件判断/分支
 
