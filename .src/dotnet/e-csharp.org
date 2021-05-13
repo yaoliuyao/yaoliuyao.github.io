@@ -52,14 +52,41 @@ C# 版本演化:
 
   static async void Main()
   {
-      await XxxAync();
+      await CCCAync();
+      await AAA();
+      await BBB();
+      DDD();
+  }
+#+end_src
+
+#+begin_src csharp
+  static void Main(string[] args)
+  {
+      if (args.Length == 1)
+      {
+          if (args[0] == "--help")
+          {
+
+              Console.WriteLine("使用方法: dotnet run 2223");
+          }
+          else
+          {
+              double bill = double.Parse(args[0]);
+              var calc = new TipCalculator(bill);
+              calc.PrintToConsole();
+          }
+      }
+      else
+      {
+          Console.WriteLine("参数错误.");
+      }
   }
 #+end_src
 
 ** 命名空间
 
 - 用来解决类型名字的冲突
-- 用来合理组织代码
+- 用来合理组织类型
 
 *** 使用
 
@@ -155,6 +182,14 @@ System 命名空间:
 - System.Text，跟文本相关的内容，比如正则表达式
 - System.Threading，多线程
 - System.Threading.Tasks，异步编程
+
+* 类型
+
+类型就是用来创建数据结构的一种 *模板*：
+- 类型本身并不是数据本来的样子，它只是描述了数据应该怎么被构造出来
+- 类型它需要有名字，占用的空间，包括一系列的属性和行为
+
+按照类型的描述，进行数据创建的过程，叫 *实例化*
 
 * 控制流程
 ** 条件判断/分支
