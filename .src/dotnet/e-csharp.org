@@ -184,13 +184,68 @@ System 命名空间:
 - System.Threading，多线程
 - System.Threading.Tasks，异步编程
 
-** 类型
+** 类型 (class)
 
 类型就是用来创建数据结构的一种 *模板*：
-- 类型本身并不是数据本来的样子，它只是描述了数据应该怎么被构造出来
+- 类型本身并不是真正的数据，它只是描述了数据应该怎么被构造出来
 - 类型它需要有名字，占用的空间，包括一系列的属性和行为
 
-按照类型的描述，进行数据创建的过程，叫 *实例化*
+通过某个类型模板创建实际的对象，称作 *实例化* 该类型:
+- 它就是真正的数据。类型的实例，类型的对象。所有的数据都是要根据类型创建出来的
+- 类型的话，要么是平台预定义的，要么是 BCL/FCL 中定义的，要么是你自己声明的
+
+#+begin_src csharp
+  // 1 声明
+  class xxx
+  {
+      int age;
+      string name;
+  }
+  class yyy
+  {
+      int i;
+      xxx xxx; // 2 使用
+  }
+
+  new yyy(); // 2 使用
+
+  int a = 333; // 不需要声明，直接实例化
+#+end_src
+
+*** 类型的分类
+
+- 预定义类型 (16 种)
+  + 数值相关
+     * 整数 int/long
+     * 浮点数 float/double
+  + 非数值
+- 自定义类型
+
+#+begin_src csharp
+  static void Main(string[] args)
+  {
+      byte aa = 0;
+      byte az = 255;
+      sbyte ba = -128;
+      sbyte bz = 127;
+
+      short s1 = -32768;
+      short s2 = 32767;
+      ushort s3 = 0;
+      ushort s4 = 65535;
+
+      int i1 = -2147483648;
+      int i2 = 21_4748_3647;
+      uint i3 = 42_9496_7295;
+
+      long l1 = 3232323232335555355;
+      ulong l2 = 23333333333333333;
+
+      Console.WriteLine(0.1 + 0.2);
+      Console.WriteLine(100 * 0.28);
+      Console.WriteLine(100 * 0.27);
+  }
+#+end_src
 
 * 控制流程
 ** 条件判断/分支

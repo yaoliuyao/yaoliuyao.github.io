@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-13 -->
+<!-- 2021-05-14 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -53,7 +53,11 @@
 <li><a href="#org14046bc">2.2.3. BCL/System</a></li>
 </ul>
 </li>
-<li><a href="#org343af06">2.3. 类型</a></li>
+<li><a href="#orgb4010d1">2.3. 类型 (class)</a>
+<ul>
+<li><a href="#org7aa991e">2.3.1. 类型的分类</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org5927721">3. 控制流程</a>
@@ -361,20 +365,88 @@ System 命名空间:
 </div>
 </div>
 
-<div id="outline-container-org343af06" class="outline-3">
-<h3 id="org343af06"><span class="section-number-3">2.3.</span> 类型</h3>
+<div id="outline-container-orgb4010d1" class="outline-3">
+<h3 id="orgb4010d1"><span class="section-number-3">2.3.</span> 类型 (class)</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 类型就是用来创建数据结构的一种 <b>模板</b>：
 </p>
 <ul class="org-ul">
-<li>类型本身并不是数据本来的样子，它只是描述了数据应该怎么被构造出来</li>
+<li>类型本身并不是真正的数据，它只是描述了数据应该怎么被构造出来</li>
 <li>类型它需要有名字，占用的空间，包括一系列的属性和行为</li>
 </ul>
 
 <p>
-按照类型的描述，进行数据创建的过程，叫 <b>实例化</b>
+通过某个类型模板创建实际的对象，称作 <b>实例化</b> 该类型:
 </p>
+<ul class="org-ul">
+<li>它就是真正的数据。类型的实例，类型的对象。所有的数据都是要根据类型创建出来的</li>
+<li>类型的话，要么是平台预定义的，要么是 BCL/FCL 中定义的，要么是你自己声明的</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">1 &#22768;&#26126;</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">xxx</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span>;
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">yyy</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
+    <span style="color: #228b22;">xxx</span> <span style="color: #a0522d;">xxx</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">2 &#20351;&#29992;</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">new</span> <span style="color: #228b22;">yyy</span><span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">2 &#20351;&#29992;</span>
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span> = 333; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19981;&#38656;&#35201;&#22768;&#26126;&#65292;&#30452;&#25509;&#23454;&#20363;&#21270;</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7aa991e" class="outline-4">
+<h4 id="org7aa991e"><span class="section-number-4">2.3.1.</span> 类型的分类</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<ul class="org-ul">
+<li>预定义类型 (16 种)
+<ul class="org-ul">
+<li>数值相关
+<ul class="org-ul">
+<li>整数 int/long</li>
+<li>浮点数 float/double</li>
+</ul></li>
+<li>非数值</li>
+</ul></li>
+<li>自定义类型</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">byte</span> <span style="color: #a0522d;">aa</span> = 0;
+    <span style="color: #228b22;">byte</span> <span style="color: #a0522d;">az</span> = 255;
+    <span style="color: #228b22;">sbyte</span> <span style="color: #a0522d;">ba</span> = -128;
+    <span style="color: #228b22;">sbyte</span> <span style="color: #a0522d;">bz</span> = 127;
+
+    <span style="color: #228b22;">short</span> <span style="color: #a0522d;">s1</span> = -32768;
+    <span style="color: #228b22;">short</span> <span style="color: #a0522d;">s2</span> = 32767;
+    <span style="color: #228b22;">ushort</span> <span style="color: #a0522d;">s3</span> = 0;
+    <span style="color: #228b22;">ushort</span> <span style="color: #a0522d;">s4</span> = 65535;
+
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i1</span> = -2147483648;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i2</span> = 21_4748_3647;
+    <span style="color: #228b22;">uint</span> <span style="color: #a0522d;">i3</span> = 42_9496_7295;
+
+    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">l1</span> = 3232323232335555355;
+    <span style="color: #228b22;">ulong</span> <span style="color: #a0522d;">l2</span> = 23333333333333333;
+
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>0.1 + 0.2<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>100 * 0.28<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>100 * 0.27<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -1549,7 +1621,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-13</p>
+<p class="date">Created: 2021-05-14</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
