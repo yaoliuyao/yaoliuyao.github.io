@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-14 -->
+<!-- 2021-05-17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -53,9 +53,11 @@
 <li><a href="#org14046bc">2.2.3. BCL/System</a></li>
 </ul>
 </li>
-<li><a href="#orgb4010d1">2.3. 类型 (class)</a>
+<li><a href="#org34253e6">2.3. 类型</a></li>
+<li><a href="#orge5cf192">2.4. 数值类型</a>
 <ul>
-<li><a href="#org7aa991e">2.3.1. 类型的分类</a></li>
+<li><a href="#orge0a1658">2.4.1. 整数</a></li>
+<li><a href="#org609437f">2.4.2. 浮点数</a></li>
 </ul>
 </li>
 </ul>
@@ -365,8 +367,8 @@ System 命名空间:
 </div>
 </div>
 
-<div id="outline-container-orgb4010d1" class="outline-3">
-<h3 id="orgb4010d1"><span class="section-number-3">2.3.</span> 类型 (class)</h3>
+<div id="outline-container-org34253e6" class="outline-3">
+<h3 id="org34253e6"><span class="section-number-3">2.3.</span> 类型</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 类型就是用来创建数据结构的一种 <b>模板</b>：
@@ -402,54 +404,142 @@ System 命名空间:
 <span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span> = 333; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19981;&#38656;&#35201;&#22768;&#26126;&#65292;&#30452;&#25509;&#23454;&#20363;&#21270;</span>
 </pre>
 </div>
+
+
+<figure id="org1a5118c">
+<img src="img/types.png" alt="types.png" width="400px">
+
+</figure>
+</div>
 </div>
 
-<div id="outline-container-org7aa991e" class="outline-4">
-<h4 id="org7aa991e"><span class="section-number-4">2.3.1.</span> 类型的分类</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<div id="outline-container-orge5cf192" class="outline-3">
+<h3 id="orge5cf192"><span class="section-number-3">2.4.</span> 数值类型</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-orge0a1658" class="outline-4">
+<h4 id="orge0a1658"><span class="section-number-4">2.4.1.</span> 整数</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+为了表示显示世界中的计算，人们发明了数字的记法:
+</p>
 <ul class="org-ul">
-<li>预定义类型 (16 种)
-<ul class="org-ul">
-<li>数值相关
-<ul class="org-ul">
-<li>整数 int/long</li>
-<li>浮点数 float/double</li>
-</ul></li>
-<li>非数值</li>
-</ul></li>
-<li>自定义类型</li>
+<li>通用的计算方式是 <b>十进制</b> (因为人自古来来，都有十根手指头)</li>
+<li>计算机内部使用的是 <b>二进制</b> (因为使用电子元件状态表达 0/1 是最简单的)</li>
+<li>人们一般使用 <b>十六进制</b> 来描述计算机中的二进制 (其表达能力更强，且能跟字节为单位的二进制形成对应关系)</li>
 </ul>
 
+<p>
+为了能在计算机中有效存储整数，C# 中预定义了如下类型:
+</p>
+<ul class="org-ul">
+<li>byte (字节，使用 8bit 表示，它的表现能力最差，只有 0 ~ 255)</li>
+<li>short (短整数，使用 2Byte 表示，能表示到 3 万大小)</li>
+<li>int (整数，4B 长度，能表达到 20 多亿)</li>
+<li>long (长整数，16B 长度，能表达到亿亿的单位)</li>
+</ul>
+
+<p>
+另外，考虑是否设置符号位 (Sign/Unsign)，上面的类型又有对应的类型:
+</p>
+<ul class="org-ul">
+<li>sbyte</li>
+<li>ushort</li>
+<li>uint</li>
+<li>ulong</li>
+</ul>
+
+<p>
+上述的类型都是用来创建整数数据的模板，它们的区别在于占用空间和表达里。
+选择类型的根据是:
+</p>
+<ul class="org-ul">
+<li>占用小的，表达能力差；占用大的，表达能力强</li>
+<li>在业务的允许范围内，尽量选择占用空间小的类型</li>
+<li>如果不好决定使用声明类型，优先使用 int</li>
+</ul>
+
+<p>
+整数:
+</p>
 <div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #228b22;">byte</span> <span style="color: #a0522d;">aa</span> = 0;
-    <span style="color: #228b22;">byte</span> <span style="color: #a0522d;">az</span> = 255;
-    <span style="color: #228b22;">sbyte</span> <span style="color: #a0522d;">ba</span> = -128;
-    <span style="color: #228b22;">sbyte</span> <span style="color: #a0522d;">bz</span> = 127;
+<pre class="src src-csharp"><span style="color: #228b22;">byte</span> <span style="color: #a0522d;">aa</span> = 0;
+<span style="color: #228b22;">byte</span> <span style="color: #a0522d;">az</span> = 255;
+<span style="color: #228b22;">sbyte</span> <span style="color: #a0522d;">ba</span> = -128;
+<span style="color: #228b22;">sbyte</span> <span style="color: #a0522d;">bz</span> = 127;
 
-    <span style="color: #228b22;">short</span> <span style="color: #a0522d;">s1</span> = -32768;
-    <span style="color: #228b22;">short</span> <span style="color: #a0522d;">s2</span> = 32767;
-    <span style="color: #228b22;">ushort</span> <span style="color: #a0522d;">s3</span> = 0;
-    <span style="color: #228b22;">ushort</span> <span style="color: #a0522d;">s4</span> = 65535;
+<span style="color: #228b22;">short</span> <span style="color: #a0522d;">s1</span> = -32768;
+<span style="color: #228b22;">short</span> <span style="color: #a0522d;">s2</span> = 32767;
+<span style="color: #228b22;">ushort</span> <span style="color: #a0522d;">s3</span> = 0;
+<span style="color: #228b22;">ushort</span> <span style="color: #a0522d;">s4</span> = 65535;
 
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i1</span> = -2147483648;
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i2</span> = 21_4748_3647;
-    <span style="color: #228b22;">uint</span> <span style="color: #a0522d;">i3</span> = 42_9496_7295;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i1</span> = -2147483648;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i2</span> = 21_4748_3647;
+<span style="color: #228b22;">uint</span> <span style="color: #a0522d;">i3</span> = 42_9496_7295;
 
-    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">l1</span> = 3232323232335555355;
-    <span style="color: #228b22;">ulong</span> <span style="color: #a0522d;">l2</span> = 23333333333333333;
+<span style="color: #228b22;">long</span> <span style="color: #a0522d;">l1</span> = 3232323232335555355;
+<span style="color: #228b22;">ulong</span> <span style="color: #a0522d;">l2</span> = 23333333333333333;
 
-    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>0.1 + 0.2<span style="color: #7388d6;">)</span>;
-    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>100 * 0.28<span style="color: #7388d6;">)</span>;
-    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>100 * 0.27<span style="color: #7388d6;">)</span>;
-<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>0.1 + 0.2<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>100 * 0.28<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>100 * 0.27<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">byte</span> <span style="color: #a0522d;">a</span> = 1;
+<span style="color: #228b22;">short</span> <span style="color: #a0522d;">b</span> = 1;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span> = 1;
+<span style="color: #228b22;">long</span> <span style="color: #a0522d;">d</span> = 1;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">C# &#29616;&#22312;&#20801;&#35768;&#20351;&#29992;&#20998;&#38548;&#31526;&#25551;&#36848;&#25968;&#23383;&#65292;&#36825;&#26679;&#20855;&#22791;&#26356;&#22909;&#30340;&#21487;&#35835;&#24615;</span>
+<span style="color: #228b22;">long</span> <span style="color: #a0522d;">xxx</span> = 11_1161_1311_4441_2323;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">yyy</span> = 2323;
 </pre>
 </div>
+
+<p>
+可以直接使用二进制/十六进制的方式描述数字:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">byte</span> <span style="color: #a0522d;">zzz</span> = 0b11111111;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>zzz<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">16 &#36827;&#21046; 10 2 </span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">0,1,10,11,100,101,110,111</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1,2,..9,10,11,12..19</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1, 2,...9, a, b, c, d, e, f / 15, 1111</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">10, 11, 12 .. 1e, 1f     0001_1111</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">20,...............2f</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">30................3f</span>
+<span style="color: #b22222;">//                   </span><span style="color: #b22222;">9f</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">a0................af</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">b0................bf</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">c0................cf</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">d0................df</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">e0................ef</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">f0..............fe.ff 256 1111_1111</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">100 .. 101. .....</span>
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>0b11111111_11111110_11111111<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>0x1e<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>0xff_fe_ab_12<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>2222323<span style="color: #707183;">)</span>;
+</pre>
 </div>
+
+
+<figure id="orge6fcab3">
+<img src="img/integers.png" alt="integers.png" width="400px">
+
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org609437f" class="outline-4">
+<h4 id="org609437f"><span class="section-number-4">2.4.2.</span> 浮点数</h4>
 </div>
 </div>
 </section>
+
+
 
 <section id="outline-container-org5927721" class="outline-2">
 <h2 id="org5927721"><span class="section-number-2">3.</span> 控制流程</h2>
@@ -1621,7 +1711,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-14</p>
+<p class="date">Created: 2021-05-17</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

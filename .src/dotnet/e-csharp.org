@@ -184,7 +184,7 @@ System 命名空间:
 - System.Threading，多线程
 - System.Threading.Tasks，异步编程
 
-** 类型 (class)
+** 类型
 
 类型就是用来创建数据结构的一种 *模板*：
 - 类型本身并不是真正的数据，它只是描述了数据应该怎么被构造出来
@@ -212,40 +212,101 @@ System 命名空间:
   int a = 333; // 不需要声明，直接实例化
 #+end_src
 
-*** 类型的分类
+#+ATTR_HTML: :width 400px
+[[file:img/types.png]]
 
-- 预定义类型 (16 种)
-  + 数值相关
-     * 整数 int/long
-     * 浮点数 float/double
-  + 非数值
-- 自定义类型
+** 数值类型
+*** 整数
 
+为了表示显示世界中的计算，人们发明了数字的记法:
+- 通用的计算方式是 *十进制* (因为人自古来来，都有十根手指头)
+- 计算机内部使用的是 *二进制* (因为使用电子元件状态表达 0/1 是最简单的)
+- 人们一般使用 *十六进制* 来描述计算机中的二进制 (其表达能力更强，且能跟字节为单位的二进制形成对应关系)
+
+为了能在计算机中有效存储整数，C# 中预定义了如下类型:
+- byte (字节，使用 8bit 表示，它的表现能力最差，只有 0 ~ 255)
+- short (短整数，使用 2Byte 表示，能表示到 3 万大小)
+- int (整数，4B 长度，能表达到 20 多亿)
+- long (长整数，16B 长度，能表达到亿亿的单位)
+
+另外，考虑是否设置符号位 (Sign/Unsign)，上面的类型又有对应的类型:
+- sbyte
+- ushort
+- uint
+- ulong
+
+上述的类型都是用来创建整数数据的模板，它们的区别在于占用空间和表达里。
+选择类型的根据是:
+- 占用小的，表达能力差；占用大的，表达能力强
+- 在业务的允许范围内，尽量选择占用空间小的类型
+- 如果不好决定使用声明类型，优先使用 int
+
+整数:
 #+begin_src csharp
-  static void Main(string[] args)
-  {
-      byte aa = 0;
-      byte az = 255;
-      sbyte ba = -128;
-      sbyte bz = 127;
+  byte aa = 0;
+  byte az = 255;
+  sbyte ba = -128;
+  sbyte bz = 127;
 
-      short s1 = -32768;
-      short s2 = 32767;
-      ushort s3 = 0;
-      ushort s4 = 65535;
+  short s1 = -32768;
+  short s2 = 32767;
+  ushort s3 = 0;
+  ushort s4 = 65535;
 
-      int i1 = -2147483648;
-      int i2 = 21_4748_3647;
-      uint i3 = 42_9496_7295;
+  int i1 = -2147483648;
+  int i2 = 21_4748_3647;
+  uint i3 = 42_9496_7295;
 
-      long l1 = 3232323232335555355;
-      ulong l2 = 23333333333333333;
+  long l1 = 3232323232335555355;
+  ulong l2 = 23333333333333333;
 
-      Console.WriteLine(0.1 + 0.2);
-      Console.WriteLine(100 * 0.28);
-      Console.WriteLine(100 * 0.27);
-  }
+  Console.WriteLine(0.1 + 0.2);
+  Console.WriteLine(100 * 0.28);
+  Console.WriteLine(100 * 0.27);
+
+  byte a = 1;
+  short b = 1;
+  int c = 1;
+  long d = 1;
+
+  // C# 现在允许使用分隔符描述数字，这样具备更好的可读性
+  long xxx = 11_1161_1311_4441_2323;
+  int yyy = 2323;
 #+end_src
+
+可以直接使用二进制/十六进制的方式描述数字:
+#+begin_src csharp
+  byte zzz = 0b11111111;
+  Console.WriteLine(zzz);
+
+  // 16 进制 10 2 
+  // 0,1,10,11,100,101,110,111
+  // 1,2,..9,10,11,12..19
+  // 1, 2,...9, a, b, c, d, e, f / 15, 1111
+  // 10, 11, 12 .. 1e, 1f     0001_1111
+  // 20,...............2f
+  // 30................3f
+  //                   9f
+  // a0................af
+  // b0................bf
+  // c0................cf
+  // d0................df
+  // e0................ef
+  // f0..............fe.ff 256 1111_1111
+  // 100 .. 101. .....
+
+  Console.WriteLine(0b11111111_11111110_11111111);
+  Console.WriteLine(0x1e);
+  Console.WriteLine(0xff_fe_ab_12);
+  Console.WriteLine(2222323);
+#+end_src
+
+#+ATTR_HTML: :width 400px
+[[file:img/integers.png]]
+
+*** 浮点数
+
+
 
 * 控制流程
 ** 条件判断/分支
