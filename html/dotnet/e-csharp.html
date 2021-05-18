@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-17 -->
+<!-- 2021-05-18 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -406,7 +406,7 @@ System 命名空间:
 </div>
 
 
-<figure id="org1a5118c">
+<figure id="org7c3e36a">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
@@ -526,7 +526,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orge6fcab3">
+<figure id="org01cfca1">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -535,11 +535,33 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 
 <div id="outline-container-org609437f" class="outline-4">
 <h4 id="org609437f"><span class="section-number-4">2.4.2.</span> 浮点数</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<ul class="org-ul">
+<li>根据存储形式，分为单精度 (float) 和双精度 (double)</li>
+<li><b>float</b> 使用 32bit 来存储 (1 个符号位 8 个指数位 23 个尾数)</li>
+<li><b>double</b> 使用 64bit 来存储 (1 个符号位 11 个指数位 52 个尾数)</li>
+<li>一个小数，转换为计算机存储的形式，难免会有精度的损失。因此
+<ul class="org-ul">
+<li>0.1 + 0.2 ≠ 0.3</li>
+<li>0.6 + 0.7 = 1.2999999999999998</li>
+<li>0.28 * 100 = 28.000000000000004</li>
+</ul></li>
+<li>可以使用 <b>decimal</b> 类型，来表示更加精确的数值计算
+<ul class="org-ul">
+<li>它的优点是，可以进行精确的计算</li>
+<li>它的缺点是，它需要占用更大的存储空间 (128bit)</li>
+</ul></li>
+</ul>
+
+
+<figure id="orgb3f09cd">
+<img src="img/float-type.png" alt="float-type.png" width="500px">
+
+</figure>
+</div>
 </div>
 </div>
 </section>
-
-
 
 <section id="outline-container-org5927721" class="outline-2">
 <h2 id="org5927721"><span class="section-number-2">3.</span> 控制流程</h2>
@@ -1711,7 +1733,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-17</p>
+<p class="date">Created: 2021-05-18</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
