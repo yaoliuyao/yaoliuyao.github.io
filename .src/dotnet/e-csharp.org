@@ -338,7 +338,8 @@ System 命名空间:
   decimal c = 3.222M;
 
   int x = 333;
-  long y = 54444;
+  long y1 = 54444;
+  long y2 = 54444L;
 #+end_src
 
 * 控制流程
