@@ -215,6 +215,9 @@ System 命名空间:
 #+ATTR_HTML: :width 400px
 [[file:img/types.png]]
 
+#+ATTR_HTML: :width 400px
+[[file:img/types-2.png]]
+
 ** 数值类型
 *** 整数
 
