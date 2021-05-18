@@ -58,6 +58,7 @@
 <ul>
 <li><a href="#orge0a1658">2.4.1. 整数</a></li>
 <li><a href="#org609437f">2.4.2. 浮点数</a></li>
+<li><a href="#orga559cde">2.4.3. Literate (字面量表达)</a></li>
 </ul>
 </li>
 </ul>
@@ -406,7 +407,7 @@ System 命名空间:
 </div>
 
 
-<figure id="org7c3e36a">
+<figure id="orgd928c75">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
@@ -526,7 +527,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org01cfca1">
+<figure id="org31d4615">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -554,10 +555,35 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgb3f09cd">
+<figure id="org483e730">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
+</div>
+</div>
+
+<div id="outline-container-orga559cde" class="outline-4">
+<h4 id="orga559cde"><span class="section-number-4">2.4.3.</span> Literate (字面量表达)</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23383;&#38754;&#37327;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1112 int</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1112L long</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1112UL Unsigned Long</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1112F float</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1112.0 double</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">1112M decimal</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>0.1M + 0.2M<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">double</span> <span style="color: #a0522d;">a</span> = 2222;
+<span style="color: #228b22;">float</span> <span style="color: #a0522d;">b1</span> = 33332332323233;
+<span style="color: #228b22;">float</span> <span style="color: #a0522d;">b2</span> = 2323F;
+<span style="color: #228b22;">decimal</span> <span style="color: #a0522d;">c</span> = 3.222M;
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">x</span> = 333;
+<span style="color: #228b22;">long</span> <span style="color: #a0522d;">y</span> = 54444;
+</pre>
+</div>
 </div>
 </div>
 </div>

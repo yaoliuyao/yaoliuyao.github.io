@@ -320,6 +320,27 @@ System 命名空间:
 #+ATTR_HTML: :width 500px
 [[file:img/float-type.png]]
 
+*** Literate (字面量表达)
+
+#+begin_src csharp
+  // 字面量
+  // 1112 int
+  // 1112L long
+  // 1112UL Unsigned Long
+  // 1112F float
+  // 1112.0 double
+  // 1112M decimal
+  Console.WriteLine(0.1M + 0.2M);
+
+  double a = 2222;
+  float b1 = 33332332323233;
+  float b2 = 2323F;
+  decimal c = 3.222M;
+
+  int x = 333;
+  long y = 54444;
+#+end_src
+
 * 控制流程
 ** 条件判断/分支
 
