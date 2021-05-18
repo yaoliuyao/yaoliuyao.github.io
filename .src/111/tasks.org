@@ -2,6 +2,15 @@
 
 
 
+* [2021-05-18 Tue]
+:PROPERTIES:
+:CUSTOM_ID: active
+:END:
+
+- 复习今天内容
+- 了解字符集和编码格式的基本含义 (明天提问)
+- 预习字符和字符串概念
+
 * [2021-05-14 Fri]
 :PROPERTIES:
 :CUSTOM_ID: active
