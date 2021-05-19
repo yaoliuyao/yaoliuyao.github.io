@@ -414,12 +414,52 @@ Q & A:
 因此，在 C# 中内部，字符是使用 UTF-16 格式存储的。
 #+begin_src csharp
   char a = 'x';
+
+  char a = 'x';
+  char b = '中';
+  char c = '☺';
+  char d = '⁞';
 #+end_src
 
 ** 布尔类型 (bool)
 
 * 预定义/非数值复杂类型
 ** string
+
+字符串，是由字符序列组成的一种数据结构。
+
+字符串的长度:
+#+begin_src csharp
+  string s1 = "aaa";
+  string s2 = "您好aaa";
+  string s3 = "𠈓好aaa";
+
+  Console.WriteLine(s1.Length); // 由多少个字符组成
+  Console.WriteLine(s2.Length);
+  Console.WriteLine(s3.Length); // 这个为什么是 6 ?
+
+  string s4 = "中国𠈓您好𠈓blahblaah中华𠈓你们都是啥kdjfkdjkdfdkjlah中华𠈓你们都是啥kdjfkdjkdfdkjlah中华𠈓你们都是啥kdjfkdjkdfdkjlah中华𠈓你们都是啥kdjfkdjkdfdkjlah中华𠈓你们都是啥kdjfkdjkdfdkjlah中华𠈓你们都是啥kdjfkdjkdfdkjlah中华𠈓你们都是啥kdjfkdjkdfdkjlah中华𠈓你们都是啥kdjfkdjkdfdkjlah中华𠈓你们都是啥kdjfkdjkdfdkjf";
+  Console.WriteLine(s4.Length);
+  Console.WriteLine(new StringInfo(s4).LengthInTextElements);
+#+end_src
+
+字符串的初始化:
+#+begin_src csharp
+  string g1 = "Hello World!";
+  System.String g2 = "Hello World!";
+  var g3 = "Hello World!";
+
+  string message1 = "jdskfjskdjf";
+  string message2 = null;
+  string message3 = String.Empty;
+  string oldPath = "c:\\Program Files\\Microsoft Visual Studio 8.0";
+  string newPath = @"Path:
+  c:\Program Files\Microsoft Visual Studio 9.0";
+
+  char[] letters = { 'A', 'B', 'C' };
+  string alphabet = new string(letters);
+#+end_src
+
 ** object
 ** dynamic
 * [自定义类型]

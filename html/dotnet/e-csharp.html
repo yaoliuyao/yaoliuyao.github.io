@@ -237,13 +237,13 @@ C# 版本演化:
 </div>
 
 
-<figure id="org31a2ec5">
+<figure id="org45633cf">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orge4dbaa1">
+<figure id="org037c211">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -614,7 +614,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org9e7e95d">
+<figure id="org66207be">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -642,7 +642,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgf86df7a">
+<figure id="org4fbbec0">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -701,7 +701,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgbe881db">
+<figure id="org8088569">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -711,6 +711,11 @@ Q &amp; A:
 </p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">char</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">'x'</span>;
+
+<span style="color: #228b22;">char</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">'x'</span>;
+<span style="color: #228b22;">char</span> <span style="color: #a0522d;">b</span> = <span style="color: #8b2252;">'&#20013;'</span>;
+<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> = <span style="color: #8b2252;">'&#9786;'</span>;
+<span style="color: #228b22;">char</span> <span style="color: #a0522d;">d</span> = <span style="color: #8b2252;">'&#8286;'</span>;
 </pre>
 </div>
 </div>
@@ -727,7 +732,51 @@ Q &amp; A:
 </div>
 <div id="outline-container-org276b6a7" class="outline-3">
 <h3 id="org276b6a7"><span class="section-number-3">5.1.</span> string</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+字符串，是由字符序列组成的一种数据结构。
+</p>
+
+<p>
+字符串的长度:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"aaa"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = <span style="color: #8b2252;">"&#24744;&#22909;aaa"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = <span style="color: #8b2252;">"&#131603;&#22909;aaa"</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1.Length<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#30001;&#22810;&#23569;&#20010;&#23383;&#31526;&#32452;&#25104;</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s2.Length<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s3.Length<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36825;&#20010;&#20026;&#20160;&#20040;&#26159; 6 ?</span>
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = <span style="color: #8b2252;">"&#20013;&#22269;&#131603;&#24744;&#22909;&#131603;blahblaah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjf"</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s4.Length<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringInfo</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">s4</span><span style="color: #7388d6;">)</span>.LengthInTextElements<span style="color: #707183;">)</span>;
+</pre>
 </div>
+
+<p>
+字符串的初始化:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">g1</span> = <span style="color: #8b2252;">"Hello World!"</span>;
+System.<span style="color: #228b22;">String</span> <span style="color: #a0522d;">g2</span> = <span style="color: #8b2252;">"Hello World!"</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">g3</span> = <span style="color: #8b2252;">"Hello World!"</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">message1</span> = <span style="color: #8b2252;">"jdskfjskdjf"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">message2</span> = <span style="color: #008b8b;">null</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">message3</span> = String.Empty;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">oldPath</span> = <span style="color: #8b2252;">"c:\\Program Files\\Microsoft Visual Studio 8.0"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">newPath</span> = @<span style="color: #8b2252;">"Path:</span>
+<span style="color: #8b2252;">c:\Program Files\Microsoft Visual Studio 9.0"</span>;
+
+<span style="color: #228b22;">char</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">letters</span> = <span style="color: #707183;">{</span> <span style="color: #8b2252;">'A'</span>, <span style="color: #8b2252;">'B'</span>, <span style="color: #8b2252;">'C'</span> <span style="color: #707183;">}</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">alphabet</span> = <span style="color: #a020f0;">new</span> <span style="color: #0000ff;">string</span><span style="color: #707183;">(</span>letters<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
 <div id="outline-container-orga14bfb3" class="outline-3">
 <h3 id="orga14bfb3"><span class="section-number-3">5.2.</span> object</h3>
 </div>
