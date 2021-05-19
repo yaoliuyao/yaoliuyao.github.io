@@ -18,7 +18,7 @@ C# 版本演化:
 - 8.0 开始支持默认接口方法，可空引用类型，switch 表达式等 (2019)
 - 9.0 增加了 Record 类型，继续对 switch 表达式等进行简化跟优化 (2021)
 
-* [类型]
+* [语言与类型]
 
 在 C# 等面向对象的语言中，*类型 (Type)* 是第一位的
 - 在 C# 中，不外乎做两件事，第一件是引入别人的类型，第二件是声明自己的类型
@@ -216,6 +216,59 @@ System 命名空间:
 - System.Threading，多线程
 - System.Threading.Tasks，异步编程
 
+** [条件判断/分支]
+
+- 规则 (rule)
+
+if:
+#+begin_src csharp
+  // if
+  if (bool)
+  {
+  }
+
+  // if / else
+  if (bool)
+  {
+  }
+  else
+  {
+  }
+
+  // if / else if / ... / else
+  if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else
+  {
+  }
+#+end_src
+
+switch:
+#+begin_src csharp
+  switch (exp)
+  {
+      case a:
+          做什么;
+          break;
+      case b:
+          做什么;
+          break;
+  }
+#+end_src
+
 * 预定义/数值类型
 ** 整数
 
@@ -364,59 +417,6 @@ Q & A:
 #+end_src
 
 ** 布尔类型 (bool)
-
-** [条件判断/分支]
-
-- 规则 (rule)
-
-if:
-#+begin_src csharp
-  // if
-  if (bool)
-  {
-  }
-
-  // if / else
-  if (bool)
-  {
-  }
-  else
-  {
-  }
-
-  // if / else if / ... / else
-  if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else
-  {
-  }
-#+end_src
-
-switch:
-#+begin_src csharp
-  switch (exp)
-  {
-      case a:
-          做什么;
-          break;
-      case b:
-          做什么;
-          break;
-  }
-#+end_src
 
 * 预定义/非数值复杂类型
 ** string

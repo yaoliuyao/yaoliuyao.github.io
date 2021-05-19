@@ -43,7 +43,7 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org546f257">1. 历史</a></li>
-<li><a href="#org08a8502">2. [类型]</a>
+<li><a href="#orgc28a28d">2. [语言与类型]</a>
 <ul>
 <li><a href="#org22dc0fd">2.1. Main</a></li>
 <li><a href="#orgb7d5996">2.2. 命名空间</a>
@@ -53,6 +53,7 @@
 <li><a href="#org14046bc">2.2.3. BCL/System</a></li>
 </ul>
 </li>
+<li><a href="#org5e456f1">2.3. [条件判断/分支]</a></li>
 </ul>
 </li>
 <li><a href="#org7064d3b">3. 预定义/数值类型</a>
@@ -66,7 +67,6 @@
 <ul>
 <li><a href="#org7d344b4">4.1. 字符类型 (char)</a></li>
 <li><a href="#org22c8b53">4.2. 布尔类型 (bool)</a></li>
-<li><a href="#org5e456f1">4.3. [条件判断/分支]</a></li>
 </ul>
 </li>
 <li><a href="#orgdc2b33a">5. 预定义/非数值复杂类型</a>
@@ -188,8 +188,8 @@ C# 版本演化:
 </div>
 </section>
 
-<section id="outline-container-org08a8502" class="outline-2">
-<h2 id="org08a8502"><span class="section-number-2">2.</span> [类型]</h2>
+<section id="outline-container-orgc28a28d" class="outline-2">
+<h2 id="orgc28a28d"><span class="section-number-2">2.</span> [语言与类型]</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 在 C# 等面向对象的语言中，<b>类型 (Type)</b> 是第一位的
@@ -237,13 +237,13 @@ C# 版本演化:
 </div>
 
 
-<figure id="orgbb6ffcb">
+<figure id="org31a2ec5">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgb8bb76f">
+<figure id="orge4dbaa1">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -435,6 +435,70 @@ System 命名空间:
 </div>
 </div>
 </div>
+
+<div id="outline-container-org5e456f1" class="outline-3">
+<h3 id="org5e456f1"><span class="section-number-3">2.3.</span> [条件判断/分支]</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>规则 (rule)</li>
+</ul>
+
+<p>
+if:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">if</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else if / ... / else</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+switch:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">switch</span> <span style="color: #707183;">(</span>exp<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">case</span> a:
+        &#20570;&#20160;&#20040;;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">case</span> b:
+        &#20570;&#20160;&#20040;;
+        <span style="color: #a020f0;">break</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-org7064d3b" class="outline-2">
@@ -550,7 +614,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org7410060">
+<figure id="org9e7e95d">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -578,7 +642,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org944e213">
+<figure id="orgf86df7a">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -637,7 +701,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org355b702">
+<figure id="orgbe881db">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -654,70 +718,6 @@ Q &amp; A:
 
 <div id="outline-container-org22c8b53" class="outline-3">
 <h3 id="org22c8b53"><span class="section-number-3">4.2.</span> 布尔类型 (bool)</h3>
-</div>
-
-<div id="outline-container-org5e456f1" class="outline-3">
-<h3 id="org5e456f1"><span class="section-number-3">4.3.</span> [条件判断/分支]</h3>
-<div class="outline-text-3" id="text-4-3">
-<ul class="org-ul">
-<li>规则 (rule)</li>
-</ul>
-
-<p>
-if:
-</p>
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">if</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else if / ... / else</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-</pre>
-</div>
-
-<p>
-switch:
-</p>
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #a020f0;">switch</span> <span style="color: #707183;">(</span>exp<span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #a020f0;">case</span> a:
-        &#20570;&#20160;&#20040;;
-        <span style="color: #a020f0;">break</span>;
-    <span style="color: #a020f0;">case</span> b:
-        &#20570;&#20160;&#20040;;
-        <span style="color: #a020f0;">break</span>;
-<span style="color: #707183;">}</span>
-</pre>
-</div>
-</div>
 </div>
 </section>
 
