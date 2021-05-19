@@ -1,7 +1,7 @@
 #+TITLE: C♯
 
 
-* 历史跟发展
+* 历史
 
 - Visual J++ 被放弃，[[https://baike.baidu.com/item/%E5%AE%89%E5%BE%B7%E6%96%AF%C2%B7%E6%B5%B7%E5%B0%94%E6%96%AF%E4%BC%AF%E6%A0%BC][安德斯·海尔斯伯格]]带领团队从 2000 年左右开始开发了 C#，到 2002 年的的时候，开始提交给 ECMA 成为了标准
 - 因为安德斯他的个人经历，所以 C# 深受 Pascal/C++/Java 的影响
@@ -18,7 +18,7 @@ C# 版本演化:
 - 8.0 开始支持默认接口方法，可空引用类型，switch 表达式等 (2019)
 - 9.0 增加了 Record 类型，继续对 switch 表达式等进行简化跟优化 (2021)
 
-* 类型
+* [类型]
 
 在 C# 等面向对象的语言中，*类型 (Type)* 是第一位的
 - 在 C# 中，不外乎做两件事，第一件是引入别人的类型，第二件是声明自己的类型
@@ -343,8 +343,8 @@ System 命名空间:
   long y2 = 54444L;
 #+end_src
 
-* 预定义/非数值类型
-** 字符类型
+* 预定义/非数值简单类型
+** 字符类型 (char)
 
 字符集/编码格式:
 + 最原始的英文中的 *ASCII* 编码
@@ -363,61 +363,23 @@ Q & A:
   char a = 'x';
 #+end_src
 
-* 控制流程
-** 条件判断/分支
+** 布尔类型 (bool)
 
-- 规则 (rule)
+* 预定义/非数值复杂类型
+** string
+** object
+** dynamic
+* [自定义类型]
 
-if:
-#+begin_src csharp
-  // if
-  if (bool)
-  {
-  }
+- class
+- interface
+- delegate
+- array
+- record
+- struct
+- enum
 
-  // if / else
-  if (bool)
-  {
-  }
-  else
-  {
-  }
-
-  // if / else if / ... / else
-  if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else
-  {
-  }
-#+end_src
-
-switch:
-#+begin_src csharp
-  switch (exp)
-  {
-      case a:
-          做什么;
-          break;
-      case b:
-          做什么;
-          break;
-  }
-#+end_src
-
-* 类跟对象 (Class/Instance)
+* 类 (Class)
 ** 字段 (Field)
 
 - 作为一个字段，最重要的是 (类型) (名字) = (值)
@@ -990,6 +952,60 @@ IComparable 用来为两个对象进行比较提供比较的规则:
   }
 #+end_src
 
+* 其他
+** 控制流程
+*** 条件判断/分支
+
+- 规则 (rule)
+
+if:
+#+begin_src csharp
+  // if
+  if (bool)
+  {
+  }
+
+  // if / else
+  if (bool)
+  {
+  }
+  else
+  {
+  }
+
+  // if / else if / ... / else
+  if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else
+  {
+  }
+#+end_src
+
+switch:
+#+begin_src csharp
+  switch (exp)
+  {
+      case a:
+          做什么;
+          break;
+      case b:
+          做什么;
+          break;
+  }
+#+end_src
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
