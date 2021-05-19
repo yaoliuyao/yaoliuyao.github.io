@@ -2,6 +2,15 @@
 
 
 
+* [2021-05-19 Wed]
+:PROPERTIES:
+:CUSTOM_ID: active
+:END:
+
+- 复习 Char/CharSet/Encoding 的知识
+- 预习、学习 string 的基本使用
+- 思考，what & why 字符串是不可变的
+
 * [2021-05-18 Tue]
 :PROPERTIES:
 :CUSTOM_ID: active

@@ -460,6 +460,16 @@ Q & A:
   string alphabet = new string(letters);
 #+end_src
 
+#+begin_src csharp
+  int i = 1;
+  int j = 23;
+  i += j;
+
+  string s = "h";
+  string t = "w";
+  s += t;
+#+end_src
+
 ** object
 ** dynamic
 * [自定义类型]
