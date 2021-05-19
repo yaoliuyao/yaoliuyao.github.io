@@ -66,6 +66,7 @@
 <ul>
 <li><a href="#org7d344b4">4.1. 字符类型 (char)</a></li>
 <li><a href="#org22c8b53">4.2. 布尔类型 (bool)</a></li>
+<li><a href="#org5e456f1">4.3. [条件判断/分支]</a></li>
 </ul>
 </li>
 <li><a href="#orgdc2b33a">5. 预定义/非数值复杂类型</a>
@@ -114,45 +115,36 @@
 <li><a href="#org8442a53">8.1. IComparable 接口使用示例</a></li>
 </ul>
 </li>
-<li><a href="#orgd5abaf7">9. 其他</a>
+<li><a href="#org6aeeeff">9. BCL (Base-Class Library) 基础类库</a>
 <ul>
-<li><a href="#org5927721">9.1. 控制流程</a>
-<ul>
-<li><a href="#org15d7cf0">9.1.1. 条件判断/分支</a></li>
+<li><a href="#org62cc525">9.1. Console/控制台</a></li>
+<li><a href="#orgf8ba168">9.2. Random/Thread</a></li>
+<li><a href="#org6bf851a">9.3. IDisposable/资源</a></li>
 </ul>
 </li>
+<li><a href="#org41d732e">10. 技巧和示例</a>
+<ul>
+<li><a href="#org19fdba0">10.1. 求余</a></li>
 </ul>
 </li>
-<li><a href="#org6aeeeff">10. BCL (Base-Class Library) 基础类库</a>
+<li><a href="#org813f18a">11. 模拟题</a>
 <ul>
-<li><a href="#org62cc525">10.1. Console/控制台</a></li>
-<li><a href="#orgf8ba168">10.2. Random/Thread</a></li>
-<li><a href="#org6bf851a">10.3. IDisposable/资源</a></li>
+<li><a href="#org3dc09eb">11.1. 继承相关</a></li>
+<li><a href="#org1407fdc">11.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
 </ul>
 </li>
-<li><a href="#org41d732e">11. 技巧和示例</a>
+<li><a href="#orgc3c7280">12. 问题 (仅作参考)</a>
 <ul>
-<li><a href="#org19fdba0">11.1. 求余</a></li>
-</ul>
-</li>
-<li><a href="#org813f18a">12. 模拟题</a>
-<ul>
-<li><a href="#org3dc09eb">12.1. 继承相关</a></li>
-<li><a href="#org1407fdc">12.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
-</ul>
-</li>
-<li><a href="#orgc3c7280">13. 问题 (仅作参考)</a>
-<ul>
-<li><a href="#org1ebc96e">13.1. 什么是抽象类，抽象类有什么用处</a></li>
-<li><a href="#org844c6c2">13.2. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
-<li><a href="#org91f0ad4">13.3. 什么是静态类，什么是密封类，什么是分部类</a></li>
-<li><a href="#orgd31fdb2">13.4. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
-<li><a href="#orgfe7b682">13.5. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
-<li><a href="#org4b27030">13.6. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
-<li><a href="#org5aaae61">13.7. 什么是封装，什么是继承，什么是多态</a></li>
-<li><a href="#orgdd6d266">13.8. 什么是虚方法，它有什么用处</a></li>
-<li><a href="#org0f0c8e9">13.9. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
-<li><a href="#org8a80c9c">13.10. 什么是 DRY，代码复用的手段有哪些</a></li>
+<li><a href="#org1ebc96e">12.1. 什么是抽象类，抽象类有什么用处</a></li>
+<li><a href="#org844c6c2">12.2. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
+<li><a href="#org91f0ad4">12.3. 什么是静态类，什么是密封类，什么是分部类</a></li>
+<li><a href="#orgd31fdb2">12.4. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
+<li><a href="#orgfe7b682">12.5. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
+<li><a href="#org4b27030">12.6. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
+<li><a href="#org5aaae61">12.7. 什么是封装，什么是继承，什么是多态</a></li>
+<li><a href="#orgdd6d266">12.8. 什么是虚方法，它有什么用处</a></li>
+<li><a href="#org0f0c8e9">12.9. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
+<li><a href="#org8a80c9c">12.10. 什么是 DRY，代码复用的手段有哪些</a></li>
 </ul>
 </li>
 </ul>
@@ -235,13 +227,13 @@ C# 版本演化:
 </div>
 
 
-<figure id="org2dad926">
+<figure id="org159426b">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org937a45b">
+<figure id="org1e18485">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -548,7 +540,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org8acd8d7">
+<figure id="orgd000136">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -576,7 +568,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org42e30c9">
+<figure id="orge581c73">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -635,7 +627,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgb54c83c">
+<figure id="org519114d">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -652,6 +644,70 @@ Q &amp; A:
 
 <div id="outline-container-org22c8b53" class="outline-3">
 <h3 id="org22c8b53"><span class="section-number-3">4.2.</span> 布尔类型 (bool)</h3>
+</div>
+
+<div id="outline-container-org5e456f1" class="outline-3">
+<h3 id="org5e456f1"><span class="section-number-3">4.3.</span> [条件判断/分支]</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>规则 (rule)</li>
+</ul>
+
+<p>
+if:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">if</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else if / ... / else</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span>
+<span style="color: #707183;">{</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+switch:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">switch</span> <span style="color: #707183;">(</span>exp<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">case</span> a:
+        &#20570;&#20160;&#20040;;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">case</span> b:
+        &#20570;&#20160;&#20040;;
+        <span style="color: #a020f0;">break</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
 </div>
 </section>
 
@@ -1418,86 +1474,13 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </div>
 </section>
 
-<section id="outline-container-orgd5abaf7" class="outline-2">
-<h2 id="orgd5abaf7"><span class="section-number-2">9.</span> 其他</h2>
+<section id="outline-container-org6aeeeff" class="outline-2">
+<h2 id="org6aeeeff"><span class="section-number-2">9.</span> BCL (Base-Class Library) 基础类库</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org5927721" class="outline-3">
-<h3 id="org5927721"><span class="section-number-3">9.1.</span> 控制流程</h3>
-<div class="outline-text-3" id="text-9-1">
-</div>
-<div id="outline-container-org15d7cf0" class="outline-4">
-<h4 id="org15d7cf0"><span class="section-number-4">9.1.1.</span> 条件判断/分支</h4>
-<div class="outline-text-4" id="text-9-1-1">
-<ul class="org-ul">
-<li>规则 (rule)</li>
-</ul>
-
-<p>
-if:
-</p>
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">if</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else if / ... / else</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-</pre>
-</div>
-
-<p>
-switch:
-</p>
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #a020f0;">switch</span> <span style="color: #707183;">(</span>exp<span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #a020f0;">case</span> a:
-        &#20570;&#20160;&#20040;;
-        <span style="color: #a020f0;">break</span>;
-    <span style="color: #a020f0;">case</span> b:
-        &#20570;&#20160;&#20040;;
-        <span style="color: #a020f0;">break</span>;
-<span style="color: #707183;">}</span>
-</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="outline-container-org6aeeeff" class="outline-2">
-<h2 id="org6aeeeff"><span class="section-number-2">10.</span> BCL (Base-Class Library) 基础类库</h2>
-<div class="outline-text-2" id="text-10">
-</div>
 <div id="outline-container-org62cc525" class="outline-3">
-<h3 id="org62cc525"><span class="section-number-3">10.1.</span> Console/控制台</h3>
-<div class="outline-text-3" id="text-10-1">
+<h3 id="org62cc525"><span class="section-number-3">9.1.</span> Console/控制台</h3>
+<div class="outline-text-3" id="text-9-1">
 <p>
 相关方法和属性:
 </p>
@@ -1562,8 +1545,8 @@ switch:
 </div>
 
 <div id="outline-container-orgf8ba168" class="outline-3">
-<h3 id="orgf8ba168"><span class="section-number-3">10.2.</span> Random/Thread</h3>
-<div class="outline-text-3" id="text-10-2">
+<h3 id="orgf8ba168"><span class="section-number-3">9.2.</span> Random/Thread</h3>
+<div class="outline-text-3" id="text-9-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span>
 <span style="color: #707183;">{</span>
@@ -1600,8 +1583,8 @@ switch:
 </div>
 
 <div id="outline-container-org6bf851a" class="outline-3">
-<h3 id="org6bf851a"><span class="section-number-3">10.3.</span> IDisposable/资源</h3>
-<div class="outline-text-3" id="text-10-3">
+<h3 id="org6bf851a"><span class="section-number-3">9.3.</span> IDisposable/资源</h3>
+<div class="outline-text-3" id="text-9-3">
 <ul class="org-ul">
 <li>资源，是指需要在操作系统中打开，用完之后，需要手动释放的对象</li>
 <li>为什么需要手动释放呢？因为 .NET 平台不是万能的。虽然 .NET 平台有垃圾回收器，你不再需要的
@@ -1677,12 +1660,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org41d732e" class="outline-2">
-<h2 id="org41d732e"><span class="section-number-2">11.</span> 技巧和示例</h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="org41d732e"><span class="section-number-2">10.</span> 技巧和示例</h2>
+<div class="outline-text-2" id="text-10">
 </div>
 <div id="outline-container-org19fdba0" class="outline-3">
-<h3 id="org19fdba0"><span class="section-number-3">11.1.</span> 求余</h3>
-<div class="outline-text-3" id="text-11-1">
+<h3 id="org19fdba0"><span class="section-number-3">10.1.</span> 求余</h3>
+<div class="outline-text-3" id="text-10-1">
 <p>
 求余经常用来将某个数 <b>转换</b> 为 0-N 区间的一个数。
 </p>
@@ -1752,12 +1735,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org813f18a" class="outline-2">
-<h2 id="org813f18a"><span class="section-number-2">12.</span> 模拟题</h2>
-<div class="outline-text-2" id="text-12">
+<h2 id="org813f18a"><span class="section-number-2">11.</span> 模拟题</h2>
+<div class="outline-text-2" id="text-11">
 </div>
 <div id="outline-container-org3dc09eb" class="outline-3">
-<h3 id="org3dc09eb"><span class="section-number-3">12.1.</span> 继承相关</h3>
-<div class="outline-text-3" id="text-12-1">
+<h3 id="org3dc09eb"><span class="section-number-3">11.1.</span> 继承相关</h3>
+<div class="outline-text-3" id="text-11-1">
 <p>
 请问下面程序的输出是什么:
 </p>
@@ -1809,8 +1792,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 
 
 <div id="outline-container-org1407fdc" class="outline-3">
-<h3 id="org1407fdc"><span class="section-number-3">12.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
-<div class="outline-text-3" id="text-12-2">
+<h3 id="org1407fdc"><span class="section-number-3">11.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
+<div class="outline-text-3" id="text-11-2">
 <p>
 重构 = 重新构造 = 将代码进行重写，让结构发生变化的行为
 = 一般来说，是因为现有的代码不合理，所以呢，重新调整一下
@@ -1821,38 +1804,38 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-orgc3c7280" class="outline-2">
-<h2 id="orgc3c7280"><span class="section-number-2">13.</span> 问题 (仅作参考)</h2>
-<div class="outline-text-2" id="text-13">
+<h2 id="orgc3c7280"><span class="section-number-2">12.</span> 问题 (仅作参考)</h2>
+<div class="outline-text-2" id="text-12">
 </div>
 <div id="outline-container-org1ebc96e" class="outline-3">
-<h3 id="org1ebc96e"><span class="section-number-3">13.1.</span> 什么是抽象类，抽象类有什么用处</h3>
+<h3 id="org1ebc96e"><span class="section-number-3">12.1.</span> 什么是抽象类，抽象类有什么用处</h3>
 </div>
 <div id="outline-container-org844c6c2" class="outline-3">
-<h3 id="org844c6c2"><span class="section-number-3">13.2.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
+<h3 id="org844c6c2"><span class="section-number-3">12.2.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
 </div>
 <div id="outline-container-org91f0ad4" class="outline-3">
-<h3 id="org91f0ad4"><span class="section-number-3">13.3.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
+<h3 id="org91f0ad4"><span class="section-number-3">12.3.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
 </div>
 <div id="outline-container-orgd31fdb2" class="outline-3">
-<h3 id="orgd31fdb2"><span class="section-number-3">13.4.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
+<h3 id="orgd31fdb2"><span class="section-number-3">12.4.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
 </div>
 <div id="outline-container-orgfe7b682" class="outline-3">
-<h3 id="orgfe7b682"><span class="section-number-3">13.5.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
+<h3 id="orgfe7b682"><span class="section-number-3">12.5.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
 </div>
 <div id="outline-container-org4b27030" class="outline-3">
-<h3 id="org4b27030"><span class="section-number-3">13.6.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
+<h3 id="org4b27030"><span class="section-number-3">12.6.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
 </div>
 <div id="outline-container-org5aaae61" class="outline-3">
-<h3 id="org5aaae61"><span class="section-number-3">13.7.</span> 什么是封装，什么是继承，什么是多态</h3>
+<h3 id="org5aaae61"><span class="section-number-3">12.7.</span> 什么是封装，什么是继承，什么是多态</h3>
 </div>
 <div id="outline-container-orgdd6d266" class="outline-3">
-<h3 id="orgdd6d266"><span class="section-number-3">13.8.</span> 什么是虚方法，它有什么用处</h3>
+<h3 id="orgdd6d266"><span class="section-number-3">12.8.</span> 什么是虚方法，它有什么用处</h3>
 </div>
 <div id="outline-container-org0f0c8e9" class="outline-3">
-<h3 id="org0f0c8e9"><span class="section-number-3">13.9.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
+<h3 id="org0f0c8e9"><span class="section-number-3">12.9.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
 </div>
 <div id="outline-container-org8a80c9c" class="outline-3">
-<h3 id="org8a80c9c"><span class="section-number-3">13.10.</span> 什么是 DRY，代码复用的手段有哪些</h3>
+<h3 id="org8a80c9c"><span class="section-number-3">12.10.</span> 什么是 DRY，代码复用的手段有哪些</h3>
 </div>
 </section>
 </div>

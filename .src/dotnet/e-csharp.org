@@ -365,6 +365,59 @@ Q & A:
 
 ** 布尔类型 (bool)
 
+** [条件判断/分支]
+
+- 规则 (rule)
+
+if:
+#+begin_src csharp
+  // if
+  if (bool)
+  {
+  }
+
+  // if / else
+  if (bool)
+  {
+  }
+  else
+  {
+  }
+
+  // if / else if / ... / else
+  if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else if (bool)
+  {
+  }
+  else
+  {
+  }
+#+end_src
+
+switch:
+#+begin_src csharp
+  switch (exp)
+  {
+      case a:
+          做什么;
+          break;
+      case b:
+          做什么;
+          break;
+  }
+#+end_src
+
 * 预定义/非数值复杂类型
 ** string
 ** object
@@ -952,60 +1005,6 @@ IComparable 用来为两个对象进行比较提供比较的规则:
   }
 #+end_src
 
-* 其他
-** 控制流程
-*** 条件判断/分支
-
-- 规则 (rule)
-
-if:
-#+begin_src csharp
-  // if
-  if (bool)
-  {
-  }
-
-  // if / else
-  if (bool)
-  {
-  }
-  else
-  {
-  }
-
-  // if / else if / ... / else
-  if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else
-  {
-  }
-#+end_src
-
-switch:
-#+begin_src csharp
-  switch (exp)
-  {
-      case a:
-          做什么;
-          break;
-      case b:
-          做什么;
-          break;
-  }
-#+end_src
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
