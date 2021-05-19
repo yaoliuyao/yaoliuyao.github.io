@@ -423,14 +423,33 @@ switch:
 ** object
 ** dynamic
 * [自定义类型]
+** class
 
-- class
-- interface
-- delegate
-- array
-- record
-- struct
-- enum
+类
+
+** interface
+
+接口
+
+** delegate
+
+委托
+
+** array
+
+数组
+
+** record
+
+记录
+
+** struct
+
+结构体
+
+** enum
+
+枚举
 
 * 类 (Class)
 ** 字段 (Field)
