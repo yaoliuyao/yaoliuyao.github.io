@@ -222,13 +222,13 @@ C# 版本演化:
 </div>
 
 
-<figure id="org0c48829">
+<figure id="org862d6aa">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org1aa1ebe">
+<figure id="org997b84a">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -535,7 +535,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org2815afe">
+<figure id="org7d1c762">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -563,7 +563,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orge2097f0">
+<figure id="org8ff2ce0">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -613,15 +613,30 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <li>为了消除字符集冲突，出现的 <b>Unicode</b> 组织跟字符集。并根据字符集出现了 <b>UTF-16/UTF-8</b> 等编码格式</li>
 </ul>
 
+<p>
+Q &amp; A:
+</p>
+<ul class="org-ul">
+<li>ucs-2 vs UTF-16 ????</li>
+<li>UTF8 怎么的格式 ????</li>
+</ul>
 
-<figure id="orge74ca95">
+
+<figure id="org481a21e">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
+
+<p>
+因此，在 C# 中内部，字符是使用 UTF-16 格式存储的。
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">char</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">'x'</span>;
+</pre>
+</div>
 </div>
 </div>
 </section>
-
 
 <section id="outline-container-org5927721" class="outline-2">
 <h2 id="org5927721"><span class="section-number-2">5.</span> 控制流程</h2>

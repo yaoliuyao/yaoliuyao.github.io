@@ -351,9 +351,17 @@ System 命名空间:
 + 后来出现的，各个国家的，比如 *GBK*
 + 为了消除字符集冲突，出现的 *Unicode* 组织跟字符集。并根据字符集出现了 *UTF-16/UTF-8* 等编码格式
 
+Q & A:
+- ucs-2 vs UTF-16 ????
+- UTF8 怎么的格式 ????
+
 #+ATTR_HTML: :width 500px
 [[file:img/unicode.png]]
 
+因此，在 C# 中内部，字符是使用 UTF-16 格式存储的。
+#+begin_src csharp
+  char a = 'x';
+#+end_src
 
 * 控制流程
 ** 条件判断/分支
