@@ -525,6 +525,21 @@ Q & A:
 
 **** String Intern Pool (字符串池)
 
+#+begin_src csharp
+  string a = "hello";
+  string b = "hel";
+  string c = "lo";
+  string d = b + c;
+  string e = "hello";
+
+  // 使用 == 判断，两个字符串的值是不是一样的
+  Console.WriteLine(a == d); // true
+
+  // 使用 object.ReferenceEquals 判定是否占用了相同的内存空间
+  Console.WriteLine(object.ReferenceEquals(a, d)); // false
+  Console.WriteLine(object.ReferenceEquals(a, e)); // true
+#+end_src
+
 ** object
 ** dynamic
 * [自定义类型]

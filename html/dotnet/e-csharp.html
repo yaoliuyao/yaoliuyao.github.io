@@ -249,13 +249,13 @@ C# 版本演化:
 </div>
 
 
-<figure id="org3e4272a">
+<figure id="orgf3649fa">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org8494cc4">
+<figure id="org96cd565">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -626,7 +626,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgcafe6d4">
+<figure id="org879b6af">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -654,7 +654,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgd6d439b">
+<figure id="org0ebbbe5">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -713,7 +713,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgde5bcbf">
+<figure id="orgf6deec0">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -815,7 +815,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org63b35de">
+<figure id="orgcb17cf0">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -841,7 +841,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org9689e21">
+<figure id="org2491fa1">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -877,6 +877,23 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 
 <div id="outline-container-org1d0d4fc" class="outline-5">
 <h5 id="org1d0d4fc"><span class="section-number-5">5.1.3.3.</span> String Intern Pool (字符串池)</h5>
+<div class="outline-text-5" id="text-5-1-3-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">"hello"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">b</span> = <span style="color: #8b2252;">"hel"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">c</span> = <span style="color: #8b2252;">"lo"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">d</span> = b + c;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">e</span> = <span style="color: #8b2252;">"hello"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; == &#21028;&#26029;&#65292;&#20004;&#20010;&#23383;&#31526;&#20018;&#30340;&#20540;&#26159;&#19981;&#26159;&#19968;&#26679;&#30340;</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>a == d<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">true</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; object.ReferenceEquals &#21028;&#23450;&#26159;&#21542;&#21344;&#29992;&#20102;&#30456;&#21516;&#30340;&#20869;&#23384;&#31354;&#38388;</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span>.<span style="color: #0000ff;">ReferenceEquals</span><span style="color: #7388d6;">(</span>a, d<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">false</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span>.<span style="color: #0000ff;">ReferenceEquals</span><span style="color: #7388d6;">(</span>a, e<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">true</span>
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
