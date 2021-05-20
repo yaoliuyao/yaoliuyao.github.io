@@ -249,13 +249,13 @@ C# 版本演化:
 </div>
 
 
-<figure id="orgf3649fa">
+<figure id="org1d2ca08">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org96cd565">
+<figure id="org360c8f6">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -626,7 +626,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org879b6af">
+<figure id="orgf4212b3">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -654,7 +654,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org0ebbbe5">
+<figure id="org4a65d43">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -713,7 +713,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgf6deec0">
+<figure id="orgb1588cd">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -815,7 +815,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgcb17cf0">
+<figure id="orgd5067d8">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -841,7 +841,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org2491fa1">
+<figure id="org1a9a733">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -878,6 +878,23 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 <div id="outline-container-org1d0d4fc" class="outline-5">
 <h5 id="org1d0d4fc"><span class="section-number-5">5.1.3.3.</span> String Intern Pool (字符串池)</h5>
 <div class="outline-text-5" id="text-5-1-3-3">
+<p>
+因为字符串是不可变的，所以在字符串的操作中，会产生很多临时字符串 (垃圾)。
+</p>
+
+<p>
+在实际使用中，有很多字符串我们会反复去使用的，所以为了避免重复进行字符串的创建，
+会对字符串操作过程中产生的字符串进行缓存管理，即创建一个字符串池管理它们。
+</p>
+
+<p>
+后续进行字符串的声明时，会优先到池中寻找，如果已经存在，那么直接使用它。
+</p>
+
+<p>
+字符串池的根本原因是，字符串是不可变的。
+</p>
+
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">"hello"</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">b</span> = <span style="color: #8b2252;">"hel"</span>;
