@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-12 -->
+<!-- 2021-05-20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vue.js</title>
@@ -42,93 +42,93 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4e49365">1. MVC / MVP / M-V-VM</a></li>
-<li><a href="#orgd891aa8">2. Vue.js</a></li>
-<li><a href="#orgec9a22b">3. 指令模板 (View)</a>
+<li><a href="#orgd440334">1. MVC / MVP / M-V-VM</a></li>
+<li><a href="#org4703bee">2. Vue.js</a></li>
+<li><a href="#org08b1be0">3. 指令模板 (View)</a>
 <ul>
-<li><a href="#orge1ece24">3.1. 计算属性 (computed) 与属性的监听 (watch)</a></li>
-<li><a href="#orgde3ef04">3.2. 样式 (style/class)</a></li>
-<li><a href="#orgcb466f4">3.3. 条件判断 (v-if/v-else-if/v-else/v-show)</a></li>
-<li><a href="#org9f6f9e6">3.4. 循环迭代 (v-for)</a></li>
-<li><a href="#orgc824ca6">3.5. 事件 (v-on)</a></li>
-<li><a href="#orgeaf620e">3.6. 表单绑定 (v-model，双向绑定)</a></li>
+<li><a href="#org38b8a6f">3.1. 计算属性 (computed) 与属性的监听 (watch)</a></li>
+<li><a href="#org0424db8">3.2. 样式 (style/class)</a></li>
+<li><a href="#orge197a63">3.3. 条件判断 (v-if/v-else-if/v-else/v-show)</a></li>
+<li><a href="#org28da4c3">3.4. 循环迭代 (v-for)</a></li>
+<li><a href="#org8aa01ec">3.5. 事件 (v-on)</a></li>
+<li><a href="#orgaa75034">3.6. 表单绑定 (v-model，双向绑定)</a></li>
 </ul>
 </li>
-<li><a href="#orgc61ca19">4. VM 实例</a>
+<li><a href="#org642f2ec">4. VM 实例</a>
 <ul>
-<li><a href="#org381b821">4.1. 生命周期的钩子</a></li>
+<li><a href="#org7d1e193">4.1. 生命周期的钩子</a></li>
 </ul>
 </li>
-<li><a href="#orgc304a51">5. 组件 (Component)</a>
+<li><a href="#orgde1b85a">5. 组件 (Component)</a>
 <ul>
-<li><a href="#orgf7fc644">5.1. 基本示例</a></li>
-<li><a href="#orgd513102">5.2. 数据的交互</a></li>
-<li><a href="#org21cdf2e">5.3. 全局 vs 局部</a></li>
-<li><a href="#org3dc4d4d">5.4. 内置组件</a>
+<li><a href="#orge5dbb13">5.1. 基本示例</a></li>
+<li><a href="#org027ca43">5.2. 数据的交互</a></li>
+<li><a href="#orgd4f8dd8">5.3. 全局 vs 局部</a></li>
+<li><a href="#orgc59116f">5.4. 内置组件</a>
 <ul>
-<li><a href="#org7fc259b">5.4.1. &lt;component&gt; 动态组件</a></li>
-<li><a href="#org3a73eaf">5.4.2. &lt;keep-alive&gt; 保持状态</a></li>
-<li><a href="#org5d80ff4">5.4.3. &lt;transition&gt; 动画效果</a></li>
-<li><a href="#org77d501a">5.4.4. &lt;template&gt; 编组</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgcf259b4">6. SPA (Single Page Application)</a>
-<ul>
-<li><a href="#org4a8340a">6.1. v-if/v-show</a></li>
-<li><a href="#org3b667bf">6.2. &lt;component&gt;</a></li>
-<li><a href="#orgfd7f67f">6.3. Vue-Router</a>
-<ul>
-<li><a href="#org4b5b7b0">6.3.1. 准备工作</a></li>
-<li><a href="#org81afd7b">6.3.2. 定义路由规则</a></li>
-<li><a href="#org0b4684c">6.3.3. 启用路由</a></li>
-<li><a href="#org400f408">6.3.4. 使用路由</a></li>
+<li><a href="#org1a8cc48">5.4.1. &lt;component&gt; 动态组件</a></li>
+<li><a href="#org8cd4ed2">5.4.2. &lt;keep-alive&gt; 保持状态</a></li>
+<li><a href="#orgb2077e1">5.4.3. &lt;transition&gt; 动画效果</a></li>
+<li><a href="#orgf3a3d1e">5.4.4. &lt;template&gt; 编组</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd08234c">7. 第三方组件库</a>
+<li><a href="#org28a058d">6. SPA (Single Page Application)</a>
 <ul>
-<li><a href="#org2993aa9">7.1. ElementUI</a></li>
+<li><a href="#org81297b5">6.1. v-if/v-show</a></li>
+<li><a href="#orgb20ef22">6.2. &lt;component&gt;</a></li>
+<li><a href="#orgd90773e">6.3. Vue-Router</a>
+<ul>
+<li><a href="#orgfad77c2">6.3.1. 准备工作</a></li>
+<li><a href="#org1f6b9c9">6.3.2. 定义路由规则</a></li>
+<li><a href="#org941a805">6.3.3. 启用路由</a></li>
+<li><a href="#org0d34030">6.3.4. 使用路由</a></li>
 </ul>
 </li>
-<li><a href="#orgee08ccd">8. Vue-Cli</a></li>
-<li><a href="#org5024390">9. [示例] Todo List</a></li>
-<li><a href="#orgd2438cb">10. [示例] Comment List</a>
-<ul>
-<li><a href="#org3700aaf">10.1. 要求</a></li>
-<li><a href="#org5348d71">10.2. 第一个版本</a></li>
-<li><a href="#orge1a1c14">10.3. 第二个版本 (组件化，并使用 Props 提高组件的灵活性)</a></li>
-<li><a href="#org533d54c">10.4. 第三个版本 (更加精细的组件划分)</a></li>
-<li><a href="#orgd0efe03">10.5. 第四个版本 (模块+组件)</a>
-<ul>
-<li><a href="#org163d13e">10.5.1. CommentForm</a></li>
-<li><a href="#orgf5feb38">10.5.2. CommentList</a></li>
-<li><a href="#org010acdf">10.5.3. Comments</a></li>
-<li><a href="#org820a9b2">10.5.4. 首页</a></li>
 </ul>
 </li>
-<li><a href="#orge6da421">10.6. 第五个版本 (工程化)</a>
+<li><a href="#org3ad39ad">7. 第三方组件库</a>
 <ul>
-<li><a href="#orga99b884">10.6.1. 创建项目</a></li>
-<li><a href="#org8fa3297">10.6.2. 配置项目</a></li>
-<li><a href="#org08eef25">10.6.3. 组件 component/comment-form.vue</a></li>
-<li><a href="#orga460d06">10.6.4. 组件 component/comment-list.vue</a></li>
-<li><a href="#org1524979">10.6.5. 聚合显示到 App.vue 里</a></li>
+<li><a href="#org3b7a0be">7.1. ElementUI</a></li>
 </ul>
 </li>
-<li><a href="#orgacc50a1">10.7. 第六个版本 (前后端分类 + axios)</a></li>
+<li><a href="#org7eaa25f">8. Vue-Cli</a></li>
+<li><a href="#orgf3702fd">9. [示例] Todo List</a></li>
+<li><a href="#orgf912349">10. [示例] Comment List</a>
+<ul>
+<li><a href="#orga931636">10.1. 要求</a></li>
+<li><a href="#orgac0f9bc">10.2. 第一个版本</a></li>
+<li><a href="#orgfdab612">10.3. 第二个版本 (组件化，并使用 Props 提高组件的灵活性)</a></li>
+<li><a href="#org53bfb7d">10.4. 第三个版本 (更加精细的组件划分)</a></li>
+<li><a href="#orge28bae5">10.5. 第四个版本 (模块+组件)</a>
+<ul>
+<li><a href="#orgbac29b7">10.5.1. CommentForm</a></li>
+<li><a href="#org55ca294">10.5.2. CommentList</a></li>
+<li><a href="#org84d40fb">10.5.3. Comments</a></li>
+<li><a href="#org2b6c7eb">10.5.4. 首页</a></li>
 </ul>
 </li>
-<li><a href="#org889f906">11. 后台 Admin 模板</a></li>
+<li><a href="#org0bd18b2">10.6. 第五个版本 (工程化)</a>
+<ul>
+<li><a href="#org1c0b50f">10.6.1. 创建项目</a></li>
+<li><a href="#org87d3272">10.6.2. 配置项目</a></li>
+<li><a href="#org45a50d7">10.6.3. 组件 component/comment-form.vue</a></li>
+<li><a href="#org32b1439">10.6.4. 组件 component/comment-list.vue</a></li>
+<li><a href="#orge2c742d">10.6.5. 聚合显示到 App.vue 里</a></li>
+</ul>
+</li>
+<li><a href="#orgdbfca46">10.7. 第六个版本 (前后端分类 + axios)</a></li>
+</ul>
+</li>
+<li><a href="#org8e84a3d">11. 后台 Admin 模板</a></li>
 </ul>
 </div>
 </nav>
 
 
-<section id="outline-container-org4e49365" class="outline-2">
-<h2 id="org4e49365"><span class="section-number-2">1.</span> MVC / MVP / M-V-VM</h2>
+<section id="outline-container-orgd440334" class="outline-2">
+<h2 id="orgd440334"><span class="section-number-2">1.</span> MVC / MVP / M-V-VM</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 把数据放到对应的页面:
@@ -142,8 +142,8 @@
 </div>
 </section>
 
-<section id="outline-container-orgd891aa8" class="outline-2">
-<h2 id="orgd891aa8"><span class="section-number-2">2.</span> Vue.js</h2>
+<section id="outline-container-org4703bee" class="outline-2">
+<h2 id="org4703bee"><span class="section-number-2">2.</span> Vue.js</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Google, Angular.js</li>
@@ -207,8 +207,8 @@ First:
 </div>
 </section>
 
-<section id="outline-container-orgec9a22b" class="outline-2">
-<h2 id="orgec9a22b"><span class="section-number-2">3.</span> 指令模板 (View)</h2>
+<section id="outline-container-org08b1be0" class="outline-2">
+<h2 id="org08b1be0"><span class="section-number-2">3.</span> 指令模板 (View)</h2>
 <div class="outline-text-2" id="text-3">
 <table>
 
@@ -407,8 +407,8 @@ Tips:
 </div>
 </div>
 
-<div id="outline-container-orge1ece24" class="outline-3">
-<h3 id="orge1ece24"><span class="section-number-3">3.1.</span> 计算属性 (computed) 与属性的监听 (watch)</h3>
+<div id="outline-container-org38b8a6f" class="outline-3">
+<h3 id="org38b8a6f"><span class="section-number-3">3.1.</span> 计算属性 (computed) 与属性的监听 (watch)</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-js">computed: <span style="color: #707183;">{</span>
@@ -434,8 +434,8 @@ watch: <span style="color: #707183;">{</span>
 </div>
 </div>
 
-<div id="outline-container-orgde3ef04" class="outline-3">
-<h3 id="orgde3ef04"><span class="section-number-3">3.2.</span> 样式 (style/class)</h3>
+<div id="outline-container-org0424db8" class="outline-3">
+<h3 id="org0424db8"><span class="section-number-3">3.2.</span> 样式 (style/class)</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> :class=<span style="color: #8b2252;">"xxx"</span> :style=<span style="color: #8b2252;">"{ color: 'red' }"</span><span style="color: #707183;">&gt;</span>xxx<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
@@ -445,8 +445,8 @@ watch: <span style="color: #707183;">{</span>
 </div>
 </div>
 
-<div id="outline-container-orgcb466f4" class="outline-3">
-<h3 id="orgcb466f4"><span class="section-number-3">3.3.</span> 条件判断 (v-if/v-else-if/v-else/v-show)</h3>
+<div id="outline-container-orge197a63" class="outline-3">
+<h3 id="orge197a63"><span class="section-number-3">3.3.</span> 条件判断 (v-if/v-else-if/v-else/v-show)</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>默认情况下，Vue 会尽可能复用一些元素</li>
@@ -489,8 +489,8 @@ watch: <span style="color: #707183;">{</span>
 </div>
 </div>
 
-<div id="outline-container-org9f6f9e6" class="outline-3">
-<h3 id="org9f6f9e6"><span class="section-number-3">3.4.</span> 循环迭代 (v-for)</h3>
+<div id="outline-container-org28da4c3" class="outline-3">
+<h3 id="org28da4c3"><span class="section-number-3">3.4.</span> 循环迭代 (v-for)</h3>
 <div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">ul</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"example-2"</span><span style="color: #707183;">&gt;</span>
@@ -529,8 +529,8 @@ watch: <span style="color: #707183;">{</span>
 </div>
 </div>
 
-<div id="outline-container-orgc824ca6" class="outline-3">
-<h3 id="orgc824ca6"><span class="section-number-3">3.5.</span> 事件 (v-on)</h3>
+<div id="outline-container-org8aa01ec" class="outline-3">
+<h3 id="org8aa01ec"><span class="section-number-3">3.5.</span> 事件 (v-on)</h3>
 <div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">button</span> <span style="color: #483d8b;">v-on</span>:<span style="color: #a0522d;">click</span>=<span style="color: #8b2252;">"greet"</span><span style="color: #707183;">&gt;</span>&#25353;&#38062;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>
@@ -571,8 +571,8 @@ watch: <span style="color: #707183;">{</span>
 </div>
 </div>
 
-<div id="outline-container-orgeaf620e" class="outline-3">
-<h3 id="orgeaf620e"><span class="section-number-3">3.6.</span> 表单绑定 (v-model，双向绑定)</h3>
+<div id="outline-container-orgaa75034" class="outline-3">
+<h3 id="orgaa75034"><span class="section-number-3">3.6.</span> 表单绑定 (v-model，双向绑定)</h3>
 <div class="outline-text-3" id="text-3-6">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">input</span> <span style="color: #a0522d;">v-model</span>=<span style="color: #8b2252;">"message"</span> <span style="color: #a0522d;">placeholder</span>=<span style="color: #8b2252;">"edit me"</span><span style="color: #707183;">&gt;</span>
@@ -591,12 +591,12 @@ watch: <span style="color: #707183;">{</span>
 </div>
 </section>
 
-<section id="outline-container-orgc61ca19" class="outline-2">
-<h2 id="orgc61ca19"><span class="section-number-2">4.</span> VM 实例</h2>
+<section id="outline-container-org642f2ec" class="outline-2">
+<h2 id="org642f2ec"><span class="section-number-2">4.</span> VM 实例</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org381b821" class="outline-3">
-<h3 id="org381b821"><span class="section-number-3">4.1.</span> 生命周期的钩子</h3>
+<div id="outline-container-org7d1e193" class="outline-3">
+<h3 id="org7d1e193"><span class="section-number-3">4.1.</span> 生命周期的钩子</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">1. &#24102;&#25351;&#20196;&#30340;&#27169;&#26495; </span><span style="color: #b22222;">--&gt;</span>
@@ -648,8 +648,8 @@ watch: <span style="color: #707183;">{</span>
 </div>
 </section>
 
-<section id="outline-container-orgc304a51" class="outline-2">
-<h2 id="orgc304a51"><span class="section-number-2">5.</span> 组件 (Component)</h2>
+<section id="outline-container-orgde1b85a" class="outline-2">
+<h2 id="orgde1b85a"><span class="section-number-2">5.</span> 组件 (Component)</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 好有一比啊，组件就是一种特殊的函数:
@@ -661,8 +661,8 @@ watch: <span style="color: #707183;">{</span>
 </ul>
 </div>
 
-<div id="outline-container-orgf7fc644" class="outline-3">
-<h3 id="orgf7fc644"><span class="section-number-3">5.1.</span> 基本示例</h3>
+<div id="outline-container-orge5dbb13" class="outline-3">
+<h3 id="orge5dbb13"><span class="section-number-3">5.1.</span> 基本示例</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 封装的 my-title 组件:
@@ -745,8 +745,8 @@ Vue.component<span style="color: #707183;">(</span><span style="color: #8b2252;"
 </div>
 </div>
 
-<div id="outline-container-orgd513102" class="outline-3">
-<h3 id="orgd513102"><span class="section-number-3">5.2.</span> 数据的交互</h3>
+<div id="outline-container-org027ca43" class="outline-3">
+<h3 id="org027ca43"><span class="section-number-3">5.2.</span> 数据的交互</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>往里传数据: props/slot</li>
@@ -815,8 +815,8 @@ alert-box 2:
 </div>
 </div>
 
-<div id="outline-container-org21cdf2e" class="outline-3">
-<h3 id="org21cdf2e"><span class="section-number-3">5.3.</span> 全局 vs 局部</h3>
+<div id="outline-container-orgd4f8dd8" class="outline-3">
+<h3 id="orgd4f8dd8"><span class="section-number-3">5.3.</span> 全局 vs 局部</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 全局:
@@ -946,12 +946,12 @@ alert-box 2:
 </div>
 </div>
 
-<div id="outline-container-org3dc4d4d" class="outline-3">
-<h3 id="org3dc4d4d"><span class="section-number-3">5.4.</span> 内置组件</h3>
+<div id="outline-container-orgc59116f" class="outline-3">
+<h3 id="orgc59116f"><span class="section-number-3">5.4.</span> 内置组件</h3>
 <div class="outline-text-3" id="text-5-4">
 </div>
-<div id="outline-container-org7fc259b" class="outline-4">
-<h4 id="org7fc259b"><span class="section-number-4">5.4.1.</span> &lt;component&gt; 动态组件</h4>
+<div id="outline-container-org1a8cc48" class="outline-4">
+<h4 id="org1a8cc48"><span class="section-number-4">5.4.1.</span> &lt;component&gt; 动态组件</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"app"</span> <span style="color: #a0522d;">class</span>=<span style="color: #8b2252;">"xxxx"</span><span style="color: #707183;">&gt;</span>
@@ -999,8 +999,8 @@ alert-box 2:
 </div>
 </div>
 
-<div id="outline-container-org3a73eaf" class="outline-4">
-<h4 id="org3a73eaf"><span class="section-number-4">5.4.2.</span> &lt;keep-alive&gt; 保持状态</h4>
+<div id="outline-container-org8cd4ed2" class="outline-4">
+<h4 id="org8cd4ed2"><span class="section-number-4">5.4.2.</span> &lt;keep-alive&gt; 保持状态</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 切换走的时候，保留组件的内部状态:
@@ -1014,8 +1014,8 @@ alert-box 2:
 </div>
 </div>
 
-<div id="outline-container-org5d80ff4" class="outline-4">
-<h4 id="org5d80ff4"><span class="section-number-4">5.4.3.</span> &lt;transition&gt; 动画效果</h4>
+<div id="outline-container-orgb2077e1" class="outline-4">
+<h4 id="orgb2077e1"><span class="section-number-4">5.4.3.</span> &lt;transition&gt; 动画效果</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
@@ -1052,8 +1052,8 @@ alert-box 2:
 </div>
 </div>
 
-<div id="outline-container-org77d501a" class="outline-4">
-<h4 id="org77d501a"><span class="section-number-4">5.4.4.</span> &lt;template&gt; 编组</h4>
+<div id="outline-container-orgf3a3d1e" class="outline-4">
+<h4 id="orgf3a3d1e"><span class="section-number-4">5.4.4.</span> &lt;template&gt; 编组</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">template</span> <span style="color: #a0522d;">v-if</span>=<span style="color: #8b2252;">"isShow"</span><span style="color: #707183;">&gt;</span>
@@ -1068,12 +1068,12 @@ alert-box 2:
 </div>
 </section>
 
-<section id="outline-container-orgcf259b4" class="outline-2">
-<h2 id="orgcf259b4"><span class="section-number-2">6.</span> SPA (Single Page Application)</h2>
+<section id="outline-container-org28a058d" class="outline-2">
+<h2 id="org28a058d"><span class="section-number-2">6.</span> SPA (Single Page Application)</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org4a8340a" class="outline-3">
-<h3 id="org4a8340a"><span class="section-number-3">6.1.</span> v-if/v-show</h3>
+<div id="outline-container-org81297b5" class="outline-3">
+<h3 id="org81297b5"><span class="section-number-3">6.1.</span> v-if/v-show</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">template</span><span style="color: #707183;">&gt;</span>
@@ -1104,8 +1104,8 @@ alert-box 2:
 </div>
 </div>
 
-<div id="outline-container-org3b667bf" class="outline-3">
-<h3 id="org3b667bf"><span class="section-number-3">6.2.</span> &lt;component&gt;</h3>
+<div id="outline-container-orgb20ef22" class="outline-3">
+<h3 id="orgb20ef22"><span class="section-number-3">6.2.</span> &lt;component&gt;</h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">template</span><span style="color: #707183;">&gt;</span>
@@ -1128,16 +1128,16 @@ alert-box 2:
 </div>
 </div>
 
-<div id="outline-container-orgfd7f67f" class="outline-3">
-<h3 id="orgfd7f67f"><span class="section-number-3">6.3.</span> Vue-Router</h3>
+<div id="outline-container-orgd90773e" class="outline-3">
+<h3 id="orgd90773e"><span class="section-number-3">6.3.</span> Vue-Router</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 <a href="https://router.vuejs.org/zh/">https://router.vuejs.org/zh/</a>
 </p>
 </div>
 
-<div id="outline-container-org4b5b7b0" class="outline-4">
-<h4 id="org4b5b7b0"><span class="section-number-4">6.3.1.</span> 准备工作</h4>
+<div id="outline-container-orgfad77c2" class="outline-4">
+<h4 id="orgfad77c2"><span class="section-number-4">6.3.1.</span> 准备工作</h4>
 <div class="outline-text-4" id="text-6-3-1">
 <ul class="org-ul">
 <li><p>
@@ -1169,8 +1169,8 @@ Vue.use<span style="color: #707183;">(</span>VueRouter<span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org81afd7b" class="outline-4">
-<h4 id="org81afd7b"><span class="section-number-4">6.3.2.</span> 定义路由规则</h4>
+<div id="outline-container-org1f6b9c9" class="outline-4">
+<h4 id="org1f6b9c9"><span class="section-number-4">6.3.2.</span> 定义路由规则</h4>
 <div class="outline-text-4" id="text-6-3-2">
 <p>
 router.js:
@@ -1196,8 +1196,8 @@ router.js:
 </div>
 </div>
 
-<div id="outline-container-org0b4684c" class="outline-4">
-<h4 id="org0b4684c"><span class="section-number-4">6.3.3.</span> 启用路由</h4>
+<div id="outline-container-org941a805" class="outline-4">
+<h4 id="org941a805"><span class="section-number-4">6.3.3.</span> 启用路由</h4>
 <div class="outline-text-4" id="text-6-3-3">
 <p>
 main.js
@@ -1215,8 +1215,8 @@ main.js
 </div>
 </div>
 
-<div id="outline-container-org400f408" class="outline-4">
-<h4 id="org400f408"><span class="section-number-4">6.3.4.</span> 使用路由</h4>
+<div id="outline-container-org0d34030" class="outline-4">
+<h4 id="org0d34030"><span class="section-number-4">6.3.4.</span> 使用路由</h4>
 <div class="outline-text-4" id="text-6-3-4">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">template</span><span style="color: #707183;">&gt;</span>
@@ -1245,8 +1245,8 @@ main.js
 </div>
 </section>
 
-<section id="outline-container-orgd08234c" class="outline-2">
-<h2 id="orgd08234c"><span class="section-number-2">7.</span> 第三方组件库</h2>
+<section id="outline-container-org3ad39ad" class="outline-2">
+<h2 id="org3ad39ad"><span class="section-number-2">7.</span> 第三方组件库</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>iView</li>
@@ -1255,8 +1255,8 @@ main.js
 </ul>
 </div>
 
-<div id="outline-container-org2993aa9" class="outline-3">
-<h3 id="org2993aa9"><span class="section-number-3">7.1.</span> ElementUI</h3>
+<div id="outline-container-org3b7a0be" class="outline-3">
+<h3 id="org3b7a0be"><span class="section-number-3">7.1.</span> ElementUI</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"app"</span><span style="color: #707183;">&gt;</span>
@@ -1324,8 +1324,8 @@ main.js
 </div>
 </section>
 
-<section id="outline-container-orgee08ccd" class="outline-2">
-<h2 id="orgee08ccd"><span class="section-number-2">8.</span> Vue-Cli</h2>
+<section id="outline-container-org7eaa25f" class="outline-2">
+<h2 id="org7eaa25f"><span class="section-number-2">8.</span> Vue-Cli</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 <a href="https://cli.vuejs.org/zh/guide/">https://cli.vuejs.org/zh/guide/</a>
@@ -1389,8 +1389,8 @@ vue.config.js:
 </div>
 </section>
 
-<section id="outline-container-org5024390" class="outline-2">
-<h2 id="org5024390"><span class="section-number-2">9.</span> [示例] Todo List</h2>
+<section id="outline-container-orgf3702fd" class="outline-2">
+<h2 id="orgf3702fd"><span class="section-number-2">9.</span> [示例] Todo List</h2>
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #a020f0;">!DOCTYPE</span> html&gt;
@@ -1561,12 +1561,12 @@ vue.config.js:
 </div>
 </section>
 
-<section id="outline-container-orgd2438cb" class="outline-2">
-<h2 id="orgd2438cb"><span class="section-number-2">10.</span> [示例] Comment List</h2>
+<section id="outline-container-orgf912349" class="outline-2">
+<h2 id="orgf912349"><span class="section-number-2">10.</span> [示例] Comment List</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-org3700aaf" class="outline-3">
-<h3 id="org3700aaf"><span class="section-number-3">10.1.</span> 要求</h3>
+<div id="outline-container-orga931636" class="outline-3">
+<h3 id="orga931636"><span class="section-number-3">10.1.</span> 要求</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 自行完成一个评论列表功能的实现:
@@ -1582,15 +1582,15 @@ vue.config.js:
 </p>
 
 
-<figure id="org5d21dfd">
+<figure id="org33d2486">
 <img src="img/oimg_20201104_064733.png" alt="oimg_20201104_064733.png" width="300px">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org5348d71" class="outline-3">
-<h3 id="org5348d71"><span class="section-number-3">10.2.</span> 第一个版本</h3>
+<div id="outline-container-orgac0f9bc" class="outline-3">
+<h3 id="orgac0f9bc"><span class="section-number-3">10.2.</span> 第一个版本</h3>
 <div class="outline-text-3" id="text-10-2">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #a020f0;">!DOCTYPE</span> html&gt;
@@ -1694,8 +1694,8 @@ vue.config.js:
 </div>
 </div>
 
-<div id="outline-container-orge1a1c14" class="outline-3">
-<h3 id="orge1a1c14"><span class="section-number-3">10.3.</span> 第二个版本 (组件化，并使用 Props 提高组件的灵活性)</h3>
+<div id="outline-container-orgfdab612" class="outline-3">
+<h3 id="orgfdab612"><span class="section-number-3">10.3.</span> 第二个版本 (组件化，并使用 Props 提高组件的灵活性)</h3>
 <div class="outline-text-3" id="text-10-3">
 <div class="org-src-container">
 <pre class="src src-js">Vue.component<span style="color: #707183;">(</span><span style="color: #8b2252;">'comment-list'</span>, <span style="color: #7388d6;">{</span>
@@ -1815,8 +1815,8 @@ vue.config.js:
 </div>
 </div>
 
-<div id="outline-container-org533d54c" class="outline-3">
-<h3 id="org533d54c"><span class="section-number-3">10.4.</span> 第三个版本 (更加精细的组件划分)</h3>
+<div id="outline-container-org53bfb7d" class="outline-3">
+<h3 id="org53bfb7d"><span class="section-number-3">10.4.</span> 第三个版本 (更加精细的组件划分)</h3>
 <div class="outline-text-3" id="text-10-4">
 <ul class="org-ul">
 <li>通过 props 进行数据的下放</li>
@@ -1999,12 +1999,12 @@ Vue.component<span style="color: #707183;">(</span><span style="color: #8b2252;"
 </div>
 </div>
 
-<div id="outline-container-orgd0efe03" class="outline-3">
-<h3 id="orgd0efe03"><span class="section-number-3">10.5.</span> 第四个版本 (模块+组件)</h3>
+<div id="outline-container-orge28bae5" class="outline-3">
+<h3 id="orge28bae5"><span class="section-number-3">10.5.</span> 第四个版本 (模块+组件)</h3>
 <div class="outline-text-3" id="text-10-5">
 </div>
-<div id="outline-container-org163d13e" class="outline-4">
-<h4 id="org163d13e"><span class="section-number-4">10.5.1.</span> CommentForm</h4>
+<div id="outline-container-orgbac29b7" class="outline-4">
+<h4 id="orgbac29b7"><span class="section-number-4">10.5.1.</span> CommentForm</h4>
 <div class="outline-text-4" id="text-10-5-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">export</span> <span style="color: #a020f0;">default</span> <span style="color: #707183;">{</span>
@@ -2039,8 +2039,8 @@ Vue.component<span style="color: #707183;">(</span><span style="color: #8b2252;"
 </div>
 </div>
 
-<div id="outline-container-orgf5feb38" class="outline-4">
-<h4 id="orgf5feb38"><span class="section-number-4">10.5.2.</span> CommentList</h4>
+<div id="outline-container-org55ca294" class="outline-4">
+<h4 id="org55ca294"><span class="section-number-4">10.5.2.</span> CommentList</h4>
 <div class="outline-text-4" id="text-10-5-2">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">export</span> <span style="color: #a020f0;">default</span> <span style="color: #707183;">{</span>
@@ -2069,8 +2069,8 @@ Vue.component<span style="color: #707183;">(</span><span style="color: #8b2252;"
 </div>
 </div>
 
-<div id="outline-container-org010acdf" class="outline-4">
-<h4 id="org010acdf"><span class="section-number-4">10.5.3.</span> Comments</h4>
+<div id="outline-container-org84d40fb" class="outline-4">
+<h4 id="org84d40fb"><span class="section-number-4">10.5.3.</span> Comments</h4>
 <div class="outline-text-4" id="text-10-5-3">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">import</span> CommentForm from <span style="color: #8b2252;">"./comment-form.js"</span>;
@@ -2105,8 +2105,8 @@ Vue.component<span style="color: #707183;">(</span><span style="color: #8b2252;"
 </div>
 </div>
 
-<div id="outline-container-org820a9b2" class="outline-4">
-<h4 id="org820a9b2"><span class="section-number-4">10.5.4.</span> 首页</h4>
+<div id="outline-container-org2b6c7eb" class="outline-4">
+<h4 id="org2b6c7eb"><span class="section-number-4">10.5.4.</span> 首页</h4>
 <div class="outline-text-4" id="text-10-5-4">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #a020f0;">!DOCTYPE</span> html&gt;
@@ -2209,12 +2209,12 @@ Vue.component<span style="color: #707183;">(</span><span style="color: #8b2252;"
 </div>
 </div>
 
-<div id="outline-container-orge6da421" class="outline-3">
-<h3 id="orge6da421"><span class="section-number-3">10.6.</span> 第五个版本 (工程化)</h3>
+<div id="outline-container-org0bd18b2" class="outline-3">
+<h3 id="org0bd18b2"><span class="section-number-3">10.6.</span> 第五个版本 (工程化)</h3>
 <div class="outline-text-3" id="text-10-6">
 </div>
-<div id="outline-container-orga99b884" class="outline-4">
-<h4 id="orga99b884"><span class="section-number-4">10.6.1.</span> 创建项目</h4>
+<div id="outline-container-org1c0b50f" class="outline-4">
+<h4 id="org1c0b50f"><span class="section-number-4">10.6.1.</span> 创建项目</h4>
 <div class="outline-text-4" id="text-10-6-1">
 <div class="org-src-container">
 <pre class="src src-sh">cmd
@@ -2228,8 +2228,8 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 </div>
 </div>
 
-<div id="outline-container-org8fa3297" class="outline-4">
-<h4 id="org8fa3297"><span class="section-number-4">10.6.2.</span> 配置项目</h4>
+<div id="outline-container-org87d3272" class="outline-4">
+<h4 id="org87d3272"><span class="section-number-4">10.6.2.</span> 配置项目</h4>
 <div class="outline-text-4" id="text-10-6-2">
 <p>
 配置 package.json 下的 eslintConfig 节点:
@@ -2243,8 +2243,8 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 </div>
 </div>
 
-<div id="outline-container-org08eef25" class="outline-4">
-<h4 id="org08eef25"><span class="section-number-4">10.6.3.</span> 组件 component/comment-form.vue</h4>
+<div id="outline-container-org45a50d7" class="outline-4">
+<h4 id="org45a50d7"><span class="section-number-4">10.6.3.</span> 组件 component/comment-form.vue</h4>
 <div class="outline-text-4" id="text-10-6-3">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">template</span><span style="color: #707183;">&gt;</span>
@@ -2302,8 +2302,8 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 </div>
 </div>
 
-<div id="outline-container-orga460d06" class="outline-4">
-<h4 id="orga460d06"><span class="section-number-4">10.6.4.</span> 组件 component/comment-list.vue</h4>
+<div id="outline-container-org32b1439" class="outline-4">
+<h4 id="org32b1439"><span class="section-number-4">10.6.4.</span> 组件 component/comment-list.vue</h4>
 <div class="outline-text-4" id="text-10-6-4">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">template</span><span style="color: #707183;">&gt;</span>
@@ -2358,8 +2358,8 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 </div>
 </div>
 
-<div id="outline-container-org1524979" class="outline-4">
-<h4 id="org1524979"><span class="section-number-4">10.6.5.</span> 聚合显示到 App.vue 里</h4>
+<div id="outline-container-orge2c742d" class="outline-4">
+<h4 id="orge2c742d"><span class="section-number-4">10.6.5.</span> 聚合显示到 App.vue 里</h4>
 <div class="outline-text-4" id="text-10-6-5">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">template</span><span style="color: #707183;">&gt;</span>
@@ -2414,8 +2414,8 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 </div>
 </div>
 
-<div id="outline-container-orgacc50a1" class="outline-3">
-<h3 id="orgacc50a1"><span class="section-number-3">10.7.</span> 第六个版本 (前后端分类 + axios)</h3>
+<div id="outline-container-orgdbfca46" class="outline-3">
+<h3 id="orgdbfca46"><span class="section-number-3">10.7.</span> 第六个版本 (前后端分类 + axios)</h3>
 <div class="outline-text-3" id="text-10-7">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; axios &#24517;&#39035;&#20808;&#23558; axios &#19979;&#36733;&#24182;&#23433;&#35013;&#21040;&#39033;&#30446;&#20013;: vue add axios</span>
@@ -2441,7 +2441,7 @@ npm run serve                <span style="color: #b22222;"># </span><span style=
 为什么会有如下错误:
 </p>
 
-<pre class="example" id="org6c8ce65">
+<pre class="example" id="orgd5cf889">
 Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_exploded/comments' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 </pre>
 
@@ -2467,8 +2467,8 @@ Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_explo
 </div>
 </section>
 
-<section id="outline-container-org889f906" class="outline-2">
-<h2 id="org889f906"><span class="section-number-2">11.</span> 后台 Admin 模板</h2>
+<section id="outline-container-org8e84a3d" class="outline-2">
+<h2 id="org8e84a3d"><span class="section-number-2">11.</span> 后台 Admin 模板</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 可以到 Github 上搜，很多。
@@ -2485,7 +2485,7 @@ Access to XMLHttpRequest at 'http://localhost:9999/server_comment_list_war_explo
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-12</p>
+<p class="date">Created: 2021-05-20</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

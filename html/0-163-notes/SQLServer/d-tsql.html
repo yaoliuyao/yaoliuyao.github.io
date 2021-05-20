@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-12 -->
+<!-- 2021-05-20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Transact-SQL</title>
@@ -42,81 +42,81 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfeb685f">1. T-SQL</a>
+<li><a href="#org870ee35">1. T-SQL</a>
 <ul>
-<li><a href="#orgf1df637">1.1. 批处理 (go)</a></li>
-<li><a href="#orgd4056c0">1.2. 脚本 (Script)</a></li>
+<li><a href="#org8d29334">1.1. 批处理 (go)</a></li>
+<li><a href="#orgc7ecff9">1.2. 脚本 (Script)</a></li>
 </ul>
 </li>
-<li><a href="#org28cd43b">2. 变量 (Variable)</a>
+<li><a href="#org977180c">2. 变量 (Variable)</a>
 <ul>
-<li><a href="#orgd195c90">2.1. 变量的命名</a></li>
-<li><a href="#org3fc556a">2.2. 局部变量</a></li>
-<li><a href="#orgda46480">2.3. 全局变量</a></li>
+<li><a href="#orgc64c13a">2.1. 变量的命名</a></li>
+<li><a href="#orgbf79cb1">2.2. 局部变量</a></li>
+<li><a href="#org6311480">2.3. 全局变量</a></li>
 </ul>
 </li>
-<li><a href="#org1e17e51">3. 逻辑处理</a>
+<li><a href="#org1f7b108">3. 逻辑处理</a>
 <ul>
-<li><a href="#org12b1cda">3.1. if/else</a></li>
-<li><a href="#orgbfb93c9">3.2. while</a></li>
-<li><a href="#org9b66064">3.3. return/returns</a></li>
-<li><a href="#orgd62b521">3.4. waitfor</a></li>
-<li><a href="#org64acb4a">3.5. print</a></li>
-<li><a href="#orgd093832">3.6. raiserror</a></li>
-<li><a href="#org94d3d19">3.7. case-when (很重要)</a></li>
+<li><a href="#org500c150">3.1. if/else</a></li>
+<li><a href="#orgf4c3f2e">3.2. while</a></li>
+<li><a href="#orge1a811b">3.3. return/returns</a></li>
+<li><a href="#orga74689e">3.4. waitfor</a></li>
+<li><a href="#org35d0e09">3.5. print</a></li>
+<li><a href="#orga6a8b1d">3.6. raiserror</a></li>
+<li><a href="#org977fccf">3.7. case-when (很重要)</a></li>
 </ul>
 </li>
-<li><a href="#org21a2495">4. 函数 (Function)</a>
+<li><a href="#org34fa1e8">4. 函数 (Function)</a>
 <ul>
-<li><a href="#orgf063809">4.1. 什么是函数</a></li>
-<li><a href="#orge8aa92c">4.2. 创建函数</a></li>
-<li><a href="#org6c67143">4.3. 内置函数</a>
+<li><a href="#org219e2ac">4.1. 什么是函数</a></li>
+<li><a href="#org18edb74">4.2. 创建函数</a></li>
+<li><a href="#org931b79e">4.3. 内置函数</a>
 <ul>
-<li><a href="#orgc30b211">4.3.1. 数学函数</a></li>
-<li><a href="#org28eff2c">4.3.2. 字符串相关</a></li>
-<li><a href="#org661df95">4.3.3. 日期相关</a></li>
-<li><a href="#org4cbd6a7">4.3.4. 类型转换 (cast/convert) !!!</a></li>
-<li><a href="#org574c017">4.3.5. 其他</a></li>
+<li><a href="#org45988c3">4.3.1. 数学函数</a></li>
+<li><a href="#org1c249db">4.3.2. 字符串相关</a></li>
+<li><a href="#orgc59ead4">4.3.3. 日期相关</a></li>
+<li><a href="#org604e540">4.3.4. 类型转换 (cast/convert) !!!</a></li>
+<li><a href="#orgfb4b892">4.3.5. 其他</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgbf55628">5. 存储过程 (Procedure)</a>
+<li><a href="#org8ecedd2">5. 存储过程 (Procedure)</a>
 <ul>
-<li><a href="#orgc982c06">5.1. 什么是存储过程</a></li>
-<li><a href="#org95dff21">5.2. 创建存储过程</a>
+<li><a href="#org01f1b1f">5.1. 什么是存储过程</a></li>
+<li><a href="#orgfa90130">5.2. 创建存储过程</a>
 <ul>
-<li><a href="#org3a79434">5.2.1. 基本语句</a></li>
-<li><a href="#org474b746">5.2.2. 各种参数</a></li>
+<li><a href="#org244c729">5.2.1. 基本语句</a></li>
+<li><a href="#org94d3531">5.2.2. 各种参数</a></li>
 </ul>
 </li>
-<li><a href="#orgdabb719">5.3. 简单示例 (统计)</a></li>
-<li><a href="#org99cff0a">5.4. 内置存储过程</a></li>
+<li><a href="#orgcfe9427">5.3. 简单示例 (统计)</a></li>
+<li><a href="#orgafb6006">5.4. 内置存储过程</a></li>
 </ul>
 </li>
-<li><a href="#org0022259">6. 触发器 (Trigger)</a>
+<li><a href="#org385e2f6">6. 触发器 (Trigger)</a>
 <ul>
-<li><a href="#org74915b0">6.1. 什么是触发器</a></li>
-<li><a href="#orga04bb51">6.2. 创建触发器</a></li>
+<li><a href="#org193358a">6.1. 什么是触发器</a></li>
+<li><a href="#org7d199c3">6.2. 创建触发器</a></li>
 </ul>
 </li>
-<li><a href="#org4c4afed">7. 常见问题</a></li>
+<li><a href="#org6ebc6cf">7. 常见问题</a></li>
 </ul>
 </div>
 </nav>
 
 
 
-<section id="outline-container-orgfeb685f" class="outline-2">
-<h2 id="orgfeb685f"><span class="section-number-2">1.</span> T-SQL</h2>
+<section id="outline-container-org870ee35" class="outline-2">
+<h2 id="org870ee35"><span class="section-number-2">1.</span> T-SQL</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>什么是 T-SQL?</li>
 </ul>
 </div>
 
-<div id="outline-container-orgf1df637" class="outline-3">
-<h3 id="orgf1df637"><span class="section-number-3">1.1.</span> 批处理 (go)</h3>
+<div id="outline-container-org8d29334" class="outline-3">
+<h3 id="org8d29334"><span class="section-number-3">1.1.</span> 批处理 (go)</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> emp;
@@ -138,8 +138,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd4056c0" class="outline-3">
-<h3 id="orgd4056c0"><span class="section-number-3">1.2.</span> 脚本 (Script)</h3>
+<div id="outline-container-orgc7ecff9" class="outline-3">
+<h3 id="orgc7ecff9"><span class="section-number-3">1.2.</span> 脚本 (Script)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 你可以将所有的 sql 语句保存到一个后缀名为 sql 的文件中:
@@ -174,12 +174,12 @@
 </div>
 </section>
 
-<section id="outline-container-org28cd43b" class="outline-2">
-<h2 id="org28cd43b"><span class="section-number-2">2.</span> 变量 (Variable)</h2>
+<section id="outline-container-org977180c" class="outline-2">
+<h2 id="org977180c"><span class="section-number-2">2.</span> 变量 (Variable)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd195c90" class="outline-3">
-<h3 id="orgd195c90"><span class="section-number-3">2.1.</span> 变量的命名</h3>
+<div id="outline-container-orgc64c13a" class="outline-3">
+<h3 id="orgc64c13a"><span class="section-number-3">2.1.</span> 变量的命名</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>以 ACII &#x2026; 等开头，不能使用保留字，不允许空格和特殊字符</li>
@@ -189,8 +189,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3fc556a" class="outline-3">
-<h3 id="org3fc556a"><span class="section-number-3">2.2.</span> 局部变量</h3>
+<div id="outline-container-orgbf79cb1" class="outline-3">
+<h3 id="orgbf79cb1"><span class="section-number-3">2.2.</span> 局部变量</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 局部变量的声明周期是一个 P:
@@ -227,8 +227,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgda46480" class="outline-3">
-<h3 id="orgda46480"><span class="section-number-3">2.3.</span> 全局变量</h3>
+<div id="outline-container-org6311480" class="outline-3">
+<h3 id="org6311480"><span class="section-number-3">2.3.</span> 全局变量</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 服务器内部使用的一些变量，通过修改它们，可以影响服务器的行为。
@@ -265,12 +265,12 @@
 </div>
 </section>
 
-<section id="outline-container-org1e17e51" class="outline-2">
-<h2 id="org1e17e51"><span class="section-number-2">3.</span> 逻辑处理</h2>
+<section id="outline-container-org1f7b108" class="outline-2">
+<h2 id="org1f7b108"><span class="section-number-2">3.</span> 逻辑处理</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org12b1cda" class="outline-3">
-<h3 id="org12b1cda"><span class="section-number-3">3.1.</span> if/else</h3>
+<div id="outline-container-org500c150" class="outline-3">
+<h3 id="org500c150"><span class="section-number-3">3.1.</span> if/else</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 基本句式:
@@ -317,8 +317,8 @@ if <span style="color: #707183;">(</span><span style="color: #a020f0;">select</s
 </div>
 </div>
 
-<div id="outline-container-orgbfb93c9" class="outline-3">
-<h3 id="orgbfb93c9"><span class="section-number-3">3.2.</span> while</h3>
+<div id="outline-container-orgf4c3f2e" class="outline-3">
+<h3 id="orgf4c3f2e"><span class="section-number-3">3.2.</span> while</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 基本句式:
@@ -347,8 +347,8 @@ while @<span style="color: #483d8b;">count</span> &gt; 0
 </div>
 </div>
 
-<div id="outline-container-org9b66064" class="outline-3">
-<h3 id="org9b66064"><span class="section-number-3">3.3.</span> return/returns</h3>
+<div id="outline-container-orge1a811b" class="outline-3">
+<h3 id="orge1a811b"><span class="section-number-3">3.3.</span> return/returns</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 无条件返回。
@@ -356,8 +356,8 @@ while @<span style="color: #483d8b;">count</span> &gt; 0
 </div>
 </div>
 
-<div id="outline-container-orgd62b521" class="outline-3">
-<h3 id="orgd62b521"><span class="section-number-3">3.4.</span> waitfor</h3>
+<div id="outline-container-orga74689e" class="outline-3">
+<h3 id="orga74689e"><span class="section-number-3">3.4.</span> waitfor</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 计时器，可以指定计划任务，比如，晚上对数据做一些统计性的工作。
@@ -371,8 +371,8 @@ waitfor <span style="color: #228b22;">time</span> <span style="color: #8b2252;">
 </div>
 </div>
 
-<div id="outline-container-org64acb4a" class="outline-3">
-<h3 id="org64acb4a"><span class="section-number-3">3.5.</span> print</h3>
+<div id="outline-container-org35d0e09" class="outline-3">
+<h3 id="org35d0e09"><span class="section-number-3">3.5.</span> print</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 用来输出字符串到标准输出的。
@@ -385,8 +385,8 @@ waitfor <span style="color: #228b22;">time</span> <span style="color: #8b2252;">
 </div>
 </div>
 
-<div id="outline-container-orgd093832" class="outline-3">
-<h3 id="orgd093832"><span class="section-number-3">3.6.</span> raiserror</h3>
+<div id="outline-container-orga6a8b1d" class="outline-3">
+<h3 id="orga6a8b1d"><span class="section-number-3">3.6.</span> raiserror</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 抛出一个错误。(类似 Java 中的 throw new Exception)
@@ -405,8 +405,8 @@ raiserror<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#
 </div>
 </div>
 
-<div id="outline-container-org94d3d19" class="outline-3">
-<h3 id="org94d3d19"><span class="section-number-3">3.7.</span> case-when (很重要)</h3>
+<div id="outline-container-org977fccf" class="outline-3">
+<h3 id="org977fccf"><span class="section-number-3">3.7.</span> case-when (很重要)</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 类似于 Switch:
@@ -438,12 +438,12 @@ raiserror<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#
 </div>
 </section>
 
-<section id="outline-container-org21a2495" class="outline-2">
-<h2 id="org21a2495"><span class="section-number-2">4.</span> 函数 (Function)</h2>
+<section id="outline-container-org34fa1e8" class="outline-2">
+<h2 id="org34fa1e8"><span class="section-number-2">4.</span> 函数 (Function)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgf063809" class="outline-3">
-<h3 id="orgf063809"><span class="section-number-3">4.1.</span> 什么是函数</h3>
+<div id="outline-container-org219e2ac" class="outline-3">
+<h3 id="org219e2ac"><span class="section-number-3">4.1.</span> 什么是函数</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>黑箱子</li>
@@ -453,8 +453,8 @@ raiserror<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#
 </div>
 </div>
 
-<div id="outline-container-orge8aa92c" class="outline-3">
-<h3 id="orge8aa92c"><span class="section-number-3">4.2.</span> 创建函数</h3>
+<div id="outline-container-org18edb74" class="outline-3">
+<h3 id="org18edb74"><span class="section-number-3">4.2.</span> 创建函数</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>创建使用 create function</li>
@@ -488,12 +488,12 @@ raiserror<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#
 </div>
 </div>
 
-<div id="outline-container-org6c67143" class="outline-3">
-<h3 id="org6c67143"><span class="section-number-3">4.3.</span> 内置函数</h3>
+<div id="outline-container-org931b79e" class="outline-3">
+<h3 id="org931b79e"><span class="section-number-3">4.3.</span> 内置函数</h3>
 <div class="outline-text-3" id="text-4-3">
 </div>
-<div id="outline-container-orgc30b211" class="outline-4">
-<h4 id="orgc30b211"><span class="section-number-4">4.3.1.</span> 数学函数</h4>
+<div id="outline-container-org45988c3" class="outline-4">
+<h4 id="org45988c3"><span class="section-number-4">4.3.1.</span> 数学函数</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <ul class="org-ul">
 <li>abs/ascii/avg/log/power/exp/PI/round/ceiling/floor()</li>
@@ -502,8 +502,8 @@ raiserror<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#
 </div>
 </div>
 
-<div id="outline-container-org28eff2c" class="outline-4">
-<h4 id="org28eff2c"><span class="section-number-4">4.3.2.</span> 字符串相关</h4>
+<div id="outline-container-org1c249db" class="outline-4">
+<h4 id="org1c249db"><span class="section-number-4">4.3.2.</span> 字符串相关</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <ul class="org-ul">
 <li>len/datalength() !!!</li>
@@ -513,8 +513,8 @@ raiserror<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#
 </div>
 </div>
 
-<div id="outline-container-org661df95" class="outline-4">
-<h4 id="org661df95"><span class="section-number-4">4.3.3.</span> 日期相关</h4>
+<div id="outline-container-orgc59ead4" class="outline-4">
+<h4 id="orgc59ead4"><span class="section-number-4">4.3.3.</span> 日期相关</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <ul class="org-ul">
 <li>getdate() !!</li>
@@ -535,13 +535,13 @@ raiserror<span style="color: #707183;">(</span><span style="color: #8b2252;">'&#
 </div>
 </div>
 
-<div id="outline-container-org4cbd6a7" class="outline-4">
-<h4 id="org4cbd6a7"><span class="section-number-4">4.3.4.</span> 类型转换 (cast/convert) !!!</h4>
+<div id="outline-container-org604e540" class="outline-4">
+<h4 id="org604e540"><span class="section-number-4">4.3.4.</span> 类型转换 (cast/convert) !!!</h4>
 <div class="outline-text-4" id="text-4-3-4">
 <p>
 基本语法:
 </p>
-<pre class="example" id="org0e17aae">
+<pre class="example" id="org68e8416">
 -- CAST Syntax:
 CAST ( expression AS data_type [ ( length ) ] )
 
@@ -570,8 +570,8 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
 </div>
 </div>
 
-<div id="outline-container-org574c017" class="outline-4">
-<h4 id="org574c017"><span class="section-number-4">4.3.5.</span> 其他</h4>
+<div id="outline-container-orgfb4b892" class="outline-4">
+<h4 id="orgfb4b892"><span class="section-number-4">4.3.5.</span> 其他</h4>
 <div class="outline-text-4" id="text-4-3-5">
 <ul class="org-ul">
 <li>isnull()</li>
@@ -581,12 +581,12 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
 </div>
 </section>
 
-<section id="outline-container-orgbf55628" class="outline-2">
-<h2 id="orgbf55628"><span class="section-number-2">5.</span> 存储过程 (Procedure)</h2>
+<section id="outline-container-org8ecedd2" class="outline-2">
+<h2 id="org8ecedd2"><span class="section-number-2">5.</span> 存储过程 (Procedure)</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgc982c06" class="outline-3">
-<h3 id="orgc982c06"><span class="section-number-3">5.1.</span> 什么是存储过程</h3>
+<div id="outline-container-org01f1b1f" class="outline-3">
+<h3 id="org01f1b1f"><span class="section-number-3">5.1.</span> 什么是存储过程</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 将一系列进行处理的语句过程保存下来，后面可以复用。
@@ -611,12 +611,12 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
 </div>
 </div>
 
-<div id="outline-container-org95dff21" class="outline-3">
-<h3 id="org95dff21"><span class="section-number-3">5.2.</span> 创建存储过程</h3>
+<div id="outline-container-orgfa90130" class="outline-3">
+<h3 id="orgfa90130"><span class="section-number-3">5.2.</span> 创建存储过程</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-org3a79434" class="outline-4">
-<h4 id="org3a79434"><span class="section-number-4">5.2.1.</span> 基本语句</h4>
+<div id="outline-container-org244c729" class="outline-4">
+<h4 id="org244c729"><span class="section-number-4">5.2.1.</span> 基本语句</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #b22222;">-- &#21019;&#24314;</span>
@@ -643,8 +643,8 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
 </div>
 </div>
 
-<div id="outline-container-org474b746" class="outline-4">
-<h4 id="org474b746"><span class="section-number-4">5.2.2.</span> 各种参数</h4>
+<div id="outline-container-org94d3531" class="outline-4">
+<h4 id="org94d3531"><span class="section-number-4">5.2.2.</span> 各种参数</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 没有参数:
@@ -719,8 +719,8 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
 </div>
 </div>
 
-<div id="outline-container-orgdabb719" class="outline-3">
-<h3 id="orgdabb719"><span class="section-number-3">5.3.</span> 简单示例 (统计)</h3>
+<div id="outline-container-orgcfe9427" class="outline-3">
+<h3 id="orgcfe9427"><span class="section-number-3">5.3.</span> 简单示例 (统计)</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 为 emp 生成统计数据，统计所有部门的平均工资、最小工资和最大工资，将结果保存到 tj_emp 表中。要求:
@@ -759,8 +759,8 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
 </div>
 </div>
 
-<div id="outline-container-org99cff0a" class="outline-3">
-<h3 id="org99cff0a"><span class="section-number-3">5.4.</span> 内置存储过程</h3>
+<div id="outline-container-orgafb6006" class="outline-3">
+<h3 id="orgafb6006"><span class="section-number-3">5.4.</span> 内置存储过程</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 系统内置的存储过程，一般是 sp_ 开始:
@@ -794,12 +794,12 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
 </div>
 </section>
 
-<section id="outline-container-org0022259" class="outline-2">
-<h2 id="org0022259"><span class="section-number-2">6.</span> 触发器 (Trigger)</h2>
+<section id="outline-container-org385e2f6" class="outline-2">
+<h2 id="org385e2f6"><span class="section-number-2">6.</span> 触发器 (Trigger)</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org74915b0" class="outline-3">
-<h3 id="org74915b0"><span class="section-number-3">6.1.</span> 什么是触发器</h3>
+<div id="outline-container-org193358a" class="outline-3">
+<h3 id="org193358a"><span class="section-number-3">6.1.</span> 什么是触发器</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 类似于 JS 中的事件:
@@ -819,8 +819,8 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
 </div>
 </div>
 
-<div id="outline-container-orga04bb51" class="outline-3">
-<h3 id="orga04bb51"><span class="section-number-3">6.2.</span> 创建触发器</h3>
+<div id="outline-container-org7d199c3" class="outline-3">
+<h3 id="org7d199c3"><span class="section-number-3">6.2.</span> 创建触发器</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 Insert 触发器:
@@ -878,8 +878,8 @@ Drop 触发器:
 </div>
 </section>
 
-<section id="outline-container-org4c4afed" class="outline-2">
-<h2 id="org4c4afed"><span class="section-number-2">7.</span> 常见问题</h2>
+<section id="outline-container-org6ebc6cf" class="outline-2">
+<h2 id="org6ebc6cf"><span class="section-number-2">7.</span> 常见问题</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>什么是函数？</li>
@@ -896,7 +896,7 @@ Drop 触发器:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-12</p>
+<p class="date">Created: 2021-05-20</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -462,7 +462,7 @@ Q & A:
   string alphabet = new string(letters);
 #+end_src
 
-*** 字符串的不可变性 (Immute)
+*** 字符串的不可变性 (Immutable)
 **** what & why
 
 #+begin_src csharp
@@ -482,10 +482,12 @@ Q & A:
 #+ATTR_HTML: :width 400px
 [[file:img/string-immute.png]]
 
+
+字符串是不可更改的:
 #+begin_src csharp
   string s = "hello";
-  Console.WriteLine(s[1]);
-  s[1] = 'x';
+  Console.WriteLine(s[1]); // 可以通过这种方式读取字符串的某个位置
+  s[1] = 'x';              // 这一句是错误的
 #+end_src
 
 **** System.Text.StringBuilder
