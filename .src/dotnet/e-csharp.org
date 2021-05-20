@@ -479,6 +479,9 @@ Q & A:
   s += t; // s = s + t;
 #+end_src
 
+#+ATTR_HTML: :width 400px
+[[file:img/string-immute.png]]
+
 #+begin_src csharp
   string s = "hello";
   Console.WriteLine(s[1]);
@@ -490,6 +493,9 @@ Q & A:
 这是 BCL 中提供的一个类，专门使用在 *字符串拼接* 的场景下。
 
 因为，在预定义的字符串实现中，字符串拼接 (+=) 是非常低效的一种行为 (要去理解为什么)。
+
+#+ATTR_HTML: :width 500px
+[[file:img/string-vs-stringbuilder.png]]
 
 #+begin_src csharp
   // 解析一下，为什么这段代码会为内存带来大量的垃圾
