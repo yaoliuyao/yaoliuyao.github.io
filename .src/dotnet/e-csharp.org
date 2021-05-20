@@ -1,4 +1,4 @@
-#+TITLE: C♯
+ #+TITLE: C♯
 
 
 * 历史
@@ -25,32 +25,6 @@ C# 版本演化:
 - 也就是说，整个 C# 项目，是由不同的 *类型声明* 组成的
 - 在整个 C# 项目中，需要 *有且只有一个* 特殊的方法，就是 Main 方法。它是程序执行的起点
 - 通过引入 *命名空间 (namespace)* 的概念，用来组织各种类型，从而避免命名冲突
-
-类型就是用来创建数据结构的一种 *模板*：
-- 类型本身并不是真正的数据，它只是描述了数据应该怎么被构造出来
-- 类型它需要有名字，占用的空间，包括一系列的属性和行为
-
-通过某个类型模板创建实际的对象，称作 *实例化* 该类型:
-- 它就是真正的数据。类型的实例，类型的对象。所有的数据都是要根据类型创建出来的
-- 类型的话，要么是平台预定义的，要么是 BCL/FCL 中定义的，要么是你自己声明的
-
-#+begin_src csharp
-  // 1 声明
-  class xxx
-  {
-      int age;
-      string name;
-  }
-  class yyy
-  {
-      int i;
-      xxx xxx; // 2 使用
-  }
-
-  new yyy(); // 2 使用
-
-  int a = 333; // 不需要声明，直接实例化
-#+end_src
 
 #+ATTR_HTML: :width 400px
 [[file:img/types.png]]
@@ -215,6 +189,43 @@ System 命名空间:
 - System.Text，跟文本相关的内容，比如正则表达式
 - System.Threading，多线程
 - System.Threading.Tasks，异步编程
+
+** 模板 vs 实例
+
+类型就是用来创建数据结构的一种 *模板*：
+- 类型本身并不是真正的数据，它只是描述了数据应该怎么被构造出来
+- 类型它需要有名字，占用的空间，包括一系列的属性和行为
+
+通过某个类型模板创建实际的对象，称作 *实例化* 该类型:
+- 它就是真正的数据。类型的实例，类型的对象。所有的数据都是要根据类型创建出来的
+- 类型的话，要么是平台预定义的，要么是 BCL/FCL 中定义的，要么是你自己声明的
+
+#+begin_src csharp
+  // 1 声明
+  class xxx
+  {
+      int age;
+      string name;
+  }
+  class yyy
+  {
+      int i;
+      xxx xxx; // 2 使用
+  }
+
+  new yyy(); // 2 使用
+
+  int a = 333; // 不需要声明，直接实例化
+#+end_src
+
+** 值类型 vs 引用类型
+
+内存分为两部分:
+- 栈 (Stack)，速度快
+- 堆 (Heap)，容积大
+
+#+ATTR_HTML: :width 500px
+[[file:img/value-type-ref-type.png]]
 
 ** [条件判断/分支]
 
@@ -490,6 +501,10 @@ Q & A:
   s[1] = 'x';              // 这一句是错误的
 #+end_src
 
+思考:
+- 为什么要搞成不可变的 ?
+- 不可变能带来什么好处 ?
+
 **** System.Text.StringBuilder
 
 这是 BCL 中提供的一个类，专门使用在 *字符串拼接* 的场景下。
@@ -542,13 +557,24 @@ Q & A:
   string c = "lo";
   string d = b + c;
   string e = "hello";
-
+  
   // 使用 == 判断，两个字符串的值是不是一样的
   Console.WriteLine(a == d); // True
-
+  Console.WriteLine(a == e); // True
+  
   // 使用 object.ReferenceEquals 判定是否占用了相同的内存空间
   Console.WriteLine(object.ReferenceEquals(a, d)); // False
   Console.WriteLine(object.ReferenceEquals(a, e)); // True
+  
+  // 注意，类比 Java:
+  // a == b 判断的是 a 跟 b 是否是同一个引用
+  // a.equals(b) 用来判断 a 跟 b 的值是不是一样的
+  //
+  // string a = null;
+  // string b = "hello";
+  // a.equals(b) -> b.equals(a);
+  // "hello".equal(a); (1)
+  // if (a != null) a.equal("hello"); (2)
 #+end_src
 
 *** 字符串的格式化

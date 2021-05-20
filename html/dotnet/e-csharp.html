@@ -53,7 +53,9 @@
 <li><a href="#org82ff726">2.2.3. BCL/System</a></li>
 </ul>
 </li>
-<li><a href="#org84d92db">2.3. [条件判断/分支]</a></li>
+<li><a href="#org8541a93">2.3. 模板 vs 实例</a></li>
+<li><a href="#org298bedc">2.4. 值类型 vs 引用类型</a></li>
+<li><a href="#org84d92db">2.5. [条件判断/分支]</a></li>
 </ul>
 </li>
 <li><a href="#org51edeaa">3. 预定义/数值类型</a>
@@ -220,49 +222,14 @@ C# 版本演化:
 <li>通过引入 <b>命名空间 (namespace)</b> 的概念，用来组织各种类型，从而避免命名冲突</li>
 </ul>
 
-<p>
-类型就是用来创建数据结构的一种 <b>模板</b>：
-</p>
-<ul class="org-ul">
-<li>类型本身并不是真正的数据，它只是描述了数据应该怎么被构造出来</li>
-<li>类型它需要有名字，占用的空间，包括一系列的属性和行为</li>
-</ul>
 
-<p>
-通过某个类型模板创建实际的对象，称作 <b>实例化</b> 该类型:
-</p>
-<ul class="org-ul">
-<li>它就是真正的数据。类型的实例，类型的对象。所有的数据都是要根据类型创建出来的</li>
-<li>类型的话，要么是平台预定义的，要么是 BCL/FCL 中定义的，要么是你自己声明的</li>
-</ul>
-
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">1 &#22768;&#26126;</span>
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">xxx</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span>;
-    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>;
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">yyy</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
-    <span style="color: #228b22;">xxx</span> <span style="color: #a0522d;">xxx</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">2 &#20351;&#29992;</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #a020f0;">new</span> <span style="color: #228b22;">yyy</span><span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">2 &#20351;&#29992;</span>
-
-<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span> = 333; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19981;&#38656;&#35201;&#22768;&#26126;&#65292;&#30452;&#25509;&#23454;&#20363;&#21270;</span>
-</pre>
-</div>
-
-
-<figure id="org3f63084">
+<figure id="org64435b2">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org1839955">
+<figure id="org2f44702">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -455,9 +422,68 @@ System 命名空间:
 </div>
 </div>
 
-<div id="outline-container-org84d92db" class="outline-3">
-<h3 id="org84d92db"><span class="section-number-3">2.3.</span> [条件判断/分支]</h3>
+<div id="outline-container-org8541a93" class="outline-3">
+<h3 id="org8541a93"><span class="section-number-3">2.3.</span> 模板 vs 实例</h3>
 <div class="outline-text-3" id="text-2-3">
+<p>
+类型就是用来创建数据结构的一种 <b>模板</b>：
+</p>
+<ul class="org-ul">
+<li>类型本身并不是真正的数据，它只是描述了数据应该怎么被构造出来</li>
+<li>类型它需要有名字，占用的空间，包括一系列的属性和行为</li>
+</ul>
+
+<p>
+通过某个类型模板创建实际的对象，称作 <b>实例化</b> 该类型:
+</p>
+<ul class="org-ul">
+<li>它就是真正的数据。类型的实例，类型的对象。所有的数据都是要根据类型创建出来的</li>
+<li>类型的话，要么是平台预定义的，要么是 BCL/FCL 中定义的，要么是你自己声明的</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">1 &#22768;&#26126;</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">xxx</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span>;
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">yyy</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
+    <span style="color: #228b22;">xxx</span> <span style="color: #a0522d;">xxx</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">2 &#20351;&#29992;</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">new</span> <span style="color: #228b22;">yyy</span><span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">2 &#20351;&#29992;</span>
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span> = 333; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19981;&#38656;&#35201;&#22768;&#26126;&#65292;&#30452;&#25509;&#23454;&#20363;&#21270;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org298bedc" class="outline-3">
+<h3 id="org298bedc"><span class="section-number-3">2.4.</span> 值类型 vs 引用类型</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+内存分为两部分:
+</p>
+<ul class="org-ul">
+<li>栈 (Stack)，速度快</li>
+<li>堆 (Heap)，容积大</li>
+</ul>
+
+
+<figure id="org6917b59">
+<img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
+
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org84d92db" class="outline-3">
+<h3 id="org84d92db"><span class="section-number-3">2.5.</span> [条件判断/分支]</h3>
+<div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>规则 (rule)</li>
 </ul>
@@ -633,7 +659,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgf045b81">
+<figure id="orgc862b35">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -661,7 +687,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org241c37c">
+<figure id="org0ba9eb6">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -720,7 +746,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org9ec3594">
+<figure id="orgde75a22">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -822,7 +848,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org3d7ff8b">
+<figure id="orgdc2cb09">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -837,6 +863,14 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> = <span style="color: #8b2252;">'x'</span>;              <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36825;&#19968;&#21477;&#26159;&#38169;&#35823;&#30340;</span>
 </pre>
 </div>
+
+<p>
+思考:
+</p>
+<ul class="org-ul">
+<li>为什么要搞成不可变的 ?</li>
+<li>不可变能带来什么好处 ?</li>
+</ul>
 </div>
 </div>
 
@@ -852,7 +886,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgc2f192f">
+<figure id="org6d191f9">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -915,10 +949,21 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; == &#21028;&#26029;&#65292;&#20004;&#20010;&#23383;&#31526;&#20018;&#30340;&#20540;&#26159;&#19981;&#26159;&#19968;&#26679;&#30340;</span>
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>a == d<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">True</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>a == e<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">True</span>
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; object.ReferenceEquals &#21028;&#23450;&#26159;&#21542;&#21344;&#29992;&#20102;&#30456;&#21516;&#30340;&#20869;&#23384;&#31354;&#38388;</span>
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span>.<span style="color: #0000ff;">ReferenceEquals</span><span style="color: #7388d6;">(</span>a, d<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">False</span>
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span>.<span style="color: #0000ff;">ReferenceEquals</span><span style="color: #7388d6;">(</span>a, e<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">True</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#27880;&#24847;&#65292;&#31867;&#27604; Java:</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">a == b &#21028;&#26029;&#30340;&#26159; a &#36319; b &#26159;&#21542;&#26159;&#21516;&#19968;&#20010;&#24341;&#29992;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">a.equals(b) &#29992;&#26469;&#21028;&#26029; a &#36319; b &#30340;&#20540;&#26159;&#19981;&#26159;&#19968;&#26679;&#30340;</span>
+<span style="color: #b22222;">//</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">string a = null;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">string b = "hello";</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">a.equals(b) -&gt; b.equals(a);</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">"hello".equal(a); (1)</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">if (a != null) a.equal("hello"); (2)</span>
 </pre>
 </div>
 </div>
