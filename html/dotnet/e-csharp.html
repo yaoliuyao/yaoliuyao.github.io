@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-19 -->
+<!-- 2021-05-20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -63,15 +63,27 @@
 <li><a href="#orga559cde">3.3. Literate (字面量表达)</a></li>
 </ul>
 </li>
-<li><a href="#org5212ed6">4. 预定义/非数值简单类型</a>
+<li><a href="#org268eaf3">4. 预定义/非数值·值类型</a>
 <ul>
 <li><a href="#org7d344b4">4.1. 字符类型 (char)</a></li>
 <li><a href="#org22c8b53">4.2. 布尔类型 (bool)</a></li>
 </ul>
 </li>
-<li><a href="#orgdc2b33a">5. 预定义/非数值复杂类型</a>
+<li><a href="#org5aec4bd">5. 预定义/非数值·引用类型</a>
 <ul>
-<li><a href="#org276b6a7">5.1. string</a></li>
+<li><a href="#org276b6a7">5.1. string</a>
+<ul>
+<li><a href="#org066382b">5.1.1. 字符串的长度</a></li>
+<li><a href="#org63fc290">5.1.2. 字符串的初始化</a></li>
+<li><a href="#org12d54f1">5.1.3. 字符串的不可变性 (Immute)</a>
+<ul>
+<li><a href="#org6cdfa69">5.1.3.1. what &amp; why</a></li>
+<li><a href="#org87b283c">5.1.3.2. System.Text.StringBuilder</a></li>
+<li><a href="#org1d0d4fc">5.1.3.3. String Intern Pool (字符串池)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#orga14bfb3">5.2. object</a></li>
 <li><a href="#org0b5ee65">5.3. dynamic</a></li>
 </ul>
@@ -237,13 +249,13 @@ C# 版本演化:
 </div>
 
 
-<figure id="org7f191ec">
+<figure id="org06c5b4f">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org4a0e057">
+<figure id="org2869a3a">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -614,7 +626,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org8785961">
+<figure id="orgc15ea22">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -642,7 +654,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org0229231">
+<figure id="org1d94318">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -676,8 +688,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </section>
 
-<section id="outline-container-org5212ed6" class="outline-2">
-<h2 id="org5212ed6"><span class="section-number-2">4.</span> 预定义/非数值简单类型</h2>
+<section id="outline-container-org268eaf3" class="outline-2">
+<h2 id="org268eaf3"><span class="section-number-2">4.</span> 预定义/非数值·值类型</h2>
 <div class="outline-text-2" id="text-4">
 </div>
 <div id="outline-container-org7d344b4" class="outline-3">
@@ -701,7 +713,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgaaabe42">
+<figure id="orgab4de2b">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -726,8 +738,8 @@ Q &amp; A:
 </div>
 </section>
 
-<section id="outline-container-orgdc2b33a" class="outline-2">
-<h2 id="orgdc2b33a"><span class="section-number-2">5.</span> 预定义/非数值复杂类型</h2>
+<section id="outline-container-org5aec4bd" class="outline-2">
+<h2 id="org5aec4bd"><span class="section-number-2">5.</span> 预定义/非数值·引用类型</h2>
 <div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org276b6a7" class="outline-3">
@@ -736,10 +748,11 @@ Q &amp; A:
 <p>
 字符串，是由字符序列组成的一种数据结构。
 </p>
+</div>
 
-<p>
-字符串的长度:
-</p>
+<div id="outline-container-org066382b" class="outline-4">
+<h4 id="org066382b"><span class="section-number-4">5.1.1.</span> 字符串的长度</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"aaa"</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = <span style="color: #8b2252;">"&#24744;&#22909;aaa"</span>;
@@ -754,19 +767,21 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringInfo</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">s4</span><span style="color: #7388d6;">)</span>.LengthInTextElements<span style="color: #707183;">)</span>;
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-字符串的初始化:
-</p>
+<div id="outline-container-org63fc290" class="outline-4">
+<h4 id="org63fc290"><span class="section-number-4">5.1.2.</span> 字符串的初始化</h4>
+<div class="outline-text-4" id="text-5-1-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">g1</span> = <span style="color: #8b2252;">"Hello World!"</span>;
 System.<span style="color: #228b22;">String</span> <span style="color: #a0522d;">g2</span> = <span style="color: #8b2252;">"Hello World!"</span>;
 <span style="color: #228b22;">var</span> <span style="color: #a0522d;">g3</span> = <span style="color: #8b2252;">"Hello World!"</span>;
 
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">message1</span> = <span style="color: #8b2252;">"jdskfjskdjf"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">message1</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">message2</span> = <span style="color: #008b8b;">null</span>;
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">message3</span> = String.Empty;
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">oldPath</span> = <span style="color: #8b2252;">"c:\\Program Files\\Microsoft Visual Studio 8.0"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">message3</span> = String.Empty; <span style="color: #b22222;">// </span><span style="color: #b22222;">string message3 = "";</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">oldPath</span> = <span style="color: #8b2252;">"Path:\nc:\\Program Files\\Microsoft Visual Studio 8.0"</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">newPath</span> = @<span style="color: #8b2252;">"Path:</span>
 <span style="color: #8b2252;">c:\Program Files\Microsoft Visual Studio 9.0"</span>;
 
@@ -774,16 +789,80 @@ System.<span style="color: #228b22;">String</span> <span style="color: #a0522d;"
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">alphabet</span> = <span style="color: #a020f0;">new</span> <span style="color: #0000ff;">string</span><span style="color: #707183;">(</span>letters<span style="color: #707183;">)</span>;
 </pre>
 </div>
+</div>
+</div>
 
+<div id="outline-container-org12d54f1" class="outline-4">
+<h4 id="org12d54f1"><span class="section-number-4">5.1.3.</span> 字符串的不可变性 (Immute)</h4>
+<div class="outline-text-4" id="text-5-1-3">
+</div>
+<div id="outline-container-org6cdfa69" class="outline-5">
+<h5 id="org6cdfa69"><span class="section-number-5">5.1.3.1.</span> what &amp; why</h5>
+<div class="outline-text-5" id="text-5-1-3-1">
 <div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 1;
+<pre class="src src-csharp"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">b</span>;
+
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 1; <span style="color: #b22222;">// </span><span style="color: #b22222;">int i; i = 1;</span>
 <span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span> = 23;
-i += j;
+i += j; <span style="color: #b22222;">// </span><span style="color: #b22222;">i = i + j; i = 24;</span>
 
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"h"</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">t</span> = <span style="color: #8b2252;">"w"</span>;
-s += t;
+s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s = s + t;</span>
 </pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s<span style="color: #7388d6;">[</span>1<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>;
+s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> = <span style="color: #8b2252;">'x'</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org87b283c" class="outline-5">
+<h5 id="org87b283c"><span class="section-number-5">5.1.3.2.</span> System.Text.StringBuilder</h5>
+<div class="outline-text-5" id="text-5-1-3-2">
+<p>
+这是 BCL 中提供的一个类，专门使用在 <b>字符串拼接</b> 的场景下。
+</p>
+
+<p>
+因为，在预定义的字符串实现中，字符串拼接 (+=) 是非常低效的一种行为 (要去理解为什么)。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#35299;&#26512;&#19968;&#19979;&#65292;&#20026;&#20160;&#20040;&#36825;&#27573;&#20195;&#30721;&#20250;&#20026;&#20869;&#23384;&#24102;&#26469;&#22823;&#37327;&#30340;&#22403;&#22334;</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 1000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    s += <span style="color: #8b2252;">"."</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>s<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#35201;&#29702;&#35299;&#65292;&#20026;&#20160;&#20040; StringBuilder &#20250;&#21344;&#29992;&#26356;&#23569;&#30340;&#31354;&#38388;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#20309;&#29702;&#24615;&#30475;&#24453; String vs StringBuilder &#20004;&#31181;&#31867;&#22411;</span>
+<span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 1000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    sb.<span style="color: #0000ff;">Append</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"."</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>sb<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>s == sb.<span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#21704;&#21704;&#65292;&#19968;&#26679;&#21834;"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d0d4fc" class="outline-5">
+<h5 id="org1d0d4fc"><span class="section-number-5">5.1.3.3.</span> String Intern Pool (字符串池)</h5>
 </div>
 </div>
 </div>
@@ -1964,7 +2043,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-19</p>
+<p class="date">Created: 2021-05-20</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

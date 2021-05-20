@@ -396,7 +396,7 @@ switch:
   long y2 = 54444L;
 #+end_src
 
-* 预定义/非数值简单类型
+* 预定义/非数值·值类型
 ** 字符类型 (char)
 
 字符集/编码格式:
@@ -423,12 +423,13 @@ Q & A:
 
 ** 布尔类型 (bool)
 
-* 预定义/非数值复杂类型
+* 预定义/非数值·引用类型
 ** string
 
 字符串，是由字符序列组成的一种数据结构。
 
-字符串的长度:
+*** 字符串的长度
+
 #+begin_src csharp
   string s1 = "aaa";
   string s2 = "您好aaa";
@@ -443,16 +444,17 @@ Q & A:
   Console.WriteLine(new StringInfo(s4).LengthInTextElements);
 #+end_src
 
-字符串的初始化:
+*** 字符串的初始化
+
 #+begin_src csharp
   string g1 = "Hello World!";
   System.String g2 = "Hello World!";
   var g3 = "Hello World!";
 
-  string message1 = "jdskfjskdjf";
+  string message1;
   string message2 = null;
-  string message3 = String.Empty;
-  string oldPath = "c:\\Program Files\\Microsoft Visual Studio 8.0";
+  string message3 = String.Empty; // string message3 = "";
+  string oldPath = "Path:\nc:\\Program Files\\Microsoft Visual Studio 8.0";
   string newPath = @"Path:
   c:\Program Files\Microsoft Visual Studio 9.0";
 
@@ -460,15 +462,60 @@ Q & A:
   string alphabet = new string(letters);
 #+end_src
 
+*** 字符串的不可变性 (Immute)
+**** what & why
+
 #+begin_src csharp
-  int i = 1;
+  int a;
+  string b;
+
+
+  int i = 1; // int i; i = 1;
   int j = 23;
-  i += j;
+  i += j; // i = i + j; i = 24;
 
   string s = "h";
   string t = "w";
-  s += t;
+  s += t; // s = s + t;
 #+end_src
+
+#+begin_src csharp
+  string s = "hello";
+  Console.WriteLine(s[1]);
+  s[1] = 'x';
+#+end_src
+
+**** System.Text.StringBuilder
+
+这是 BCL 中提供的一个类，专门使用在 *字符串拼接* 的场景下。
+
+因为，在预定义的字符串实现中，字符串拼接 (+=) 是非常低效的一种行为 (要去理解为什么)。
+
+#+begin_src csharp
+  // 解析一下，为什么这段代码会为内存带来大量的垃圾
+  string s = "hello";
+  for (int i = 0; i < 1000; i++)
+  {
+      s += ".";
+      Console.WriteLine(s);
+  }
+
+  // 要理解，为什么 StringBuilder 会占用更少的空间
+  // 如何理性看待 String vs StringBuilder 两种类型
+  StringBuilder sb = new StringBuilder("hello");
+  for (int i = 0; i < 1000; i++)
+  {
+      sb.Append(".");
+      Console.WriteLine(sb);
+  }
+
+  if (s == sb.ToString())
+  {
+      Console.WriteLine("哈哈，一样啊");
+  }
+#+end_src
+
+**** String Intern Pool (字符串池)
 
 ** object
 ** dynamic
