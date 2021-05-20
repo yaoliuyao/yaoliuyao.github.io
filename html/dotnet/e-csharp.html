@@ -82,6 +82,13 @@
 <li><a href="#org1d0d4fc">5.1.3.3. String Intern Pool (字符串池)</a></li>
 </ul>
 </li>
+<li><a href="#orgb970042">5.1.4. 字符串的格式化</a>
+<ul>
+<li><a href="#org4a6cc8f">5.1.4.1. 内插字符串 ($)</a></li>
+<li><a href="#orgab565d1">5.1.4.2. String.Format</a></li>
+</ul>
+</li>
+<li><a href="#orgdb6a86e">5.1.5. 常用方法</a></li>
 </ul>
 </li>
 <li><a href="#orga14bfb3">5.2. object</a></li>
@@ -249,13 +256,13 @@ C# 版本演化:
 </div>
 
 
-<figure id="org1d2ca08">
+<figure id="org48b26cd">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org360c8f6">
+<figure id="org32af8af">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -626,7 +633,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgf4212b3">
+<figure id="orgff127c0">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -654,7 +661,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org4a65d43">
+<figure id="org512e715">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -713,7 +720,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgb1588cd">
+<figure id="org0a72c19">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -815,7 +822,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgd5067d8">
+<figure id="orgf2f44b4">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -841,7 +848,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org1a9a733">
+<figure id="orga32f494">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -903,13 +910,37 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">e</span> = <span style="color: #8b2252;">"hello"</span>;
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; == &#21028;&#26029;&#65292;&#20004;&#20010;&#23383;&#31526;&#20018;&#30340;&#20540;&#26159;&#19981;&#26159;&#19968;&#26679;&#30340;</span>
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>a == d<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">true</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>a == d<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">True</span>
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; object.ReferenceEquals &#21028;&#23450;&#26159;&#21542;&#21344;&#29992;&#20102;&#30456;&#21516;&#30340;&#20869;&#23384;&#31354;&#38388;</span>
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span>.<span style="color: #0000ff;">ReferenceEquals</span><span style="color: #7388d6;">(</span>a, d<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">false</span>
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span>.<span style="color: #0000ff;">ReferenceEquals</span><span style="color: #7388d6;">(</span>a, e<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">true</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span>.<span style="color: #0000ff;">ReferenceEquals</span><span style="color: #7388d6;">(</span>a, d<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">False</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span>.<span style="color: #0000ff;">ReferenceEquals</span><span style="color: #7388d6;">(</span>a, e<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">True</span>
 </pre>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb970042" class="outline-4">
+<h4 id="orgb970042"><span class="section-number-4">5.1.4.</span> 字符串的格式化</h4>
+<div class="outline-text-4" id="text-5-1-4">
+</div>
+<div id="outline-container-org4a6cc8f" class="outline-5">
+<h5 id="org4a6cc8f"><span class="section-number-5">5.1.4.1.</span> 内插字符串 ($)</h5>
+</div>
+
+<div id="outline-container-orgab565d1" class="outline-5">
+<h5 id="orgab565d1"><span class="section-number-5">5.1.4.2.</span> String.Format</h5>
+</div>
+</div>
+
+<div id="outline-container-orgdb6a86e" class="outline-4">
+<h4 id="orgdb6a86e"><span class="section-number-4">5.1.5.</span> 常用方法</h4>
+<div class="outline-text-4" id="text-5-1-5">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
+s.<span style="color: #0000ff;">Xxx</span><span style="color: #707183;">()</span>;
+</pre>
 </div>
 </div>
 </div>

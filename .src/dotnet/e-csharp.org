@@ -542,11 +542,23 @@ Q & A:
   string e = "hello";
 
   // 使用 == 判断，两个字符串的值是不是一样的
-  Console.WriteLine(a == d); // true
+  Console.WriteLine(a == d); // True
 
   // 使用 object.ReferenceEquals 判定是否占用了相同的内存空间
-  Console.WriteLine(object.ReferenceEquals(a, d)); // false
-  Console.WriteLine(object.ReferenceEquals(a, e)); // true
+  Console.WriteLine(object.ReferenceEquals(a, d)); // False
+  Console.WriteLine(object.ReferenceEquals(a, e)); // True
+#+end_src
+
+*** 字符串的格式化
+**** 内插字符串 ($)
+
+**** String.Format
+
+*** 常用方法
+
+#+begin_src csharp
+  string s = "hello";
+  s.Xxx();
 #+end_src
 
 ** object
