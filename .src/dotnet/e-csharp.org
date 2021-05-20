@@ -498,6 +498,8 @@ Q & A:
 [[file:img/string-vs-stringbuilder.png]]
 
 #+begin_src csharp
+  using System.Text;
+
   // 解析一下，为什么这段代码会为内存带来大量的垃圾
   string s = "hello";
   for (int i = 0; i < 1000; i++)
