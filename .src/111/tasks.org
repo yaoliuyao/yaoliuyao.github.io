@@ -13,7 +13,6 @@
 
 * [2021-05-19 Wed]
 :PROPERTIES:
-:CUSTOM_ID: active
 :END:
 
 - *复习*: Char/CharSet/Encoding 的知识
@@ -22,7 +21,6 @@
 
 * [2021-05-18 Tue]
 :PROPERTIES:
-:CUSTOM_ID: active
 :END:
 
 - 复习今天内容
@@ -31,7 +29,6 @@
 
 * [2021-05-14 Fri]
 :PROPERTIES:
-:CUSTOM_ID: active
 :END:
 
 - 熟练掌握类型的基本概念
@@ -70,7 +67,6 @@
   
 * [2021-04-22 Thu]
 :PROPERTIES:
-:CUSTOM_ID: active
 :END:
 
 - 敲代码，敲代码，敲代码
