@@ -2,6 +2,15 @@
 
 
 
+
+* [2021-05-21 Fri]
+:PROPERTIES:
+:CUSTOM_ID: active
+:END:
+
+- 复习本周所学内容
+- 自己整理并学习字符串相关使用
+
 * [2021-05-19 Wed]
 :PROPERTIES:
 :CUSTOM_ID: active
