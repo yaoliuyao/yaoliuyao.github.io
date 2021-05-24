@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-20 -->
+<!-- 2021-05-24 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -166,16 +166,17 @@
 </li>
 <li><a href="#orgb8b093b">12. 问题 (仅作参考)</a>
 <ul>
-<li><a href="#org5f8661c">12.1. 什么是抽象类，抽象类有什么用处</a></li>
-<li><a href="#orgddf3ea3">12.2. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
-<li><a href="#org156522f">12.3. 什么是静态类，什么是密封类，什么是分部类</a></li>
-<li><a href="#org51f1e72">12.4. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
-<li><a href="#org53c5fb1">12.5. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
-<li><a href="#org7f77498">12.6. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
-<li><a href="#org1453cfa">12.7. 什么是封装，什么是继承，什么是多态</a></li>
-<li><a href="#org7cbe124">12.8. 什么是虚方法，它有什么用处</a></li>
-<li><a href="#orga4100f5">12.9. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
-<li><a href="#org49d491a">12.10. 什么是 DRY，代码复用的手段有哪些</a></li>
+<li><a href="#org0931609">12.1. string 和 StringBuilder 有什么区别</a></li>
+<li><a href="#org5f8661c">12.2. 什么是抽象类，抽象类有什么用处</a></li>
+<li><a href="#orgddf3ea3">12.3. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
+<li><a href="#org156522f">12.4. 什么是静态类，什么是密封类，什么是分部类</a></li>
+<li><a href="#org51f1e72">12.5. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
+<li><a href="#org53c5fb1">12.6. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
+<li><a href="#org7f77498">12.7. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
+<li><a href="#org1453cfa">12.8. 什么是封装，什么是继承，什么是多态</a></li>
+<li><a href="#org7cbe124">12.9. 什么是虚方法，它有什么用处</a></li>
+<li><a href="#orga4100f5">12.10. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
+<li><a href="#org49d491a">12.11. 什么是 DRY，代码复用的手段有哪些</a></li>
 </ul>
 </li>
 </ul>
@@ -223,13 +224,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org64435b2">
+<figure id="org506d671">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org2f44702">
+<figure id="org9be30cd">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -474,7 +475,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org6917b59">
+<figure id="org21c49c1">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -659,7 +660,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgc862b35">
+<figure id="orgff72889">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -687,7 +688,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org0ba9eb6">
+<figure id="orgb20231a">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -746,7 +747,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgde75a22">
+<figure id="org7762c13">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -848,7 +849,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgdc2cb09">
+<figure id="org046cd38">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -886,7 +887,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org6d191f9">
+<figure id="org0514dbf">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2137,41 +2138,54 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <h2 id="orgb8b093b"><span class="section-number-2">12.</span> 问题 (仅作参考)</h2>
 <div class="outline-text-2" id="text-12">
 </div>
+<div id="outline-container-org0931609" class="outline-3">
+<h3 id="org0931609"><span class="section-number-3">12.1.</span> string 和 StringBuilder 有什么区别</h3>
+<div class="outline-text-3" id="text-12-1">
+<ul class="org-ul">
+<li>string 是一种预定义类型，它表达的是字符的有序组合</li>
+<li>StringBuilder 是定义在 BCL 中的类型，它主要用来进行字符串的拼接</li>
+<li>string 是不可变的，所以在进行拼接等操作的时候，效率会非常低</li>
+<li>StringBuilder 是可变的一种类型，所以在字符串拼接的时候，效率相对高多了</li>
+<li>因此，在进行字符串拼接的操作的时候，我们一般使用 StringBuilder 进行构建，从而提升效率</li>
+</ul>
+</div>
+</div>
+
 <div id="outline-container-org5f8661c" class="outline-3">
-<h3 id="org5f8661c"><span class="section-number-3">12.1.</span> 什么是抽象类，抽象类有什么用处</h3>
+<h3 id="org5f8661c"><span class="section-number-3">12.2.</span> 什么是抽象类，抽象类有什么用处</h3>
 </div>
 <div id="outline-container-orgddf3ea3" class="outline-3">
-<h3 id="orgddf3ea3"><span class="section-number-3">12.2.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
+<h3 id="orgddf3ea3"><span class="section-number-3">12.3.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
 </div>
 <div id="outline-container-org156522f" class="outline-3">
-<h3 id="org156522f"><span class="section-number-3">12.3.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
+<h3 id="org156522f"><span class="section-number-3">12.4.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
 </div>
 <div id="outline-container-org51f1e72" class="outline-3">
-<h3 id="org51f1e72"><span class="section-number-3">12.4.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
+<h3 id="org51f1e72"><span class="section-number-3">12.5.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
 </div>
 <div id="outline-container-org53c5fb1" class="outline-3">
-<h3 id="org53c5fb1"><span class="section-number-3">12.5.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
+<h3 id="org53c5fb1"><span class="section-number-3">12.6.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
 </div>
 <div id="outline-container-org7f77498" class="outline-3">
-<h3 id="org7f77498"><span class="section-number-3">12.6.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
+<h3 id="org7f77498"><span class="section-number-3">12.7.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
 </div>
 <div id="outline-container-org1453cfa" class="outline-3">
-<h3 id="org1453cfa"><span class="section-number-3">12.7.</span> 什么是封装，什么是继承，什么是多态</h3>
+<h3 id="org1453cfa"><span class="section-number-3">12.8.</span> 什么是封装，什么是继承，什么是多态</h3>
 </div>
 <div id="outline-container-org7cbe124" class="outline-3">
-<h3 id="org7cbe124"><span class="section-number-3">12.8.</span> 什么是虚方法，它有什么用处</h3>
+<h3 id="org7cbe124"><span class="section-number-3">12.9.</span> 什么是虚方法，它有什么用处</h3>
 </div>
 <div id="outline-container-orga4100f5" class="outline-3">
-<h3 id="orga4100f5"><span class="section-number-3">12.9.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
+<h3 id="orga4100f5"><span class="section-number-3">12.10.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
 </div>
 <div id="outline-container-org49d491a" class="outline-3">
-<h3 id="org49d491a"><span class="section-number-3">12.10.</span> 什么是 DRY，代码复用的手段有哪些</h3>
+<h3 id="org49d491a"><span class="section-number-3">12.11.</span> 什么是 DRY，代码复用的手段有哪些</h3>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-20</p>
+<p class="date">Created: 2021-05-24</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
