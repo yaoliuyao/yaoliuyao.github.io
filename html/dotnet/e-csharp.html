@@ -84,18 +84,8 @@
 <li><a href="#orgb9c3bc1">5.1.3.3. String Intern Pool (字符串池)</a></li>
 </ul>
 </li>
-<li><a href="#orgf4f0a57">5.1.4. 字符串的格式化</a>
-<ul>
-<li><a href="#org04aacbd">5.1.4.1. 内插字符串 ($)</a></li>
-<li><a href="#org62e0e31">5.1.4.2. String.Format</a></li>
-</ul>
-</li>
-<li><a href="#org1027d19">5.1.5. API</a>
-<ul>
-<li><a href="#org89dcdeb">5.1.5.1. 子字符串</a></li>
-<li><a href="#orgf4f1d47">5.1.5.2. 拼接+格式化</a></li>
-</ul>
-</li>
+<li><a href="#org6ea1206">5.1.4. [API] 拼接 + 格式化 (Format)</a></li>
+<li><a href="#org7b90070">5.1.5. [API] 其他</a></li>
 </ul>
 </li>
 <li><a href="#org0500176">5.2. object</a></li>
@@ -229,13 +219,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org809dd83">
+<figure id="org3ee20f6">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org356ac26">
+<figure id="org4b3e97b">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -480,7 +470,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org449c791">
+<figure id="org0d407fc">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -665,7 +655,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org1f4d567">
+<figure id="org753c71d">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -693,7 +683,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org4f8aea1">
+<figure id="orga952281">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -752,7 +742,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org940ba4a">
+<figure id="org534fbef">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -854,7 +844,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orga5f1163">
+<figure id="orgba72217">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -892,7 +882,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org994d396">
+<figure id="orgb8f7a48">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -976,58 +966,9 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgf4f0a57" class="outline-4">
-<h4 id="orgf4f0a57"><span class="section-number-4">5.1.4.</span> 字符串的格式化</h4>
+<div id="outline-container-org6ea1206" class="outline-4">
+<h4 id="org6ea1206"><span class="section-number-4">5.1.4.</span> [API] 拼接 + 格式化 (Format)</h4>
 <div class="outline-text-4" id="text-5-1-4">
-</div>
-<div id="outline-container-org04aacbd" class="outline-5">
-<h5 id="org04aacbd"><span class="section-number-5">5.1.4.1.</span> 内插字符串 ($)</h5>
-</div>
-
-<div id="outline-container-org62e0e31" class="outline-5">
-<h5 id="org62e0e31"><span class="section-number-5">5.1.4.2.</span> String.Format</h5>
-<div class="outline-text-5" id="text-5-1-4-2">
-<p>
-怎么去使用:
-</p>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org1027d19" class="outline-4">
-<h4 id="org1027d19"><span class="section-number-4">5.1.5.</span> API</h4>
-<div class="outline-text-4" id="text-5-1-5">
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
-s.<span style="color: #0000ff;">Xxx</span><span style="color: #707183;">()</span>;
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org89dcdeb" class="outline-5">
-<h5 id="org89dcdeb"><span class="section-number-5">5.1.5.1.</span> 子字符串</h5>
-<div class="outline-text-5" id="text-5-1-5-1">
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#33719;&#21462;/&#21019;&#24314;&#19968;&#20010;&#23376;&#23383;&#31526;&#20018; (3-5)</span>
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">"longlonglonglonglong: string .. "</span>;
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#26029;&#65292;&#26576;&#20010;&#23383;&#31526;&#20018;&#20013;&#26159;&#21542;&#21253;&#21547;&#26576;&#20010;&#23383;&#31526;&#20018; a "world"</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23547;&#25214;&#30456;&#24212;&#30340;&#20301;&#32622;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#26029;&#20986;&#29616;&#30340;&#27425;&#25968;</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26367;&#25442; WORLD</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20998;&#21106; / &#21512;&#24182;</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgf4f1d47" class="outline-5">
-<h5 id="orgf4f1d47"><span class="section-number-5">5.1.5.2.</span> 拼接+格式化</h5>
-<div class="outline-text-5" id="text-5-1-5-2">
-<p>
-字符串拼接的各种姿势:
-</p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"tom"</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">friend</span> = <span style="color: #8b2252;">"jerry"</span>;
@@ -1067,6 +1008,31 @@ s.<span style="color: #0000ff;">Xxx</span><span style="color: #707183;">()</span
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>r5<span style="color: #707183;">)</span>;
 </pre>
 </div>
+</div>
+</div>
+
+<div id="outline-container-org7b90070" class="outline-4">
+<h4 id="org7b90070"><span class="section-number-4">5.1.5.</span> [API] 其他</h4>
+<div class="outline-text-4" id="text-5-1-5">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
+s.<span style="color: #0000ff;">Xxx</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+子字符串:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#33719;&#21462;/&#21019;&#24314;&#19968;&#20010;&#23376;&#23383;&#31526;&#20018; (3-5)</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">"longlonglonglonglong: string .. "</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#26029;&#65292;&#26576;&#20010;&#23383;&#31526;&#20018;&#20013;&#26159;&#21542;&#21253;&#21547;&#26576;&#20010;&#23383;&#31526;&#20018; a "world"</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23547;&#25214;&#30456;&#24212;&#30340;&#20301;&#32622;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#26029;&#20986;&#29616;&#30340;&#27425;&#25968;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26367;&#25442; WORLD</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20998;&#21106; / &#21512;&#24182;</span>
+</pre>
 </div>
 </div>
 </div>

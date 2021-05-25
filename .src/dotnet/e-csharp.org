@@ -577,37 +577,8 @@ Q & A:
   // if (a != null) a.equal("hello"); (2)
 #+end_src
 
-*** 字符串的格式化
-**** 内插字符串 ($)
+*** [API] 拼接 + 格式化 (Format)
 
-**** String.Format
-
-怎么去使用:
-
-
-*** API
-
-#+begin_src csharp
-  string s = "hello";
-  s.Xxx();
-#+end_src
-
-**** 子字符串
-
-#+begin_src csharp
-  // 获取/创建一个子字符串 (3-5)
-  string a = "longlonglonglonglong: string .. ";
-  
-  // 判断，某个字符串中是否包含某个字符串 a "world"
-  // 寻找相应的位置
-  // 判断出现的次数
-  // 替换 WORLD
-  // 分割 / 合并
-#+end_src
-
-**** 拼接+格式化
-
-字符串拼接的各种姿势:
 #+begin_src csharp
   string name = "tom";
   string friend = "jerry";
@@ -645,6 +616,25 @@ Q & A:
   string r5 = $"{name}的朋友是{friend}，它虽然只有{age:d5}岁，但是它的收入达到{ss}!";
   
   Console.WriteLine(r5);
+#+end_src
+
+*** [API] 其他
+
+#+begin_src csharp
+  string s = "hello";
+  s.Xxx();
+#+end_src
+
+子字符串:
+#+begin_src csharp
+  // 获取/创建一个子字符串 (3-5)
+  string a = "longlonglonglonglong: string .. ";
+  
+  // 判断，某个字符串中是否包含某个字符串 a "world"
+  // 寻找相应的位置
+  // 判断出现的次数
+  // 替换 WORLD
+  // 分割 / 合并
 #+end_src
 
 ** object
