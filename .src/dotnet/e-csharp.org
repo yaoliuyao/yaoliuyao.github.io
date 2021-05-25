@@ -577,7 +577,7 @@ Q & A:
   // if (a != null) a.equal("hello"); (2)
 #+end_src
 
-*** [API] 拼接 + 格式化 (Format)
+*** [API] 拼接 + 格式化
 
 #+begin_src csharp
   string name = "tom";
