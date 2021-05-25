@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-24 -->
+<!-- 2021-05-25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -90,7 +90,12 @@
 <li><a href="#org62e0e31">5.1.4.2. String.Format</a></li>
 </ul>
 </li>
-<li><a href="#org43e18eb">5.1.5. 常用方法</a></li>
+<li><a href="#org1027d19">5.1.5. API</a>
+<ul>
+<li><a href="#org89dcdeb">5.1.5.1. 子字符串</a></li>
+<li><a href="#orgf4f1d47">5.1.5.2. 拼接+格式化</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org0500176">5.2. object</a></li>
@@ -224,13 +229,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org506d671">
+<figure id="org809dd83">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org9be30cd">
+<figure id="org356ac26">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -475,7 +480,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org21c49c1">
+<figure id="org449c791">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -660,7 +665,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgff72889">
+<figure id="org1f4d567">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -688,7 +693,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgb20231a">
+<figure id="org4f8aea1">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -747,7 +752,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org7762c13">
+<figure id="org940ba4a">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -849,7 +854,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org046cd38">
+<figure id="orga5f1163">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -887,7 +892,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org0514dbf">
+<figure id="org994d396">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -981,16 +986,87 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 
 <div id="outline-container-org62e0e31" class="outline-5">
 <h5 id="org62e0e31"><span class="section-number-5">5.1.4.2.</span> String.Format</h5>
+<div class="outline-text-5" id="text-5-1-4-2">
+<p>
+怎么去使用:
+</p>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org43e18eb" class="outline-4">
-<h4 id="org43e18eb"><span class="section-number-4">5.1.5.</span> 常用方法</h4>
+
+<div id="outline-container-org1027d19" class="outline-4">
+<h4 id="org1027d19"><span class="section-number-4">5.1.5.</span> API</h4>
 <div class="outline-text-4" id="text-5-1-5">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
 s.<span style="color: #0000ff;">Xxx</span><span style="color: #707183;">()</span>;
 </pre>
+</div>
+</div>
+
+<div id="outline-container-org89dcdeb" class="outline-5">
+<h5 id="org89dcdeb"><span class="section-number-5">5.1.5.1.</span> 子字符串</h5>
+<div class="outline-text-5" id="text-5-1-5-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#33719;&#21462;/&#21019;&#24314;&#19968;&#20010;&#23376;&#23383;&#31526;&#20018; (3-5)</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">"longlonglonglonglong: string .. "</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#26029;&#65292;&#26576;&#20010;&#23383;&#31526;&#20018;&#20013;&#26159;&#21542;&#21253;&#21547;&#26576;&#20010;&#23383;&#31526;&#20018; a "world"</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23547;&#25214;&#30456;&#24212;&#30340;&#20301;&#32622;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;&#26029;&#20986;&#29616;&#30340;&#27425;&#25968;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26367;&#25442; WORLD</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20998;&#21106; / &#21512;&#24182;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf4f1d47" class="outline-5">
+<h5 id="orgf4f1d47"><span class="section-number-5">5.1.5.2.</span> 拼接+格式化</h5>
+<div class="outline-text-5" id="text-5-1-5-2">
+<p>
+字符串拼接的各种姿势:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"tom"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">friend</span> = <span style="color: #8b2252;">"jerry"</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span> = 30;
+<span style="color: #228b22;">decimal</span> <span style="color: #a0522d;">sal</span> = 200.12345M;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">r1</span> = name + <span style="color: #8b2252;">"&#30340;&#26379;&#21451;&#26159;"</span>
+                 + friend + <span style="color: #8b2252;">"&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;"</span>
+                 + age + <span style="color: #8b2252;">"&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#33021;&#21040;&#36798;&#21040;"</span>
+                 + sal + <span style="color: #8b2252;">"&#20992;"</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">r2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #707183;">()</span>
+    .<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span>name<span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#30340;&#26379;&#21451;&#26159;"</span><span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span>friend<span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;"</span><span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span>age<span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#33021;&#21040;&#36798;&#21040;"</span><span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span>sal<span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#20992;"</span><span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">ToString</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">r3</span> = <span style="color: #228b22;">string</span>.<span style="color: #0000ff;">Format</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}&#30340;&#26379;&#21451;&#26159;{1}&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;{2}&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#36798;&#21040;{3:C}"</span>, name, friend, age, sal<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">{&#21464;&#37327;,&#23545;&#40784;&#22810;&#23569;&#38271;&#24230;:&#26684;&#24335;}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">[&#23545;&#40784;] &#27491;&#25968;&#34920;&#31034;&#21491;&#23545;&#40784;&#65292;&#36127;&#25968;&#34920;&#31034;&#24038;&#23545;&#40784;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">[&#26684;&#24335;] P &#30334;&#20998;&#27604; C &#36135;&#24065; E &#31185;&#23398;&#35745;&#25968;&#27861; D &#34917;&#40784;&#38271;&#24230; F/N &#23567;&#25968;&#28857;&#22810;&#23569;&#20301; X &#21313;&#20845;&#36827;&#21046;</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">r4</span> = $<span style="color: #8b2252;">"{name}&#30340;&#26379;&#21451;&#26159;{friend}&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;{age:d5}&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#36798;&#21040;{sal:C}!"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#35821;&#35328;-&#22269;&#23478;&#25110;&#21306;&#22495;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">zh-CN</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">en-US</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">en-EN</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">ss</span> = sal.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"C"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">CultureInfo</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"en-US"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">r5</span> = $<span style="color: #8b2252;">"{name}&#30340;&#26379;&#21451;&#26159;{friend}&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;{age:d5}&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#36798;&#21040;{ss}!"</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>r5<span style="color: #707183;">)</span>;
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -2185,7 +2261,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-24</p>
+<p class="date">Created: 2021-05-25</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

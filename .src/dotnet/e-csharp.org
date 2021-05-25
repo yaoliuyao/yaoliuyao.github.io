@@ -582,11 +582,69 @@ Q & A:
 
 **** String.Format
 
-*** 常用方法
+怎么去使用:
+
+
+*** API
 
 #+begin_src csharp
   string s = "hello";
   s.Xxx();
+#+end_src
+
+**** 子字符串
+
+#+begin_src csharp
+  // 获取/创建一个子字符串 (3-5)
+  string a = "longlonglonglonglong: string .. ";
+  
+  // 判断，某个字符串中是否包含某个字符串 a "world"
+  // 寻找相应的位置
+  // 判断出现的次数
+  // 替换 WORLD
+  // 分割 / 合并
+#+end_src
+
+**** 拼接+格式化
+
+字符串拼接的各种姿势:
+#+begin_src csharp
+  string name = "tom";
+  string friend = "jerry";
+  int age = 30;
+  decimal sal = 200.12345M;
+  
+  string r1 = name + "的朋友是"
+                   + friend + "，它虽然只有" 
+                   + age + "岁，但是它的收入能到达到"
+                   + sal + "刀";
+  
+  string r2 = new StringBuilder()
+      .Append(name)
+      .Append("的朋友是")
+      .Append(friend)
+      .Append("，它虽然只有")
+      .Append(age)
+      .Append("岁，但是它的收入能到达到")
+      .Append(sal)
+      .Append("刀")
+      .ToString();
+  
+  string r3 = string.Format("{0}的朋友是{1}，它虽然只有{2}岁，但是它的收入达到{3:C}", name, friend, age, sal);
+  
+  // {变量,对齐多少长度:格式}
+  // [对齐] 正数表示右对齐，负数表示左对齐
+  // [格式] P 百分比 C 货币 E 科学计数法 D 补齐长度 F/N 小数点多少位 X 十六进制
+  string r4 = $"{name}的朋友是{friend}，它虽然只有{age:d5}岁，但是它的收入达到{sal:C}!";
+  
+  // 语言-国家或区域
+  // zh-CN
+  // en-US
+  // en-EN
+  string ss = sal.ToString("C", new CultureInfo("en-US"));
+  string r5 = $"{name}的朋友是{friend}，它虽然只有{age:d5}岁，但是它的收入达到{ss}!";
+  
+  Console.WriteLine(r5);
 #+end_src
 
 ** object
