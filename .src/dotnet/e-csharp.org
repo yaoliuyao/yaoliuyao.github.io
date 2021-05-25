@@ -661,6 +661,55 @@ Q & A:
   Console.WriteLine(dir2);
 #+end_src
 
+*** [API] 字符串的修改
+
+#+begin_src csharp
+  // 谨记:
+  // 修改不会作用在原先的字符串上
+  // 所有的修改，都是返回了一个完全崭新的字符串
+  
+  string s1 = "  000o。OOOoOO0O，0Ooo000o--";
+  
+  string s2 = s1.Insert(3, ">>>");
+  string s3 = s1.Remove(2, 1);
+  string s4 = s1.Replace("。", ".");
+  string s5 = s1.Replace('，', '_');
+  string s6 = s1.Replace("OoO", "111");
+  string s7 = s1.Replace("OoO", "222", true, new CultureInfo("zh-CN"));
+  
+  string s8 = s1.PadLeft(100);
+  string s9 = s1.PadLeft(100, '-');
+  string sa = s1.PadRight(100, '-');
+  
+  string sb = s1.Trim();
+  string sc = s1.Trim('-');
+  string sd = s1.TrimStart();
+  string de = s1.TrimStart().TrimEnd('-').PadLeft(50, ':');
+
+  string df = s1.ToLower();
+  string dg = s1.ToUpper();
+  
+  Console.WriteLine(de);
+#+end_src
+
+*** [API] String 跟 Array 的转换
+
+#+begin_src csharp
+  string s1 = "  000o。OOOoOO0O，0Ooo000o--";
+  
+  // 字符串到 [数组] 的转换
+  char[] a1 = s1.ToCharArray();
+  char[] a2 = s1.ToCharArray(2, 10);
+  
+  // [数组] 到字符串的转换
+  char[] a3 = new[] {'a', 'o', 'e'};
+  string s2 = new string(a3);
+  
+  // StringBuild vs String
+  string s3 = new StringBuilder().Append("hello").ToString();
+  StringBuilder sb = new StringBuilder(s1);
+#+end_src
+
 *** [API] 其他
 
 #+begin_src csharp

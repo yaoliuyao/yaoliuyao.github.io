@@ -86,7 +86,9 @@
 </li>
 <li><a href="#org35d3e55">5.1.4. [API] 拼接 + 格式化</a></li>
 <li><a href="#orgdd497b0">5.1.5. [API] 子字符串</a></li>
-<li><a href="#org7b90070">5.1.6. [API] 其他</a></li>
+<li><a href="#orgb47b856">5.1.6. [API] 字符串的修改</a></li>
+<li><a href="#orge6669b1">5.1.7. [API] String 跟 Array 的转换</a></li>
+<li><a href="#org7b90070">5.1.8. [API] 其他</a></li>
 </ul>
 </li>
 <li><a href="#org0500176">5.2. object</a></li>
@@ -220,13 +222,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org79f54b8">
+<figure id="org549451d">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org1a09cce">
+<figure id="orge7c2f8d">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -471,7 +473,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgd897178">
+<figure id="orgbb73121">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -656,7 +658,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org7e461ae">
+<figure id="org5fb560c">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -684,7 +686,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org078b6fa">
+<figure id="org485b0d5">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -743,7 +745,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgc68573f">
+<figure id="org2979f93">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -845,7 +847,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org888d13a">
+<figure id="org0bdf60c">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -883,7 +885,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org7e98e6a">
+<figure id="orgc24c57c">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1059,9 +1061,66 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org7b90070" class="outline-4">
-<h4 id="org7b90070"><span class="section-number-4">5.1.6.</span> [API] 其他</h4>
+<div id="outline-container-orgb47b856" class="outline-4">
+<h4 id="orgb47b856"><span class="section-number-4">5.1.6.</span> [API] 字符串的修改</h4>
 <div class="outline-text-4" id="text-5-1-6">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#35880;&#35760;:</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20462;&#25913;&#19981;&#20250;&#20316;&#29992;&#22312;&#21407;&#20808;&#30340;&#23383;&#31526;&#20018;&#19978;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25152;&#26377;&#30340;&#20462;&#25913;&#65292;&#37117;&#26159;&#36820;&#22238;&#20102;&#19968;&#20010;&#23436;&#20840;&#23853;&#26032;&#30340;&#23383;&#31526;&#20018;</span>
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"  000o&#12290;OOOoOO0O&#65292;0Ooo000o--"</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = s1.<span style="color: #0000ff;">Insert</span><span style="color: #707183;">(</span>3, <span style="color: #8b2252;">"&gt;&gt;&gt;"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = s1.<span style="color: #0000ff;">Remove</span><span style="color: #707183;">(</span>2, 1<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = s1.<span style="color: #0000ff;">Replace</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#12290;"</span>, <span style="color: #8b2252;">"."</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s5</span> = s1.<span style="color: #0000ff;">Replace</span><span style="color: #707183;">(</span><span style="color: #8b2252;">'&#65292;'</span>, <span style="color: #8b2252;">'_'</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s6</span> = s1.<span style="color: #0000ff;">Replace</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"OoO"</span>, <span style="color: #8b2252;">"111"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s7</span> = s1.<span style="color: #0000ff;">Replace</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"OoO"</span>, <span style="color: #8b2252;">"222"</span>, <span style="color: #008b8b;">true</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">CultureInfo</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"zh-CN"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s8</span> = s1.<span style="color: #0000ff;">PadLeft</span><span style="color: #707183;">(</span>100<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s9</span> = s1.<span style="color: #0000ff;">PadLeft</span><span style="color: #707183;">(</span>100, <span style="color: #8b2252;">'-'</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">sa</span> = s1.<span style="color: #0000ff;">PadRight</span><span style="color: #707183;">(</span>100, <span style="color: #8b2252;">'-'</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">sb</span> = s1.<span style="color: #0000ff;">Trim</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">sc</span> = s1.<span style="color: #0000ff;">Trim</span><span style="color: #707183;">(</span><span style="color: #8b2252;">'-'</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">sd</span> = s1.<span style="color: #0000ff;">TrimStart</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">de</span> = s1.<span style="color: #0000ff;">TrimStart</span><span style="color: #707183;">()</span>.<span style="color: #0000ff;">TrimEnd</span><span style="color: #707183;">(</span><span style="color: #8b2252;">'-'</span><span style="color: #707183;">)</span>.<span style="color: #0000ff;">PadLeft</span><span style="color: #707183;">(</span>50, <span style="color: #8b2252;">':'</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">df</span> = s1.<span style="color: #0000ff;">ToLower</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">dg</span> = s1.<span style="color: #0000ff;">ToUpper</span><span style="color: #707183;">()</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>de<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge6669b1" class="outline-4">
+<h4 id="orge6669b1"><span class="section-number-4">5.1.7.</span> [API] String 跟 Array 的转换</h4>
+<div class="outline-text-4" id="text-5-1-7">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"  000o&#12290;OOOoOO0O&#65292;0Ooo000o--"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#23383;&#31526;&#20018;&#21040; [&#25968;&#32452;] &#30340;&#36716;&#25442;</span>
+<span style="color: #228b22;">char</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">a1</span> = s1.<span style="color: #0000ff;">ToCharArray</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">char</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">a2</span> = s1.<span style="color: #0000ff;">ToCharArray</span><span style="color: #707183;">(</span>2, 10<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">[&#25968;&#32452;] &#21040;&#23383;&#31526;&#20018;&#30340;&#36716;&#25442;</span>
+<span style="color: #228b22;">char</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">a3</span> = <span style="color: #a020f0;">new</span><span style="color: #707183;">[]</span> <span style="color: #707183;">{</span><span style="color: #8b2252;">'a'</span>, <span style="color: #8b2252;">'o'</span>, <span style="color: #8b2252;">'e'</span><span style="color: #707183;">}</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = <span style="color: #a020f0;">new</span> <span style="color: #0000ff;">string</span><span style="color: #707183;">(</span>a3<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">StringBuild vs String</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #707183;">()</span>.<span style="color: #0000ff;">Append</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #707183;">(</span>s1<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7b90070" class="outline-4">
+<h4 id="org7b90070"><span class="section-number-4">5.1.8.</span> [API] 其他</h4>
+<div class="outline-text-4" id="text-5-1-8">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
 s.<span style="color: #0000ff;">Xxx</span><span style="color: #707183;">()</span>;
