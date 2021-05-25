@@ -75,15 +75,15 @@
 <ul>
 <li><a href="#org7686c83">5.1. string</a>
 <ul>
-<li><a href="#org1aa8ab4">5.1.1. 字符串的长度</a></li>
-<li><a href="#org1fb4758">5.1.2. 字符串的初始化</a></li>
-<li><a href="#org5e18494">5.1.3. 字符串的不可变性 (Immutable)</a>
+<li><a href="#org1fb4758">5.1.1. 字符串的初始化</a></li>
+<li><a href="#org5e18494">5.1.2. 字符串的不可变性 (Immutable)</a>
 <ul>
-<li><a href="#org7925c0f">5.1.3.1. what &amp; why</a></li>
-<li><a href="#orgef53295">5.1.3.2. System.Text.StringBuilder</a></li>
-<li><a href="#orgb9c3bc1">5.1.3.3. String Intern Pool (字符串池)</a></li>
+<li><a href="#org7925c0f">5.1.2.1. what &amp; why</a></li>
+<li><a href="#orgef53295">5.1.2.2. System.Text.StringBuilder</a></li>
+<li><a href="#orgb9c3bc1">5.1.2.3. String Intern Pool (字符串池)</a></li>
 </ul>
 </li>
+<li><a href="#org5bc7f62">5.1.3. [API] 基本操作</a></li>
 <li><a href="#org35d3e55">5.1.4. [API] 拼接 + 格式化</a></li>
 <li><a href="#orgdd497b0">5.1.5. [API] 子字符串</a></li>
 <li><a href="#orgb47b856">5.1.6. [API] 字符串的修改</a></li>
@@ -222,13 +222,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org549451d">
+<figure id="orgb206284">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orge7c2f8d">
+<figure id="org4f29d8d">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -473,7 +473,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgbb73121">
+<figure id="org7c3527d">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -658,7 +658,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org5fb560c">
+<figure id="org942c5fa">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -686,7 +686,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org485b0d5">
+<figure id="org46953cc">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -745,7 +745,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org2979f93">
+<figure id="orgd3180e3">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -782,29 +782,9 @@ Q &amp; A:
 </p>
 </div>
 
-<div id="outline-container-org1aa8ab4" class="outline-4">
-<h4 id="org1aa8ab4"><span class="section-number-4">5.1.1.</span> 字符串的长度</h4>
-<div class="outline-text-4" id="text-5-1-1">
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"aaa"</span>;
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = <span style="color: #8b2252;">"&#24744;&#22909;aaa"</span>;
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = <span style="color: #8b2252;">"&#131603;&#22909;aaa"</span>;
-
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1.Length<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#30001;&#22810;&#23569;&#20010;&#23383;&#31526;&#32452;&#25104;</span>
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s2.Length<span style="color: #707183;">)</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s3.Length<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36825;&#20010;&#20026;&#20160;&#20040;&#26159; 6 ?</span>
-
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = <span style="color: #8b2252;">"&#20013;&#22269;&#131603;&#24744;&#22909;&#131603;blahblaah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjf"</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s4.Length<span style="color: #707183;">)</span>;
-Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringInfo</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">s4</span><span style="color: #7388d6;">)</span>.LengthInTextElements<span style="color: #707183;">)</span>;
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-org1fb4758" class="outline-4">
-<h4 id="org1fb4758"><span class="section-number-4">5.1.2.</span> 字符串的初始化</h4>
-<div class="outline-text-4" id="text-5-1-2">
+<h4 id="org1fb4758"><span class="section-number-4">5.1.1.</span> 字符串的初始化</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">g1</span> = <span style="color: #8b2252;">"Hello World!"</span>;
 System.<span style="color: #228b22;">String</span> <span style="color: #a0522d;">g2</span> = <span style="color: #8b2252;">"Hello World!"</span>;
@@ -825,12 +805,12 @@ System.<span style="color: #228b22;">String</span> <span style="color: #a0522d;"
 </div>
 
 <div id="outline-container-org5e18494" class="outline-4">
-<h4 id="org5e18494"><span class="section-number-4">5.1.3.</span> 字符串的不可变性 (Immutable)</h4>
-<div class="outline-text-4" id="text-5-1-3">
+<h4 id="org5e18494"><span class="section-number-4">5.1.2.</span> 字符串的不可变性 (Immutable)</h4>
+<div class="outline-text-4" id="text-5-1-2">
 </div>
 <div id="outline-container-org7925c0f" class="outline-5">
-<h5 id="org7925c0f"><span class="section-number-5">5.1.3.1.</span> what &amp; why</h5>
-<div class="outline-text-5" id="text-5-1-3-1">
+<h5 id="org7925c0f"><span class="section-number-5">5.1.2.1.</span> what &amp; why</h5>
+<div class="outline-text-5" id="text-5-1-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">b</span>;
@@ -847,7 +827,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org0bdf60c">
+<figure id="org652f3ea">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -874,8 +854,8 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </div>
 
 <div id="outline-container-orgef53295" class="outline-5">
-<h5 id="orgef53295"><span class="section-number-5">5.1.3.2.</span> System.Text.StringBuilder</h5>
-<div class="outline-text-5" id="text-5-1-3-2">
+<h5 id="orgef53295"><span class="section-number-5">5.1.2.2.</span> System.Text.StringBuilder</h5>
+<div class="outline-text-5" id="text-5-1-2-2">
 <p>
 这是 BCL 中提供的一个类，专门使用在 <b>字符串拼接</b> 的场景下。
 </p>
@@ -885,7 +865,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgc24c57c">
+<figure id="orgb51cd55">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -920,8 +900,8 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </div>
 
 <div id="outline-container-orgb9c3bc1" class="outline-5">
-<h5 id="orgb9c3bc1"><span class="section-number-5">5.1.3.3.</span> String Intern Pool (字符串池)</h5>
-<div class="outline-text-5" id="text-5-1-3-3">
+<h5 id="orgb9c3bc1"><span class="section-number-5">5.1.2.3.</span> String Intern Pool (字符串池)</h5>
+<div class="outline-text-5" id="text-5-1-2-3">
 <p>
 因为字符串是不可变的，所以在字符串的操作中，会产生很多临时字符串 (垃圾)。
 </p>
@@ -965,6 +945,26 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <span style="color: #b22222;">// </span><span style="color: #b22222;">if (a != null) a.equal("hello"); (2)</span>
 </pre>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5bc7f62" class="outline-4">
+<h4 id="org5bc7f62"><span class="section-number-4">5.1.3.</span> [API] 基本操作</h4>
+<div class="outline-text-4" id="text-5-1-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"aaa"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = <span style="color: #8b2252;">"&#24744;&#22909;aaa"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = <span style="color: #8b2252;">"&#131603;&#22909;aaa"</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1.Length<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#30001;&#22810;&#23569;&#20010;&#23383;&#31526;&#32452;&#25104;</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s2.Length<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s3.Length<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36825;&#20010;&#20026;&#20160;&#20040;&#26159; 6 ?</span>
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = <span style="color: #8b2252;">"&#20013;&#22269;&#131603;&#24744;&#22909;&#131603;blahblaah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjlah&#20013;&#21326;&#131603;&#20320;&#20204;&#37117;&#26159;&#21861;kdjfkdjkdfdkjf"</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s4.Length<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringInfo</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">s4</span><span style="color: #7388d6;">)</span>.LengthInTextElements<span style="color: #707183;">)</span>;
+</pre>
 </div>
 </div>
 </div>
