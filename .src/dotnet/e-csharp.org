@@ -618,6 +618,49 @@ Q & A:
   Console.WriteLine(r5);
 #+end_src
 
+*** [API] 子字符串
+
+#+begin_src csharp
+  string s1 = "000o。OOOoOO0O0Ooo000o";
+  
+  // 取
+  char c = s1[1]; // 取字符
+  string s2 = s1.Substring(1, 2); // 位置，长度 : el
+  string s3 = s1.Substring(2);    // 从某个位置到最后
+  string s4 = s1.Substring(2, 0); // String.Empty ""
+  
+  // 判
+  bool b1 = s1.Contains("o0");    // 是否包含一个子字符串
+  bool b2 = s1.StartsWith("o");   // 是不是以 x 开始
+  bool b3 = s1.EndsWith("o");     // 是不是以 x 结束的
+  
+  // 序
+  int i1 = s1.IndexOf("O");
+  int i2 = s1.LastIndexOf("O");
+  int i3 = s1.IndexOfAny(new []{'o', 'O'});
+  
+  // 结合
+  string path = "C:/aaa/work.x/hello.txt";
+  string drive = path.Substring(0, path.IndexOf(":"));
+  string dir = path.Substring(0, path.LastIndexOf("/") + 1);
+  string file = path.Substring(path.LastIndexOf("/") + 1);
+  string ext = path.Substring(path.LastIndexOf(".") + 1);
+  
+  // 自定义版本的 LastIndexOf
+  int p = 0;
+  for (int i = path.Length - 1; i >= 0; i--)
+  {
+      if (path[i] == '/')
+      {
+          p = i;
+          break;
+      }
+  }
+  string dir2 = path.Substring(0, p);
+  
+  Console.WriteLine(dir2);
+#+end_src
+
 *** [API] 其他
 
 #+begin_src csharp

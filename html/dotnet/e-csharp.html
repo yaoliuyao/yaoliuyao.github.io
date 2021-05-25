@@ -85,7 +85,8 @@
 </ul>
 </li>
 <li><a href="#org35d3e55">5.1.4. [API] 拼接 + 格式化</a></li>
-<li><a href="#org7b90070">5.1.5. [API] 其他</a></li>
+<li><a href="#orgdd497b0">5.1.5. [API] 子字符串</a></li>
+<li><a href="#org7b90070">5.1.6. [API] 其他</a></li>
 </ul>
 </li>
 <li><a href="#org0500176">5.2. object</a></li>
@@ -219,13 +220,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org044433b">
+<figure id="org79f54b8">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org59165d7">
+<figure id="org1a09cce">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -470,7 +471,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org17b2de9">
+<figure id="orgd897178">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -655,7 +656,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org3f016cc">
+<figure id="org7e461ae">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -683,7 +684,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgc19813b">
+<figure id="org078b6fa">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -742,7 +743,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org166e193">
+<figure id="orgc68573f">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -844,7 +845,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgc2f33c4">
+<figure id="org888d13a">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -882,7 +883,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org20b29e4">
+<figure id="org7e98e6a">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1011,9 +1012,56 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org7b90070" class="outline-4">
-<h4 id="org7b90070"><span class="section-number-4">5.1.5.</span> [API] 其他</h4>
+<div id="outline-container-orgdd497b0" class="outline-4">
+<h4 id="orgdd497b0"><span class="section-number-4">5.1.5.</span> [API] 子字符串</h4>
 <div class="outline-text-4" id="text-5-1-5">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"000o&#12290;OOOoOO0O0Ooo000o"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21462;</span>
+<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> = s1<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21462;&#23383;&#31526;</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = s1.<span style="color: #0000ff;">Substring</span><span style="color: #707183;">(</span>1, 2<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20301;&#32622;&#65292;&#38271;&#24230; : el</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = s1.<span style="color: #0000ff;">Substring</span><span style="color: #707183;">(</span>2<span style="color: #707183;">)</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20174;&#26576;&#20010;&#20301;&#32622;&#21040;&#26368;&#21518;</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = s1.<span style="color: #0000ff;">Substring</span><span style="color: #707183;">(</span>2, 0<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">String.Empty ""</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21028;</span>
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">b1</span> = s1.<span style="color: #0000ff;">Contains</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"o0"</span><span style="color: #707183;">)</span>;    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26159;&#21542;&#21253;&#21547;&#19968;&#20010;&#23376;&#23383;&#31526;&#20018;</span>
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">b2</span> = s1.<span style="color: #0000ff;">StartsWith</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"o"</span><span style="color: #707183;">)</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26159;&#19981;&#26159;&#20197; x &#24320;&#22987;</span>
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">b3</span> = s1.<span style="color: #0000ff;">EndsWith</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"o"</span><span style="color: #707183;">)</span>;     <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26159;&#19981;&#26159;&#20197; x &#32467;&#26463;&#30340;</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#24207;</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i1</span> = s1.<span style="color: #0000ff;">IndexOf</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"O"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i2</span> = s1.<span style="color: #0000ff;">LastIndexOf</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"O"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i3</span> = s1.<span style="color: #0000ff;">IndexOfAny</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #7388d6;">[]{</span><span style="color: #8b2252;">'o'</span>, <span style="color: #8b2252;">'O'</span><span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#32467;&#21512;</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">path</span> = <span style="color: #8b2252;">"C:/aaa/work.x/hello.txt"</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">drive</span> = path.<span style="color: #0000ff;">Substring</span><span style="color: #707183;">(</span>0, path.<span style="color: #0000ff;">IndexOf</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">":"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">dir</span> = path.<span style="color: #0000ff;">Substring</span><span style="color: #707183;">(</span>0, path.<span style="color: #0000ff;">LastIndexOf</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/"</span><span style="color: #7388d6;">)</span> + 1<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">file</span> = path.<span style="color: #0000ff;">Substring</span><span style="color: #707183;">(</span>path.<span style="color: #0000ff;">LastIndexOf</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/"</span><span style="color: #7388d6;">)</span> + 1<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">ext</span> = path.<span style="color: #0000ff;">Substring</span><span style="color: #707183;">(</span>path.<span style="color: #0000ff;">LastIndexOf</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"."</span><span style="color: #7388d6;">)</span> + 1<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#33258;&#23450;&#20041;&#29256;&#26412;&#30340; LastIndexOf</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">p</span> = 0;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = path.Length - 1; i &gt;= 0; i--<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>path<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span> == <span style="color: #8b2252;">'/'</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        p = i;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">dir2</span> = path.<span style="color: #0000ff;">Substring</span><span style="color: #707183;">(</span>0, p<span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>dir2<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7b90070" class="outline-4">
+<h4 id="org7b90070"><span class="section-number-4">5.1.6.</span> [API] 其他</h4>
+<div class="outline-text-4" id="text-5-1-6">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
 s.<span style="color: #0000ff;">Xxx</span><span style="color: #707183;">()</span>;
