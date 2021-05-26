@@ -54,8 +54,8 @@
 <li><a href="#org56527da">10. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-22 Thu]</span></span></a></li>
 <li><a href="#orgf225449">11. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-20 Tue]</span></span></a></li>
 <li><a href="#orge51a987">12. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-19 Mon]</span></span></a></li>
-<li><a href="#orgd4f78ae">13. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-12 Mon]</span></span></a></li>
-<li><a href="#orgf84d29a">14. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-12 Mon]</span></span></a></li>
+<li><a href="#orgf84d29a">13. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-12 Mon]</span></span></a></li>
+<li><a href="#org9fcec0e">14. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-12 Mon]</span></span></a></li>
 <li><a href="#org6843fbb">15. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-09 Fri]</span></span></a></li>
 <li><a href="#org6c07e78">16. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-08 Thu]</span></span></a></li>
 <li><a href="#orgeed0551">17. <span class="timestamp-wrapper"><span class="timestamp">[2021-04-07 Wed]</span></span></a></li>
@@ -85,6 +85,32 @@
 <p>
 实现游戏祖玛!
 </p>
+<ul class="org-ul">
+<li>核心是一个 <b>字符串</b> 代码的所谓祖玛</li>
+<li>若干方法，都围绕这个字符串:
+<ul class="org-ul">
+<li>初始化这个随机字符串的方法</li>
+<li>绘制这个字符串到屏幕上的方法</li>
+<li>不停让字符串增加长度的任务方法</li>
+<li>通过 ReadLine 交互将某个字符插入到这个字符串的方法</li>
+<li>每次有字符插入到字符串之后，进行消除相同字符的方法</li>
+<li>每次有字符插入到字符串之后，根据长度判断游戏是否结束的方法</li>
+</ul></li>
+<li>除了这个叫祖玛的字符串，类中还可以具备其他状态:
+<ul class="org-ul">
+<li>比如记录游戏开始的时间</li>
+<li>比如定义祖玛字符串所需要用到的所有字符</li>
+<li>比如用户名字、分数等个性化数据</li>
+</ul></li>
+</ul>
+
+<p>
+因此，我们需要的，至少是两个类:
+</p>
+<ul class="org-ul">
+<li>祖玛类型，封装了祖玛字符串和其行为</li>
+<li>游戏主循环，用来调用祖玛并将其行为有效展示出来</li>
+</ul>
 </div>
 </section>
 
@@ -219,8 +245,8 @@
 </div>
 </section>
 
-<section id="outline-container-orgd4f78ae" class="outline-2">
-<h2 id="orgd4f78ae"><span class="section-number-2">13.</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-04-12 Mon]</span></span></h2>
+<section id="outline-container-orgf84d29a" class="outline-2">
+<h2 id="orgf84d29a"><span class="section-number-2">13.</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-04-12 Mon]</span></span></h2>
 <div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>敲代码</li>
@@ -229,8 +255,8 @@
 </div>
 </section>
 
-<section id="outline-container-orgf84d29a" class="outline-2">
-<h2 id="orgf84d29a"><span class="section-number-2">14.</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-04-12 Mon]</span></span></h2>
+<section id="outline-container-org9fcec0e" class="outline-2">
+<h2 id="org9fcec0e"><span class="section-number-2">14.</span> <span class="timestamp-wrapper"><span class="timestamp">[2021-04-12 Mon]</span></span></h2>
 <div class="outline-text-2" id="text-14">
 <p>
 敲代码.
@@ -379,7 +405,7 @@
 </p>
 
 
-<figure id="org19ea366">
+<figure id="org2a605a2">
 <img src="img/tip-calc.png" alt="tip-calc.png" width="400">
 
 </figure>
@@ -490,7 +516,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 其次，电费计算 (题目描述由第 5 小组提供):
 </p>
-<pre class="example" id="orgd7652b1">
+<pre class="example" id="orgaa7d5bb">
 题目：写一个控制台小程序，能指定计算某月的用电费，
 如果输入的用电量和月份为空或者不是数字，提示用户出错
 
@@ -582,7 +608,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 计算阶梯电费:
 </p>
-<pre class="example" id="org272e5e1">
+<pre class="example" id="orge28adc6">
 以广东省为例按照每户每月电量分档划分为夏季标准和非夏季标准。其中：
 （1）夏季标准（5月－10月）：
 第一档电量为每户每月0－260度的用电量，其电价不作调整；
@@ -621,7 +647,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和实际税后收入。参考输出:
 </p>
 
-<figure id="org3976a4b">
+<figure id="org59640bc">
 <img src="img/tipcal-result-demo.png" alt="tipcal-result-demo.png" width="400">
 
 </figure></li>
@@ -680,7 +706,7 @@ CMD 下面输入 <code>程序.exe 税前收入</code>，将输出扣税情况和
 个人所得税税率表:
 </p>
 
-<figure id="org8d96671">
+<figure id="org8075ee6">
 <img src="img/geshui.png" alt="geshui.png" width="400">
 
 </figure></li>
