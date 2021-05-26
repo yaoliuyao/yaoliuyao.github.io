@@ -563,6 +563,8 @@ Q & A:
 
 *** [API] 基本操作
 
+API (Application Programming Interface) 应用程序编程接口。
+
 #+begin_src csharp
   string s1 = "aaa";
   string s2 = "您好aaa";
@@ -708,25 +710,6 @@ Q & A:
   // StringBuild vs String
   string s3 = new StringBuilder().Append("hello").ToString();
   StringBuilder sb = new StringBuilder(s1);
-#+end_src
-
-*** [API] 其他
-
-#+begin_src csharp
-  string s = "hello";
-  s.Xxx();
-#+end_src
-
-子字符串:
-#+begin_src csharp
-  // 获取/创建一个子字符串 (3-5)
-  string a = "longlonglonglonglong: string .. ";
-  
-  // 判断，某个字符串中是否包含某个字符串 a "world"
-  // 寻找相应的位置
-  // 判断出现的次数
-  // 替换 WORLD
-  // 分割 / 合并
 #+end_src
 
 ** object
