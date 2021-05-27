@@ -1,5 +1,95 @@
 #+TITLE: 一万行代码
 
+* 游戏祖玛
+** 游戏描述
+
+实现游戏祖玛!
+- 核心是一个 *字符串* 代码的所谓祖玛
+- 若干方法，都围绕这个字符串:
+- 初始化这个随机字符串的方法
+- 绘制这个字符串到屏幕上的方法
+- 不停让字符串增加长度的任务方法
+- 通过 ReadLine 交互将某个字符插入到这个字符串的方法
+- 每次有字符插入到字符串之后，进行消除相同字符的方法
+- 每次有字符插入到字符串之后，根据长度判断游戏是否结束的方法
+
+除了这个叫祖玛的字符串，类中还可以具备其他状态:
+- 比如定义祖玛字符串所需要用到的所有字符
+- 比如定义祖玛自增长的时间间隔
+- 比如记录游戏开始的时间
+- 比如用户名字、分数等个性化数据
+
+因此，我们需要的，至少是两个类:
+- 祖玛类型，封装了祖玛字符串和其行为
+- 游戏主循环，用来调用祖玛并将其行为有效展示出来
+
+** 预备知识
+*** 如何避免 ReadLine 阻塞
+
+不完美，但是足够简单的方法:
+#+begin_src csharp
+  while (true)
+  {
+      Console.WriteLine("...");
+      Thread.Sleep(500);
+      if (Console.KeyAvailable) // 用户有没有敲键盘
+      {
+          var a = Console.ReadLine(); // 等待用户输入点啥
+          Console.WriteLine("您的输入是: " + a);
+      }
+  }
+#+end_src
+
+使用多线程(多任务) 的方式进行实现:
+#+begin_src csharp
+  // System.Threading.Tasks;
+  
+  string a = null;
+  
+  Task.Run(() =>
+  {
+      while (true)
+      {
+          a = Console.ReadLine(); // 等待用户输入点啥
+          Console.WriteLine("您的输入是: " + a);
+      }
+  });
+  
+  Task.Run(() =>
+  {
+      Thread.Sleep(5000);
+      Console.WriteLine(",,,");
+  });
+  
+  // 主线程
+  while (true)
+  {
+      Console.WriteLine("...");
+      Thread.Sleep(500);
+  }
+  
+#+end_src
+
+*** Console 的定点输出
+
+#+begin_src csharp
+  Console.Clear();
+  
+  for (int i = 0; i < 15; i++)
+  {
+      Console.ForegroundColor = ConsoleColor.DarkGray;
+      Console.SetCursorPosition(0, i);
+      Console.Write("{0,3}", i + 1);
+      Console.ForegroundColor = ConsoleColor.Black;
+  }
+  
+  Console.SetCursorPosition(10, 5);
+  Console.WriteLine("hello, world");
+  
+  Console.SetCursorPosition(4, 10);
+  Console.Write("请输入您的留言: ");
+  Console.ReadLine();
+#+end_src
 
 * 导出为 Excel 的总结
 ** Repeat Yourself
