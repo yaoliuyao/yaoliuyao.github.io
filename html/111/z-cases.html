@@ -49,6 +49,7 @@
 <ul>
 <li><a href="#orgd753dd5">1.2.1. 如何避免 ReadLine 阻塞</a></li>
 <li><a href="#orgbd68366">1.2.2. Console 的定点输出</a></li>
+<li><a href="#org6743c93">1.2.3. 随机字符串的生成逻辑</a></li>
 </ul>
 </li>
 </ul>
@@ -252,6 +253,26 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 Console.<span style="color: #0000ff;">SetCursorPosition</span><span style="color: #707183;">(</span>4, 10<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">Write</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#35831;&#36755;&#20837;&#24744;&#30340;&#30041;&#35328;: "</span><span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">ReadLine</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6743c93" class="outline-4">
+<h4 id="org6743c93"><span class="section-number-4">1.2.3.</span> 随机字符串的生成逻辑</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">r</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Random</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">"oO0iL1lI"</span>;
+
+<span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 5; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    sb.<span style="color: #0000ff;">Append</span><span style="color: #7388d6;">(</span>a<span style="color: #909183;">[</span>r.<span style="color: #0000ff;">Next</span><span style="color: #709870;">(</span>a.Length - 1<span style="color: #709870;">)</span><span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>sb.<span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
@@ -1506,7 +1527,7 @@ Console.<span style="color: #0000ff;">ReadLine</span><span style="color: #707183
 </p>
 
 
-<figure id="orgaeef2f6">
+<figure id="org30c2dd6">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -1678,7 +1699,7 @@ Console.<span style="color: #0000ff;">ReadLine</span><span style="color: #707183
 <h3 id="org5a01fef"><span class="section-number-3">2.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-2-5">
 
-<figure id="org6ebc8ea">
+<figure id="org02fd855">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -3132,7 +3153,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org5f5b799"><span class="section-number-3">4.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-4-4">
 
-<figure id="org412cec1">
+<figure id="org0929c69">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -3407,7 +3428,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="orgc645fd5">
+<figure id="org7491a88">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -3523,7 +3544,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org0b54bb0">
+<figure id="orgbcd8683">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>

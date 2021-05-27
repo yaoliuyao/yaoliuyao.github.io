@@ -92,6 +92,22 @@
   Console.ReadLine();
 #+end_src
 
+*** 随机字符串的生成逻辑
+
+#+begin_src csharp
+  var r = new Random();
+  
+  string a = "oO0iL1lI";
+  
+  StringBuilder sb = new StringBuilder();
+  for (int i = 0; i < 5; i++)
+  {
+      sb.Append(a[r.Next(a.Length - 1)]);
+  }
+  
+  Console.WriteLine(sb.ToString());
+#+end_src
+
 * 导出为 Excel 的总结
 ** Repeat Yourself
 
