@@ -26,14 +26,14 @@
         (:dbhost . "localhost")
         (:database . "oa")))
 
-(add-hook-fun note-publish-post-hook (_)
+(defun-hook note-publish-post-hook (_)
   (let ((default-directory note-directory))
     (im/git-commit-and-push "best_try_and_best_chance")))
 
 (>>init>>
  (global-set-key [f5] 'im/note-publish)
 
- (add-hook-fun org-mode-hook/roam-it ()
+ (defun-hook org-mode-hook/roam-it ()
    ;;   (org-roam-mode 1)
    )
  )
@@ -49,7 +49,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org-noter-pdftools org-noter which-key ztree nnreddit nnhackernews omnisharp eglot embark-consult embark marginalia consult csproj-mode clojure-mode all-the-icons mpv udev-mode pyim rainbow-mode ssh-agency pdf-tools keypression youdao-dictionary yaml-mode xterm-color websocket web-mode web-beautify vterm vlf uuidgen use-package tide syntax-subword smart-mode-line session selectrum-prescient scala-mode sbt-mode sass-mode robe rg rcirc-styles rainbow-delimiters projectile powershell plantuml-mode page-break-lines ox-pandoc org-superstar org-roam-server org-present org-plus-contrib ob-restclient oauth memory-usage markdown-toc magit lua-mode lsp-ui lsp-java kotlin-mode key-chord json-mode jdecomp htmlize hindent hide-mode-line groovy-mode graphviz-dot-mode google-translate gnuplot git-timemachine folding fold-this expand-region erlang engine-mode emms emmet-mode elpy elfeed-org dired-dups delight dante ctrlf csharp-mode cquery company-web company-restclient company-posframe company-php company-org-roam company-math company-lsp company-go company-ghc company-auctex c-eldoc attrap amx alchemist)))
+   '(erc-hl-nicks org-noter-pdftools org-noter which-key ztree nnreddit nnhackernews omnisharp eglot embark-consult embark marginalia consult csproj-mode clojure-mode all-the-icons mpv udev-mode pyim rainbow-mode ssh-agency pdf-tools keypression youdao-dictionary yaml-mode xterm-color websocket web-mode web-beautify vterm vlf uuidgen use-package tide syntax-subword smart-mode-line session selectrum-prescient scala-mode sbt-mode sass-mode robe rg rcirc-styles rainbow-delimiters projectile powershell plantuml-mode page-break-lines ox-pandoc org-superstar org-roam-server org-present org-plus-contrib ob-restclient oauth memory-usage markdown-toc magit lua-mode lsp-ui lsp-java kotlin-mode key-chord json-mode jdecomp htmlize hindent hide-mode-line groovy-mode graphviz-dot-mode google-translate gnuplot git-timemachine folding fold-this expand-region erlang engine-mode emms emmet-mode elpy elfeed-org dired-dups delight dante ctrlf csharp-mode cquery company-web company-restclient company-posframe company-php company-org-roam company-math company-lsp company-go company-ghc company-auctex c-eldoc attrap amx alchemist)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

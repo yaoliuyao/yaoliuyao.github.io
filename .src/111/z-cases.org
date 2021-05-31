@@ -108,6 +108,34 @@
   Console.WriteLine(sb.ToString());
 #+end_src
 
+*** 消除字符串的基本逻辑
+
+#+begin_src csharp
+  public void xiaochu()
+  {
+      Console.Clear();
+      Console.WriteLine(x);
+      for (int i = 0; i < x.Length - 2; i++)
+      {
+          if (x[i] == x[i + 1] && x[i] == x[i + 2])
+          {
+              Console.ForegroundColor = ConsoleColor.Magenta;
+              Console.SetCursorPosition(i, 0);
+              Console.Write(x.ToString().Substring(i, 3));
+              Console.ResetColor();
+  
+              Thread.Sleep(800);
+              Console.SetCursorPosition(i, 0);
+              Console.Write("   ");
+              x.Remove(i, 3);
+  
+              Thread.Sleep(200);
+              xiaochu();
+          }
+      }
+  }
+#+end_src
+
 * 导出为 Excel 的总结
 ** Repeat Yourself
 
