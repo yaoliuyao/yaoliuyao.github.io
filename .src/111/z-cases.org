@@ -402,6 +402,48 @@ void PrintPigs();
   }
 #+end_src
 
+** 做一只有颜色的猪
+
+#+begin_src cs
+  void PrintPig(char c)
+  {
+      ConsoleColor color;
+      switch (c)
+      {
+          case 'A':
+              color = ConsoleColor.Red;
+              break;
+          case 'B':
+              color = ConsoleColor.Yellow;
+              break;
+          case 'C':
+              color = ConsoleColor.Green;
+              break;
+          case 'D':
+              color = ConsoleColor.Blue;
+              break;
+          default:
+              color = ConsoleColor.Black;
+              break;
+      }
+  
+      Console.ForegroundColor = color;
+      Console.Write('○');
+      Console.ResetColor();
+  }
+  
+  void PrintPigs()
+  {
+      Console.SetCursorPosition(1, 1);
+      for (int i = 0; i < Pigs.Length; i++)
+      {
+          PrintPig(Pigs[i]);
+      }
+      Console.Write("                                   ");
+      Console.WriteLine();
+  }
+#+end_src
+
 * 导出为 Excel 的总结
 ** Repeat Yourself
 
