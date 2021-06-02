@@ -329,7 +329,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="orgb52e422">
+<pre class="example" id="orge79d426">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -394,7 +394,7 @@ void PrintPigs();
     <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">State</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span> = 0; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#28216;&#25103;&#26159;&#21542;&#32467;&#26463;&#30340;&#26631;&#24535;</span>
 
     <span style="color: #a020f0;">private</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">pigSource</span> = <span style="color: #8b2252;">"ABCDE"</span>;
-    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">initLen</span> = 6;
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">initLen</span> = 3;
     <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">finalLen</span> = 20;
     <span style="color: #a020f0;">private</span> <span style="color: #228b22;">char</span> <span style="color: #a0522d;">currentPig</span> = <span style="color: #8b2252;">'0'</span>;
     <span style="color: #a020f0;">private</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">currentInput</span> = String.Empty;
@@ -428,6 +428,7 @@ void PrintPigs();
         <span style="color: #b22222;">// </span><span style="color: #b22222;">+ &#36827;&#34892;&#23383;&#31526;&#20018;&#30340;&#25340;&#25509;</span>
         <span style="color: #228b22;">char</span> <span style="color: #a0522d;">pig</span> = <span style="color: #0000ff;">GetOneRandomPig</span><span style="color: #909183;">()</span>;
         Pigs = pig + Pigs;
+
         <span style="color: #0000ff;">Check</span><span style="color: #909183;">()</span>;
     <span style="color: #7388d6;">}</span>
 
@@ -456,12 +457,21 @@ void PrintPigs();
                 <span style="color: #907373;">}</span>
             <span style="color: #709870;">}</span>
         <span style="color: #909183;">}</span>
+
+
+        <span style="color: #0000ff;">Check</span><span style="color: #909183;">()</span>;
     <span style="color: #7388d6;">}</span>
 
     <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintPigs</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         Console.<span style="color: #0000ff;">SetCursorPosition</span><span style="color: #909183;">(</span>1, 1<span style="color: #909183;">)</span>;
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">Pigs</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; Pigs.Length; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #228b22;">Pigs</span><span style="color: #907373;">[</span>i<span style="color: #907373;">]</span><span style="color: #709870;">)</span>;
+            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #8b2252;">' '</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"                                   "</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
     <span style="color: #7388d6;">}</span>
 
     <span style="color: #b22222;">// </span><span style="color: #b22222;">&#28216;&#25103;&#30340;&#20132;&#20114;&#36923;&#36753;</span>
@@ -471,6 +481,11 @@ void PrintPigs();
         <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.BackgroundColor = ConsoleColor.DarkBlue;</span>
         Console.<span style="color: #0000ff;">Clear</span><span style="color: #909183;">()</span>;
         Console.CursorVisible = <span style="color: #008b8b;">false</span>;
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 5; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">SetCursorPosition</span><span style="color: #709870;">(</span>i * 8, 0<span style="color: #709870;">)</span>;
+            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #8b2252;">" `"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
 
     <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Play</span><span style="color: #7388d6;">()</span>
@@ -483,7 +498,7 @@ void PrintPigs();
         <span style="color: #909183;">}</span>
         <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>Console.KeyAvailable<span style="color: #909183;">)</span>
         <span style="color: #909183;">{</span>
-            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">key</span> = Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #709870;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22581;&#22622;</span>
+            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">key</span> = Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #709870;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19981;&#22581;&#22622;</span>
             <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>key.Key == ConsoleKey.D0
                 || key.Key == ConsoleKey.D1
                 || key.Key == ConsoleKey.D2
@@ -502,14 +517,17 @@ void PrintPigs();
             <span style="color: #709870;">}</span>
             <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>key.Key == ConsoleKey.Enter<span style="color: #709870;">)</span>
             <span style="color: #709870;">{</span>
-                <span style="color: #0000ff;">FirePig</span><span style="color: #907373;">(</span><span style="color: #228b22;">currentPig</span>, <span style="color: #228b22;">int</span>.<span style="color: #0000ff;">Parse</span><span style="color: #6276ba;">(</span><span style="color: #228b22;">currentInput</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
-                <span style="color: #0000ff;">CleanPigs</span><span style="color: #907373;">()</span>;
-                <span style="color: #0000ff;">Check</span><span style="color: #907373;">()</span>;
-                currentPig = <span style="color: #8b2252;">'0'</span>;
-                currentInput = String.Empty;
+                <span style="color: #a020f0;">if</span> <span style="color: #907373;">(</span>!<span style="color: #228b22;">string</span>.<span style="color: #0000ff;">IsNullOrWhiteSpace</span><span style="color: #6276ba;">(</span><span style="color: #228b22;">currentInput</span><span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>
+                <span style="color: #907373;">{</span>
+                    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">index</span> = <span style="color: #228b22;">int</span>.<span style="color: #0000ff;">Parse</span><span style="color: #6276ba;">(</span><span style="color: #228b22;">currentInput</span><span style="color: #6276ba;">)</span>;
+                    <span style="color: #0000ff;">FirePig</span><span style="color: #6276ba;">(</span><span style="color: #228b22;">currentPig</span>, index - 1<span style="color: #6276ba;">)</span>;
+                    <span style="color: #0000ff;">CleanPigs</span><span style="color: #6276ba;">()</span>;
+                    currentPig = <span style="color: #8b2252;">'0'</span>;
+                    currentInput = String.Empty;
 
-                Console.<span style="color: #0000ff;">SetCursorPosition</span><span style="color: #907373;">(</span>35, 3<span style="color: #907373;">)</span>;
-                Console.<span style="color: #0000ff;">Write</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"     "</span><span style="color: #907373;">)</span>;
+                    Console.<span style="color: #0000ff;">SetCursorPosition</span><span style="color: #6276ba;">(</span>35, 3<span style="color: #6276ba;">)</span>;
+                    Console.<span style="color: #0000ff;">Write</span><span style="color: #6276ba;">(</span><span style="color: #8b2252;">"     "</span><span style="color: #6276ba;">)</span>;
+                <span style="color: #907373;">}</span>
             <span style="color: #709870;">}</span>
         <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
@@ -537,17 +555,20 @@ void PrintPigs();
         <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0;
         <span style="color: #a020f0;">while</span> <span style="color: #909183;">(</span>State == 0<span style="color: #909183;">)</span>
         <span style="color: #909183;">{</span>
-            i = i &gt; 20 ? 0 : i + 1; <span style="color: #b22222;">// </span><span style="color: #b22222;">flag</span>
+            i = i &gt; 100 ? 0 : i + 1; <span style="color: #b22222;">// </span><span style="color: #b22222;">flag</span>
 
-            <span style="color: #0000ff;">PrintPigs</span><span style="color: #709870;">()</span>;
             <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>i == 0<span style="color: #709870;">)</span>
             <span style="color: #709870;">{</span>
                 <span style="color: #0000ff;">JiaruPig</span><span style="color: #907373;">()</span>;
             <span style="color: #709870;">}</span>
 
             <span style="color: #0000ff;">Play</span><span style="color: #709870;">()</span>;
+
+            <span style="color: #0000ff;">PrintPigs</span><span style="color: #709870;">()</span>;
             Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #709870;">(</span>100<span style="color: #709870;">)</span>;
         <span style="color: #909183;">}</span>
+
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
 
         <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>State == 1<span style="color: #909183;">)</span>
         <span style="color: #909183;">{</span>
@@ -561,7 +582,6 @@ void PrintPigs();
         Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #909183;">()</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
-
 
 <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -1825,7 +1845,7 @@ void PrintPigs();
 </p>
 
 
-<figure id="org3295d30">
+<figure id="orgdd39523">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -1997,7 +2017,7 @@ void PrintPigs();
 <h3 id="orgaae223a"><span class="section-number-3">2.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-2-5">
 
-<figure id="org0623d7d">
+<figure id="orga3fbcf8">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -3451,7 +3471,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">4.4.</span> *分离* 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-4-4">
 
-<figure id="org201bbfe">
+<figure id="org47deff2">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -3726,7 +3746,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org7ec2a67">
+<figure id="orge0dcd45">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -3842,7 +3862,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="orga3454b3">
+<figure id="org6ca3508">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
