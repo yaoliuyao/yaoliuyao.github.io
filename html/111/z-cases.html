@@ -54,7 +54,8 @@
 </ul>
 </li>
 <li><a href="#org2db8e97">1.3. 分析</a></li>
-<li><a href="#org30ad555">1.4. Code Example</a></li>
+<li><a href="#orgdbb6416">1.4. 程序概览</a></li>
+<li><a href="#org30ad555">1.5. Code Example</a></li>
 </ul>
 </li>
 <li><a href="#org78b9f59">2. 导出为 Excel 的总结</a>
@@ -346,9 +347,49 @@ void PrintPigs();
 </div>
 
 
-<div id="outline-container-org30ad555" class="outline-3">
-<h3 id="org30ad555"><span class="section-number-3">1.4.</span> Code Example</h3>
+<div id="outline-container-orgdbb6416" class="outline-3">
+<h3 id="orgdbb6416"><span class="section-number-3">1.4.</span> 程序概览</h3>
 <div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#26680;&#24515;&#23646;&#24615;</span>
+<span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Pigs</span> <span style="color: #707183;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #707183;">}</span>
+<span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">State</span> <span style="color: #707183;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">set</span>; <span style="color: #707183;">}</span> = 0;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#31169;&#26377;&#29366;&#24577;</span>
+<span style="color: #a020f0;">private</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">pigSource</span> = <span style="color: #8b2252;">"ABCDE"</span>;
+<span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">initLen</span> = 6;
+<span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">finalLen</span> = 20;
+<span style="color: #a020f0;">private</span> <span style="color: #228b22;">char</span> <span style="color: #a0522d;">currentPig</span> = <span style="color: #8b2252;">'0'</span>;
+<span style="color: #a020f0;">private</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">currentInput</span> = String.Empty;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26680;&#24515;&#26041;&#27861;</span>
+<span style="color: #228b22;">char</span> <span style="color: #0000ff;">GetOneRandomPig</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">InitPigs</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">len</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">JiaruPig</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">FirePig</span><span style="color: #707183;">(</span><span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">position</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">CleanPigs</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintPigs</span><span style="color: #707183;">()</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20132;&#20114;&#36923;&#36753;</span>
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">InitConsole</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">Play</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">Check</span><span style="color: #707183;">()</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20132;&#20114;&#25509;&#21475;</span>
+<span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">InitGame</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">MainLoop</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org30ad555" class="outline-3">
+<h3 id="org30ad555"><span class="section-number-3">1.5.</span> Code Example</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+注意:  <span style="color: red; font-size: 1.5em">解题方法千万种，这里的代码仅作参考。要尊重你自己的思考</span> !
+</p>
+
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
 <span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">Text</span>;
@@ -1791,7 +1832,7 @@ void PrintPigs();
 </p>
 
 
-<figure id="orga222180">
+<figure id="org80748af">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -1963,7 +2004,7 @@ void PrintPigs();
 <h3 id="orgaae223a"><span class="section-number-3">2.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-2-5">
 
-<figure id="orga1553a3">
+<figure id="orge196bbf">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -3417,7 +3458,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">4.4.</span> *分离* 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-4-4">
 
-<figure id="orgb7d3ab4">
+<figure id="orgbce87d7">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -3692,7 +3733,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org73f9212">
+<figure id="org86b6b66">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -3808,7 +3849,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org71b84ef">
+<figure id="org6d10500">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>

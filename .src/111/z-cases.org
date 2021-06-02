@@ -155,7 +155,41 @@ void CleanPigs();
 void PrintPigs();
 
 
+** 程序概览
+
+#+begin_src cs
+  // 核心属性
+  public string Pigs { get; set; }
+  public int State { get; private set; } = 0;
+  
+  // 私有状态
+  private string pigSource = "ABCDE";
+  private int initLen = 6;
+  private int finalLen = 20;
+  private char currentPig = '0';
+  private string currentInput = String.Empty;
+  
+  // 核心方法
+  char GetOneRandomPig();
+  void InitPigs(int len);
+  void JiaruPig();
+  void FirePig(char c, int position);
+  void CleanPigs();
+  void PrintPigs();
+  
+  // 交互逻辑
+  void InitConsole();
+  void Play();
+  void Check();
+  
+  // 交互接口
+  public void InitGame();
+  public void MainLoop();
+#+end_src
+
 ** Code Example
+
+注意: @@html: <span style="color: red; font-size: 1.5em">解题方法千万种，这里的代码仅作参考。要尊重你自己的思考</span>@@ !
 
 #+begin_src cs
   using System;
