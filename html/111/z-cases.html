@@ -329,7 +329,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="orge79d426">
+<pre class="example" id="org704c2c8">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -478,13 +478,14 @@ void PrintPigs();
 
     <span style="color: #228b22;">void</span> <span style="color: #0000ff;">InitConsole</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
-        <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.BackgroundColor = ConsoleColor.DarkBlue;</span>
         Console.<span style="color: #0000ff;">Clear</span><span style="color: #909183;">()</span>;
         Console.CursorVisible = <span style="color: #008b8b;">false</span>;
         <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 5; i++<span style="color: #909183;">)</span>
         <span style="color: #909183;">{</span>
             Console.<span style="color: #0000ff;">SetCursorPosition</span><span style="color: #709870;">(</span>i * 8, 0<span style="color: #709870;">)</span>;
-            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #8b2252;">" `"</span><span style="color: #709870;">)</span>;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #8b2252;">" "</span> + <span style="color: #907373;">(</span>i + 1<span style="color: #907373;">)</span><span style="color: #709870;">)</span>;
+            Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #709870;">()</span>;
         <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
 
@@ -1845,7 +1846,7 @@ void PrintPigs();
 </p>
 
 
-<figure id="orgdd39523">
+<figure id="org53b9b5d">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -2017,7 +2018,7 @@ void PrintPigs();
 <h3 id="orgaae223a"><span class="section-number-3">2.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-2-5">
 
-<figure id="orga3fbcf8">
+<figure id="orgb543d2b">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -3471,7 +3472,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">4.4.</span> *分离* 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-4-4">
 
-<figure id="org47deff2">
+<figure id="org80f678d">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -3746,7 +3747,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="orge0dcd45">
+<figure id="org245a286">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -3862,7 +3863,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org6ca3508">
+<figure id="org5c6707d">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
