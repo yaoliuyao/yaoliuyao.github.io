@@ -402,8 +402,9 @@ void PrintPigs();
   }
 #+end_src
 
-** 做一只有颜色的猪
+** 其他
 
+做一只有颜色的猪
 #+begin_src cs
   void PrintPig(char c)
   {
@@ -442,6 +443,25 @@ void PrintPigs();
       Console.Write("                                   ");
       Console.WriteLine();
   }
+#+end_src
+
+Read/阻塞:
+#+begin_src csharp
+  Console.WriteLine("hello"); // 输出
+  if (Console.KeyAvailable)
+  {
+      //string s = Console.ReadLine(); // 用户输入
+      var c = Console.ReadKey();
+  }
+  Console.WriteLine("world"); // 输出
+#+end_src
+
+零宽度空格 (0x200b):
+#+begin_src cs
+  string a = "​​​​​​";
+  string b = "";
+  string c = string.Empty;
+  Console.WriteLine($"{a.Length}/{b.Length}/{c.Length}  {a == b}/{b == c}");
 #+end_src
 
 * 导出为 Excel 的总结
