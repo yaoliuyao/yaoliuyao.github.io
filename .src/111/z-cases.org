@@ -136,6 +136,218 @@
   }
 #+end_src
 
+** 分析
+
+显示一排小猪 (初始化若干个、会定时加入若干个小猪、随着用户交互小猪加入队伍)
+
+// 显示其他游戏相关信息 (时间、分数、消除多少个....)
+
+提醒用户: 当前你分配到的是一个什么样的随机小猪，您想让它到哪儿
+
+---------------------
+结构化:
+
+string pigs;
+void InitPigs(int len);
+void JiaruPig();
+void FirePig(char c, int position);
+void CleanPigs();
+void PrintPigs();
+
+
+** Code Example
+
+#+begin_src cs
+  using System;
+  using System.Text;
+  using System.Threading;
+  
+  class Zuma
+  {
+      public string Pigs { get; set; }            // 核心数据、核心状态
+      public int State { get; private set; } = 0; // 游戏是否结束的标志
+  
+      private string pigSource = "ABCDE";
+      private int initLen = 6;
+      private int finalLen = 20;
+      private char currentPig = '0';
+      private string currentInput = String.Empty;
+  
+      // 核心的方法
+  
+      char GetOneRandomPig()
+      {
+          // 字符串下标访问
+          Random random = new Random();
+          int xiabiao = random.Next(pigSource.Length);
+          char pig = pigSource[xiabiao];
+          return pig;
+      }
+  
+      void InitPigs(int len)
+      {
+          // 字符串的拼接
+          StringBuilder sb = new StringBuilder();
+          for (int i = 0; i < len; i++)
+          {
+              char pig = GetOneRandomPig();
+              sb.Append(pig);
+          }
+  
+          Pigs = sb.ToString();
+      }
+  
+      void JiaruPig()
+      {
+          // + 进行字符串的拼接
+          char pig = GetOneRandomPig();
+          Pigs = pig + Pigs;
+          Check();
+      }
+  
+      void FirePig(char c, int position)
+      {
+          // 字符串的 Insert。注意字符串的不可变性
+          if (position < Pigs.Length && position >= 0)
+          {
+              Pigs = Pigs.Insert(position, c.ToString());
+          }
+      }
+  
+      void CleanPigs()
+      {
+          // 子字符串的获取
+          // 生成多个相同字符的字符串
+          // API: Remove 使用
+          for (int i = 0; i < Pigs.Length - 2; i++)
+          {
+              for (int len = Pigs.Length - i; len >= 3; len--)
+              {
+                  if (Pigs.Substring(i, len) == "".PadLeft(len, Pigs[i]))
+                  {
+                      Pigs = Pigs.Remove(i, len);
+                      CleanPigs();
+                  }
+              }
+          }
+      }
+  
+      void PrintPigs()
+      {
+          Console.SetCursorPosition(1, 1);
+          Console.WriteLine(Pigs);
+      }
+  
+      // 游戏的交互逻辑
+  
+      void InitConsole()
+      {
+          // Console.BackgroundColor = ConsoleColor.DarkBlue;
+          Console.Clear();
+          Console.CursorVisible = false;
+      }
+  
+      void Play()
+      {
+          if (currentPig == '0')
+          {
+              currentPig = GetOneRandomPig();
+              Console.SetCursorPosition(1, 3);
+              Console.Write("当前小猪 {0} 请输入您要插入的位置: ", currentPig);
+          }
+          if (Console.KeyAvailable)
+          {
+              var key = Console.ReadKey(); // 堵塞
+              if (key.Key == ConsoleKey.D0
+                  || key.Key == ConsoleKey.D1
+                  || key.Key == ConsoleKey.D2
+                  || key.Key == ConsoleKey.D3
+                  || key.Key == ConsoleKey.D4
+                  || key.Key == ConsoleKey.D5
+                  || key.Key == ConsoleKey.D6
+                  || key.Key == ConsoleKey.D7
+                  || key.Key == ConsoleKey.D8
+                  || key.Key == ConsoleKey.D9
+              )
+              {
+                  currentInput += key.KeyChar;
+                  Console.SetCursorPosition(35, 3);
+                  Console.Write(currentInput);
+              }
+              else if (key.Key == ConsoleKey.Enter)
+              {
+                  FirePig(currentPig, int.Parse(currentInput));
+                  CleanPigs();
+                  Check();
+                  currentPig = '0';
+                  currentInput = String.Empty;
+  
+                  Console.SetCursorPosition(35, 3);
+                  Console.Write("     ");
+              }
+          }
+      }
+  
+      void Check()
+      {
+          if (Pigs.Length == 0)
+          {
+              State = 1;
+          } 
+          else if (Pigs.Length >= finalLen)
+          {
+              State = -1;
+          }
+      }
+  
+      public void InitGame()
+      {
+          InitConsole();
+          InitPigs(initLen);
+      }
+  
+      public void MainLoop()
+      {
+          int i = 0;
+          while (State == 0)
+          {
+              i = i > 20 ? 0 : i + 1; // flag
+  
+              PrintPigs();
+              if (i == 0)
+              {
+                  JiaruPig();
+              }
+  
+              Play();
+              Thread.Sleep(100);
+          }
+  
+          if (State == 1)
+          {
+              Console.WriteLine("成功了.");
+          }
+          else if (State == -1)
+          {
+              Console.WriteLine("勇士，请您不要放弃，再来一次");
+          }
+  
+          Console.ReadKey();
+      }
+  }
+  
+  
+  class Program
+  {
+      static void Main()
+      {
+          var zuma = new Zuma();
+          zuma.InitGame();
+          zuma.MainLoop();
+      }
+  }
+#+end_src
+
 * 导出为 Excel 的总结
 ** Repeat Yourself
 
