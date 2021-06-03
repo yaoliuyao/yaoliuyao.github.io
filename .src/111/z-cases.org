@@ -192,6 +192,7 @@ void PrintPigs();
 
 #+begin_src cs
   using System;
+  using System.Media;
   using System.Text;
   using System.Threading;
   
@@ -205,6 +206,7 @@ void PrintPigs();
       private int finalLen = 15;
       private char currentPig = '0';
       private string currentInput = String.Empty;
+      private SoundPlayer player = new SoundPlayer();
   
       // 核心的方法
   
@@ -246,6 +248,8 @@ void PrintPigs();
           {
               Pigs = Pigs.Insert(position, c.ToString());
           }
+  
+          Console.Beep(400, 333);
       }
   
       void CleanPigs()
@@ -303,8 +307,7 @@ void PrintPigs();
           {
               PrintPig(Pigs[i]);
           }
-          Console.Write("{0,50}", ' ');
-          Console.WriteLine();
+          Console.Write("{0,50}\n", ' '); // 使用空格覆盖掉原来有的多余字符
           Console.SetCursorPosition(1, 5);
       }
   
@@ -321,6 +324,27 @@ void PrintPigs();
               Console.Write(" " + (i + 1));
               Console.ResetColor();
           }
+      }
+  
+      void InitBGMusic()
+      {
+          player.SoundLocation = "e:/Audio/mysterygobrrrrr.wav";
+          player.PlayLooping();
+      }
+  
+      void ResetGame()
+      {
+          State = 0;
+          currentPig = '0';
+          currentInput = string.Empty;
+          player.Dispose();
+      }
+  
+      void PrintCurrentInput()
+      {
+          Console.SetCursorPosition(35, 3);
+          Console.Write(currentInput);
+          Console.Write("    ");
       }
   
       void Play()
@@ -349,23 +373,21 @@ void PrintPigs();
               )
               {
                   currentInput += key.KeyChar;
-                  Console.SetCursorPosition(35, 3);
-                  Console.Write(currentInput);
-                  Console.Write("    ");
+                  PrintCurrentInput();
               }
               else if (key.Key == ConsoleKey.Backspace)
               {
                   if (!string.IsNullOrEmpty(currentInput))
                   {
                       currentInput = currentInput.Substring(0, currentInput.Length - 1);
-                      Console.SetCursorPosition(35, 3);
-                      Console.Write(currentInput);
-                      Console.Write("    ");
+                      PrintCurrentInput();
                   }
               }
               else if (key.Key == ConsoleKey.Spacebar)
               {
+                  player.Stop();
                   Console.ReadKey();
+                  player.PlayLooping();
               }
               else if (key.Key == ConsoleKey.Enter)
               {
@@ -377,8 +399,7 @@ void PrintPigs();
                       currentPig = '0';
                       currentInput = String.Empty;
   
-                      Console.SetCursorPosition(35, 3);
-                      Console.Write("     ");
+                      PrintCurrentInput();
                   }
               }
           }
@@ -398,11 +419,10 @@ void PrintPigs();
   
       public void InitGame()
       {
+          ResetGame();
           InitConsole();
           InitPigs(initLen);
-          State = 0;
-          currentPig = '0';
-          currentInput = string.Empty;
+          InitBGMusic();
       }
   
       public void MainLoop()
@@ -422,6 +442,8 @@ void PrintPigs();
               PrintPigs();
               Thread.Sleep(100);
           }
+  
+          player.Stop();
   
           Console.SetCursorPosition(1, 3);
           Console.Write("{0,50}", ' ');
