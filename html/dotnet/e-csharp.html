@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-26 -->
+<!-- 2021-06-04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -68,7 +68,12 @@
 <li><a href="#org41134c7">4. 预定义/非数值·值类型</a>
 <ul>
 <li><a href="#org0128cb5">4.1. 字符类型 (char)</a></li>
-<li><a href="#org0563621">4.2. 布尔类型 (bool)</a></li>
+<li><a href="#org0563621">4.2. 布尔类型 (bool)</a>
+<ul>
+<li><a href="#orgf1cfa2b">4.2.1. 条件分支/在某种条件之下，做某件事</a></li>
+<li><a href="#orgee0c879">4.2.2. 循环迭代/重复做某件事</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#orgcd1bce4">5. 预定义/非数值·引用类型</a>
@@ -221,13 +226,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org9b5c3a3">
+<figure id="org46613fc">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org030bfc0">
+<figure id="org97ecbca">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -472,7 +477,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orge8b75d5">
+<figure id="org41fd246">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -657,7 +662,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org332af89">
+<figure id="org659288f">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -685,7 +690,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orge49c699">
+<figure id="orgc00e9d8">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -744,7 +749,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgf8493ce">
+<figure id="org2d7aece">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -766,6 +771,183 @@ Q &amp; A:
 
 <div id="outline-container-org0563621" class="outline-3">
 <h3 id="org0563621"><span class="section-number-3">4.2.</span> 布尔类型 (bool)</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">bool</span> <span style="color: #a0522d;">a</span> = <span style="color: #008b8b;">true</span>;
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">b</span> = <span style="color: #008b8b;">false</span>;
+
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">c</span> = 1 &gt; 2; <span style="color: #b22222;">// </span><span style="color: #b22222;">&gt; &lt; == &gt;= &lt;=</span>
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">d</span> = 1 == 2;
+
+a = !!!!!a; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21453;</span>
+a || b;     <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25110;</span>
+a &amp;&amp; b;     <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19982;</span>
+
+a = <span style="color: #008b8b;">true</span>; b = <span style="color: #008b8b;">false</span>; d = <span style="color: #008b8b;">true</span>; e = <span style="color: #008b8b;">false</span>;
+f = <span style="color: #008b8b;">true</span>; g = <span style="color: #008b8b;">true</span>; h = <span style="color: #008b8b;">false</span>;
+
+<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>a || b<span style="color: #7388d6;">)</span> &amp;&amp; <span style="color: #7388d6;">(</span>c &amp;&amp; d<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> || e &amp;&amp; <span style="color: #707183;">(</span>f || g<span style="color: #707183;">)</span> || h;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf1cfa2b" class="outline-4">
+<h4 id="orgf1cfa2b"><span class="section-number-4">4.2.1.</span> 条件分支/在某种条件之下，做某件事</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<ul class="org-ul">
+<li>if/else if/else</li>
+<li>switch</li>
+</ul>
+
+<p>
+if:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>aaa<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#28385;&#36275;&#21017;&#25191;&#34892;&#65292;&#21542;&#21017;&#36339;&#36807;"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24744;&#35828;&#25105;&#20160;&#20040;&#26465;&#20214;&#20250;&#34987;&#25191;&#34892;?"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">2</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">score</span> = 59; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20998;&#25968;</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>score &gt; 70<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"&#29616;&#22312;&#20320;&#30340;&#25104;&#32489;&#26159;: {score}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24744;&#30340;&#25104;&#32489;&#36824;&#21487;&#20197;&#21862;&#65292;&#35831;&#19979;&#19968;&#27425;&#26356;&#21152;&#20248;&#31168;&#21734;."</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">3</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">score</span> = 59;
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>score &gt; 70<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"&#29616;&#22312;&#20320;&#30340;&#25104;&#32489;&#26159;: {score}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>score &lt; 30<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24744;&#22826;&#26834;&#20102;&#65292;&#25226;&#24744;&#29240;&#29240;&#22920;&#22920;&#35831;&#36807;&#26469;&#19968;&#36215;&#20998;&#20139;&#36825;&#20221;&#33635;&#32768;&#21543;."</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">else</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>score &gt; 60<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#24744;&#30340;&#25104;&#32489;&#36824;&#21487;&#20197;&#21862;&#65292;&#35831;&#19979;&#19968;&#27425;&#26356;&#21152;&#20248;&#31168;&#21734;."</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#24744;&#30340;&#25104;&#32489;&#36824;&#21487;&#20197;&#21862;..."</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">4</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>score &gt; 70<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"&#29616;&#22312;&#20320;&#30340;&#25104;&#32489;&#26159;: {score}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>score &gt; 60<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24744;&#30340;&#25104;&#32489;&#36824;&#21487;&#20197;&#21862;&#65292;&#35831;&#19979;&#19968;&#27425;&#26356;&#21152;&#20248;&#31168;&#21734;."</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>score &gt; 30<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24744;&#30340;&#25104;&#32489;&#36824;&#21487;&#20197;&#21862;..."</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24744;&#22826;&#26834;&#20102;&#65292;&#25226;&#24744;&#29240;&#29240;&#22920;&#22920;&#35831;&#36807;&#26469;&#19968;&#36215;&#20998;&#20139;&#36825;&#20221;&#33635;&#32768;&#21543;."</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+switch (是 else if 语法的一种精简版):
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">switch</span> <span style="color: #707183;">(</span>c<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'A'</span>:
+        color = ConsoleColor.Red;
+    <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'B'</span>:
+        color = ConsoleColor.Yellow;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'C'</span>:
+        color = ConsoleColor.Green;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'D'</span>:
+        color = ConsoleColor.Blue;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">default</span>:
+        color = ConsoleColor.Black;
+        <span style="color: #a020f0;">break</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+switch statement (语句) 和 expression (表达式):
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#35821;&#21477;&#65292;&#27599;&#20010;&#20998;&#25903;&#21435;&#20570;&#28857;&#21861;&#20107;</span>
+<span style="color: #228b22;">ConsoleColor</span> <span style="color: #a0522d;">color</span>;
+<span style="color: #a020f0;">switch</span> <span style="color: #707183;">(</span>c<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'A'</span>:
+        color = ConsoleColor.Red;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'B'</span>:
+        color = ConsoleColor.Yellow;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'C'</span>:
+        color = ConsoleColor.Green;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'D'</span>:
+        color = ConsoleColor.Blue;
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #a020f0;">default</span>:
+        color = ConsoleColor.Black;
+        <span style="color: #a020f0;">break</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#34920;&#36798;&#24335;&#65292;&#36820;&#22238;&#20540;</span>
+<span style="color: #228b22;">ConsoleColor</span> <span style="color: #a0522d;">c1</span> = c <span style="color: #a020f0;">switch</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #8b2252;">'A'</span> =&gt; ConsoleColor.Red,
+    <span style="color: #8b2252;">'B'</span> =&gt; ConsoleColor.Yellow,
+    <span style="color: #8b2252;">'C'</span> =&gt; ConsoleColor.Green,
+    <span style="color: #8b2252;">'D'</span> =&gt; ConsoleColor.Blue,
+    _   =&gt; ConsoleColor.Black
+<span style="color: #707183;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgee0c879" class="outline-4">
+<h4 id="orgee0c879"><span class="section-number-4">4.2.2.</span> 循环迭代/重复做某件事</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<ul class="org-ul">
+<li>for</li>
+<li>while</li>
+<li>do while</li>
+<li>foreach</li>
+</ul>
+
+<p>
+使用不同的方式，实现从 1 加到 10000 的和:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs">
+</pre>
+</div>
+</div>
+</div>
 </div>
 </section>
 
@@ -826,7 +1008,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgcc2f1da">
+<figure id="org35ea4da">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -864,7 +1046,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org3e3404f">
+<figure id="org4eccff6">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -982,7 +1164,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <span style="color: #228b22;">decimal</span> <span style="color: #a0522d;">sal</span> = 200.12345M;
 
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">r1</span> = name + <span style="color: #8b2252;">"&#30340;&#26379;&#21451;&#26159;"</span>
-                 + friend + <span style="color: #8b2252;">"&#65292;&#23427;&#34429;                                       &#28982;&#21482;&#26377;"</span>
+                 + friend + <span style="color: #8b2252;">"&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;"</span>
                  + age + <span style="color: #8b2252;">"&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#33021;&#21040;&#36798;&#21040;"</span>
                  + sal + <span style="color: #8b2252;">"&#20992;"</span>;
 
@@ -2311,7 +2493,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-26</p>
+<p class="date">Created: 2021-06-04</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

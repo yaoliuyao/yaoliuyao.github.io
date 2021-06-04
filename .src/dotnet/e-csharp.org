@@ -434,6 +434,159 @@ Q & A:
 
 ** 布尔类型 (bool)
 
+#+begin_src cs
+  bool a = true;
+  bool b = false;
+  
+  bool c = 1 > 2; // > < == >= <=
+  bool d = 1 == 2;
+  
+  a = !!!!!a; // 反
+  a || b;     // 或
+  a && b;     // 与
+  
+  a = true; b = false; d = true; e = false;
+  f = true; g = true; h = false;
+  
+  ((a || b) && (c && d)) || e && (f || g) || h;
+#+end_src
+
+*** 条件分支/在某种条件之下，做某件事
+
+- if/else if/else
+- switch
+
+if:
+#+begin_src cs  
+  // 1
+  if (aaa)
+  {
+      Console.WriteLine("满足则执行，否则跳过");
+  }
+  Console.WriteLine("您说我什么条件会被执行?");
+  
+  // 2
+  int score = 59; // 分数
+  if (score > 70)
+  {
+      Console.WriteLine($"现在你的成绩是: {score}");
+  }
+  else
+  {
+      Console.WriteLine("您的成绩还可以啦，请下一次更加优秀哦.");
+  }
+  
+  // 3
+  int score = 59;
+  if (score > 70)
+  {
+      Console.WriteLine($"现在你的成绩是: {score}");
+  }
+  else
+  {
+      if (score < 30)
+      {
+          Console.WriteLine("您太棒了，把您爸爸妈妈请过来一起分享这份荣耀吧.");
+      }
+      else
+      {
+          if (score > 60)
+          {
+              Console.WriteLine("您的成绩还可以啦，请下一次更加优秀哦.");
+          }
+          else
+          {
+              Console.WriteLine("您的成绩还可以啦...");
+          }
+      }
+  }
+  
+  // 4
+  if (score > 70)
+  {
+      Console.WriteLine($"现在你的成绩是: {score}");
+  }
+  else if (score > 60)
+  {
+      Console.WriteLine("您的成绩还可以啦，请下一次更加优秀哦.");
+  }
+  else if (score > 30)
+  {
+      Console.WriteLine("您的成绩还可以啦...");
+  }
+  else
+  {
+      Console.WriteLine("您太棒了，把您爸爸妈妈请过来一起分享这份荣耀吧.");
+  }
+#+end_src
+
+switch (是 else if 语法的一种精简版):
+#+begin_src cs
+  switch (c)
+  {
+      case 'A':
+          color = ConsoleColor.Red;
+      case 'B':
+          color = ConsoleColor.Yellow;
+          break;
+      case 'C':
+          color = ConsoleColor.Green;
+          break;
+      case 'D':
+          color = ConsoleColor.Blue;
+          break;
+      default:
+          color = ConsoleColor.Black;
+          break;
+  }
+#+end_src
+
+switch statement (语句) 和 expression (表达式):
+#+begin_src cs
+  // 语句，每个分支去做点啥事
+  ConsoleColor color;
+  switch (c)
+  {
+      case 'A':
+          color = ConsoleColor.Red;
+          break;
+      case 'B':
+          color = ConsoleColor.Yellow;
+          break;
+      case 'C':
+          color = ConsoleColor.Green;
+          break;
+      case 'D':
+          color = ConsoleColor.Blue;
+          break;
+      default:
+          color = ConsoleColor.Black;
+          break; 
+  }
+  
+  // 表达式，返回值
+  ConsoleColor c1 = c switch
+  {
+      'A' => ConsoleColor.Red,
+      'B' => ConsoleColor.Yellow,
+      'C' => ConsoleColor.Green,
+      'D' => ConsoleColor.Blue,
+      _   => ConsoleColor.Black
+  };
+#+end_src
+
+*** 循环迭代/重复做某件事
+
+- for
+- while
+- do while
+- foreach
+
+使用不同的方式，实现从 1 加到 10000 的和:
+#+begin_src cs
+
+#+end_src
+
 * 预定义/非数值·引用类型
 ** string
 

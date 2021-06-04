@@ -269,33 +269,19 @@ void PrintPigs();
               }
           }
   
-  
           Check();
       }
   
       void PrintPig(char c)
       {
-          ConsoleColor color;
-          switch (c)
+          Console.ForegroundColor = c switch
           {
-              case 'A':
-                  color = ConsoleColor.Red;
-                  break;
-              case 'B':
-                  color = ConsoleColor.Yellow;
-                  break;
-              case 'C':
-                  color = ConsoleColor.Green;
-                  break;
-              case 'D':
-                  color = ConsoleColor.Blue;
-                  break;
-              default:
-                  color = ConsoleColor.Black;
-                  break;
-          }
-  
-          Console.ForegroundColor = color;
+              'A' => ConsoleColor.Red,
+              'B' => ConsoleColor.Yellow,
+              'C' => ConsoleColor.Green,
+              'D' => ConsoleColor.Blue,
+              _ => ConsoleColor.Black
+          };
           Console.Write('○');
           Console.ResetColor();
       }

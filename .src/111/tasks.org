@@ -2,10 +2,17 @@
 
 
 
+
+* [2021-06-04 Fri]
+  :PROPERTIES:
+  :CUSTOM_ID: active
+  :END:
+
+  - 复习字符串的使用，以及祖玛游戏
+  - bool 类型 / if / switch / 循环 的使用
+
+
 * [2021-05-26 Wed]
-:PROPERTIES:
-:CUSTOM_ID: active
-:END:
 
 实现游戏祖玛!
 - 核心是一个 *字符串* 代码的所谓祖玛
