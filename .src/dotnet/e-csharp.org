@@ -451,7 +451,7 @@ Q & A:
   ((a || b) && (c && d)) || e && (f || g) || h;
 #+end_src
 
-*** 条件分支/在某种条件之下，做某件事
+*** [条件分支] 在某种条件之下，做某件事
 
 - if/else if/else
 - switch
@@ -575,7 +575,7 @@ switch statement (语句) 和 expression (表达式):
   };
 #+end_src
 
-*** 循环迭代/重复做某件事
+*** [循环迭代] 重复做某件事
 
 - for
 - while
@@ -585,6 +585,37 @@ switch statement (语句) 和 expression (表达式):
 使用不同的方式，实现从 1 加到 10000 的和:
 #+begin_src cs
 
+#+end_src
+
+*** 语句 (Statement) vs 表达式 (Expression)
+
+提问: @@html: <span style="color: red">表达式和语句有社么区别?</span>@@
+
+语句 (Statement):
+#+begin_src csharp
+  int r = new Random().Next(0, 100);
+  
+  int i;
+  if (r > 50)
+      i = 111;
+  else
+      i = 222;
+  
+  Console.WriteLine(i);
+#+end_src
+
+表达式 (Expression):
+#+begin_src csharp
+  int r = new Random().Next(0, 100);
+  
+  int i = (
+      if (r > 50)
+          111;
+      else
+          222;
+  );
+  
+  Console.WriteLine(i); // if 不能作为表达式使用
 #+end_src
 
 * 预定义/非数值·引用类型

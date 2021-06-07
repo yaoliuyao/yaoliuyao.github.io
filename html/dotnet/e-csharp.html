@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-04 -->
+<!-- 2021-06-07 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -70,8 +70,9 @@
 <li><a href="#org0128cb5">4.1. 字符类型 (char)</a></li>
 <li><a href="#org0563621">4.2. 布尔类型 (bool)</a>
 <ul>
-<li><a href="#orgf1cfa2b">4.2.1. 条件分支/在某种条件之下，做某件事</a></li>
-<li><a href="#orgee0c879">4.2.2. 循环迭代/重复做某件事</a></li>
+<li><a href="#org2553d56">4.2.1. [条件分支] 在某种条件之下，做某件事</a></li>
+<li><a href="#org5f55cf7">4.2.2. [循环迭代] 重复做某件事</a></li>
+<li><a href="#org4e236df">4.2.3. 语句 (Statement) vs 表达式 (Expression)</a></li>
 </ul>
 </li>
 </ul>
@@ -226,13 +227,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org46613fc">
+<figure id="org3d53513">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org97ecbca">
+<figure id="org3553d48">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -477,7 +478,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org41fd246">
+<figure id="org8d2cc75">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -662,7 +663,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org659288f">
+<figure id="org9ec4183">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -690,7 +691,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgc00e9d8">
+<figure id="org53fe9d8">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -749,7 +750,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org2d7aece">
+<figure id="org81a2909">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -791,8 +792,8 @@ f = <span style="color: #008b8b;">true</span>; g = <span style="color: #008b8b;"
 </div>
 </div>
 
-<div id="outline-container-orgf1cfa2b" class="outline-4">
-<h4 id="orgf1cfa2b"><span class="section-number-4">4.2.1.</span> 条件分支/在某种条件之下，做某件事</h4>
+<div id="outline-container-org2553d56" class="outline-4">
+<h4 id="org2553d56"><span class="section-number-4">4.2.1.</span> [条件分支] 在某种条件之下，做某件事</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>if/else if/else</li>
@@ -929,8 +930,8 @@ switch statement (语句) 和 expression (表达式):
 </div>
 </div>
 
-<div id="outline-container-orgee0c879" class="outline-4">
-<h4 id="orgee0c879"><span class="section-number-4">4.2.2.</span> 循环迭代/重复做某件事</h4>
+<div id="outline-container-org5f55cf7" class="outline-4">
+<h4 id="org5f55cf7"><span class="section-number-4">4.2.2.</span> [循环迭代] 重复做某件事</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li>for</li>
@@ -944,6 +945,48 @@ switch statement (语句) 和 expression (表达式):
 </p>
 <div class="org-src-container">
 <pre class="src src-cs">
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4e236df" class="outline-4">
+<h4 id="org4e236df"><span class="section-number-4">4.2.3.</span> 语句 (Statement) vs 表达式 (Expression)</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<p>
+提问:  <span style="color: red">表达式和语句有社么区别?</span>
+</p>
+
+<p>
+语句 (Statement):
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Random</span><span style="color: #707183;">()</span>.<span style="color: #0000ff;">Next</span><span style="color: #707183;">(</span>0, 100<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>r &gt; 50<span style="color: #707183;">)</span>
+    i = 111;
+<span style="color: #a020f0;">else</span>
+    i = 222;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>i<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+表达式 (Expression):
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Random</span><span style="color: #707183;">()</span>.<span style="color: #0000ff;">Next</span><span style="color: #707183;">(</span>0, 100<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = <span style="color: #707183;">(</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>r &gt; 50<span style="color: #7388d6;">)</span>
+        111;
+    <span style="color: #a020f0;">else</span>
+        222;
+<span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>i<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">if &#19981;&#33021;&#20316;&#20026;&#34920;&#36798;&#24335;&#20351;&#29992;</span>
 </pre>
 </div>
 </div>
@@ -1008,7 +1051,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org35ea4da">
+<figure id="orgff7970f">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1046,7 +1089,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org4eccff6">
+<figure id="org0ef6472">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2493,7 +2536,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-04</p>
+<p class="date">Created: 2021-06-07</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
