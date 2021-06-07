@@ -1,4 +1,4 @@
-#+HTML: <h4>助教: <style color="red">占忠义、冯瑞芮、王剑秋</style></h4>
+#+HTML: <h4>助教: <span style="color: red">占忠义、冯瑞芮、王剑秋</span></h4>
 
 1. 王锐
    - 黄罗心
