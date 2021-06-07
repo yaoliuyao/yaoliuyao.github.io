@@ -18,8 +18,8 @@
 #+HTML_HEAD:   #main {display: grid; grid-gap: 20px; grid-template-columns: 2fr auto;}
 #+HTML_HEAD:   #toc { min-width: 60%; padding-right: 100px; }
 #+HTML_HEAD:   #main aside { font-size: 1em; }
-#+HTML_HEAD:   #main aside > div > ol { display: flex; flex-flow: row wrap; width: 368px; box-shadow: 0 0 10px #eee; padding: 20px 0 20px 20px; margin-top: -4em; }
-#+HTML_HEAD:   #main aside > div > ol > li { margin-bottom: 1em; width: 150px; }
+#+HTML_HEAD:   #main aside > ol { display: flex; flex-flow: row wrap; width: 368px; box-shadow: 0 0 10px #eee; padding: 20px 0 20px 20px; margin-top: -4em; }
+#+HTML_HEAD:   #main aside > ol > li { margin-bottom: 1em; width: 150px; }
 #+HTML_HEAD: }
 #+HTML_HEAD: </style>
 
@@ -48,10 +48,7 @@
 #+HTML: </section>
 
 #+HTML: <aside>
-#+HTML: <h4>助教: <span style="color: red">占忠义、冯瑞芮、王剑秋</span></h4>
-#+HTML: <div>
 #+INCLUDE: "111/.group.org"
-#+HTML: </div>
 #+HTML: </aside>
 
 #+HTML: </div>

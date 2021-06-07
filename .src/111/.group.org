@@ -4,7 +4,7 @@
    - 陈宇明
    - 闭杨杨
 
-2. 占忠义
+2. @@html: <span style="color: red; font-weight: bold">占忠义</span>@@
    - 黄宪亮
    - 胡荣
    - 郑亮
@@ -16,11 +16,11 @@
    - 李竞先
    - 陈柏炜
 
-4. 王剑秋
+4. @@html: <span style="color: red; font-weight: bold">王剑秋</span>@@
    - 刘狄经
    - 钟益佳
    - 韦档
-   - 冯瑞芮
+   - @@html: <span style="color: red; font-weight: bold">冯瑞芮</span>@@
 
 5. 赖华强
    - 李祚鹏
