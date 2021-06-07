@@ -48,8 +48,6 @@
 #+HTML: </section>
 
 #+HTML: <aside>
-#+HTML: <h4>助教: <style color="red">占忠义、冯瑞芮、王剑秋</style></h4>
-
 #+INCLUDE: "111/.group.org"
 #+HTML: </aside>
 
