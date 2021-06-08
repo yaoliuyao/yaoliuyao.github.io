@@ -657,7 +657,7 @@ switch statement (语句) 和 expression (表达式):
       return result;
   }
   
-  static string XiaoxieAndDaxieWithFor(string str)
+  static string DaxieTiDaoQianMianWithFor(string str)
   {
       StringBuilder xiaoxie = new StringBuilder();
       StringBuilder daxie = new StringBuilder();
