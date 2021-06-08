@@ -584,10 +584,63 @@ switch statement (语句) 和 expression (表达式):
 
 使用不同的方式，实现从 1 加到 10000 的和:
 #+begin_src cs
-
+  // 命名不规范
+  // - 方法名，需要遵循 Pascal 语法 !!!
+  // - 变量的命名，要让代码具备自解释性 (望文生义)
+  // - 变量的名字/参数的变量，需要是驼峰写法
+  // 从 1 到 10000 <不等于> 从 0 到 10000。循环的过程一定要注意边界条件
+  // 合理设计方法 (返回值)
+  // 充分考虑到可变性，将一些值抽取为参数
+  
+  static void Main(string[] args)
+  {
+      int i = 10000;
+      Console.WriteLine(SumWithFor(i) / 2);
+      Console.WriteLine(SumWithWhile(i));
+      Console.WriteLine(SumWithDoWhile(i));
+  }
+  
+  static int SumWithFor(int top)
+  {
+      int sum = 0;
+      for (int i = 1; i <= top; i++)
+      {
+          sum += i;
+      }
+      return sum;
+  }
+  
+  static int SumWithWhile(int top)
+  {
+      int sum = 0;
+  
+      int i = 1;
+      while (i <= top)
+      {
+          sum += i;
+          i++;
+      }
+  
+      return sum;
+  }
+  
+  static int SumWithDoWhile(int top)
+  {
+      int sum = 0;
+  
+      int i = 1;
+      do
+      {
+          sum += i;
+          i++;
+      } while (i <= top);
+  
+      return sum;
+  }
 #+end_src
 
 *** 语句 (Statement) vs 表达式 (Expression)
+
 
 提问: @@html: <span style="color: red">表达式和语句有社么区别?</span>@@
 

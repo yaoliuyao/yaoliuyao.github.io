@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-07 -->
+<!-- 2021-06-08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -227,13 +227,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org5da046a">
+<figure id="orgeed87a4">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org497a7ef">
+<figure id="orgbc842fd">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -478,7 +478,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org66fad6c">
+<figure id="org8766b14">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -663,7 +663,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org1922a92">
+<figure id="orgd4ae4c8">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -691,7 +691,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org94a383c">
+<figure id="org81abc12">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -750,7 +750,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgd840d51">
+<figure id="orgb0a706f">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -944,7 +944,59 @@ switch statement (语句) 和 expression (表达式):
 使用不同的方式，实现从 1 加到 10000 的和:
 </p>
 <div class="org-src-container">
-<pre class="src src-cs">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#21629;&#21517;&#19981;&#35268;&#33539;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">- &#26041;&#27861;&#21517;&#65292;&#38656;&#35201;&#36981;&#24490; Pascal &#35821;&#27861; !!!</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">- &#21464;&#37327;&#30340;&#21629;&#21517;&#65292;&#35201;&#35753;&#20195;&#30721;&#20855;&#22791;&#33258;&#35299;&#37322;&#24615; (&#26395;&#25991;&#29983;&#20041;)</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">- &#21464;&#37327;&#30340;&#21517;&#23383;/&#21442;&#25968;&#30340;&#21464;&#37327;&#65292;&#38656;&#35201;&#26159;&#39548;&#23792;&#20889;&#27861;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20174; 1 &#21040; 10000 &lt;&#19981;&#31561;&#20110;&gt; &#20174; 0 &#21040; 10000&#12290;&#24490;&#29615;&#30340;&#36807;&#31243;&#19968;&#23450;&#35201;&#27880;&#24847;&#36793;&#30028;&#26465;&#20214;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21512;&#29702;&#35774;&#35745;&#26041;&#27861; (&#36820;&#22238;&#20540;)</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20805;&#20998;&#32771;&#34385;&#21040;&#21487;&#21464;&#24615;&#65292;&#23558;&#19968;&#20123;&#20540;&#25277;&#21462;&#20026;&#21442;&#25968;</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 10000;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #0000ff;">SumWithFor</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span> / 2<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #0000ff;">SumWithWhile</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #0000ff;">SumWithDoWhile</span><span style="color: #909183;">(</span>i<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">SumWithFor</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">top</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span> = 0;
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 1; i &lt;= top; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        sum += i;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">return</span> sum;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">SumWithWhile</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">top</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span> = 0;
+
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 1;
+    <span style="color: #a020f0;">while</span> <span style="color: #7388d6;">(</span>i &lt;= top<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        sum += i;
+        i++;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">return</span> sum;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">SumWithDoWhile</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">top</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span> = 0;
+
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 1;
+    <span style="color: #a020f0;">do</span>
+    <span style="color: #7388d6;">{</span>
+        sum += i;
+        i++;
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">while</span> <span style="color: #7388d6;">(</span>i &lt;= top<span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">return</span> sum;
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -1051,7 +1103,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org0173d31">
+<figure id="orgf339668">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1089,7 +1141,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgef97d7e">
+<figure id="org1dea0c9">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2536,7 +2588,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-07</p>
+<p class="date">Created: 2021-06-08</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
