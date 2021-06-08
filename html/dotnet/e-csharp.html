@@ -227,13 +227,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org327f2b4">
+<figure id="org002f50d">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org0010190">
+<figure id="org34727e2">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -478,7 +478,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgbf33dd4">
+<figure id="org1f7bd05">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -663,7 +663,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org243a8fc">
+<figure id="org0be64e6">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -691,7 +691,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org93769d8">
+<figure id="org2b11ffe">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -750,7 +750,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgf5f0355">
+<figure id="org5e4007e">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1008,6 +1008,36 @@ switch statement (语句) 和 expression (表达式):
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#23383;&#31526;&#20018;&#36827;&#34892;&#21453;&#36716;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#25152;&#26377;&#30340;&#22823;&#20889;&#23383;&#27597;&#37117;&#25552;&#21040;&#21069;&#38754;</span>
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">"hekjsdkfSldAfjKksjsjkKFfjHkl"</span>;
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Fanzhuan</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">str</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">result</span> = <span style="color: #8b2252;">""</span>;
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = str.Length-1; i&gt;=0 ; i--<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        result += str<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">return</span> result;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">XiaoxieAndDaxieWithFor</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">str</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">xiaoxie</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">daxie</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; str.Length; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>str<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span> &gt;= <span style="color: #8b2252;">'a'</span> &amp;&amp; str<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span> &lt;= <span style="color: #8b2252;">'z'</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            xiaoxie.<span style="color: #0000ff;">Append</span><span style="color: #709870;">(</span>str<span style="color: #907373;">[</span>i<span style="color: #907373;">]</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span>
+        <span style="color: #909183;">{</span>
+            daxie.<span style="color: #0000ff;">Append</span><span style="color: #709870;">(</span>str<span style="color: #907373;">[</span>i<span style="color: #907373;">]</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+    daxie.<span style="color: #0000ff;">Append</span><span style="color: #7388d6;">(</span>xiaoxie<span style="color: #7388d6;">)</span>;
+    <span style="color: #a020f0;">return</span> daxie.<span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
 </pre>
 </div>
 </div>
@@ -1114,7 +1144,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgd81de4c">
+<figure id="org5e5de68">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1152,7 +1182,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org2888718">
+<figure id="orgdb31c53">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>

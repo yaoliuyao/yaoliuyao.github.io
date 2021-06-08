@@ -645,6 +645,36 @@ switch statement (语句) 和 expression (表达式):
   // 将字符串进行反转
   // 将所有的大写字母都提到前面
   string a = "hekjsdkfSldAfjKksjsjkKFfjHkl";
+  
+  static string Fanzhuan(string str)
+  {
+      string result = "";
+      for (int i = str.Length-1; i>=0 ; i--)
+      {
+          result += str[i];
+      }
+  
+      return result;
+  }
+  
+  static string XiaoxieAndDaxieWithFor(string str)
+  {
+      StringBuilder xiaoxie = new StringBuilder();
+      StringBuilder daxie = new StringBuilder();
+      for (int i = 0; i < str.Length; i++)
+      {
+          if (str[i] >= 'a' && str[i] <= 'z')
+          {
+              xiaoxie.Append(str[i]);
+          }
+          else
+          {
+              daxie.Append(str[i]);
+          }
+      }
+      daxie.Append(xiaoxie);
+      return daxie.ToString();
+  } 
 #+end_src
 
 *** 语句 (Statement) vs 表达式 (Expression)
