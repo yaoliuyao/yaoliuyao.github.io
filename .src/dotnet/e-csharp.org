@@ -583,7 +583,7 @@ switch statement (语句) 和 expression (表达式):
 - foreach
 
 使用不同的方式，实现从 1 加到 10000 的和:
-#+begin_src cs
+#+begin_src csx
   // 命名不规范
   // - 方法名，需要遵循 Pascal 语法 !!!
   // - 变量的命名，要让代码具备自解释性 (望文生义)
@@ -638,6 +638,7 @@ switch statement (语句) 和 expression (表达式):
       return sum;
   }
 #+end_src
+
 
 通过循环的方式，处理下面字符串:
 #+begin_src cs
