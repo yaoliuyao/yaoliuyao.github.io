@@ -643,7 +643,6 @@ switch statement (语句) 和 expression (表达式):
 #+begin_src cs
   // 将字符串进行反转
   // 将所有的大写字母都提到前面
-  // 将其按照字母顺序进行排序
   string a = "hekjsdkfSldAfjKksjsjkKFfjHkl";
 #+end_src
 
