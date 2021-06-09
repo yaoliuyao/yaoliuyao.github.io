@@ -1,6 +1,44 @@
 #+TITLE: 一万行代码
 
 
+
+* 加密、解密 (rot13)
+** 分析解题步骤
+
+- 需要完成一个方法:
+  : string Rot13(string str);
+- 如何为某个字符，找到对应位置 (rot13) 的字符:
+  : char CharAfter13 (char c);
+- 准备知识: 类型的转换 (char / byte)  
+
+#+begin_src cs
+  class Program
+  {
+      static void Main()
+      {
+          string s = "hello, world, How are You. How Do You do.";
+          Console.WriteLine(Rot13(s));
+          Console.WriteLine(Rot13(Rot13(s)));
+      }
+      static string Rot13 (string str)
+      {
+          foreach (char c in str)
+          {
+              char cto = CharAfter13(c);
+          }
+          return str;
+      }
+      static char CharAfter13 (char c)
+      {
+          char a = 'A';
+          byte a1 = (byte) a;
+          char a2 = (char) (a1 + 13);
+          return a2;
+      }
+  }
+#+end_src
+
+
 * 游戏祖玛
 ** 游戏描述
 

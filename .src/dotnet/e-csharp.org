@@ -989,6 +989,24 @@ API (Application Programming Interface) 应用程序编程接口。
 
 ** object
 ** dynamic
+* 类型转换
+** 隐式转换/强制转换
+
+#+begin_src cs
+  char a = 'A';
+  byte ab = (byte)a;
+  
+  int s1 = ab + 13; // byte + int
+  ab = (byte) (((int) ab) + 13); // int + int = int
+  ab = (byte) (ab + 13);
+  
+  /////
+  char a = 'A';
+  byte a1 = (byte) a;
+  char a2 = (char) (a1 + 13);
+  Console.WriteLine($"{a} -> {a1} -> {a2}");
+#+end_src
+
 * [自定义类型]
 ** class
 
