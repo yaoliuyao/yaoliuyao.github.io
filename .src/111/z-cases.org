@@ -29,44 +29,44 @@
 
 ** 实现
 
-#+begin_src csx :results pp :exports both
-  // Console.WriteLine(RotChar('a')); // 'n'
-  // Console.WriteLine(RotChar('n')); // 'a'
-  // Console.WriteLine(RotChar('A')); // 'N'
-  // Console.WriteLine(RotChar('N')); // 'A'
-  string s = "hello, world, How are You. How Do You do.";
-  Console.WriteLine(Rot13(s));
-  Console.WriteLine(Rot13(Rot13(s)));
+#+begin_src csx :results pp
+   // Console.WriteLine(RotChar('a')); // 'n'
+   // Console.WriteLine(RotChar('n')); // 'a'
+   // Console.WriteLine(RotChar('A')); // 'N'
+   // Console.WriteLine(RotChar('N')); // 'A'
+   string s = "hello, world, How are You. How Do You do.";
+   Console.WriteLine(Rot13(s));
+   Console.WriteLine(Rot13(Rot13(s)));
   
-  static string Rot13 (string str)
-  {
-      StringBuilder sb = new StringBuilder();
-      foreach (char c in str)
-      {
-          sb.Append(RotChar(c));
-      }
-      return sb.ToString();
-  }
-  static char RotChar (char c)
-  {
-      // 如果是 a-z A-Z 之外的，那么原样返回
-      // 如果 a-z +13 之后的字符
-      // 如果 A-Z +13 之后的字符
-      byte code = (byte) c;
-      if (c >= 'a' && c <= 'z')
-      {
-          return (char)(code + 13 > 122 ? code - 13 : code + 13);
-      }
-      if (c >= 'A' && c <= 'Z')
-      {
-          return (char)(code + 13 > 90 ? code - 13 : code + 13);
-      }
-      return c;
-  }
+   static string Rot13 (string str)
+   {
+       StringBuilder sb = new StringBuilder();
+       foreach (char c in str)
+       {
+           sb.Append(RotChar(c));
+       }
+       return sb.ToString();
+   }
+   static char RotChar (char c)
+   {
+       // 如果是 a-z A-Z 之外的，那么原样返回
+       // 如果 a-z +13 之后的字符
+       // 如果 A-Z +13 之后的字符
+       byte code = (byte) c;
+       if (c >= 'a' && c <= 'z')
+       {
+           return (char)(code + 13 > 122 ? code - 13 : code + 13);
+       }
+       if (c >= 'A' && c <= 'Z')
+       {
+           return (char)(code + 13 > 90 ? code - 13 : code + 13);
+       }
+       return c;
+   }
 #+end_src
 
 #+RESULTS:
-: hello, world, How are You. How Do You do.
+: uryyb, jbeyq, Ubj ner Lbh. Ubj Qb Lbh qb.
 : hello, world, How are You. How Do You do.
 
 * 游戏祖玛
