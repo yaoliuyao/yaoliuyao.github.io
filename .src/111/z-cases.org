@@ -65,7 +65,6 @@
    }
 #+end_src
 
-#+RESULTS:
 : uryyb, jbeyq, Ubj ner Lbh. Ubj Qb Lbh qb.
 : hello, world, How are You. How Do You do.
 
