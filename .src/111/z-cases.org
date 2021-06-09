@@ -1,9 +1,8 @@
 #+TITLE: 一万行代码
 
 
-
 * 加密、解密 (rot13)
-** 分析解题步骤
+** 分析
 
 - 需要完成一个方法:
   : string Rot13(string str);
@@ -11,21 +10,33 @@
   : char CharAfter13 (char c);
 - 准备知识: 类型的转换 (char / byte)  
 
-#+begin_src cs
-  class Program
+#+begin_src csx
+  string s = "hello, world, How are You. How Do You do.";
+  Console.WriteLine(Rot13(s));
+  Console.WriteLine(Rot13(Rot13(s)));
+  
+  static string Rot13 (string str)
   {
-      static void Main()
-      {
-          string s = "hello, world, How are You. How Do You do.";
-          Console.WriteLine(Rot13(s));
-          Console.WriteLine(Rot13(Rot13(s)));
-      }
-      static string Rot13 (string str)
-      {
-      }
+      return str;
   }
 #+end_src
 
+** 实现
+
+#+begin_src csx :results pp :exports both
+  string s = "hello, world, How are You. How Do You do.";
+  Console.WriteLine(Rot13(s));
+  Console.WriteLine(Rot13(Rot13(s)));
+  
+  static string Rot13 (string str)
+  {
+      return str;
+  }
+#+end_src
+
+#+RESULTS:
+: hello, world, How are You. How Do You do.
+: hello, world, How are You. How Do You do.
 
 * 游戏祖玛
 ** 游戏描述
