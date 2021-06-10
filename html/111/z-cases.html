@@ -44,7 +44,7 @@
 <ul>
 <li><a href="#org1e9b233">1. 加密、解密 (rot13)</a>
 <ul>
-<li><a href="#orgbae522c">1.1. 分析</a></li>
+<li><a href="#org703abac">1.1. 分析</a></li>
 <li><a href="#org34536b0">1.2. 实现</a></li>
 <li><a href="#org629fa82">1.3. 落地</a></li>
 <li><a href="#org32b4e34">1.4. 导出并使用</a></li>
@@ -61,11 +61,11 @@
 <li><a href="#org934289b">2.2.4. 消除字符串的基本逻辑</a></li>
 </ul>
 </li>
-<li><a href="#org703abac">2.3. 分析</a></li>
+<li><a href="#orga2234f0">2.3. 分析</a></li>
 <li><a href="#orgdbb6416">2.4. 程序概览</a></li>
 <li><a href="#org30ad555">2.5. Code Example</a></li>
 <li><a href="#orga44c44c">2.6. 其他</a></li>
-<li><a href="#org2f28e0d">2.7. 小结</a></li>
+<li><a href="#org8c94782">2.7. 小结</a></li>
 </ul>
 </li>
 <li><a href="#org78b9f59">3. 导出为 Excel 的总结</a>
@@ -132,7 +132,7 @@
 </li>
 <li><a href="#org5e90d90">5.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
 <li><a href="#org954e3a9">5.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
-<li><a href="#org8c94782">5.14. 小结</a></li>
+<li><a href="#orgf018c42">5.14. 小结</a></li>
 </ul>
 </li>
 <li><a href="#orgf43b2bd">6. 小费计算器</a>
@@ -152,8 +152,8 @@
 <h2 id="org1e9b233"><span class="section-number-2">1.</span> 加密、解密 (rot13)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgbae522c" class="outline-3">
-<h3 id="orgbae522c"><span class="section-number-3">1.1.</span> 分析</h3>
+<div id="outline-container-org703abac" class="outline-3">
+<h3 id="org703abac"><span class="section-number-3">1.1.</span> 分析</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 解析问题，大事化小:
@@ -199,38 +199,79 @@ fgngvp <span style="color: #228b22;">pune</span> <span style="color: #0000ff;">E
 <h3 id="org34536b0"><span class="section-number-3">1.2.</span> 实现</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-csx" id="org66996e2"><span style="color: #b22222;">// </span><span style="color: #b22222;">Pbafbyr.JevgrYvar(EbgPune('n')); // 'a'</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">Pbafbyr.JevgrYvar(EbgPune('a')); // 'n'</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">Pbafbyr.JevgrYvar(EbgPune('N')); // 'A'</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">Pbafbyr.JevgrYvar(EbgPune('A')); // 'N'</span>
-<span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">f</span> = <span style="color: #8b2252;">"uryyb, jbeyq, Ubj ner Lbh. Ubj Qb Lbh qb."</span>;
-Pbafbyr.<span style="color: #0000ff;">JevgrYvar</span><span style="color: #707183;">(</span><span style="color: #0000ff;">Ebg13</span><span style="color: #7388d6;">(</span>f<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
-Pbafbyr.<span style="color: #0000ff;">JevgrYvar</span><span style="color: #707183;">(</span><span style="color: #0000ff;">Ebg13</span><span style="color: #7388d6;">(</span><span style="color: #0000ff;">Ebg13</span><span style="color: #909183;">(</span>f<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+<pre class="src src-csx" id="org66996e2"><span style="color: #228b22;">pynff</span> <span style="color: #a0522d;">Cebtenz</span>
+<span style="color: #707183;">{</span>
+    fgngvp <span style="color: #228b22;">ibvq</span> <span style="color: #0000ff;">Znva</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">fgevat</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">netf</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        vs <span style="color: #909183;">(</span>netf.Yratgu == 0<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20132;&#20114;&#36755;&#20837;&#36755;&#20986;</span>
+            juvyr <span style="color: #709870;">(</span>gehr<span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                Pbafbyr.<span style="color: #0000ff;">Jevgr</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#35831;&#36755;&#20837;&#35201;&#21152;&#23494;(&#35299;&#23494;)&#30340;&#20869;&#23481;: "</span><span style="color: #907373;">)</span>;
+                <span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">vachg</span> = Pbafbyr.<span style="color: #0000ff;">ErnqYvar</span><span style="color: #907373;">()</span>;
+                <span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">erfhyg</span> = <span style="color: #0000ff;">EbgFgevat</span><span style="color: #907373;">(</span>vachg<span style="color: #907373;">)</span>;
+                Pbafbyr.<span style="color: #0000ff;">JevgrYvar</span><span style="color: #907373;">(</span>$<span style="color: #8b2252;">"&#21152;&#23494;&#30340;&#32467;&#26524;: {erfhyg}\a"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+        <span style="color: #228b22;">ryfr</span> <span style="color: #0000ff;">vs</span> <span style="color: #909183;">(</span>netf.Yratgu == 1 &amp;&amp; netf<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span>.<span style="color: #0000ff;">Fhofgevat</span><span style="color: #709870;">(</span><span style="color: #228b22;">netf</span><span style="color: #907373;">[</span>0<span style="color: #907373;">]</span>.<span style="color: #0000ff;">YnfgVaqrkBs</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"."</span><span style="color: #907373;">)</span> + 1<span style="color: #709870;">)</span> == <span style="color: #8b2252;">"gkg"</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21152;&#23494;&#25991;&#20214;</span>
+            <span style="color: #0000ff;">EbgSvyr</span><span style="color: #709870;">(</span>netf<span style="color: #907373;">[</span>0<span style="color: #907373;">]</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        ryfr
+        <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#21442;&#25968;&#20316;&#20026;&#25991;&#26412;&#22788;&#29702;</span>
+            <span style="color: #228b22;">FgevatOhvyqre</span> <span style="color: #a0522d;">fo</span> = arj <span style="color: #0000ff;">FgevatOhvyqre</span><span style="color: #709870;">()</span>;
+            sbernpu <span style="color: #709870;">(</span>ine f <span style="color: #228b22;">va</span> <span style="color: #a0522d;">netf</span><span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                fo.<span style="color: #0000ff;">Nccraq</span><span style="color: #907373;">(</span>f<span style="color: #907373;">)</span>.<span style="color: #0000ff;">Nccraq</span><span style="color: #907373;">(</span><span style="color: #8b2252;">" "</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
 
-fgngvp <span style="color: #228b22;">fgevat</span> <span style="color: #0000ff;">Ebg13</span> <span style="color: #707183;">(</span><span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">fge</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #228b22;">FgevatOhvyqre</span> <span style="color: #a0522d;">fo</span> = arj <span style="color: #0000ff;">FgevatOhvyqre</span><span style="color: #7388d6;">()</span>;
-    sbernpu <span style="color: #7388d6;">(</span>pune p <span style="color: #228b22;">va</span> <span style="color: #a0522d;">fge</span><span style="color: #7388d6;">)</span>
-    <span style="color: #7388d6;">{</span>
-        fo.<span style="color: #0000ff;">Nccraq</span><span style="color: #909183;">(</span><span style="color: #0000ff;">EbgPune</span><span style="color: #709870;">(</span>p<span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+            <span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">e</span> = <span style="color: #0000ff;">EbgFgevat</span><span style="color: #709870;">(</span>fo.<span style="color: #0000ff;">GbFgevat</span><span style="color: #907373;">()</span><span style="color: #709870;">)</span>;
+            Pbafbyr.<span style="color: #0000ff;">JevgrYvar</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"&#32763;&#35793;&#30340;&#32467;&#26524;&#26159;: {e}"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
-    <span style="color: #228b22;">erghea</span> fo.<span style="color: #0000ff;">GbFgevat</span><span style="color: #7388d6;">()</span>;
-<span style="color: #707183;">}</span>
-fgngvp <span style="color: #228b22;">pune</span> <span style="color: #0000ff;">EbgPune</span> <span style="color: #707183;">(</span><span style="color: #228b22;">pune</span> <span style="color: #a0522d;">p</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#26159; n-m N-M &#20043;&#22806;&#30340;&#65292;&#37027;&#20040;&#21407;&#26679;&#36820;&#22238;</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524; n-m +13 &#20043;&#21518;&#30340;&#23383;&#31526;</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524; N-M +13 &#20043;&#21518;&#30340;&#23383;&#31526;</span>
-    <span style="color: #228b22;">olgr</span> <span style="color: #a0522d;">pbqr</span> = <span style="color: #7388d6;">(</span><span style="color: #228b22;">olgr</span><span style="color: #7388d6;">)</span> p;
-    vs <span style="color: #7388d6;">(</span>p &gt;= <span style="color: #8b2252;">'n'</span> &amp;&amp; p &lt;= <span style="color: #8b2252;">'m'</span><span style="color: #7388d6;">)</span>
+
+    fgngvp <span style="color: #228b22;">pune</span> <span style="color: #0000ff;">EbgPune</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">pune</span> <span style="color: #a0522d;">p</span><span style="color: #7388d6;">)</span>
     <span style="color: #7388d6;">{</span>
-        erghea <span style="color: #909183;">(</span>pune<span style="color: #909183;">)(</span>pbqr + 13 &gt; 122 ? pbqr - 13 : pbqr + 13<span style="color: #909183;">)</span>;
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#26159; n-m N-M &#20043;&#22806;&#30340;&#65292;&#37027;&#20040;&#21407;&#26679;&#36820;&#22238;</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524; n-m +13 &#20043;&#21518;&#30340;&#23383;&#31526;</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524; N-M +13 &#20043;&#21518;&#30340;&#23383;&#31526;</span>
+        <span style="color: #228b22;">olgr</span> <span style="color: #a0522d;">pbqr</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">olgr</span><span style="color: #909183;">)</span>p;
+        vs <span style="color: #909183;">(</span>p &gt;= <span style="color: #8b2252;">'n'</span> &amp;&amp; p &lt;= <span style="color: #8b2252;">'m'</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            erghea <span style="color: #709870;">(</span>pune<span style="color: #709870;">)(</span>pbqr + 13 &gt; 122 ? pbqr - 13 : pbqr + 13<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+
+        vs <span style="color: #909183;">(</span>p &gt;= <span style="color: #8b2252;">'N'</span> &amp;&amp; p &lt;= <span style="color: #8b2252;">'M'</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            erghea <span style="color: #709870;">(</span>pune<span style="color: #709870;">)(</span>pbqr + 13 &gt; 90 ? pbqr - 13 : pbqr + 13<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+
+        <span style="color: #228b22;">erghea</span> <span style="color: #a0522d;">p</span>;
     <span style="color: #7388d6;">}</span>
-    vs <span style="color: #7388d6;">(</span>p &gt;= <span style="color: #8b2252;">'N'</span> &amp;&amp; p &lt;= <span style="color: #8b2252;">'M'</span><span style="color: #7388d6;">)</span>
+
+    fgngvp <span style="color: #228b22;">fgevat</span> <span style="color: #0000ff;">EbgFgevat</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">fge</span><span style="color: #7388d6;">)</span>
     <span style="color: #7388d6;">{</span>
-        erghea <span style="color: #909183;">(</span>pune<span style="color: #909183;">)(</span>pbqr + 13 &gt; 90 ? pbqr - 13 : pbqr + 13<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">FgevatOhvyqre</span> <span style="color: #a0522d;">fo</span> = arj <span style="color: #0000ff;">FgevatOhvyqre</span><span style="color: #909183;">()</span>;
+        sbernpu <span style="color: #909183;">(</span><span style="color: #228b22;">pune</span> p <span style="color: #228b22;">va</span> <span style="color: #a0522d;">fge</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            fo.<span style="color: #0000ff;">Nccraq</span><span style="color: #709870;">(</span><span style="color: #0000ff;">EbgPune</span><span style="color: #907373;">(</span>p<span style="color: #907373;">)</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #228b22;">erghea</span> fo.<span style="color: #0000ff;">GbFgevat</span><span style="color: #909183;">()</span>;
     <span style="color: #7388d6;">}</span>
-    <span style="color: #228b22;">erghea</span> <span style="color: #a0522d;">p</span>;
+
+    fgngvp <span style="color: #228b22;">ibvq</span> <span style="color: #0000ff;">EbgSvyr</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">cngu</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">pbagrag</span> = Svyr.<span style="color: #0000ff;">ErnqNyyGrkg</span><span style="color: #909183;">(</span>cngu<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">erfhyg</span> = <span style="color: #0000ff;">EbgFgevat</span><span style="color: #909183;">(</span>pbagrag<span style="color: #909183;">)</span>;
+        Svyr.<span style="color: #0000ff;">JevgrNyyGrkg</span><span style="color: #909183;">(</span>cngu, erfhyg<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    fgngvp <span style="color: #228b22;">ibvq</span> <span style="color: #0000ff;">EbgQverpgbel</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">fgevat</span> <span style="color: #a0522d;">qve</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+    <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
 </div>
@@ -503,8 +544,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org703abac" class="outline-3">
-<h3 id="org703abac"><span class="section-number-3">2.3.</span> 分析</h3>
+<div id="outline-container-orga2234f0" class="outline-3">
+<h3 id="orga2234f0"><span class="section-number-3">2.3.</span> 分析</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>显示一排小猪 (初始化若干个、会定时加入若干个小猪、随着用户交互小猪加入队伍)</li>
@@ -517,7 +558,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="org1c887d0">
+<pre class="example" id="org21921ee">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -922,8 +963,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org2f28e0d" class="outline-3">
-<h3 id="org2f28e0d"><span class="section-number-3">2.7.</span> 小结</h3>
+<div id="outline-container-org8c94782" class="outline-3">
+<h3 id="org8c94782"><span class="section-number-3">2.7.</span> 小结</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 通过这个游戏，达到的目的:
@@ -2202,7 +2243,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </p>
 
 
-<figure id="org5174059">
+<figure id="org127f8e6">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -2374,7 +2415,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <h3 id="orgaae223a"><span class="section-number-3">3.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-3-5">
 
-<figure id="org47d7378">
+<figure id="orgabb27e1">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -3828,7 +3869,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">5.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-5-4">
 
-<figure id="org2873915">
+<figure id="org897eef6">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -4103,7 +4144,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org1f9e657">
+<figure id="orgd420c67">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -4219,7 +4260,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org1b7b280">
+<figure id="org1eac86b">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -5125,8 +5166,8 @@ C# 操纵 Excel 的方法:
 
 
 
-<div id="outline-container-org8c94782" class="outline-3">
-<h3 id="org8c94782"><span class="section-number-3">5.14.</span> 小结</h3>
+<div id="outline-container-orgf018c42" class="outline-3">
+<h3 id="orgf018c42"><span class="section-number-3">5.14.</span> 小结</h3>
 </div>
 </section>
 

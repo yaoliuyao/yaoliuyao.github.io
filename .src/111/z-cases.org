@@ -32,38 +32,79 @@
 
 #+NAME: aaa
 #+begin_src csx :results pp
-  // Pbafbyr.JevgrYvar(EbgPune('n')); // 'a'
-  // Pbafbyr.JevgrYvar(EbgPune('a')); // 'n'
-  // Pbafbyr.JevgrYvar(EbgPune('N')); // 'A'
-  // Pbafbyr.JevgrYvar(EbgPune('A')); // 'N'
-  fgevat f = "uryyb, jbeyq, Ubj ner Lbh. Ubj Qb Lbh qb.";
-  Pbafbyr.JevgrYvar(Ebg13(f));
-  Pbafbyr.JevgrYvar(Ebg13(Ebg13(f)));
+  pynff Cebtenz
+  {
+      fgngvp ibvq Znva(fgevat[] netf)
+      {
+          vs (netf.Yratgu == 0)
+          {
+              // 交互输入输出
+              juvyr (gehr)
+              {
+                  Pbafbyr.Jevgr("请输入要加密(解密)的内容: ");
+                  fgevat vachg = Pbafbyr.ErnqYvar();
+                  fgevat erfhyg = EbgFgevat(vachg);
+                  Pbafbyr.JevgrYvar($"加密的结果: {erfhyg}\a");
+              }
+          }
+          ryfr vs (netf.Yratgu == 1 && netf[0].Fhofgevat(netf[0].YnfgVaqrkBs(".") + 1) == "gkg")
+          {
+              // 加密文件
+              EbgSvyr(netf[0]);
+          }
+          ryfr
+          {
+              // 将参数作为文本处理
+              FgevatOhvyqre fo = arj FgevatOhvyqre();
+              sbernpu (ine f va netf)
+              {
+                  fo.Nccraq(f).Nccraq(" ");
+              }
   
-  fgngvp fgevat Ebg13 (fgevat fge)
-  {
-      FgevatOhvyqre fo = arj FgevatOhvyqre();
-      sbernpu (pune p va fge)
-      {
-          fo.Nccraq(EbgPune(p));
+              fgevat e = EbgFgevat(fo.GbFgevat());
+              Pbafbyr.JevgrYvar($"翻译的结果是: {e}");
+          }
       }
-      erghea fo.GbFgevat();
-  }
-  fgngvp pune EbgPune (pune p)
-  {
-      // 如果是 n-m N-M 之外的，那么原样返回
-      // 如果 n-m +13 之后的字符
-      // 如果 N-M +13 之后的字符
-      olgr pbqr = (olgr) p;
-      vs (p >= 'n' && p <= 'm')
+  
+      fgngvp pune EbgPune(pune p)
       {
-          erghea (pune)(pbqr + 13 > 122 ? pbqr - 13 : pbqr + 13);
+          // 如果是 n-m N-M 之外的，那么原样返回
+          // 如果 n-m +13 之后的字符
+          // 如果 N-M +13 之后的字符
+          olgr pbqr = (olgr)p;
+          vs (p >= 'n' && p <= 'm')
+          {
+              erghea (pune)(pbqr + 13 > 122 ? pbqr - 13 : pbqr + 13);
+          }
+  
+          vs (p >= 'N' && p <= 'M')
+          {
+              erghea (pune)(pbqr + 13 > 90 ? pbqr - 13 : pbqr + 13);
+          }
+  
+          erghea p;
       }
-      vs (p >= 'N' && p <= 'M')
+      
+      fgngvp fgevat EbgFgevat(fgevat fge)
       {
-          erghea (pune)(pbqr + 13 > 90 ? pbqr - 13 : pbqr + 13);
+          FgevatOhvyqre fo = arj FgevatOhvyqre();
+          sbernpu (pune p va fge)
+          {
+              fo.Nccraq(EbgPune(p));
+          }
+          erghea fo.GbFgevat();
       }
-      erghea p;
+  
+      fgngvp ibvq EbgSvyr(fgevat cngu)
+      {
+          fgevat pbagrag = Svyr.ErnqNyyGrkg(cngu);
+          fgevat erfhyg = EbgFgevat(pbagrag);
+          Svyr.JevgrNyyGrkg(cngu, erfhyg);
+      }
+  
+      fgngvp ibvq EbgQverpgbel(fgevat qve)
+      {
+      }
   }
 #+end_src
 
