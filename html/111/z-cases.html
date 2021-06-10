@@ -44,7 +44,7 @@
 <ul>
 <li><a href="#org1e9b233">1. 加密、解密 (rot13)</a>
 <ul>
-<li><a href="#orga714198">1.1. 分析</a></li>
+<li><a href="#org985f7e9">1.1. 分析</a></li>
 <li><a href="#org34536b0">1.2. 实现</a></li>
 <li><a href="#org629fa82">1.3. 落地</a></li>
 <li><a href="#org32b4e34">1.4. 导出并使用</a></li>
@@ -61,11 +61,11 @@
 <li><a href="#org934289b">2.2.4. 消除字符串的基本逻辑</a></li>
 </ul>
 </li>
-<li><a href="#org985f7e9">2.3. 分析</a></li>
+<li><a href="#orgbae522c">2.3. 分析</a></li>
 <li><a href="#orgdbb6416">2.4. 程序概览</a></li>
 <li><a href="#org30ad555">2.5. Code Example</a></li>
 <li><a href="#orga44c44c">2.6. 其他</a></li>
-<li><a href="#orgfbbfb34">2.7. 小结</a></li>
+<li><a href="#org619e5ed">2.7. 小结</a></li>
 </ul>
 </li>
 <li><a href="#org78b9f59">3. 导出为 Excel 的总结</a>
@@ -132,7 +132,7 @@
 </li>
 <li><a href="#org5e90d90">5.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
 <li><a href="#org954e3a9">5.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
-<li><a href="#org619e5ed">5.14. 小结</a></li>
+<li><a href="#org2f28e0d">5.14. 小结</a></li>
 </ul>
 </li>
 <li><a href="#orgf43b2bd">6. 小费计算器</a>
@@ -152,8 +152,8 @@
 <h2 id="org1e9b233"><span class="section-number-2">1.</span> 加密、解密 (rot13)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga714198" class="outline-3">
-<h3 id="orga714198"><span class="section-number-3">1.1.</span> 分析</h3>
+<div id="outline-container-org985f7e9" class="outline-3">
+<h3 id="org985f7e9"><span class="section-number-3">1.1.</span> 分析</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 解析问题，大事化小:
@@ -301,16 +301,22 @@ E:\rot13.exe 参数
 为了方便使用:
 </p>
 <ol class="org-ol">
-<li>将 rot13.exe 的文件夹，添加到 Path 环境变量中</li>
+<li><p>
+将 rot13.exe 的文件夹，添加到 Path 环境变量中
+</p>
+<pre class="example">
+cmd
+$ rot13
+</pre></li>
 <li><p>
 可以将加密的命令添加到注册表，从而方便使用。比如，将下面语句保存为 .reg 格式，然后双击导入:
 </p>
 <div class="org-src-container">
 <pre class="src src-conf">Windows Registry Editor Version 5.00
 
-[<span style="color: #228b22;">HKEY_CLASSES_ROOT\*\shell\EncWithRot13</span>]
+[<span style="color: #228b22;">HKEY_LOCAL_MACHINE\SOFTWARE\Classes\txtfile\shell\ROT13</span>]
 
-[<span style="color: #228b22;">HKEY_CLASSES_ROOT\*\shell\EncWithRot13\command</span>]
+[<span style="color: #228b22;">HKEY_LOCAL_MACHINE\SOFTWARE\Classes\txtfile\shell\ROT13\command</span>]
 <span style="color: #a0522d;">@</span>=<span style="color: #8b2252;">"\"E:\\wodechengxu\\rot13.exe\" \"%1\""</span>
 </pre>
 </div></li>
@@ -497,8 +503,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org985f7e9" class="outline-3">
-<h3 id="org985f7e9"><span class="section-number-3">2.3.</span> 分析</h3>
+<div id="outline-container-orgbae522c" class="outline-3">
+<h3 id="orgbae522c"><span class="section-number-3">2.3.</span> 分析</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>显示一排小猪 (初始化若干个、会定时加入若干个小猪、随着用户交互小猪加入队伍)</li>
@@ -511,7 +517,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="org8e942cc">
+<pre class="example" id="orga3c87eb">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -916,8 +922,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgfbbfb34" class="outline-3">
-<h3 id="orgfbbfb34"><span class="section-number-3">2.7.</span> 小结</h3>
+<div id="outline-container-org619e5ed" class="outline-3">
+<h3 id="org619e5ed"><span class="section-number-3">2.7.</span> 小结</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 通过这个游戏，达到的目的:
@@ -2196,7 +2202,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </p>
 
 
-<figure id="org14f70ea">
+<figure id="org17623c5">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -2368,7 +2374,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <h3 id="orgaae223a"><span class="section-number-3">3.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-3-5">
 
-<figure id="orgf2759d1">
+<figure id="org8e6809f">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -3822,7 +3828,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">5.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-5-4">
 
-<figure id="org05abe86">
+<figure id="orgbbe1c33">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -4097,7 +4103,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org24f51ad">
+<figure id="org4067900">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -4213,7 +4219,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org5b0b919">
+<figure id="orgf134c8c">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -5119,8 +5125,8 @@ C# 操纵 Excel 的方法:
 
 
 
-<div id="outline-container-org619e5ed" class="outline-3">
-<h3 id="org619e5ed"><span class="section-number-3">5.14.</span> 小结</h3>
+<div id="outline-container-org2f28e0d" class="outline-3">
+<h3 id="org2f28e0d"><span class="section-number-3">5.14.</span> 小结</h3>
 </div>
 </section>
 
