@@ -3,10 +3,16 @@
 
 
 
-* [2021-06-08 Tue]
+* [2021-06-10 Thu]
 :PROPERTIES:
 :CUSTOM_ID: active
 :END:
+
+
+- 系统复习 C# 中的类型
+- 练习代码 rot13 ！！！
+
+* [2021-06-08 Tue]
 
 实现 rot13 加密算法。
 
