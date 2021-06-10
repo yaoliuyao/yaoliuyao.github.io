@@ -43,6 +43,7 @@
 (setq go-translate-token-current (cons 430675 2721866130))
 (setq go-translate-base-url "https://translate.google.cn")
 
+
 (defun im/shout-at-you (&optional arg)
   (interactive "P")
   (let* ((ss (list "有问题就问"
@@ -52,7 +53,9 @@
                    "睡觉的醒醒了"))
          (st (cond ((use-region-p)
                     (buffer-substring-no-properties (region-beginning) (region-end)))
-                   (arg (car ss))
+                   (arg (with-temp-buffer
+                          (insert-file-contents "~/.token")
+                          (buffer-substring-no-properties (point-min) (point-max))))
                    (t (nth (random (length ss)) ss))))
          (cmd (format "$w = New-Object -ComObject SAPI.SpVoice; $w.speak(\\\"%s\\\")" st)))
     (shell-command (format "powershell -Command \"& {%s}\""
