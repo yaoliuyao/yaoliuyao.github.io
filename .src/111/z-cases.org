@@ -1,6 +1,7 @@
 #+TITLE: 一万行代码
 
 
+
 * 加密、解密 (rot13)
 ** 分析
 
@@ -29,6 +30,7 @@
 
 ** 实现
 
+#+NAME: aaa
 #+begin_src csx :results pp
    // Console.WriteLine(RotChar('a')); // 'n'
    // Console.WriteLine(RotChar('n')); // 'a'
@@ -82,10 +84,28 @@
 - 如果直接调用，会提醒用户进行输入，用户输入之后，会将加密玩的内容打印到屏幕上。然后继续提醒:
   : rot13
 - 如果输入的时候，带参数，参数是一个普通的文本的话，那么会直接将加密完的内容打印到屏幕上，结束:
-  : rot13 hello world how are
+  : rot13 hello world how    are
 - 如果输入的时候，带参数，是一个文件路径，那么将文件的内容进行加密:
   : rot13 d:\aaa.txt
 
+** 导出并使用
+
+- 使用 VS 带的发布 (publish) 功能
+- 注意，需要将 *发布为单独文件* 选中
+- 使用时，直接调用路径就可以了:
+  : E:\rot13.exe 参数
+
+为了方便使用:
+1. 将 rot13.exe 的文件夹，添加到 Path 环境变量中
+2. 可以将加密的命令添加到注册表，从而方便使用。比如，将下面语句保存为 .reg 格式，然后双击导入:
+   #+begin_src conf
+     Windows Registry Editor Version 5.00
+     
+     [HKEY_CLASSES_ROOT\*\shell\EncWithRot13]
+     
+     [HKEY_CLASSES_ROOT\*\shell\EncWithRot13\command]
+     @="\"E:\\wodechengxu\\rot13.exe\" \"%1\""
+   #+end_src
 
 * 游戏祖玛
 ** 游戏描述
