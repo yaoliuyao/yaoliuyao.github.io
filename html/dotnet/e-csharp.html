@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-09 -->
+<!-- 2021-06-10 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -55,7 +55,6 @@
 </li>
 <li><a href="#org8541a93">2.3. 模板 vs 实例</a></li>
 <li><a href="#org298bedc">2.4. 值类型 vs 引用类型</a></li>
-<li><a href="#org84d92db">2.5. [条件判断/分支]</a></li>
 </ul>
 </li>
 <li><a href="#org51edeaa">3. 预定义/数值类型</a>
@@ -232,13 +231,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org3f3f9d8">
+<figure id="orgd7910aa">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org528551a">
+<figure id="orgd46dfda">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -483,74 +482,10 @@ System 命名空间:
 </ul>
 
 
-<figure id="orga56bff0">
+<figure id="org8f49f7d">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
-</div>
-</div>
-
-<div id="outline-container-org84d92db" class="outline-3">
-<h3 id="org84d92db"><span class="section-number-3">2.5.</span> [条件判断/分支]</h3>
-<div class="outline-text-3" id="text-2-5">
-<ul class="org-ul">
-<li>规则 (rule)</li>
-</ul>
-
-<p>
-if:
-</p>
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">if</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">if / else if / ... / else</span>
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span><span style="color: #228b22;">bool</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span>
-<span style="color: #707183;">{</span>
-<span style="color: #707183;">}</span>
-</pre>
-</div>
-
-<p>
-switch:
-</p>
-<div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #a020f0;">switch</span> <span style="color: #707183;">(</span>exp<span style="color: #707183;">)</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #a020f0;">case</span> a:
-        &#20570;&#20160;&#20040;;
-        <span style="color: #a020f0;">break</span>;
-    <span style="color: #a020f0;">case</span> b:
-        &#20570;&#20160;&#20040;;
-        <span style="color: #a020f0;">break</span>;
-<span style="color: #707183;">}</span>
-</pre>
-</div>
 </div>
 </div>
 </section>
@@ -668,7 +603,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgba116b5">
+<figure id="orge7940a5">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -696,7 +631,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org49cc610">
+<figure id="orgb645989">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -742,7 +677,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </p>
 <ul class="org-ul">
 <li>最原始的英文中的 <b>ASCII</b> 编码</li>
-<li>后来出现的，各个国家的，比如 <b>GBK</b></li>
+<li>后来出现的，各个国家的，比如 <b>GBK/Big5</b></li>
 <li>为了消除字符集冲突，出现的 <b>Unicode</b> 组织跟字符集。并根据字符集出现了 <b>UTF-16/UTF-8</b> 等编码格式</li>
 </ul>
 
@@ -755,7 +690,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org23aea36">
+<figure id="orgda75fd9">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -802,7 +737,7 @@ f = <span style="color: #008b8b;">true</span>; g = <span style="color: #008b8b;"
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>if/else if/else</li>
-<li>switch</li>
+<li>switch (statement/expression)</li>
 </ul>
 
 <p>
@@ -879,7 +814,6 @@ switch (是 else if 语法的一种精简版):
 <pre class="src src-cs"><span style="color: #a020f0;">switch</span> <span style="color: #707183;">(</span>c<span style="color: #707183;">)</span>
 <span style="color: #707183;">{</span>
     <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'A'</span>:
-        color = ConsoleColor.Red;
     <span style="color: #a020f0;">case</span> <span style="color: #8b2252;">'B'</span>:
         color = ConsoleColor.Yellow;
         <span style="color: #a020f0;">break</span>;
@@ -944,6 +878,39 @@ switch statement (语句) 和 expression (表达式):
 <li>do while</li>
 <li>foreach</li>
 </ul>
+
+<p>
+遍历字符串:
+</p>
+<div class="org-src-container">
+<pre class="src src-csx"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello world"</span>;
+
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">c</span> <span style="color: #a020f0;">in</span> s<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>c<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; s.Length; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>s<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0;
+<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span>i &lt; s.Length<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>s<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+    i++;
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span> = 0;
+<span style="color: #a020f0;">do</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>s<span style="color: #909183;">[</span>j<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+    j++;
+<span style="color: #707183;">}</span> <span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span>j &lt; s.Length<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
 
 <p>
 使用不同的方式，实现从 1 加到 10000 的和:
@@ -1149,7 +1116,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org8e7c579">
+<figure id="org0aa66c3">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1187,7 +1154,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orge83d687">
+<figure id="orgaa90e8f">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1447,11 +1414,68 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 
 <div id="outline-container-org0500176" class="outline-3">
 <h3 id="org0500176"><span class="section-number-3">5.2.</span> object</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-csx"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 20;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
+
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">i1</span> = 20;
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"hello"</span>;
+
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">i2</span>;
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">s2</span>;
+
+i2 = 20;
+s2 = <span style="color: #8b2252;">"hello"</span>;
+</pre>
 </div>
+</div>
+</div>
+
 <div id="outline-container-orgc220dcb" class="outline-3">
 <h3 id="orgc220dcb"><span class="section-number-3">5.3.</span> dynamic</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>静态语言</li>
+<li>动态语言 (动态一时爽，重构hzc)</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csx"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 20;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
+
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">i1</span> = 20;
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"hello"</span>;
+
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">i2</span>;
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">s2</span>;
+
+i2 = 20;
+s2 = <span style="color: #8b2252;">"hello"</span>;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#21160;&#24577;&#35821;&#35328;&#30340;&#25630;&#27861;&#65292;s &#26159;&#21861;&#19981;&#30830;&#23450;&#65292;&#36816;&#34892;&#21040;&#21738;&#37324;&#21487;&#20197;&#33021;&#23601;&#21464;&#20102;</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s</span>;
+s = 2323;     <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25972;&#25968;</span>
+s = <span style="color: #8b2252;">"kdjkfd"</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23383;&#31526;&#20018;</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s.Length<span style="color: #707183;">)</span>;
+s = <span style="color: #707183;">[</span>2, 3<span style="color: #707183;">]</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25968;&#32452;</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#38745;&#24577;&#31867;&#22411;&#65292;s &#26159;&#21861;&#65292;&#20986;&#29983;&#23450;&#32456;&#36523;</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"hello"</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">C# &#23545;&#21160;&#24577;&#31867;&#22411;&#30340;&#25903;&#25345;</span>
+<span style="color: #228b22;">dynamic</span> <span style="color: #a0522d;">a</span> = 1111;
+a = <span style="color: #8b2252;">"hello"</span>;
+a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileInfo</span><span style="color: #707183;">(</span><span style="color: #8b2252;">""</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
 </div>
 </section>
+
 <section id="outline-container-orgf98ccd2" class="outline-2">
 <h2 id="orgf98ccd2"><span class="section-number-2">6.</span> 类型转换</h2>
 <div class="outline-text-2" id="text-6">
@@ -2660,7 +2684,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-09</p>
+<p class="date">Created: 2021-06-10</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

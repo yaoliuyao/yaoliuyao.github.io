@@ -227,59 +227,6 @@ System 命名空间:
 #+ATTR_HTML: :width 500px
 [[file:img/value-type-ref-type.png]]
 
-** [条件判断/分支]
-
-- 规则 (rule)
-
-if:
-#+begin_src csharp
-  // if
-  if (bool)
-  {
-  }
-
-  // if / else
-  if (bool)
-  {
-  }
-  else
-  {
-  }
-
-  // if / else if / ... / else
-  if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else if (bool)
-  {
-  }
-  else
-  {
-  }
-#+end_src
-
-switch:
-#+begin_src csharp
-  switch (exp)
-  {
-      case a:
-          做什么;
-          break;
-      case b:
-          做什么;
-          break;
-  }
-#+end_src
-
 * 预定义/数值类型
 ** 整数
 
@@ -412,7 +359,7 @@ switch:
 
 字符集/编码格式:
 + 最原始的英文中的 *ASCII* 编码
-+ 后来出现的，各个国家的，比如 *GBK*
++ 后来出现的，各个国家的，比如 *GBK/Big5*
 + 为了消除字符集冲突，出现的 *Unicode* 组织跟字符集。并根据字符集出现了 *UTF-16/UTF-8* 等编码格式
 
 Q & A:
@@ -454,7 +401,7 @@ Q & A:
 *** [条件分支] 在某种条件之下，做某件事
 
 - if/else if/else
-- switch
+- switch (statement/expression)
 
 if:
 #+begin_src cs  
@@ -525,7 +472,6 @@ switch (是 else if 语法的一种精简版):
   switch (c)
   {
       case 'A':
-          color = ConsoleColor.Red;
       case 'B':
           color = ConsoleColor.Yellow;
           break;
@@ -581,6 +527,36 @@ switch statement (语句) 和 expression (表达式):
 - while
 - do while
 - foreach
+
+遍历字符串:
+#+begin_src csx
+  string s = "hello world";
+  
+  foreach (var c in s)
+  {
+      Console.WriteLine(c);
+  }
+  
+  for (int i = 0; i < s.Length; i++)
+  {
+      Console.WriteLine(s[i]);
+  }
+  
+  int i = 0;
+  while (i < s.Length)
+  {
+      Console.WriteLine(s[i]);
+      i++;
+  }
+  
+  int j = 0;
+  do
+  {
+      Console.WriteLine(s[j]);
+      j++;
+  } while (j < s.Length);
+#+end_src  
+
 
 使用不同的方式，实现从 1 加到 10000 的和:
 #+begin_src csx
@@ -988,7 +964,57 @@ API (Application Programming Interface) 应用程序编程接口。
 #+end_src
 
 ** object
+
+#+begin_src csx
+  int i = 20;
+  string s = "hello";
+  
+  object i1 = 20;
+  object s1 = "hello";
+  
+  object i2;
+  object s2;
+  
+  i2 = 20;
+  s2 = "hello";
+#+end_src
+
 ** dynamic
+
+- 静态语言
+- 动态语言 (动态一时爽，重构hzc)
+  
+#+begin_src csx
+  int i = 20;
+  string s = "hello";
+  
+  object i1 = 20;
+  object s1 = "hello";
+  
+  object i2;
+  object s2;
+  
+  i2 = 20;
+  s2 = "hello";
+#+end_src
+
+#+begin_src cs
+  // 动态语言的搞法，s 是啥不确定，运行到哪里可以能就变了
+  var s;
+  s = 2323;     // 整数
+  s = "kdjkfd"; // 字符串
+  Console.WriteLine(s.Length);
+  s = [2, 3];   // 数组
+  
+  // 静态类型，s 是啥，出生定终身
+  var s = "hello";
+  
+  // C# 对动态类型的支持
+  dynamic a = 1111;
+  a = "hello";
+  a = new FileInfo("");
+#+end_src
+
 * 类型转换
 ** 隐式转换/强制转换
 
