@@ -1016,6 +1016,15 @@ API (Application Programming Interface) 应用程序编程接口。
 #+end_src
 
 * 类型转换
+
+- 如果涉及到转换之后不会存在任何的精度损失的话，会进行隐式转换
+  : int a; byte b; a = b;
+- 如果可能存在精度损失的话，这个时候，必须进行强制转换
+  : int a; byte b; b = (int)a;
+- 如果强制转换过程中，出现精度损失的话，默认情况下会按照某种规则截断。注意，不会报错
+- 我们可以使用 checked 关键词将转换的语句包围住，然后在转换中出现精度损失的话，会抛出异常
+  : int a; byte b; b = check((int)a);
+
 ** 隐式转换/强制转换
 
 #+begin_src cs
@@ -1031,6 +1040,103 @@ API (Application Programming Interface) 应用程序编程接口。
   byte a1 = (byte) a;
   char a2 = (char) (a1 + 13);
   Console.WriteLine($"{a} -> {a1} -> {a2}");
+#+end_src
+
+使用 checked 来释放危险:
+#+begin_src cs
+  int a = 1;
+  byte b = 0;
+  byte c = 0;
+  byte d = 0;
+  
+  // 潜在的危险
+  b = (byte) a;
+  c = (byte) a;
+  d = (byte) a;
+  
+  // 主动释放危险
+  b = checked((byte) a);
+  c = checked((byte) a);
+  d = checked((byte) a);
+  Console.WriteLine(b);
+  
+  // 指定危险区域
+  checked
+  {
+      b = (byte)a;
+      c = (byte)a;
+      d = (byte)a;
+      Console.WriteLine(b);
+  }
+#+end_src
+
+** 引用类型的隐式和强制转换
+
+#+begin_src cs
+  class Person {}
+  class Student : Person {}
+  
+  Person p = new Person();
+  Student s = new Student();
+  
+  Person p1 = new Student();
+  
+  object a = new Student();
+  a = 2122;
+  // a: object
+  Student s2 = (Student)a;
+#+end_src
+
+** 自定义转换规则
+
+#+begin_src cs
+  class Program
+  {
+      static void Main(string[] args)
+      {
+  
+          Person p = new Person();
+          Student s = new Student();
+  
+          Person p1 = new Student();
+  
+          object a = new Student();
+          Student s2 = (Student)a;
+  
+          // 在 C# 中，类型转换的规则，是可以自定义的
+          Student ss = new Student();
+          ss.id = 222;
+          int i = ss;
+          Console.WriteLine(i);
+  
+          Student st = (Student)333;
+          Console.WriteLine(st);
+      }
+  
+      class Person { }
+  
+      class Student : Person
+      {
+          public int id;
+  
+          public static implicit operator int (Student s)
+          {
+              return s.id;
+          }
+          public static explicit operator Student(int si)
+          {
+              var s = new Student();
+              s.id = si;
+              return s;
+          }
+      }
+  }
+#+end_src
+
+** 装箱/拆箱 (auto boxing)
+
+#+begin_src cs
+  object a = 1;
 #+end_src
 
 * [自定义类型]

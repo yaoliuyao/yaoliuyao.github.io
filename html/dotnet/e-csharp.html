@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-10 -->
+<!-- 2021-06-11 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -102,6 +102,9 @@
 <li><a href="#orgf98ccd2">6. 类型转换</a>
 <ul>
 <li><a href="#org369825e">6.1. 隐式转换/强制转换</a></li>
+<li><a href="#orga71252b">6.2. 引用类型的隐式和强制转换</a></li>
+<li><a href="#orgf6e51e1">6.3. 自定义转换规则</a></li>
+<li><a href="#org22b9584">6.4. 装箱/拆箱 (auto boxing)</a></li>
 </ul>
 </li>
 <li><a href="#org746383c">7. [自定义类型]</a>
@@ -231,13 +234,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgd7910aa">
+<figure id="orgc824c14">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgd46dfda">
+<figure id="orgd2629e3">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -482,7 +485,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org8f49f7d">
+<figure id="org5a56553">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -603,7 +606,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orge7940a5">
+<figure id="org7c9d345">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -631,7 +634,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgb645989">
+<figure id="org1a38c94">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -690,7 +693,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgda75fd9">
+<figure id="org441226e">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1116,7 +1119,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org0aa66c3">
+<figure id="orgeca96c5">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1154,7 +1157,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgaa90e8f">
+<figure id="org630adda">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1479,7 +1482,29 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 <section id="outline-container-orgf98ccd2" class="outline-2">
 <h2 id="orgf98ccd2"><span class="section-number-2">6.</span> 类型转换</h2>
 <div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><p>
+如果涉及到转换之后不会存在任何的精度损失的话，会进行隐式转换
+</p>
+<pre class="example">
+int a; byte b; a = b;
+</pre></li>
+<li><p>
+如果可能存在精度损失的话，这个时候，必须进行强制转换
+</p>
+<pre class="example">
+int a; byte b; b = (int)a;
+</pre></li>
+<li>如果强制转换过程中，出现精度损失的话，默认情况下会按照某种规则截断。注意，不会报错</li>
+<li><p>
+我们可以使用 checked 关键词将转换的语句包围住，然后在转换中出现精度损失的话，会抛出异常
+</p>
+<pre class="example">
+int a; byte b; b = check((int)a);
+</pre></li>
+</ul>
 </div>
+
 <div id="outline-container-org369825e" class="outline-3">
 <h3 id="org369825e"><span class="section-number-3">6.1.</span> 隐式转换/强制转换</h3>
 <div class="outline-text-3" id="text-6-1">
@@ -1496,6 +1521,118 @@ ab = <span style="color: #707183;">(</span><span style="color: #228b22;">byte</s
 <span style="color: #228b22;">byte</span> <span style="color: #a0522d;">a1</span> = <span style="color: #707183;">(</span><span style="color: #228b22;">byte</span><span style="color: #707183;">)</span> a;
 <span style="color: #228b22;">char</span> <span style="color: #a0522d;">a2</span> = <span style="color: #707183;">(</span><span style="color: #228b22;">char</span><span style="color: #707183;">)</span> <span style="color: #707183;">(</span>a1 + 13<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"{a} -&gt; {a1} -&gt; {a2}"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+使用 checked 来释放危险:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span> = 1;
+<span style="color: #228b22;">byte</span> <span style="color: #a0522d;">b</span> = 0;
+<span style="color: #228b22;">byte</span> <span style="color: #a0522d;">c</span> = 0;
+<span style="color: #228b22;">byte</span> <span style="color: #a0522d;">d</span> = 0;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#28508;&#22312;&#30340;&#21361;&#38505;</span>
+b = <span style="color: #707183;">(</span><span style="color: #228b22;">byte</span><span style="color: #707183;">)</span> a;
+c = <span style="color: #707183;">(</span><span style="color: #228b22;">byte</span><span style="color: #707183;">)</span> a;
+d = <span style="color: #707183;">(</span><span style="color: #228b22;">byte</span><span style="color: #707183;">)</span> a;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20027;&#21160;&#37322;&#25918;&#21361;&#38505;</span>
+b = <span style="color: #a020f0;">checked</span><span style="color: #707183;">(</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">byte</span><span style="color: #7388d6;">)</span> a<span style="color: #707183;">)</span>;
+c = <span style="color: #a020f0;">checked</span><span style="color: #707183;">(</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">byte</span><span style="color: #7388d6;">)</span> a<span style="color: #707183;">)</span>;
+d = <span style="color: #a020f0;">checked</span><span style="color: #707183;">(</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">byte</span><span style="color: #7388d6;">)</span> a<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>b<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25351;&#23450;&#21361;&#38505;&#21306;&#22495;</span>
+<span style="color: #a020f0;">checked</span>
+<span style="color: #707183;">{</span>
+    b = <span style="color: #7388d6;">(</span><span style="color: #228b22;">byte</span><span style="color: #7388d6;">)</span>a;
+    c = <span style="color: #7388d6;">(</span><span style="color: #228b22;">byte</span><span style="color: #7388d6;">)</span>a;
+    d = <span style="color: #7388d6;">(</span><span style="color: #228b22;">byte</span><span style="color: #7388d6;">)</span>a;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>b<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga71252b" class="outline-3">
+<h3 id="orga71252b"><span class="section-number-3">6.2.</span> 引用类型的隐式和强制转换</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span> <span style="color: #707183;">{}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Student</span> : <span style="color: #228b22;">Person</span> <span style="color: #707183;">{}</span>
+
+<span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+a = 2122;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">a: object</span>
+<span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s2</span> = <span style="color: #707183;">(</span><span style="color: #228b22;">Student</span><span style="color: #707183;">)</span>a;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf6e51e1" class="outline-3">
+<h3 id="orgf6e51e1"><span class="section-number-3">6.3.</span> 自定义转换规则</h3>
+<div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+
+        <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #228b22;">object</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s2</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">Student</span><span style="color: #909183;">)</span>a;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22312; C# &#20013;&#65292;&#31867;&#22411;&#36716;&#25442;&#30340;&#35268;&#21017;&#65292;&#26159;&#21487;&#20197;&#33258;&#23450;&#20041;&#30340;</span>
+        <span style="color: #228b22;">Student</span> <span style="color: #a0522d;">ss</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #909183;">()</span>;
+        ss.id = 222;
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = ss;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">i</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #228b22;">Student</span> <span style="color: #a0522d;">st</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">Student</span><span style="color: #909183;">)</span>333;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">st</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span> <span style="color: #7388d6;">{</span> <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Student</span> : <span style="color: #228b22;">Person</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span>;
+
+        <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">implicit</span> <span style="color: #a020f0;">operator</span> <span style="color: #228b22;">int</span> <span style="color: #909183;">(</span><span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> s.id;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">explicit</span> <span style="color: #a020f0;">operator</span> <span style="color: #0000ff;">Student</span><span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">si</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">s</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">()</span>;
+            s.id = si;
+            <span style="color: #a020f0;">return</span> s;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org22b9584" class="outline-3">
+<h3 id="org22b9584"><span class="section-number-3">6.4.</span> 装箱/拆箱 (auto boxing)</h3>
+<div class="outline-text-3" id="text-6-4">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">object</span> <span style="color: #a0522d;">a</span> = 1;
 </pre>
 </div>
 </div>
@@ -2684,7 +2821,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-10</p>
+<p class="date">Created: 2021-06-11</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
