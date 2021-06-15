@@ -1047,6 +1047,14 @@ API (Application Programming Interface) 应用程序编程接口。
     Student s = a as Student;
   #+end_src
 
+装箱/拆箱 (boxing/unboxing):
+- 在 C# 中，基本类型也是 object 的实例
+- 但是为了效率，基本类型都被直接存储在栈上，存储的形式不是对象的形式
+- 因此，如果想将基本类型当作对象，来进行方法调用的时候，需要将其转换为对象存储形式
+- 为了简化上述过程，在对基本类型进行方法调用的时候，CLR 会自动进行上述转换。
+  这种隐式转换的机制，叫做自动装箱 (auto-boxing)
+- 反向的过程叫拆箱
+
 ** 隐式转换/强制转换
 
 #+begin_src cs
@@ -1109,6 +1117,29 @@ API (Application Programming Interface) 应用程序编程接口。
   Student s2 = (Student)a;
 #+end_src
 
+** 装箱/拆箱 (auto-boxing)
+
+#+begin_src csx
+  // 自动装箱
+  int i = 1;
+  object o = null;
+  o = i;
+  
+  Console.WriteLine($"i: {i}, o: {o}");
+  
+  // 装箱使用的是数据的副本
+  i = 5;
+  o = 6;
+  Console.WriteLine($"i: {i}, o: {o}");
+  
+  // 拆箱
+  i = (int)o;
+#+end_src
+
+#+RESULTS:
+| i: 1 | o: 1 |
+| i: 5 | o: 6 |
+
 ** 自定义转换规则
 
 #+begin_src cs
@@ -1155,11 +1186,13 @@ API (Application Programming Interface) 应用程序编程接口。
   }
 #+end_src
 
-** 装箱/拆箱 (auto boxing)
+** 基于字符串之间的互相转换
 
-#+begin_src cs
-  object a = 1;
-#+end_src
+- ToString
+- String.Format
+- Parse
+- TryParse
+- Convert
 
 * [自定义类型]
 ** class

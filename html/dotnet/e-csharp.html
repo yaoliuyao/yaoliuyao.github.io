@@ -103,8 +103,9 @@
 <ul>
 <li><a href="#org369825e">6.1. 隐式转换/强制转换</a></li>
 <li><a href="#orga71252b">6.2. 引用类型的隐式和强制转换</a></li>
-<li><a href="#orgf6e51e1">6.3. 自定义转换规则</a></li>
-<li><a href="#org22b9584">6.4. 装箱/拆箱 (auto boxing)</a></li>
+<li><a href="#org4c42ddc">6.3. 装箱/拆箱 (auto-boxing)</a></li>
+<li><a href="#orgf6e51e1">6.4. 自定义转换规则</a></li>
+<li><a href="#orge2d946b">6.5. 基于字符串之间的互相转换</a></li>
 </ul>
 </li>
 <li><a href="#org746383c">7. [自定义类型]</a>
@@ -234,13 +235,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgf6f4528">
+<figure id="org9dbbb1b">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org1941a3f">
+<figure id="org2e23359">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -485,7 +486,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org42f6be4">
+<figure id="org92a1f6e">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -606,7 +607,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org51238d3">
+<figure id="org03ed96a">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -634,7 +635,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgb7d653c">
+<figure id="org47b745c">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -693,7 +694,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orga14be8e">
+<figure id="org296673c">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1119,7 +1120,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgab7bc5e">
+<figure id="orgef299fc">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1157,7 +1158,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org8be0f9b">
+<figure id="orgecf9f4e">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1541,6 +1542,18 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </pre>
 </div></li>
 </ul>
+
+<p>
+装箱/拆箱 (boxing/unboxing):
+</p>
+<ul class="org-ul">
+<li>在 C# 中，基本类型也是 object 的实例</li>
+<li>但是为了效率，基本类型都被直接存储在栈上，存储的形式不是对象的形式</li>
+<li>因此，如果想将基本类型当作对象，来进行方法调用的时候，需要将其转换为对象存储形式</li>
+<li>为了简化上述过程，在对基本类型进行方法调用的时候，CLR 会自动进行上述转换。
+这种隐式转换的机制，叫做自动装箱 (auto-boxing)</li>
+<li>反向的过程叫拆箱</li>
+</ul>
 </div>
 
 <div id="outline-container-org369825e" class="outline-3">
@@ -1616,9 +1629,32 @@ a = 2122;
 </div>
 </div>
 
-<div id="outline-container-orgf6e51e1" class="outline-3">
-<h3 id="orgf6e51e1"><span class="section-number-3">6.3.</span> 自定义转换规则</h3>
+<div id="outline-container-org4c42ddc" class="outline-3">
+<h3 id="org4c42ddc"><span class="section-number-3">6.3.</span> 装箱/拆箱 (auto-boxing)</h3>
 <div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+<pre class="src src-csx"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#33258;&#21160;&#35013;&#31665;</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 1;
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">o</span> = <span style="color: #008b8b;">null</span>;
+o = i;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"i: {i}, o: {o}"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#35013;&#31665;&#20351;&#29992;&#30340;&#26159;&#25968;&#25454;&#30340;&#21103;&#26412;</span>
+i = 5;
+o = 6;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"i: {i}, o: {o}"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25286;&#31665;</span>
+i = <span style="color: #707183;">(</span><span style="color: #228b22;">int</span><span style="color: #707183;">)</span>o;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf6e51e1" class="outline-3">
+<h3 id="orgf6e51e1"><span class="section-number-3">6.4.</span> 自定义转换规则</h3>
+<div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -1666,13 +1702,16 @@ a = 2122;
 </div>
 </div>
 
-<div id="outline-container-org22b9584" class="outline-3">
-<h3 id="org22b9584"><span class="section-number-3">6.4.</span> 装箱/拆箱 (auto boxing)</h3>
-<div class="outline-text-3" id="text-6-4">
-<div class="org-src-container">
-<pre class="src src-cs"><span style="color: #228b22;">object</span> <span style="color: #a0522d;">a</span> = 1;
-</pre>
-</div>
+<div id="outline-container-orge2d946b" class="outline-3">
+<h3 id="orge2d946b"><span class="section-number-3">6.5.</span> 基于字符串之间的互相转换</h3>
+<div class="outline-text-3" id="text-6-5">
+<ul class="org-ul">
+<li>ToString</li>
+<li>String.Format</li>
+<li>Parse</li>
+<li>TryParse</li>
+<li>Convert</li>
+</ul>
 </div>
 </div>
 </section>
