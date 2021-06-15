@@ -1,35 +1,37 @@
-1. 王锐
-   - 黄罗心
-   - 伍永杰
-   - 陈宇明
-   - 闭杨杨
+2021-06-15，撤销小组
 
-2. @@html: <span style="color: red; font-weight: bold">占忠义</span>@@
-   - 黄宪亮
-   - 胡荣
-   - 郑亮
-   - 吴志柳
+- 王锐
+- 黄罗心
+- 伍永杰
+- 陈宇明
+- 闭杨杨
 
-3. 陈浪
-   - 龚泽宇
-   - 龚辉演
-   - 李竞先
-   - 陈柏炜
+- @@html: <span style="color: red; font-weight: bold">占忠义</span>@@
+- 黄宪亮
+- 胡荣
+- 郑亮
+- 吴志柳
 
-4. @@html: <span style="color: red; font-weight: bold">王剑秋</span>@@
-   - 刘狄经
-   - 钟益佳
-   - 韦档
-   - @@html: <span style="color: red; font-weight: bold">冯瑞芮</span>@@
+- 陈浪
+- 龚泽宇
+- 龚辉演
+- 李竞先
+- 陈柏炜
 
-5. 赖华强
-   - 李祚鹏
-   - 韩雷明 (代组长)
-   - 高俊
-   - 谢刘晖
+- @@html: <span style="color: red; font-weight: bold">王剑秋</span>@@
+- 刘狄经
+- 钟益佳
+- 韦档
+- @@html: <span style="color: red; font-weight: bold">冯瑞芮</span>@@
 
-6. 范海锋
-   - 王俊豪
-   - 梁嘉俊
-   - 钟臣吉
-   - 蔡桂德
+- 赖华强
+- 李祚鹏
+- 韩雷明 (代组长)
+- 高俊
+- 谢刘晖
+
+- 范海锋
+- 王俊豪
+- 梁嘉俊
+- 钟臣吉
+- 蔡桂德
