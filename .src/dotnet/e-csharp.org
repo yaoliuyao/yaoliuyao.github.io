@@ -1017,13 +1017,35 @@ API (Application Programming Interface) 应用程序编程接口。
 
 * 类型转换
 
-- 如果涉及到转换之后不会存在任何的精度损失的话，会进行隐式转换
+基本类型的转换:
+- 如果涉及到转换之后不会存在任何的精度损失的话，会进行隐式转换 (implicit)
   : int a; byte b; a = b;
-- 如果可能存在精度损失的话，这个时候，必须进行强制转换
+- 如果可能存在精度损失的话，这个时候，必须进行强制转换 (explicit)
   : int a; byte b; b = (int)a;
 - 如果强制转换过程中，出现精度损失的话，默认情况下会按照某种规则截断。注意，不会报错
-- 我们可以使用 checked 关键词将转换的语句包围住，然后在转换中出现精度损失的话，会抛出异常
+- 我们可以使用 ~checked~ 关键词将转换的语句包围住，然后在转换中出现精度损失的话，会抛出异常
   : int a; byte b; b = check((int)a);
+
+引用类型的转换:
+- 引用类型同样存在 implicit/explicit 抓换
+  : Student s = (Student) o;
+- 引用类型的转换，如果转换失败，默认会抛出异常
+- 使用 ~is~ 语句，判断是否属于某种类型。经常会跟显式转换配合使用:
+  #+begin_src cs
+    Student s;
+    if (a is Student)
+    {
+        s = (Student)a;
+    }
+    else {
+        s = null;
+    }
+    Console.WriteLine(s);
+  #+end_src
+- 可以使用 ~as~ 语句，简化上述的判断跟转换。这是一种很甜的糖:
+  #+begin_src cs
+    Student s = a as Student;
+  #+end_src
 
 ** 隐式转换/强制转换
 

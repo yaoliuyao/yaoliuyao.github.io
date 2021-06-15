@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-11 -->
+<!-- 2021-06-15 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -234,13 +234,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgc824c14">
+<figure id="orgf6f4528">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgd2629e3">
+<figure id="org1941a3f">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -485,7 +485,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org5a56553">
+<figure id="org42f6be4">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -606,7 +606,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org7c9d345">
+<figure id="org51238d3">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -634,7 +634,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org1a38c94">
+<figure id="orgb7d653c">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -693,7 +693,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org441226e">
+<figure id="orga14be8e">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1119,7 +1119,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgeca96c5">
+<figure id="orgab7bc5e">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1157,7 +1157,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org630adda">
+<figure id="org8be0f9b">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1482,26 +1482,64 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 <section id="outline-container-orgf98ccd2" class="outline-2">
 <h2 id="orgf98ccd2"><span class="section-number-2">6.</span> 类型转换</h2>
 <div class="outline-text-2" id="text-6">
+<p>
+基本类型的转换:
+</p>
 <ul class="org-ul">
 <li><p>
-如果涉及到转换之后不会存在任何的精度损失的话，会进行隐式转换
+如果涉及到转换之后不会存在任何的精度损失的话，会进行隐式转换 (implicit)
 </p>
 <pre class="example">
 int a; byte b; a = b;
 </pre></li>
 <li><p>
-如果可能存在精度损失的话，这个时候，必须进行强制转换
+如果可能存在精度损失的话，这个时候，必须进行强制转换 (explicit)
 </p>
 <pre class="example">
 int a; byte b; b = (int)a;
 </pre></li>
 <li>如果强制转换过程中，出现精度损失的话，默认情况下会按照某种规则截断。注意，不会报错</li>
 <li><p>
-我们可以使用 checked 关键词将转换的语句包围住，然后在转换中出现精度损失的话，会抛出异常
+我们可以使用 <code>checked</code> 关键词将转换的语句包围住，然后在转换中出现精度损失的话，会抛出异常
 </p>
 <pre class="example">
 int a; byte b; b = check((int)a);
 </pre></li>
+</ul>
+
+<p>
+引用类型的转换:
+</p>
+<ul class="org-ul">
+<li><p>
+引用类型同样存在 implicit/explicit 抓换
+</p>
+<pre class="example">
+Student s = (Student) o;
+</pre></li>
+<li>引用类型的转换，如果转换失败，默认会抛出异常</li>
+<li><p>
+使用 <code>is</code> 语句，判断是否属于某种类型。经常会跟显式转换配合使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span>;
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>a <span style="color: #a020f0;">is</span> Student<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    s = <span style="color: #7388d6;">(</span><span style="color: #228b22;">Student</span><span style="color: #7388d6;">)</span>a;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">else</span> <span style="color: #707183;">{</span>
+    s = <span style="color: #008b8b;">null</span>;
+<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s<span style="color: #707183;">)</span>;
+</pre>
+</div></li>
+<li><p>
+可以使用 <code>as</code> 语句，简化上述的判断跟转换。这是一种很甜的糖:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span> = a <span style="color: #a020f0;">as</span> Student;
+</pre>
+</div></li>
 </ul>
 </div>
 
@@ -2821,7 +2859,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-11</p>
+<p class="date">Created: 2021-06-15</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
