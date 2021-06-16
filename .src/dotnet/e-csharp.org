@@ -1015,6 +1015,35 @@ API (Application Programming Interface) 应用程序编程接口。
   a = new FileInfo("");
 #+end_src
 
+* 用户自定义类型
+** class
+
+类
+
+** interface
+
+接口
+
+** delegate
+
+委托
+
+** array
+
+数组
+
+** record
+
+记录
+
+** struct
+
+结构体
+
+** enum
+
+枚举
+
 * 类型转换
 
 基本类型的转换:
@@ -1212,7 +1241,7 @@ API (Application Programming Interface) 应用程序编程接口。
   Student s = (Student) id;
 #+end_src
 
-** 基于字符串之间的互相转换
+** 基于 *字符串* 之间的互相转换
 
 - 核心两种方法: ~string.Format~ 用来转换为字符串，~type.Parse~ 用来从字符串转化
 - 可以使用 ~ToString/TryParse~ 对上面的两个方法进行补充
@@ -1281,7 +1310,7 @@ API (Application Programming Interface) 应用程序编程接口。
   string s3 = now.ToString("现在时间: yyyy年MM月dd日，不告诉你几点");
   Console.WriteLine(s3);
   CultureInfo ci = new CultureInfo("zh-CN");
-  string s4 = now.ToString("现在时间: yyyy年MMMddd，不告诉你几点", ci);
+  string s4 = now.ToString("现在时间: yyyy年MMM ddd，不告诉你几点", ci);
   Console.WriteLine(s4);
 #+end_src
 
@@ -1352,35 +1381,6 @@ API (Application Programming Interface) 应用程序编程接口。
   
   Convert.TryFromBase64String();
 #+end_src
-
-* [自定义类型]
-** class
-
-类
-
-** interface
-
-接口
-
-** delegate
-
-委托
-
-** array
-
-数组
-
-** record
-
-记录
-
-** struct
-
-结构体
-
-** enum
-
-枚举
 
 * 类 (Class)
 ** 字段 (Field)

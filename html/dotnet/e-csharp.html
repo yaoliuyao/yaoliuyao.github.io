@@ -99,31 +99,31 @@
 <li><a href="#orgc220dcb">5.3. dynamic</a></li>
 </ul>
 </li>
-<li><a href="#orgf98ccd2">6. 类型转换</a>
+<li><a href="#org2f0b103">6. 用户自定义类型</a>
 <ul>
-<li><a href="#org369825e">6.1. 隐式转换/强制转换</a></li>
-<li><a href="#orga71252b">6.2. 引用类型的隐式和强制转换</a></li>
-<li><a href="#org4c42ddc">6.3. 装箱/拆箱 (auto-boxing)</a></li>
-<li><a href="#orgf6e51e1">6.4. 自定义转换规则</a></li>
-<li><a href="#orge2d946b">6.5. 基于字符串之间的互相转换</a>
-<ul>
-<li><a href="#orgc241043">6.5.1. string.Format</a></li>
-<li><a href="#org6fe4451">6.5.2. type.ToString</a></li>
-<li><a href="#org23edc9b">6.5.3. type.Parse/TryParse</a></li>
-<li><a href="#orgb81e480">6.5.4. Convert</a></li>
+<li><a href="#orgf6aeed0">6.1. class</a></li>
+<li><a href="#orgbc65562">6.2. interface</a></li>
+<li><a href="#org9dd0672">6.3. delegate</a></li>
+<li><a href="#org1b52cca">6.4. array</a></li>
+<li><a href="#orgea6d6d6">6.5. record</a></li>
+<li><a href="#org5df569b">6.6. struct</a></li>
+<li><a href="#org601c4c7">6.7. enum</a></li>
 </ul>
 </li>
+<li><a href="#orgf98ccd2">7. 类型转换</a>
+<ul>
+<li><a href="#org369825e">7.1. 隐式转换/强制转换</a></li>
+<li><a href="#orga71252b">7.2. 引用类型的隐式和强制转换</a></li>
+<li><a href="#org4c42ddc">7.3. 装箱/拆箱 (auto-boxing)</a></li>
+<li><a href="#orgf6e51e1">7.4. 自定义转换规则</a></li>
+<li><a href="#org07394f5">7.5. 基于 <b>字符串</b> 之间的互相转换</a>
+<ul>
+<li><a href="#orgc241043">7.5.1. string.Format</a></li>
+<li><a href="#org6fe4451">7.5.2. type.ToString</a></li>
+<li><a href="#org23edc9b">7.5.3. type.Parse/TryParse</a></li>
+<li><a href="#orgb81e480">7.5.4. Convert</a></li>
 </ul>
 </li>
-<li><a href="#org746383c">7. [自定义类型]</a>
-<ul>
-<li><a href="#orgf6aeed0">7.1. class</a></li>
-<li><a href="#orgbc65562">7.2. interface</a></li>
-<li><a href="#org9dd0672">7.3. delegate</a></li>
-<li><a href="#org1b52cca">7.4. array</a></li>
-<li><a href="#orgea6d6d6">7.5. record</a></li>
-<li><a href="#org5df569b">7.6. struct</a></li>
-<li><a href="#org601c4c7">7.7. enum</a></li>
 </ul>
 </li>
 <li><a href="#org13746ef">8. 类 (Class)</a>
@@ -242,13 +242,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org3978c45">
+<figure id="org3b203ef">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org2431d73">
+<figure id="orgf03018a">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -493,7 +493,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org13c7deb">
+<figure id="orga6b3cf9">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -614,7 +614,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgbb65ed0">
+<figure id="org17b586a">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -642,7 +642,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org740010d">
+<figure id="orgc6cc30e">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -701,7 +701,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org1c0702c">
+<figure id="org3968689">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1127,7 +1127,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org2e15c55">
+<figure id="orgbdb22ca">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1165,7 +1165,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgc74bf07">
+<figure id="org1c63d2f">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1487,9 +1487,77 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </div>
 </section>
 
-<section id="outline-container-orgf98ccd2" class="outline-2">
-<h2 id="orgf98ccd2"><span class="section-number-2">6.</span> 类型转换</h2>
+<section id="outline-container-org2f0b103" class="outline-2">
+<h2 id="org2f0b103"><span class="section-number-2">6.</span> 用户自定义类型</h2>
 <div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgf6aeed0" class="outline-3">
+<h3 id="orgf6aeed0"><span class="section-number-3">6.1.</span> class</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+类
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbc65562" class="outline-3">
+<h3 id="orgbc65562"><span class="section-number-3">6.2.</span> interface</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+接口
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9dd0672" class="outline-3">
+<h3 id="org9dd0672"><span class="section-number-3">6.3.</span> delegate</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+委托
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1b52cca" class="outline-3">
+<h3 id="org1b52cca"><span class="section-number-3">6.4.</span> array</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+数组
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgea6d6d6" class="outline-3">
+<h3 id="orgea6d6d6"><span class="section-number-3">6.5.</span> record</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+记录
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5df569b" class="outline-3">
+<h3 id="org5df569b"><span class="section-number-3">6.6.</span> struct</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+结构体
+</p>
+</div>
+</div>
+
+<div id="outline-container-org601c4c7" class="outline-3">
+<h3 id="org601c4c7"><span class="section-number-3">6.7.</span> enum</h3>
+<div class="outline-text-3" id="text-6-7">
+<p>
+枚举
+</p>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgf98ccd2" class="outline-2">
+<h2 id="orgf98ccd2"><span class="section-number-2">7.</span> 类型转换</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 基本类型的转换:
 </p>
@@ -1567,8 +1635,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org369825e" class="outline-3">
-<h3 id="org369825e"><span class="section-number-3">6.1.</span> 隐式转换/强制转换</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org369825e"><span class="section-number-3">7.1.</span> 隐式转换/强制转换</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">char</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">'A'</span>;
 <span style="color: #228b22;">byte</span> <span style="color: #a0522d;">ab</span> = <span style="color: #707183;">(</span><span style="color: #228b22;">byte</span><span style="color: #707183;">)</span>a;
@@ -1619,8 +1687,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orga71252b" class="outline-3">
-<h3 id="orga71252b"><span class="section-number-3">6.2.</span> 引用类型的隐式和强制转换</h3>
-<div class="outline-text-3" id="text-6-2">
+<h3 id="orga71252b"><span class="section-number-3">7.2.</span> 引用类型的隐式和强制转换</h3>
+<div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span> <span style="color: #707183;">{}</span>
 <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Student</span> : <span style="color: #228b22;">Person</span> <span style="color: #707183;">{}</span>
@@ -1640,8 +1708,8 @@ a = 2122;
 </div>
 
 <div id="outline-container-org4c42ddc" class="outline-3">
-<h3 id="org4c42ddc"><span class="section-number-3">6.3.</span> 装箱/拆箱 (auto-boxing)</h3>
-<div class="outline-text-3" id="text-6-3">
+<h3 id="org4c42ddc"><span class="section-number-3">7.3.</span> 装箱/拆箱 (auto-boxing)</h3>
+<div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-csx"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#33258;&#21160;&#35013;&#31665;</span>
 <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 1;
@@ -1663,8 +1731,8 @@ i = <span style="color: #707183;">(</span><span style="color: #228b22;">int</spa
 </div>
 
 <div id="outline-container-orgf6e51e1" class="outline-3">
-<h3 id="orgf6e51e1"><span class="section-number-3">6.4.</span> 自定义转换规则</h3>
-<div class="outline-text-3" id="text-6-4">
+<h3 id="orgf6e51e1"><span class="section-number-3">7.4.</span> 自定义转换规则</h3>
+<div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -1738,9 +1806,9 @@ S = <span style="color: #0000ff;">MakeStudent</span><span style="color: #707183;
 </div>
 </div>
 
-<div id="outline-container-orge2d946b" class="outline-3">
-<h3 id="orge2d946b"><span class="section-number-3">6.5.</span> 基于字符串之间的互相转换</h3>
-<div class="outline-text-3" id="text-6-5">
+<div id="outline-container-org07394f5" class="outline-3">
+<h3 id="org07394f5"><span class="section-number-3">7.5.</span> 基于 <b>字符串</b> 之间的互相转换</h3>
+<div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
 <li>核心两种方法: <code>string.Format</code> 用来转换为字符串，<code>type.Parse</code> 用来从字符串转化</li>
 <li>可以使用 <code>ToString/TryParse</code> 对上面的两个方法进行补充</li>
@@ -1757,8 +1825,8 @@ S = <span style="color: #0000ff;">MakeStudent</span><span style="color: #707183;
 </div>
 
 <div id="outline-container-orgc241043" class="outline-4">
-<h4 id="orgc241043"><span class="section-number-4">6.5.1.</span> string.Format</h4>
-<div class="outline-text-4" id="text-6-5-1">
+<h4 id="orgc241043"><span class="section-number-4">7.5.1.</span> string.Format</h4>
+<div class="outline-text-4" id="text-7-5-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">r3</span> = <span style="color: #228b22;">string</span>.<span style="color: #0000ff;">Format</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}&#30340;&#26379;&#21451;&#26159;{1}&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;{2}&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#36798;&#21040;{3:C}"</span>, name, friend, age, sal<span style="color: #707183;">)</span>;
 </pre>
@@ -1767,8 +1835,8 @@ S = <span style="color: #0000ff;">MakeStudent</span><span style="color: #707183;
 </div>
 
 <div id="outline-container-org6fe4451" class="outline-4">
-<h4 id="org6fe4451"><span class="section-number-4">6.5.2.</span> type.ToString</h4>
-<div class="outline-text-4" id="text-6-5-2">
+<h4 id="org6fe4451"><span class="section-number-4">7.5.2.</span> type.ToString</h4>
+<div class="outline-text-4" id="text-7-5-2">
 <p>
 因为，string 类型是如此重要，所以在 <b>所有类的基类，即 object 中</b>,
 包含了一个默认的 ToString 方法。
@@ -1824,7 +1892,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = now.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#29616;&#22312;&#26102;&#38388;: yyyy&#24180;MM&#26376;dd&#26085;&#65292;&#19981;&#21578;&#35785;&#20320;&#20960;&#28857;"</span><span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s3<span style="color: #707183;">)</span>;
 <span style="color: #228b22;">CultureInfo</span> <span style="color: #a0522d;">ci</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">CultureInfo</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"zh-CN"</span><span style="color: #707183;">)</span>;
-<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = now.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#29616;&#22312;&#26102;&#38388;: yyyy&#24180;MMMddd&#65292;&#19981;&#21578;&#35785;&#20320;&#20960;&#28857;"</span>, ci<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = now.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#29616;&#22312;&#26102;&#38388;: yyyy&#24180;MMM ddd&#65292;&#19981;&#21578;&#35785;&#20320;&#20960;&#28857;"</span>, ci<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s4<span style="color: #707183;">)</span>;
 </pre>
 </div>
@@ -1832,8 +1900,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org23edc9b" class="outline-4">
-<h4 id="org23edc9b"><span class="section-number-4">6.5.3.</span> type.Parse/TryParse</h4>
-<div class="outline-text-4" id="text-6-5-3">
+<h4 id="org23edc9b"><span class="section-number-4">7.5.3.</span> type.Parse/TryParse</h4>
+<div class="outline-text-4" id="text-7-5-3">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">int</span>
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"1234343"</span>;
@@ -1903,8 +1971,8 @@ bool TryMyParse(string s, out int result)
 </div>
 
 <div id="outline-container-orgb81e480" class="outline-4">
-<h4 id="orgb81e480"><span class="section-number-4">6.5.4.</span> Convert</h4>
-<div class="outline-text-4" id="text-6-5-4">
+<h4 id="orgb81e480"><span class="section-number-4">7.5.4.</span> Convert</h4>
+<div class="outline-text-4" id="text-7-5-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = Convert.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span>82738283782, 2<span style="color: #707183;">)</span>;
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = Convert.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span>82738283782, 8<span style="color: #707183;">)</span>;
@@ -1914,74 +1982,6 @@ Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="col
 </pre>
 </div>
 </div>
-</div>
-</div>
-</section>
-
-<section id="outline-container-org746383c" class="outline-2">
-<h2 id="org746383c"><span class="section-number-2">7.</span> [自定义类型]</h2>
-<div class="outline-text-2" id="text-7">
-</div>
-<div id="outline-container-orgf6aeed0" class="outline-3">
-<h3 id="orgf6aeed0"><span class="section-number-3">7.1.</span> class</h3>
-<div class="outline-text-3" id="text-7-1">
-<p>
-类
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgbc65562" class="outline-3">
-<h3 id="orgbc65562"><span class="section-number-3">7.2.</span> interface</h3>
-<div class="outline-text-3" id="text-7-2">
-<p>
-接口
-</p>
-</div>
-</div>
-
-<div id="outline-container-org9dd0672" class="outline-3">
-<h3 id="org9dd0672"><span class="section-number-3">7.3.</span> delegate</h3>
-<div class="outline-text-3" id="text-7-3">
-<p>
-委托
-</p>
-</div>
-</div>
-
-<div id="outline-container-org1b52cca" class="outline-3">
-<h3 id="org1b52cca"><span class="section-number-3">7.4.</span> array</h3>
-<div class="outline-text-3" id="text-7-4">
-<p>
-数组
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgea6d6d6" class="outline-3">
-<h3 id="orgea6d6d6"><span class="section-number-3">7.5.</span> record</h3>
-<div class="outline-text-3" id="text-7-5">
-<p>
-记录
-</p>
-</div>
-</div>
-
-<div id="outline-container-org5df569b" class="outline-3">
-<h3 id="org5df569b"><span class="section-number-3">7.6.</span> struct</h3>
-<div class="outline-text-3" id="text-7-6">
-<p>
-结构体
-</p>
-</div>
-</div>
-
-<div id="outline-container-org601c4c7" class="outline-3">
-<h3 id="org601c4c7"><span class="section-number-3">7.7.</span> enum</h3>
-<div class="outline-text-3" id="text-7-7">
-<p>
-枚举
-</p>
 </div>
 </div>
 </section>
