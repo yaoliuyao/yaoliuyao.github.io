@@ -33,7 +33,7 @@
 (>>init>>
  (global-set-key [f5] 'im/note-publish)
  (global-set-key [f9] 'im/shout-at-you)
- (global-set-key [f10] (lambda () (interactive) (im/shout-at-you 4)))
+ (global-set-key [f10] (lambda () (interactive) (im/shout-at-you 1)))
 
  (defun-hook org-mode-hook/roam-it ()
    ;;   (org-roam-mode 1)
@@ -53,6 +53,8 @@
                    "睡觉的醒醒了"))
          (st (cond ((use-region-p)
                     (buffer-substring-no-properties (region-beginning) (region-end)))
+                   ((and arg (> arg 1))
+                    (string-repeat "睡觉的醒醒了，" arg))
                    (arg (with-temp-buffer
                           (insert-file-contents "~/.token")
                           (buffer-substring-no-properties (point-min) (point-max))))
