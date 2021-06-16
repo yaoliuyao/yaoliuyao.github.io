@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-15 -->
+<!-- 2021-06-16 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -105,7 +105,13 @@
 <li><a href="#orga71252b">6.2. 引用类型的隐式和强制转换</a></li>
 <li><a href="#org4c42ddc">6.3. 装箱/拆箱 (auto-boxing)</a></li>
 <li><a href="#orgf6e51e1">6.4. 自定义转换规则</a></li>
-<li><a href="#orge2d946b">6.5. 基于字符串之间的互相转换</a></li>
+<li><a href="#orge2d946b">6.5. 基于字符串之间的互相转换</a>
+<ul>
+<li><a href="#orgc241043">6.5.1. string.Format</a></li>
+<li><a href="#org6fe4451">6.5.2. type.ToString</a></li>
+<li><a href="#org3435039">6.5.3. type.Parse</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org746383c">7. [自定义类型]</a>
@@ -235,13 +241,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org9dbbb1b">
+<figure id="orgde2d0db">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org2e23359">
+<figure id="org8de567c">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -486,7 +492,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org92a1f6e">
+<figure id="orgf0640b6">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -607,7 +613,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org03ed96a">
+<figure id="org5dc22d1">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -635,7 +641,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org47b745c">
+<figure id="org0d025b2">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -694,7 +700,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org296673c">
+<figure id="orgdd3a21b">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1120,7 +1126,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgef299fc">
+<figure id="org75321a5">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1158,7 +1164,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgecf9f4e">
+<figure id="org2b4bf08">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1516,7 +1522,8 @@ int a; byte b; b = check((int)a);
 引用类型同样存在 implicit/explicit 抓换
 </p>
 <pre class="example">
-Student s = (Student) o;
+Person p = new Student();
+Student s = (Student) p;
 </pre></li>
 <li>引用类型的转换，如果转换失败，默认会抛出异常</li>
 <li><p>
@@ -1524,11 +1531,12 @@ Student s = (Student) o;
 </p>
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span>;
-<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>a <span style="color: #a020f0;">is</span> Student<span style="color: #707183;">)</span>
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>p <span style="color: #a020f0;">is</span> Student<span style="color: #707183;">)</span>
 <span style="color: #707183;">{</span>
-    s = <span style="color: #7388d6;">(</span><span style="color: #228b22;">Student</span><span style="color: #7388d6;">)</span>a;
+    s = <span style="color: #7388d6;">(</span><span style="color: #228b22;">Student</span><span style="color: #7388d6;">)</span> p;
 <span style="color: #707183;">}</span>
-<span style="color: #a020f0;">else</span> <span style="color: #707183;">{</span>
+<span style="color: #a020f0;">else</span>
+<span style="color: #707183;">{</span>
     s = <span style="color: #008b8b;">null</span>;
 <span style="color: #707183;">}</span>
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s<span style="color: #707183;">)</span>;
@@ -1538,7 +1546,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 可以使用 <code>as</code> 语句，简化上述的判断跟转换。这是一种很甜的糖:
 </p>
 <div class="org-src-container">
-<pre class="src src-cs"><span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span> = a <span style="color: #a020f0;">as</span> Student;
+<pre class="src src-cs"><span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span> = p <span style="color: #a020f0;">as</span> Student;
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>s == <span style="color: #008b8b;">null</span><span style="color: #707183;">)</span> ...
 </pre>
 </div></li>
 </ul>
@@ -1699,6 +1708,32 @@ i = <span style="color: #707183;">(</span><span style="color: #228b22;">int</spa
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+
+<p>
+学号 - 学生，转换的示例:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#26222;&#36890;&#20351;&#29992;</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span> = 2323232323;
+s = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+s.id = id;
+s.xxx = ksdfj;
+s.yyy = kjskdfj;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25277;&#20986;&#20026;&#26041;&#27861;</span>
+<span style="color: #228b22;">Student</span> <span style="color: #0000ff;">MakeStudent</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    s = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #7388d6;">()</span>;
+    s.id = i;
+    s.xxx = ksdfj;
+    s.yyy = kjskdfj;
+<span style="color: #707183;">}</span>
+S = <span style="color: #0000ff;">MakeStudent</span><span style="color: #707183;">(</span>id<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25277;&#20986;&#20026;&#31867;&#22411;&#36716;&#25442;</span>
+<span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span> = <span style="color: #707183;">(</span><span style="color: #228b22;">Student</span><span style="color: #707183;">)</span> id;
+</pre>
+</div>
 </div>
 </div>
 
@@ -1706,12 +1741,116 @@ i = <span style="color: #707183;">(</span><span style="color: #228b22;">int</spa
 <h3 id="orge2d946b"><span class="section-number-3">6.5.</span> 基于字符串之间的互相转换</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
-<li>ToString</li>
-<li>String.Format</li>
-<li>Parse</li>
-<li>TryParse</li>
-<li>Convert</li>
+<li>核心两种方法: <code>string.Format</code> 用来转换为字符串，<code>type.Parse</code> 用来从字符串转化</li>
+<li>可以使用 <code>ToString/TryParse</code> 对上面的两个方法进行补充</li>
 </ul>
+
+<p>
+简而言之:
+</p>
+<ul class="org-ul">
+<li>将其他类型转换为字符串: <code>string.Format/ToString</code></li>
+<li>将字符串转换为其他类型: <code>xxx.Parse/TryParse</code></li>
+<li>BCL 中提供了一个叫 <code>Convert</code> 的类，可以实现更多更复杂的转换</li>
+</ul>
+</div>
+
+<div id="outline-container-orgc241043" class="outline-4">
+<h4 id="orgc241043"><span class="section-number-4">6.5.1.</span> string.Format</h4>
+<div class="outline-text-4" id="text-6-5-1">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">r3</span> = <span style="color: #228b22;">string</span>.<span style="color: #0000ff;">Format</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}&#30340;&#26379;&#21451;&#26159;{1}&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;{2}&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#36798;&#21040;{3:C}"</span>, name, friend, age, sal<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6fe4451" class="outline-4">
+<h4 id="org6fe4451"><span class="section-number-4">6.5.2.</span> type.ToString</h4>
+<div class="outline-text-4" id="text-6-5-2">
+<p>
+因为，string 类型是如此重要，所以在 <b>所有类的基类，即 object 中</b>,
+包含了一个默认的 ToString 方法。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sal</span> = 1000000;
+
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Hahaha</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hdskfjksjfksjdfkke"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>p.<span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Program+Person</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sal</span> = 1000000;
+
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Hahaha</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hdskfjksjfksjdfkke"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"&#25105;&#23601;&#26159;&#25105;&#65292;&#19981;&#19968;&#26679;&#30340;&#28895;&#28779;.&#25105;&#30340;&#24037;&#36164;: "</span> + <span style="color: #a020f0;">this</span>.sal;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>p<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">int</span>
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 112323;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = i.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"X"</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">datetime</span>
+<span style="color: #228b22;">DateTime</span> <span style="color: #a0522d;">now</span> = DateTime.Now;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = now.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s2<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = now.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#29616;&#22312;&#26102;&#38388;: yyyy&#24180;MM&#26376;dd&#26085;&#65292;&#19981;&#21578;&#35785;&#20320;&#20960;&#28857;"</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s3<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">CultureInfo</span> <span style="color: #a0522d;">ci</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">CultureInfo</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"zh-CN"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = now.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#29616;&#22312;&#26102;&#38388;: yyyy&#24180;MMMddd&#65292;&#19981;&#21578;&#35785;&#20320;&#20960;&#28857;"</span>, ci<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s4<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3435039" class="outline-4">
+<h4 id="org3435039"><span class="section-number-4">6.5.3.</span> type.Parse</h4>
+<div class="outline-text-4" id="text-6-5-3">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">int</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"1234343"</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = <span style="color: #228b22;">int</span>.<span style="color: #0000ff;">Parse</span><span style="color: #707183;">(</span>s1<span style="color: #707183;">)</span> + 1;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>i<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">double</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = <span style="color: #8b2252;">"2322222"</span>;
+<span style="color: #228b22;">double</span> <span style="color: #a0522d;">d</span> = <span style="color: #228b22;">double</span>.<span style="color: #0000ff;">Parse</span><span style="color: #707183;">(</span>s2<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>d<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">DateTime</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = <span style="color: #8b2252;">"1999-02-13"</span>;
+<span style="color: #228b22;">DateTime</span> <span style="color: #a0522d;">dt</span> = DateTime.<span style="color: #0000ff;">Parse</span><span style="color: #707183;">(</span>s3<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>dt.Year<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -2898,7 +3037,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-15</p>
+<p class="date">Created: 2021-06-16</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -1028,23 +1028,26 @@ API (Application Programming Interface) 应用程序编程接口。
 
 引用类型的转换:
 - 引用类型同样存在 implicit/explicit 抓换
-  : Student s = (Student) o;
+  : Person p = new Student();
+  : Student s = (Student) p;
 - 引用类型的转换，如果转换失败，默认会抛出异常
 - 使用 ~is~ 语句，判断是否属于某种类型。经常会跟显式转换配合使用:
   #+begin_src cs
     Student s;
-    if (a is Student)
+    if (p is Student)
     {
-        s = (Student)a;
+        s = (Student) p;
     }
-    else {
+    else
+    {
         s = null;
     }
     Console.WriteLine(s);
   #+end_src
 - 可以使用 ~as~ 语句，简化上述的判断跟转换。这是一种很甜的糖:
   #+begin_src cs
-    Student s = a as Student;
+    Student s = p as Student;
+    if (s == null) ...
   #+end_src
 
 装箱/拆箱 (boxing/unboxing):
@@ -1186,13 +1189,120 @@ API (Application Programming Interface) 应用程序编程接口。
   }
 #+end_src
 
+学号 - 学生，转换的示例:
+#+begin_src cs
+  // 普通使用
+  int id = 2323232323;
+  s = new Student();
+  s.id = id;
+  s.xxx = ksdfj;
+  s.yyy = kjskdfj;
+  
+  // 抽出为方法
+  Student MakeStudent(int id)
+  {
+      s = new Student();
+      s.id = i;
+      s.xxx = ksdfj;
+      s.yyy = kjskdfj;
+  }
+  S = MakeStudent(id);
+  
+  // 抽出为类型转换
+  Student s = (Student) id;
+#+end_src
+
 ** 基于字符串之间的互相转换
 
-- ToString
-- String.Format
-- Parse
-- TryParse
-- Convert
+- 核心两种方法: ~string.Format~ 用来转换为字符串，~type.Parse~ 用来从字符串转化
+- 可以使用 ~ToString/TryParse~ 对上面的两个方法进行补充
+
+简而言之:  
+- 将其他类型转换为字符串: ~string.Format/ToString~
+- 将字符串转换为其他类型: ~xxx.Parse/TryParse~
+- BCL 中提供了一个叫 ~Convert~ 的类，可以实现更多更复杂的转换
+
+*** string.Format
+
+#+begin_src cs
+  string r3 = string.Format("{0}的朋友是{1}，它虽然只有{2}岁，但是它的收入达到{3:C}", name, friend, age, sal);
+#+end_src
+
+*** type.ToString
+
+因为，string 类型是如此重要，所以在 *所有类的基类，即 object 中*,
+包含了一个默认的 ToString 方法。
+
+#+begin_src cs
+  class Person
+  {
+      private int sal = 1000000;
+  
+      void Hahaha()
+      {
+          Console.WriteLine("hdskfjksjfksjdfkke");
+      }
+  }
+  
+  Person p = new Person();
+  Console.WriteLine(p.ToString()); // Program+Person
+#+end_src
+
+#+begin_src cs
+  class Person
+  {
+      private int sal = 1000000;
+  
+      void Hahaha()
+      {
+          Console.WriteLine("hdskfjksjfksjdfkke");
+      }
+  
+      public override string ToString()
+      {
+          return "我就是我，不一样的烟火.我的工资: " + this.sal;
+      }
+  }
+  
+  Person p = new Person();
+  Console.WriteLine(p);
+#+end_src
+
+#+begin_src cs
+  // int
+  int i = 112323;
+  string s1 = i.ToString("X");
+  Console.WriteLine(s1);
+  
+  // datetime
+  DateTime now = DateTime.Now;
+  string s2 = now.ToString();
+  Console.WriteLine(s2);
+  string s3 = now.ToString("现在时间: yyyy年MM月dd日，不告诉你几点");
+  Console.WriteLine(s3);
+  CultureInfo ci = new CultureInfo("zh-CN");
+  string s4 = now.ToString("现在时间: yyyy年MMMddd，不告诉你几点", ci);
+  Console.WriteLine(s4);
+#+end_src
+
+*** type.Parse
+
+#+begin_src cs
+  // int
+  string s1 = "1234343";
+  int i = int.Parse(s1) + 1;
+  Console.WriteLine(i);
+  
+  // double
+  string s2 = "2322222";
+  double d = double.Parse(s2);
+  Console.WriteLine(d);
+  
+  // DateTime
+  string s3 = "1999-02-13";
+  DateTime dt = DateTime.Parse(s3);
+  Console.WriteLine(dt.Year);
+#+end_src
 
 * [自定义类型]
 ** class
