@@ -1285,7 +1285,7 @@ API (Application Programming Interface) 应用程序编程接口。
   Console.WriteLine(s4);
 #+end_src
 
-*** type.Parse
+*** type.Parse/TryParse
 
 #+begin_src cs
   // int
@@ -1302,6 +1302,55 @@ API (Application Programming Interface) 应用程序编程接口。
   string s3 = "1999-02-13";
   DateTime dt = DateTime.Parse(s3);
   Console.WriteLine(dt.Year);
+#+end_src
+
+转换失败，会抛异常:
+#+begin_src cs
+  string s4 = "hello";
+  int i2 = int.Parse(s4);
+  
+  try
+  {
+      string s4 = "hello";
+      int i2 = int.Parse(s4);
+  }
+  catch (e)
+  {
+      // 转换不了怎么办
+  }
+#+end_src
+
+可以使用 TryParse 进行转化，如果转换失败，会返回 False:
+#+begin_src cs
+  string s4 = "hello";
+
+  if (int.TryParse(s4, out int result))
+  {
+      Console.WriteLine(result);
+  }
+  
+  bool TryMyParse(string s, out int result)
+  {
+      try
+      {
+          result = int.Parse(s4);
+          return true;
+      }
+      catch
+      {
+          result = 0;
+          return false;
+      }
+  }#+end_src
+
+*** Convert
+
+#+begin_src cs
+  string s1 = Convert.ToString(82738283782, 2);
+  string s2 = Convert.ToString(82738283782, 8);
+  Console.WriteLine(s2);
+  
+  Convert.TryFromBase64String();
 #+end_src
 
 * [自定义类型]

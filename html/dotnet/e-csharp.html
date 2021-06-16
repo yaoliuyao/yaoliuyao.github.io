@@ -109,7 +109,8 @@
 <ul>
 <li><a href="#orgc241043">6.5.1. string.Format</a></li>
 <li><a href="#org6fe4451">6.5.2. type.ToString</a></li>
-<li><a href="#org3435039">6.5.3. type.Parse</a></li>
+<li><a href="#org23edc9b">6.5.3. type.Parse/TryParse</a></li>
+<li><a href="#orgb81e480">6.5.4. Convert</a></li>
 </ul>
 </li>
 </ul>
@@ -241,13 +242,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgde2d0db">
+<figure id="org3978c45">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org8de567c">
+<figure id="org2431d73">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -492,7 +493,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgf0640b6">
+<figure id="org13c7deb">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -613,7 +614,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org5dc22d1">
+<figure id="orgbb65ed0">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -641,7 +642,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org0d025b2">
+<figure id="org740010d">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -700,7 +701,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgdd3a21b">
+<figure id="org1c0702c">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1126,7 +1127,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org75321a5">
+<figure id="org2e15c55">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1164,7 +1165,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org2b4bf08">
+<figure id="orgc74bf07">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1830,8 +1831,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org3435039" class="outline-4">
-<h4 id="org3435039"><span class="section-number-4">6.5.3.</span> type.Parse</h4>
+<div id="outline-container-org23edc9b" class="outline-4">
+<h4 id="org23edc9b"><span class="section-number-4">6.5.3.</span> type.Parse/TryParse</h4>
 <div class="outline-text-4" id="text-6-5-3">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">int</span>
@@ -1848,6 +1849,68 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s3</span> = <span style="color: #8b2252;">"1999-02-13"</span>;
 <span style="color: #228b22;">DateTime</span> <span style="color: #a0522d;">dt</span> = DateTime.<span style="color: #0000ff;">Parse</span><span style="color: #707183;">(</span>s3<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>dt.Year<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+转换失败，会抛异常:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = <span style="color: #8b2252;">"hello"</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i2</span> = <span style="color: #228b22;">int</span>.<span style="color: #0000ff;">Parse</span><span style="color: #707183;">(</span>s4<span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">try</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s4</span> = <span style="color: #8b2252;">"hello"</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i2</span> = <span style="color: #228b22;">int</span>.<span style="color: #0000ff;">Parse</span><span style="color: #7388d6;">(</span>s4<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">catch</span> <span style="color: #707183;">(</span>e<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36716;&#25442;&#19981;&#20102;&#24590;&#20040;&#21150;</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+可以使用 TryParse 进行转化，如果转换失败，会返回 False:
+#+begin_src cs
+  string s4 = "hello";
+</p>
+
+<p>
+if (int.TryParse(s4, out int result))
+{
+    Console.WriteLine(result);
+}
+</p>
+
+<p>
+bool TryMyParse(string s, out int result)
+{
+    try
+    {
+        result = int.Parse(s4);
+        return true;
+    }
+    catch
+    {
+        result = 0;
+        return false;
+    }
+}#+end_src
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb81e480" class="outline-4">
+<h4 id="orgb81e480"><span class="section-number-4">6.5.4.</span> Convert</h4>
+<div class="outline-text-4" id="text-6-5-4">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = Convert.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span>82738283782, 2<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s2</span> = Convert.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span>82738283782, 8<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s2<span style="color: #707183;">)</span>;
+
+Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="color: #707183;">()</span>;
 </pre>
 </div>
 </div>
