@@ -135,6 +135,8 @@
 <li><a href="#orgb851b88">8.2.2. 方法的重载 (overload)</a></li>
 <li><a href="#org09ee730">8.2.3. 参数 (值参数/ref/out)</a></li>
 <li><a href="#orged69853">8.2.4. out 参数: 用来模拟方法返回多个值的场景</a></li>
+<li><a href="#orgec3795c">8.2.5. 数组参数 (params)</a></li>
+<li><a href="#orgc978e8a">8.2.6. 可选参数/命名参数</a></li>
 </ul>
 </li>
 <li><a href="#org8fb54bd">8.3. 属性 (Property)</a></li>
@@ -253,13 +255,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org682b4b7">
+<figure id="orga61e815">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgbf1c6ee">
+<figure id="orgcbcfc94">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -504,7 +506,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org844d154">
+<figure id="orgd07398c">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -625,7 +627,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org43bb912">
+<figure id="orgfdb33a4">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -653,7 +655,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgce37396">
+<figure id="orgd2b5a2b">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -712,7 +714,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgd4a3bfd">
+<figure id="org1c2d9d2">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1138,7 +1140,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orge610b2b">
+<figure id="org35d1c68">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1176,7 +1178,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orge06c3de">
+<figure id="org8dff0af">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2180,7 +2182,7 @@ out:
 </div>
 
 
-<figure id="org43550d4">
+<figure id="orga22abc4">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -2264,6 +2266,140 @@ out:
     age = 19;
     sal = 23232;
     <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"Kitty"</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgec3795c" class="outline-4">
+<h4 id="orgec3795c"><span class="section-number-4">8.2.5.</span> 数组参数 (params)</h4>
+<div class="outline-text-4" id="text-8-2-5">
+<p>
+实现累加:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21152;&#27861;</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r1</span> = <span style="color: #0000ff;">MyAdd2</span><span style="color: #7388d6;">(</span>2, 3<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r2</span> = <span style="color: #0000ff;">MyAdd3</span><span style="color: #7388d6;">(</span>2, 3, 4<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd2</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">return</span> a + b;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd3</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">return</span> a + b + c;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+使用数组改良的结果:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r1</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #909183;">[]</span> <span style="color: #909183;">{</span>2, 3<span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r2</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #909183;">[]</span> <span style="color: #909183;">{</span>2, 3, 4, 5, 6, 7<span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">nums</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = 0;
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; nums.Length; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        r += nums<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">return</span> r;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+可以使用 params 修饰数组，达到进一步简化调用语法的目的:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r1</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span>2, 3<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r2</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span>2, 3, 4, 5, 6, 7<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"{r1} / {r2}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd</span><span style="color: #707183;">(</span><span style="color: #a020f0;">params</span> <span style="color: #228b22;">int</span> <span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">nums</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = 0;
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; nums.Length; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        r += nums<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">return</span> r;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+数组参数需要放到后面:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#26368;&#21518;&#27714;&#21462;&#30340;&#21644;&#26159;: 0x{0:X}"</span>, 232, 3, 10<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">MyAdd</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fmt</span>, <span style="color: #a020f0;">params</span> <span style="color: #228b22;">int</span> <span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">nums</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = 0;
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; nums.Length; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        r += nums<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+    <span style="color: #7388d6;">}</span>
+
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>fmt, r<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc978e8a" class="outline-4">
+<h4 id="orgc978e8a"><span class="section-number-4">8.2.6.</span> 可选参数/命名参数</h4>
+<div class="outline-text-4" id="text-8-2-6">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">Hello</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #0000ff;">Hello</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"Hiii!"</span><span style="color: #7388d6;">)</span>;
+    <span style="color: #0000ff;">Hello</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"Hi"</span>, <span style="color: #8b2252;">"Xiaoming"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Hello</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">action</span> = <span style="color: #8b2252;">"Hello"</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">who</span> = <span style="color: #8b2252;">"World"</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"{action} {who}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+可以使用命名参数，简化多个可选参数存在的情况下的赋值:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">Hello</span><span style="color: #7388d6;">(</span>who: <span style="color: #8b2252;">"XM"</span><span style="color: #7388d6;">)</span>;
+    <span style="color: #0000ff;">Hello</span><span style="color: #7388d6;">(</span>who: <span style="color: #8b2252;">"Xiaoming"</span>, action: <span style="color: #8b2252;">"out..."</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Hello</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">action</span> = <span style="color: #8b2252;">"Hello"</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">who</span> = <span style="color: #8b2252;">"World"</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"{action} {who}"</span><span style="color: #7388d6;">)</span>;
 <span style="color: #707183;">}</span>
 </pre>
 </div>

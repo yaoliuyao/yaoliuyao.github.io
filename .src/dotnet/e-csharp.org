@@ -1598,6 +1598,118 @@ out:
   }
 #+end_src
 
+*** 数组参数 (params)
+
+实现累加:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      // 加法
+      int r1 = MyAdd2(2, 3);
+      int r2 = MyAdd3(2, 3, 4);
+  }
+  
+  static int MyAdd2(int a, int b)
+  {
+      return a + b;
+  }
+  
+  static int MyAdd3(int a, int b, int c)
+  {
+      return a + b + c;
+  }
+#+end_src
+
+使用数组改良的结果:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      int r1 = MyAdd(new int[] {2, 3});
+      int r2 = MyAdd(new int[] {2, 3, 4, 5, 6, 7});
+  }
+  
+  static int MyAdd(int [] nums)
+  {
+      int r = 0;
+      for (int i = 0; i < nums.Length; i++)
+      {
+          r += nums[i];
+      }
+  
+      return r;
+  }
+#+end_src
+
+可以使用 params 修饰数组，达到进一步简化调用语法的目的:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      int r1 = MyAdd(2, 3);
+      int r2 = MyAdd(2, 3, 4, 5, 6, 7);
+      Console.WriteLine($"{r1} / {r2}");
+  }
+  
+  static int MyAdd(params int [] nums)
+  {
+      int r = 0;
+      for (int i = 0; i < nums.Length; i++)
+      {
+          r += nums[i];
+      }
+  
+      return r;
+  }
+#+end_src
+
+数组参数需要放到后面:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      MyAdd("最后求取的和是: 0x{0:X}", 232, 3, 10);
+  }
+  
+  static void MyAdd(string fmt, params int [] nums)
+  {
+      int r = 0;
+      for (int i = 0; i < nums.Length; i++)
+      {
+          r += nums[i];
+      }
+  
+      Console.WriteLine(fmt, r);
+  }
+#+end_src
+
+*** 可选参数/命名参数
+
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      Hello();
+      Hello("Hiii!");
+      Hello("Hi", "Xiaoming");
+  }
+  
+  static void Hello(string action = "Hello", string who = "World")
+  {
+      Console.WriteLine($"{action} {who}");
+  }
+#+end_src
+
+可以使用命名参数，简化多个可选参数存在的情况下的赋值:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      Hello(who: "XM");
+      Hello(who: "Xiaoming", action: "out...");
+  }
+  
+  static void Hello(string action = "Hello", string who = "World")
+  {
+      Console.WriteLine($"{action} {who}");
+  }
+#+end_src
+
 ** 属性 (Property)
 
 属性本身就是 [private Field + public Method] 一种语法糖:
