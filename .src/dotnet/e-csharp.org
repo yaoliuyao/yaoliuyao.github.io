@@ -1524,6 +1524,10 @@ out:
   }
 #+end_src
 
+#+ATTR_HTML: :width 400px
+[[file:img/method-parameter.png]]
+
+
 *** out 参数: 用来模拟方法返回多个值的场景
 
 如果不用 out，可以使用 Class 的方式返回多个值，这种方式比较重:
