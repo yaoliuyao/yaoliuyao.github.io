@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-16 -->
+<!-- 2021-06-17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -195,6 +195,10 @@
 <li><a href="#org7cbe124">13.9. 什么是虚方法，它有什么用处</a></li>
 <li><a href="#orga4100f5">13.10. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
 <li><a href="#org49d491a">13.11. 什么是 DRY，代码复用的手段有哪些</a></li>
+<li><a href="#org6186468">13.12. Parse/TryParse 有啥区别</a></li>
+<li><a href="#org6aa9caa">13.13. 什么是装箱拆箱</a></li>
+<li><a href="#org98ec2cf">13.14. 什么是值类型/引用类型</a></li>
+<li><a href="#org3f909ac">13.15. is/as 分别是干啥的</a></li>
 </ul>
 </li>
 </ul>
@@ -242,13 +246,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org3b203ef">
+<figure id="org425f10e">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgf03018a">
+<figure id="orgd64bd1a">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -493,7 +497,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orga6b3cf9">
+<figure id="org426929d">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -614,7 +618,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org17b586a">
+<figure id="org6eb7d1b">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -642,7 +646,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgc6cc30e">
+<figure id="org421c174">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -701,7 +705,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org3968689">
+<figure id="orga46c631">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1127,7 +1131,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgbdb22ca">
+<figure id="orgad422ed">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1165,7 +1169,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org1c63d2f">
+<figure id="org7f8cbf9">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1625,10 +1629,11 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 装箱/拆箱 (boxing/unboxing):
 </p>
 <ul class="org-ul">
-<li>在 C# 中，基本类型也是 object 的实例</li>
-<li>但是为了效率，基本类型都被直接存储在栈上，存储的形式不是对象的形式</li>
-<li>因此，如果想将基本类型当作对象，来进行方法调用的时候，需要将其转换为对象存储形式</li>
-<li>为了简化上述过程，在对基本类型进行方法调用的时候，CLR 会自动进行上述转换。
+<li><b>装箱</b> 是将值类型转换为 object 类型或由此值类型实现的任何接口类型的过程</li>
+<li>在 C# 中，基本类型也是 object 的实例。
+但是为了效率，基本类型都被直接存储在栈上，存储的形式不是对象的形式。
+因此，如果想将基本类型当作对象，来进行方法调用的时候，需要将其转换为对象存储形式
+为了简化上述过程，在对基本类型进行方法调用的时候，CLR 会自动进行上述转换。
 这种隐式转换的机制，叫做自动装箱 (auto-boxing)</li>
 <li>反向的过程叫拆箱</li>
 </ul>
@@ -3096,11 +3101,54 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <div id="outline-container-org49d491a" class="outline-3">
 <h3 id="org49d491a"><span class="section-number-3">13.11.</span> 什么是 DRY，代码复用的手段有哪些</h3>
 </div>
+<div id="outline-container-org6186468" class="outline-3">
+<h3 id="org6186468"><span class="section-number-3">13.12.</span> Parse/TryParse 有啥区别</h3>
+<div class="outline-text-3" id="text-13-12">
+<ul class="org-ul">
+<li>这两个都是用来将字符串转换为其他类型</li>
+<li>遇到转换失败的时候</li>
+<li>Parse 会直接抛出异常</li>
+<li>而 TryParse，会根据是否转换成功返回 True/False,
+它不会抛出异常</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6aa9caa" class="outline-3">
+<h3 id="org6aa9caa"><span class="section-number-3">13.13.</span> 什么是装箱拆箱</h3>
+<div class="outline-text-3" id="text-13-13">
+<ul class="org-ul">
+<li>装箱是将值类型转换为 object 的过程</li>
+<li>拆箱是将装箱后的 object 转换为对应的值类型的过程</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org98ec2cf" class="outline-3">
+<h3 id="org98ec2cf"><span class="section-number-3">13.14.</span> 什么是值类型/引用类型</h3>
+<div class="outline-text-3" id="text-13-14">
+<ul class="org-ul">
+<li>变量位置保存的是类型实例自身，这样的类型叫 <b>值类型</b></li>
+<li>变量位置保存的是类型实例的引用，这样的类型叫 <b>引用类型</b></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3f909ac" class="outline-3">
+<h3 id="org3f909ac"><span class="section-number-3">13.15.</span> is/as 分别是干啥的</h3>
+<div class="outline-text-3" id="text-13-15">
+<ul class="org-ul">
+<li>is 用来判断左边的实例是否是右边的类型。是的 true，不是的话 false。
+它常用来跟显式转换配合使用</li>
+<li>as 和显式转换相似，但它不会抛出异常，如果成功返回转换结果，失败返回 null</li>
+</ul>
+</div>
+</div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-16</p>
+<p class="date">Created: 2021-06-17</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
