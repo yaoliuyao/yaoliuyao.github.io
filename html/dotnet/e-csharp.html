@@ -129,7 +129,14 @@
 <li><a href="#org13746ef">8. 类 (Class)</a>
 <ul>
 <li><a href="#orgf6ff4e3">8.1. 字段 (Field)</a></li>
-<li><a href="#org9cf6316">8.2. 方法 (Method)</a></li>
+<li><a href="#org9cf6316">8.2. 方法 (Method)</a>
+<ul>
+<li><a href="#org5653709">8.2.1. Basic</a></li>
+<li><a href="#orgb851b88">8.2.2. 方法的重载 (overload)</a></li>
+<li><a href="#org09ee730">8.2.3. 参数 (值参数/ref/out)</a></li>
+<li><a href="#orged69853">8.2.4. out 参数: 用来模拟方法返回多个值的场景</a></li>
+</ul>
+</li>
 <li><a href="#org8fb54bd">8.3. 属性 (Property)</a></li>
 <li><a href="#org9981571">8.4. 构造方法/构造器 (Constructor)</a>
 <ul>
@@ -246,13 +253,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org425f10e">
+<figure id="org4967329">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgd64bd1a">
+<figure id="org4c87378">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -497,7 +504,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org426929d">
+<figure id="org9a74924">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -618,7 +625,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org6eb7d1b">
+<figure id="org42d0429">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -646,7 +653,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org421c174">
+<figure id="org5cdc4c3">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -705,7 +712,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orga46c631">
+<figure id="orgc025b03">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1131,7 +1138,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgad422ed">
+<figure id="org4cc7b80">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1169,7 +1176,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org7f8cbf9">
+<figure id="org449227f">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2013,6 +2020,10 @@ Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="col
 <div id="outline-container-org9cf6316" class="outline-3">
 <h3 id="org9cf6316"><span class="section-number-3">8.2.</span> 方法 (Method)</h3>
 <div class="outline-text-3" id="text-8-2">
+</div>
+<div id="outline-container-org5653709" class="outline-4">
+<h4 id="org5653709"><span class="section-number-4">8.2.1.</span> Basic</h4>
+<div class="outline-text-4" id="text-8-2-1">
 <p>
 方法是一个具备名字的代码块:
 </p>
@@ -2027,11 +2038,12 @@ Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="col
 如果方法内部没有任何 return 表示方法没有返回值，需要在方法前面添加 void 表示这种情况</li>
 </ol></li>
 </ul>
+</div>
+</div>
 
-
-<p>
-方法的重载 (overload):
-</p>
+<div id="outline-container-orgb851b88" class="outline-4">
+<h4 id="orgb851b88"><span class="section-number-4">8.2.2.</span> 方法的重载 (overload)</h4>
+<div class="outline-text-4" id="text-8-2-2">
 <ul class="org-ul">
 <li>一个类中，可以有同名的方法。需要有不同的参数 (这样才能区分调用)</li>
 <li>请叙述一下 overload 和 override 有什么区别</li>
@@ -2079,6 +2091,175 @@ Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="col
     &#27809;&#26377;&#36820;&#22238;&#20540;&#20063;&#27809;&#26377;&#20837;&#21442;<span style="color: #7388d6;">()</span>;
 <span style="color: #707183;">}</span>
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org09ee730" class="outline-4">
+<h4 id="org09ee730"><span class="section-number-4">8.2.3.</span> 参数 (值参数/ref/out)</h4>
+<div class="outline-text-4" id="text-8-2-3">
+<p>
+值参数 (默认的):
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 5;
+    <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #0000ff;">TestZhi</span><span style="color: #7388d6;">(</span>i, p<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"out: i: {i}, age: ${p.Age}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">TestZhi</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">ii</span>, <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">pp</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    ii = ii + 1;
+    pp.Age = pp.Age + 18;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"in:  i: {ii}, age: ${pp.Age}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Age</span> = 18;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+ref:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 5;
+    <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #0000ff;">TestZhi</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">ref</span> <span style="color: #228b22;">i</span>, p<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"out: i: {i}, age: ${p.Age}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">TestZhi</span><span style="color: #707183;">(</span><span style="color: #a020f0;">ref</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ii</span>, <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">pp</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    ii = ii + 1;
+    pp.Age = pp.Age + 18;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"in:  i: {ii}, age: ${pp.Age}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Age</span> = 18;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+out:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>;
+    <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #0000ff;">TestZhi</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">i</span>, p<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"out: i: {i}, age: ${p.Age}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">TestZhi</span><span style="color: #707183;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ii</span>, <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">pp</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    ii = 999;
+    pp.Age = pp.Age + 18;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"in:  i: {ii}, age: ${pp.Age}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Age</span> = 18;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orged69853" class="outline-4">
+<h4 id="orged69853"><span class="section-number-4">8.2.4.</span> out 参数: 用来模拟方法返回多个值的场景</h4>
+<div class="outline-text-4" id="text-8-2-4">
+<p>
+如果不用 out，可以使用 Class 的方式返回多个值，这种方式比较重:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span>;
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">sal</span>;
+
+    <span style="color: #228b22;">Person</span> <span style="color: #a0522d;">p</span> = <span style="color: #0000ff;">GetYourInformation</span><span style="color: #7388d6;">()</span>;
+    name = p.Name;
+    age = p.Age;
+    sal = p.Sal;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">Person</span> <span style="color: #0000ff;">GetYourInformation</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a0522d;">Name</span> = <span style="color: #8b2252;">"Kitty"</span>,
+        <span style="color: #a0522d;">Age</span> = 19,
+        <span style="color: #a0522d;">Sal</span> = 2323323
+    <span style="color: #7388d6;">}</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Name</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Age</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Sal</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+而 out 的方法比较轻量级:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span>;
+    <span style="color: #228b22;">double</span> <span style="color: #a0522d;">sal</span>;
+
+    name = <span style="color: #0000ff;">GetYourInformation</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">age</span>, <span style="color: #a020f0;">out</span> <span style="color: #228b22;">sal</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"{name} &#30340;&#24180;&#40836;&#20026; {age} &#25910;&#20837;&#20026; {sal}&#65292;&#24744;&#21487;&#28385;&#24847;?"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">GetYourInformation</span><span style="color: #707183;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span>, <span style="color: #a020f0;">out</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">sal</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    age = 19;
+    sal = 23232;
+    <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"Kitty"</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+甚至可以更简化:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span> = <span style="color: #0000ff;">GetYourInformation</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span>, <span style="color: #a020f0;">out</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">sal</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"{name} &#30340;&#24180;&#40836;&#20026; {age} &#25910;&#20837;&#20026; {sal}&#65292;&#24744;&#21487;&#28385;&#24847;?"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">GetYourInformation</span><span style="color: #707183;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">age</span>, <span style="color: #a020f0;">out</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">sal</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    age = 19;
+    sal = 23232;
+    <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"Kitty"</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </div>

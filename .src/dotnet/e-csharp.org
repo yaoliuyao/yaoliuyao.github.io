@@ -1393,6 +1393,7 @@ API (Application Programming Interface) 应用程序编程接口。
   + 静态修饰符: static 的作用是，将这个字段的归属权给予类
 
 ** 方法 (Method)
+*** Basic
 
 方法是一个具备名字的代码块:
 - 通过 ~方法名()~ 的方式实现方法调用，
@@ -1403,8 +1404,8 @@ API (Application Programming Interface) 应用程序编程接口。
   3. 传出的数据 (返回值) 方法内部，使用 return 表示返回的数据。在方法名前面，添加返回的类型。
      如果方法内部没有任何 return 表示方法没有返回值，需要在方法前面添加 void 表示这种情况
 
+*** 方法的重载 (overload)
 
-方法的重载 (overload):
 - 一个类中，可以有同名的方法。需要有不同的参数 (这样才能区分调用)
 - 请叙述一下 overload 和 override 有什么区别
 
@@ -1446,6 +1447,150 @@ API (Application Programming Interface) 应用程序编程接口。
       double c = 没有入参();
       没有返回数据("H&M");
       没有返回值也没有入参();
+  }
+#+end_src
+
+*** 参数 (值参数/ref/out)
+
+值参数 (默认的):
+#+begin_src cs
+    static void Main(string[] args)
+    {
+        int i = 5;
+        Person p = new Person();
+
+        TestZhi(i, p);
+        Console.WriteLine($"out: i: {i}, age: ${p.Age}");
+    }
+
+    static void TestZhi(int ii, Person pp)
+    {
+        ii = ii + 1;
+        pp.Age = pp.Age + 18;
+        Console.WriteLine($"in:  i: {ii}, age: ${pp.Age}");
+    }
+
+    class Person
+    {
+        public int Age = 18;
+    }
+#+end_src
+
+ref:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      int i = 5;
+      Person p = new Person();
+  
+      TestZhi(ref i, p);
+      Console.WriteLine($"out: i: {i}, age: ${p.Age}");
+  }
+  
+  static void TestZhi(ref int ii, Person pp)
+  {
+      ii = ii + 1;
+      pp.Age = pp.Age + 18;
+      Console.WriteLine($"in:  i: {ii}, age: ${pp.Age}");
+  }
+  
+  class Person
+  {
+      public int Age = 18;
+  }
+#+end_src
+
+out:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      int i;
+      Person p = new Person();
+  
+      TestZhi(out i, p);
+      Console.WriteLine($"out: i: {i}, age: ${p.Age}");
+  }
+  
+  static void TestZhi(out int ii, Person pp)
+  {
+      ii = 999;
+      pp.Age = pp.Age + 18;
+      Console.WriteLine($"in:  i: {ii}, age: ${pp.Age}");
+  }
+  
+  class Person
+  {
+      public int Age = 18;
+  }
+#+end_src
+
+*** out 参数: 用来模拟方法返回多个值的场景
+
+如果不用 out，可以使用 Class 的方式返回多个值，这种方式比较重:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      string name;
+      int age;
+      double sal;
+  
+      Person p = GetYourInformation();
+      name = p.Name;
+      age = p.Age;
+      sal = p.Sal;
+  }
+  
+  static Person GetYourInformation()
+  {
+      return new Person
+      {
+          Name = "Kitty",
+          Age = 19,
+          Sal = 2323323
+      };
+  }
+  
+  class Person
+  {
+      public string Name;
+      public int Age;
+      public double Sal;
+  }
+#+end_src
+
+而 out 的方法比较轻量级:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      string name;
+      int age;
+      double sal;
+  
+      name = GetYourInformation(out age, out sal);
+      Console.WriteLine($"{name} 的年龄为 {age} 收入为 {sal}，您可满意?");
+  }
+  
+  static string GetYourInformation(out int age, out double sal)
+  {
+      age = 19;
+      sal = 23232;
+      return "Kitty";
+  }
+#+end_src
+
+甚至可以更简化:
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      string name = GetYourInformation(out int age, out double sal);
+      Console.WriteLine($"{name} 的年龄为 {age} 收入为 {sal}，您可满意?");
+  }
+  
+  static string GetYourInformation(out int age, out double sal)
+  {
+      age = 19;
+      sal = 23232;
+      return "Kitty";
   }
 #+end_src
 
