@@ -2217,6 +2217,74 @@ IComparable 用来为两个对象进行比较提供比较的规则:
   }
 #+end_src
 
+* 结构体 (Struct)
+
+- 它跟 class 非常像，但它是值类型
+- 由于是值类型，所以效率高:
+  + 栈上，用完退栈，不需要垃圾回收
+  + 对象内部
+- 实际上，我们的常见预定义类型，都是实现为 struct (int/float)
+- 结构体，默认是密封的，因此，它不能继承
+- 它支持 parital 的用法
+- 它支持使用构造器:
+  + 在构造器中，需要确保为每个成员赋值
+  + 包含一个默认构造器，里面会对所有成员进行初始化，我们不能将其覆盖掉
+- 它不需要，也不能有析构方法
+
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      TestStuct();
+      Console.WriteLine("结束了");
+  }
+  
+  static void TestStuct()
+  {
+      YellowMan a = new YellowMan();
+      a.Name = "小黄人甲";
+      a.Score = 333.4;
+  
+      YellowMan b = new YellowMan();
+      b.Name = "小黄人乙";
+      b.Score = 133.4;
+  
+      b.ZiWoJieShao();
+      Console.WriteLine(b);
+  
+      var d = new YellowMan("kkk", 222);
+      Console.WriteLine(d.Name);
+  }
+  
+  struct YellowMan
+  {
+      public string Name;
+      public double Score;
+      public int Age;
+  
+      public YellowMan(string n, double s)
+      {
+          Name = n;
+          Score = s;
+          Age = 23;
+      }
+  
+      public void ZiWoJieShao()
+      {
+          Console.WriteLine($"我是 {Name},我的可爱程度为 {Score}");
+      }
+  
+      public override string ToString()
+      {
+          return "hello, 小黄人";
+      }
+  }
+  
+  class B
+  {
+      private YellowMan c = new YellowMan();
+  }
+#+end_src
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
