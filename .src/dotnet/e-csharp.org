@@ -2285,6 +2285,105 @@ IComparable 用来为两个对象进行比较提供比较的规则:
   }
 #+end_src
 
+* 枚举 (Enum)
+
+int/1 2 3 .. ..  3
+double .....
+bool: true/false
+
+Gender (男/女/未知)
+
+** 基本使用
+
+#+begin_src csharp
+  static void Main(string[] args)
+  {
+      checked
+      {
+          Console.WriteLine((int)Gender3.女);
+          Console.WriteLine((int)Gender3.男);
+          Console.WriteLine((int)Gender3.我也不知道是男是女它到底是男是女呢谁知道呢不管他了);
+      }
+  
+      if (Gender4.我也不知道是男是女它到底是男是女呢谁知道呢不管他了 == Gender4.男)
+      {
+          Console.WriteLine("Yes.");
+      }
+  }
+  
+  enum MyBool
+  {
+      True,
+      False
+  }
+  
+  enum Gender
+  {
+      男,
+      女,
+      我也不知道是男是女它到底是男是女呢谁知道呢不管他了
+  }
+  
+  enum Gender2
+  {
+      男 = 0,
+      女 = 1,
+      我也不知道是男是女它到底是男是女呢谁知道呢不管他了 = 2
+  }
+  
+  enum Gender3
+  {
+      男 = 110,
+      女,
+      我也不知道是男是女它到底是男是女呢谁知道呢不管他了 = 120
+  }
+  
+  enum Gender4
+  {
+      男 = 110,
+      女,
+      我也不知道是男是女它到底是男是女呢谁知道呢不管他了 = 男
+  }
+  
+  enum Gender5 : short
+  {
+      男 = 110,
+      女,
+      我也不知道是男是女它到底是男是女呢谁知道呢不管他了 = 男
+  }
+  
+  class MyGender
+  {
+      public const int 男 = 0;
+      public const int 女 = 1;
+      public const int 我也不知道是男是女它到底是男是女呢谁知道呢不管他了 = 2;
+  }
+#+end_src
+
+** Flags
+
+#+begin_src cs
+  [Flags]
+  enum FeichangJincouDeLeixing
+  {
+      A = 0x12,
+      B = 0x13
+  }
+#+end_src
+
+** 基本 API
+
+#+begin_src cs
+  foreach (string name in Enum.GetNames(typeof(Gender)))
+  {
+      Console.WriteLine(name);
+  }
+  foreach (var v in Enum.GetValues(typeof(Gender)))
+  {
+      Console.WriteLine((int)v);
+  }
+#+end_src
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
