@@ -1,6 +1,15 @@
 #+TITLE: 任务和作业
 
 
+* [2021-06-21 Mon]
+:PROPERTIES:
+:CUSTOM_ID: active
+:END:
+
+
+完善 MyAdd，让其能处理不同调用的逻辑，实现不同的额外功能。
+
+
 * [2021-06-16 Wed]
 :PROPERTIES:
 :CUSTOM_ID: active

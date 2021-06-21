@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-18 -->
+<!-- 2021-06-21 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -177,45 +177,46 @@
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
 <li><a href="#org49faf58">11.1. 基本使用</a></li>
-<li><a href="#org15379ed">11.2. Flags</a></li>
+<li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
 </li>
-<li><a href="#org38d4328">12. BCL (Base-Class Library) 基础类库</a>
+<li><a href="#org3641f93">12. 委托 (Delegate)</a></li>
+<li><a href="#org38d4328">13. BCL (Base-Class Library) 基础类库</a>
 <ul>
-<li><a href="#orge42088e">12.1. Console/控制台</a></li>
-<li><a href="#orgd098591">12.2. Random/Thread</a></li>
-<li><a href="#orgd147bfd">12.3. IDisposable/资源</a></li>
+<li><a href="#orge42088e">13.1. Console/控制台</a></li>
+<li><a href="#orgd098591">13.2. Random/Thread</a></li>
+<li><a href="#orgd147bfd">13.3. IDisposable/资源</a></li>
 </ul>
 </li>
-<li><a href="#org7906523">13. 技巧和示例</a>
+<li><a href="#org7906523">14. 技巧和示例</a>
 <ul>
-<li><a href="#org723d270">13.1. 求余</a></li>
+<li><a href="#org723d270">14.1. 求余</a></li>
 </ul>
 </li>
-<li><a href="#org8a80c1e">14. 模拟题</a>
+<li><a href="#org8a80c1e">15. 模拟题</a>
 <ul>
-<li><a href="#org6400c8e">14.1. 继承相关</a></li>
-<li><a href="#org0993f51">14.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
+<li><a href="#org6400c8e">15.1. 继承相关</a></li>
+<li><a href="#org0993f51">15.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
 </ul>
 </li>
-<li><a href="#orgb8b093b">15. 问题 (仅作参考)</a>
+<li><a href="#orgb8b093b">16. 问题 (仅作参考)</a>
 <ul>
-<li><a href="#org0931609">15.1. string 和 StringBuilder 有什么区别</a></li>
-<li><a href="#org5f8661c">15.2. 什么是抽象类，抽象类有什么用处</a></li>
-<li><a href="#orgddf3ea3">15.3. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
-<li><a href="#org156522f">15.4. 什么是静态类，什么是密封类，什么是分部类</a></li>
-<li><a href="#org51f1e72">15.5. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
-<li><a href="#org53c5fb1">15.6. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
-<li><a href="#org7f77498">15.7. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
-<li><a href="#org1453cfa">15.8. 什么是封装，什么是继承，什么是多态</a></li>
-<li><a href="#org7cbe124">15.9. 什么是虚方法，它有什么用处</a></li>
-<li><a href="#orga4100f5">15.10. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
-<li><a href="#org49d491a">15.11. 什么是 DRY，代码复用的手段有哪些</a></li>
-<li><a href="#org6186468">15.12. Parse/TryParse 有啥区别</a></li>
-<li><a href="#org6aa9caa">15.13. 什么是装箱拆箱</a></li>
-<li><a href="#org98ec2cf">15.14. 什么是值类型/引用类型</a></li>
-<li><a href="#org3f909ac">15.15. is/as 分别是干啥的</a></li>
+<li><a href="#org0931609">16.1. string 和 StringBuilder 有什么区别</a></li>
+<li><a href="#org5f8661c">16.2. 什么是抽象类，抽象类有什么用处</a></li>
+<li><a href="#orgddf3ea3">16.3. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
+<li><a href="#org156522f">16.4. 什么是静态类，什么是密封类，什么是分部类</a></li>
+<li><a href="#org51f1e72">16.5. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
+<li><a href="#org53c5fb1">16.6. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
+<li><a href="#org7f77498">16.7. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
+<li><a href="#org1453cfa">16.8. 什么是封装，什么是继承，什么是多态</a></li>
+<li><a href="#org7cbe124">16.9. 什么是虚方法，它有什么用处</a></li>
+<li><a href="#orga4100f5">16.10. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
+<li><a href="#org49d491a">16.11. 什么是 DRY，代码复用的手段有哪些</a></li>
+<li><a href="#org6186468">16.12. Parse/TryParse 有啥区别</a></li>
+<li><a href="#org6aa9caa">16.13. 什么是装箱拆箱</a></li>
+<li><a href="#org98ec2cf">16.14. 什么是值类型/引用类型</a></li>
+<li><a href="#org3f909ac">16.15. is/as 分别是干啥的</a></li>
 </ul>
 </li>
 </ul>
@@ -263,13 +264,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org4b7ced1">
+<figure id="org27babcc">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org6701fa4">
+<figure id="org7092b59">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -514,7 +515,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org40426f8">
+<figure id="orgfdfaa60">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -635,7 +636,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgb6c3410">
+<figure id="orgd2447d2">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -663,7 +664,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org2dcffe7">
+<figure id="orga17ae8a">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -722,7 +723,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgd870421">
+<figure id="orga77c332">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1148,7 +1149,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org6a74cdc">
+<figure id="org910474a">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1186,7 +1187,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org3ee6cac">
+<figure id="org29d4e20">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2190,7 +2191,7 @@ out:
 </div>
 
 
-<figure id="org8cb23c9">
+<figure id="orgf46db3f">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3220,8 +3221,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org15379ed" class="outline-3">
-<h3 id="org15379ed"><span class="section-number-3">11.2.</span> Flags</h3>
+<div id="outline-container-org40e776a" class="outline-3">
+<h3 id="org40e776a"><span class="section-number-3">11.2.</span> Flags (TODO)</h3>
 <div class="outline-text-3" id="text-11-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #707183;">[</span><span style="color: #a0522d;">Flags</span><span style="color: #707183;">]</span>
@@ -3230,6 +3231,9 @@ Gender (男<i>女</i>未知)
     <span style="color: #a0522d;">A</span> = 0x12,
     <span style="color: #a0522d;">B</span> = 0x13
 <span style="color: #707183;">}</span>
+
+111111
+101001
 </pre>
 </div>
 </div>
@@ -3253,13 +3257,69 @@ Gender (男<i>女</i>未知)
 </div>
 </section>
 
-<section id="outline-container-org38d4328" class="outline-2">
-<h2 id="org38d4328"><span class="section-number-2">12.</span> BCL (Base-Class Library) 基础类库</h2>
+<section id="outline-container-org3641f93" class="outline-2">
+<h2 id="org3641f93"><span class="section-number-2">12.</span> 委托 (Delegate)</h2>
 <div class="outline-text-2" id="text-12">
+<p>
+写一个方法 MyAdd ，求取 <b>若干数</b> 的和。
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.ForegroundColor = ConsoleColor.Red;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.WriteLine(sum);</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.ResetColor();</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#19978;&#38754;&#19977;&#23616;&#65292;&#25918;&#21040;&#19968;&#20010;&#23545;&#35937;&#37324;&#65292;&#28982;&#21518;</span>
+    <span style="color: #228b22;">object</span> <span style="color: #a0522d;">o1</span> = <span style="color: #008b8b;">null</span>;
+
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r1</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span>o1, 12, 32, 1112232, 43, 1112212, 3232323, 123<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r2</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span>o2, 222, 333, 444<span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r3</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span>o3, 11, 2323, 4344<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd</span><span style="color: #707183;">(</span><span style="color: #228b22;">object</span> <span style="color: #a0522d;">gaosuwogaigansm</span>, <span style="color: #a020f0;">params</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">nums</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span> = 0;
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; nums.Length; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        sum += nums<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.ForegroundColor = ConsoleColor.Red;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.WriteLine(sum);</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.ResetColor();</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.BackgroundColor = ConsoleColor.Red;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.WriteLine("&#21644;&#20026;&#65306;"+sum);</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.ResetColor();</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">File.AppendAllText(@"E:\jiafa.txt", sum + "\r\n");</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">SpeechSynthesizer synth = new SpeechSynthesizer();</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">synth.Speak(sum.ToString());</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">synth.Dispose();</span>
+
+    <span style="color: #228b22;">Bitmap</span> <span style="color: #a0522d;">image</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Bitmap</span><span style="color: #7388d6;">(</span>256, 256<span style="color: #7388d6;">)</span>;
+    <span style="color: #a020f0;">using</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">Graphics</span> <span style="color: #a0522d;">g</span> = Graphics.<span style="color: #0000ff;">FromImage</span><span style="color: #909183;">(</span>image<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        g.<span style="color: #0000ff;">FillRectangle</span><span style="color: #909183;">(</span>Brushes.Yellow, 0, 0, 256, 256<span style="color: #909183;">)</span>;
+        g.<span style="color: #0000ff;">DrawString</span><span style="color: #909183;">(</span>sum.<span style="color: #0000ff;">ToString</span><span style="color: #709870;">()</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Font</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"Monospace"</span>, 26<span style="color: #709870;">)</span>, Brushes.DarkGreen, 10, 10<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    image.<span style="color: #0000ff;">Save</span><span style="color: #7388d6;">(</span>@<span style="color: #8b2252;">"e:\hello.jpg"</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">return</span> sum;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org38d4328" class="outline-2">
+<h2 id="org38d4328"><span class="section-number-2">13.</span> BCL (Base-Class Library) 基础类库</h2>
+<div class="outline-text-2" id="text-13">
 </div>
 <div id="outline-container-orge42088e" class="outline-3">
-<h3 id="orge42088e"><span class="section-number-3">12.1.</span> Console/控制台</h3>
-<div class="outline-text-3" id="text-12-1">
+<h3 id="orge42088e"><span class="section-number-3">13.1.</span> Console/控制台</h3>
+<div class="outline-text-3" id="text-13-1">
 <p>
 相关方法和属性:
 </p>
@@ -3324,8 +3384,8 @@ Gender (男<i>女</i>未知)
 </div>
 
 <div id="outline-container-orgd098591" class="outline-3">
-<h3 id="orgd098591"><span class="section-number-3">12.2.</span> Random/Thread</h3>
-<div class="outline-text-3" id="text-12-2">
+<h3 id="orgd098591"><span class="section-number-3">13.2.</span> Random/Thread</h3>
+<div class="outline-text-3" id="text-13-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span>
 <span style="color: #707183;">{</span>
@@ -3362,8 +3422,8 @@ Gender (男<i>女</i>未知)
 </div>
 
 <div id="outline-container-orgd147bfd" class="outline-3">
-<h3 id="orgd147bfd"><span class="section-number-3">12.3.</span> IDisposable/资源</h3>
-<div class="outline-text-3" id="text-12-3">
+<h3 id="orgd147bfd"><span class="section-number-3">13.3.</span> IDisposable/资源</h3>
+<div class="outline-text-3" id="text-13-3">
 <ul class="org-ul">
 <li>资源，是指需要在操作系统中打开，用完之后，需要手动释放的对象</li>
 <li>为什么需要手动释放呢？因为 .NET 平台不是万能的。虽然 .NET 平台有垃圾回收器，你不再需要的
@@ -3439,12 +3499,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org7906523" class="outline-2">
-<h2 id="org7906523"><span class="section-number-2">13.</span> 技巧和示例</h2>
-<div class="outline-text-2" id="text-13">
+<h2 id="org7906523"><span class="section-number-2">14.</span> 技巧和示例</h2>
+<div class="outline-text-2" id="text-14">
 </div>
 <div id="outline-container-org723d270" class="outline-3">
-<h3 id="org723d270"><span class="section-number-3">13.1.</span> 求余</h3>
-<div class="outline-text-3" id="text-13-1">
+<h3 id="org723d270"><span class="section-number-3">14.1.</span> 求余</h3>
+<div class="outline-text-3" id="text-14-1">
 <p>
 求余经常用来将某个数 <b>转换</b> 为 0-N 区间的一个数。
 </p>
@@ -3514,12 +3574,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org8a80c1e" class="outline-2">
-<h2 id="org8a80c1e"><span class="section-number-2">14.</span> 模拟题</h2>
-<div class="outline-text-2" id="text-14">
+<h2 id="org8a80c1e"><span class="section-number-2">15.</span> 模拟题</h2>
+<div class="outline-text-2" id="text-15">
 </div>
 <div id="outline-container-org6400c8e" class="outline-3">
-<h3 id="org6400c8e"><span class="section-number-3">14.1.</span> 继承相关</h3>
-<div class="outline-text-3" id="text-14-1">
+<h3 id="org6400c8e"><span class="section-number-3">15.1.</span> 继承相关</h3>
+<div class="outline-text-3" id="text-15-1">
 <p>
 请问下面程序的输出是什么:
 </p>
@@ -3571,8 +3631,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 
 
 <div id="outline-container-org0993f51" class="outline-3">
-<h3 id="org0993f51"><span class="section-number-3">14.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
-<div class="outline-text-3" id="text-14-2">
+<h3 id="org0993f51"><span class="section-number-3">15.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
+<div class="outline-text-3" id="text-15-2">
 <p>
 重构 = 重新构造 = 将代码进行重写，让结构发生变化的行为
 = 一般来说，是因为现有的代码不合理，所以呢，重新调整一下
@@ -3583,12 +3643,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-orgb8b093b" class="outline-2">
-<h2 id="orgb8b093b"><span class="section-number-2">15.</span> 问题 (仅作参考)</h2>
-<div class="outline-text-2" id="text-15">
+<h2 id="orgb8b093b"><span class="section-number-2">16.</span> 问题 (仅作参考)</h2>
+<div class="outline-text-2" id="text-16">
 </div>
 <div id="outline-container-org0931609" class="outline-3">
-<h3 id="org0931609"><span class="section-number-3">15.1.</span> string 和 StringBuilder 有什么区别</h3>
-<div class="outline-text-3" id="text-15-1">
+<h3 id="org0931609"><span class="section-number-3">16.1.</span> string 和 StringBuilder 有什么区别</h3>
+<div class="outline-text-3" id="text-16-1">
 <ul class="org-ul">
 <li>string 是一种预定义类型，它表达的是字符的有序组合</li>
 <li>StringBuilder 是定义在 BCL 中的类型，它主要用来进行字符串的拼接</li>
@@ -3600,38 +3660,38 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org5f8661c" class="outline-3">
-<h3 id="org5f8661c"><span class="section-number-3">15.2.</span> 什么是抽象类，抽象类有什么用处</h3>
+<h3 id="org5f8661c"><span class="section-number-3">16.2.</span> 什么是抽象类，抽象类有什么用处</h3>
 </div>
 <div id="outline-container-orgddf3ea3" class="outline-3">
-<h3 id="orgddf3ea3"><span class="section-number-3">15.3.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
+<h3 id="orgddf3ea3"><span class="section-number-3">16.3.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
 </div>
 <div id="outline-container-org156522f" class="outline-3">
-<h3 id="org156522f"><span class="section-number-3">15.4.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
+<h3 id="org156522f"><span class="section-number-3">16.4.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
 </div>
 <div id="outline-container-org51f1e72" class="outline-3">
-<h3 id="org51f1e72"><span class="section-number-3">15.5.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
+<h3 id="org51f1e72"><span class="section-number-3">16.5.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
 </div>
 <div id="outline-container-org53c5fb1" class="outline-3">
-<h3 id="org53c5fb1"><span class="section-number-3">15.6.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
+<h3 id="org53c5fb1"><span class="section-number-3">16.6.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
 </div>
 <div id="outline-container-org7f77498" class="outline-3">
-<h3 id="org7f77498"><span class="section-number-3">15.7.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
+<h3 id="org7f77498"><span class="section-number-3">16.7.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
 </div>
 <div id="outline-container-org1453cfa" class="outline-3">
-<h3 id="org1453cfa"><span class="section-number-3">15.8.</span> 什么是封装，什么是继承，什么是多态</h3>
+<h3 id="org1453cfa"><span class="section-number-3">16.8.</span> 什么是封装，什么是继承，什么是多态</h3>
 </div>
 <div id="outline-container-org7cbe124" class="outline-3">
-<h3 id="org7cbe124"><span class="section-number-3">15.9.</span> 什么是虚方法，它有什么用处</h3>
+<h3 id="org7cbe124"><span class="section-number-3">16.9.</span> 什么是虚方法，它有什么用处</h3>
 </div>
 <div id="outline-container-orga4100f5" class="outline-3">
-<h3 id="orga4100f5"><span class="section-number-3">15.10.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
+<h3 id="orga4100f5"><span class="section-number-3">16.10.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
 </div>
 <div id="outline-container-org49d491a" class="outline-3">
-<h3 id="org49d491a"><span class="section-number-3">15.11.</span> 什么是 DRY，代码复用的手段有哪些</h3>
+<h3 id="org49d491a"><span class="section-number-3">16.11.</span> 什么是 DRY，代码复用的手段有哪些</h3>
 </div>
 <div id="outline-container-org6186468" class="outline-3">
-<h3 id="org6186468"><span class="section-number-3">15.12.</span> Parse/TryParse 有啥区别</h3>
-<div class="outline-text-3" id="text-15-12">
+<h3 id="org6186468"><span class="section-number-3">16.12.</span> Parse/TryParse 有啥区别</h3>
+<div class="outline-text-3" id="text-16-12">
 <ul class="org-ul">
 <li>这两个都是用来将字符串转换为其他类型</li>
 <li>遇到转换失败的时候</li>
@@ -3643,8 +3703,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org6aa9caa" class="outline-3">
-<h3 id="org6aa9caa"><span class="section-number-3">15.13.</span> 什么是装箱拆箱</h3>
-<div class="outline-text-3" id="text-15-13">
+<h3 id="org6aa9caa"><span class="section-number-3">16.13.</span> 什么是装箱拆箱</h3>
+<div class="outline-text-3" id="text-16-13">
 <ul class="org-ul">
 <li>装箱是将值类型转换为 object 的过程</li>
 <li>拆箱是将装箱后的 object 转换为对应的值类型的过程</li>
@@ -3653,8 +3713,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org98ec2cf" class="outline-3">
-<h3 id="org98ec2cf"><span class="section-number-3">15.14.</span> 什么是值类型/引用类型</h3>
-<div class="outline-text-3" id="text-15-14">
+<h3 id="org98ec2cf"><span class="section-number-3">16.14.</span> 什么是值类型/引用类型</h3>
+<div class="outline-text-3" id="text-16-14">
 <ul class="org-ul">
 <li>变量位置保存的是类型实例自身，这样的类型叫 <b>值类型</b></li>
 <li>变量位置保存的是类型实例的引用，这样的类型叫 <b>引用类型</b></li>
@@ -3663,8 +3723,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org3f909ac" class="outline-3">
-<h3 id="org3f909ac"><span class="section-number-3">15.15.</span> is/as 分别是干啥的</h3>
-<div class="outline-text-3" id="text-15-15">
+<h3 id="org3f909ac"><span class="section-number-3">16.15.</span> is/as 分别是干啥的</h3>
+<div class="outline-text-3" id="text-16-15">
 <ul class="org-ul">
 <li>is 用来判断左边的实例是否是右边的类型。是的 true，不是的话 false。
 它常用来跟显式转换配合使用</li>
@@ -3676,7 +3736,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-18</p>
+<p class="date">Created: 2021-06-21</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

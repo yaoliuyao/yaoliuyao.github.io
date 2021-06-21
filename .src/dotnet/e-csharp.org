@@ -2360,7 +2360,7 @@ Gender (男/女/未知)
   }
 #+end_src
 
-** Flags
+** Flags (TODO)
 
 #+begin_src cs
   [Flags]
@@ -2369,6 +2369,9 @@ Gender (男/女/未知)
       A = 0x12,
       B = 0x13
   }
+  
+  111111
+  101001
 #+end_src
 
 ** 基本 API
@@ -2381,6 +2384,56 @@ Gender (男/女/未知)
   foreach (var v in Enum.GetValues(typeof(Gender)))
   {
       Console.WriteLine((int)v);
+  }
+#+end_src
+
+* 委托 (Delegate)
+
+写一个方法 MyAdd ，求取 *若干数* 的和。
+#+begin_src cs
+  static void Main(string[] args)
+  {
+      // Console.ForegroundColor = ConsoleColor.Red;
+      // Console.WriteLine(sum);
+      // Console.ResetColor();
+      // 将上面三局，放到一个对象里，然后
+      object o1 = null;
+  
+      int r1 = MyAdd(o1, 12, 32, 1112232, 43, 1112212, 3232323, 123);
+      int r2 = MyAdd(o2, 222, 333, 444);
+      int r3 = MyAdd(o3, 11, 2323, 4344);
+  }
+  
+  public static int MyAdd(object gaosuwogaigansm, params int[] nums)
+  {
+      int sum = 0;
+      for (int i = 0; i < nums.Length; i++)
+      {
+          sum += nums[i];
+      }
+      // Console.ForegroundColor = ConsoleColor.Red;
+      // Console.WriteLine(sum);
+      // Console.ResetColor();
+  
+      // Console.BackgroundColor = ConsoleColor.Red;
+      // Console.WriteLine("和为："+sum);
+      // Console.ResetColor();
+  
+      // File.AppendAllText(@"E:\jiafa.txt", sum + "\r\n");
+  
+      // SpeechSynthesizer synth = new SpeechSynthesizer();
+      // synth.Speak(sum.ToString());
+      // synth.Dispose();
+  
+      Bitmap image = new Bitmap(256, 256);
+      using (Graphics g = Graphics.FromImage(image))
+      {
+          g.FillRectangle(Brushes.Yellow, 0, 0, 256, 256);
+          g.DrawString(sum.ToString(), new Font("Monospace", 26), Brushes.DarkGreen, 10, 10);
+      }
+      image.Save(@"e:\hello.jpg");
+  
+      return sum;
   }
 #+end_src
 
