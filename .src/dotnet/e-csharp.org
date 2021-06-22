@@ -2529,6 +2529,9 @@ Gender (男/女/未知)
 
 *** 没有中间商赚差价，借助类和接口的方式，传递不同的方法
 
+[[file:img/guaziershouche.png]]
+
+
 #+begin_src cs
   class Program
   {
