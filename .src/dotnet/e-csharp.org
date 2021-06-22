@@ -2456,27 +2456,25 @@ Gender (男/女/未知)
               sum += nums[i];
           }
   
-          if (flag == 1)
+          switch (flag)
           {
-              Print1(sum);
+              case 1:
+                  Print1(sum);
+                  break;
+              case 2:
+                  Print2(sum);
+                  break;
+              case 3:
+                  ToFile(sum);
+                  break;
+              case 4:
+                  Speech(sum);
+                  break;
+              default:
+                  Draw(sum);
+                  break;
           }
-          else if (flag == 2)
-          {
-              Print2(sum);
-          }
-          else if (flag == 3)
-          {
-              ToFile(sum);
-          }
-          else if (flag == 4)
-          {
-              Speech(sum);
-          }
-          else
-          {
-              Draw(sum);
-          }
-  
+          
           return sum;
       }
   
