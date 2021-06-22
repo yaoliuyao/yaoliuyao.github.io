@@ -2633,11 +2633,14 @@ Gender (男/女/未知)
 #+begin_src cs
   class Program
   {
+      // 1. 声明一种数据类型，叫 MyWeiTuo，是委托类型
       public delegate void MyWeiTuo(int sum);
   
       static void Main(string[] args)
       {
+          // 2. 通过 new 操作符，为这种类型创建一个实例
           MyWeiTuo v1 = new MyWeiTuo(PrintAndWuwuwu);
+          // 3. 使用这个实例。这里主要用作方法的参数传递
           int r1 = MyAdd(v1, 12, 32, 1112232, 43, 1112212, 3232323, 123);
           int r2 = MyAdd(new MyWeiTuo(Print2), 222, 333, 444);
           int r3 = MyAdd(MyLove, 222, 333);
