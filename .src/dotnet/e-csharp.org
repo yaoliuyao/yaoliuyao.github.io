@@ -2628,6 +2628,88 @@ Gender (男/女/未知)
   }
 #+end_src
 
+*** 模板代码实在不爽，委托类型出现来救场
+
+#+begin_src cs
+  class Program
+  {
+      public delegate void MyWeiTuo(int sum);
+  
+      static void Main(string[] args)
+      {
+          MyWeiTuo v1 = new MyWeiTuo(PrintAndWuwuwu);
+          int r1 = MyAdd(v1, 12, 32, 1112232, 43, 1112212, 3232323, 123);
+          int r2 = MyAdd(new MyWeiTuo(Print2), 222, 333, 444);
+          int r3 = MyAdd(MyLove, 222, 333);
+      }
+  
+      public static int MyAdd(MyWeiTuo o, params int[] nums)
+      {
+          int sum = 0;
+          for (int i = 0; i < nums.Length; i++)
+          {
+              sum += nums[i];
+          }
+  
+          o(sum);
+  
+          return sum;
+      }
+  
+      static void Print1(int sum)
+      {
+          Console.ForegroundColor = ConsoleColor.Red;
+          Console.WriteLine(sum);
+          Console.ResetColor();
+      }
+  
+      static void Print2(int sum)
+      {
+          Console.BackgroundColor = ConsoleColor.Red;
+          Console.WriteLine("和为：" + sum);
+          Console.ResetColor();
+      }
+  
+      static void ToFile(int sum)
+      {
+          File.AppendAllText(@"E:\jiafa.txt", sum + "\r\n");
+      }
+  
+      static void PrintAndWuwuwu(int sum)
+      {
+          Console.BackgroundColor = ConsoleColor.Green;
+          Console.WriteLine("哈哈哈，呜呜呜：" + sum);
+          Console.ResetColor();
+          SpeechSynthesizer synth = new SpeechSynthesizer();
+          synth.Speak("呜呜呜呜呜呜呜，哈哈哈!");
+          synth.Dispose();
+      }
+  
+      static void Speech(int sum)
+      {
+          SpeechSynthesizer synth = new SpeechSynthesizer();
+          synth.Speak(sum.ToString());
+          synth.Dispose();
+      }
+  
+      static void Draw(int sum)
+      {
+          Bitmap image = new Bitmap(256, 256);
+          using (Graphics g = Graphics.FromImage(image))
+          {
+              g.FillRectangle(Brushes.Yellow, 0, 0, 20, 20);
+              g.DrawString(sum.ToString(), new Font("Monospace", 26), Brushes.DarkGreen, 10, 10);
+          }
+          image.Save(@"e:\hello.jpg");
+      }
+  
+      static void MyLove(int sum)
+      {
+          Console.WriteLine("我就是喜欢黄色，则么了.");
+      }
+  }
+#+end_src
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 

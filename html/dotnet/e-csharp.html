@@ -188,6 +188,7 @@
 <li><a href="#orgb0a16c3">12.1.1. 原始写法</a></li>
 <li><a href="#org01917d6">12.1.2. 通过一个 Flag 来通知 MyAdd 要去调用什么逻辑</a></li>
 <li><a href="#org1b1f6e4">12.1.3. 没有中间商赚差价，借助类和接口的方式，传递不同的方法</a></li>
+<li><a href="#orgd1deb5f">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
 </ul>
 </li>
 </ul>
@@ -274,13 +275,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgf84807f">
+<figure id="org8b64eda">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgb561d34">
+<figure id="org12d0577">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -525,7 +526,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgdebe506">
+<figure id="org5b9fc9c">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -646,7 +647,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org1b0e255">
+<figure id="org1f9fc2a">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -674,7 +675,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org5b78c4b">
+<figure id="orgd89cf73">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -733,7 +734,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org0f47697">
+<figure id="orgb83be13">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1159,7 +1160,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org3566c9b">
+<figure id="org01d550e">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1197,7 +1198,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org5092baa">
+<figure id="orgc36c32d">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2201,7 +2202,7 @@ out:
 </div>
 
 
-<figure id="org23d3c90">
+<figure id="org8063b43">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3433,7 +3434,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org0e9c2a8">
+<figure id="org9ca2198">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -3531,6 +3532,92 @@ Gender (男<i>女</i>未知)
             <span style="color: #709870;">}</span>
             image.<span style="color: #0000ff;">Save</span><span style="color: #709870;">(</span>@<span style="color: #8b2252;">"e:\hello.jpg"</span><span style="color: #709870;">)</span>;
         <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd1deb5f" class="outline-4">
+<h4 id="orgd1deb5f"><span class="section-number-4">12.1.4.</span> 模板代码实在不爽，委托类型出现来救场</h4>
+<div class="outline-text-4" id="text-12-1-4">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">delegate</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">MyWeiTuo</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">MyWeiTuo</span> <span style="color: #a0522d;">v1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyWeiTuo</span><span style="color: #909183;">(</span><span style="color: #228b22;">PrintAndWuwuwu</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r1</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #909183;">(</span><span style="color: #228b22;">v1</span>, 12, 32, 1112232, 43, 1112212, 3232323, 123<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r2</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyWeiTuo</span><span style="color: #709870;">(</span><span style="color: #228b22;">Print2</span><span style="color: #709870;">)</span>, 222, 333, 444<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r3</span> = <span style="color: #0000ff;">MyAdd</span><span style="color: #909183;">(</span><span style="color: #228b22;">MyLove</span>, 222, 333<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">MyWeiTuo</span> <span style="color: #a0522d;">o</span>, <span style="color: #a020f0;">params</span> <span style="color: #228b22;">int</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">nums</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span> = 0;
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; nums.Length; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            sum += nums<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+
+        <span style="color: #0000ff;">o</span><span style="color: #909183;">(</span><span style="color: #228b22;">sum</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #a020f0;">return</span> sum;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Print1</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">sum</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Print2</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.BackgroundColor = ConsoleColor.Red;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#21644;&#20026;&#65306;"</span> + sum<span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ToFile</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        File.<span style="color: #0000ff;">AppendAllText</span><span style="color: #909183;">(</span>@<span style="color: #8b2252;">"E:\jiafa.txt"</span>, sum + <span style="color: #8b2252;">"\r\n"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintAndWuwuwu</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.BackgroundColor = ConsoleColor.Green;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#21704;&#21704;&#21704;&#65292;&#21596;&#21596;&#21596;&#65306;"</span> + sum<span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">SpeechSynthesizer</span> <span style="color: #a0522d;">synth</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SpeechSynthesizer</span><span style="color: #909183;">()</span>;
+        synth.<span style="color: #0000ff;">Speak</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#21596;&#21596;&#21596;&#21596;&#21596;&#21596;&#21596;&#65292;&#21704;&#21704;&#21704;!"</span><span style="color: #909183;">)</span>;
+        synth.<span style="color: #0000ff;">Dispose</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Speech</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">SpeechSynthesizer</span> <span style="color: #a0522d;">synth</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SpeechSynthesizer</span><span style="color: #909183;">()</span>;
+        synth.<span style="color: #0000ff;">Speak</span><span style="color: #909183;">(</span>sum.<span style="color: #0000ff;">ToString</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+        synth.<span style="color: #0000ff;">Dispose</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Draw</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">Bitmap</span> <span style="color: #a0522d;">image</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Bitmap</span><span style="color: #909183;">(</span>256, 256<span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">using</span> <span style="color: #909183;">(</span><span style="color: #228b22;">Graphics</span> <span style="color: #a0522d;">g</span> = Graphics.<span style="color: #0000ff;">FromImage</span><span style="color: #709870;">(</span><span style="color: #228b22;">image</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            g.<span style="color: #0000ff;">FillRectangle</span><span style="color: #709870;">(</span>Brushes.<span style="color: #228b22;">Yellow</span>, 0, 0, 20, 20<span style="color: #709870;">)</span>;
+            g.<span style="color: #0000ff;">DrawString</span><span style="color: #709870;">(</span>sum.<span style="color: #0000ff;">ToString</span><span style="color: #907373;">()</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Font</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"Monospace"</span>, 26<span style="color: #907373;">)</span>, Brushes.<span style="color: #228b22;">DarkGreen</span>, 10, 10<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        image.<span style="color: #0000ff;">Save</span><span style="color: #909183;">(</span>@<span style="color: #8b2252;">"e:\hello.jpg"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">MyLove</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#23601;&#26159;&#21916;&#27426;&#40644;&#33394;&#65292;&#21017;&#20040;&#20102;."</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>

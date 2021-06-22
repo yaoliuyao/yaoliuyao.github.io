@@ -1,5 +1,19 @@
 ;; YAOLIUSAN -> YAOLIUYAO
 
+(setq ic/gnus-mails-reciever
+      '((nnimap "tmail"
+                (nnimap-address "imap.qq.com")
+                (nnimap-server-port 993)
+                (nnimap-stream ssl)
+                (nnir-search-engine imap)
+                (nnmail-expiry-target "nnimap+tmail:Deleted Messages")
+                (nnmail-expiry-wait 'immediate)))
+
+      ic/gnus-mails-sender
+      `((".*"
+         (name "yaoliuyao")
+         (address "2132579340@qq.com"))))
+
 (setq ic/up "imxx.top")
 
 (setq ic/faces (list :frame 'max
