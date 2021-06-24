@@ -2912,20 +2912,20 @@ Gender (男/女/未知)
   {
       static void Main(string[] args)
       {
-          WithGraphic(@"e:\hello333.jpg", g =>
+          WithGraphics(@"e:\hello333.jpg", g =>
           {
               g.DrawString("wqwww", new Font("Aria", 46), Brushes.Aqua, 0, 300);
               g.DrawString("Hello", new Font("Monospace", 26), Brushes.DarkGreen, 10, 10);
           }, 500, 500);
   
-          WithGraphic(@"e:\hello4444.jpg", pen =>
+          WithGraphics(@"e:\hello4444.jpg", pen =>
           {
               pen.FillRectangle(Brushes.Yellow, 0, 0, 20, 20);
               pen.DrawString("World", new Font("Monospace", 26), Brushes.DarkOrange, 10, 10);
           });
       }
   
-      static void WithGraphic(string file, Action<Graphics> act, int width = 256, int height = 256)
+      static void WithGraphics(string file, Action<Graphics> act, int width = 256, int height = 256)
       {
           if (File.Exists(file))
           {
