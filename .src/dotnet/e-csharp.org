@@ -2388,6 +2388,16 @@ Gender (男/女/未知)
 #+end_src
 
 * 委托 (Delegate)
+
+- 背景:
+  + 我们需要通过参数的形式去传递一些逻辑
+  + 逻辑的基本单元是方法
+  + 很遗憾的是，方法在 C# 中并不是某种类型，也不具备相应的实例。因此，它不能作为参数被传递
+  + 所以，我们需要通过一定方式，达到能够传递方法 (以及其中的逻辑) 的目的
+  + 一种传统的方式，是将方法包含在某个类中，然后实例化并传递。但是这种方式特别麻烦
+  + 因此，在 C# 中为了解决这个问题，就推出了一种类型，叫做委托 (Delegate)
+- 总而言之，通过委托机制，达到 *像传递对象实例一样，传递方法* 的目的
+
 ** 写一个方法 MyAdd ，求取 *若干数* 的和
 *** 原始写法
 
@@ -2709,6 +2719,128 @@ Gender (男/女/未知)
       static void MyLove(int sum)
       {
           Console.WriteLine("我就是喜欢黄色，则么了.");
+      }
+  }
+#+end_src
+
+** 基本语法
+
+#+begin_src cs
+  // 1. 声明 (委托类型)
+  delegate void MyMethod1();
+  delegate int MyMethod2(int a, int b);
+  
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          // 2. 实例化
+          MyMethod1 m1 = new MyMethod1(Hahaha);
+          MyMethod2 m2 = new MyMethod2(new Program().Heiheihei);
+          MyMethod1 m3 = Hahaha;
+          MyMethod2 m4 = new Program().Heiheihei;
+          MyMethod2 m5 = Hehehe;
+  
+          // 3. 使用
+          m1();
+          m2(1, 2);
+      }
+  
+      static void Hahaha()
+      {
+          Console.WriteLine("hahaha, henkuaile.");
+      }
+  
+      int Heiheihei(int a, int b)
+      {
+          return a * b;
+      }
+  
+      static int Hehehe(int a, int b)
+      {
+          return a + b * a - b;
+      }
+  }
+#+end_src
+
+** 匿名委托
+
+#+begin_src cs
+  delegate void MyAddWT(int sum);
+  
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          MyAddWT maw = delegate(int sum)
+          {
+              Console.WriteLine("hahahaahaha, wo de 爱的委托 {0}", sum);
+          };
+          MyAdd(1, 3, maw);
+  
+          MyAdd(111, 333, delegate(int sum)
+          {
+              Console.WriteLine("我的结果是 {0}", sum);
+          });
+  
+          MyAdd(121, 232, delegate(int sum)
+          {
+              Console.WriteLine("我不告诉你结果");
+          });
+      }
+  
+      static int MyAdd(int a, int b, MyAddWT maw)
+      {
+          int r = a + b;
+          maw(r);
+          return r;
+      }
+  }
+#+end_src
+
+** 表达式语法
+
+#+begin_src cs
+  delegate void MyAddWT(int sum);
+  
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          // MyAddWT maw1 = new MyAddWT(MyAddShixian);
+          // MyAddWT maw2 = MyAddShixian;
+  
+          MyAddWT maw3 = delegate(int sum)
+          {
+              Console.WriteLine("aaa");
+          };
+  
+          MyAddWT maw4 = (int sum) =>
+          {
+              Console.WriteLine("aaa");
+          };
+  
+          MyAddWT maw5 = (sum) =>
+          {
+              Console.WriteLine("aaa");
+          };
+  
+          MyAddWT maw6 = sum =>
+          {
+              Console.WriteLine("aaa");
+          };
+  
+          MyAddWT maw7 = sum => Console.WriteLine("aaa");
+  
+          MyAdd(111, 222, maw7);
+          MyAdd(222, 333, s => Console.WriteLine($"result: {s}"));
+      }
+  
+      static int MyAdd(int a, int b, MyAddWT maw)
+      {
+          int r = a + b;
+          maw(r);
+          return r;
       }
   }
 #+end_src

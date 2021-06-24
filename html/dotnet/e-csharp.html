@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-22 -->
+<!-- 2021-06-24 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -191,6 +191,9 @@
 <li><a href="#orgd1deb5f">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
 </ul>
 </li>
+<li><a href="#orga28ae7b">12.2. 基本语法</a></li>
+<li><a href="#org67327b1">12.3. 匿名委托</a></li>
+<li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
 </ul>
 </li>
 <li><a href="#org38d4328">13. BCL (Base-Class Library) 基础类库</a>
@@ -275,13 +278,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org32c4213">
+<figure id="org3e3125a">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org7e9d0ab">
+<figure id="org48ae380">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -526,7 +529,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org160e8e6">
+<figure id="orgc2df0a6">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -647,7 +650,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgc363cee">
+<figure id="org76ad195">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -675,7 +678,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgda29423">
+<figure id="orgbd674fa">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -734,7 +737,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org0190003">
+<figure id="org7ee2c7c">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1160,7 +1163,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org7cab724">
+<figure id="org87707b6">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1198,7 +1201,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgf7c2b35">
+<figure id="org306ea23">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2202,7 +2205,7 @@ out:
 </div>
 
 
-<figure id="orgeb1f8af">
+<figure id="org3ef76b6">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3271,7 +3274,20 @@ Gender (男<i>女</i>未知)
 <section id="outline-container-org3641f93" class="outline-2">
 <h2 id="org3641f93"><span class="section-number-2">12.</span> 委托 (Delegate)</h2>
 <div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>背景:
+<ul class="org-ul">
+<li>我们需要通过参数的形式去传递一些逻辑</li>
+<li>逻辑的基本单元是方法</li>
+<li>很遗憾的是，方法在 C# 中并不是某种类型，也不具备相应的实例。因此，它不能作为参数被传递</li>
+<li>所以，我们需要通过一定方式，达到能够传递方法 (以及其中的逻辑) 的目的</li>
+<li>一种传统的方式，是将方法包含在某个类中，然后实例化并传递。但是这种方式特别麻烦</li>
+<li>因此，在 C# 中为了解决这个问题，就推出了一种类型，叫做委托 (Delegate)</li>
+</ul></li>
+<li>总而言之，通过委托机制，达到 <b>像传递对象实例一样，传递方法</b> 的目的</li>
+</ul>
 </div>
+
 <div id="outline-container-orga9786eb" class="outline-3">
 <h3 id="orga9786eb"><span class="section-number-3">12.1.</span> 写一个方法 MyAdd ，求取 <b>若干数</b> 的和</h3>
 <div class="outline-text-3" id="text-12-1">
@@ -3434,7 +3450,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgbaa98af">
+<figure id="org5bc7f88">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -3625,6 +3641,140 @@ Gender (男<i>女</i>未知)
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga28ae7b" class="outline-3">
+<h3 id="orga28ae7b"><span class="section-number-3">12.2.</span> 基本语法</h3>
+<div class="outline-text-3" id="text-12-2">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126; (&#22996;&#25176;&#31867;&#22411;)</span>
+<span style="color: #a020f0;">delegate</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">MyMethod1</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">delegate</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyMethod2</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#23454;&#20363;&#21270;</span>
+        <span style="color: #228b22;">MyMethod1</span> <span style="color: #a0522d;">m1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyMethod1</span><span style="color: #909183;">(</span><span style="color: #228b22;">Hahaha</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">MyMethod2</span> <span style="color: #a0522d;">m2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyMethod2</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Program</span><span style="color: #709870;">()</span>.Heiheihei<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">MyMethod1</span> <span style="color: #a0522d;">m3</span> = Hahaha;
+        <span style="color: #228b22;">MyMethod2</span> <span style="color: #a0522d;">m4</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Program</span><span style="color: #909183;">()</span>.Heiheihei;
+        <span style="color: #228b22;">MyMethod2</span> <span style="color: #a0522d;">m5</span> = Hehehe;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">3. &#20351;&#29992;</span>
+        <span style="color: #0000ff;">m1</span><span style="color: #909183;">()</span>;
+        <span style="color: #0000ff;">m2</span><span style="color: #909183;">(</span>1, 2<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Hahaha</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hahaha, henkuaile."</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #228b22;">int</span> <span style="color: #0000ff;">Heiheihei</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> a * b;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">Hehehe</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> a + b * a - b;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org67327b1" class="outline-3">
+<h3 id="org67327b1"><span class="section-number-3">12.3.</span> 匿名委托</h3>
+<div class="outline-text-3" id="text-12-3">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">delegate</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">MyAddWT</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">MyAddWT</span> <span style="color: #a0522d;">maw</span> = <span style="color: #a020f0;">delegate</span><span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"hahahaahaha, wo de &#29233;&#30340;&#22996;&#25176; {0}"</span>, <span style="color: #228b22;">sum</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>;
+        <span style="color: #0000ff;">MyAdd</span><span style="color: #909183;">(</span>1, 3, <span style="color: #228b22;">maw</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #0000ff;">MyAdd</span><span style="color: #909183;">(</span>111, 333, <span style="color: #a020f0;">delegate</span><span style="color: #709870;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#25105;&#30340;&#32467;&#26524;&#26159; {0}"</span>, <span style="color: #228b22;">sum</span><span style="color: #907373;">)</span>;
+        <span style="color: #709870;">}</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #0000ff;">MyAdd</span><span style="color: #909183;">(</span>121, 232, <span style="color: #a020f0;">delegate</span><span style="color: #709870;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#25105;&#19981;&#21578;&#35785;&#20320;&#32467;&#26524;"</span><span style="color: #907373;">)</span>;
+        <span style="color: #709870;">}</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>, <span style="color: #228b22;">MyAddWT</span> <span style="color: #a0522d;">maw</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a + b;
+        <span style="color: #0000ff;">maw</span><span style="color: #909183;">(</span><span style="color: #228b22;">r</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> r;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcc08c59" class="outline-3">
+<h3 id="orgcc08c59"><span class="section-number-3">12.4.</span> 表达式语法</h3>
+<div class="outline-text-3" id="text-12-4">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">delegate</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">MyAddWT</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">MyAddWT maw1 = new MyAddWT(MyAddShixian);</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">MyAddWT maw2 = MyAddShixian;</span>
+
+        <span style="color: #228b22;">MyAddWT</span> <span style="color: #a0522d;">maw3</span> = <span style="color: #a020f0;">delegate</span><span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"aaa"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>;
+
+        <span style="color: #228b22;">MyAddWT</span> <span style="color: #a0522d;">maw4</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span><span style="color: #909183;">)</span> =&gt;
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"aaa"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>;
+
+        <span style="color: #228b22;">MyAddWT</span> <span style="color: #a0522d;">maw5</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">sum</span><span style="color: #909183;">)</span> =&gt;
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"aaa"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>;
+
+        <span style="color: #228b22;">MyAddWT</span> <span style="color: #a0522d;">maw6</span> = sum =&gt;
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"aaa"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>;
+
+        <span style="color: #228b22;">MyAddWT</span> <span style="color: #a0522d;">maw7</span> = sum =&gt; Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"aaa"</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #0000ff;">MyAdd</span><span style="color: #909183;">(</span>111, 222, <span style="color: #228b22;">maw7</span><span style="color: #909183;">)</span>;
+        <span style="color: #0000ff;">MyAdd</span><span style="color: #909183;">(</span>222, 333, s =&gt; Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"result: {s}"</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>, <span style="color: #228b22;">MyAddWT</span> <span style="color: #a0522d;">maw</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a + b;
+        <span style="color: #0000ff;">maw</span><span style="color: #909183;">(</span><span style="color: #228b22;">r</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> r;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
 </div>
 </div>
 </div>
@@ -4053,7 +4203,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-22</p>
+<p class="date">Created: 2021-06-24</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
