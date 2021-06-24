@@ -2936,6 +2936,7 @@ Gender (男/女/未知)
           if (width <= 0 || height <= 0)
               throw new Exception("尺寸不能为负");
   
+          // Bitmap image2 = new Bitmap(file);
           Bitmap image = new Bitmap(width, height);
   
           using (Graphics g = Graphics.FromImage(image))
