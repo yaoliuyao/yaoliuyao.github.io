@@ -194,6 +194,8 @@
 <li><a href="#orga28ae7b">12.2. 基本语法</a></li>
 <li><a href="#org67327b1">12.3. 匿名委托</a></li>
 <li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
+<li><a href="#org8334416">12.5. 内建的委托类型 Action/Func</a></li>
+<li><a href="#org57350ae">12.6. [练习] 如何简化图片绘制的代码</a></li>
 </ul>
 </li>
 <li><a href="#org38d4328">13. BCL (Base-Class Library) 基础类库</a>
@@ -278,13 +280,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org3e3125a">
+<figure id="orgc696d7c">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org48ae380">
+<figure id="org027656b">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -529,7 +531,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgc2df0a6">
+<figure id="org663e77d">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -650,7 +652,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org76ad195">
+<figure id="orgc03fc8e">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -678,7 +680,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgbd674fa">
+<figure id="orgf5ab47d">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -737,7 +739,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org7ee2c7c">
+<figure id="org20b2fe3">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1163,7 +1165,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org87707b6">
+<figure id="org3a7b616">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1201,7 +1203,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org306ea23">
+<figure id="org4c66c83">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2205,7 +2207,7 @@ out:
 </div>
 
 
-<figure id="org3ef76b6">
+<figure id="org5dcdcf2">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3450,7 +3452,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org5bc7f88">
+<figure id="org647da84">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -3772,6 +3774,75 @@ Gender (男<i>女</i>未知)
         <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a + b;
         <span style="color: #0000ff;">maw</span><span style="color: #909183;">(</span><span style="color: #228b22;">r</span><span style="color: #909183;">)</span>;
         <span style="color: #a020f0;">return</span> r;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8334416" class="outline-3">
+<h3 id="org8334416"><span class="section-number-3">12.5.</span> 内建的委托类型 Action/Func</h3>
+<div class="outline-text-3" id="text-12-5">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">MyAdd2(222, 333, (a, b, r) =&gt; Console.WriteLine($"{a} &#21152;&#19978; {b} &#31561;&#20110; {r}"));</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">MyAdd2(222, 333, (a, b, r) =&gt; Console.WriteLine($"{a} add {b} equals {r}"));</span>
+        <span style="color: #0000ff;">MyAdd2</span><span style="color: #909183;">(</span>222, 333, <span style="color: #709870;">(</span><span style="color: #228b22;">a</span>, <span style="color: #228b22;">b</span>, <span style="color: #228b22;">r</span>, <span style="color: #228b22;">s1</span>, <span style="color: #228b22;">s2</span><span style="color: #709870;">)</span> =&gt; Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"{a} {s1} {b} {s2} {r}"</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd1</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>, <span style="color: #228b22;">Action</span> <span style="color: #a0522d;">act</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a + b;
+        <span style="color: #0000ff;">act</span><span style="color: #909183;">()</span>;
+        <span style="color: #a020f0;">return</span> r;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd2</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span>, <span style="color: #228b22;">Action</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">int</span>, <span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">act</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a + b;
+        <span style="color: #0000ff;">act</span><span style="color: #909183;">(</span><span style="color: #228b22;">a</span>, <span style="color: #228b22;">b</span>, <span style="color: #228b22;">r</span>, <span style="color: #8b2252;">"jiashang"</span>, <span style="color: #8b2252;">"dengyu"</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> r;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org57350ae" class="outline-3">
+<h3 id="org57350ae"><span class="section-number-3">12.6.</span> [练习] 如何简化图片绘制的代码</h3>
+<div class="outline-text-3" id="text-12-6">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">DrawHello</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">Bitmap</span> <span style="color: #a0522d;">image</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Bitmap</span><span style="color: #909183;">(</span>256, 256<span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">using</span> <span style="color: #909183;">(</span><span style="color: #228b22;">Graphics</span> <span style="color: #a0522d;">g</span> = Graphics.<span style="color: #0000ff;">FromImage</span><span style="color: #709870;">(</span><span style="color: #228b22;">image</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            g.<span style="color: #0000ff;">DrawString</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"Hello"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Font</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"Monospace"</span>, 26<span style="color: #907373;">)</span>, Brushes.<span style="color: #228b22;">DarkGreen</span>, 10, 10<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        image.<span style="color: #0000ff;">Save</span><span style="color: #909183;">(</span>@<span style="color: #8b2252;">"e:\hello.jpg"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">DrawWorld</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">Bitmap</span> <span style="color: #a0522d;">image</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Bitmap</span><span style="color: #909183;">(</span>256, 256<span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">using</span> <span style="color: #909183;">(</span><span style="color: #228b22;">Graphics</span> <span style="color: #a0522d;">g</span> = Graphics.<span style="color: #0000ff;">FromImage</span><span style="color: #709870;">(</span><span style="color: #228b22;">image</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            g.<span style="color: #0000ff;">FillRectangle</span><span style="color: #709870;">(</span>Brushes.<span style="color: #228b22;">Yellow</span>, 0, 0, 20, 20<span style="color: #709870;">)</span>;
+            g.<span style="color: #0000ff;">DrawString</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"World"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Font</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"Monospace"</span>, 26<span style="color: #907373;">)</span>, Brushes.<span style="color: #228b22;">DarkOrange</span>, 10, 10<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        image.<span style="color: #0000ff;">Save</span><span style="color: #909183;">(</span>@<span style="color: #8b2252;">"e:\hello.jpg"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
