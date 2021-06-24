@@ -2950,6 +2950,65 @@ Gender (男/女/未知)
   }
 #+end_src
 
+** [练习] 如何简化输出程序执行时间的逻辑
+
+#+begin_src cs
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          WithElapsedTime(() =>
+          {
+              WithGraphics(@"e:\hello333.jpg", g =>
+              {
+                  g.DrawString("wqwww", new Font("Aria", 46), Brushes.Aqua, 0, 300);
+                  g.DrawString("Hello", new Font("Monospace", 26), Brushes.DarkGreen, 10, 10);
+              }, 500, 500);
+          });
+  
+  
+          WithElapsedTime(() =>
+              WithGraphics(@"e:\hello4444.jpg", pen =>
+              {
+                  pen.FillRectangle(Brushes.Yellow, 0, 0, 20, 20);
+                  pen.DrawString("World", new Font("Monospace", 26), Brushes.DarkOrange, 10, 10);
+              }));
+      }
+  
+      static void WithElapsedTime(Action code)
+      {
+          var sw = new Stopwatch();
+          sw.Start();
+          code();
+          Console.WriteLine("程序执行消耗的时间为: {0}", sw.ElapsedMilliseconds);
+          sw.Stop();
+      }
+  
+      static void WithGraphics(string file, Action<Graphics> act, int width = 256, int height = 256)
+      {
+          if (File.Exists(file))
+          {
+              Console.WriteLine("文件已经存在....");
+              return;
+          }
+  
+          if (width <= 0 || height <= 0)
+              throw new Exception("尺寸不能为负");
+  
+          // Bitmap image2 = new Bitmap(file);
+          Bitmap image = new Bitmap(width, height);
+  
+          using (Graphics g = Graphics.FromImage(image))
+          {
+              act(g);
+              g.DrawString("161", new Font("微软雅黑", 24), Brushes.Red, width - 50, height - 30);
+          }
+  
+          image.Save(file);
+      }
+  }
+#+end_src
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
@@ -3100,6 +3159,18 @@ Gender (男/女/未知)
   using FileStream fs = File.OpenRead(fileName); // fs 在后面碰到 } 后，会自动释放
   Console.WriteLine(fs);
   Console.WriteLine(5/0);
+#+end_src
+
+** Stopwatch/秒表
+
+#+begin_src cs
+  using System.Diagnostics;
+  
+  Stopwatch sw = new Stopwatch();
+  sw.Start();
+  // .....
+  Console.WriteLine(sw.ElapsedMillionseconds);  // 1111ms
+  sw.Stop();
 #+end_src
 
 * 技巧和示例
