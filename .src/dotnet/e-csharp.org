@@ -2873,6 +2873,51 @@ Gender (男/女/未知)
   }
 #+end_src
 
+** 多播委托
+
+#+begin_src cs
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          MyWT a = new MyWT(MyAdd);
+          MyWT b = new MyWT(MyMul);
+          MyWT c = new MyWT(MyFuza);
+  
+          MyWT d = a + b + c + a + a + a + a;
+          MyWT e = d + b;
+          e += a;
+          e -= a;
+          Console.WriteLine(e(4, 5));
+  
+          // var d = a + b + c;
+          // Console.WriteLine(d(4,5));
+          // Console.WriteLine((a + b + c)(4, 5));
+      }
+  
+      static int MyAdd(int a, int b)
+      {
+          int r = a + b;
+          Console.WriteLine("Add: {0}", r);
+          return r;
+      }
+  
+      static int MyMul(int a, int b)
+      {
+          int r = a * b;
+          Console.WriteLine("Mul: {0}", r);
+          return r;
+      }
+  
+      static int MyFuza(int a, int b)
+      {
+          int r = (int)(a * a + Math.Pow(b, 4));
+          Console.WriteLine("Fuza: {0}", r);
+          return r;
+      }
+  }
+#+end_src
+
 ** [练习] 如何简化图片绘制的代码
 
 #+begin_src cs

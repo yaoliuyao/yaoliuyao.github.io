@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-24 -->
+<!-- 2021-06-25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -195,8 +195,9 @@
 <li><a href="#org67327b1">12.3. 匿名委托</a></li>
 <li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
 <li><a href="#org8334416">12.5. 内建的委托类型 Action/Func</a></li>
-<li><a href="#org57350ae">12.6. [练习] 如何简化图片绘制的代码</a></li>
-<li><a href="#orgd9776d6">12.7. [练习] 如何简化输出程序执行时间的逻辑</a></li>
+<li><a href="#orga4ff6bb">12.6. 多播委托</a></li>
+<li><a href="#org57350ae">12.7. [练习] 如何简化图片绘制的代码</a></li>
+<li><a href="#orgd9776d6">12.8. [练习] 如何简化输出程序执行时间的逻辑</a></li>
 </ul>
 </li>
 <li><a href="#org38d4328">13. BCL (Base-Class Library) 基础类库</a>
@@ -282,13 +283,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org6ec9f55">
+<figure id="org8e6710f">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orge18bfc8">
+<figure id="org69db33c">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -533,7 +534,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org99ae33c">
+<figure id="orgf70d953">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -654,7 +655,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orge41a757">
+<figure id="orgfd61cb7">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -682,7 +683,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org335e5ea">
+<figure id="org8ba9bcd">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -741,7 +742,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgd11a756">
+<figure id="org0d3c2e3">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1167,7 +1168,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org4ff45b1">
+<figure id="orgafff4d3">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1205,7 +1206,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgd347039">
+<figure id="org86959d5">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2209,7 +2210,7 @@ out:
 </div>
 
 
-<figure id="orgad4a9e8">
+<figure id="org3f16d83">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3454,7 +3455,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org56bbf11">
+<figure id="org5ddf8bd">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -3815,9 +3816,58 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org57350ae" class="outline-3">
-<h3 id="org57350ae"><span class="section-number-3">12.6.</span> [练习] 如何简化图片绘制的代码</h3>
+<div id="outline-container-orga4ff6bb" class="outline-3">
+<h3 id="orga4ff6bb"><span class="section-number-3">12.6.</span> 多播委托</h3>
 <div class="outline-text-3" id="text-12-6">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">MyWT</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyWT</span><span style="color: #909183;">(</span><span style="color: #228b22;">MyAdd</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">MyWT</span> <span style="color: #a0522d;">b</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyWT</span><span style="color: #909183;">(</span><span style="color: #228b22;">MyMul</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">MyWT</span> <span style="color: #a0522d;">c</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyWT</span><span style="color: #909183;">(</span><span style="color: #228b22;">MyFuza</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #228b22;">MyWT</span> <span style="color: #a0522d;">d</span> = a + b + c + a + a + a + a;
+        <span style="color: #228b22;">MyWT</span> <span style="color: #a0522d;">e</span> = d + b;
+        e += a;
+        e -= a;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #0000ff;">e</span><span style="color: #709870;">(</span>4, 5<span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">var d = a + b + c;</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.WriteLine(d(4,5));</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.WriteLine((a + b + c)(4, 5));</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyAdd</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a + b;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"Add: {0}"</span>, <span style="color: #228b22;">r</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> r;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyMul</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = a * b;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"Mul: {0}"</span>, <span style="color: #228b22;">r</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> r;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">MyFuza</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">b</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">int</span><span style="color: #909183;">)(</span>a * a + Math.<span style="color: #0000ff;">Pow</span><span style="color: #709870;">(</span><span style="color: #228b22;">b</span>, 4<span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"Fuza: {0}"</span>, <span style="color: #228b22;">r</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> r;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org57350ae" class="outline-3">
+<h3 id="org57350ae"><span class="section-number-3">12.7.</span> [练习] 如何简化图片绘制的代码</h3>
+<div class="outline-text-3" id="text-12-7">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -3900,8 +3950,8 @@ Gender (男<i>女</i>未知)
 </div>
 
 <div id="outline-container-orgd9776d6" class="outline-3">
-<h3 id="orgd9776d6"><span class="section-number-3">12.7.</span> [练习] 如何简化输出程序执行时间的逻辑</h3>
-<div class="outline-text-3" id="text-12-7">
+<h3 id="orgd9776d6"><span class="section-number-3">12.8.</span> [练习] 如何简化输出程序执行时间的逻辑</h3>
+<div class="outline-text-3" id="text-12-8">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -4402,7 +4452,7 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-06-24</p>
+<p class="date">Created: 2021-06-25</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
