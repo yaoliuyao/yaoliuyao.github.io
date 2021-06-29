@@ -14,6 +14,161 @@
 - 正常过程: 产品设计 -> 功能划分 -> 编码细节。使用 *面向对象、结构化编程* 的基本思路
 - 大胆去实现，不要怕失败，不要怕。唯手熟尔
 
+** 参考实现
+
+#+begin_src cs -n
+  namespace TeachAssist
+  {
+      class Program
+      {
+          static void Main(string[] args)
+          {
+              var ta = new TeachAssist();
+              ta.Start();
+          }
+      }
+  
+      class TeachAssist
+      {
+          public string Path { get; set; } = "E:\\aaa.txt";
+  
+          public void Start()
+          {
+              Menu();
+              Dispatch();
+          }
+  
+          public void Menu()
+          {
+              Console.Write(@"
+  ==== 教学辅助 ====
+  
+  1. 语音点名
+  2. 提问抽查
+  3. 设置名单路径 ({0})
+  
+  请按相应数字进入相应功能。
+  
+  PRESS KEY CONTINUE.
+  ", Path);
+          }
+  
+          public void Dispatch()
+          {
+              var key = Console.ReadKey().Key;
+              Console.Clear();
+              switch (key)
+              {
+                  case ConsoleKey.D1:
+                      new Rollcall().StartRoll(Path);
+                      break;
+                  case ConsoleKey.D2:
+                      break;
+                  case ConsoleKey.D3:
+                      Menu();
+                      break;
+                  default:
+                      Environment.Exit(1);
+                      break;
+              }
+          }
+      }
+  
+      // 1. 读取名单
+      // 2. 遍历名单
+      // 3. 点名某人 (屏幕/语音/键盘输入)
+      // 4. 输出结果
+      class Rollcall
+      {
+          public string[] Names { get; set; }
+          public string[] Absents { get; set; } = {};
+  
+          public void StartRoll(string path)
+          {
+              LoadNames(path);
+              foreach (var name in Names)
+              {
+                  bool repeat = false;
+  
+                  do
+                  {
+                      Call(name);
+  
+                      switch (Console.ReadKey().Key)
+                      {
+                          case ConsoleKey.R:
+                              repeat = true;
+                              break;
+                          case ConsoleKey.B:
+                              repeat = false;
+                              string[] arr = new string[Absents.Length + 1];
+                              for (var i = 0; i < Absents.Length; i++)
+                              {
+                                  arr[i] = Absents[i];
+                              }
+                              arr[Absents.Length] = name;
+                              Absents = arr;
+                              break;
+                          default:
+                              repeat = false;
+                              break;
+                      }
+                  } while (repeat);
+  
+                  Console.WriteLine();
+  
+              }
+              Report();
+          }
+  
+          public void LoadNames(string file)
+          {
+              // 首先，读取
+              string[] names = File.ReadAllLines(file);
+              // 其次，过滤 (不能为空，不能以 - 开始)
+              Names = names.Where(name => !string.IsNullOrEmpty(name) && name[0] != '-').ToArray();
+          }
+  
+          public void Call(string name)
+          {
+              Console.ForegroundColor = ConsoleColor.DarkBlue;
+              Console.Write(name);
+              Console.ResetColor();
+              Speak(name);
+          }
+  
+          public void Speak(string content)
+          {
+              var speechSynthesizer = new SpeechSynthesizer();
+              speechSynthesizer.Speak(content);
+          }
+  
+          public void Report()
+          {
+              Console.WriteLine();
+              Console.WriteLine($"总共有 {Names.Length} 人，未到的有 {Absents.Length} 人");
+              Console.WriteLine();
+              if (Absents.Length == 0)
+              {
+                  Console.ForegroundColor = ConsoleColor.Green;
+                  Console.WriteLine("全都到啦!");
+                  Console.ResetColor();
+              }
+              else
+              {
+                  Console.ForegroundColor = ConsoleColor.Red;
+                  Console.WriteLine("缺席的名单为:\n");
+                  Console.ResetColor();
+                  foreach (var n in Absents)
+                  {
+                      Console.WriteLine($" - {n}");
+                  }
+              }
+          }
+      }
+  }
+#+end_src
+
 * 加密、解密 (rot13)
 ** 分析
 

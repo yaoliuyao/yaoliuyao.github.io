@@ -42,10 +42,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcc0b201">1. 语音点名系统</a></li>
+<li><a href="#orgcc0b201">1. 语音点名系统</a>
+<ul>
+<li><a href="#orgc058805">1.1. 参考实现</a></li>
+</ul>
+</li>
 <li><a href="#org1e9b233">2. 加密、解密 (rot13)</a>
 <ul>
-<li><a href="#orgcd1c42b">2.1. 分析</a></li>
+<li><a href="#org6ef076a">2.1. 分析</a></li>
 <li><a href="#org34536b0">2.2. 实现</a></li>
 <li><a href="#org629fa82">2.3. 落地</a></li>
 <li><a href="#org32b4e34">2.4. 导出并使用</a></li>
@@ -62,11 +66,11 @@
 <li><a href="#org934289b">3.2.4. 消除字符串的基本逻辑</a></li>
 </ul>
 </li>
-<li><a href="#org6ef076a">3.3. 分析</a></li>
+<li><a href="#orge3901d8">3.3. 分析</a></li>
 <li><a href="#orgdbb6416">3.4. 程序概览</a></li>
 <li><a href="#org30ad555">3.5. Code Example</a></li>
 <li><a href="#orga44c44c">3.6. 其他</a></li>
-<li><a href="#org3d9536b">3.7. 小结</a></li>
+<li><a href="#org57fed5d">3.7. 小结</a></li>
 </ul>
 </li>
 <li><a href="#org78b9f59">4. 导出为 Excel 的总结</a>
@@ -133,7 +137,7 @@
 </li>
 <li><a href="#org5e90d90">6.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
 <li><a href="#org954e3a9">6.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
-<li><a href="#org57fed5d">6.14. 小结</a></li>
+<li><a href="#orgdc718e7">6.14. 小结</a></li>
 </ul>
 </li>
 <li><a href="#orgf43b2bd">7. 小费计算器</a>
@@ -170,14 +174,173 @@
 <li>大胆去实现，不要怕失败，不要怕。唯手熟尔</li>
 </ul>
 </div>
+
+<div id="outline-container-orgc058805" class="outline-3">
+<h3 id="orgc058805"><span class="section-number-3">1.1.</span> 参考实现</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-cs"><span class="linenr">  1: </span><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">TeachAssist</span>
+<span class="linenr">  2: </span><span style="color: #707183;">{</span>
+<span class="linenr">  3: </span>    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span class="linenr">  4: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">  5: </span>        <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span><span style="color: #709870;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #909183;">)</span>
+<span class="linenr">  6: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">  7: </span>            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">ta</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TeachAssist</span><span style="color: #709870;">()</span>;
+<span class="linenr">  8: </span>            ta.<span style="color: #0000ff;">Start</span><span style="color: #709870;">()</span>;
+<span class="linenr">  9: </span>        <span style="color: #909183;">}</span>
+<span class="linenr"> 10: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr"> 11: </span>
+<span class="linenr"> 12: </span>    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">TeachAssist</span>
+<span class="linenr"> 13: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 14: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Path</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #909183;">}</span> = <span style="color: #8b2252;">"E:\\aaa.txt"</span>;
+<span class="linenr"> 15: </span>
+<span class="linenr"> 16: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Start</span><span style="color: #909183;">()</span>
+<span class="linenr"> 17: </span>        <span style="color: #909183;">{</span>
+<span class="linenr"> 18: </span>            <span style="color: #0000ff;">Menu</span><span style="color: #709870;">()</span>;
+<span class="linenr"> 19: </span>            <span style="color: #0000ff;">Dispatch</span><span style="color: #709870;">()</span>;
+<span class="linenr"> 20: </span>        <span style="color: #909183;">}</span>
+<span class="linenr"> 21: </span>
+<span class="linenr"> 22: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Menu</span><span style="color: #909183;">()</span>
+<span class="linenr"> 23: </span>        <span style="color: #909183;">{</span>
+<span class="linenr"> 24: </span>            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span>@<span style="color: #8b2252;">"</span>
+<span class="linenr"> 25: </span><span style="color: #8b2252;">==== &#25945;&#23398;&#36741;&#21161; ====</span>
+<span class="linenr"> 26: </span>
+<span class="linenr"> 27: </span><span style="color: #8b2252;">1. &#35821;&#38899;&#28857;&#21517;</span>
+<span class="linenr"> 28: </span><span style="color: #8b2252;">2. &#25552;&#38382;&#25277;&#26597;</span>
+<span class="linenr"> 29: </span><span style="color: #8b2252;">3. &#35774;&#32622;&#21517;&#21333;&#36335;&#24452; ({0})</span>
+<span class="linenr"> 30: </span>
+<span class="linenr"> 31: </span><span style="color: #8b2252;">&#35831;&#25353;&#30456;&#24212;&#25968;&#23383;&#36827;&#20837;&#30456;&#24212;&#21151;&#33021;&#12290;</span>
+<span class="linenr"> 32: </span>
+<span class="linenr"> 33: </span><span style="color: #8b2252;">PRESS KEY CONTINUE.</span>
+<span class="linenr"> 34: </span><span style="color: #8b2252;">"</span>, <span style="color: #228b22;">Path</span><span style="color: #709870;">)</span>;
+<span class="linenr"> 35: </span>        <span style="color: #909183;">}</span>
+<span class="linenr"> 36: </span>
+<span class="linenr"> 37: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Dispatch</span><span style="color: #909183;">()</span>
+<span class="linenr"> 38: </span>        <span style="color: #909183;">{</span>
+<span class="linenr"> 39: </span>            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">key</span> = Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #709870;">()</span>.Key;
+<span class="linenr"> 40: </span>            Console.<span style="color: #0000ff;">Clear</span><span style="color: #709870;">()</span>;
+<span class="linenr"> 41: </span>            <span style="color: #a020f0;">switch</span> <span style="color: #709870;">(</span>key<span style="color: #709870;">)</span>
+<span class="linenr"> 42: </span>            <span style="color: #709870;">{</span>
+<span class="linenr"> 43: </span>                <span style="color: #a020f0;">case</span> ConsoleKey.D1:
+<span class="linenr"> 44: </span>                    <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Rollcall</span><span style="color: #907373;">()</span>.<span style="color: #0000ff;">StartRoll</span><span style="color: #907373;">(</span><span style="color: #228b22;">Path</span><span style="color: #907373;">)</span>;
+<span class="linenr"> 45: </span>                    <span style="color: #a020f0;">break</span>;
+<span class="linenr"> 46: </span>                <span style="color: #a020f0;">case</span> ConsoleKey.D2:
+<span class="linenr"> 47: </span>                    <span style="color: #a020f0;">break</span>;
+<span class="linenr"> 48: </span>                <span style="color: #a020f0;">case</span> ConsoleKey.D3:
+<span class="linenr"> 49: </span>                    <span style="color: #0000ff;">Menu</span><span style="color: #907373;">()</span>;
+<span class="linenr"> 50: </span>                    <span style="color: #a020f0;">break</span>;
+<span class="linenr"> 51: </span>                <span style="color: #a020f0;">default</span>:
+<span class="linenr"> 52: </span>                    Environment.<span style="color: #0000ff;">Exit</span><span style="color: #907373;">(</span>1<span style="color: #907373;">)</span>;
+<span class="linenr"> 53: </span>                    <span style="color: #a020f0;">break</span>;
+<span class="linenr"> 54: </span>            <span style="color: #709870;">}</span>
+<span class="linenr"> 55: </span>        <span style="color: #909183;">}</span>
+<span class="linenr"> 56: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr"> 57: </span>
+<span class="linenr"> 58: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#35835;&#21462;&#21517;&#21333;</span>
+<span class="linenr"> 59: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#36941;&#21382;&#21517;&#21333;</span>
+<span class="linenr"> 60: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">3. &#28857;&#21517;&#26576;&#20154; (&#23631;&#24149;/&#35821;&#38899;/&#38190;&#30424;&#36755;&#20837;)</span>
+<span class="linenr"> 61: </span>    <span style="color: #b22222;">// </span><span style="color: #b22222;">4. &#36755;&#20986;&#32467;&#26524;</span>
+<span class="linenr"> 62: </span>    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Rollcall</span>
+<span class="linenr"> 63: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 64: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">Names</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #909183;">}</span>
+<span class="linenr"> 65: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">Absents</span> <span style="color: #909183;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #909183;">}</span> = <span style="color: #909183;">{}</span>;
+<span class="linenr"> 66: </span>
+<span class="linenr"> 67: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">StartRoll</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">path</span><span style="color: #909183;">)</span>
+<span class="linenr"> 68: </span>        <span style="color: #909183;">{</span>
+<span class="linenr"> 69: </span>            <span style="color: #0000ff;">LoadNames</span><span style="color: #709870;">(</span><span style="color: #228b22;">path</span><span style="color: #709870;">)</span>;
+<span class="linenr"> 70: </span>            <span style="color: #a020f0;">foreach</span> <span style="color: #709870;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">name</span> <span style="color: #a020f0;">in</span> Names<span style="color: #709870;">)</span>
+<span class="linenr"> 71: </span>            <span style="color: #709870;">{</span>
+<span class="linenr"> 72: </span>                <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">repeat</span> = <span style="color: #008b8b;">false</span>;
+<span class="linenr"> 73: </span>
+<span class="linenr"> 74: </span>                <span style="color: #a020f0;">do</span>
+<span class="linenr"> 75: </span>                <span style="color: #907373;">{</span>
+<span class="linenr"> 76: </span>                    <span style="color: #0000ff;">Call</span><span style="color: #6276ba;">(</span><span style="color: #228b22;">name</span><span style="color: #6276ba;">)</span>;
+<span class="linenr"> 77: </span>
+<span class="linenr"> 78: </span>                    <span style="color: #a020f0;">switch</span> <span style="color: #6276ba;">(</span>Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #858580;">()</span>.Key<span style="color: #6276ba;">)</span>
+<span class="linenr"> 79: </span>                    <span style="color: #6276ba;">{</span>
+<span class="linenr"> 80: </span>                        <span style="color: #a020f0;">case</span> ConsoleKey.R:
+<span class="linenr"> 81: </span>                            repeat = <span style="color: #008b8b;">true</span>;
+<span class="linenr"> 82: </span>                            <span style="color: #a020f0;">break</span>;
+<span class="linenr"> 83: </span>                        <span style="color: #a020f0;">case</span> ConsoleKey.B:
+<span class="linenr"> 84: </span>                            repeat = <span style="color: #008b8b;">false</span>;
+<span class="linenr"> 85: </span>                            <span style="color: #228b22;">string</span><span style="color: #858580;">[]</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">string</span><span style="color: #858580;">[</span>Absents.Length + 1<span style="color: #858580;">]</span>;
+<span class="linenr"> 86: </span>                            <span style="color: #a020f0;">for</span> <span style="color: #858580;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">i</span> = 0; i &lt; Absents.Length; i++<span style="color: #858580;">)</span>
+<span class="linenr"> 87: </span>                            <span style="color: #858580;">{</span>
+<span class="linenr"> 88: </span>                                arr<span style="color: #80a880;">[</span>i<span style="color: #80a880;">]</span> = Absents<span style="color: #80a880;">[</span>i<span style="color: #80a880;">]</span>;
+<span class="linenr"> 89: </span>                            <span style="color: #858580;">}</span>
+<span class="linenr"> 90: </span>                            arr<span style="color: #858580;">[</span>Absents.Length<span style="color: #858580;">]</span> = name;
+<span class="linenr"> 91: </span>                            Absents = arr;
+<span class="linenr"> 92: </span>                            <span style="color: #a020f0;">break</span>;
+<span class="linenr"> 93: </span>                        <span style="color: #a020f0;">default</span>:
+<span class="linenr"> 94: </span>                            repeat = <span style="color: #008b8b;">false</span>;
+<span class="linenr"> 95: </span>                            <span style="color: #a020f0;">break</span>;
+<span class="linenr"> 96: </span>                    <span style="color: #6276ba;">}</span>
+<span class="linenr"> 97: </span>                <span style="color: #907373;">}</span> <span style="color: #a020f0;">while</span> <span style="color: #907373;">(</span>repeat<span style="color: #907373;">)</span>;
+<span class="linenr"> 98: </span>
+<span class="linenr"> 99: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">()</span>;
+<span class="linenr">100: </span>
+<span class="linenr">101: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">102: </span>            <span style="color: #0000ff;">Report</span><span style="color: #709870;">()</span>;
+<span class="linenr">103: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">104: </span>
+<span class="linenr">105: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">LoadNames</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">file</span><span style="color: #909183;">)</span>
+<span class="linenr">106: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">107: </span>            <span style="color: #b22222;">// </span><span style="color: #b22222;">&#39318;&#20808;&#65292;&#35835;&#21462;</span>
+<span class="linenr">108: </span>            <span style="color: #228b22;">string</span><span style="color: #709870;">[]</span> <span style="color: #a0522d;">names</span> = File.<span style="color: #0000ff;">ReadAllLines</span><span style="color: #709870;">(</span><span style="color: #228b22;">file</span><span style="color: #709870;">)</span>;
+<span class="linenr">109: </span>            <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20854;&#27425;&#65292;&#36807;&#28388; (&#19981;&#33021;&#20026;&#31354;&#65292;&#19981;&#33021;&#20197; - &#24320;&#22987;)</span>
+<span class="linenr">110: </span>            Names = names.<span style="color: #0000ff;">Where</span><span style="color: #709870;">(</span>name =&gt; !<span style="color: #228b22;">string</span>.<span style="color: #0000ff;">IsNullOrEmpty</span><span style="color: #907373;">(</span><span style="color: #228b22;">name</span><span style="color: #907373;">)</span> &amp;&amp; name<span style="color: #907373;">[</span>0<span style="color: #907373;">]</span> != <span style="color: #8b2252;">'-'</span><span style="color: #709870;">)</span>.<span style="color: #0000ff;">ToArray</span><span style="color: #709870;">()</span>;
+<span class="linenr">111: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">112: </span>
+<span class="linenr">113: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Call</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span><span style="color: #909183;">)</span>
+<span class="linenr">114: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">115: </span>            Console.ForegroundColor = ConsoleColor.DarkBlue;
+<span class="linenr">116: </span>            Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #228b22;">name</span><span style="color: #709870;">)</span>;
+<span class="linenr">117: </span>            Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #709870;">()</span>;
+<span class="linenr">118: </span>            <span style="color: #0000ff;">Speak</span><span style="color: #709870;">(</span><span style="color: #228b22;">name</span><span style="color: #709870;">)</span>;
+<span class="linenr">119: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">120: </span>
+<span class="linenr">121: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Speak</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">content</span><span style="color: #909183;">)</span>
+<span class="linenr">122: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">123: </span>            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">speechSynthesizer</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SpeechSynthesizer</span><span style="color: #709870;">()</span>;
+<span class="linenr">124: </span>            speechSynthesizer.<span style="color: #0000ff;">Speak</span><span style="color: #709870;">(</span><span style="color: #228b22;">content</span><span style="color: #709870;">)</span>;
+<span class="linenr">125: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">126: </span>
+<span class="linenr">127: </span>        <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Report</span><span style="color: #909183;">()</span>
+<span class="linenr">128: </span>        <span style="color: #909183;">{</span>
+<span class="linenr">129: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">()</span>;
+<span class="linenr">130: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"&#24635;&#20849;&#26377; {Names.Length} &#20154;&#65292;&#26410;&#21040;&#30340;&#26377; {Absents.Length} &#20154;"</span><span style="color: #709870;">)</span>;
+<span class="linenr">131: </span>            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">()</span>;
+<span class="linenr">132: </span>            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>Absents.Length == 0<span style="color: #709870;">)</span>
+<span class="linenr">133: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">134: </span>                Console.ForegroundColor = ConsoleColor.Green;
+<span class="linenr">135: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#20840;&#37117;&#21040;&#21862;!"</span><span style="color: #907373;">)</span>;
+<span class="linenr">136: </span>                Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #907373;">()</span>;
+<span class="linenr">137: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">138: </span>            <span style="color: #a020f0;">else</span>
+<span class="linenr">139: </span>            <span style="color: #709870;">{</span>
+<span class="linenr">140: </span>                Console.ForegroundColor = ConsoleColor.Red;
+<span class="linenr">141: </span>                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#32570;&#24109;&#30340;&#21517;&#21333;&#20026;:\n"</span><span style="color: #907373;">)</span>;
+<span class="linenr">142: </span>                Console.<span style="color: #0000ff;">ResetColor</span><span style="color: #907373;">()</span>;
+<span class="linenr">143: </span>                <span style="color: #a020f0;">foreach</span> <span style="color: #907373;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">n</span> <span style="color: #a020f0;">in</span> Absents<span style="color: #907373;">)</span>
+<span class="linenr">144: </span>                <span style="color: #907373;">{</span>
+<span class="linenr">145: </span>                    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #6276ba;">(</span>$<span style="color: #8b2252;">" - {n}"</span><span style="color: #6276ba;">)</span>;
+<span class="linenr">146: </span>                <span style="color: #907373;">}</span>
+<span class="linenr">147: </span>            <span style="color: #709870;">}</span>
+<span class="linenr">148: </span>        <span style="color: #909183;">}</span>
+<span class="linenr">149: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">150: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-org1e9b233" class="outline-2">
 <h2 id="org1e9b233"><span class="section-number-2">2.</span> 加密、解密 (rot13)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgcd1c42b" class="outline-3">
-<h3 id="orgcd1c42b"><span class="section-number-3">2.1.</span> 分析</h3>
+<div id="outline-container-org6ef076a" class="outline-3">
+<h3 id="org6ef076a"><span class="section-number-3">2.1.</span> 分析</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 解析问题，大事化小:
@@ -568,8 +731,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org6ef076a" class="outline-3">
-<h3 id="org6ef076a"><span class="section-number-3">3.3.</span> 分析</h3>
+<div id="outline-container-orge3901d8" class="outline-3">
+<h3 id="orge3901d8"><span class="section-number-3">3.3.</span> 分析</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>显示一排小猪 (初始化若干个、会定时加入若干个小猪、随着用户交互小猪加入队伍)</li>
@@ -582,7 +745,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="org31217b8">
+<pre class="example" id="org4386fd0">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -987,8 +1150,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org3d9536b" class="outline-3">
-<h3 id="org3d9536b"><span class="section-number-3">3.7.</span> 小结</h3>
+<div id="outline-container-org57fed5d" class="outline-3">
+<h3 id="org57fed5d"><span class="section-number-3">3.7.</span> 小结</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 通过这个游戏，达到的目的:
@@ -2267,7 +2430,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </p>
 
 
-<figure id="org5a8e3ea">
+<figure id="orgc5346e1">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -2439,7 +2602,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <h3 id="orgaae223a"><span class="section-number-3">4.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-4-5">
 
-<figure id="org5b279a5">
+<figure id="orgb3eab15">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -3893,7 +4056,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">6.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-6-4">
 
-<figure id="org1ef4c60">
+<figure id="orga35f8f1">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -4168,7 +4331,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org7bf7f15">
+<figure id="org80e52db">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -4284,7 +4447,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="orge647457">
+<figure id="orgf76377b">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -5190,8 +5353,8 @@ C# 操纵 Excel 的方法:
 
 
 
-<div id="outline-container-org57fed5d" class="outline-3">
-<h3 id="org57fed5d"><span class="section-number-3">6.14.</span> 小结</h3>
+<div id="outline-container-orgdc718e7" class="outline-3">
+<h3 id="orgdc718e7"><span class="section-number-3">6.14.</span> 小结</h3>
 </div>
 </section>
 
