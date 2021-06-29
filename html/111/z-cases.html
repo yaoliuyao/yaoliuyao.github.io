@@ -45,7 +45,7 @@
 <li><a href="#orgcc0b201">1. 语音点名系统</a></li>
 <li><a href="#org1e9b233">2. 加密、解密 (rot13)</a>
 <ul>
-<li><a href="#orga2234f0">2.1. 分析</a></li>
+<li><a href="#orgcd1c42b">2.1. 分析</a></li>
 <li><a href="#org34536b0">2.2. 实现</a></li>
 <li><a href="#org629fa82">2.3. 落地</a></li>
 <li><a href="#org32b4e34">2.4. 导出并使用</a></li>
@@ -62,11 +62,11 @@
 <li><a href="#org934289b">3.2.4. 消除字符串的基本逻辑</a></li>
 </ul>
 </li>
-<li><a href="#orgcd1c42b">3.3. 分析</a></li>
+<li><a href="#org6ef076a">3.3. 分析</a></li>
 <li><a href="#orgdbb6416">3.4. 程序概览</a></li>
 <li><a href="#org30ad555">3.5. Code Example</a></li>
 <li><a href="#orga44c44c">3.6. 其他</a></li>
-<li><a href="#orgf018c42">3.7. 小结</a></li>
+<li><a href="#org3d9536b">3.7. 小结</a></li>
 </ul>
 </li>
 <li><a href="#org78b9f59">4. 导出为 Excel 的总结</a>
@@ -133,7 +133,7 @@
 </li>
 <li><a href="#org5e90d90">6.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
 <li><a href="#org954e3a9">6.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
-<li><a href="#org3d9536b">6.14. 小结</a></li>
+<li><a href="#org57fed5d">6.14. 小结</a></li>
 </ul>
 </li>
 <li><a href="#orgf43b2bd">7. 小费计算器</a>
@@ -166,7 +166,7 @@
 <ul class="org-ul">
 <li>将人员名单保存到一个外部 txt 文本文件中 (其实，保存在 Excel 中，可以实现更灵活更强劲的功能)</li>
 <li>学会将最后的程序导出 (publish) 为一个单独的 exe 文件</li>
-<li>正常过程: 产品设计 -&gt; 功能划分 -&gt; 编码细节</li>
+<li>正常过程: 产品设计 -&gt; 功能划分 -&gt; 编码细节。使用 <b>面向对象、结构化编程</b> 的基本思路</li>
 <li>大胆去实现，不要怕失败，不要怕。唯手熟尔</li>
 </ul>
 </div>
@@ -176,8 +176,8 @@
 <h2 id="org1e9b233"><span class="section-number-2">2.</span> 加密、解密 (rot13)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orga2234f0" class="outline-3">
-<h3 id="orga2234f0"><span class="section-number-3">2.1.</span> 分析</h3>
+<div id="outline-container-orgcd1c42b" class="outline-3">
+<h3 id="orgcd1c42b"><span class="section-number-3">2.1.</span> 分析</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 解析问题，大事化小:
@@ -568,8 +568,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgcd1c42b" class="outline-3">
-<h3 id="orgcd1c42b"><span class="section-number-3">3.3.</span> 分析</h3>
+<div id="outline-container-org6ef076a" class="outline-3">
+<h3 id="org6ef076a"><span class="section-number-3">3.3.</span> 分析</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>显示一排小猪 (初始化若干个、会定时加入若干个小猪、随着用户交互小猪加入队伍)</li>
@@ -582,7 +582,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="org0b7fac5">
+<pre class="example" id="org31217b8">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -987,8 +987,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgf018c42" class="outline-3">
-<h3 id="orgf018c42"><span class="section-number-3">3.7.</span> 小结</h3>
+<div id="outline-container-org3d9536b" class="outline-3">
+<h3 id="org3d9536b"><span class="section-number-3">3.7.</span> 小结</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 通过这个游戏，达到的目的:
@@ -2267,7 +2267,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </p>
 
 
-<figure id="org9f3da07">
+<figure id="org5a8e3ea">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -2439,7 +2439,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <h3 id="orgaae223a"><span class="section-number-3">4.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-4-5">
 
-<figure id="org0819947">
+<figure id="org5b279a5">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -3893,7 +3893,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">6.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-6-4">
 
-<figure id="orgb9440c6">
+<figure id="org1ef4c60">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -4168,7 +4168,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="orgc4ffd3f">
+<figure id="org7bf7f15">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -4284,7 +4284,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org062916f">
+<figure id="orge647457">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -5190,8 +5190,8 @@ C# 操纵 Excel 的方法:
 
 
 
-<div id="outline-container-org3d9536b" class="outline-3">
-<h3 id="org3d9536b"><span class="section-number-3">6.14.</span> 小结</h3>
+<div id="outline-container-org57fed5d" class="outline-3">
+<h3 id="org57fed5d"><span class="section-number-3">6.14.</span> 小结</h3>
 </div>
 </section>
 
