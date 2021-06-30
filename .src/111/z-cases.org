@@ -86,6 +86,12 @@
           public void StartRoll(string path)
           {
               LoadNames(path);
+              RollNames();
+              Report();
+          }
+  
+          public void RollNames()
+          {
               foreach (var name in Names)
               {
                   bool repeat = false;
@@ -118,14 +124,13 @@
                   Console.WriteLine();
   
               }
-              Report();
           }
   
           public void LoadNames(string file)
           {
               // 首先，读取
               string[] names = File.ReadAllLines(file);
-              // 其次，过滤 (不能为空，不能以 - 开始)
+              // 其次，过滤 (不能为空，不能以 - 开始) Linq
               Names = names.Where(name => !string.IsNullOrEmpty(name) && name[0] != '-').ToArray();
           }
   
@@ -168,6 +173,48 @@
       }
   }
 #+end_src
+
+循环的另外一种写法:
+#+begin_src cs
+  public void RollNames()
+  {
+      foreach (var name in Names)
+      {
+          while (true)
+          {
+              Call(name);
+  
+              var key = Console.ReadKey();
+              if (key.Key == ConsoleKey.B)
+              {
+                  string[] arr = new string[Absents.Length + 1];
+                  for (var i = 0; i < Absents.Length; i++)
+                  {
+                      arr[i] = Absents[i];
+                  }
+  
+                  arr[Absents.Length] = name;
+                  Absents = arr;
+                  break;
+              }
+              else if (key.Key == ConsoleKey.R)
+              {
+              }
+              else
+              {
+                  break;
+              }
+          }
+  
+          Console.WriteLine();
+      }
+  }
+#+end_src
+
+** 进阶实现
+
+使用 Excel 代替 Txt 文本，存储名单信息。
+并且将点名的结果，保存进 Excel 中。
 
 * 加密、解密 (rot13)
 ** 分析
