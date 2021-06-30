@@ -1032,10 +1032,6 @@ API (Application Programming Interface) 应用程序编程接口。
 
 数组
 
-** record
-
-记录
-
 ** struct
 
 结构体
@@ -3052,6 +3048,107 @@ Gender (男/女/未知)
           image.Save(file);
       }
   }
+#+end_src
+
+* 数组 (Array)
+** 一维数组
+
+#+begin_src cs
+  // 1. 声明
+  int[] arr1;
+  string[] arr2;
+  
+  // 2. 实例化
+  arr1 = new int[4];
+  
+  // 3. 初始值
+  arr1[0] = 22;
+  arr1[1] = 5;
+  arr1[2] = 45;
+  arr1[3] = 555;
+  // arr1[4] = 777; // System.IndexOutOfRangeException
+  
+  // 4. 基本访问
+  for (var i = 0; i < arr1.Length; i++)
+  {
+      Console.WriteLine(arr1[i]);
+  }
+  
+  // string
+  string[] arr2;
+  arr2 = new string[5];
+  arr2[3] = "hello";
+  Console.WriteLine(arr2[0] == null); // true
+  
+  // Student
+  Student[] arr3;
+  arr3 = new Student[8];
+  arr3[3] = new Student();
+  Console.WriteLine(arr3[0] == null); // true
+#+end_src
+
+
+数组表示法:
+#+begin_src cs
+  int[] arr0;
+  arr0 = new int[4];
+  arr0[0] = 22;
+  arr0[1] = 5;
+  arr0[2] = 45;
+  arr0[3] = 555;
+  
+  int[] arr1 = new int[4]; 
+  arr1[0] = 22;
+  arr1[1] = 5;
+  arr1[2] = 45;
+  arr1[3] = 555;
+  
+  int[] arr2 = new int[4] { 22, 5, 45, 555 };
+  
+  int[] arr3 = new int[] { 22, 5, 45, 555 };
+  
+  int[] arr4 = { 22, 5, 45, 555 };
+  
+  var arr5 = new int[]{ 22, 5, 45, 555 };
+  var arr6 = new [] { 22, 5, 45, 555 };
+  
+  // 小结:
+  int[] arr = { 22, 5, 45, 555 };
+  var arr = new []{ 22, 5, 45, 555 };
+#+end_src
+
+数组的扩张:
+#+begin_src cs
+  int[] arr = { 22, 5, 45, 555 };
+  arr[4] = 666;
+  arr[5] = 777;
+#+end_src
+
+** 多维数组 (Dimensional Array)
+
+#+begin_src cs
+  int[,,] arr =
+  {
+      {{2, 3, 4, 1}, {2, 3, 4, 1}, {2, 3, 4, 1},{2, 3, 4, 1}},
+      {{2, 3, 4, 1}, {2, 3, 4, 1}, {2, 3, 4, 1},{2, 3, 4, 1}},
+      {{2, 3, 4, 1}, {2, 3, 4, 1}, {2, 3, 4, 1},{2, 3, 4, 1}},
+      {{2, 3, 4, 1}, {2, 3, 4, 1}, {2, 3, 4, 1},{2, 3, 4, 1}}
+  };
+  Console.WriteLine(arr.Rank); // 秩
+  Console.WriteLine(arr.Length);
+  Console.WriteLine(arr.GetLength(0));
+#+end_src
+
+** 交错数组 (Jagged Array)
+
+#+begin_src cs
+  int[][] arr = new int[3][];
+  arr[0] = new int[] {1, 2, 3, 4, 5};
+  arr[1] = new int[] {3, 4};
+  arr[2] = new int[] {1};
+  
+  int[][,] arr2 = new int[3][,];
+  arr2[2] = new int[,] { {2}, {3} };
 #+end_src
 
 * BCL (Base-Class Library) 基础类库
