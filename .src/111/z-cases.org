@@ -2,6 +2,55 @@
 
 
 
+* 委托使用 (过滤字符串)
+
+实现功能，将某个字符串的一些符合条件的字符，咔嚓掉。
+
+#+begin_src cs
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          // 将某个字符串的一些符合条件的字符，咔嚓掉
+          string aaa = "hello, world, where 是 你";
+  
+          // a-z 之外的字符，干掉
+          string s1 = GuolvZifuChuan(aaa, new Rule(RuleAZ));
+          string s11 = GuolvZifuChuan(aaa, RuleAZ);
+  
+          // 所有的空格，干掉 (匿名委托)
+          string s2 = GuolvZifuChuan(aaa, delegate(char c) { return c != ' ';});
+  
+          // 所有的 o 干掉 (表达式语法)
+          string s3 = GuolvZifuChuan(aaa, c => c != 'o');
+      }
+  
+      static string GuolvZifuChuan(string input, Rule rule)
+      {
+          string s = "";
+          foreach (var c in input)
+          {
+              if (rule(c))
+              {
+                  s += c;
+              }
+          }
+  
+          return s;
+      }
+  
+      static bool RuleAZ(char c)
+      {
+          return c >= 'a' && c <= 'z';
+  
+          //if (c >= 'a' && c <= 'z')
+          //    return true;
+          //else
+          //    return false;
+      }
+  }
+#+end_src
+
 * 语音点名系统
 
 仿照我们上课点名的流程，创作一个工具，用于自动语音点名。

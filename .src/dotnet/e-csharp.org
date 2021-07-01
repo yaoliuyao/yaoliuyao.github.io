@@ -1016,6 +1016,11 @@ API (Application Programming Interface) 应用程序编程接口。
 #+end_src
 
 * 用户自定义类型
+
+1. 声明类型
+2. 实例化
+3. 使用
+
 ** class
 
 类
