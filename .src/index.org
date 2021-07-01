@@ -42,8 +42,10 @@
 
 #+HTML: <div><br>
 #+HTML: <h3>其他链接</h3>
-#+HTML: <ul><li><a href="0-163-notes/index.html">backup of 163's notes</a></li></ul>
-#+HTML: <ul><li><a href="/luping">录屏视频</a></li></ul>
+#+HTML: <ul>
+#+HTML:   <li><a href="/luping">录屏视频 (/luping)</a></li>
+#+HTML:   <li><a href="0-163-notes/index.html">backup of 163's notes</a></li>
+#+HTML: </ul>
 #+HTML: </div>
 
 #+HTML: </section>
