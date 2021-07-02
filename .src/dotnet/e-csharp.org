@@ -3257,7 +3257,7 @@ Gender (男/女/未知)
   arr2[2] = new int[,] { {2}, {3} };
 #+end_src
 
-* 元组 (Tuple)
+* 元组 (Tuple/ValueTuple)
 
 #+begin_src cs
   class Student
