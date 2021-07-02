@@ -63,8 +63,6 @@
           // 将某个字符串的一些符合条件的字符，咔嚓掉
           string aaa = "hello, world, where 是 你";
   
-  
-  
           // a-z 之外的字符，干掉
           //string s1 = GuolvZifuChuan(aaa, new Rule(RuleAZ));
           string s11 = aaa.GoLv(RuleAZ);
@@ -75,105 +73,18 @@
           // 所有的 o 干掉 (表达式语法)
           string s3 = aaa.GoLv(c => c != 'o');
   
-          Console.WriteLine(100.Repeat("-"));
-          Console.WriteLine(30.Repeat("+  "));
-          Console.WriteLine(30.Repeat("|  "));
-          Console.WriteLine(30.Repeat("|  "));
-          100.Times(() => Console.Write("IOU "));
-          Console.WriteLine();
-          Console.WriteLine(30.Repeat("|  "));
-          Console.WriteLine(30.Repeat("|  "));
-          Console.WriteLine(30.Repeat("+  "));
-          Console.WriteLine(100.Repeat("-"));
-  
           Console.WriteLine(aaa.Where(RuleAZ).ToArray());
       }
   
       static bool RuleAZ(char c)
       {
           return c >= 'a' && c <= 'z';
-  
-          //if (c >= 'a' && c <= 'z')
-          //    return true;
-          //else
-          //    return false;
+          //if (c >= 'a' && c <= 'z') return true; else return false;
       }
-  
   }
   
-  // 为 string 增加一个 hello 方法
   public static class SuibianQigemingzi
   {
-      public static void Cl0ne(this string s)
-      {
-          Console.WriteLine($"hello {s}!");
-      }
-  
-      public static void ClOne(this string s)
-      {
-          Console.WriteLine($"hello {s}!");
-      }
-  
-      public static void C1one(this string s)
-      {
-          Console.WriteLine($"hello {s}!");
-      }
-  
-      public static void Hello(this string s)
-      {
-          Console.WriteLine($"hello {s}!");
-      }
-  
-      public static void Hi(this int s, int n = 1)
-      {
-          Console.WriteLine($"{s} 加上 {n} 为 {s + n}!");
-      }
-  
-      public static string Rot13(this string str)
-      {
-          StringBuilder sb = new StringBuilder();
-          foreach (char c in str)
-          {
-              sb.Append(RotChar(c));
-          }
-          return sb.ToString();
-      }
-  
-      static char RotChar(char c)
-      {
-          byte code = (byte)c;
-          if (c >= 'a' && c <= 'z')
-          {
-              return (char)(code + 13 > 122 ? code - 13 : code + 13);
-          }
-  
-          if (c >= 'A' && c <= 'Z')
-          {
-              return (char)(code + 13 > 90 ? code - 13 : code + 13);
-          }
-  
-          return c;
-      }
-  
-      public static string Repeat(this int count, string source)
-      {
-          var sb = new StringBuilder();
-          for (int i = 0; i < count; i++)
-          {
-              sb.Append(source);
-          }
-  
-          return sb.ToString();
-      }
-  
-      public static void Times(this int count, Action action)
-      {
-          for (int i = 0; i < count; i++)
-          {
-              action();
-          }
-      }
-  
       public static string GoLv(this string input, Func<char, bool> rule)
       {
           string s = "";
@@ -187,7 +98,6 @@
   
           return s;
       }
-  
   }
 #+end_src
 

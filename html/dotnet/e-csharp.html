@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-01 -->
+<!-- 2021-07-02 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -165,6 +165,7 @@
 <li><a href="#org6899a12">8.13.1. ToString</a></li>
 </ul>
 </li>
+<li><a href="#orgb9cf844">8.14. 类的扩展机制</a></li>
 </ul>
 </li>
 <li><a href="#orgfda2215">9. 接口 (Interface)</a>
@@ -289,13 +290,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgbcef2de">
+<figure id="org33a9699">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org4b487a2">
+<figure id="org67f32d9">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -540,7 +541,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgc82c649">
+<figure id="orga0b77d4">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -661,7 +662,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org5798f96">
+<figure id="orgcc8756f">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -689,7 +690,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgc13e11d">
+<figure id="org10d216d">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -748,7 +749,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org9c679ad">
+<figure id="org4afa97f">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1174,7 +1175,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org61d885e">
+<figure id="org1eca22a">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1212,7 +1213,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgcb9080d">
+<figure id="org30babe1">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2213,7 +2214,7 @@ out:
 </div>
 
 
-<figure id="orgae174ca">
+<figure id="org996be8c">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3011,6 +3012,119 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgb9cf844" class="outline-3">
+<h3 id="orgb9cf844"><span class="section-number-3">8.14.</span> 类的扩展机制</h3>
+<div class="outline-text-3" id="text-8-14">
+<p>
+为某个类扩展功能的基本方式:
+</p>
+<ol class="org-ol">
+<li>直接修改源码，添加想要的方法</li>
+<li>通过继承的方式，你的是我的我的还是我的</li>
+</ol>
+
+<p>
+如果无法修改源码、而且不能继承时，就需要下面这种扩展手段，具备特点:
+</p>
+<ul class="org-ul">
+<li>很灵活很方便</li>
+<li>但需要慎用</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>90.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>30.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"+  "</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>30.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"|  "</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>30.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"|  "</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        100.<span style="color: #0000ff;">Times</span><span style="color: #909183;">(</span><span style="color: #709870;">()</span> =&gt; Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"IOU "</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>; Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>30.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"|  "</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>30.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"|  "</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>30.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"+  "</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>90.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">SuibianQigemingzi</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Cl0ne</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"hello {s}!"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">ClOne</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"hello {s}!"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">C1one</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"hello {s}!"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Hello</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"hello {s}!"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Hi</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">s</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span> = 1<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{s} &#21152;&#19978; {n} &#20026; {s + n}!"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Rot13</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">str</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #909183;">()</span>;
+        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> <span style="color: #a020f0;">in</span> str<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            sb.<span style="color: #0000ff;">Append</span><span style="color: #709870;">(</span><span style="color: #0000ff;">RotChar</span><span style="color: #907373;">(</span><span style="color: #228b22;">c</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">return</span> sb.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">char</span> <span style="color: #0000ff;">RotChar</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">byte</span> <span style="color: #a0522d;">code</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">byte</span><span style="color: #909183;">)</span>c;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>c &gt;= <span style="color: #8b2252;">'a'</span> &amp;&amp; c &lt;= <span style="color: #8b2252;">'z'</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> <span style="color: #709870;">(</span><span style="color: #228b22;">char</span><span style="color: #709870;">)(</span>code + 13 &gt; 122 ? code - 13 : code + 13<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>c &gt;= <span style="color: #8b2252;">'A'</span> &amp;&amp; c &lt;= <span style="color: #8b2252;">'Z'</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">return</span> <span style="color: #709870;">(</span><span style="color: #228b22;">char</span><span style="color: #709870;">)(</span>code + 13 &gt; 90 ? code - 13 : code + 13<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+
+        <span style="color: #a020f0;">return</span> c;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">Repeat</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">count</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">source</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #909183;">()</span>;
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; count; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            sb.<span style="color: #0000ff;">Append</span><span style="color: #709870;">(</span><span style="color: #228b22;">source</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+
+        <span style="color: #a020f0;">return</span> sb.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Times</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">count</span>, <span style="color: #228b22;">Action</span> <span style="color: #a0522d;">action</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; count; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #0000ff;">action</span><span style="color: #709870;">()</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-orgfda2215" class="outline-2">
@@ -3458,7 +3572,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org0063e36">
+<figure id="org395f4ff">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4578,7 +4692,7 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-01</p>
+<p class="date">Created: 2021-07-02</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

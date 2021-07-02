@@ -2162,6 +2162,107 @@ readonly:
   Console.WriteLine("{0}", new TipCalculator(200));
 #+end_src
 
+** 类的扩展机制
+
+为某个类扩展功能的基本方式:
+1. 直接修改源码，添加想要的方法
+2. 通过继承的方式，你的是我的我的还是我的
+
+如果无法修改源码、而且不能继承时，就需要下面这种扩展手段，具备特点:
+- 很灵活很方便
+- 但需要慎用
+
+#+begin_src cs
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          Console.WriteLine(90.Repeat("-"));
+          Console.WriteLine(30.Repeat("+  "));
+          Console.WriteLine(30.Repeat("|  "));
+          Console.WriteLine(30.Repeat("|  "));
+          100.Times(() => Console.Write("IOU ")); Console.WriteLine();
+          Console.WriteLine(30.Repeat("|  "));
+          Console.WriteLine(30.Repeat("|  "));
+          Console.WriteLine(30.Repeat("+  "));
+          Console.WriteLine(90.Repeat("-"));
+      }
+  }
+  
+  public static class SuibianQigemingzi
+  {
+      public static void Cl0ne(this string s)
+      {
+          Console.WriteLine($"hello {s}!");
+      }
+  
+      public static void ClOne(this string s)
+      {
+          Console.WriteLine($"hello {s}!");
+      }
+  
+      public static void C1one(this string s)
+      {
+          Console.WriteLine($"hello {s}!");
+      }
+  
+      public static void Hello(this string s)
+      {
+          Console.WriteLine($"hello {s}!");
+      }
+  
+      public static void Hi(this int s, int n = 1)
+      {
+          Console.WriteLine($"{s} 加上 {n} 为 {s + n}!");
+      }
+  
+      public static string Rot13(this string str)
+      {
+          StringBuilder sb = new StringBuilder();
+          foreach (char c in str)
+          {
+              sb.Append(RotChar(c));
+          }
+          return sb.ToString();
+      }
+  
+      static char RotChar(char c)
+      {
+          byte code = (byte)c;
+          if (c >= 'a' && c <= 'z')
+          {
+              return (char)(code + 13 > 122 ? code - 13 : code + 13);
+          }
+  
+          if (c >= 'A' && c <= 'Z')
+          {
+              return (char)(code + 13 > 90 ? code - 13 : code + 13);
+          }
+  
+          return c;
+      }
+  
+      public static string Repeat(this int count, string source)
+      {
+          var sb = new StringBuilder();
+          for (int i = 0; i < count; i++)
+          {
+              sb.Append(source);
+          }
+  
+          return sb.ToString();
+      }
+  
+      public static void Times(this int count, Action action)
+      {
+          for (int i = 0; i < count; i++)
+          {
+              action();
+          }
+      }
+  }
+#+end_src
+
 * 接口 (Interface)
 
 - 接口本质就是一个可以进行 *多继承* 的纯的抽象类。它是单继承的一种例外
