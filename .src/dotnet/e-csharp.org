@@ -3257,6 +3257,74 @@ Gender (男/女/未知)
   arr2[2] = new int[,] { {2}, {3} };
 #+end_src
 
+* 元组 (Tuple)
+
+#+begin_src cs
+  class Student
+  {
+      public int Id;
+      public string Name;
+      public double Score;
+      public string Tel;
+  }
+  
+  class Program
+  {
+      static void Main()
+      {
+          // 使用数组的方式，可以存储处理相同类型的数据
+          int[] ids = new int[] { 1, 2, 3, 4 };
+          string[] names = new string[] { "小明", "小红", "大黄", "张三" };
+          double[] scores = new double[] { 67.5, 60, 59.9, 90 };
+  
+          // 使用类和对象的方式，可以处理不同数据的存储 (强大，但麻烦)
+          Student s1 = new Student();
+          s1.Id = 2;
+          s1.Name = "小红";
+          s1.Score = 60;
+          var s3 = new Student { Id = 1, Name = "小明", Score = 67.5 };
+          var s4 = new Student { Id = 3, Name = "大黄", Score = 59, Tel = "+86110" };
+  
+          // 匿名类型，不需要事先声明一个类，就可以实例化出一个对象来
+          var s5 = new { Xuehao = 3, Xingming = "大黄", Fenshu = 59, Dianhua = "+86110", Dizhi = "地球村" };
+          Console.WriteLine(s5.Fenshu);
+          Console.WriteLine(s5.GetType());
+  
+          // 元组 (Tuple)
+          Tuple<int, string, int, string> s6 = Tuple.Create(111, "小明", 67, "110");
+          xxx(s6);
+  
+          // 使用 out 的方式，处理方法的多个返回值
+          string name;
+          int age = yyy(out name);
+  
+          // 使用 Tuple 的方式
+          var r = zzz();
+          Console.WriteLine(r.Item1);
+          Console.WriteLine(r.Item2);
+  
+          // ValueTuple
+      }
+  
+      static void xxx(Tuple<int, string, int, string> sss)
+      {
+          Console.WriteLine($"{sss.Item2} 的成绩为 {sss.Item3}!");
+      }
+  
+      static int yyy(out string name)
+      {
+          name = "zhangsan";
+          int age = 16;
+          return age;
+      }
+  
+      static Tuple<int, string> zzz()
+      {
+          return Tuple.Create(16, "xiaohua");
+      }
+  }
+#+end_src
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
