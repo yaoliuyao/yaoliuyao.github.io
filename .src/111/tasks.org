@@ -1,10 +1,16 @@
 #+TITLE: 任务和作业
 
 
+* [2021-07-05 Mon]
+  :PROPERTIES:
+  :CUSTOM_ID: active
+  :END:
+
+- 复习今天学习的代码
+- 梳理 ~System.Collections~ 下常用类
+
 * [2021-06-29 Tue]
-:PROPERTIES:
-:CUSTOM_ID: active
-:END:
+
 
 - 根据示例，完善自己的点名系统
 - 根据点名系统中的数组用法，预习数组相关知识
