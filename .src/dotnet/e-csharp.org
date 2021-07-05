@@ -3291,8 +3291,10 @@ Gender (男/女/未知)
           Console.WriteLine(s5.GetType());
   
           // 元组 (Tuple)
-          Tuple<int, string, int, string> s6 = Tuple.Create(111, "小明", 67, "110");
-          xxx(s6);
+          Tuple<int, int> s6 = new Tuple<int, int>(111, 2222);
+          Tuple<int, string, int, string> s61 = Tuple.Create(111, "小明", 67, "110");
+          xxx(s61);
+          Console.WriteLine(s61.Item1);
   
           // 使用 out 的方式，处理方法的多个返回值
           string name;
@@ -3321,6 +3323,83 @@ Gender (男/女/未知)
       static Tuple<int, string> zzz()
       {
           return Tuple.Create(16, "xiaohua");
+      }
+  }
+#+end_src
+
+ValueTuple:
+#+begin_src cs
+  class Program
+  {
+      static void Main()
+      {
+          // 元组 (Tuple，很丑很温柔)
+          Tuple<int, int> s6 = new Tuple<int, int>(111, 2222);
+          Tuple<int, string, int, string> s61 = Tuple.Create(111, "小明", 67, "110");
+  
+          // ValueTuple
+          ValueTuple<int, int> s7 = new ValueTuple<int, int>(111, 2222);
+          ValueTuple<int, string, int, string> s71 = ValueTuple.Create(111, "小明", 67, "110");
+          var s72 = ValueTuple.Create(111, "小明", 67, "110");
+          s72.Item3 = 77;
+          Console.WriteLine(s72.Item3);
+  
+          // 简化，语法糖
+          var s73 = (111, "小明", 67, "110");
+          Console.WriteLine(s73.Item2);
+  
+          var s74 = (111, name: "小明", 67, "110");
+          Console.WriteLine(s74.name);
+          var s75 = (id: 111, name: "小明", score: 67, tel: "110");
+          Console.WriteLine($"{s75.name} 的分数是 {s75.score}，快告诉ta爸爸，号码是 {s75.tel}");
+  
+          //var s76 = (111, "小明", 67, "110");
+          //var id = s76.Item1;
+          //var name = s76.Item2;
+          //var score = s76.Item3;
+          //var tel = s76.Item4;
+          (int id, string name, double score, string tel) = (111, "小明", 67, "110");
+          var (id2, name2, score2, tel2) = (111, "小明", 67, "110");
+          Console.WriteLine($"{name2} 的分数是 {score2}，快告诉ta爸爸，号码是 {tel2}");
+          var (_, _, _, tel3) = (111, "小明", 67, "110");
+  
+  
+          // xxx1 的调用
+          string n1;
+          int a1 = xxx1(out n1);
+  
+          // xxx2 的调用
+          var t1 = xxx2();
+          Console.WriteLine(t1.Item2);
+  
+          // xxx3 的调用
+          var (age2, name8) = xxx3();
+          Console.WriteLine(age2);
+  
+          // xxx4 的调用
+          var (aa4, nn4) = xxx3();
+          Console.WriteLine($"名字是 {nn4}, 年龄是 {aa4}");
+      }
+  
+      static int xxx1(out string name)
+      {
+          name = "xm";
+          return 16;
+      }
+  
+      static Tuple<int, string> xxx2()
+      {
+          return Tuple.Create(16, "xm");
+      }
+  
+      static ValueTuple<int, string> xxx3()
+      {
+          return ValueTuple.Create(16, "xm");
+      }
+  
+      static (int, string) xxx4()
+      {
+          return (16, "xm");
       }
   }
 #+end_src

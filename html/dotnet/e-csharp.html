@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-02 -->
+<!-- 2021-07-05 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -291,13 +291,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org51c0f80">
+<figure id="orgbd31af4">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org7c2f22a">
+<figure id="org2b5ee5c">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -542,7 +542,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgc7ec6bb">
+<figure id="org0e0d09e">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -663,7 +663,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org67309ad">
+<figure id="org192294d">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -691,7 +691,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org80f6833">
+<figure id="org7a9bf33">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -750,7 +750,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org6d70dd5">
+<figure id="org5e7de3d">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1176,7 +1176,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgbc7ae5a">
+<figure id="orgacdb8fb">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1214,7 +1214,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org2f884dc">
+<figure id="org06c8dd4">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2215,7 +2215,7 @@ out:
 </div>
 
 
-<figure id="org9eb7d73">
+<figure id="org368244c">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3573,7 +3573,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org903c492">
+<figure id="orgae8ff97">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4289,8 +4289,10 @@ arr2<span style="color: #707183;">[</span>2<span style="color: #707183;">]</span
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>s5.<span style="color: #0000ff;">GetType</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
 
         <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20803;&#32452; (Tuple)</span>
-        <span style="color: #228b22;">Tuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span>, <span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">s6</span> = Tuple.<span style="color: #0000ff;">Create</span><span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
-        <span style="color: #0000ff;">xxx</span><span style="color: #909183;">(</span><span style="color: #228b22;">s6</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">Tuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">int</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">s6</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Tuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">int</span><span style="color: #909183;">&gt;(</span>111, 2222<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">Tuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span>, <span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">s61</span> = Tuple.<span style="color: #0000ff;">Create</span><span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+        <span style="color: #0000ff;">xxx</span><span style="color: #909183;">(</span><span style="color: #228b22;">s61</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>s61.<span style="color: #228b22;">Item1</span><span style="color: #909183;">)</span>;
 
         <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992; out &#30340;&#26041;&#24335;&#65292;&#22788;&#29702;&#26041;&#27861;&#30340;&#22810;&#20010;&#36820;&#22238;&#20540;</span>
         <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>;
@@ -4319,6 +4321,86 @@ arr2<span style="color: #707183;">[</span>2<span style="color: #707183;">]</span
     <span style="color: #a020f0;">static</span> <span style="color: #228b22;">Tuple</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">zzz</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         <span style="color: #a020f0;">return</span> Tuple.<span style="color: #0000ff;">Create</span><span style="color: #909183;">(</span>16, <span style="color: #8b2252;">"xiaohua"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+ValueTuple:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20803;&#32452; (Tuple&#65292;&#24456;&#19985;&#24456;&#28201;&#26580;)</span>
+        <span style="color: #228b22;">Tuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">int</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">s6</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Tuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">int</span><span style="color: #909183;">&gt;(</span>111, 2222<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">Tuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span>, <span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">s61</span> = Tuple.<span style="color: #0000ff;">Create</span><span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">ValueTuple</span>
+        <span style="color: #228b22;">ValueTuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">int</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">s7</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ValueTuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">int</span><span style="color: #909183;">&gt;(</span>111, 2222<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">ValueTuple</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span>, <span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">s71</span> = ValueTuple.<span style="color: #0000ff;">Create</span><span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">s72</span> = ValueTuple.<span style="color: #0000ff;">Create</span><span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+        s72.Item3 = 77;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>s72.<span style="color: #228b22;">Item3</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31616;&#21270;&#65292;&#35821;&#27861;&#31958;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">s73</span> = <span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>s73.<span style="color: #228b22;">Item2</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">s74</span> = <span style="color: #909183;">(</span>111, name: <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>s74.<span style="color: #228b22;">name</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">s75</span> = <span style="color: #909183;">(</span>id: 111, name: <span style="color: #8b2252;">"&#23567;&#26126;"</span>, score: 67, tel: <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{s75.name} &#30340;&#20998;&#25968;&#26159; {s75.score}&#65292;&#24555;&#21578;&#35785;ta&#29240;&#29240;&#65292;&#21495;&#30721;&#26159; {s75.tel}"</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">var s76 = (111, "&#23567;&#26126;", 67, "110");</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">var id = s76.Item1;</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">var name = s76.Item2;</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">var score = s76.Item3;</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">var tel = s76.Item4;</span>
+        <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">score</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">tel</span><span style="color: #909183;">)</span> = <span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #909183;">(</span><span style="color: #228b22;">id2</span>, <span style="color: #228b22;">name2</span>, <span style="color: #228b22;">score2</span>, <span style="color: #228b22;">tel2</span><span style="color: #909183;">)</span> = <span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{name2} &#30340;&#20998;&#25968;&#26159; {score2}&#65292;&#24555;&#21578;&#35785;ta&#29240;&#29240;&#65292;&#21495;&#30721;&#26159; {tel2}"</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #909183;">(</span><span style="color: #228b22;">_</span>, <span style="color: #228b22;">_</span>, <span style="color: #228b22;">_</span>, <span style="color: #228b22;">tel3</span><span style="color: #909183;">)</span> = <span style="color: #909183;">(</span>111, <span style="color: #8b2252;">"&#23567;&#26126;"</span>, 67, <span style="color: #8b2252;">"110"</span><span style="color: #909183;">)</span>;
+
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">xxx1 &#30340;&#35843;&#29992;</span>
+        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">n1</span>;
+        <span style="color: #228b22;">int</span> <span style="color: #a0522d;">a1</span> = <span style="color: #0000ff;">xxx1</span><span style="color: #909183;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">n1</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">xxx2 &#30340;&#35843;&#29992;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">t1</span> = <span style="color: #0000ff;">xxx2</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>t1.<span style="color: #228b22;">Item2</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">xxx3 &#30340;&#35843;&#29992;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #909183;">(</span><span style="color: #228b22;">age2</span>, <span style="color: #228b22;">name8</span><span style="color: #909183;">)</span> = <span style="color: #0000ff;">xxx3</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">age2</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">xxx4 &#30340;&#35843;&#29992;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #909183;">(</span><span style="color: #228b22;">aa4</span>, <span style="color: #228b22;">nn4</span><span style="color: #909183;">)</span> = <span style="color: #0000ff;">xxx3</span><span style="color: #909183;">()</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#21517;&#23383;&#26159; {nn4}, &#24180;&#40836;&#26159; {aa4}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">xxx1</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        name = <span style="color: #8b2252;">"xm"</span>;
+        <span style="color: #a020f0;">return</span> 16;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">Tuple</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">xxx2</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> Tuple.<span style="color: #0000ff;">Create</span><span style="color: #909183;">(</span>16, <span style="color: #8b2252;">"xm"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">ValueTuple</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">xxx3</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> ValueTuple.<span style="color: #0000ff;">Create</span><span style="color: #909183;">(</span>16, <span style="color: #8b2252;">"xm"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #7388d6;">)</span> <span style="color: #0000ff;">xxx4</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #909183;">(</span>16, <span style="color: #8b2252;">"xm"</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
@@ -4765,7 +4847,7 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-02</p>
+<p class="date">Created: 2021-07-05</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
