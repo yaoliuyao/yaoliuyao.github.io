@@ -210,11 +210,15 @@
 <li><a href="#orge803e1f">14. 元组 (Tuple/ValueTuple)</a></li>
 <li><a href="#orgbc0cfd8">15. 集合 (Collections)</a>
 <ul>
-<li><a href="#orgbaafb74">15.1. ArrayList</a></li>
-<li><a href="#orga663854">15.2. Hashtable</a></li>
-<li><a href="#orgeb0fdc7">15.3. Stack</a></li>
-<li><a href="#org9292458">15.4. Queue</a></li>
-<li><a href="#orgf4b3a90">15.5. SortedList/BitArray</a></li>
+<li><a href="#orgf890d3e">15.1. Legacy</a>
+<ul>
+<li><a href="#orgbaafb74">15.1.1. ArrayList</a></li>
+<li><a href="#orga663854">15.1.2. Hashtable</a></li>
+<li><a href="#orgeb0fdc7">15.1.3. Stack</a></li>
+<li><a href="#org9292458">15.1.4. Queue</a></li>
+<li><a href="#orgf4b3a90">15.1.5. SortedList/BitArray</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org38d4328">16. BCL (Base-Class Library) 基础类库</a>
@@ -300,13 +304,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgec5d001">
+<figure id="org0631fdb">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orga1bd517">
+<figure id="orge7c991d">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -551,7 +555,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org7b42149">
+<figure id="orgee9978f">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -672,7 +676,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org771b660">
+<figure id="orgfc254b4">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -700,7 +704,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org87659a8">
+<figure id="orgd325f3c">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -759,7 +763,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org1f5b005">
+<figure id="org48093b8">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1185,7 +1189,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org5654f20">
+<figure id="org110d6ed">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1223,7 +1227,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgf971ade">
+<figure id="orgd1164e2">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2224,7 +2228,7 @@ out:
 </div>
 
 
-<figure id="orgcf9a09a">
+<figure id="org7c72a6a">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3582,7 +3586,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgc8af349">
+<figure id="orge8bd1a8">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4421,9 +4425,19 @@ ValueTuple:
 <h2 id="orgbc0cfd8"><span class="section-number-2">15.</span> 集合 (Collections)</h2>
 <div class="outline-text-2" id="text-15">
 </div>
-<div id="outline-container-orgbaafb74" class="outline-3">
-<h3 id="orgbaafb74"><span class="section-number-3">15.1.</span> ArrayList</h3>
+<div id="outline-container-orgf890d3e" class="outline-3">
+<h3 id="orgf890d3e"><span class="section-number-3">15.1.</span> Legacy</h3>
 <div class="outline-text-3" id="text-15-1">
+</div>
+<div id="outline-container-orgbaafb74" class="outline-4">
+<h4 id="orgbaafb74"><span class="section-number-4">15.1.1.</span> ArrayList</h4>
+<div class="outline-text-4" id="text-15-1-1">
+<ul class="org-ul">
+<li>以数字为下标</li>
+<li>有序的</li>
+<li>集合 (数据容器)</li>
+</ul>
+
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -4494,9 +4508,14 @@ ValueTuple:
 </div>
 </div>
 
-<div id="outline-container-orga663854" class="outline-3">
-<h3 id="orga663854"><span class="section-number-3">15.2.</span> Hashtable</h3>
-<div class="outline-text-3" id="text-15-2">
+<div id="outline-container-orga663854" class="outline-4">
+<h4 id="orga663854"><span class="section-number-4">15.1.2.</span> Hashtable</h4>
+<div class="outline-text-4" id="text-15-1-2">
+<ul class="org-ul">
+<li>以对象为下标</li>
+<li>k-v pair / 键值对</li>
+</ul>
+
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -4543,8 +4562,19 @@ ValueTuple:
         <span style="color: #909183;">{</span>
             Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #228b22;">k</span><span style="color: #709870;">)</span>;
         <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 
-        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20197;&#23545;&#35937;&#20026; Key</span>
+<p>
+可以以自定义对象为下标，但是 <b>需要重写 Equals/GetHashCode 方法</b>:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Progam</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">s3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Hashtable</span><span style="color: #909183;">()</span>;
         s3.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#23567;&#26126;"</span><span style="color: #709870;">)</span>, 59.5<span style="color: #909183;">)</span>;
         s3.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#23567;&#32418;"</span><span style="color: #709870;">)</span>, 97.5<span style="color: #909183;">)</span>;
@@ -4553,9 +4583,8 @@ ValueTuple:
         s3.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#23567;&#24369;"</span><span style="color: #709870;">)</span>, 667.5<span style="color: #909183;">)</span>;
 
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"+ {0}"</span>, <span style="color: #228b22;">s3</span><span style="color: #709870;">[</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#23567;&#34013;"</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+
     <span style="color: #7388d6;">}</span>
-
-
 <span style="color: #707183;">}</span>
 
 <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Student</span>
@@ -4589,16 +4618,17 @@ ValueTuple:
 </div>
 </div>
 
-<div id="outline-container-orgeb0fdc7" class="outline-3">
-<h3 id="orgeb0fdc7"><span class="section-number-3">15.3.</span> Stack</h3>
+<div id="outline-container-orgeb0fdc7" class="outline-4">
+<h4 id="orgeb0fdc7"><span class="section-number-4">15.1.3.</span> Stack</h4>
 </div>
 
-<div id="outline-container-org9292458" class="outline-3">
-<h3 id="org9292458"><span class="section-number-3">15.4.</span> Queue</h3>
+<div id="outline-container-org9292458" class="outline-4">
+<h4 id="org9292458"><span class="section-number-4">15.1.4.</span> Queue</h4>
 </div>
 
-<div id="outline-container-orgf4b3a90" class="outline-3">
-<h3 id="orgf4b3a90"><span class="section-number-3">15.5.</span> SortedList/BitArray</h3>
+<div id="outline-container-orgf4b3a90" class="outline-4">
+<h4 id="orgf4b3a90"><span class="section-number-4">15.1.5.</span> SortedList/BitArray</h4>
+</div>
 </div>
 </section>
 

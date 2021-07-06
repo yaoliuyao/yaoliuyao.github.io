@@ -3405,7 +3405,12 @@ ValueTuple:
 #+end_src
 
 * 集合 (Collections)
-** ArrayList
+** Legacy
+*** ArrayList
+
+- 以数字为下标
+- 有序的
+- 集合 (数据容器)
 
 #+begin_src cs
   class Program
@@ -3474,7 +3479,10 @@ ValueTuple:
   }
 #+end_src
 
-** Hashtable
+*** Hashtable
+
+- 以对象为下标
+- k-v pair / 键值对
 
 #+begin_src cs
   class Program
@@ -3522,8 +3530,16 @@ ValueTuple:
           {
               Console.WriteLine(k);
           }
-  
-          // 以对象为 Key
+      }
+  }
+#+end_src
+
+可以以自定义对象为下标，但是 *需要重写 Equals/GetHashCode 方法*:
+#+begin_src cs
+  class Progam
+  {
+      static void Main()
+      {
           var s3 = new Hashtable();
           s3.Add(new Student("小明"), 59.5);
           s3.Add(new Student("小红"), 97.5);
@@ -3532,9 +3548,8 @@ ValueTuple:
           s3.Add(new Student("小弱"), 667.5);
   
           Console.WriteLine("+ {0}", s3[new Student("小蓝")]);
+  
       }
-  
-  
   }
   
   class Student
@@ -3565,11 +3580,11 @@ ValueTuple:
   }
 #+end_src
 
-** Stack
+*** Stack
 
-** Queue
+*** Queue
 
-** SortedList/BitArray
+*** SortedList/BitArray
 
 
 * BCL (Base-Class Library) 基础类库
