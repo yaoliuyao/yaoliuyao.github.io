@@ -3404,6 +3404,174 @@ ValueTuple:
   }
 #+end_src
 
+* 集合 (Collections)
+** ArrayList
+
+#+begin_src cs
+  class Program
+  {
+      static void Main()
+      {
+          // 数组，本身长度是不能变化的
+          // 因此，要往数组里添加元素，只能创建一个更长的数组取代它
+          var a1 = new[] {1, 2, 3};
+          var a2 = new int[a1.Length + 1];
+          a2[0] = a1[0];
+          a2[1] = a1[1];
+          a2[2] = 4;
+          a2[3] = a1[2];
+          a1 = a2;
+  
+          // 我们可以通过自定义一个类的方式，将上述的操作封装起来
+          var na1 = new NideArray();
+          na1.Add(1);
+          na1.Add(2);
+          na1.Add(3);
+  
+          foreach (var o in na1.innerArray)
+          {
+              Console.WriteLine(o);
+          }
+  
+          // 直接使用 BCL 中的集合类，不需要造轮子
+          var al = new ArrayList();
+          al.Add(1);
+          al.Add(21111);
+          al.Add(3);
+  
+          Console.WriteLine("长度 {0}", al.Count);
+          al.Remove(3);
+          al.RemoveAt(0);
+          Console.WriteLine("长度 {0}", al.Count);
+          foreach (var o in al)
+          {
+              Console.WriteLine(o);
+          }
+  
+      }
+  }
+  
+  class NideArray
+  {
+      public object[] innerArray = { 1, 2, 3 };
+  
+      public void Add(object o)
+      {
+          var arr = new object[innerArray.Length + 1];
+          for (var i = 0; i < innerArray.Length; i++)
+          {
+              arr[i] = innerArray[i];
+          }
+  
+          arr[arr.Length - 1] = o;
+          innerArray = arr;
+      }
+  
+      public void Remove(object o)
+      {
+  
+      }
+  }
+#+end_src
+
+** Hashtable
+
+#+begin_src cs
+  class Program
+  {
+      static void Main()
+      {
+          // 序号 vs 名字
+          var t1 = (123, "小明", 78.5, "110"); // t1.Item1, t1.Item2 ...
+          var t2 = (id: 123, name: "小明", score: 78.5); // t2.name, t2.score
+  
+          // 序号
+          var n1 = new ArrayList();
+          n1.Add("小明"); // 0
+          n1.Add("小红"); // 1
+          n1.Add("小蓝"); // 2
+  
+          var s1 = new ArrayList();
+          s1.Add(59.5); // 0
+          s1.Add(97.5); // 1
+          s1.Add(67.5); // 2
+          Console.WriteLine("取某个值: {0}", s1[0]);
+  
+          for (int i = 0; i < 3; i++)
+          {
+              string name = n1[i].ToString();
+              double score = (double)s1[i];
+              Console.WriteLine($"{name} 的成绩为 {score}");
+          }
+  
+          // 显式指定名字 (k-v)
+          var s2 = new Hashtable();
+          s2.Add("小明", 59.5);
+          s2.Add("小红", 97.5);
+          s2.Add("小蓝", 67.5);
+          s2.Add("小强", 167.5);
+          s2.Add("小弱", 667.5);
+          Console.WriteLine("取某个值: {0}", s2["小明"]);
+  
+          foreach (DictionaryEntry o in s2)
+          {
+              Console.WriteLine($"- {o.Key}: {o.Value}");
+          }
+  
+          foreach (var k in s2.Keys)
+          {
+              Console.WriteLine(k);
+          }
+  
+          // 以对象为 Key
+          var s3 = new Hashtable();
+          s3.Add(new Student("小明"), 59.5);
+          s3.Add(new Student("小红"), 97.5);
+          s3.Add(new Student("小蓝"), 67.5);
+          s3.Add(new Student("小强"), 167.5);
+          s3.Add(new Student("小弱"), 667.5);
+  
+          Console.WriteLine("+ {0}", s3[new Student("小蓝")]);
+      }
+  
+  
+  }
+  
+  class Student
+  {
+      public string Name { get; set; }
+      public string Tel { get; set; }
+  
+      public Student()
+      {
+      }
+  
+      public Student(string name) => Name = name;
+  
+      public override bool Equals(object? obj)
+      {
+          if (obj is Student)
+          {
+              var o = (Student) obj;
+              return o.Name.Equals(this.Name);
+          }
+          return false;
+      }
+  
+      public override int GetHashCode()
+      {
+          return Name.GetHashCode();
+      }
+  }
+#+end_src
+
+** Stack
+
+** Queue
+
+** SortedList/BitArray
+
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
