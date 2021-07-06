@@ -304,13 +304,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org0631fdb">
+<figure id="org4c3cdb1">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orge7c991d">
+<figure id="orgc9b8752">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -555,7 +555,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgee9978f">
+<figure id="orga824fff">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -676,7 +676,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgfc254b4">
+<figure id="org26ddf90">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -704,7 +704,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgd325f3c">
+<figure id="orgacfad77">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -763,7 +763,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org48093b8">
+<figure id="orgabef51d">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1189,7 +1189,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org110d6ed">
+<figure id="org3e35ca2">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1227,7 +1227,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgd1164e2">
+<figure id="org8a14614">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2228,7 +2228,7 @@ out:
 </div>
 
 
-<figure id="org7c72a6a">
+<figure id="org5f55d7d">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3586,7 +3586,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orge8bd1a8">
+<figure id="org81dc556">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4434,7 +4434,7 @@ ValueTuple:
 <div class="outline-text-4" id="text-15-1-1">
 <ul class="org-ul">
 <li>以数字为下标</li>
-<li>有序的</li>
+<li>有序的，自动编号</li>
 <li>集合 (数据容器)</li>
 </ul>
 
@@ -4514,6 +4514,7 @@ ValueTuple:
 <ul class="org-ul">
 <li>以对象为下标</li>
 <li>k-v pair / 键值对</li>
+<li>对于 key 最重要的是: 唯一性</li>
 </ul>
 
 <div class="org-src-container">
@@ -4568,13 +4569,14 @@ ValueTuple:
 </div>
 
 <p>
-可以以自定义对象为下标，但是 <b>需要重写 Equals/GetHashCode 方法</b>:
+可以以自定义对象为下标，但是 <b>需要重写 GetHashCode/Equals 方法</b>:
 </p>
 <div class="org-src-container">
-<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Progam</span>
+<pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
     <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20197;&#23545;&#35937;&#20026; Key</span>
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">s3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Hashtable</span><span style="color: #909183;">()</span>;
         s3.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#23567;&#26126;"</span><span style="color: #709870;">)</span>, 59.5<span style="color: #909183;">)</span>;
         s3.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#23567;&#32418;"</span><span style="color: #709870;">)</span>, 97.5<span style="color: #909183;">)</span>;
@@ -4582,8 +4584,7 @@ ValueTuple:
         s3.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#23567;&#24378;"</span><span style="color: #709870;">)</span>, 167.5<span style="color: #909183;">)</span>;
         s3.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#23567;&#24369;"</span><span style="color: #709870;">)</span>, 667.5<span style="color: #909183;">)</span>;
 
-        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"+ {0}"</span>, <span style="color: #228b22;">s3</span><span style="color: #709870;">[</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#23567;&#34013;"</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
-
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"+ {0}"</span>, <span style="color: #228b22;">s3</span><span style="color: #709870;">[</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#23567;&#24369;"</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 
@@ -4598,19 +4599,15 @@ ValueTuple:
 
     <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">Student</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span> =&gt; Name = name;
 
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">Equals</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">object</span>? <span style="color: #a0522d;">obj</span><span style="color: #7388d6;">)</span>
-    <span style="color: #7388d6;">{</span>
-        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>obj <span style="color: #a020f0;">is</span> Student<span style="color: #909183;">)</span>
-        <span style="color: #909183;">{</span>
-            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">o</span> = <span style="color: #709870;">(</span><span style="color: #228b22;">Student</span><span style="color: #709870;">)</span> obj;
-            <span style="color: #a020f0;">return</span> o.Name.<span style="color: #0000ff;">Equals</span><span style="color: #709870;">(</span><span style="color: #a020f0;">this</span>.<span style="color: #228b22;">Name</span><span style="color: #709870;">)</span>;
-        <span style="color: #909183;">}</span>
-        <span style="color: #a020f0;">return</span> <span style="color: #008b8b;">false</span>;
-    <span style="color: #7388d6;">}</span>
-
     <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">GetHashCode</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         <span style="color: #a020f0;">return</span> Name.<span style="color: #0000ff;">GetHashCode</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">Equals</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">object</span>? <span style="color: #a0522d;">obj</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span> = obj <span style="color: #a020f0;">as</span> Student;
+        <span style="color: #a020f0;">return</span> s != <span style="color: #008b8b;">null</span> &amp;&amp; Name == s.Name;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
