@@ -306,13 +306,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgfe8cc45">
+<figure id="org660f44c">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orga44e7c1">
+<figure id="org0990f73">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -557,7 +557,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org5ec2aae">
+<figure id="orgf0e3bf5">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -678,7 +678,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org6881370">
+<figure id="orgce8ce9d">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -706,7 +706,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgc80d5f1">
+<figure id="orga158aae">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -765,7 +765,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org279ca1c">
+<figure id="org926dde6">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1191,7 +1191,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgcf5eff1">
+<figure id="org5435804">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1229,7 +1229,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org545ac0e">
+<figure id="org056280d">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2230,7 +2230,7 @@ out:
 </div>
 
 
-<figure id="org6506c5b">
+<figure id="org2089ef9">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3588,7 +3588,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org3b46faa">
+<figure id="org384877b">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4739,6 +4739,9 @@ s1.<span style="color: #0000ff;">Clear</span><span style="color: #707183;">()</s
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">p</span><span style="color: #909183;">)</span>;
         <span style="color: #909183;">(</span><span style="color: #709870;">(</span><span style="color: #228b22;">Person</span><span style="color: #709870;">)</span>ps.<span style="color: #0000ff;">Pop</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">Say</span><span style="color: #909183;">()</span>;
 
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#33258;&#28982;&#32780;&#28982;&#30340;&#35299;&#20915;&#26041;&#26696;: &#20026;&#27599;&#31181;&#31867;&#22411;&#21019;&#24314;&#19968;&#20010;&#21333;&#29420;&#30340; Stack</span>
+
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">ps2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">PersonStack</span><span style="color: #909183;">()</span>;
         ps2.<span style="color: #0000ff;">Push</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
         ps2.<span style="color: #0000ff;">Push</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
@@ -4751,6 +4754,10 @@ s1.<span style="color: #0000ff;">Clear</span><span style="color: #707183;">()</s
         ps3.<span style="color: #0000ff;">Push</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
 
         Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>ps3.<span style="color: #0000ff;">Pop</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#19978;&#36848;&#30340;&#26041;&#26696;&#21487;&#20197;&#35299;&#20915;&#25152;&#26377;&#38382;&#39064;&#65292;&#20294;&#24102;&#26469;&#20102;&#26032;&#30340;&#38382;&#39064;: &#27599;&#27425;&#37325;&#22797;&#23450;&#20041;&#36825;&#20123;&#31867;&#22411;&#24456;&#40635;&#28902;</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#37027;&#33021;&#19981;&#33021;&#36890;&#36807;&#26576;&#31181;&#26041;&#27861;&#65292;&#33258;&#21160;&#29983;&#25104;&#36825;&#20123;&#31867;&#22411;&#21602;</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">CSharp &#32473;&#20986;&#30340;&#35299;&#20915;&#26041;&#26696;&#26159;: &#27867;&#22411;</span>
 
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">ps4</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyStack</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">Person</span><span style="color: #909183;">&gt;()</span>;
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">ps5</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyStack</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">Student</span><span style="color: #909183;">&gt;()</span>;

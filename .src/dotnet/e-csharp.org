@@ -3677,6 +3677,9 @@ LIFO (Last In First Out，后进先出):
           Console.WriteLine(p);
           ((Person)ps.Pop()).Say();
   
+  
+          // 自然而然的解决方案: 为每种类型创建一个单独的 Stack
+  
           var ps2 = new PersonStack();
           ps2.Push(new Person());
           ps2.Push(new Person());
@@ -3689,6 +3692,10 @@ LIFO (Last In First Out，后进先出):
           ps3.Push(new Student());
   
           Console.WriteLine(ps3.Pop());
+  
+          // 上述的方案可以解决所有问题，但带来了新的问题: 每次重复定义这些类型很麻烦
+          // 那能不能通过某种方法，自动生成这些类型呢
+          // CSharp 给出的解决方案是: 泛型
   
           var ps4 = new MyStack<Person>();
           var ps5 = new MyStack<Student>();
