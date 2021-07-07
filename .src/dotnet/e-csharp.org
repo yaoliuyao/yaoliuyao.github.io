@@ -3657,7 +3657,165 @@ LIFO (Last In First Out，后进先出):
 
 ** System.Collections.Generic
 
+* Generic
 
+#+begin_src cs
+  class Program
+  {
+      static void Main()
+      {
+          var ps = new MyStack();
+          ps.Push(new Person());
+          ps.Push(2222);
+          ps.Push(new Person());
+  
+          // 不简洁，需要手动转型
+          // 不安全
+          // 低效率
+  
+          Person p = (Person)ps.Pop();
+          Console.WriteLine(p);
+          ((Person)ps.Pop()).Say();
+  
+          var ps2 = new PersonStack();
+          ps2.Push(new Person());
+          ps2.Push(new Person());
+  
+          Person p1= ps2.Pop();
+          p1.Say();
+  
+          var ps3 = new StudentStack();
+          ps3.Push(new Student());
+          ps3.Push(new Student());
+  
+          Console.WriteLine(ps3.Pop());
+  
+          var ps4 = new MyStack<Person>();
+          var ps5 = new MyStack<Student>();
+          MyStack<int> ps6 = new MyStack<int>();
+          var ps7 = new MyStack<double>();
+          var ps9 = new MyStack<FileInfo>();
+          var ps8 = new MyStack<Stack>();
+          var ps0 = new MyStack<bool>();
+  
+          ps4.Push(new Person());
+          ps4.Push(new Person());
+          Person p9 = ps4.Pop();
+      }
+  }
+  
+  class Person
+  {
+      public void Say()
+      {
+          Console.WriteLine("Hello");
+      }
+  }
+  
+  class Student
+  {
+  
+  }
+  
+  class MyStack<X> // 模板
+  {
+      private int stackTop = 0; // 栈顶
+      private X[] _items = new X[200];
+  
+      public void Push(X w)
+      {
+          _items[stackTop] = w;
+          stackTop = stackTop + 1;
+      }
+  
+      public X Pop()
+      {
+          stackTop = stackTop - 1;
+          return _items[stackTop];
+      }
+  
+      public X Peek()
+      {
+          return _items[stackTop - 1];
+      }
+  
+      public int Count
+      {
+          get => stackTop;
+      }
+  
+      public void Clear()
+      {
+          stackTop = 0;
+      }
+  }
+  
+  class PersonStack
+  {
+      private int stackTop = 0; // 栈顶
+      private Person[] _items = new Person[200];
+  
+      public void Push(Person w)
+      {
+          _items[stackTop] = w;
+          stackTop = stackTop + 1;
+      }
+  
+      public Person Pop()
+      {
+          stackTop = stackTop - 1;
+          return _items[stackTop];
+      }
+  
+      public Person Peek()
+      {
+          return _items[stackTop - 1];
+      }
+  
+      public int Count
+      {
+          get => stackTop;
+      }
+  
+      public void Clear()
+      {
+          stackTop = 0;
+      }
+  }
+  
+  class StudentStack
+  {
+      private int stackTop = 0; // 栈顶
+      private Student[] _items = new Student[200];
+  
+      public void Push(Student w)
+      {
+          _items[stackTop] = w;
+          stackTop = stackTop + 1;
+      }
+  
+      public Student Pop()
+      {
+          stackTop = stackTop - 1;
+          return _items[stackTop];
+      }
+  
+      public Student Peek()
+      {
+          return _items[stackTop - 1];
+      }
+  
+      public int Count
+      {
+          get => stackTop;
+      }
+  
+      public void Clear()
+      {
+          stackTop = 0;
+      }
+  }
+#+end_src
 
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
