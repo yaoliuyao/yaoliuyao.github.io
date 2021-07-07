@@ -219,14 +219,20 @@
 <li><a href="#orgf4b3a90">15.1.5. SortedList/BitArray</a></li>
 </ul>
 </li>
-<li><a href="#org66219f7">15.2. System.Collections.Generic</a></li>
-<li><a href="#org020b5d4">15.3. List&lt;T&gt;</a></li>
-<li><a href="#orgefbc16c">15.4. Dictionary&lt;TKey, TValue&gt;</a></li>
-<li><a href="#org694aefc">15.5. Queue&lt;T&gt;</a></li>
-<li><a href="#orge3ce9c7">15.6. Stack&lt;T&gt;</a></li>
+<li><a href="#org66219f7">15.2. System.Collections.Generic</a>
+<ul>
+<li><a href="#org020b5d4">15.2.1. List&lt;T&gt;</a></li>
+<li><a href="#orgefbc16c">15.2.2. Dictionary&lt;TKey, TValue&gt;</a></li>
+<li><a href="#org694aefc">15.2.3. Queue&lt;T&gt;</a></li>
+<li><a href="#orge3ce9c7">15.2.4. Stack&lt;T&gt;</a></li>
+<li><a href="#orga720bd6">15.2.5. LinkedList&lt;T&gt;</a></li>
+<li><a href="#orged0d2eb">15.2.6. HashSet&lt;T&gt;</a></li>
+<li><a href="#org2187dd1">15.2.7. SortedList/Set/Dictionary&lt;&gt;</a></li>
 </ul>
 </li>
-<li><a href="#orga08aace">16. Generic</a></li>
+</ul>
+</li>
+<li><a href="#org2296731">16. 泛型 (Generic)</a></li>
 <li><a href="#org38d4328">17. BCL (Base-Class Library) 基础类库</a>
 <ul>
 <li><a href="#orge42088e">17.1. Console/控制台</a></li>
@@ -310,13 +316,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org53534a1">
+<figure id="org4037979">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org03e546e">
+<figure id="orgb777af9">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -561,7 +567,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgd561d12">
+<figure id="org7286adc">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -682,7 +688,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org2102f76">
+<figure id="org7eddd4c">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -710,7 +716,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org3ef0209">
+<figure id="org5523342">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -769,7 +775,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgbd74cd4">
+<figure id="orgc1c89ef">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1195,7 +1201,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgaf91dfc">
+<figure id="orgd746a39">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1233,7 +1239,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org16d42cd">
+<figure id="org07422d0">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2234,7 +2240,7 @@ out:
 </div>
 
 
-<figure id="orgeeb9ff5">
+<figure id="orge3165ed">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3592,7 +3598,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgba87241">
+<figure id="org3c89955">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4719,10 +4725,11 @@ s1.<span style="color: #0000ff;">Clear</span><span style="color: #707183;">()</s
 
 <div id="outline-container-org66219f7" class="outline-3">
 <h3 id="org66219f7"><span class="section-number-3">15.2.</span> System.Collections.Generic</h3>
+<div class="outline-text-3" id="text-15-2">
 </div>
-<div id="outline-container-org020b5d4" class="outline-3">
-<h3 id="org020b5d4"><span class="section-number-3">15.3.</span> List&lt;T&gt;</h3>
-<div class="outline-text-3" id="text-15-3">
+<div id="outline-container-org020b5d4" class="outline-4">
+<h4 id="org020b5d4"><span class="section-number-4">15.2.1.</span> List&lt;T&gt;</h4>
+<div class="outline-text-4" id="text-15-2-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">l1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
 
@@ -4750,9 +4757,9 @@ l3.<span style="color: #0000ff;">RemoveAll</span><span style="color: #707183;">(
 </div>
 </div>
 
-<div id="outline-container-orgefbc16c" class="outline-3">
-<h3 id="orgefbc16c"><span class="section-number-3">15.4.</span> Dictionary&lt;TKey, TValue&gt;</h3>
-<div class="outline-text-3" id="text-15-4">
+<div id="outline-container-orgefbc16c" class="outline-4">
+<h4 id="orgefbc16c"><span class="section-number-4">15.2.2.</span> Dictionary&lt;TKey, TValue&gt;</h4>
+<div class="outline-text-4" id="text-15-2-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">d1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dictionary</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #228b22;">double</span><span style="color: #707183;">&gt;()</span>;
 d1.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"xm"</span>, 67.5<span style="color: #707183;">)</span>;
@@ -4780,9 +4787,9 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org694aefc" class="outline-3">
-<h3 id="org694aefc"><span class="section-number-3">15.5.</span> Queue&lt;T&gt;</h3>
-<div class="outline-text-3" id="text-15-5">
+<div id="outline-container-org694aefc" class="outline-4">
+<h4 id="org694aefc"><span class="section-number-4">15.2.3.</span> Queue&lt;T&gt;</h4>
+<div class="outline-text-4" id="text-15-2-3">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">q1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Queue</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
 q1.<span style="color: #0000ff;">Enqueue</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23567;&#26126;"</span><span style="color: #707183;">)</span>;
@@ -4796,9 +4803,9 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orge3ce9c7" class="outline-3">
-<h3 id="orge3ce9c7"><span class="section-number-3">15.6.</span> Stack&lt;T&gt;</h3>
-<div class="outline-text-3" id="text-15-6">
+<div id="outline-container-orge3ce9c7" class="outline-4">
+<h4 id="orge3ce9c7"><span class="section-number-4">15.2.4.</span> Stack&lt;T&gt;</h4>
+<div class="outline-text-4" id="text-15-2-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">s1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Stack</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
 s1.<span style="color: #0000ff;">Push</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23567;&#26126;"</span><span style="color: #707183;">)</span>;
@@ -4814,10 +4821,59 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 </div>
+
+<div id="outline-container-orga720bd6" class="outline-4">
+<h4 id="orga720bd6"><span class="section-number-4">15.2.5.</span> LinkedList&lt;T&gt;</h4>
+<div class="outline-text-4" id="text-15-2-5">
+<p>
+<a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.collections.generic.linkedlist-1?view=net-5.0">https://docs.microsoft.com/zh-cn/dotnet/api/system.collections.generic.linkedlist-1?view=net-5.0</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orged0d2eb" class="outline-4">
+<h4 id="orged0d2eb"><span class="section-number-4">15.2.6.</span> HashSet&lt;T&gt;</h4>
+<div class="outline-text-4" id="text-15-2-6">
+<ul class="org-ul">
+<li>无序</li>
+<li>唯一</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">hs1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HashSet</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
+hs1.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
+hs1.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"world"</span><span style="color: #707183;">)</span>;
+hs1.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"!"</span><span style="color: #707183;">)</span>;
+hs1.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"!"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">hs2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HashSet</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
+hs2.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"aaa"</span><span style="color: #707183;">)</span>;
+hs2.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"world"</span><span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>hs1.Count<span style="color: #707183;">)</span>;
+hs1.<span style="color: #0000ff;">IntersectWith</span><span style="color: #707183;">(</span>hs2<span style="color: #707183;">)</span>;
+hs1.<span style="color: #0000ff;">UnionWith</span><span style="color: #707183;">(</span>hs2<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21435;&#37325;&#30340;&#19968;&#31181;&#26041;&#27861;</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">list1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #707183;">&gt;</span> <span style="color: #707183;">{</span> 1, 2, 11, 22, 2, 3, 1, 2, 33, 44, 22 <span style="color: #707183;">}</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">hs3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HashSet</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #707183;">&gt;(</span>list1<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #0000ff;">o</span> <span style="color: #a020f0;">in</span> hs3.<span style="color: #0000ff;">ToList</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>o<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2187dd1" class="outline-4">
+<h4 id="org2187dd1"><span class="section-number-4">15.2.7.</span> SortedList/Set/Dictionary&lt;&gt;</h4>
+</div>
+</div>
 </section>
 
-<section id="outline-container-orga08aace" class="outline-2">
-<h2 id="orga08aace"><span class="section-number-2">16.</span> Generic</h2>
+<section id="outline-container-org2296731" class="outline-2">
+<h2 id="org2296731"><span class="section-number-2">16.</span> 泛型 (Generic)</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>

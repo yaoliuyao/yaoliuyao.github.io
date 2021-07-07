@@ -3656,7 +3656,7 @@ LIFO (Last In First Out，后进先出):
 
 
 ** System.Collections.Generic
-** List<T>
+*** List<T>
 
 #+begin_src cs
   List<string> l1 = new List<string>();
@@ -3682,7 +3682,7 @@ LIFO (Last In First Out，后进先出):
   }
 #+end_src
 
-** Dictionary<TKey, TValue>
+*** Dictionary<TKey, TValue>
 
 #+begin_src cs
   var d1 = new Dictionary<string, double>();
@@ -3708,7 +3708,7 @@ LIFO (Last In First Out，后进先出):
   }
 #+end_src
 
-** Queue<T>
+*** Queue<T>
 
 #+begin_src cs
   var q1 = new Queue<string>();
@@ -3720,7 +3720,7 @@ LIFO (Last In First Out，后进先出):
   Console.WriteLine(n1);
 #+end_src
 
-** Stack<T>
+*** Stack<T>
 
 #+begin_src cs
   var s1 = new Stack<string>();
@@ -3735,7 +3735,42 @@ LIFO (Last In First Out，后进先出):
   Console.WriteLine(shibushichenggongle);
 #+end_src
 
-* Generic
+*** LinkedList<T>
+
+https://docs.microsoft.com/zh-cn/dotnet/api/system.collections.generic.linkedlist-1?view=net-5.0
+
+*** HashSet<T>
+
+- 无序
+- 唯一
+
+#+begin_src cs
+  var hs1 = new HashSet<string>();
+  hs1.Add("hello");
+  hs1.Add("world");
+  hs1.Add("!");
+  hs1.Add("!");
+  
+  var hs2 = new HashSet<string>();
+  hs2.Add("aaa");
+  hs2.Add("world");
+  
+  Console.WriteLine(hs1.Count);
+  hs1.IntersectWith(hs2);
+  hs1.UnionWith(hs2);
+  
+  // 去重的一种方法
+  var list1 = new List<int> { 1, 2, 11, 22, 2, 3, 1, 2, 33, 44, 22 };
+  var hs3 = new HashSet<int>(list1);
+  foreach (var o in hs3.ToList())
+  {
+      Console.WriteLine(o);
+  }
+#+end_src
+
+*** SortedList/Set/Dictionary<>
+
+* 泛型 (Generic)
 
 #+begin_src cs
   class Program
