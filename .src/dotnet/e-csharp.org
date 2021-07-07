@@ -3405,7 +3405,7 @@ ValueTuple:
 #+end_src
 
 * 集合 (Collections)
-** Legacy
+** System.Collections (Legacy)
 *** ArrayList
 
 - 以数字为下标
@@ -3653,6 +3653,10 @@ LIFO (Last In First Out，后进先出):
 #+end_src
 
 *** SortedList/BitArray
+
+
+** System.Collections.Generic
+
 
 
 * BCL (Base-Class Library) 基础类库
