@@ -3656,6 +3656,84 @@ LIFO (Last In First Out，后进先出):
 
 
 ** System.Collections.Generic
+** List<T>
+
+#+begin_src cs
+  List<string> l1 = new List<string>();
+  
+  var l2 = new List<string>();
+  l2.Add("aaaa");
+  l2.Add("bbbb");
+  l2.Add("1");
+  l2.Add("2");
+  l2.Add("3");
+  l2.Add("4");
+  l2.Insert(1, "ccc");
+  l2.RemoveAll(s => s.Length < 4);
+  
+  var l3 = new List<string> {"aaaa", "bbbb", "1", "2", "3", "4"};
+  l3.Insert(1, "ccc");
+  l3.RemoveAll(s => s.Length < 4);
+  
+  string s1 = l2[0];
+  foreach (var e in l2)
+  {
+      Console.WriteLine(e);
+  }
+#+end_src
+
+** Dictionary<TKey, TValue>
+
+#+begin_src cs
+  var d1 = new Dictionary<string, double>();
+  d1.Add("xm", 67.5);
+  d1.Add("xh", 97.5);
+  d1.Add("xl", 75);
+  
+  var d2 = new Dictionary<string, double>
+  {
+      {"xm", 67.5}, 
+      {"xh", 97.5}, 
+      {"xl", 75}
+  };
+  double s1 = d2["xh"];
+  Console.WriteLine(s1);
+  
+  bool isSuccess = d2.TryAdd("xm", 100);
+  Console.WriteLine(isSuccess);
+  
+  foreach (var value in d2.Values)
+  {
+      Console.WriteLine(value);
+  }
+#+end_src
+
+** Queue<T>
+
+#+begin_src cs
+  var q1 = new Queue<string>();
+  q1.Enqueue("小明");
+  q1.Enqueue("小兰");
+  q1.Enqueue("小朱");
+  
+  string n1 = q1.Dequeue();
+  Console.WriteLine(n1);
+#+end_src
+
+** Stack<T>
+
+#+begin_src cs
+  var s1 = new Stack<string>();
+  s1.Push("小明");
+  s1.Push("小兰");
+  s1.Push("小朱");
+  
+  string n1 = s1.Pop();
+  string n2 = s1.Peek();
+  
+  bool shibushichenggongle = s1.TryPop(out string n3);
+  Console.WriteLine(shibushichenggongle);
+#+end_src
 
 * Generic
 

@@ -220,6 +220,10 @@
 </ul>
 </li>
 <li><a href="#org66219f7">15.2. System.Collections.Generic</a></li>
+<li><a href="#org020b5d4">15.3. List&lt;T&gt;</a></li>
+<li><a href="#orgefbc16c">15.4. Dictionary&lt;TKey, TValue&gt;</a></li>
+<li><a href="#org694aefc">15.5. Queue&lt;T&gt;</a></li>
+<li><a href="#orge3ce9c7">15.6. Stack&lt;T&gt;</a></li>
 </ul>
 </li>
 <li><a href="#orga08aace">16. Generic</a></li>
@@ -306,13 +310,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org660f44c">
+<figure id="org53534a1">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org0990f73">
+<figure id="org03e546e">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -557,7 +561,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgf0e3bf5">
+<figure id="orgd561d12">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -678,7 +682,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgce8ce9d">
+<figure id="org2102f76">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -706,7 +710,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orga158aae">
+<figure id="org3ef0209">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -765,7 +769,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org926dde6">
+<figure id="orgbd74cd4">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1191,7 +1195,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org5435804">
+<figure id="orgaf91dfc">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1229,7 +1233,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org056280d">
+<figure id="org16d42cd">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2230,7 +2234,7 @@ out:
 </div>
 
 
-<figure id="org2089ef9">
+<figure id="orgeeb9ff5">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3588,7 +3592,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org384877b">
+<figure id="orgba87241">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4715,6 +4719,100 @@ s1.<span style="color: #0000ff;">Clear</span><span style="color: #707183;">()</s
 
 <div id="outline-container-org66219f7" class="outline-3">
 <h3 id="org66219f7"><span class="section-number-3">15.2.</span> System.Collections.Generic</h3>
+</div>
+<div id="outline-container-org020b5d4" class="outline-3">
+<h3 id="org020b5d4"><span class="section-number-3">15.3.</span> List&lt;T&gt;</h3>
+<div class="outline-text-3" id="text-15-3">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">l1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">l2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
+l2.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"aaaa"</span><span style="color: #707183;">)</span>;
+l2.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"bbbb"</span><span style="color: #707183;">)</span>;
+l2.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"1"</span><span style="color: #707183;">)</span>;
+l2.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"2"</span><span style="color: #707183;">)</span>;
+l2.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"3"</span><span style="color: #707183;">)</span>;
+l2.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"4"</span><span style="color: #707183;">)</span>;
+l2.<span style="color: #0000ff;">Insert</span><span style="color: #707183;">(</span>1, <span style="color: #8b2252;">"ccc"</span><span style="color: #707183;">)</span>;
+l2.<span style="color: #0000ff;">RemoveAll</span><span style="color: #707183;">(</span>s =&gt; s.Length &lt; 4<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">l3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #707183;">{</span><span style="color: #8b2252;">"aaaa"</span>, <span style="color: #8b2252;">"bbbb"</span>, <span style="color: #8b2252;">"1"</span>, <span style="color: #8b2252;">"2"</span>, <span style="color: #8b2252;">"3"</span>, <span style="color: #8b2252;">"4"</span><span style="color: #707183;">}</span>;
+l3.<span style="color: #0000ff;">Insert</span><span style="color: #707183;">(</span>1, <span style="color: #8b2252;">"ccc"</span><span style="color: #707183;">)</span>;
+l3.<span style="color: #0000ff;">RemoveAll</span><span style="color: #707183;">(</span>s =&gt; s.Length &lt; 4<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = l2<span style="color: #707183;">[</span>0<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">e</span> <span style="color: #a020f0;">in</span> l2<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>e<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgefbc16c" class="outline-3">
+<h3 id="orgefbc16c"><span class="section-number-3">15.4.</span> Dictionary&lt;TKey, TValue&gt;</h3>
+<div class="outline-text-3" id="text-15-4">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">d1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dictionary</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #228b22;">double</span><span style="color: #707183;">&gt;()</span>;
+d1.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"xm"</span>, 67.5<span style="color: #707183;">)</span>;
+d1.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"xh"</span>, 97.5<span style="color: #707183;">)</span>;
+d1.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"xl"</span>, 75<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">d2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dictionary</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #228b22;">double</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #7388d6;">{</span><span style="color: #8b2252;">"xm"</span>, 67.5<span style="color: #7388d6;">}</span>,
+    <span style="color: #7388d6;">{</span><span style="color: #8b2252;">"xh"</span>, 97.5<span style="color: #7388d6;">}</span>,
+    <span style="color: #7388d6;">{</span><span style="color: #8b2252;">"xl"</span>, 75<span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>;
+<span style="color: #228b22;">double</span> <span style="color: #a0522d;">s1</span> = d2<span style="color: #707183;">[</span><span style="color: #8b2252;">"xh"</span><span style="color: #707183;">]</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">isSuccess</span> = d2.<span style="color: #0000ff;">TryAdd</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"xm"</span>, 100<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>isSuccess<span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #008b8b;">value</span> <span style="color: #a020f0;">in</span> d2.Values<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #008b8b;">value</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org694aefc" class="outline-3">
+<h3 id="org694aefc"><span class="section-number-3">15.5.</span> Queue&lt;T&gt;</h3>
+<div class="outline-text-3" id="text-15-5">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">q1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Queue</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
+q1.<span style="color: #0000ff;">Enqueue</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23567;&#26126;"</span><span style="color: #707183;">)</span>;
+q1.<span style="color: #0000ff;">Enqueue</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23567;&#20848;"</span><span style="color: #707183;">)</span>;
+q1.<span style="color: #0000ff;">Enqueue</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23567;&#26417;"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">n1</span> = q1.<span style="color: #0000ff;">Dequeue</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>n1<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge3ce9c7" class="outline-3">
+<h3 id="orge3ce9c7"><span class="section-number-3">15.6.</span> Stack&lt;T&gt;</h3>
+<div class="outline-text-3" id="text-15-6">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">s1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Stack</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
+s1.<span style="color: #0000ff;">Push</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23567;&#26126;"</span><span style="color: #707183;">)</span>;
+s1.<span style="color: #0000ff;">Push</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23567;&#20848;"</span><span style="color: #707183;">)</span>;
+s1.<span style="color: #0000ff;">Push</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#23567;&#26417;"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">n1</span> = s1.<span style="color: #0000ff;">Pop</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">n2</span> = s1.<span style="color: #0000ff;">Peek</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">shibushichenggongle</span> = s1.<span style="color: #0000ff;">TryPop</span><span style="color: #707183;">(</span><span style="color: #a020f0;">out</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">n3</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>shibushichenggongle<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
 </div>
 </section>
 
