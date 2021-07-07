@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-06 -->
+<!-- 2021-07-07 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -214,8 +214,8 @@
 <ul>
 <li><a href="#orgbaafb74">15.1.1. ArrayList</a></li>
 <li><a href="#orga663854">15.1.2. Hashtable</a></li>
-<li><a href="#orgeb0fdc7">15.1.3. Stack</a></li>
-<li><a href="#org9292458">15.1.4. Queue</a></li>
+<li><a href="#org9292458">15.1.3. Queue</a></li>
+<li><a href="#orgeb0fdc7">15.1.4. Stack</a></li>
 <li><a href="#orgf4b3a90">15.1.5. SortedList/BitArray</a></li>
 </ul>
 </li>
@@ -304,13 +304,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org4c3cdb1">
+<figure id="org3c73d8f">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgc9b8752">
+<figure id="org1c016ba">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -555,7 +555,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orga824fff">
+<figure id="org68a0f7c">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -676,7 +676,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org26ddf90">
+<figure id="org95c64e4">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -704,7 +704,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgacfad77">
+<figure id="org6f2ebc5">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -763,7 +763,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgabef51d">
+<figure id="orga8e785a">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1189,7 +1189,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org3e35ca2">
+<figure id="orgb568b19">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1227,7 +1227,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org8a14614">
+<figure id="orgd63442c">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2228,7 +2228,7 @@ out:
 </div>
 
 
-<figure id="org5f55d7d">
+<figure id="orgad5046e">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3586,7 +3586,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org81dc556">
+<figure id="org0bccda9">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4615,12 +4615,94 @@ ValueTuple:
 </div>
 </div>
 
-<div id="outline-container-orgeb0fdc7" class="outline-4">
-<h4 id="orgeb0fdc7"><span class="section-number-4">15.1.3.</span> Stack</h4>
+<div id="outline-container-org9292458" class="outline-4">
+<h4 id="org9292458"><span class="section-number-4">15.1.3.</span> Queue</h4>
+<div class="outline-text-4" id="text-15-1-3">
+<p>
+FIFO (First In First Out，先进先出):
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">q1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Queue</span><span style="color: #707183;">()</span>;
+q1.<span style="color: #0000ff;">Enqueue</span><span style="color: #707183;">(</span>111<span style="color: #707183;">)</span>;
+q1.<span style="color: #0000ff;">Enqueue</span><span style="color: #707183;">(</span>222<span style="color: #707183;">)</span>;
+q1.<span style="color: #0000ff;">Enqueue</span><span style="color: #707183;">(</span>333<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">who</span> = q1.<span style="color: #0000ff;">Dequeue</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>who<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>q1.<span style="color: #0000ff;">Peek</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21482;&#30475;&#19981;&#31227;&#38500;</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>q1.<span style="color: #0000ff;">Dequeue</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>q1.Count<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">object</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">arr</span> = q1.<span style="color: #0000ff;">ToArray</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org9292458" class="outline-4">
-<h4 id="org9292458"><span class="section-number-4">15.1.4.</span> Queue</h4>
+<div id="outline-container-orgeb0fdc7" class="outline-4">
+<h4 id="orgeb0fdc7"><span class="section-number-4">15.1.4.</span> Stack</h4>
+<div class="outline-text-4" id="text-15-1-4">
+<p>
+LIFO (Last In First Out，后进先出):
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">s1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Stack</span><span style="color: #707183;">()</span>;
+s1.<span style="color: #0000ff;">Push</span><span style="color: #707183;">(</span>111<span style="color: #707183;">)</span>;
+s1.<span style="color: #0000ff;">Push</span><span style="color: #707183;">(</span>222<span style="color: #707183;">)</span>;
+s1.<span style="color: #0000ff;">Push</span><span style="color: #707183;">(</span>333<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">who</span> = s1.<span style="color: #0000ff;">Pop</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>who<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1.<span style="color: #0000ff;">Peek</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1.<span style="color: #0000ff;">Pop</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1.Count<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s1.<span style="color: #0000ff;">Peek</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+
+s1.<span style="color: #0000ff;">Clear</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+实现自己的栈:
+</p>
+<div class="org-src-container">
+<pre class="src src-cs"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">MyStack</span>
+<span class="linenr"> 2: </span><span style="color: #707183;">{</span>
+<span class="linenr"> 3: </span>    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">stackTop</span> = 0; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26632;&#39030;</span>
+<span class="linenr"> 4: </span>    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">object</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">_items</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">object</span><span style="color: #7388d6;">[</span>200<span style="color: #7388d6;">]</span>;
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Push</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">object</span> <span style="color: #a0522d;">w</span><span style="color: #7388d6;">)</span>
+<span class="linenr"> 7: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr"> 8: </span>        _items<span style="color: #909183;">[</span>stackTop<span style="color: #909183;">]</span> = w;
+<span class="linenr"> 9: </span>        stackTop = stackTop + 1;
+<span class="linenr">10: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">object</span> <span style="color: #0000ff;">Pop</span><span style="color: #7388d6;">()</span>
+<span class="linenr">13: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">14: </span>        stackTop = stackTop - 1;
+<span class="linenr">15: </span>        <span style="color: #a020f0;">return</span> _items<span style="color: #909183;">[</span>stackTop<span style="color: #909183;">]</span>;
+<span class="linenr">16: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">17: </span>
+<span class="linenr">18: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">object</span> <span style="color: #0000ff;">Peek</span><span style="color: #7388d6;">()</span>
+<span class="linenr">19: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">20: </span>        <span style="color: #a020f0;">return</span> _items<span style="color: #909183;">[</span>stackTop - 1<span style="color: #909183;">]</span>;
+<span class="linenr">21: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">22: </span>
+<span class="linenr">23: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">Count</span>
+<span class="linenr">24: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">25: </span>        <span style="color: #a020f0;">get</span> =&gt; stackTop;
+<span class="linenr">26: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">27: </span>
+<span class="linenr">28: </span>    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Clear</span><span style="color: #7388d6;">()</span>
+<span class="linenr">29: </span>    <span style="color: #7388d6;">{</span>
+<span class="linenr">30: </span>        stackTop = 0;
+<span class="linenr">31: </span>    <span style="color: #7388d6;">}</span>
+<span class="linenr">32: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
 </div>
 
 <div id="outline-container-orgf4b3a90" class="outline-4">
@@ -5069,7 +5151,7 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-06</p>
+<p class="date">Created: 2021-07-07</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -3577,9 +3577,80 @@ ValueTuple:
   }
 #+end_src
 
+*** Queue
+
+FIFO (First In First Out，先进先出):
+#+begin_src cs
+  var q1 = new Queue();
+  q1.Enqueue(111);
+  q1.Enqueue(222);
+  q1.Enqueue(333);
+  
+  object who = q1.Dequeue();
+  Console.WriteLine(who);
+  Console.WriteLine(q1.Peek()); // 只看不移除
+  Console.WriteLine(q1.Dequeue());
+  
+  Console.WriteLine(q1.Count);
+  
+  object[] arr = q1.ToArray();
+#+end_src
+
 *** Stack
 
-*** Queue
+LIFO (Last In First Out，后进先出):
+#+begin_src cs
+  var s1 = new Stack();
+  s1.Push(111);
+  s1.Push(222);
+  s1.Push(333);
+  
+  object who = s1.Pop();
+  Console.WriteLine(who);
+  Console.WriteLine(s1.Peek());
+  Console.WriteLine(s1.Pop());
+  
+  Console.WriteLine(s1.Count);
+  Console.WriteLine(s1.Peek());
+  
+  s1.Clear();
+#+end_src
+
+实现自己的栈:
+#+begin_src cs -n
+  class MyStack
+  {
+      private int stackTop = 0; // 栈顶
+      private object[] _items = new object[200];
+  
+      public void Push(object w)
+      {
+          _items[stackTop] = w;
+          stackTop = stackTop + 1;
+      }
+  
+      public object Pop()
+      {
+          stackTop = stackTop - 1;
+          return _items[stackTop];
+      }
+  
+      public object Peek()
+      {
+          return _items[stackTop - 1];
+      }
+  
+      public int Count
+      {
+          get => stackTop;
+      }
+  
+      public void Clear()
+      {
+          stackTop = 0;
+      }
+  }
+#+end_src
 
 *** SortedList/BitArray
 
