@@ -3405,7 +3405,7 @@ ValueTuple:
 #+end_src
 
 * 集合 (Collections)
-** System.Collections (Legacy)
+** System.Collections
 *** ArrayList
 
 - 以数字为下标
