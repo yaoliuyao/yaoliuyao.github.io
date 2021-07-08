@@ -3770,6 +3770,33 @@ https://docs.microsoft.com/zh-cn/dotnet/api/system.collections.generic.linkedlis
 
 *** SortedList/Set/Dictionary<>
 
+** System.Collections.Immutable
+
+ImmutableList:
+#+begin_src cs
+  static void Main()
+  {
+      var list1 = new List<string>
+      {
+          "hello", "world", "!"
+      };
+      Console.WriteLine(list1.Count);
+      Xxx(list1.ToImmutableList());
+      Console.WriteLine(list1.Count);
+  }
+  
+  static void Xxx(ImmutableList<string> l)
+  {
+      l.Add("kkkkkkk");
+      l.Add("kkkkkk2");
+      l = l.Add("kkkk").Add("1").Add("33");
+      foreach (var s in l)
+      {
+          Console.WriteLine(s);
+      }
+  }
+#+end_src
+
 * 泛型 (Generic)
 
 #+begin_src cs
