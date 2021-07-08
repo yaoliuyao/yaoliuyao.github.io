@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-02 -->
+<!-- 2021-07-08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>一万行代码</title>
@@ -42,116 +42,117 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfc88a9c">1. 委托使用 (过滤字符串)</a>
+<li><a href="#org32dd7ec">1. 分数录入工具</a></li>
+<li><a href="#org9639abb">2. 过滤字符串 (委托使用)</a>
 <ul>
-<li><a href="#org9be1fe4">1.1. 基本实现</a></li>
-<li><a href="#org2262adc">1.2. 使用扩展机制为类添加功能</a></li>
+<li><a href="#org9be1fe4">2.1. 基本实现</a></li>
+<li><a href="#org2262adc">2.2. 使用扩展机制为类添加功能</a></li>
 </ul>
 </li>
-<li><a href="#orgcc0b201">2. 语音点名系统</a>
+<li><a href="#orgcc0b201">3. 语音点名系统</a>
 <ul>
-<li><a href="#orgc058805">2.1. 参考实现</a></li>
-<li><a href="#org19d30bf">2.2. 进阶实现</a></li>
+<li><a href="#orgc058805">3.1. 参考实现</a></li>
+<li><a href="#org19d30bf">3.2. 进阶实现</a></li>
 </ul>
 </li>
-<li><a href="#org1e9b233">3. 加密、解密 (rot13)</a>
+<li><a href="#org1e9b233">4. 加密、解密 (rot13)</a>
 <ul>
-<li><a href="#org2095f7e">3.1. 分析</a></li>
-<li><a href="#org34536b0">3.2. 实现</a></li>
-<li><a href="#org629fa82">3.3. 落地</a></li>
-<li><a href="#org32b4e34">3.4. 导出并使用</a></li>
+<li><a href="#org0157f33">4.1. 分析</a></li>
+<li><a href="#org34536b0">4.2. 实现</a></li>
+<li><a href="#org629fa82">4.3. 落地</a></li>
+<li><a href="#org32b4e34">4.4. 导出并使用</a></li>
 </ul>
 </li>
-<li><a href="#org2d37ea0">4. 游戏祖玛</a>
+<li><a href="#org2d37ea0">5. 游戏祖玛</a>
 <ul>
-<li><a href="#org9d20f6b">4.1. 游戏描述</a></li>
-<li><a href="#org21f02ba">4.2. 预备知识</a>
+<li><a href="#org9d20f6b">5.1. 游戏描述</a></li>
+<li><a href="#org21f02ba">5.2. 预备知识</a>
 <ul>
-<li><a href="#orgd753dd5">4.2.1. 如何避免 ReadLine 阻塞</a></li>
-<li><a href="#orgbd68366">4.2.2. Console 的定点输出</a></li>
-<li><a href="#org6743c93">4.2.3. 随机字符串的生成逻辑</a></li>
-<li><a href="#org934289b">4.2.4. 消除字符串的基本逻辑</a></li>
+<li><a href="#orgd753dd5">5.2.1. 如何避免 ReadLine 阻塞</a></li>
+<li><a href="#orgbd68366">5.2.2. Console 的定点输出</a></li>
+<li><a href="#org6743c93">5.2.3. 随机字符串的生成逻辑</a></li>
+<li><a href="#org934289b">5.2.4. 消除字符串的基本逻辑</a></li>
 </ul>
 </li>
-<li><a href="#org0157f33">4.3. 分析</a></li>
-<li><a href="#orgdbb6416">4.4. 程序概览</a></li>
-<li><a href="#org30ad555">4.5. Code Example</a></li>
-<li><a href="#orga44c44c">4.6. 其他</a></li>
-<li><a href="#orged202ed">4.7. 小结</a></li>
+<li><a href="#orgdcda25d">5.3. 分析</a></li>
+<li><a href="#orgdbb6416">5.4. 程序概览</a></li>
+<li><a href="#org30ad555">5.5. Code Example</a></li>
+<li><a href="#orga44c44c">5.6. 其他</a></li>
+<li><a href="#orge9f3533">5.7. 小结</a></li>
 </ul>
 </li>
-<li><a href="#org78b9f59">5. 导出为 Excel 的总结</a>
+<li><a href="#org78b9f59">6. 导出为 Excel 的总结</a>
 <ul>
-<li><a href="#orgede36c0">5.1. Repeat Yourself</a></li>
-<li><a href="#org3eed062">5.2. 当逻辑在不同方法中 Repeat，将其 <b>分离</b> 为单独的方法</a></li>
-<li><a href="#orgb41f5c7">5.3. 当方法在不同类中 Repeat</a>
+<li><a href="#orgede36c0">6.1. Repeat Yourself</a></li>
+<li><a href="#org3eed062">6.2. 当逻辑在不同方法中 Repeat，将其 <b>分离</b> 为单独的方法</a></li>
+<li><a href="#orgb41f5c7">6.3. 当方法在不同类中 Repeat</a>
 <ul>
-<li><a href="#org64a1ba4">5.3.1. 在类中 Repeat Yourself</a></li>
-<li><a href="#orgd64f769">5.3.2. 首先将重复的方法 <b>分离</b> 到单独的类中</a></li>
-<li><a href="#org9cc6566">5.3.3. 然后可以 <b>组合</b></a></li>
-<li><a href="#org73cef4d">5.3.4. 或者可以 <b>继承</b></a></li>
+<li><a href="#org64a1ba4">6.3.1. 在类中 Repeat Yourself</a></li>
+<li><a href="#orgd64f769">6.3.2. 首先将重复的方法 <b>分离</b> 到单独的类中</a></li>
+<li><a href="#org9cc6566">6.3.3. 然后可以 <b>组合</b></a></li>
+<li><a href="#org73cef4d">6.3.4. 或者可以 <b>继承</b></a></li>
 </ul>
 </li>
-<li><a href="#org04d5760">5.4. 更进一步的 DRY</a>
+<li><a href="#org04d5760">6.4. 更进一步的 DRY</a>
 <ul>
-<li><a href="#org78a83cf">5.4.1. 使用 <b>组合</b> 方式实现</a></li>
-<li><a href="#org81f8d8f">5.4.2. 使用 <b>继承</b> 方式实现 (你的是我的)</a></li>
-<li><a href="#org2b75d4a">5.4.3. 使用 <b>继承</b> 方式实现 (公共的字段)</a></li>
-<li><a href="#org62c9403">5.4.4. 使用 <b>继承</b> 方式实现 (化虚为实)</a></li>
-<li><a href="#org0d05c22">5.4.5. 使用 <b>继承</b> 方式实现 (进击的继承)</a></li>
+<li><a href="#org78a83cf">6.4.1. 使用 <b>组合</b> 方式实现</a></li>
+<li><a href="#org81f8d8f">6.4.2. 使用 <b>继承</b> 方式实现 (你的是我的)</a></li>
+<li><a href="#org2b75d4a">6.4.3. 使用 <b>继承</b> 方式实现 (公共的字段)</a></li>
+<li><a href="#org62c9403">6.4.4. 使用 <b>继承</b> 方式实现 (化虚为实)</a></li>
+<li><a href="#org0d05c22">6.4.5. 使用 <b>继承</b> 方式实现 (进击的继承)</a></li>
 </ul>
 </li>
-<li><a href="#orgaae223a">5.5. 珠联璧合: 组合 + 继承</a>
+<li><a href="#orgaae223a">6.5. 珠联璧合: 组合 + 继承</a>
 <ul>
-<li><a href="#org6df53b6">5.5.1. ConsoleHelper</a></li>
-<li><a href="#org4fb0e0e">5.5.2. ExcelHelper</a></li>
-<li><a href="#org68c7701">5.5.3. Calculator</a></li>
-<li><a href="#org15beaae">5.5.4. Main</a></li>
+<li><a href="#org6df53b6">6.5.1. ConsoleHelper</a></li>
+<li><a href="#org4fb0e0e">6.5.2. ExcelHelper</a></li>
+<li><a href="#org68c7701">6.5.3. Calculator</a></li>
+<li><a href="#org15beaae">6.5.4. Main</a></li>
 </ul>
 </li>
-<li><a href="#org9f16af0">5.6. 不仅有权利还有义务，强制的规则: 抽象方法</a></li>
-<li><a href="#org9e4eee4">5.7. 有了接口，就有了 <del>工业</del> 标准，就有了分工和协作</a></li>
+<li><a href="#org9f16af0">6.6. 不仅有权利还有义务，强制的规则: 抽象方法</a></li>
+<li><a href="#org9e4eee4">6.7. 有了接口，就有了 <del>工业</del> 标准，就有了分工和协作</a></li>
 </ul>
 </li>
-<li><a href="#org38b920b">6. 阶梯电费计算</a>
+<li><a href="#org38b920b">7. 阶梯电费计算</a>
 <ul>
-<li><a href="#org6a679c6">6.1. 第一种解决方案</a></li>
-<li><a href="#org6ea12be">6.2. 第一种方案的优化版</a></li>
-<li><a href="#orga951602">6.3. 第二种方案</a></li>
-<li><a href="#orgfc8cd89">6.4. 第二种方案的英文变量版本</a></li>
-<li><a href="#orga43954a">6.5. 学习怎么使用别人的封装 (Console)</a></li>
-<li><a href="#orgd441fdd">6.6. 学习怎么使用别人的封装 (ExportToExcel)</a></li>
-<li><a href="#orgd3eace5">6.7. 优化 ExportToExcel 为直接使用已存在的文件</a></li>
+<li><a href="#org6a679c6">7.1. 第一种解决方案</a></li>
+<li><a href="#org6ea12be">7.2. 第一种方案的优化版</a></li>
+<li><a href="#orga951602">7.3. 第二种方案</a></li>
+<li><a href="#orgfc8cd89">7.4. 第二种方案的英文变量版本</a></li>
+<li><a href="#orga43954a">7.5. 学习怎么使用别人的封装 (Console)</a></li>
+<li><a href="#orgd441fdd">7.6. 学习怎么使用别人的封装 (ExportToExcel)</a></li>
+<li><a href="#orgd3eace5">7.7. 优化 ExportToExcel 为直接使用已存在的文件</a></li>
 </ul>
 </li>
-<li><a href="#orgb6722f0">7. 个税计算器 (简化版) 源</a>
+<li><a href="#orgb6722f0">8. 个税计算器 (简化版) 源</a>
 <ul>
-<li><a href="#orgfc49a12">7.1. 原始版本，<b>顺序</b> 执行</a></li>
-<li><a href="#org863f8b4">7.2. 原始版本的批注</a></li>
-<li><a href="#orgd41723e">7.3. 第四组优化版</a></li>
-<li><a href="#org6ea8c36">7.4. <b>分离</b> 计算跟输出，优化代码结构</a></li>
-<li><a href="#orgd2893b4">7.5. 通过 <b>方法</b> 对逻辑进行提取</a></li>
-<li><a href="#org7609aaa">7.6. 通过 <b>类</b> 对代码逻辑进行进一步分离</a></li>
-<li><a href="#orgc1509a2">7.7. 让类中的各个方法，能 <b>共享数据</b></a></li>
-<li><a href="#org0a94419">7.8. 引入 <b>对象</b> 保证调用的数据安全</a></li>
-<li><a href="#org47b6bab">7.9. 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</a></li>
-<li><a href="#org543bd8f">7.10. 减少代码冗余，<b>Lazy</b> and <b>Eager</b></a></li>
-<li><a href="#org86094c1">7.11. 来自语法糖的力量: 通过 <b>Property</b> 简化代码</a>
+<li><a href="#orgfc49a12">8.1. 原始版本，<b>顺序</b> 执行</a></li>
+<li><a href="#org863f8b4">8.2. 原始版本的批注</a></li>
+<li><a href="#orgd41723e">8.3. 第四组优化版</a></li>
+<li><a href="#org6ea8c36">8.4. <b>分离</b> 计算跟输出，优化代码结构</a></li>
+<li><a href="#orgd2893b4">8.5. 通过 <b>方法</b> 对逻辑进行提取</a></li>
+<li><a href="#org7609aaa">8.6. 通过 <b>类</b> 对代码逻辑进行进一步分离</a></li>
+<li><a href="#orgc1509a2">8.7. 让类中的各个方法，能 <b>共享数据</b></a></li>
+<li><a href="#org0a94419">8.8. 引入 <b>对象</b> 保证调用的数据安全</a></li>
+<li><a href="#org47b6bab">8.9. 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</a></li>
+<li><a href="#org543bd8f">8.10. 减少代码冗余，<b>Lazy</b> and <b>Eager</b></a></li>
+<li><a href="#org86094c1">8.11. 来自语法糖的力量: 通过 <b>Property</b> 简化代码</a>
 <ul>
-<li><a href="#org85b74cd">7.11.1. Eager Version</a></li>
-<li><a href="#org31212e8">7.11.2. Lazy Version</a></li>
+<li><a href="#org85b74cd">8.11.1. Eager Version</a></li>
+<li><a href="#org31212e8">8.11.2. Lazy Version</a></li>
 </ul>
 </li>
-<li><a href="#org5e90d90">7.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
-<li><a href="#org954e3a9">7.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
-<li><a href="#orge9f3533">7.14. 小结</a></li>
+<li><a href="#org5e90d90">8.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
+<li><a href="#org954e3a9">8.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
+<li><a href="#orge70cf95">8.14. 小结</a></li>
 </ul>
 </li>
-<li><a href="#orgf43b2bd">8. 小费计算器</a>
+<li><a href="#orgf43b2bd">9. 小费计算器</a>
 <ul>
-<li><a href="#orgf95a5cf">8.1. 核心代码</a></li>
-<li><a href="#org0447505">8.2. 在核心代码上进行优化</a></li>
-<li><a href="#org7a5bb4d">8.3. 结构化重构</a></li>
+<li><a href="#orgf95a5cf">9.1. 核心代码</a></li>
+<li><a href="#org0447505">9.2. 在核心代码上进行优化</a></li>
+<li><a href="#org7a5bb4d">9.3. 结构化重构</a></li>
 </ul>
 </li>
 </ul>
@@ -160,17 +161,36 @@
 
 
 
-<section id="outline-container-orgfc88a9c" class="outline-2">
-<h2 id="orgfc88a9c"><span class="section-number-2">1.</span> 委托使用 (过滤字符串)</h2>
+<section id="outline-container-org32dd7ec" class="outline-2">
+<h2 id="org32dd7ec"><span class="section-number-2">1.</span> 分数录入工具</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+ScoreRecord:
+</p>
+<ul class="org-ul">
+<li>sr["xm"] = 23.5</li>
+<li>Console.Write(sr["xh"])</li>
+<li>sr.Print()</li>
+<li>sr.Export()</li>
+</ul>
+
+<p>
+加入交互。
+</p>
+</div>
+</section>
+
+<section id="outline-container-org9639abb" class="outline-2">
+<h2 id="org9639abb"><span class="section-number-2">2.</span> 过滤字符串 (委托使用)</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 实现功能，将某个字符串的一些符合条件的字符，咔嚓掉。
 </p>
 </div>
 
 <div id="outline-container-org9be1fe4" class="outline-3">
-<h3 id="org9be1fe4"><span class="section-number-3">1.1.</span> 基本实现</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="org9be1fe4"><span class="section-number-3">2.1.</span> 基本实现</h3>
+<div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -220,8 +240,8 @@
 </div>
 
 <div id="outline-container-org2262adc" class="outline-3">
-<h3 id="org2262adc"><span class="section-number-3">1.2.</span> 使用扩展机制为类添加功能</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="org2262adc"><span class="section-number-3">2.2.</span> 使用扩展机制为类添加功能</h3>
+<div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -273,8 +293,8 @@
 </section>
 
 <section id="outline-container-orgcc0b201" class="outline-2">
-<h2 id="orgcc0b201"><span class="section-number-2">2.</span> 语音点名系统</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="orgcc0b201"><span class="section-number-2">3.</span> 语音点名系统</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 仿照我们上课点名的流程，创作一个工具，用于自动语音点名。
 </p>
@@ -295,8 +315,8 @@
 </div>
 
 <div id="outline-container-orgc058805" class="outline-3">
-<h3 id="orgc058805"><span class="section-number-3">2.1.</span> 参考实现</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="orgc058805"><span class="section-number-3">3.1.</span> 参考实现</h3>
+<div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span class="linenr">  1: </span><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">TeachAssist</span>
 <span class="linenr">  2: </span><span style="color: #707183;">{</span>
@@ -499,8 +519,8 @@
 </div>
 
 <div id="outline-container-org19d30bf" class="outline-3">
-<h3 id="org19d30bf"><span class="section-number-3">2.2.</span> 进阶实现</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="org19d30bf"><span class="section-number-3">3.2.</span> 进阶实现</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 使用 Excel 代替 Txt 文本，存储名单信息。
 并且将点名的结果，保存进 Excel 中。
@@ -510,12 +530,12 @@
 </section>
 
 <section id="outline-container-org1e9b233" class="outline-2">
-<h2 id="org1e9b233"><span class="section-number-2">3.</span> 加密、解密 (rot13)</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org1e9b233"><span class="section-number-2">4.</span> 加密、解密 (rot13)</h2>
+<div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org2095f7e" class="outline-3">
-<h3 id="org2095f7e"><span class="section-number-3">3.1.</span> 分析</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org0157f33" class="outline-3">
+<h3 id="org0157f33"><span class="section-number-3">4.1.</span> 分析</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 解析问题，大事化小:
 </p>
@@ -557,8 +577,8 @@ fgngvp <span style="color: #228b22;">pune</span> <span style="color: #0000ff;">E
 </div>
 
 <div id="outline-container-org34536b0" class="outline-3">
-<h3 id="org34536b0"><span class="section-number-3">3.2.</span> 实现</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org34536b0"><span class="section-number-3">4.2.</span> 实现</h3>
+<div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-csx" id="org66996e2"><span style="color: #228b22;">pynff</span> <span style="color: #a0522d;">Cebtenz</span>
 <span style="color: #707183;">{</span>
@@ -645,8 +665,8 @@ hello, world, How are You. How Do You do.
 </div>
 
 <div id="outline-container-org629fa82" class="outline-3">
-<h3 id="org629fa82"><span class="section-number-3">3.3.</span> 落地</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="org629fa82"><span class="section-number-3">4.3.</span> 落地</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 讨论:
 </p>
@@ -686,8 +706,8 @@ rot13 d:\aaa.txt
 </div>
 
 <div id="outline-container-org32b4e34" class="outline-3">
-<h3 id="org32b4e34"><span class="section-number-3">3.4.</span> 导出并使用</h3>
-<div class="outline-text-3" id="text-3-4">
+<h3 id="org32b4e34"><span class="section-number-3">4.4.</span> 导出并使用</h3>
+<div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>使用 VS 带的发布 (publish) 功能</li>
 <li>注意，需要将 <b>发布为单独文件</b> 选中</li>
@@ -728,12 +748,12 @@ $ rot13
 </section>
 
 <section id="outline-container-org2d37ea0" class="outline-2">
-<h2 id="org2d37ea0"><span class="section-number-2">4.</span> 游戏祖玛</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org2d37ea0"><span class="section-number-2">5.</span> 游戏祖玛</h2>
+<div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org9d20f6b" class="outline-3">
-<h3 id="org9d20f6b"><span class="section-number-3">4.1.</span> 游戏描述</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org9d20f6b"><span class="section-number-3">5.1.</span> 游戏描述</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 实现游戏祖玛!
 </p>
@@ -769,12 +789,12 @@ $ rot13
 </div>
 
 <div id="outline-container-org21f02ba" class="outline-3">
-<h3 id="org21f02ba"><span class="section-number-3">4.2.</span> 预备知识</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org21f02ba"><span class="section-number-3">5.2.</span> 预备知识</h3>
+<div class="outline-text-3" id="text-5-2">
 </div>
 <div id="outline-container-orgd753dd5" class="outline-4">
-<h4 id="orgd753dd5"><span class="section-number-4">4.2.1.</span> 如何避免 ReadLine 阻塞</h4>
-<div class="outline-text-4" id="text-4-2-1">
+<h4 id="orgd753dd5"><span class="section-number-4">5.2.1.</span> 如何避免 ReadLine 阻塞</h4>
+<div class="outline-text-4" id="text-5-2-1">
 <p>
 不完美，但是足够简单的方法:
 </p>
@@ -828,8 +848,8 @@ Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</sp
 </div>
 
 <div id="outline-container-orgbd68366" class="outline-4">
-<h4 id="orgbd68366"><span class="section-number-4">4.2.2.</span> Console 的定点输出</h4>
-<div class="outline-text-4" id="text-4-2-2">
+<h4 id="orgbd68366"><span class="section-number-4">5.2.2.</span> Console 的定点输出</h4>
+<div class="outline-text-4" id="text-5-2-2">
 <div class="org-src-container">
 <pre class="src src-csharp">Console.<span style="color: #0000ff;">Clear</span><span style="color: #707183;">()</span>;
 
@@ -853,8 +873,8 @@ Console.<span style="color: #0000ff;">ReadLine</span><span style="color: #707183
 </div>
 
 <div id="outline-container-org6743c93" class="outline-4">
-<h4 id="org6743c93"><span class="section-number-4">4.2.3.</span> 随机字符串的生成逻辑</h4>
-<div class="outline-text-4" id="text-4-2-3">
+<h4 id="org6743c93"><span class="section-number-4">5.2.3.</span> 随机字符串的生成逻辑</h4>
+<div class="outline-text-4" id="text-5-2-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">r</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Random</span><span style="color: #707183;">()</span>;
 
@@ -873,8 +893,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org934289b" class="outline-4">
-<h4 id="org934289b"><span class="section-number-4">4.2.4.</span> 消除字符串的基本逻辑</h4>
-<div class="outline-text-4" id="text-4-2-4">
+<h4 id="org934289b"><span class="section-number-4">5.2.4.</span> 消除字符串的基本逻辑</h4>
+<div class="outline-text-4" id="text-5-2-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">xiaochu</span><span style="color: #707183;">()</span>
 <span style="color: #707183;">{</span>
@@ -905,9 +925,9 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org0157f33" class="outline-3">
-<h3 id="org0157f33"><span class="section-number-3">4.3.</span> 分析</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-orgdcda25d" class="outline-3">
+<h3 id="orgdcda25d"><span class="section-number-3">5.3.</span> 分析</h3>
+<div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>显示一排小猪 (初始化若干个、会定时加入若干个小猪、随着用户交互小猪加入队伍)</li>
 <li>// 显示其他游戏相关信息 (时间、分数、消除多少个&#x2026;.)</li>
@@ -919,7 +939,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="org86a853f">
+<pre class="example" id="orgeb930a5">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -931,8 +951,8 @@ void PrintPigs();
 </div>
 
 <div id="outline-container-orgdbb6416" class="outline-3">
-<h3 id="orgdbb6416"><span class="section-number-3">4.4.</span> 程序概览</h3>
-<div class="outline-text-3" id="text-4-4">
+<h3 id="orgdbb6416"><span class="section-number-3">5.4.</span> 程序概览</h3>
+<div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#26680;&#24515;&#23646;&#24615;</span>
 <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Pigs</span> <span style="color: #707183;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #707183;">}</span>
@@ -967,8 +987,8 @@ void PrintPigs();
 </div>
 
 <div id="outline-container-org30ad555" class="outline-3">
-<h3 id="org30ad555"><span class="section-number-3">4.5.</span> Code Example</h3>
-<div class="outline-text-3" id="text-4-5">
+<h3 id="org30ad555"><span class="section-number-3">5.5.</span> Code Example</h3>
+<div class="outline-text-3" id="text-5-5">
 <p>
 注意:  <span style="color: red; font-size: 1.5em">解题方法千万种，这里的代码仅作参考。要尊重你自己的思考</span> !
 </p>
@@ -1251,8 +1271,8 @@ void PrintPigs();
 </div>
 
 <div id="outline-container-orga44c44c" class="outline-3">
-<h3 id="orga44c44c"><span class="section-number-3">4.6.</span> 其他</h3>
-<div class="outline-text-3" id="text-4-6">
+<h3 id="orga44c44c"><span class="section-number-3">5.6.</span> 其他</h3>
+<div class="outline-text-3" id="text-5-6">
 <p>
 做一只有颜色的猪
 </p>
@@ -1324,9 +1344,9 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orged202ed" class="outline-3">
-<h3 id="orged202ed"><span class="section-number-3">4.7.</span> 小结</h3>
-<div class="outline-text-3" id="text-4-7">
+<div id="outline-container-orge9f3533" class="outline-3">
+<h3 id="orge9f3533"><span class="section-number-3">5.7.</span> 小结</h3>
+<div class="outline-text-3" id="text-5-7">
 <p>
 通过这个游戏，达到的目的:
 </p>
@@ -1358,12 +1378,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org78b9f59" class="outline-2">
-<h2 id="org78b9f59"><span class="section-number-2">5.</span> 导出为 Excel 的总结</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org78b9f59"><span class="section-number-2">6.</span> 导出为 Excel 的总结</h2>
+<div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-orgede36c0" class="outline-3">
-<h3 id="orgede36c0"><span class="section-number-3">5.1.</span> Repeat Yourself</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="orgede36c0"><span class="section-number-3">6.1.</span> Repeat Yourself</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 电费:
 </p>
@@ -1497,8 +1517,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org3eed062" class="outline-3">
-<h3 id="org3eed062"><span class="section-number-3">5.2.</span> 当逻辑在不同方法中 Repeat，将其 <b>分离</b> 为单独的方法</h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="org3eed062"><span class="section-number-3">6.2.</span> 当逻辑在不同方法中 Repeat，将其 <b>分离</b> 为单独的方法</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 分离的目的，是为了共享，是为了复用。是为了减少代码量，减小创作成本。
 </p>
@@ -1588,12 +1608,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgb41f5c7" class="outline-3">
-<h3 id="orgb41f5c7"><span class="section-number-3">5.3.</span> 当方法在不同类中 Repeat</h3>
-<div class="outline-text-3" id="text-5-3">
+<h3 id="orgb41f5c7"><span class="section-number-3">6.3.</span> 当方法在不同类中 Repeat</h3>
+<div class="outline-text-3" id="text-6-3">
 </div>
 <div id="outline-container-org64a1ba4" class="outline-4">
-<h4 id="org64a1ba4"><span class="section-number-4">5.3.1.</span> 在类中 Repeat Yourself</h4>
-<div class="outline-text-4" id="text-5-3-1">
+<h4 id="org64a1ba4"><span class="section-number-4">6.3.1.</span> 在类中 Repeat Yourself</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr">  1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalc</span>
 <span class="linenr">  2: </span><span style="color: #707183;">{</span>
@@ -2054,8 +2074,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgd64f769" class="outline-4">
-<h4 id="orgd64f769"><span class="section-number-4">5.3.2.</span> 首先将重复的方法 <b>分离</b> 到单独的类中</h4>
-<div class="outline-text-4" id="text-5-3-2">
+<h4 id="orgd64f769"><span class="section-number-4">6.3.2.</span> 首先将重复的方法 <b>分离</b> 到单独的类中</h4>
+<div class="outline-text-4" id="text-6-3-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ExcelHelper</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
@@ -2118,8 +2138,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org9cc6566" class="outline-4">
-<h4 id="org9cc6566"><span class="section-number-4">5.3.3.</span> 然后可以 <b>组合</b></h4>
-<div class="outline-text-4" id="text-5-3-3">
+<h4 id="org9cc6566"><span class="section-number-4">6.3.3.</span> 然后可以 <b>组合</b></h4>
+<div class="outline-text-4" id="text-6-3-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr">  1: </span><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">X</span>
 <span class="linenr">  2: </span><span style="color: #707183;">{</span>
@@ -2259,8 +2279,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org73cef4d" class="outline-4">
-<h4 id="org73cef4d"><span class="section-number-4">5.3.4.</span> 或者可以 <b>继承</b></h4>
-<div class="outline-text-4" id="text-5-3-4">
+<h4 id="org73cef4d"><span class="section-number-4">6.3.4.</span> 或者可以 <b>继承</b></h4>
+<div class="outline-text-4" id="text-6-3-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr">  1: </span><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Y</span>
 <span class="linenr">  2: </span><span style="color: #707183;">{</span>
@@ -2392,8 +2412,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org04d5760" class="outline-3">
-<h3 id="org04d5760"><span class="section-number-3">5.4.</span> 更进一步的 DRY</h3>
-<div class="outline-text-3" id="text-5-4">
+<h3 id="org04d5760"><span class="section-number-3">6.4.</span> 更进一步的 DRY</h3>
+<div class="outline-text-3" id="text-6-4">
 <ul class="org-ul">
 <li>上述代码中的 ExportToExcel 等方法，在整个结构上还是雷同的，还有进一步进行 <b>分离</b> 的空间</li>
 <li>将重复的逻辑分离出去，基本的步骤是 (1) 抽出为某个类的某个方法 (2) 通过组合或继承的方式进行使用</li>
@@ -2401,8 +2421,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org78a83cf" class="outline-4">
-<h4 id="org78a83cf"><span class="section-number-4">5.4.1.</span> 使用 <b>组合</b> 方式实现</h4>
-<div class="outline-text-4" id="text-5-4-1">
+<h4 id="org78a83cf"><span class="section-number-4">6.4.1.</span> 使用 <b>组合</b> 方式实现</h4>
+<div class="outline-text-4" id="text-6-4-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr">  1: </span><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">X</span>
 <span class="linenr">  2: </span><span style="color: #707183;">{</span>
@@ -2531,8 +2551,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org81f8d8f" class="outline-4">
-<h4 id="org81f8d8f"><span class="section-number-4">5.4.2.</span> 使用 <b>继承</b> 方式实现 (你的是我的)</h4>
-<div class="outline-text-4" id="text-5-4-2">
+<h4 id="org81f8d8f"><span class="section-number-4">6.4.2.</span> 使用 <b>继承</b> 方式实现 (你的是我的)</h4>
+<div class="outline-text-4" id="text-6-4-2">
 <p>
 这是最简单，最基本的方式。跟组合的方式很像。
 </p>
@@ -2554,8 +2574,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org2b75d4a" class="outline-4">
-<h4 id="org2b75d4a"><span class="section-number-4">5.4.3.</span> 使用 <b>继承</b> 方式实现 (公共的字段)</h4>
-<div class="outline-text-4" id="text-5-4-3">
+<h4 id="org2b75d4a"><span class="section-number-4">6.4.3.</span> 使用 <b>继承</b> 方式实现 (公共的字段)</h4>
+<div class="outline-text-4" id="text-6-4-3">
 <p>
 充分利用继承的特性，将不同的部分抽出为字段:
 </p>
@@ -2604,7 +2624,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </p>
 
 
-<figure id="orgb3acf18">
+<figure id="org8449d8c">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -2612,8 +2632,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org62c9403" class="outline-4">
-<h4 id="org62c9403"><span class="section-number-4">5.4.4.</span> 使用 <b>继承</b> 方式实现 (化虚为实)</h4>
-<div class="outline-text-4" id="text-5-4-4">
+<h4 id="org62c9403"><span class="section-number-4">6.4.4.</span> 使用 <b>继承</b> 方式实现 (化虚为实)</h4>
+<div class="outline-text-4" id="text-6-4-4">
 <p>
 使用虚方法 (virtual/override)，让父类能访问派生类的方法。
 </p>
@@ -2658,8 +2678,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org0d05c22" class="outline-4">
-<h4 id="org0d05c22"><span class="section-number-4">5.4.5.</span> 使用 <b>继承</b> 方式实现 (进击的继承)</h4>
-<div class="outline-text-4" id="text-5-4-5">
+<h4 id="org0d05c22"><span class="section-number-4">6.4.5.</span> 使用 <b>继承</b> 方式实现 (进击的继承)</h4>
+<div class="outline-text-4" id="text-6-4-5">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">ExcelHelper</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
@@ -2773,10 +2793,10 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgaae223a" class="outline-3">
-<h3 id="orgaae223a"><span class="section-number-3">5.5.</span> 珠联璧合: 组合 + 继承</h3>
-<div class="outline-text-3" id="text-5-5">
+<h3 id="orgaae223a"><span class="section-number-3">6.5.</span> 珠联璧合: 组合 + 继承</h3>
+<div class="outline-text-3" id="text-6-5">
 
-<figure id="org7504b55">
+<figure id="org242bfbc">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -2784,8 +2804,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 
 
 <div id="outline-container-org6df53b6" class="outline-4">
-<h4 id="org6df53b6"><span class="section-number-4">5.5.1.</span> ConsoleHelper</h4>
-<div class="outline-text-4" id="text-5-5-1">
+<h4 id="org6df53b6"><span class="section-number-4">6.5.1.</span> ConsoleHelper</h4>
+<div class="outline-text-4" id="text-6-5-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
 <span class="linenr"> 2: </span>
@@ -2819,8 +2839,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org4fb0e0e" class="outline-4">
-<h4 id="org4fb0e0e"><span class="section-number-4">5.5.2.</span> ExcelHelper</h4>
-<div class="outline-text-4" id="text-5-5-2">
+<h4 id="org4fb0e0e"><span class="section-number-4">6.5.2.</span> ExcelHelper</h4>
+<div class="outline-text-4" id="text-6-5-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
 <span class="linenr"> 2: </span><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>;
@@ -2900,8 +2920,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org68c7701" class="outline-4">
-<h4 id="org68c7701"><span class="section-number-4">5.5.3.</span> Calculator</h4>
-<div class="outline-text-4" id="text-5-5-3">
+<h4 id="org68c7701"><span class="section-number-4">6.5.3.</span> Calculator</h4>
+<div class="outline-text-4" id="text-6-5-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr">  1: </span><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
 <span class="linenr">  2: </span><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">Threading</span>;
@@ -3177,8 +3197,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org15beaae" class="outline-4">
-<h4 id="org15beaae"><span class="section-number-4">5.5.4.</span> Main</h4>
-<div class="outline-text-4" id="text-5-5-4">
+<h4 id="org15beaae"><span class="section-number-4">6.5.4.</span> Main</h4>
+<div class="outline-text-4" id="text-6-5-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
 <span style="color: #a020f0;">using</span> <span style="color: #a0522d;">Nfit161</span>;
@@ -3213,8 +3233,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org9f16af0" class="outline-3">
-<h3 id="org9f16af0"><span class="section-number-3">5.6.</span> 不仅有权利还有义务，强制的规则: 抽象方法</h3>
-<div class="outline-text-3" id="text-5-6">
+<h3 id="org9f16af0"><span class="section-number-3">6.6.</span> 不仅有权利还有义务，强制的规则: 抽象方法</h3>
+<div class="outline-text-3" id="text-6-6">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">abstract</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Calculator</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
@@ -3240,8 +3260,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org9e4eee4" class="outline-3">
-<h3 id="org9e4eee4"><span class="section-number-3">5.7.</span> 有了接口，就有了 <del>工业</del> 标准，就有了分工和协作</h3>
-<div class="outline-text-3" id="text-5-7">
+<h3 id="org9e4eee4"><span class="section-number-3">6.7.</span> 有了接口，就有了 <del>工业</del> 标准，就有了分工和协作</h3>
+<div class="outline-text-3" id="text-6-7">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr">  1: </span><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
 <span class="linenr">  2: </span><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">Threading</span>;
@@ -3371,12 +3391,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </section>
 
 <section id="outline-container-org38b920b" class="outline-2">
-<h2 id="org38b920b"><span class="section-number-2">6.</span> 阶梯电费计算</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org38b920b"><span class="section-number-2">7.</span> 阶梯电费计算</h2>
+<div class="outline-text-2" id="text-7">
 </div>
 <div id="outline-container-org6a679c6" class="outline-3">
-<h3 id="org6a679c6"><span class="section-number-3">6.1.</span> 第一种解决方案</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org6a679c6"><span class="section-number-3">7.1.</span> 第一种解决方案</h3>
+<div class="outline-text-3" id="text-7-1">
 <p>
 这种方式由第三小组提供:
 </p>
@@ -3490,8 +3510,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org6ea12be" class="outline-3">
-<h3 id="org6ea12be"><span class="section-number-3">6.2.</span> 第一种方案的优化版</h3>
-<div class="outline-text-3" id="text-6-2">
+<h3 id="org6ea12be"><span class="section-number-3">7.2.</span> 第一种方案的优化版</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 经过集思广益，整个班级一起修改，在上述的版本上进行优化:
 </p>
@@ -3580,8 +3600,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orga951602" class="outline-3">
-<h3 id="orga951602"><span class="section-number-3">6.3.</span> 第二种方案</h3>
-<div class="outline-text-3" id="text-6-3">
+<h3 id="orga951602"><span class="section-number-3">7.3.</span> 第二种方案</h3>
+<div class="outline-text-3" id="text-7-3">
 <p>
 基于阶梯度数，应该更加合理:
 </p>
@@ -3655,8 +3675,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgfc8cd89" class="outline-3">
-<h3 id="orgfc8cd89"><span class="section-number-3">6.4.</span> 第二种方案的英文变量版本</h3>
-<div class="outline-text-3" id="text-6-4">
+<h3 id="orgfc8cd89"><span class="section-number-3">7.4.</span> 第二种方案的英文变量版本</h3>
+<div class="outline-text-3" id="text-7-4">
 <p>
 用英文进行命名，还是比较主流和正规的。需要的只是简单的英文而已，写多了就熟了:
 </p>
@@ -3735,8 +3755,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orga43954a" class="outline-3">
-<h3 id="orga43954a"><span class="section-number-3">6.5.</span> 学习怎么使用别人的封装 (Console)</h3>
-<div class="outline-text-3" id="text-6-5">
+<h3 id="orga43954a"><span class="section-number-3">7.5.</span> 学习怎么使用别人的封装 (Console)</h3>
+<div class="outline-text-3" id="text-7-5">
 <blockquote>
 <p>
 完成 ElectricBillCalc 中杀马特版本的 Print:
@@ -3817,8 +3837,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgd441fdd" class="outline-3">
-<h3 id="orgd441fdd"><span class="section-number-3">6.6.</span> 学习怎么使用别人的封装 (ExportToExcel)</h3>
-<div class="outline-text-3" id="text-6-6">
+<h3 id="orgd441fdd"><span class="section-number-3">7.6.</span> 学习怎么使用别人的封装 (ExportToExcel)</h3>
+<div class="outline-text-3" id="text-7-6">
 <p>
 C# 操纵 Excel 的方法:
 </p>
@@ -3911,8 +3931,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-orgd3eace5" class="outline-3">
-<h3 id="orgd3eace5"><span class="section-number-3">6.7.</span> 优化 ExportToExcel 为直接使用已存在的文件</h3>
-<div class="outline-text-3" id="text-6-7">
+<h3 id="orgd3eace5"><span class="section-number-3">7.7.</span> 优化 ExportToExcel 为直接使用已存在的文件</h3>
+<div class="outline-text-3" id="text-7-7">
 <ul class="org-ul">
 <li>如果 Excel 文件存在，直接使用</li>
 <li>如果 Excel 不存在，先创建并初始化，再使用</li>
@@ -4001,12 +4021,12 @@ C# 操纵 Excel 的方法:
 </section>
 
 <section id="outline-container-orgb6722f0" class="outline-2">
-<h2 id="orgb6722f0"><span class="section-number-2">7.</span> 个税计算器 (简化版) <a href="tasks.html#ID-6c800397-9525-4a5d-b857-4356fb81f85c">源</a></h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orgb6722f0"><span class="section-number-2">8.</span> 个税计算器 (简化版) <a href="tasks.html#ID-6c800397-9525-4a5d-b857-4356fb81f85c">源</a></h2>
+<div class="outline-text-2" id="text-8">
 </div>
 <div id="outline-container-orgfc49a12" class="outline-3">
-<h3 id="orgfc49a12"><span class="section-number-3">7.1.</span> 原始版本，<b>顺序</b> 执行</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="orgfc49a12"><span class="section-number-3">8.1.</span> 原始版本，<b>顺序</b> 执行</h3>
+<div class="outline-text-3" id="text-8-1">
 <p>
 这是第二小组提供的代码:
 </p>
@@ -4080,8 +4100,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org863f8b4" class="outline-3">
-<h3 id="org863f8b4"><span class="section-number-3">7.2.</span> 原始版本的批注</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="org863f8b4"><span class="section-number-3">8.2.</span> 原始版本的批注</h3>
+<div class="outline-text-3" id="text-8-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">Tax</span>
 <span style="color: #707183;">{</span>
@@ -4158,8 +4178,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-orgd41723e" class="outline-3">
-<h3 id="orgd41723e"><span class="section-number-3">7.3.</span> 第四组优化版</h3>
-<div class="outline-text-3" id="text-7-3">
+<h3 id="orgd41723e"><span class="section-number-3">8.3.</span> 第四组优化版</h3>
+<div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
 
@@ -4227,10 +4247,10 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org6ea8c36" class="outline-3">
-<h3 id="org6ea8c36"><span class="section-number-3">7.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
-<div class="outline-text-3" id="text-7-4">
+<h3 id="org6ea8c36"><span class="section-number-3">8.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
+<div class="outline-text-3" id="text-8-4">
 
-<figure id="org6b96a73">
+<figure id="org64c462e">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -4239,8 +4259,8 @@ C# 操纵 Excel 的方法:
 
 
 <div id="outline-container-orgd2893b4" class="outline-3">
-<h3 id="orgd2893b4"><span class="section-number-3">7.5.</span> 通过 <b>方法</b> 对逻辑进行提取</h3>
-<div class="outline-text-3" id="text-7-5">
+<h3 id="orgd2893b4"><span class="section-number-3">8.5.</span> 通过 <b>方法</b> 对逻辑进行提取</h3>
+<div class="outline-text-3" id="text-8-5">
 <p>
 将某些代码块单独 <b>分离</b> 出来，并用一个名字代表，这就是所谓的方法。
 在原先执行代码块的地方，使用这个名字代替，这就是方法调用。
@@ -4318,8 +4338,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org7609aaa" class="outline-3">
-<h3 id="org7609aaa"><span class="section-number-3">7.6.</span> 通过 <b>类</b> 对代码逻辑进行进一步分离</h3>
-<div class="outline-text-3" id="text-7-6">
+<h3 id="org7609aaa"><span class="section-number-3">8.6.</span> 通过 <b>类</b> 对代码逻辑进行进一步分离</h3>
+<div class="outline-text-3" id="text-8-6">
 <p>
 方法越来越多，需要按照功能进行分门别类。这样就更具备组织性了。
 </p>
@@ -4405,8 +4425,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-orgc1509a2" class="outline-3">
-<h3 id="orgc1509a2"><span class="section-number-3">7.7.</span> 让类中的各个方法，能 <b>共享数据</b></h3>
-<div class="outline-text-3" id="text-7-7">
+<h3 id="orgc1509a2"><span class="section-number-3">8.7.</span> 让类中的各个方法，能 <b>共享数据</b></h3>
+<div class="outline-text-3" id="text-8-7">
 <p>
 在类中定义变量缓存每次方法调用的中间结果，下一个方法调用也可以直接使用这些缓存的结果。
 这样，方法调用间就产生了关联，调用的时候不需要传递那么多参数。
@@ -4498,14 +4518,14 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org0a94419" class="outline-3">
-<h3 id="org0a94419"><span class="section-number-3">7.8.</span> 引入 <b>对象</b> 保证调用的数据安全</h3>
-<div class="outline-text-3" id="text-7-8">
+<h3 id="org0a94419"><span class="section-number-3">8.8.</span> 引入 <b>对象</b> 保证调用的数据安全</h3>
+<div class="outline-text-3" id="text-8-8">
 <p>
 引入独立的存储空间，将方法共享的数据进行隔离:
 </p>
 
 
-<figure id="org5d96037">
+<figure id="orgec900a7">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -4597,8 +4617,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org47b6bab" class="outline-3">
-<h3 id="org47b6bab"><span class="section-number-3">7.9.</span> 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</h3>
-<div class="outline-text-3" id="text-7-9">
+<h3 id="org47b6bab"><span class="section-number-3">8.9.</span> 通过 [private Field + public Method] 的方式，<b>保护数据</b> 安全</h3>
+<div class="outline-text-3" id="text-8-9">
 <p>
 面向对象的数据的封装 (数据的安全):
 </p>
@@ -4621,7 +4641,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="orgf7de4eb">
+<figure id="org77e3ec4">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -4740,8 +4760,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org543bd8f" class="outline-3">
-<h3 id="org543bd8f"><span class="section-number-3">7.10.</span> 减少代码冗余，<b>Lazy</b> and <b>Eager</b></h3>
-<div class="outline-text-3" id="text-7-10">
+<h3 id="org543bd8f"><span class="section-number-3">8.10.</span> 减少代码冗余，<b>Lazy</b> and <b>Eager</b></h3>
+<div class="outline-text-3" id="text-8-10">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
 <span style="color: #707183;">{</span>
@@ -4933,12 +4953,12 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org86094c1" class="outline-3">
-<h3 id="org86094c1"><span class="section-number-3">7.11.</span> 来自语法糖的力量: 通过 <b>Property</b> 简化代码</h3>
-<div class="outline-text-3" id="text-7-11">
+<h3 id="org86094c1"><span class="section-number-3">8.11.</span> 来自语法糖的力量: 通过 <b>Property</b> 简化代码</h3>
+<div class="outline-text-3" id="text-8-11">
 </div>
 <div id="outline-container-org85b74cd" class="outline-4">
-<h4 id="org85b74cd"><span class="section-number-4">7.11.1.</span> Eager Version</h4>
-<div class="outline-text-4" id="text-7-11-1">
+<h4 id="org85b74cd"><span class="section-number-4">8.11.1.</span> Eager Version</h4>
+<div class="outline-text-4" id="text-8-11-1">
 
 <div  class='mc11'>
 <div>
@@ -5109,8 +5129,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org31212e8" class="outline-4">
-<h4 id="org31212e8"><span class="section-number-4">7.11.2.</span> Lazy Version</h4>
-<div class="outline-text-4" id="text-7-11-2">
+<h4 id="org31212e8"><span class="section-number-4">8.11.2.</span> Lazy Version</h4>
+<div class="outline-text-4" id="text-8-11-2">
 
 <div  class='mc11'>
 <div>
@@ -5316,8 +5336,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org5e90d90" class="outline-3">
-<h3 id="org5e90d90"><span class="section-number-3">7.12.</span> 使用 <b>Constructor</b> 进行对象的个性化构建</h3>
-<div class="outline-text-3" id="text-7-12">
+<h3 id="org5e90d90"><span class="section-number-3">8.12.</span> 使用 <b>Constructor</b> 进行对象的个性化构建</h3>
+<div class="outline-text-3" id="text-8-12">
 <p>
 使用构造方法，让对象在创建的时候，进行必要的初始化工作。
 </p>
@@ -5412,8 +5432,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org954e3a9" class="outline-3">
-<h3 id="org954e3a9"><span class="section-number-3">7.13.</span> 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</h3>
-<div class="outline-text-3" id="text-7-13">
+<h3 id="org954e3a9"><span class="section-number-3">8.13.</span> 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</h3>
+<div class="outline-text-3" id="text-8-13">
 <p>
 世界大势，合久必分，分久必合。使用对象将数据进行有效分离，使用 static 将某些数据归属于类，从而在实例间进行共享。
 </p>
@@ -5527,18 +5547,18 @@ C# 操纵 Excel 的方法:
 
 
 
-<div id="outline-container-orge9f3533" class="outline-3">
-<h3 id="orge9f3533"><span class="section-number-3">7.14.</span> 小结</h3>
+<div id="outline-container-orge70cf95" class="outline-3">
+<h3 id="orge70cf95"><span class="section-number-3">8.14.</span> 小结</h3>
 </div>
 </section>
 
 <section id="outline-container-orgf43b2bd" class="outline-2">
-<h2 id="orgf43b2bd"><span class="section-number-2">8.</span> 小费计算器</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="orgf43b2bd"><span class="section-number-2">9.</span> 小费计算器</h2>
+<div class="outline-text-2" id="text-9">
 </div>
 <div id="outline-container-orgf95a5cf" class="outline-3">
-<h3 id="orgf95a5cf"><span class="section-number-3">8.1.</span> 核心代码</h3>
-<div class="outline-text-3" id="text-8-1">
+<h3 id="orgf95a5cf"><span class="section-number-3">9.1.</span> 核心代码</h3>
+<div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">Main &#26041;&#27861;&#26159;&#31243;&#24207;&#30340;&#20837;&#21475;</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">args &#34920;&#31034;&#20174;&#25511;&#21046;&#21488;&#20256;&#26469;&#30340;&#21442;&#25968;&#25968;&#25454;</span>
@@ -5568,8 +5588,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org0447505" class="outline-3">
-<h3 id="org0447505"><span class="section-number-3">8.2.</span> 在核心代码上进行优化</h3>
-<div class="outline-text-3" id="text-8-2">
+<h3 id="org0447505"><span class="section-number-3">9.2.</span> 在核心代码上进行优化</h3>
+<div class="outline-text-3" id="text-9-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#30446;&#26631;:</span>
 <span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#35753;&#31243;&#24207;&#26356;&#20581;&#22766;&#65292;&#36991;&#20813;&#19981;&#24517;&#35201;&#30340;&#24322;&#24120;&#25243;&#20986;</span>
@@ -5617,8 +5637,8 @@ C# 操纵 Excel 的方法:
 </div>
 
 <div id="outline-container-org7a5bb4d" class="outline-3">
-<h3 id="org7a5bb4d"><span class="section-number-3">8.3.</span> 结构化重构</h3>
-<div class="outline-text-3" id="text-8-3">
+<h3 id="org7a5bb4d"><span class="section-number-3">9.3.</span> 结构化重构</h3>
+<div class="outline-text-3" id="text-9-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span class="linenr"> 1: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCal</span>
 <span class="linenr"> 2: </span><span style="color: #707183;">{</span>
@@ -5648,7 +5668,7 @@ C# 操纵 Excel 的方法:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-02</p>
+<p class="date">Created: 2021-07-08</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
