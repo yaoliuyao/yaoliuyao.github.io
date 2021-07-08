@@ -139,33 +139,34 @@
 </ul>
 </li>
 <li><a href="#org8fb54bd">8.3. 属性 (Property)</a></li>
-<li><a href="#org9981571">8.4. 构造方法/构造器 (Constructor)</a>
+<li><a href="#org31705c7">8.4. 索引器 (Indexer)</a></li>
+<li><a href="#org9981571">8.5. 构造方法/构造器 (Constructor)</a>
 <ul>
-<li><a href="#org3ec5c60">8.4.1. 对象的实例化</a></li>
-<li><a href="#orgcd7a5ea">8.4.2. 构造器</a></li>
-<li><a href="#org841d721">8.4.3. 构造器链</a></li>
-<li><a href="#org25cebcf">8.4.4. 静态构造器</a></li>
+<li><a href="#org3ec5c60">8.5.1. 对象的实例化</a></li>
+<li><a href="#orgcd7a5ea">8.5.2. 构造器</a></li>
+<li><a href="#org841d721">8.5.3. 构造器链</a></li>
+<li><a href="#org25cebcf">8.5.4. 静态构造器</a></li>
 </ul>
 </li>
-<li><a href="#org62bbebf">8.5. 析构方法/析构器 (Deconstructor)</a></li>
-<li><a href="#orgfa159ce">8.6. 静态方法 (Static)</a></li>
-<li><a href="#org364c727">8.7. 将数据设置为不变的 (const/readonly)</a></li>
-<li><a href="#org6d7baba">8.8. 继承 (Inheritance)</a>
+<li><a href="#org62bbebf">8.6. 析构方法/析构器 (Deconstructor)</a></li>
+<li><a href="#orgfa159ce">8.7. 静态方法 (Static)</a></li>
+<li><a href="#org364c727">8.8. 将数据设置为不变的 (const/readonly)</a></li>
+<li><a href="#org6d7baba">8.9. 继承 (Inheritance)</a>
 <ul>
-<li><a href="#org97dd11c">8.8.1. 虚方法 (virtual/override)</a></li>
-<li><a href="#org12bc391">8.8.2. 抽象方法 (abstract)</a></li>
+<li><a href="#org97dd11c">8.9.1. 虚方法 (virtual/override)</a></li>
+<li><a href="#org12bc391">8.9.2. 抽象方法 (abstract)</a></li>
 </ul>
 </li>
-<li><a href="#org5a5a1dd">8.9. 多态 (Polymorphism)</a></li>
-<li><a href="#org89daf1e">8.10. 静态类/static</a></li>
-<li><a href="#org668ec2f">8.11. 密封类/sealed</a></li>
-<li><a href="#org0aa2e60">8.12. 分部类/partial</a></li>
-<li><a href="#orgd68a159">8.13. 基类 Object</a>
+<li><a href="#org5a5a1dd">8.10. 多态 (Polymorphism)</a></li>
+<li><a href="#org89daf1e">8.11. 静态类/static</a></li>
+<li><a href="#org668ec2f">8.12. 密封类/sealed</a></li>
+<li><a href="#org0aa2e60">8.13. 分部类/partial</a></li>
+<li><a href="#orgd68a159">8.14. 基类 Object</a>
 <ul>
-<li><a href="#org6899a12">8.13.1. ToString</a></li>
+<li><a href="#org6899a12">8.14.1. ToString</a></li>
 </ul>
 </li>
-<li><a href="#orgb9cf844">8.14. 类的扩展机制</a></li>
+<li><a href="#orgb9cf844">8.15. 类的扩展机制</a></li>
 </ul>
 </li>
 <li><a href="#orgfda2215">9. 接口 (Interface)</a>
@@ -317,13 +318,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org8158ecc">
+<figure id="orgb141f0e">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org8dd8787">
+<figure id="orge4ff36f">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -568,7 +569,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org0be074f">
+<figure id="org7538b93">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -689,7 +690,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgbfa5399">
+<figure id="org813dfdf">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -717,7 +718,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgcc61316">
+<figure id="org2228104">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -776,7 +777,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org17ea85d">
+<figure id="org7ca5028">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1202,7 +1203,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgc1d2f1d">
+<figure id="orgc4543f1">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1240,7 +1241,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgd68b7aa">
+<figure id="org03ba16d">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2241,7 +2242,7 @@ out:
 </div>
 
 
-<figure id="org1246a66">
+<figure id="org50b6aa7">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -2520,13 +2521,67 @@ out:
 </div>
 </div>
 
-<div id="outline-container-org9981571" class="outline-3">
-<h3 id="org9981571"><span class="section-number-3">8.4.</span> 构造方法/构造器 (Constructor)</h3>
+<div id="outline-container-org31705c7" class="outline-3">
+<h3 id="org31705c7"><span class="section-number-3">8.4.</span> 索引器 (Indexer)</h3>
 <div class="outline-text-3" id="text-8-4">
+<div class="org-src-container">
+<pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">"hello"</span>;
+    <span style="color: #228b22;">char</span> <span style="color: #a0522d;">x1</span> = a<span style="color: #7388d6;">[</span>1<span style="color: #7388d6;">]</span>;
+
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">b</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #7388d6;">[]</span> <span style="color: #7388d6;">{</span>1, 2, 3, 4<span style="color: #7388d6;">}</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x2</span> = b<span style="color: #7388d6;">[</span>1<span style="color: #7388d6;">]</span>;
+
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">c</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">&gt;</span> <span style="color: #7388d6;">{</span>1, 2, 3, 4<span style="color: #7388d6;">}</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x3</span> = c<span style="color: #7388d6;">[</span>1<span style="color: #7388d6;">]</span>;
+
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dictionary</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #228b22;">int</span><span style="color: #7388d6;">&gt;</span> <span style="color: #7388d6;">{</span><span style="color: #909183;">{</span><span style="color: #8b2252;">"xm"</span>, 22<span style="color: #909183;">}</span>, <span style="color: #909183;">{</span><span style="color: #8b2252;">"xh"</span>, 24<span style="color: #909183;">}</span><span style="color: #7388d6;">}</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">x4</span> = d<span style="color: #7388d6;">[</span><span style="color: #8b2252;">"xm"</span><span style="color: #7388d6;">]</span>;
+
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Person</span><span style="color: #7388d6;">()</span>;
+    p<span style="color: #7388d6;">[</span>1<span style="color: #7388d6;">]</span> = <span style="color: #8b2252;">"&#24744;&#22909;"</span>;
+    p<span style="color: #7388d6;">[</span>5<span style="color: #7388d6;">]</span> = <span style="color: #8b2252;">"&#20320;&#22909;"</span>;
+    p<span style="color: #7388d6;">[</span>3<span style="color: #7388d6;">]</span> = <span style="color: #8b2252;">"&#20843;&#22030;"</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>p<span style="color: #909183;">[</span>1<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>p<span style="color: #909183;">[</span>2<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>p<span style="color: #909183;">[</span>3<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>p<span style="color: #909183;">[</span>4<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>p<span style="color: #909183;">[</span>5<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">Dictionary</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">hiStyles</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dictionary</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #7388d6;">&gt;()</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a020f0;">this</span><span style="color: #7388d6;">[</span><span style="color: #228b22;">int</span> i<span style="color: #7388d6;">]</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">get</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>!hiStyles.<span style="color: #0000ff;">TryGetValue</span><span style="color: #907373;">(</span><span style="color: #228b22;">i</span>, <span style="color: #a020f0;">out</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">hiStyle</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                hiStyle = <span style="color: #8b2252;">"Hello"</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">return</span> $<span style="color: #8b2252;">"{hiStyle} {i}"</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">set</span>
+        <span style="color: #909183;">{</span>
+            hiStyles<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span> = <span style="color: #008b8b;">value</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9981571" class="outline-3">
+<h3 id="org9981571"><span class="section-number-3">8.5.</span> 构造方法/构造器 (Constructor)</h3>
+<div class="outline-text-3" id="text-8-5">
 </div>
 <div id="outline-container-org3ec5c60" class="outline-4">
-<h4 id="org3ec5c60"><span class="section-number-4">8.4.1.</span> 对象的实例化</h4>
-<div class="outline-text-4" id="text-8-4-1">
+<h4 id="org3ec5c60"><span class="section-number-4">8.5.1.</span> 对象的实例化</h4>
+<div class="outline-text-4" id="text-8-5-1">
 <p>
 对象的实例化，分为下面几个步骤:
 </p>
@@ -2539,8 +2594,8 @@ out:
 </div>
 
 <div id="outline-container-orgcd7a5ea" class="outline-4">
-<h4 id="orgcd7a5ea"><span class="section-number-4">8.4.2.</span> 构造器</h4>
-<div class="outline-text-4" id="text-8-4-2">
+<h4 id="orgcd7a5ea"><span class="section-number-4">8.5.2.</span> 构造器</h4>
+<div class="outline-text-4" id="text-8-5-2">
 <p>
 所谓的构造方法，就是类中定义的一个特殊方法。它用来对实例空间进行若干初始化工作:
 </p>
@@ -2575,8 +2630,8 @@ out:
 </div>
 
 <div id="outline-container-org841d721" class="outline-4">
-<h4 id="org841d721"><span class="section-number-4">8.4.3.</span> 构造器链</h4>
-<div class="outline-text-4" id="text-8-4-3">
+<h4 id="org841d721"><span class="section-number-4">8.5.3.</span> 构造器链</h4>
+<div class="outline-text-4" id="text-8-5-3">
 <ul class="org-ul">
 <li>如果不显式继承某个类，那么继承的将是 object。即可以忽略掉 <code>: Object</code></li>
 <li>如果不显式添加构造器，那么编译器会自动插入一个无参的。即可以省略掉 <code>public Son() {}</code></li>
@@ -2644,8 +2699,8 @@ out:
 </div>
 
 <div id="outline-container-org25cebcf" class="outline-4">
-<h4 id="org25cebcf"><span class="section-number-4">8.4.4.</span> 静态构造器</h4>
-<div class="outline-text-4" id="text-8-4-4">
+<h4 id="org25cebcf"><span class="section-number-4">8.5.4.</span> 静态构造器</h4>
+<div class="outline-text-4" id="text-8-5-4">
 <ul class="org-ul">
 <li>构造器是用来初始化 <b>对象</b> 的</li>
 <li>静态构造器是用来初始化 <b>类</b> 的</li>
@@ -2669,8 +2724,8 @@ out:
 </div>
 
 <div id="outline-container-org62bbebf" class="outline-3">
-<h3 id="org62bbebf"><span class="section-number-3">8.5.</span> 析构方法/析构器 (Deconstructor)</h3>
-<div class="outline-text-3" id="text-8-5">
+<h3 id="org62bbebf"><span class="section-number-3">8.6.</span> 析构方法/析构器 (Deconstructor)</h3>
+<div class="outline-text-3" id="text-8-6">
 <div class="org-src-container">
 <pre class="src src-csharp">~<span style="color: #0000ff;">TipCalculator</span><span style="color: #707183;">()</span>
 <span style="color: #707183;">{</span>
@@ -2687,8 +2742,8 @@ out:
 </div>
 
 <div id="outline-container-orgfa159ce" class="outline-3">
-<h3 id="orgfa159ce"><span class="section-number-3">8.6.</span> 静态方法 (Static)</h3>
-<div class="outline-text-3" id="text-8-6">
+<h3 id="orgfa159ce"><span class="section-number-3">8.7.</span> 静态方法 (Static)</h3>
+<div class="outline-text-3" id="text-8-7">
 <p>
 将归属权，交给类。调用的时候，使用 <code>类名.xxx</code> 方式。
 </p>
@@ -2696,8 +2751,8 @@ out:
 </div>
 
 <div id="outline-container-org364c727" class="outline-3">
-<h3 id="org364c727"><span class="section-number-3">8.7.</span> 将数据设置为不变的 (const/readonly)</h3>
-<div class="outline-text-3" id="text-8-7">
+<h3 id="org364c727"><span class="section-number-3">8.8.</span> 将数据设置为不变的 (const/readonly)</h3>
+<div class="outline-text-3" id="text-8-8">
 <pre class="example">
 通过 private 等操作符可以保护数据的外部访问安全
 通过 const/readonly 可以防止内鬼
@@ -2747,8 +2802,8 @@ readonly:
 </div>
 
 <div id="outline-container-org6d7baba" class="outline-3">
-<h3 id="org6d7baba"><span class="section-number-3">8.8.</span> 继承 (Inheritance)</h3>
-<div class="outline-text-3" id="text-8-8">
+<h3 id="org6d7baba"><span class="section-number-3">8.9.</span> 继承 (Inheritance)</h3>
+<div class="outline-text-3" id="text-8-9">
 <ul class="org-ul">
 <li>继承表示，我的是我的，你的也是我的。使用 <code>:</code> 语法表示继承关系</li>
 <li>继承主要用来消除冗余，让逻辑得以 <b>复用</b>。逻辑上来说，跟自然界的分门别类是对应一致的</li>
@@ -2777,8 +2832,8 @@ d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-org97dd11c" class="outline-4">
-<h4 id="org97dd11c"><span class="section-number-4">8.8.1.</span> 虚方法 (virtual/override)</h4>
-<div class="outline-text-4" id="text-8-8-1">
+<h4 id="org97dd11c"><span class="section-number-4">8.9.1.</span> 虚方法 (virtual/override)</h4>
+<div class="outline-text-4" id="text-8-9-1">
 <p>
 虚函数:
 </p>
@@ -2870,8 +2925,8 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-org12bc391" class="outline-4">
-<h4 id="org12bc391"><span class="section-number-4">8.8.2.</span> 抽象方法 (abstract)</h4>
-<div class="outline-text-4" id="text-8-8-2">
+<h4 id="org12bc391"><span class="section-number-4">8.9.2.</span> 抽象方法 (abstract)</h4>
+<div class="outline-text-4" id="text-8-9-2">
 <ul class="org-ul">
 <li>继承下来的，不一定是权利，也有可能是义务。俗语有云 <b>父债子偿</b></li>
 <li>通过在父类中，将某个方法用 <code>abstract</code> 修饰，表示它是债务&#x2026;</li>
@@ -2918,8 +2973,8 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 
 <div id="outline-container-org5a5a1dd" class="outline-3">
-<h3 id="org5a5a1dd"><span class="section-number-3">8.9.</span> 多态 (Polymorphism)</h3>
-<div class="outline-text-3" id="text-8-9">
+<h3 id="org5a5a1dd"><span class="section-number-3">8.10.</span> 多态 (Polymorphism)</h3>
+<div class="outline-text-3" id="text-8-10">
 <p>
 多态是一个来自生物学上的概念，<a href="https://baike.baidu.com/item/%E5%A4%9A%E6%80%81%E7%8E%B0%E8%B1%A1">参见百度百科</a>:
 </p>
@@ -2975,8 +3030,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-org89daf1e" class="outline-3">
-<h3 id="org89daf1e"><span class="section-number-3">8.10.</span> 静态类/static</h3>
-<div class="outline-text-3" id="text-8-10">
+<h3 id="org89daf1e"><span class="section-number-3">8.11.</span> 静态类/static</h3>
+<div class="outline-text-3" id="text-8-11">
 <p>
 限制里面所有的方法，必须是静态的。典型的代表是 Math 类。
 </p>
@@ -2984,8 +3039,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-org668ec2f" class="outline-3">
-<h3 id="org668ec2f"><span class="section-number-3">8.11.</span> 密封类/sealed</h3>
-<div class="outline-text-3" id="text-8-11">
+<h3 id="org668ec2f"><span class="section-number-3">8.12.</span> 密封类/sealed</h3>
+<div class="outline-text-3" id="text-8-12">
 <p>
 这就从语法上，避免了某个类被继承的可能。
 </p>
@@ -2993,8 +3048,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-org0aa2e60" class="outline-3">
-<h3 id="org0aa2e60"><span class="section-number-3">8.12.</span> 分部类/partial</h3>
-<div class="outline-text-3" id="text-8-12">
+<h3 id="org0aa2e60"><span class="section-number-3">8.13.</span> 分部类/partial</h3>
+<div class="outline-text-3" id="text-8-13">
 <p>
 让类可以写成多部分。在编译的环节，编译器将会帮助我们自动合并之后再编译。
 </p>
@@ -3019,12 +3074,12 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 
 <div id="outline-container-orgd68a159" class="outline-3">
-<h3 id="orgd68a159"><span class="section-number-3">8.13.</span> 基类 Object</h3>
-<div class="outline-text-3" id="text-8-13">
+<h3 id="orgd68a159"><span class="section-number-3">8.14.</span> 基类 Object</h3>
+<div class="outline-text-3" id="text-8-14">
 </div>
 <div id="outline-container-org6899a12" class="outline-4">
-<h4 id="org6899a12"><span class="section-number-4">8.13.1.</span> ToString</h4>
-<div class="outline-text-4" id="text-8-13-1">
+<h4 id="org6899a12"><span class="section-number-4">8.14.1.</span> ToString</h4>
+<div class="outline-text-4" id="text-8-14-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalculator</span> : <span style="color: #228b22;">CalculatorBase</span>
 <span style="color: #707183;">{</span>
@@ -3041,8 +3096,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgb9cf844" class="outline-3">
-<h3 id="orgb9cf844"><span class="section-number-3">8.14.</span> 类的扩展机制</h3>
-<div class="outline-text-3" id="text-8-14">
+<h3 id="orgb9cf844"><span class="section-number-3">8.15.</span> 类的扩展机制</h3>
+<div class="outline-text-3" id="text-8-15">
 <p>
 为某个类扩展功能的基本方式:
 </p>
@@ -3599,7 +3654,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgc2e75f3">
+<figure id="org5d01daa">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4905,6 +4960,8 @@ ImmutableList:
 </div>
 </div>
 </section>
+
+
 
 <section id="outline-container-org2296731" class="outline-2">
 <h2 id="org2296731"><span class="section-number-2">16.</span> 泛型 (Generic)</h2>

@@ -1755,6 +1755,56 @@ out:
   }
 #+end_src
 
+** 索引器 (Indexer)
+
+#+begin_src cs
+  static void Main()
+  {
+      string a = "hello";
+      char x1 = a[1];
+  
+      var b = new int[] {1, 2, 3, 4};
+      int x2 = b[1];
+  
+      var c = new List<int> {1, 2, 3, 4};
+      int x3 = c[1];
+  
+      var d = new Dictionary<string, int> {{"xm", 22}, {"xh", 24}};
+      int x4 = d["xm"];
+  
+      var p = new Person();
+      p[1] = "您好";
+      p[5] = "你好";
+      p[3] = "八嘎";
+      Console.WriteLine(p[1]);
+      Console.WriteLine(p[2]);
+      Console.WriteLine(p[3]);
+      Console.WriteLine(p[4]);
+      Console.WriteLine(p[5]);
+  }
+  
+  class Person
+  {
+      private Dictionary<int, string> hiStyles = new Dictionary<int, string>();
+  
+      public string this[int i]
+      {
+          get
+          {
+              if (!hiStyles.TryGetValue(i, out string hiStyle))
+              {
+                  hiStyle = "Hello";
+              }
+              return $"{hiStyle} {i}";
+          }
+          set
+          {
+              hiStyles[i] = value;
+          }
+      }
+  }
+#+end_src
+
 ** 构造方法/构造器 (Constructor)
 *** 对象的实例化
 
@@ -3796,6 +3846,8 @@ ImmutableList:
       }
   }
 #+end_src
+
+
 
 * 泛型 (Generic)
 
