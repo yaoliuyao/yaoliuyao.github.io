@@ -12,6 +12,182 @@ ScoreRecord:
 
 加入交互。
 
+#+begin_src cs -n
+  namespace ScoreRecorder
+  {
+      class Program
+      {
+          static void Main(string[] args)
+          {
+              var sr = new ScoreRecorder();
+              sr.Startup();
+          }
+      }
+  
+      class ScoreRecorder
+      {
+          private readonly Dictionary<string, double> _scores = new(); // 数据源，核心
+  
+          public double? this[string name]
+          {
+              get
+              {
+                  if (_scores.ContainsKey(name))
+                  {
+                      return _scores[name];
+                  }
+  
+                  return null;
+              }
+              set
+              {
+                  if (value == null) // 如果 sr[x] = null, 那么当作删除
+                  {
+                      _scores.Remove(name);
+                  }
+                  else if (value > 100 || value <0) // 不合法的输入
+                  {
+                      throw new Exception("分数必须是 0 ~ 100 之间");
+                  }
+                  else // 添加
+                  {
+                      _scores[name] = (double)value;
+                  }
+              }
+          }
+  
+          public void Print(string name)
+          {
+              Console.WriteLine();
+              double? score = this[name];
+              Console.WriteLine(score == null ? $"{name} 的成绩不存在" : $"{name}: {score}");
+          }
+  
+          public void PrintAll()
+          {
+              Console.WriteLine();
+  
+              if (_scores.Count == 0)
+              {
+                  Console.WriteLine("当前不存在任何成绩，请先录入。");
+                  return;
+              }
+  
+              foreach (var score in _scores)
+              {
+                  Console.WriteLine($"{score.Key} 的成绩为: {score.Value}");
+              }
+          }
+  
+          public void Export(string path)
+          {
+              var sb = new StringBuilder();
+              foreach (var score in _scores)
+              {
+                  sb.Append($"\n\n{score.Key} -- {score.Value}\n");
+              }
+  
+              File.WriteAllText(path, sb.ToString());
+          }
+  
+          // 交互方法
+          public void Record()
+          {
+              Console.Write("姓名: ");
+              string name = Console.ReadLine();
+  
+              if (_scores.ContainsKey(name))
+              {
+                  Console.WriteLine($"已经存在 {name} 的成绩，为 {this[name]}");
+                  return;
+              }
+  
+              Console.Write("成绩: ");
+              if (double.TryParse(Console.ReadLine(), out double score)
+                  && score <= 100 && score >= 0)
+              {
+                  this[name] = score;
+              }
+              else
+              {
+                  Console.WriteLine("输入格式有误，分数必须是 0 ~ 100 之间的数字");
+              }
+          }
+  
+          public void RecordLoop()
+          {
+              while (true)
+              {
+                  Record();
+  
+                  Console.ForegroundColor = ConsoleColor.Gray;
+                  Console.Write("按任意键输入下一个成绩，按 N/Q 退出...");
+                  Console.ResetColor();
+  
+                  var key = Console.ReadKey();
+                  if (key.Key == ConsoleKey.N || key.Key == ConsoleKey.Q)
+                  {
+                      return;
+                  }
+                  Console.WriteLine();
+              }
+          }
+  
+          public void Query()
+          {
+              Console.Write("请输入您要查询的学生的姓名: ");
+              Print(Console.ReadLine());
+          }
+  
+          public void ExportTo()
+          {
+              Console.Write("请输入您要导出的路径: ");
+              Export(Console.ReadLine());
+          }
+  
+          public void PrintMenu()
+          {
+              Console.ForegroundColor = ConsoleColor.DarkBlue;
+              Console.WriteLine("\n\n=-= 欢迎来到这里 =-=\n");
+              Console.WriteLine("1. 录入 2. 查询 3. 打印所有 4. 导出到文件\n\n");
+              Console.ResetColor();
+          }
+  
+          public void Startup()
+          {
+              while (true)
+              {
+                  PrintMenu();
+  
+                  var key = Console.ReadKey();
+                  Console.WriteLine();
+  
+                  switch (key.Key)
+                  {
+                      case ConsoleKey.D1:
+                          RecordLoop();
+                          break;
+                      case ConsoleKey.D2:
+                          Query();
+                          break;
+                      case ConsoleKey.D3:
+                          PrintAll();
+                          break;
+                      case ConsoleKey.D4:
+                          ExportTo();
+                          break;
+                      case ConsoleKey.Q:
+                          return;
+                      default:
+                          Console.WriteLine("输入有误....");
+                          break;
+                  }
+              }
+          }
+      }
+  }
+#+end_src
+
 * 过滤字符串 (委托使用)
 
 实现功能，将某个字符串的一些符合条件的字符，咔嚓掉。
