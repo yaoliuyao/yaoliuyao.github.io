@@ -379,6 +379,10 @@ Excel 大体结构:
 
 稍微简化了一些。
 
+#+ATTR_HTML: :width 300px
+[[file:img/score-record.png]]
+
+
 #+begin_src csharp -n
   class Program
   {
