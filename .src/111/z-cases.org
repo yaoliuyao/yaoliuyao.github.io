@@ -377,23 +377,25 @@ Excel 大体结构:
 
 *** 另一个版本
 
+稍微简化了一些。
+
 #+begin_src csharp -n
   class Program
   {
       static void Main(string[] args)
       {
-          var sc2 = new ScoreRecorder3();
+          var sc3 = new ScoreRecorder3();
           if (args[0] == "all")
           {
-              sc2.PrintAll();
+              sc3.PrintAll();
           }
           else if (args[0] == "todo")
           {
-              sc2.PrintTodo();
+              sc3.PrintTodo();
           }
           else if (args[0] == "done")
           {
-              sc2.PrintDone();
+              sc3.PrintDone();
           }
           else if (args[0] == "update")
           {
@@ -402,131 +404,13 @@ Excel 大体结构:
   
               var score = double.Parse(scoreString);
               Console.WriteLine($"{name}/{score}");
-              sc2.Update(name, score);
+              sc3.Update(name, score);
           }
           else
           {
               Console.WriteLine("使用的语法为： xxx update/all/done/todo");
           }
       }
-  }
-  
-  class ScoreRecorder3
-  {
-      public string Path { get; set; }= @"e:\chengji.xls";
-  
-      // Core
-  
-      public Dictionary<string, (int rn, string name, double? score)> ReadAll()
-      {
-          Dictionary<string, (int, string, double?)> scores = new();
-  
-          WithExcel(sheet =>
-          {
-              for (var i = 1; i <= sheet.LastRowNum; i++)
-              {
-                  var row = sheet.GetRow(i);
-                  var name = row.GetCell(0).StringCellValue;
-                  var scoreCell = row.GetCell(1);
-                  scores[name] = (i, name, scoreCell?.NumericCellValue);
-              }
-          });
-  
-          return scores;
-      }
-  
-      public (int rn, string name, double? score)? Read(string name)
-      {
-          return ReadAll().TryGetValue(name, out (int, string, double?) ss) ? ss : null;
-      }
-  
-      public void WriteScore(int rn, int cn, double score)
-      {
-          WithExcel(sheet =>
-          {
-              var row = sheet.GetRow(rn);
-              var cell = row.GetCell(cn) ?? row.CreateCell(1);
-              cell.SetCellValue(score);
-          }, true);
-      }
-  
-      // Helper
-  
-      private void WithExcel(Action<ISheet> act, bool write = false)
-      {
-          using var file = File.OpenRead(Path);
-          var xls = new HSSFWorkbook(file);
-          var sheet = xls.GetSheetAt(0);
-  
-          act(sheet);
-  
-          if (write)
-          {
-              using var sw = File.OpenWrite(Path);
-              xls.Write(sw);
-          }
-  
-          xls.Close();
-      }
-  
-      // Interactive
-  
-      public void PrintAll()
-      {
-          foreach (var s in ReadAll().Values)
-          {
-              if (s.score.HasValue)
-              {
-                  Console.WriteLine($"{s.name} 的成绩为 {s.score}");
-              }
-              else
-              {
-                  Console.WriteLine($"{s.name} 的成绩不存在");
-              }
-          }
-      }
-  
-      public void PrintDone()
-      {
-          foreach (var s in ReadAll().Values)
-          {
-              if (s.score.HasValue)
-              {
-                  Console.WriteLine($"{s.name} 的成绩为 {s.score}");
-              }
-          }
-      }
-  
-      public void PrintTodo()
-      {
-          foreach (var s in ReadAll().Values)
-          {
-              if (!s.score.HasValue)
-              {
-                  Console.WriteLine($"{s.name} 没有成绩");
-              }
-          }
-      }
-  
-      public void Update(string name, double score)
-      {
-          var info = Read(name);
-  
-          if (info == null)
-          {
-              Console.WriteLine("学生不存在");
-              return;
-          }
-  
-          if (info.Value.score.HasValue)
-          {
-              Console.Write($"学生的成绩已经存在 ({info.Value.name} : {info.Value.score})，是否覆盖 (Y)? ");
-              if (Console.ReadKey().Key != ConsoleKey.Y) return;
-          }
-  
-          WriteScore(info.Value.rn, 1, score);
-      }
-  }
 #+end_src
 
 * 过滤字符串 (委托使用)
