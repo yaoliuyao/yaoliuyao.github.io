@@ -528,6 +528,23 @@ Excel 大体结构:
   }
 #+end_src
 
+其他:
+#+begin_src csharp
+  // ??
+  var cell = row.GetCell(cn) ?? row.CreateCell(1);
+  // ----
+  var cell = row.GetCell(cn);
+  if (cell == null)
+  {
+      cell = row.CreateCell(1);
+  }
+  
+  // ?.
+  scores[name] = (i, name, scoreCell?.NumericCellValue);
+  // ----  
+  scores[name] = (i, name, scoreCell != null ? scoreCell.NumericCellValue : (double?) null);
+#+end_src
+
 * 过滤字符串 (委托使用)
 
 实现功能，将某个字符串的一些符合条件的字符，咔嚓掉。

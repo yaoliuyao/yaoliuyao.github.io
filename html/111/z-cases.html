@@ -67,7 +67,7 @@
 </li>
 <li><a href="#org1e9b233">4. 加密、解密 (rot13)</a>
 <ul>
-<li><a href="#orgdb26af9">4.1. 分析</a></li>
+<li><a href="#org1bad64a">4.1. 分析</a></li>
 <li><a href="#org34536b0">4.2. 实现</a></li>
 <li><a href="#org629fa82">4.3. 落地</a></li>
 <li><a href="#org32b4e34">4.4. 导出并使用</a></li>
@@ -84,11 +84,11 @@
 <li><a href="#org934289b">5.2.4. 消除字符串的基本逻辑</a></li>
 </ul>
 </li>
-<li><a href="#org1bad64a">5.3. 分析</a></li>
+<li><a href="#org374da26">5.3. 分析</a></li>
 <li><a href="#orgdbb6416">5.4. 程序概览</a></li>
 <li><a href="#org30ad555">5.5. Code Example</a></li>
 <li><a href="#orga44c44c">5.6. 其他</a></li>
-<li><a href="#orgd370f92">5.7. 小结</a></li>
+<li><a href="#orgf7d9817">5.7. 小结</a></li>
 </ul>
 </li>
 <li><a href="#org78b9f59">6. 导出为 Excel 的总结</a>
@@ -155,7 +155,7 @@
 </li>
 <li><a href="#org5e90d90">8.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
 <li><a href="#org954e3a9">8.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
-<li><a href="#orgf7d9817">8.14. 小结</a></li>
+<li><a href="#orga3c347e">8.14. 小结</a></li>
 </ul>
 </li>
 <li><a href="#orgf43b2bd">9. 小费计算器</a>
@@ -610,7 +610,7 @@ Excel 大体结构:
 </p>
 
 
-<figure id="orge6d1f63">
+<figure id="org80a21b4">
 <img src="img/score-record.png" alt="score-record.png" width="300px">
 
 </figure>
@@ -759,6 +759,26 @@ Excel 大体结构:
 <span class="linenr">140: </span>        <span style="color: #0000ff;">WriteScore</span><span style="color: #909183;">(</span>info.<span style="color: #228b22;">rn</span>, 1, <span style="color: #228b22;">score</span><span style="color: #909183;">)</span>;
 <span class="linenr">141: </span>    <span style="color: #7388d6;">}</span>
 <span class="linenr">142: </span><span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+其他:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">??</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell</span> = row.<span style="color: #0000ff;">GetCell</span><span style="color: #707183;">(</span>cn<span style="color: #707183;">)</span> ?? row.<span style="color: #0000ff;">CreateCell</span><span style="color: #707183;">(</span>1<span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">----</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">cell</span> = row.<span style="color: #0000ff;">GetCell</span><span style="color: #707183;">(</span>cn<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>cell == <span style="color: #008b8b;">null</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    cell = row.<span style="color: #0000ff;">CreateCell</span><span style="color: #7388d6;">(</span>1<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">?.</span>
+scores<span style="color: #707183;">[</span>name<span style="color: #707183;">]</span> = <span style="color: #707183;">(</span>i, name, scoreCell?.NumericCellValue<span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">----  </span>
+scores<span style="color: #707183;">[</span>name<span style="color: #707183;">]</span> = <span style="color: #707183;">(</span>i, name, scoreCell != <span style="color: #008b8b;">null</span> ? scoreCell.NumericCellValue : <span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span>?<span style="color: #7388d6;">)</span> <span style="color: #008b8b;">null</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 </div>
@@ -1119,8 +1139,8 @@ Excel 大体结构:
 <h2 id="org1e9b233"><span class="section-number-2">4.</span> 加密、解密 (rot13)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgdb26af9" class="outline-3">
-<h3 id="orgdb26af9"><span class="section-number-3">4.1.</span> 分析</h3>
+<div id="outline-container-org1bad64a" class="outline-3">
+<h3 id="org1bad64a"><span class="section-number-3">4.1.</span> 分析</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 解析问题，大事化小:
@@ -1511,8 +1531,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org1bad64a" class="outline-3">
-<h3 id="org1bad64a"><span class="section-number-3">5.3.</span> 分析</h3>
+<div id="outline-container-org374da26" class="outline-3">
+<h3 id="org374da26"><span class="section-number-3">5.3.</span> 分析</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>显示一排小猪 (初始化若干个、会定时加入若干个小猪、随着用户交互小猪加入队伍)</li>
@@ -1525,7 +1545,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="org4be4987">
+<pre class="example" id="orgdaf9be8">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -1930,8 +1950,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgd370f92" class="outline-3">
-<h3 id="orgd370f92"><span class="section-number-3">5.7.</span> 小结</h3>
+<div id="outline-container-orgf7d9817" class="outline-3">
+<h3 id="orgf7d9817"><span class="section-number-3">5.7.</span> 小结</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 通过这个游戏，达到的目的:
@@ -3210,7 +3230,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </p>
 
 
-<figure id="orgcf4feee">
+<figure id="org93a574d">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -3382,7 +3402,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <h3 id="orgaae223a"><span class="section-number-3">6.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-6-5">
 
-<figure id="org7eb6712">
+<figure id="org76cdfdd">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -4836,7 +4856,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">8.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-8-4">
 
-<figure id="org9d609a7">
+<figure id="orgf063e6a">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -5111,7 +5131,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="org97cde90">
+<figure id="org1bafe4b">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -5227,7 +5247,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org1584c8e">
+<figure id="orgaac58d3">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -6133,8 +6153,8 @@ C# 操纵 Excel 的方法:
 
 
 
-<div id="outline-container-orgf7d9817" class="outline-3">
-<h3 id="orgf7d9817"><span class="section-number-3">8.14.</span> 小结</h3>
+<div id="outline-container-orga3c347e" class="outline-3">
+<h3 id="orga3c347e"><span class="section-number-3">8.14.</span> 小结</h3>
 </div>
 </section>
 
