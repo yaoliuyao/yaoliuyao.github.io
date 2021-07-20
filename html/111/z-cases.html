@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-15 -->
+<!-- 2021-07-20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>一万行代码</title>
@@ -50,6 +50,7 @@
 <li><a href="#orgf07c8eb">1.2.1. 示例代码</a></li>
 <li><a href="#org53752e9">1.2.2. 另一个版本</a></li>
 <li><a href="#orgd885014">1.2.3. 补充</a></li>
+<li><a href="#org0e68e9b">1.2.4. Question and Answer</a></li>
 </ul>
 </li>
 </ul>
@@ -68,7 +69,7 @@
 </li>
 <li><a href="#org1e9b233">4. 加密、解密 (rot13)</a>
 <ul>
-<li><a href="#org374da26">4.1. 分析</a></li>
+<li><a href="#orgb706b29">4.1. 分析</a></li>
 <li><a href="#org34536b0">4.2. 实现</a></li>
 <li><a href="#org629fa82">4.3. 落地</a></li>
 <li><a href="#org32b4e34">4.4. 导出并使用</a></li>
@@ -85,11 +86,11 @@
 <li><a href="#org934289b">5.2.4. 消除字符串的基本逻辑</a></li>
 </ul>
 </li>
-<li><a href="#orgb706b29">5.3. 分析</a></li>
+<li><a href="#orgba4cb1b">5.3. 分析</a></li>
 <li><a href="#orgdbb6416">5.4. 程序概览</a></li>
 <li><a href="#org30ad555">5.5. Code Example</a></li>
 <li><a href="#orga44c44c">5.6. 其他</a></li>
-<li><a href="#orga3c347e">5.7. 小结</a></li>
+<li><a href="#orgcd7c9f7">5.7. 小结</a></li>
 </ul>
 </li>
 <li><a href="#org78b9f59">6. 导出为 Excel 的总结</a>
@@ -156,7 +157,7 @@
 </li>
 <li><a href="#org5e90d90">8.12. 使用 <b>Constructor</b> 进行对象的个性化构建</a></li>
 <li><a href="#org954e3a9">8.13. 使用 <b>static</b> 将某些数据归属于类，达到数据共享的目的</a></li>
-<li><a href="#orgcd7c9f7">8.14. 小结</a></li>
+<li><a href="#org843d09f">8.14. 小结</a></li>
 </ul>
 </li>
 <li><a href="#orgf43b2bd">9. 小费计算器</a>
@@ -611,7 +612,7 @@ Excel 大体结构:
 </p>
 
 
-<figure id="org2bee748">
+<figure id="org9d1c408">
 <img src="img/score-record.png" alt="score-record.png" width="300px">
 
 </figure>
@@ -782,6 +783,61 @@ Excel 大体结构:
 scores<span style="color: #707183;">[</span>name<span style="color: #707183;">]</span> = <span style="color: #707183;">(</span>i, name, scoreCell?.NumericCellValue<span style="color: #707183;">)</span>;
 <span style="color: #b22222;">// </span><span style="color: #b22222;">----  </span>
 scores<span style="color: #707183;">[</span>name<span style="color: #707183;">]</span> = <span style="color: #707183;">(</span>i, name, scoreCell != <span style="color: #008b8b;">null</span> ? scoreCell.NumericCellValue : <span style="color: #7388d6;">(</span><span style="color: #228b22;">double</span>?<span style="color: #7388d6;">)</span> <span style="color: #008b8b;">null</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0e68e9b" class="outline-4">
+<h4 id="org0e68e9b"><span class="section-number-4">1.2.4.</span> Question and Answer</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">Dictionary</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">rn</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">double</span>? <span style="color: #a0522d;">score</span><span style="color: #7388d6;">)</span><span style="color: #707183;">&gt;</span> <span style="color: #0000ff;">ReadAll</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">Dictionary</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #909183;">(</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span>, <span style="color: #228b22;">double</span>?<span style="color: #909183;">)</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">scores</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126;&#22996;&#25176;&#31867;&#22411;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">public delegate void Action(ISheet obj);</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#23454;&#20363;&#21270;</span>
+    <span style="color: #228b22;">Action</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">ISheet</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">act</span> = sheet =&gt; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38544;&#24335;&#36716;&#25442;</span>
+        <span style="color: #7388d6;">{</span>
+            <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">i</span> = 1; i &lt;= sheet.LastRowNum; i++<span style="color: #909183;">)</span>
+            <span style="color: #909183;">{</span>
+                <span style="color: #228b22;">var</span> row = sheet.<span style="color: #0000ff;">GetRow</span><span style="color: #709870;">(</span>i<span style="color: #709870;">)</span>;
+                <span style="color: #228b22;">var</span> <span style="color: #a0522d;">name</span> = row.<span style="color: #0000ff;">GetCell</span><span style="color: #709870;">(</span>0<span style="color: #709870;">)</span>.StringCellValue;
+                <span style="color: #228b22;">var</span> <span style="color: #a0522d;">scoreCell</span> = row.<span style="color: #0000ff;">GetCell</span><span style="color: #709870;">(</span>1<span style="color: #709870;">)</span>;
+                scores<span style="color: #709870;">[</span>name<span style="color: #709870;">]</span> = <span style="color: #709870;">(</span>i, name, scoreCell?.NumericCellValue<span style="color: #709870;">)</span>;
+            <span style="color: #909183;">}</span>
+        <span style="color: #7388d6;">}</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">3. &#20351;&#29992;</span>
+    <span style="color: #0000ff;">WithExcel</span><span style="color: #7388d6;">(</span>act<span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">return</span> scores;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">Dictionary</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">rn</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">double</span>? <span style="color: #a0522d;">score</span><span style="color: #7388d6;">)</span><span style="color: #707183;">&gt;</span> <span style="color: #0000ff;">ReadAll</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">Dictionary</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #909183;">(</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span>, <span style="color: #228b22;">double</span>?<span style="color: #909183;">)</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">scores</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #0000ff;">WithExcel</span><span style="color: #7388d6;">(</span>sheet =&gt; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22312; C# &#20013;&#21487;&#20197;&#36890;&#36807;&#36825;&#31181;&#26041;&#24335;&#65292;&#20256;&#36882;&#36923;&#36753;/&#26041;&#27861;</span>
+    <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">for</span> <span style="color: #709870;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">i</span> = 1; i &lt;= sheet.LastRowNum; i++<span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+            <span style="color: #228b22;">var</span> row = sheet.<span style="color: #0000ff;">GetRow</span><span style="color: #907373;">(</span>i<span style="color: #907373;">)</span>;
+            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">name</span> = row.<span style="color: #0000ff;">GetCell</span><span style="color: #907373;">(</span>0<span style="color: #907373;">)</span>.StringCellValue;
+            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">scoreCell</span> = row.<span style="color: #0000ff;">GetCell</span><span style="color: #907373;">(</span>1<span style="color: #907373;">)</span>;
+            scores<span style="color: #907373;">[</span>name<span style="color: #907373;">]</span> = <span style="color: #907373;">(</span>i, name, scoreCell?.NumericCellValue<span style="color: #907373;">)</span>;
+        <span style="color: #709870;">}</span>
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">return</span> scores;
+<span style="color: #707183;">}</span>
+
 </pre>
 </div>
 </div>
@@ -1142,8 +1198,8 @@ scores<span style="color: #707183;">[</span>name<span style="color: #707183;">]<
 <h2 id="org1e9b233"><span class="section-number-2">4.</span> 加密、解密 (rot13)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org374da26" class="outline-3">
-<h3 id="org374da26"><span class="section-number-3">4.1.</span> 分析</h3>
+<div id="outline-container-orgb706b29" class="outline-3">
+<h3 id="orgb706b29"><span class="section-number-3">4.1.</span> 分析</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 解析问题，大事化小:
@@ -1534,8 +1590,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgb706b29" class="outline-3">
-<h3 id="orgb706b29"><span class="section-number-3">5.3.</span> 分析</h3>
+<div id="outline-container-orgba4cb1b" class="outline-3">
+<h3 id="orgba4cb1b"><span class="section-number-3">5.3.</span> 分析</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>显示一排小猪 (初始化若干个、会定时加入若干个小猪、随着用户交互小猪加入队伍)</li>
@@ -1548,7 +1604,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 结构化:
 </p>
-<pre class="example" id="orgcc0f785">
+<pre class="example" id="orgf3a0674">
 string pigs;
 void InitPigs(int len);
 void JiaruPig();
@@ -1953,8 +2009,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orga3c347e" class="outline-3">
-<h3 id="orga3c347e"><span class="section-number-3">5.7.</span> 小结</h3>
+<div id="outline-container-orgcd7c9f7" class="outline-3">
+<h3 id="orgcd7c9f7"><span class="section-number-3">5.7.</span> 小结</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 通过这个游戏，达到的目的:
@@ -3233,7 +3289,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </p>
 
 
-<figure id="org8970c24">
+<figure id="orge568687">
 <img src="img/inherit-1.png" alt="inherit-1.png" width="400px">
 
 </figure>
@@ -3405,7 +3461,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <h3 id="orgaae223a"><span class="section-number-3">6.5.</span> 珠联璧合: 组合 + 继承</h3>
 <div class="outline-text-3" id="text-6-5">
 
-<figure id="orgdbdd75d">
+<figure id="org036b804">
 <img src="img/calcs-1.png" alt="calcs-1.png" width="400">
 
 </figure>
@@ -4859,7 +4915,7 @@ C# 操纵 Excel 的方法:
 <h3 id="org6ea8c36"><span class="section-number-3">8.4.</span> <b>分离</b> 计算跟输出，优化代码结构</h3>
 <div class="outline-text-3" id="text-8-4">
 
-<figure id="orge0d3376">
+<figure id="org558b74a">
 <img src="img/tax-cal.png" alt="tax-cal.png">
 
 </figure>
@@ -5134,7 +5190,7 @@ C# 操纵 Excel 的方法:
 </p>
 
 
-<figure id="orgde42208">
+<figure id="orge95f1fa">
 <img src="img/tax-cal3.png" alt="tax-cal3.png" width="400">
 
 </figure>
@@ -5250,7 +5306,7 @@ C# 操纵 Excel 的方法:
 </ul>
 
 
-<figure id="org173c053">
+<figure id="org26b3cb9">
 <img src="img/tax-cal2.png" alt="tax-cal2.png" width="400">
 
 </figure>
@@ -6156,8 +6212,8 @@ C# 操纵 Excel 的方法:
 
 
 
-<div id="outline-container-orgcd7c9f7" class="outline-3">
-<h3 id="orgcd7c9f7"><span class="section-number-3">8.14.</span> 小结</h3>
+<div id="outline-container-org843d09f" class="outline-3">
+<h3 id="org843d09f"><span class="section-number-3">8.14.</span> 小结</h3>
 </div>
 </section>
 
@@ -6277,7 +6333,7 @@ C# 操纵 Excel 的方法:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-15</p>
+<p class="date">Created: 2021-07-20</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -2918,16 +2918,19 @@ Gender (男/女/未知)
 ** 匿名委托
 
 #+begin_src cs
+  // 1. 声明
   delegate void MyAddWT(int sum);
   
   class Program
   {
       static void Main(string[] args)
       {
+          // 2. 实例化
           MyAddWT maw = delegate(int sum)
           {
-              Console.WriteLine("hahahaahaha, wo de 爱的委托 {0}", sum);
+              Console.WriteLine("hahaha, henkuaile.");
           };
+          // 3. 使用
           MyAdd(1, 3, maw);
   
           MyAdd(111, 333, delegate(int sum)
@@ -2953,7 +2956,10 @@ Gender (男/女/未知)
 ** 表达式语法
 
 #+begin_src cs
+  // 1. 声明
   delegate void MyAddWT(int sum);
+  delegate void MyAddWT(double sum);
+  delegate string MyAddWT(double sum);
   
   class Program
   {
@@ -2963,10 +2969,11 @@ Gender (男/女/未知)
           // MyAddWT maw2 = MyAddShixian;
   
           MyAddWT maw3 = delegate(int sum)
-          {
-              Console.WriteLine("aaa");
-          };
+              {
+                  Console.WriteLine("aaa");
+              };
   
+          // 2. 实例化
           MyAddWT maw4 = (int sum) =>
           {
               Console.WriteLine("aaa");
@@ -2984,6 +2991,7 @@ Gender (男/女/未知)
   
           MyAddWT maw7 = sum => Console.WriteLine("aaa");
   
+          // 3. 使用
           MyAdd(111, 222, maw7);
           MyAdd(222, 333, s => Console.WriteLine($"result: {s}"));
       }
@@ -3848,6 +3856,83 @@ ImmutableList:
 #+end_src
 
 
+
+* IEnumerable
+** IEnumerable/IEnumerator/foreach
+
+#+begin_src csharp
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          string s1 = "hello world";
+          int[] a1 = {1, 2, 3, 4};
+          List<double> l1 = new List<double> {1.2, 2.3, 4.6};
+  
+          Rainbow rb = new Rainbow();
+  
+          foreach (var e in rb)
+          {
+              Console.WriteLine(e);
+          }
+      }
+  }
+  
+  class Rainbow : IEnumerable
+  {
+      private string[] colors = {"Red", "Orange", "Yellow", "Green", "Blue", "Dian", "Purple"};
+  
+      public void Show()
+      {
+          Console.WriteLine($"我有 {colors.Length} 种颜色");
+      }
+  
+      public IEnumerator GetEnumerator()
+      {
+          return new MyEnumerator(colors);
+      }
+  
+      class MyEnumerator : IEnumerator
+      {
+          private string[] colors;
+          private int index = 0;
+  
+          public MyEnumerator(string[] cs)
+          {
+              colors = new string[cs.Length];
+              for (int i = 0; i < cs.Length; i++)
+              {
+                  colors[i] = cs[i];
+              }
+          }
+  
+          public bool MoveNext()
+          {
+              if (index > colors.Length - 1 || index < 0)
+              {
+                  return false;
+              }
+  
+              index++;
+              return true;
+          }
+  
+          public object Current
+          {
+              get
+              {
+                  return colors[index - 1];
+              }
+          }
+  
+  
+          public void Reset()
+          {
+              index = 0;
+          }
+      }
+  }
+#+end_src
 
 * 泛型 (Generic)
 

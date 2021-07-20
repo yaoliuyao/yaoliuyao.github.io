@@ -546,6 +546,56 @@ Excel 大体结构:
   scores[name] = (i, name, scoreCell != null ? scoreCell.NumericCellValue : (double?) null);
 #+end_src
 
+*** Question and Answer
+
+#+begin_src csharp
+  public Dictionary<string, (int rn, string name, double? score)> ReadAll() 
+  {
+      Dictionary<string, (int, string, double?)> scores = new();
+  
+      // 1. 声明委托类型
+      // public delegate void Action(ISheet obj);
+              
+      // 2. 实例化
+      Action<ISheet> act = sheet => // 隐式转换
+          {
+              for (var i = 1; i <= sheet.LastRowNum; i++)
+              {
+                  var row = sheet.GetRow(i);
+                  var name = row.GetCell(0).StringCellValue;
+                  var scoreCell = row.GetCell(1);
+                  scores[name] = (i, name, scoreCell?.NumericCellValue);
+              }
+          };
+              
+      // 3. 使用
+      WithExcel(act);
+  
+      return scores;
+  }
+#+end_src
+
+#+begin_src csharp
+  public Dictionary<string, (int rn, string name, double? score)> ReadAll()
+  {
+      Dictionary<string, (int, string, double?)> scores = new();
+    
+      WithExcel(sheet => // 在 C# 中可以通过这种方式，传递逻辑/方法
+      {
+          for (var i = 1; i <= sheet.LastRowNum; i++)
+          {
+              var row = sheet.GetRow(i);
+              var name = row.GetCell(0).StringCellValue;
+              var scoreCell = row.GetCell(1);
+              scores[name] = (i, name, scoreCell?.NumericCellValue);
+          }
+      });
+    
+      return scores;
+  }
+    
+#+end_src
+
 * 过滤字符串 (委托使用)
 
 实现功能，将某个字符串的一些符合条件的字符，咔嚓掉。
