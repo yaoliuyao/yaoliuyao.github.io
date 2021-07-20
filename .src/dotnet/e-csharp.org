@@ -17,7 +17,7 @@ C# 版本演化:
 - 7.0 添加了函数式编程的一些特性，如果模式匹配、元组等等，包括其他一些优化 (2017)
 - 8.0 开始支持默认接口方法，可空引用类型，switch 表达式等 (2019)
 - 9.0 增加了 Record 类型，继续对 switch 表达式等进行简化跟优化 (2021)
-
+  
 * [语言与类型]
 
 在 C# 等面向对象的语言中，*类型 (Type)* 是第一位的
@@ -227,7 +227,7 @@ System 命名空间:
 #+ATTR_HTML: :width 500px
 [[file:img/value-type-ref-type.png]]
 
-* 预定义/数值类型
+* 预定义数值类型
 ** 整数
 
 为了表示显示世界中的计算，人们发明了数字的记法:
@@ -3925,7 +3925,6 @@ ImmutableList:
               }
           }
   
-  
           public void Reset()
           {
               index = 0;
@@ -3934,7 +3933,7 @@ ImmutableList:
   }
 #+end_src
 
-** 迭代器
+** Iterator
 
 语法糖。
 
@@ -3944,6 +3943,77 @@ ImmutableList:
       for (int i = 0; i < colors.Length; i++)
       {
           yield return colors[i];
+      }
+  }
+#+end_src
+
+灵活的遍历逻辑:
+#+begin_src csharp
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          string s1 = "hello world";
+          int[] a1 = {1, 2, 3, 4};
+          List<double> l1 = new List<double> {1.2, 2.3, 4.6};
+          Dictionary<int, string> d = new Dictionary<int, string>();
+  
+          Rainbow rb = new Rainbow();
+  
+          foreach (var e in rb.GetMyEnumerator4)
+          {
+              Console.WriteLine(e);
+          }
+      }
+  }
+  
+  class Rainbow : IEnumerable
+  {
+      private string[] colors = {"Red", "Orange", "Yellow", "Green", "Blue", "Dian", "Purple"};
+  
+      public  void Show()
+      {
+          Console.WriteLine($"我有 {colors.Length} 种颜色");
+      }
+  
+      public IEnumerator GetEnumerator()
+      {
+          return GetMyEnumerator1();
+      }
+  
+      IEnumerator GetMyEnumerator1()
+      {
+          for (int i = 0; i < colors.Length; i++)
+          {
+              yield return colors[i];
+          }
+      }
+  
+      IEnumerator GetMyEnumerator3
+      {
+          get
+          {
+              yield return "赤";
+              yield return "橙";
+              yield return "黄";
+              yield return "绿";
+          }
+      }
+  
+      public IEnumerable GetMyEnumerator2()
+      {
+          yield return 1;
+          yield return 2;
+          yield return 3;
+          yield return 4;
+      }
+  
+      public IEnumerable GetMyEnumerator4
+      {
+          get
+          {
+              yield return 666;
+          }
       }
   }
 #+end_src

@@ -57,7 +57,7 @@
 <li><a href="#org298bedc">2.4. 值类型 vs 引用类型</a></li>
 </ul>
 </li>
-<li><a href="#org51edeaa">3. 预定义/数值类型</a>
+<li><a href="#org0d4856b">3. 预定义数值类型</a>
 <ul>
 <li><a href="#org070482f">3.1. 整数</a></li>
 <li><a href="#org2999e61">3.2. 浮点数</a></li>
@@ -237,7 +237,7 @@
 <li><a href="#org97ba193">16. IEnumerable</a>
 <ul>
 <li><a href="#orgf2c21b8">16.1. IEnumerable/IEnumerator/foreach</a></li>
-<li><a href="#org72f041a">16.2. 迭代器</a></li>
+<li><a href="#orgc5c5c4a">16.2. Iterator</a></li>
 </ul>
 </li>
 <li><a href="#org2296731">17. 泛型 (Generic)</a></li>
@@ -324,13 +324,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org2e24fb9">
+<figure id="org4950960">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgf665184">
+<figure id="org9671749">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -575,7 +575,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org1bd79a2">
+<figure id="org4dd3814">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -583,8 +583,8 @@ System 命名空间:
 </div>
 </section>
 
-<section id="outline-container-org51edeaa" class="outline-2">
-<h2 id="org51edeaa"><span class="section-number-2">3.</span> 预定义/数值类型</h2>
+<section id="outline-container-org0d4856b" class="outline-2">
+<h2 id="org0d4856b"><span class="section-number-2">3.</span> 预定义数值类型</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org070482f" class="outline-3">
@@ -696,7 +696,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org8817ae0">
+<figure id="org66b1948">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -724,7 +724,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org38eb785">
+<figure id="org6afd565">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -783,7 +783,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org154876a">
+<figure id="orgc6841bc">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1209,7 +1209,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org9805bd0">
+<figure id="orgeb5cc8d">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1247,7 +1247,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgba2e513">
+<figure id="org06a279d">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2248,7 +2248,7 @@ out:
 </div>
 
 
-<figure id="orga37a3a6">
+<figure id="org4aeb15f">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3660,7 +3660,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org5afcf3b">
+<figure id="org6f668e6">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -5049,7 +5049,6 @@ ImmutableList:
             <span style="color: #709870;">}</span>
         <span style="color: #909183;">}</span>
 
-
         <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Reset</span><span style="color: #909183;">()</span>
         <span style="color: #909183;">{</span>
             index = 0;
@@ -5061,8 +5060,8 @@ ImmutableList:
 </div>
 </div>
 
-<div id="outline-container-org72f041a" class="outline-3">
-<h3 id="org72f041a"><span class="section-number-3">16.2.</span> 迭代器</h3>
+<div id="outline-container-orgc5c5c4a" class="outline-3">
+<h3 id="orgc5c5c4a"><span class="section-number-3">16.2.</span> Iterator</h3>
 <div class="outline-text-3" id="text-16-2">
 <p>
 语法糖。
@@ -5074,6 +5073,80 @@ ImmutableList:
     <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; colors.Length; i++<span style="color: #7388d6;">)</span>
     <span style="color: #7388d6;">{</span>
         <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> colors<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+灵活的遍历逻辑:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"hello world"</span>;
+        <span style="color: #228b22;">int</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">a1</span> = <span style="color: #909183;">{</span>1, 2, 3, 4<span style="color: #909183;">}</span>;
+        <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">double</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">l1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">double</span><span style="color: #909183;">&gt;</span> <span style="color: #909183;">{</span>1.2, 2.3, 4.6<span style="color: #909183;">}</span>;
+        <span style="color: #228b22;">Dictionary</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dictionary</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;()</span>;
+
+        <span style="color: #228b22;">Rainbow</span> <span style="color: #a0522d;">rb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Rainbow</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">e</span> <span style="color: #a020f0;">in</span> rb.GetMyEnumerator4<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #228b22;">e</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Rainbow</span> : <span style="color: #228b22;">IEnumerable</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #7388d6;">{</span><span style="color: #8b2252;">"Red"</span>, <span style="color: #8b2252;">"Orange"</span>, <span style="color: #8b2252;">"Yellow"</span>, <span style="color: #8b2252;">"Green"</span>, <span style="color: #8b2252;">"Blue"</span>, <span style="color: #8b2252;">"Dian"</span>, <span style="color: #8b2252;">"Purple"</span><span style="color: #7388d6;">}</span>;
+
+    <span style="color: #a020f0;">public</span>  <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Show</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#25105;&#26377; {colors.Length} &#31181;&#39068;&#33394;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IEnumerator</span> <span style="color: #0000ff;">GetEnumerator</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #0000ff;">GetMyEnumerator1</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #228b22;">IEnumerator</span> <span style="color: #0000ff;">GetMyEnumerator1</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; colors.Length; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> colors<span style="color: #709870;">[</span>i<span style="color: #709870;">]</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #228b22;">IEnumerator</span> <span style="color: #a0522d;">GetMyEnumerator3</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">get</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"&#36196;"</span>;
+            <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"&#27225;"</span>;
+            <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"&#40644;"</span>;
+            <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"&#32511;"</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IEnumerable</span> <span style="color: #0000ff;">GetMyEnumerator2</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> 1;
+        <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> 2;
+        <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> 3;
+        <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> 4;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IEnumerable</span> <span style="color: #a0522d;">GetMyEnumerator4</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">get</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> 666;
+        <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
