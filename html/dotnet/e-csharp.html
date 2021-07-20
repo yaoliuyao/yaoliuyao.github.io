@@ -237,6 +237,7 @@
 <li><a href="#org97ba193">16. IEnumerable</a>
 <ul>
 <li><a href="#orgf2c21b8">16.1. IEnumerable/IEnumerator/foreach</a></li>
+<li><a href="#org72f041a">16.2. 迭代器</a></li>
 </ul>
 </li>
 <li><a href="#org2296731">17. 泛型 (Generic)</a></li>
@@ -323,13 +324,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org686b36b">
+<figure id="org2e24fb9">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org9668dd2">
+<figure id="orgf665184">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -574,7 +575,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org0d88618">
+<figure id="org1bd79a2">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -695,7 +696,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgea9dd7f">
+<figure id="org8817ae0">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -723,7 +724,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org742fc28">
+<figure id="org38eb785">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -782,7 +783,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org0b5d665">
+<figure id="org154876a">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1208,7 +1209,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org7be00fb">
+<figure id="org9805bd0">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1246,7 +1247,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgfeb5d2f">
+<figure id="orgba2e513">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2247,7 +2248,7 @@ out:
 </div>
 
 
-<figure id="org53e7781">
+<figure id="orga37a3a6">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3659,7 +3660,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgd6710ac">
+<figure id="org5afcf3b">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -5053,6 +5054,26 @@ ImmutableList:
         <span style="color: #909183;">{</span>
             index = 0;
         <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org72f041a" class="outline-3">
+<h3 id="org72f041a"><span class="section-number-3">16.2.</span> 迭代器</h3>
+<div class="outline-text-3" id="text-16-2">
+<p>
+语法糖。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">IEnumerator</span> <span style="color: #0000ff;">GetEnumerator</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; colors.Length; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> colors<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>

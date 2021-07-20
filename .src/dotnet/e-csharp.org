@@ -3934,6 +3934,20 @@ ImmutableList:
   }
 #+end_src
 
+** 迭代器
+
+语法糖。
+
+#+begin_src csharp
+  public IEnumerator GetEnumerator()
+  {
+      for (int i = 0; i < colors.Length; i++)
+      {
+          yield return colors[i];
+      }
+  }
+#+end_src
+
 * 泛型 (Generic)
 
 #+begin_src cs
