@@ -4179,8 +4179,101 @@ Linq (Language Integrated Query，语言集成扩展)：
   }
 #+end_src
 
+*** Query Syntax/Expression
 
-*** Query Syntax
+- Query 表达式，最终会被编译器翻译成相关的方法调用。效果是等同的
+- 在一个 Query 表达式中，from 和 select/group 是必须的，其他可选
+
+#+begin_src csharp
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          string s1 = "hello world";
+          int[] a1 = {1, 2, 666, 4, 6, 7, 5, 3, 4};
+          int[] a11 = {666, 777, 888};
+          object[] a2 = { 1, 2, "666", 4, 6, "7", 5.5, 3, 4 };
+          string[] a3 = {"Hello", "World", "where", "are", "You"};
+          
+          List<BookType> types = new List<BookType>
+          {
+              new BookType(1, "科技类"),
+              new BookType(2, "科幻类"),
+              new BookType(3, "科学类"),
+          };
+          List<Book> books = new List<Book>
+          {
+              new Book(1, "C# 编程语言", 222, 1),
+              new Book(2, "VueJS", 22, 1),
+              new Book(3, "三体", 23, 2),
+              new Book(4, "星际穿越", 54, 2),
+              new Book(5, "仙剑", 64, 2),
+              new Book(6, "动物世界", 222, 3),
+              new Book(9, "钢铁是怎么炼成的", 11, 3),
+          };
+  
+          IEnumerable<int> r0 = from x in a1 select x;
+          var r1 = a1.Where(x => x > 5).Select(x => x);
+          var r2 = from x in a1 where x > 5 select x;
+          var r3 = from x in a1 where x > 5 select x + 1000;
+          var r4 = from x in a1 where x > 5 select $"I am {x * x}";
+  
+          var r5 = from x in a1 where x > 5 orderby x select x;
+          var r6 = from x in a1 where x > 5 orderby x descending select x;
+  
+          var r7 =
+              from book in books
+              join type in types
+              on book.TypeId equals type.ID
+              select (type.Name, book, type);
+  
+          var r8 = from book in books
+              join type in types on book.TypeId equals type.ID
+              where type.Name == "科幻类"
+              select book;
+  
+          double avg1 = r8.Average(book => book.Price);
+          double avg2 = r8.Select(book => book.Price).Average();
+          double avg3 =
+              (
+                  from book in books
+                  join type in types on book.TypeId equals type.ID
+                  where type.Name == "科幻类"
+                  select book
+              )
+              .Average(book => book.Price);
+          double avg4 = (
+              from book in books
+              join type in types on book.TypeId equals type.ID
+              where type.Name == "科幻类"
+              select book.Price
+          ).Average();
+  
+          var r9 = 
+              from x in a1
+              let y = x * x
+              where y > 5 
+              orderby y
+              select y;
+  
+          var r10 =
+              from book in books
+              group book by book.TypeId;
+  
+          var r11 = from a in books
+              join b in types on a.TypeId equals b.ID into xxx // into
+              from c in xxx
+              select c;
+  
+          int c1 = (from x in a1 where x > 5 select x).Take(3).Count();
+  
+          foreach (var e in r10)
+          {
+              Console.WriteLine(e);
+          }
+      }
+  }
+#+end_src
 
 * 泛型 (Generic)
 
