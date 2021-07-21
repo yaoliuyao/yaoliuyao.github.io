@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-20 -->
+<!-- 2021-07-21 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -234,13 +234,23 @@
 <li><a href="#org977a8d0">15.3. System.Collections.Immutable</a></li>
 </ul>
 </li>
-<li><a href="#org97ba193">16. IEnumerable</a>
+<li><a href="#orgca7a4d7">16. IEnumerable/Linq</a>
 <ul>
 <li><a href="#orgf2c21b8">16.1. IEnumerable/IEnumerator/foreach</a></li>
 <li><a href="#orgc5c5c4a">16.2. Iterator</a></li>
+<li><a href="#org3d8c6a6">16.3. Linq</a>
+<ul>
+<li><a href="#org590211f">16.3.1. Method Syntax</a></li>
+<li><a href="#orgba0918d">16.3.2. Query Syntax</a></li>
 </ul>
 </li>
-<li><a href="#org2296731">17. 泛型 (Generic)</a></li>
+</ul>
+</li>
+<li><a href="#org2296731">17. 泛型 (Generic)</a>
+<ul>
+<li><a href="#org566ea8d">17.1. 方法泛型</a></li>
+</ul>
+</li>
 <li><a href="#org38d4328">18. BCL (Base-Class Library) 基础类库</a>
 <ul>
 <li><a href="#orge42088e">18.1. Console/控制台</a></li>
@@ -324,13 +334,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org4950960">
+<figure id="orga6bde97">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org9671749">
+<figure id="org4aa449e">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -575,7 +585,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org4dd3814">
+<figure id="org1dff24c">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -696,7 +706,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org66b1948">
+<figure id="org0b7a054">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -724,7 +734,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org6afd565">
+<figure id="org8c82de2">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -783,7 +793,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgc6841bc">
+<figure id="org1712fe9">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1209,7 +1219,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgeb5cc8d">
+<figure id="org2f79e5a">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1247,7 +1257,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org06a279d">
+<figure id="org44de8e6">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2248,7 +2258,7 @@ out:
 </div>
 
 
-<figure id="org4aeb15f">
+<figure id="orge936b07">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3660,7 +3670,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org6f668e6">
+<figure id="org48dd61f">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4977,8 +4987,8 @@ ImmutableList:
 
 
 
-<section id="outline-container-org97ba193" class="outline-2">
-<h2 id="org97ba193"><span class="section-number-2">16.</span> IEnumerable</h2>
+<section id="outline-container-orgca7a4d7" class="outline-2">
+<h2 id="orgca7a4d7"><span class="section-number-2">16.</span> IEnumerable/Linq</h2>
 <div class="outline-text-2" id="text-16">
 </div>
 <div id="outline-container-orgf2c21b8" class="outline-3">
@@ -5057,6 +5067,34 @@ ImmutableList:
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+
+<p>
+泛型版本:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Rainbow</span> : <span style="color: #228b22;">IEnumerable</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #7388d6;">{</span><span style="color: #8b2252;">"Red"</span>, <span style="color: #8b2252;">"Orange"</span>, <span style="color: #8b2252;">"Yellow"</span>, <span style="color: #8b2252;">"Green"</span>, <span style="color: #8b2252;">"Blue"</span>, <span style="color: #8b2252;">"Dian"</span>, <span style="color: #8b2252;">"Purple"</span><span style="color: #7388d6;">}</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Show</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"&#25105;&#26377; {colors.Length} &#31181;&#39068;&#33394;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IEnumerator</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">GetEnumerator</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"222"</span>;
+        <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"333"</span>;
+        <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"444"</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #228b22;">IEnumerator</span> IEnumerable.<span style="color: #0000ff;">GetEnumerator</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #0000ff;">GetEnumerator</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 
@@ -5122,7 +5160,7 @@ ImmutableList:
         <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
 
-    <span style="color: #228b22;">IEnumerator</span> <span style="color: #a0522d;">GetMyEnumerator3</span>
+    <span style="color: #228b22;">IEnumerator</span> <span style="color: #a0522d;">GetMyEnumerator2</span>
     <span style="color: #7388d6;">{</span>
         <span style="color: #a020f0;">get</span>
         <span style="color: #909183;">{</span>
@@ -5133,7 +5171,7 @@ ImmutableList:
         <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
 
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IEnumerable</span> <span style="color: #0000ff;">GetMyEnumerator2</span><span style="color: #7388d6;">()</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">IEnumerable</span> <span style="color: #0000ff;">GetMyEnumerator3</span><span style="color: #7388d6;">()</span>
     <span style="color: #7388d6;">{</span>
         <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> 1;
         <span style="color: #a020f0;">yield</span> <span style="color: #a020f0;">return</span> 2;
@@ -5151,6 +5189,153 @@ ImmutableList:
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+</div>
+</div>
+
+
+<div id="outline-container-org3d8c6a6" class="outline-3">
+<h3 id="org3d8c6a6"><span class="section-number-3">16.3.</span> Linq</h3>
+<div class="outline-text-3" id="text-16-3">
+<p>
+Linq (Language Integrated Query，语言集成扩展)：
+</p>
+<ul class="org-ul">
+<li>基于 IEnumerable&lt;T&gt; 类型进行的 <b>扩展</b></li>
+<li>实现在 System.Linq.Enumerable 类中，通过扩展方法的形式实现的</li>
+<li>支持两种语法: Method Syntax 和 Query Syntax</li>
+</ul>
+</div>
+
+<div id="outline-container-org590211f" class="outline-4">
+<h4 id="org590211f"><span class="section-number-4">16.3.1.</span> Method Syntax</h4>
+<div class="outline-text-4" id="text-16-3-1">
+<ul class="org-ul">
+<li>筛选操作符: Where/OfType</li>
+<li>投射操作符: Select/SelectMany</li>
+<li>顺序操作符: OrderBy/ThenBy/OrderByDescending/ThenByDescending/Reverse</li>
+<li>连接操作符: Join/GroupJoin</li>
+<li>组合操作符: GroupBy/ToLookup</li>
+<li>限定操作符: Any/All/Contains</li>
+<li>范围操作符: Take/Skip/TakeWhile/SkipWhile</li>
+<li>集合操作符: Distinct/Union/Intersect/Except/Zip</li>
+<li>返回单元素: First/FirstOrDefault/Last/LastOrDefault/ElementAt/ElementAtOrDefault/Single/SingleOrDefault</li>
+<li>聚合操作符: Count/Sum/Min/Max/Average/Aggregate</li>
+<li>转换操作符: ToArray/AsEnumerable/ToList/ToDictionary/Cast</li>
+<li>生成操作符: Empty/Range/Repeat</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"hello world"</span>;
+        <span style="color: #228b22;">int</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">a1</span> = <span style="color: #909183;">{</span>1, 2, 666, 4, 6, 7, 5, 3, 4<span style="color: #909183;">}</span>;
+        <span style="color: #228b22;">object</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">a2</span> = <span style="color: #909183;">{</span> 1, 2, <span style="color: #8b2252;">"666"</span>, 4, 6, <span style="color: #8b2252;">"7"</span>, 5.5, 3, 4 <span style="color: #909183;">}</span>;
+        <span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">a3</span> = <span style="color: #909183;">{</span><span style="color: #8b2252;">"Hello"</span>, <span style="color: #8b2252;">"World"</span>, <span style="color: #8b2252;">"where"</span>, <span style="color: #8b2252;">"are"</span>, <span style="color: #8b2252;">"You"</span><span style="color: #909183;">}</span>;
+        <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">double</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">l1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">double</span><span style="color: #909183;">&gt;</span> <span style="color: #909183;">{</span>1.2, 2.3, 4.6<span style="color: #909183;">}</span>;
+        <span style="color: #228b22;">Dictionary</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dictionary</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span>, <span style="color: #228b22;">string</span><span style="color: #909183;">&gt;()</span>;
+
+        <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">BookType</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">types</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">BookType</span><span style="color: #909183;">&gt;</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">BookType</span><span style="color: #709870;">(</span>1, <span style="color: #8b2252;">"&#31185;&#25216;&#31867;"</span><span style="color: #709870;">)</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">BookType</span><span style="color: #709870;">(</span>2, <span style="color: #8b2252;">"&#31185;&#24187;&#31867;"</span><span style="color: #709870;">)</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">BookType</span><span style="color: #709870;">(</span>3, <span style="color: #8b2252;">"&#31185;&#23398;&#31867;"</span><span style="color: #709870;">)</span>,
+        <span style="color: #909183;">}</span>;
+        <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">Book</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">books</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">Book</span><span style="color: #909183;">&gt;</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #709870;">(</span>1, <span style="color: #8b2252;">"C# &#32534;&#31243;&#35821;&#35328;"</span>, 222, 1<span style="color: #709870;">)</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #709870;">(</span>2, <span style="color: #8b2252;">"VueJS"</span>, 22, 1<span style="color: #709870;">)</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #709870;">(</span>3, <span style="color: #8b2252;">"&#19977;&#20307;"</span>, 23, 2<span style="color: #709870;">)</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #709870;">(</span>4, <span style="color: #8b2252;">"&#26143;&#38469;&#31359;&#36234;"</span>, 54, 2<span style="color: #709870;">)</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #709870;">(</span>5, <span style="color: #8b2252;">"&#20185;&#21073;"</span>, 64, 2<span style="color: #709870;">)</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #709870;">(</span>6, <span style="color: #8b2252;">"&#21160;&#29289;&#19990;&#30028;"</span>, 222, 3<span style="color: #709870;">)</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Book</span><span style="color: #709870;">(</span>9, <span style="color: #8b2252;">"&#38050;&#38081;&#26159;&#24590;&#20040;&#28860;&#25104;&#30340;"</span>, 11, 3<span style="color: #709870;">)</span>,
+        <span style="color: #909183;">}</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36807;&#28388;&#12289;&#31579;&#36873;</span>
+        <span style="color: #228b22;">IEnumerable</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">r1</span> = a1.<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>x =&gt; x &gt; 5<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r2</span> = a2.<span style="color: #0000ff;">OfType</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #909183;">&gt;()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r3</span> = a2.<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>x =&gt; x <span style="color: #a020f0;">is</span> <span style="color: #228b22;">string</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25237;&#23556;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r4</span> = a1.<span style="color: #0000ff;">Select</span><span style="color: #909183;">(</span>x =&gt; x &gt; 10 ? x : x + 10<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r5</span> = a1.<span style="color: #0000ff;">Select</span><span style="color: #909183;">(</span>x =&gt; $<span style="color: #8b2252;">"&#36825;&#20010;&#25968;&#26159;: {x + 1}"</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r6</span> = a1.<span style="color: #0000ff;">Select</span><span style="color: #909183;">(</span>x =&gt; <span style="color: #709870;">(</span><span style="color: #228b22;">x</span>, $<span style="color: #8b2252;">"{x + 1}"</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25490;&#24207;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r7</span> = a1.<span style="color: #0000ff;">Reverse</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r8</span> = a1.<span style="color: #0000ff;">OrderBy</span><span style="color: #909183;">(</span>x =&gt; -x<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r9</span> = a1.<span style="color: #0000ff;">OrderByDescending</span><span style="color: #909183;">(</span>x =&gt; x<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r10</span> = a3.<span style="color: #0000ff;">OrderBy</span><span style="color: #909183;">(</span>x =&gt; x.Length<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r11</span> = a3.<span style="color: #0000ff;">OrderBy</span><span style="color: #909183;">(</span>x =&gt; x.Length<span style="color: #909183;">)</span>.<span style="color: #0000ff;">ThenByDescending</span><span style="color: #909183;">(</span>x =&gt; x<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r12</span> = books.<span style="color: #0000ff;">OrderBy</span><span style="color: #909183;">(</span>x =&gt; x.Price<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r13</span> = books.<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>x =&gt; x.TypeId != 2<span style="color: #909183;">)</span>.<span style="color: #0000ff;">OrderBy</span><span style="color: #909183;">(</span>x =&gt; x.Price<span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36830;&#25509;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r14</span> = books.<span style="color: #0000ff;">Join</span><span style="color: #909183;">(</span>
+            <span style="color: #228b22;">types</span>,
+            book =&gt; book.TypeId,
+            type =&gt; type.ID,
+            <span style="color: #709870;">(</span><span style="color: #228b22;">book</span>, <span style="color: #228b22;">type</span><span style="color: #709870;">)</span> =&gt; <span style="color: #709870;">(</span>typeName: type.Name, <span style="color: #228b22;">book</span><span style="color: #709870;">)</span>
+        <span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r15</span> = books
+            .<span style="color: #0000ff;">Join</span><span style="color: #909183;">(</span>
+                <span style="color: #228b22;">types</span>,
+                book =&gt; book.TypeId,
+                type =&gt; type.ID,
+                <span style="color: #709870;">(</span><span style="color: #228b22;">book</span>, <span style="color: #228b22;">type</span><span style="color: #709870;">)</span> =&gt; <span style="color: #709870;">(</span>typeName: type.Name, <span style="color: #228b22;">book</span><span style="color: #709870;">)</span>
+            <span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>o =&gt; o.typeName == <span style="color: #8b2252;">"&#31185;&#24187;&#31867;"</span><span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Select</span><span style="color: #909183;">(</span>o =&gt; o.book<span style="color: #909183;">)</span>;
+
+        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">e</span> <span style="color: #a020f0;">in</span> r15<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #228b22;">e</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Book</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ID</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Name</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Price</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">TypeId</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">Book</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">price</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">type</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        ID = id;
+        Name = name;
+        Price = price;
+        TypeId = type;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> $<span style="color: #8b2252;">"{ID}: {Name}/{TypeId}/{Price}"</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">BookType</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">BookType</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        ID = id;
+        Name = name;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ID</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Name</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgba0918d" class="outline-4">
+<h4 id="orgba0918d"><span class="section-number-4">16.3.2.</span> Query Syntax</h4>
 </div>
 </div>
 </section>
@@ -5322,6 +5507,19 @@ ImmutableList:
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
+</div>
+</div>
+
+<div id="outline-container-org566ea8d" class="outline-3">
+<h3 id="org566ea8d"><span class="section-number-3">17.1.</span> 方法泛型</h3>
+<div class="outline-text-3" id="text-17-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">Count</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">TSource</span><span style="color: #707183;">&gt;(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">IEnumerable</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">TSource</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">source</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </section>
@@ -5765,7 +5963,7 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-20</p>
+<p class="date">Created: 2021-07-21</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

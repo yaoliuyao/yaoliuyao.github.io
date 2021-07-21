@@ -3857,7 +3857,7 @@ ImmutableList:
 
 
 
-* IEnumerable
+* IEnumerable/Linq
 ** IEnumerable/IEnumerator/foreach
 
 #+begin_src csharp
@@ -3933,6 +3933,31 @@ ImmutableList:
   }
 #+end_src
 
+泛型版本:
+#+begin_src csharp
+  class Rainbow : IEnumerable<string>
+  {
+      private string[] colors = {"Red", "Orange", "Yellow", "Green", "Blue", "Dian", "Purple"};
+  
+      public void Show()
+      {
+          Console.WriteLine($"我有 {colors.Length} 种颜色");
+      }
+  
+      public IEnumerator<string> GetEnumerator()
+      {
+          yield return "222";
+          yield return "333";
+          yield return "444";
+      }
+  
+      IEnumerator IEnumerable.GetEnumerator()
+      {
+          return GetEnumerator();
+      }
+  }
+#+end_src
+
 ** Iterator
 
 语法糖。
@@ -3989,7 +4014,7 @@ ImmutableList:
           }
       }
   
-      IEnumerator GetMyEnumerator3
+      IEnumerator GetMyEnumerator2
       {
           get
           {
@@ -4000,7 +4025,7 @@ ImmutableList:
           }
       }
   
-      public IEnumerable GetMyEnumerator2()
+      public IEnumerable GetMyEnumerator3()
       {
           yield return 1;
           yield return 2;
@@ -4017,6 +4042,138 @@ ImmutableList:
       }
   }
 #+end_src
+
+
+** Linq
+
+Linq (Language Integrated Query，语言集成扩展)：
+- 基于 IEnumerable<T> 类型进行的 *扩展*
+- 实现在 System.Linq.Enumerable 类中，通过扩展方法的形式实现的
+- 支持两种语法: Method Syntax 和 Query Syntax
+
+*** Method Syntax
+
+- 筛选操作符: Where/OfType
+- 投射操作符: Select/SelectMany
+- 顺序操作符: OrderBy/ThenBy/OrderByDescending/ThenByDescending/Reverse
+- 连接操作符: Join/GroupJoin
+- 组合操作符: GroupBy/ToLookup
+- 限定操作符: Any/All/Contains
+- 范围操作符: Take/Skip/TakeWhile/SkipWhile
+- 集合操作符: Distinct/Union/Intersect/Except/Zip
+- 返回单元素: First/FirstOrDefault/Last/LastOrDefault/ElementAt/ElementAtOrDefault/Single/SingleOrDefault
+- 聚合操作符: Count/Sum/Min/Max/Average/Aggregate
+- 转换操作符: ToArray/AsEnumerable/ToList/ToDictionary/Cast
+- 生成操作符: Empty/Range/Repeat
+
+#+begin_src csharp
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          string s1 = "hello world";
+          int[] a1 = {1, 2, 666, 4, 6, 7, 5, 3, 4};
+          object[] a2 = { 1, 2, "666", 4, 6, "7", 5.5, 3, 4 };
+          string[] a3 = {"Hello", "World", "where", "are", "You"};
+          List<double> l1 = new List<double> {1.2, 2.3, 4.6};
+          Dictionary<int, string> d = new Dictionary<int, string>();
+  
+          List<BookType> types = new List<BookType>
+          {
+              new BookType(1, "科技类"),
+              new BookType(2, "科幻类"),
+              new BookType(3, "科学类"),
+          };
+          List<Book> books = new List<Book>
+          {
+              new Book(1, "C# 编程语言", 222, 1),
+              new Book(2, "VueJS", 22, 1),
+              new Book(3, "三体", 23, 2),
+              new Book(4, "星际穿越", 54, 2),
+              new Book(5, "仙剑", 64, 2),
+              new Book(6, "动物世界", 222, 3),
+              new Book(9, "钢铁是怎么炼成的", 11, 3),
+          };
+  
+          // 过滤、筛选
+          IEnumerable<int> r1 = a1.Where(x => x > 5);
+          var r2 = a2.OfType<int>();
+          var r3 = a2.Where(x => x is string);
+  
+          // 投射
+          var r4 = a1.Select(x => x > 10 ? x : x + 10);
+          var r5 = a1.Select(x => $"这个数是: {x + 1}");
+          var r6 = a1.Select(x => (x, $"{x + 1}"));
+  
+          // 排序
+          var r7 = a1.Reverse();
+          var r8 = a1.OrderBy(x => -x);
+          var r9 = a1.OrderByDescending(x => x);
+          var r10 = a3.OrderBy(x => x.Length);
+          var r11 = a3.OrderBy(x => x.Length).ThenByDescending(x => x[0]);
+          var r12 = books.OrderBy(x => x.Price);
+          var r13 = books.Where(x => x.TypeId != 2).OrderBy(x => x.Price);
+  
+          // 连接
+          var r14 = books.Join(
+              types,
+              book => book.TypeId,
+              type => type.ID,
+              (book, type) => (typeName: type.Name, book)
+          );
+          var r15 = books
+              .Join(
+                  types,
+                  book => book.TypeId,
+                  type => type.ID,
+                  (book, type) => (typeName: type.Name, book)
+              )
+              .Where(o => o.typeName == "科幻类")
+              .Select(o => o.book);
+  
+          foreach (var e in r15)
+          {
+              Console.WriteLine(e);
+          }
+      }
+  }
+  
+  class Book
+  {
+      public int ID { get; set; }
+      public string Name { get; set; }
+      public double Price { get; set; }
+      public int TypeId { get; set; }
+  
+      public Book(int id, string name, double price, int type)
+      {
+          ID = id;
+          Name = name;
+          Price = price;
+          TypeId = type;
+      }
+  
+      public override string ToString()
+      {
+          return $"{ID}: {Name}/{TypeId}/{Price}";
+      }
+  }
+  
+  class BookType
+  {
+      public BookType(int id, string name)
+      {
+          ID = id;
+          Name = name;
+      }
+  
+      public int ID { get; set; }
+      public string Name { get; set; }
+  }
+#+end_src
+
+
+*** Query Syntax
 
 * 泛型 (Generic)
 
@@ -4182,6 +4339,15 @@ ImmutableList:
       {
           stackTop = 0;
       }
+  }
+#+end_src
+
+** 方法泛型
+
+#+begin_src csharp
+  public static int Count<TSource>(this IEnumerable<TSource> source)
+  {
+  
   }
 #+end_src
 
