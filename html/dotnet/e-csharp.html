@@ -334,13 +334,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orga6bde97">
+<figure id="orgbe7dc94">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org4aa449e">
+<figure id="org10a8321">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -585,7 +585,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org1dff24c">
+<figure id="org8a940a6">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -706,7 +706,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org0b7a054">
+<figure id="org56d9d7f">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -734,7 +734,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org8c82de2">
+<figure id="org393e52f">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -793,7 +793,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org1712fe9">
+<figure id="org8b42571">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1219,7 +1219,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org2f79e5a">
+<figure id="org0af9f6f">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1257,7 +1257,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org44de8e6">
+<figure id="orgfc556bd">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2258,7 +2258,7 @@ out:
 </div>
 
 
-<figure id="orge936b07">
+<figure id="orgefdc1ca">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3670,7 +3670,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org48dd61f">
+<figure id="org6c401c4">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -5231,6 +5231,7 @@ Linq (Language Integrated Query，语言集成扩展)：
     <span style="color: #7388d6;">{</span>
         <span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"hello world"</span>;
         <span style="color: #228b22;">int</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">a1</span> = <span style="color: #909183;">{</span>1, 2, 666, 4, 6, 7, 5, 3, 4<span style="color: #909183;">}</span>;
+        <span style="color: #228b22;">int</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">a11</span> = <span style="color: #909183;">{</span>666, 777, 888<span style="color: #909183;">}</span>;
         <span style="color: #228b22;">object</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">a2</span> = <span style="color: #909183;">{</span> 1, 2, <span style="color: #8b2252;">"666"</span>, 4, 6, <span style="color: #8b2252;">"7"</span>, 5.5, 3, 4 <span style="color: #909183;">}</span>;
         <span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">a3</span> = <span style="color: #909183;">{</span><span style="color: #8b2252;">"Hello"</span>, <span style="color: #8b2252;">"World"</span>, <span style="color: #8b2252;">"where"</span>, <span style="color: #8b2252;">"are"</span>, <span style="color: #8b2252;">"You"</span><span style="color: #909183;">}</span>;
         <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">double</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">l1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">double</span><span style="color: #909183;">&gt;</span> <span style="color: #909183;">{</span>1.2, 2.3, 4.6<span style="color: #909183;">}</span>;
@@ -5289,44 +5290,50 @@ Linq (Language Integrated Query，语言集成扩展)：
             .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>o =&gt; o.typeName == <span style="color: #8b2252;">"&#31185;&#24187;&#31867;"</span><span style="color: #909183;">)</span>
             .<span style="color: #0000ff;">Select</span><span style="color: #909183;">(</span>o =&gt; o.book<span style="color: #909183;">)</span>;
 
-        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">e</span> <span style="color: #a020f0;">in</span> r15<span style="color: #909183;">)</span>
-        <span style="color: #909183;">{</span>
-            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #228b22;">e</span><span style="color: #709870;">)</span>;
-        <span style="color: #909183;">}</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#33539;&#22260;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r16</span> = a1.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">limit 3</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r17</span> = a1.<span style="color: #0000ff;">TakeLast</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r18</span> = a1.<span style="color: #0000ff;">TakeWhile</span><span style="color: #909183;">(</span>x =&gt; x &lt; 5<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r19</span> = a1.<span style="color: #0000ff;">Skip</span><span style="color: #909183;">(</span>2<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r20</span> = a1.<span style="color: #0000ff;">SkipLast</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>x =&gt; x &gt; 1<span style="color: #909183;">)</span>.<span style="color: #0000ff;">OrderBy</span><span style="color: #909183;">(</span>x =&gt; x<span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38598;&#21512;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r21</span> = a1.<span style="color: #0000ff;">Except</span><span style="color: #909183;">(</span><span style="color: #228b22;">a11</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r22</span> = a1.<span style="color: #0000ff;">Union</span><span style="color: #909183;">(</span><span style="color: #228b22;">a11</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r23</span> = a1.<span style="color: #0000ff;">Distinct</span><span style="color: #909183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21435;&#37325;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r24</span> = a1.<span style="color: #0000ff;">Zip</span><span style="color: #909183;">(</span>a1.<span style="color: #0000ff;">Select</span><span style="color: #709870;">(</span>x =&gt; x + 100<span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36820;&#22238;&#21333;&#20010;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r25</span> = a1.<span style="color: #0000ff;">Zip</span><span style="color: #909183;">(</span>a1.<span style="color: #0000ff;">Select</span><span style="color: #709870;">(</span>x =&gt; x + 100<span style="color: #709870;">)</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">First</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r26</span> = a1.<span style="color: #0000ff;">Zip</span><span style="color: #909183;">(</span>a1.<span style="color: #0000ff;">Select</span><span style="color: #709870;">(</span>x =&gt; x + 100<span style="color: #709870;">)</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">Last</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r27</span> = a1.<span style="color: #0000ff;">Zip</span><span style="color: #909183;">(</span>a1.<span style="color: #0000ff;">Select</span><span style="color: #709870;">(</span>x =&gt; x + 100<span style="color: #709870;">)</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">ElementAt</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r28</span> = a1.<span style="color: #0000ff;">Zip</span><span style="color: #909183;">(</span>a1.<span style="color: #0000ff;">Select</span><span style="color: #709870;">(</span>x =&gt; x + 100<span style="color: #709870;">)</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>1<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Single</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r29</span> = a1.<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>x =&gt; x &gt; 10000<span style="color: #909183;">)</span>.<span style="color: #0000ff;">FirstOrDefault</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#32858;&#21512;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r30</span> = a1.<span style="color: #0000ff;">Sum</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r31</span> = a1.<span style="color: #0000ff;">Average</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r32</span> = a1.<span style="color: #0000ff;">Max</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36716;&#25442; (IEnumerable)</span>
+        <span style="color: #228b22;">int</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">r33</span> = a1.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>.<span style="color: #0000ff;">ToArray</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">r34</span> = a1.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>.<span style="color: #0000ff;">ToList</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">Dictionary</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #228b22;">int</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">r35</span> = a1.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>.<span style="color: #0000ff;">ToDictionary</span><span style="color: #909183;">(</span>x =&gt; $<span style="color: #8b2252;">"id-{x}"</span>, x =&gt; x<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">r36</span>  = <span style="color: #228b22;">string</span>.<span style="color: #0000ff;">Concat</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hello, world"</span>.<span style="color: #0000ff;">Select</span><span style="color: #709870;">(</span>x =&gt; <span style="color: #907373;">(</span><span style="color: #228b22;">char</span><span style="color: #907373;">)</span> <span style="color: #907373;">(</span>x + 1<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38745;&#24577;&#12289;&#29983;&#25104;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r37</span> = Enumerable.<span style="color: #0000ff;">Empty</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #909183;">&gt;()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#29983;&#25104;&#19968;&#20010;&#31354;&#30340; int &#30340;&#21487;&#26522;&#20030;&#31867;</span>
+        <span style="color: #228b22;">IEnumerable</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">r38</span> = Enumerable.<span style="color: #0000ff;">Range</span><span style="color: #909183;">(</span>1, 100<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r39</span> = Enumerable.<span style="color: #0000ff;">Repeat</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"xxx"</span>, 10<span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r40</span> = <span style="color: #228b22;">string</span>.<span style="color: #0000ff;">Concat</span><span style="color: #909183;">(</span>Enumerable.<span style="color: #0000ff;">Repeat</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"-"</span>, 100<span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">r40</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">foreach (var e in r39)</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">{</span>
+        <span style="color: #b22222;">//    </span><span style="color: #b22222;">Console.WriteLine(e);</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">}</span>
     <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Book</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ID</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Name</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">Price</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">TypeId</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
-
-    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">Book</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span>, <span style="color: #228b22;">double</span> <span style="color: #a0522d;">price</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">type</span><span style="color: #7388d6;">)</span>
-    <span style="color: #7388d6;">{</span>
-        ID = id;
-        Name = name;
-        Price = price;
-        TypeId = type;
-    <span style="color: #7388d6;">}</span>
-
-    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span>
-    <span style="color: #7388d6;">{</span>
-        <span style="color: #a020f0;">return</span> $<span style="color: #8b2252;">"{ID}: {Name}/{TypeId}/{Price}"</span>;
-    <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
-
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">BookType</span>
-<span style="color: #707183;">{</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">BookType</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">id</span>, <span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span><span style="color: #7388d6;">)</span>
-    <span style="color: #7388d6;">{</span>
-        ID = id;
-        Name = name;
-    <span style="color: #7388d6;">}</span>
-
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">ID</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
-    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Name</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
 </div>

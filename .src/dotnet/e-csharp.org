@@ -4073,6 +4073,7 @@ Linq (Language Integrated Query，语言集成扩展)：
       {
           string s1 = "hello world";
           int[] a1 = {1, 2, 666, 4, 6, 7, 5, 3, 4};
+          int[] a11 = {666, 777, 888};
           object[] a2 = { 1, 2, "666", 4, 6, "7", 5.5, 3, 4 };
           string[] a3 = {"Hello", "World", "where", "are", "You"};
           List<double> l1 = new List<double> {1.2, 2.3, 4.6};
@@ -4131,44 +4132,50 @@ Linq (Language Integrated Query，语言集成扩展)：
               .Where(o => o.typeName == "科幻类")
               .Select(o => o.book);
   
-          foreach (var e in r15)
-          {
-              Console.WriteLine(e);
-          }
+          // 范围
+          var r16 = a1.Take(3); // limit 3
+          var r17 = a1.TakeLast(3);
+          var r18 = a1.TakeWhile(x => x < 5);
+          var r19 = a1.Skip(2).Take(3);
+          var r20 = a1.SkipLast(3).Where(x => x > 1).OrderBy(x => x);
+  
+          // 集合
+          var r21 = a1.Except(a11);
+          var r22 = a1.Union(a11);
+          var r23 = a1.Distinct(); // 去重
+          var r24 = a1.Zip(a1.Select(x => x + 100));
+  
+          // 返回单个
+          var r25 = a1.Zip(a1.Select(x => x + 100)).First();
+          var r26 = a1.Zip(a1.Select(x => x + 100)).Last();
+          var r27 = a1.Zip(a1.Select(x => x + 100)).ElementAt(3);
+          var r28 = a1.Zip(a1.Select(x => x + 100)).Take(1).Single();
+          var r29 = a1.Where(x => x > 10000).FirstOrDefault();
+  
+          // 聚合
+          var r30 = a1.Sum();
+          var r31 = a1.Average();
+          var r32 = a1.Max();
+  
+          // 转换 (IEnumerable)
+          int[] r33 = a1.Take(3).ToArray();
+          List<int> r34 = a1.Take(3).ToList();
+          Dictionary<string, int> r35 = a1.Take(3).ToDictionary(x => $"id-{x}", x => x);
+          string r36  = string.Concat("hello, world".Select(x => (char) (x + 1)));
+  
+          // 静态、生成
+          var r37 = Enumerable.Empty<int>(); // 生成一个空的 int 的可枚举类
+          IEnumerable<int> r38 = Enumerable.Range(1, 100);
+          var r39 = Enumerable.Repeat("xxx", 10);
+          var r40 = string.Concat(Enumerable.Repeat("-", 100));
+  
+          Console.WriteLine(r40);
+  
+          //foreach (var e in r39)
+          //{
+          //    Console.WriteLine(e);
+          //}
       }
-  }
-  
-  class Book
-  {
-      public int ID { get; set; }
-      public string Name { get; set; }
-      public double Price { get; set; }
-      public int TypeId { get; set; }
-  
-      public Book(int id, string name, double price, int type)
-      {
-          ID = id;
-          Name = name;
-          Price = price;
-          TypeId = type;
-      }
-  
-      public override string ToString()
-      {
-          return $"{ID}: {Name}/{TypeId}/{Price}";
-      }
-  }
-  
-  class BookType
-  {
-      public BookType(int id, string name)
-      {
-          ID = id;
-          Name = name;
-      }
-  
-      public int ID { get; set; }
-      public string Name { get; set; }
   }
 #+end_src
 
