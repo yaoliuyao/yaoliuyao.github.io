@@ -335,13 +335,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgc336269">
+<figure id="org9e31925">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgfadab3d">
+<figure id="orgfa07e58">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -586,7 +586,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org53a3ac4">
+<figure id="orgd2d13d8">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -707,7 +707,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgacd9aa9">
+<figure id="orga4c9186">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -735,7 +735,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org5099636">
+<figure id="orgb29222d">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -794,7 +794,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgc2c4904">
+<figure id="orgbd9a333">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1220,7 +1220,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org6664e37">
+<figure id="org9ce21ce">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1258,7 +1258,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgb552d37">
+<figure id="org7d2b435">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2259,7 +2259,7 @@ out:
 </div>
 
 
-<figure id="orgdb049bc">
+<figure id="orgf0fbd40">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3671,7 +3671,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org7e5d89b">
+<figure id="org5da3aa3">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4999,11 +4999,13 @@ ImmutableList:
 <li>通过插件的形式，推出了 Linq 的机制 (Where/Select/OrderBy/Avg/Sum)
 <ul class="org-ul">
 <li>Method 语法</li>
-<li>Query 表达式语法</li>
+<li>Query 表达式语法 (Linq to Object)</li>
 </ul></li>
 <li>Linq Provider (Linq 供应商/提供者):
 <ul class="org-ul">
 <li>Linq to XML</li>
+<li>Linq to SQL</li>
+<li>Linq to Entity</li>
 </ul></li>
 </ol>
 </div>
@@ -5497,22 +5499,54 @@ Linq (Language Integrated Query，语言集成扩展)：
 
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">count1</span> = xml.<span style="color: #0000ff;">Elements</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">Count</span><span style="color: #909183;">()</span>;
 
-        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20248;&#38597;</span>
         <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r1</span> = xml.<span style="color: #0000ff;">Elements</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #909183;">)</span>
             .<span style="color: #0000ff;">OrderByDescending</span><span style="color: #909183;">(</span><span style="color: #228b22;">GetBookPrice</span><span style="color: #909183;">)</span>
             .<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>2<span style="color: #909183;">)</span>
             .<span style="color: #0000ff;">Select</span><span style="color: #909183;">(</span><span style="color: #228b22;">GetBookPrice</span><span style="color: #909183;">)</span>
             .<span style="color: #0000ff;">Average</span><span style="color: #909183;">()</span>;
 
-        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">r</span> <span style="color: #a020f0;">in</span> r1<span style="color: #909183;">)</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r2</span> = xml.<span style="color: #0000ff;">Elements</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">Select</span><span style="color: #909183;">(</span><span style="color: #228b22;">GetBookPrice</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r3</span> = r2.<span style="color: #0000ff;">OrderByDescending</span><span style="color: #909183;">(</span>x =&gt; x<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>2<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Average</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r4</span> = r2.<span style="color: #0000ff;">Average</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(r3 - r4);</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(r2.OrderByDescending(x =&gt; x).Take(2).Average() - r2.Average());</span>
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">Query Expression</span>
+
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r5</span> = <span style="color: #a020f0;">from</span> book <span style="color: #a020f0;">in</span> xml.<span style="color: #0000ff;">Elements</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #909183;">)</span>
+                 <span style="color: #a020f0;">where</span> <span style="color: #0000ff;">GetBookName</span><span style="color: #909183;">(</span><span style="color: #228b22;">book</span><span style="color: #909183;">)</span> != <span style="color: #8b2252;">"jQuery"</span>
+                 <span style="color: #a020f0;">orderby</span> <span style="color: #0000ff;">GetBookPrice</span><span style="color: #909183;">(</span><span style="color: #228b22;">book</span><span style="color: #909183;">)</span>
+                 <span style="color: #a020f0;">select</span> <span style="color: #909183;">(</span><span style="color: #0000ff;">GetBookName</span><span style="color: #709870;">(</span><span style="color: #228b22;">book</span><span style="color: #709870;">)</span>, <span style="color: #0000ff;">GetBookPrice</span><span style="color: #709870;">(</span><span style="color: #228b22;">book</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r6</span> = <span style="color: #909183;">(</span><span style="color: #a020f0;">from</span> book <span style="color: #a020f0;">in</span> xml.<span style="color: #0000ff;">Elements</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #709870;">)</span>
+                  <span style="color: #a020f0;">where</span> <span style="color: #0000ff;">GetBookName</span><span style="color: #709870;">(</span><span style="color: #228b22;">book</span><span style="color: #709870;">)</span> != <span style="color: #8b2252;">"jQuery"</span>
+                  <span style="color: #a020f0;">orderby</span> <span style="color: #0000ff;">GetBookPrice</span><span style="color: #709870;">(</span><span style="color: #228b22;">book</span><span style="color: #709870;">)</span>
+                  <span style="color: #a020f0;">select</span> <span style="color: #0000ff;">GetBookPrice</span><span style="color: #709870;">(</span><span style="color: #228b22;">book</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">Average</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r7</span> = <span style="color: #a020f0;">from</span> book <span style="color: #a020f0;">in</span> xml.<span style="color: #0000ff;">Elements</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #909183;">)</span> <span style="color: #a020f0;">where</span> <span style="color: #0000ff;">GetBookName</span><span style="color: #909183;">(</span><span style="color: #228b22;">book</span><span style="color: #909183;">)</span> != <span style="color: #8b2252;">"jQuery"</span> <span style="color: #a020f0;">select</span> <span style="color: #0000ff;">GetBookPrice</span><span style="color: #909183;">(</span><span style="color: #228b22;">book</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r8</span> = r7.<span style="color: #0000ff;">OrderByDescending</span><span style="color: #909183;">(</span>x =&gt; x<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>2<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Average</span><span style="color: #909183;">()</span>;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r9</span> = r7.<span style="color: #0000ff;">Average</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">r</span> <span style="color: #a020f0;">in</span> r5<span style="color: #909183;">)</span>
         <span style="color: #909183;">{</span>
             Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #228b22;">r</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+
+        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #0000ff;">book</span> <span style="color: #a020f0;">in</span> XElement.<span style="color: #0000ff;">Load</span><span style="color: #709870;">(</span>@<span style="color: #8b2252;">"e:\ccc.xml"</span><span style="color: #709870;">)</span>.<span style="color: #0000ff;">Elements</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>book.<span style="color: #0000ff;">Elements</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"name"</span><span style="color: #907373;">)</span>.<span style="color: #0000ff;">First</span><span style="color: #907373;">()</span>.Value<span style="color: #709870;">)</span>;
         <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
 
     <span style="color: #a020f0;">static</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">GetBookPrice</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">XElement</span> <span style="color: #a0522d;">bookElement</span><span style="color: #7388d6;">)</span>
     <span style="color: #7388d6;">{</span>
         <span style="color: #a020f0;">return</span> <span style="color: #228b22;">double</span>.<span style="color: #0000ff;">Parse</span><span style="color: #909183;">(</span>bookElement.<span style="color: #0000ff;">Descendants</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"price"</span><span style="color: #709870;">)</span>.<span style="color: #0000ff;">First</span><span style="color: #709870;">()</span>.Value<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">GetBookName</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">XElement</span> <span style="color: #a0522d;">bookElement</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> bookElement.<span style="color: #0000ff;">Descendants</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"name"</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">First</span><span style="color: #909183;">()</span>.Value;
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>

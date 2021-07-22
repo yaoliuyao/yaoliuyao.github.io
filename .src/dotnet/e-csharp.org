@@ -3865,9 +3865,11 @@ ImmutableList:
 4. 为了便于使用这个接口，出现 foreach 语法
 5. 通过插件的形式，推出了 Linq 的机制 (Where/Select/OrderBy/Avg/Sum)
    + Method 语法
-   + Query 表达式语法
+   + Query 表达式语法 (Linq to Object)
 6. Linq Provider (Linq 供应商/提供者):
    + Linq to XML
+   + Linq to SQL
+   + Linq to Entity
 
 ** IEnumerable/IEnumerator/foreach
 
@@ -4321,22 +4323,54 @@ Linq (Language Integrated Query，语言集成扩展)：
   
           var count1 = xml.Elements("book").Count();
   
-          // 优雅
           var r1 = xml.Elements("book")
               .OrderByDescending(GetBookPrice)
               .Take(2)
               .Select(GetBookPrice)
               .Average();
   
-          foreach (var r in r1)
+          var r2 = xml.Elements("book").Select(GetBookPrice);
+          var r3 = r2.OrderByDescending(x => x).Take(2).Average();
+          var r4 = r2.Average();
+  
+          //Console.WriteLine(r3 - r4);
+          //Console.WriteLine(r2.OrderByDescending(x => x).Take(2).Average() - r2.Average());
+  
+          // Query Expression
+  
+          var r5 = from book in xml.Elements("book")
+                   where GetBookName(book) != "jQuery"
+                   orderby GetBookPrice(book)
+                   select (GetBookName(book), GetBookPrice(book));
+  
+          var r6 = (from book in xml.Elements("book")
+                    where GetBookName(book) != "jQuery"
+                    orderby GetBookPrice(book)
+                    select GetBookPrice(book)).Average();
+  
+          var r7 = from book in xml.Elements("book") where GetBookName(book) != "jQuery" select GetBookPrice(book);
+          var r8 = r7.OrderByDescending(x => x).Take(2).Average();
+          var r9 = r7.Average();
+  
+          foreach (var r in r5)
           {
               Console.WriteLine(r);
+          }
+  
+          foreach (var book in XElement.Load(@"e:\ccc.xml").Elements("book"))
+          {
+              Console.WriteLine(book.Elements("name").First().Value);
           }
       }
   
       static double GetBookPrice(XElement bookElement)
       {
           return double.Parse(bookElement.Descendants("price").First().Value);
+      }
+  
+      static string GetBookName(XElement bookElement)
+      {
+          return bookElement.Descendants("name").First().Value;
       }
   }
 #+end_src
