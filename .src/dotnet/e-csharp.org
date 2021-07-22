@@ -3858,6 +3858,17 @@ ImmutableList:
 
 
 * IEnumerable/Linq
+
+1. string/array/List/Dict 虽然不是同一种类型，但是很像，有没有内在相似的逻辑? [思考]
+2. a) 容器 b) 遍历
+3. 将上述两点逻辑，抽象为接口 IEnumerable/IEnumerator(MoveNext,Current)
+4. 为了便于使用这个接口，出现 foreach 语法
+5. 通过插件的形式，推出了 Linq 的机制 (Where/Select/OrderBy/Avg/Sum)
+   + Method 语法
+   + Query 表达式语法
+6. Linq Provider (Linq 供应商/提供者):
+   + Linq to XML
+
 ** IEnumerable/IEnumerator/foreach
 
 #+begin_src csharp
@@ -4271,6 +4282,61 @@ Linq (Language Integrated Query，语言集成扩展)：
           {
               Console.WriteLine(e);
           }
+      }
+  }
+#+end_src
+
+** Linq to XML
+
+#+begin_src xml
+  <?xml version="1.0" encoding="utf-8"?>
+  
+  <books>
+    <book>
+      <name>jQuery</name>
+      <price>23</price>
+    </book>
+    <book>
+      <name>VueJS</name>
+      <price>123.5</price>
+    </book>
+    <book>
+      <name>CSharp</name>
+      <price>26.5</price>
+    </book>
+    <book>
+      <name>Java</name>
+      <price>53.5</price>
+    </book>
+  </books>
+#+end_src
+
+#+begin_src csharp
+  class Program
+  {
+      static void Main()
+      {
+          var xml = XElement.Load(@"e:\ccc.xml");
+          string price1 = ((XElement)((XElement) xml.LastNode).LastNode).Value;
+  
+          var count1 = xml.Elements("book").Count();
+  
+          // 优雅
+          var r1 = xml.Elements("book")
+              .OrderByDescending(GetBookPrice)
+              .Take(2)
+              .Select(GetBookPrice)
+              .Average();
+  
+          foreach (var r in r1)
+          {
+              Console.WriteLine(r);
+          }
+      }
+  
+      static double GetBookPrice(XElement bookElement)
+      {
+          return double.Parse(bookElement.Descendants("price").First().Value);
       }
   }
 #+end_src

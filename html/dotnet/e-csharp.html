@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-21 -->
+<!-- 2021-07-22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -244,6 +244,7 @@
 <li><a href="#org6a927d0">16.3.2. Query Syntax/Expression</a></li>
 </ul>
 </li>
+<li><a href="#org2cdffd7">16.4. Linq to XML</a></li>
 </ul>
 </li>
 <li><a href="#org2296731">17. 泛型 (Generic)</a>
@@ -334,13 +335,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org97cc15c">
+<figure id="orgc336269">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org3b310ff">
+<figure id="orgfadab3d">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -585,7 +586,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org2fdf60e">
+<figure id="org53a3ac4">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -706,7 +707,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgfcab09c">
+<figure id="orgacd9aa9">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -734,7 +735,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org721e5ce">
+<figure id="org5099636">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -793,7 +794,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgd899b4e">
+<figure id="orgc2c4904">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1219,7 +1220,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgeca1aa3">
+<figure id="org6664e37">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1257,7 +1258,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org1e6cd18">
+<figure id="orgb552d37">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2258,7 +2259,7 @@ out:
 </div>
 
 
-<figure id="org168056c">
+<figure id="orgdb049bc">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3670,7 +3671,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org6c8f1e2">
+<figure id="org7e5d89b">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4990,7 +4991,23 @@ ImmutableList:
 <section id="outline-container-orgca7a4d7" class="outline-2">
 <h2 id="orgca7a4d7"><span class="section-number-2">16.</span> IEnumerable/Linq</h2>
 <div class="outline-text-2" id="text-16">
+<ol class="org-ol">
+<li>string/array/List/Dict 虽然不是同一种类型，但是很像，有没有内在相似的逻辑? [思考]</li>
+<li>a) 容器 b) 遍历</li>
+<li>将上述两点逻辑，抽象为接口 IEnumerable/IEnumerator(MoveNext,Current)</li>
+<li>为了便于使用这个接口，出现 foreach 语法</li>
+<li>通过插件的形式，推出了 Linq 的机制 (Where/Select/OrderBy/Avg/Sum)
+<ul class="org-ul">
+<li>Method 语法</li>
+<li>Query 表达式语法</li>
+</ul></li>
+<li>Linq Provider (Linq 供应商/提供者):
+<ul class="org-ul">
+<li>Linq to XML</li>
+</ul></li>
+</ol>
 </div>
+
 <div id="outline-container-orgf2c21b8" class="outline-3">
 <h3 id="orgf2c21b8"><span class="section-number-3">16.1.</span> IEnumerable/IEnumerator/foreach</h3>
 <div class="outline-text-3" id="text-16-1">
@@ -5439,6 +5456,66 @@ Linq (Language Integrated Query，语言集成扩展)：
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2cdffd7" class="outline-3">
+<h3 id="org2cdffd7"><span class="section-number-3">16.4.</span> Linq to XML</h3>
+<div class="outline-text-3" id="text-16-4">
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #a020f0;">?xml</span> <span style="color: #a0522d;">version</span>="1.0" <span style="color: #a0522d;">encoding</span>="utf-8"?&gt;
+
+&lt;<span style="color: #0000ff;">books</span>&gt;
+  &lt;<span style="color: #0000ff;">book</span>&gt;
+    &lt;<span style="color: #0000ff;">name</span>&gt;jQuery&lt;/<span style="color: #0000ff;">name</span>&gt;
+    &lt;<span style="color: #0000ff;">price</span>&gt;23&lt;/<span style="color: #0000ff;">price</span>&gt;
+  &lt;/<span style="color: #0000ff;">book</span>&gt;
+  &lt;<span style="color: #0000ff;">book</span>&gt;
+    &lt;<span style="color: #0000ff;">name</span>&gt;VueJS&lt;/<span style="color: #0000ff;">name</span>&gt;
+    &lt;<span style="color: #0000ff;">price</span>&gt;123.5&lt;/<span style="color: #0000ff;">price</span>&gt;
+  &lt;/<span style="color: #0000ff;">book</span>&gt;
+  &lt;<span style="color: #0000ff;">book</span>&gt;
+    &lt;<span style="color: #0000ff;">name</span>&gt;CSharp&lt;/<span style="color: #0000ff;">name</span>&gt;
+    &lt;<span style="color: #0000ff;">price</span>&gt;26.5&lt;/<span style="color: #0000ff;">price</span>&gt;
+  &lt;/<span style="color: #0000ff;">book</span>&gt;
+  &lt;<span style="color: #0000ff;">book</span>&gt;
+    &lt;<span style="color: #0000ff;">name</span>&gt;Java&lt;/<span style="color: #0000ff;">name</span>&gt;
+    &lt;<span style="color: #0000ff;">price</span>&gt;53.5&lt;/<span style="color: #0000ff;">price</span>&gt;
+  &lt;/<span style="color: #0000ff;">book</span>&gt;
+&lt;/<span style="color: #0000ff;">books</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">xml</span> = XElement.<span style="color: #0000ff;">Load</span><span style="color: #909183;">(</span>@<span style="color: #8b2252;">"e:\ccc.xml"</span><span style="color: #909183;">)</span>;
+        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">price1</span> = <span style="color: #909183;">(</span><span style="color: #709870;">(</span><span style="color: #228b22;">XElement</span><span style="color: #709870;">)(</span><span style="color: #907373;">(</span><span style="color: #228b22;">XElement</span><span style="color: #907373;">)</span> xml.LastNode<span style="color: #709870;">)</span>.LastNode<span style="color: #909183;">)</span>.Value;
+
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">count1</span> = xml.<span style="color: #0000ff;">Elements</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">Count</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20248;&#38597;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">r1</span> = xml.<span style="color: #0000ff;">Elements</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">OrderByDescending</span><span style="color: #909183;">(</span><span style="color: #228b22;">GetBookPrice</span><span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span>2<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Select</span><span style="color: #909183;">(</span><span style="color: #228b22;">GetBookPrice</span><span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Average</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">r</span> <span style="color: #a020f0;">in</span> r1<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #228b22;">r</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">GetBookPrice</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">XElement</span> <span style="color: #a0522d;">bookElement</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #228b22;">double</span>.<span style="color: #0000ff;">Parse</span><span style="color: #909183;">(</span>bookElement.<span style="color: #0000ff;">Descendants</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"price"</span><span style="color: #709870;">)</span>.<span style="color: #0000ff;">First</span><span style="color: #709870;">()</span>.Value<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
 </div>
 </div>
 </div>
@@ -6067,7 +6144,7 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-21</p>
+<p class="date">Created: 2021-07-22</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
