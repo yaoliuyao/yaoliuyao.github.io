@@ -4194,9 +4194,9 @@ Linq (Language Integrated Query，语言集成扩展)：
 
 *** Query Syntax/Expression
 
-- Query 表达式，最终会被编译器翻译成相关的方法调用。效果是等同的
+- Query 表达式，最终会被通过 Provider 提供的机制翻译成相关的方法调用。最终效果是一样的。不过 Provider 可能会进行一定程度的优化
 - 在一个 Query 表达式中，from 和 select/group 是必须的，其他可选
-
+  
 #+begin_src csharp
   class Program
   {

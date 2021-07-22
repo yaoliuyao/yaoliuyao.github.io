@@ -335,13 +335,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org5e6bb18">
+<figure id="org04e6d16">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org0f73790">
+<figure id="orgaeca55c">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -586,7 +586,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org251e32e">
+<figure id="org419d139">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -707,7 +707,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgacb8ec6">
+<figure id="org02f1693">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -735,7 +735,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org3f56b70">
+<figure id="org563e412">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -794,7 +794,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org476ebee">
+<figure id="orgca2a6fe">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1220,7 +1220,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org5001af3">
+<figure id="org50bdd7d">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1258,7 +1258,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org2c64f54">
+<figure id="org7481575">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2259,7 +2259,7 @@ out:
 </div>
 
 
-<figure id="org92bb326">
+<figure id="orgf880a08">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3671,7 +3671,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org0b2086d">
+<figure id="org16b912c">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -5363,7 +5363,7 @@ Linq (Language Integrated Query，语言集成扩展)：
 <h4 id="org6a927d0"><span class="section-number-4">16.3.2.</span> Query Syntax/Expression</h4>
 <div class="outline-text-4" id="text-16-3-2">
 <ul class="org-ul">
-<li>Query 表达式，最终会被编译器翻译成相关的方法调用。效果是等同的</li>
+<li>Query 表达式，最终会被通过 Provider 提供的机制翻译成相关的方法调用。最终效果是一样的。不过 Provider 可能会进行一定程度的优化</li>
 <li>在一个 Query 表达式中，from 和 select/group 是必须的，其他可选</li>
 </ul>
 
