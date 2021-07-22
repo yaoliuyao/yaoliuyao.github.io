@@ -4559,6 +4559,18 @@ Linq (Language Integrated Query，语言集成扩展)：
   }
 #+end_src
 
+* 异常 (Exception)
+
+TODO: 
+
+* 特性和反射
+
+TODO:
+
+* 异步编程
+
+TODO:
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
