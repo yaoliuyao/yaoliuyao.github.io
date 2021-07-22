@@ -4364,9 +4364,10 @@ Linq (Language Integrated Query，语言集成扩展)：
           
           (
               from book in XElement.Load(@"e:\ccc.xml").Elements("book")
-              where GetBookPrice(book) > 100
-              orderby GetBookPrice(book)
-              select (name: GetBookName(book), price: GetBookPrice(book))
+              let name = GetBookName(book)
+              let price = GetBookPrice(book)
+              where price > 100 orderby price
+              select (name, price)
           ).ToList().ForEach(x => Console.WriteLine($"{x.name} 的价格为 {x.price}"));          
       }
   
