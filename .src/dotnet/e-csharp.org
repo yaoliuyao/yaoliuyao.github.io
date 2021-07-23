@@ -4573,6 +4573,7 @@ TODO:
 
 * Database
 ** ADO.NET
+*** 基本步骤
 
 #+begin_src csharp
   static void Main()
@@ -4596,6 +4597,43 @@ TODO:
           var city = reader[1];
           var salary = reader[2];
           Console.WriteLine($"{position}: {city}/{salary}");
+      }
+  }
+#+end_src
+
+*** ExecuteScalar 和 SQL Injection
+
+#+begin_src csharp
+  class Program
+  {
+      static void Main()
+      {
+          Console.WriteLine(GetSalayMaxFromCity("珠海"));
+      }
+  
+      static void 这就是SQL注入问题()
+      {
+          var city = "珠海';drop table lagou_position;select * from lagou_position where 1='";
+          var sql0 = $"select * from lagou_position where city = '{city}'";
+          Console.WriteLine(sql0);
+      }
+  
+      static double GetSalayMaxFromCity(string city)
+      {
+          // 第一步: 创建连接
+          using var conn = new SqlConnection("server=.;database=lagou;uid=sa;pwd=sa");
+  
+          // 第二步: 组织语句
+          var sql = $"select top 1 salary_max from lagou_position where city = '{city}' and (position like '%c#%' or position like '%.net%') order by salary_min desc";
+          var command = new SqlCommand(sql, conn);
+  
+          // 第三步: 打开数据库
+          conn.Open();
+  
+          // 第四步: 查询
+          double salaryMax = (double)command.ExecuteScalar();
+  
+          return salaryMax;
       }
   }
 #+end_src
