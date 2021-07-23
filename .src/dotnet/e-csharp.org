@@ -4571,6 +4571,35 @@ TODO:
 
 TODO:
 
+* Database
+** ADO.NET
+
+#+begin_src csharp
+  static void Main()
+  {
+      // 第一步: 创建连接
+      //using var conn = new SqlConnection("server=localhost;database=lagou;uid=sa;pwd=sa");
+      //using var conn = new SqlConnection("server=.;database=lagou;uid=sa;pwd=sa");
+      using var conn = new SqlConnection("server=.;database=lagou;integrated security=SSPI");
+  
+      // 第二步: 组织查询语句
+      var command = new SqlCommand("select top 5 position, city, salary_min from lagou_position", conn);
+  
+      // 第三步: 打开数据库，准备查询
+      conn.Open();
+  
+      // 第四步: 查询
+      SqlDataReader reader = command.ExecuteReader();
+      while (reader.Read())
+      {
+          var position = reader[0];
+          var city = reader[1];
+          var salary = reader[2];
+          Console.WriteLine($"{position}: {city}/{salary}");
+      }
+  }
+#+end_src
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
