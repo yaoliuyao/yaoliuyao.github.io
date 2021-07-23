@@ -4603,6 +4603,7 @@ TODO:
 
 *** ExecuteScalar 和 SQL Injection
 
+在珠海，Salary_min 最高的 C# 岗位的 Salary_max 是多少:
 #+begin_src csharp
   class Program
   {
