@@ -4573,7 +4573,7 @@ TODO:
 
 * Database
 ** ADO.NET
-*** 基本步骤
+*** SqlConnection / SqlCommand / SqlDataReader
 
 #+begin_src csharp
   static void Main()
