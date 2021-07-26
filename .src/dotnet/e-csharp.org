@@ -4601,7 +4601,7 @@ TODO:
   }
 #+end_src
 
-*** ExecuteScalar 和 SQL Injection
+*** ExecuteScalar / SQL Injection / Parameters
 
 在珠海，Salary_min 最高的 C# 岗位的 Salary_max 是多少:
 #+begin_src csharp
@@ -4635,6 +4635,63 @@ TODO:
           double salaryMax = (double)command.ExecuteScalar();
   
           return salaryMax;
+      }
+  }
+#+end_src
+
+Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
+#+begin_src csharp
+  class Program
+  {
+      static void Main()
+      {
+          GetSalayMaxFromCity("珠海");
+      }
+  
+      static void 这就是SQL注入问题()
+      {
+          var city = "珠海';drop table lagou_position;select * from lagou_position where 1='";
+  
+          var sql0 = $"select * from lagou_position where city = '{city}'";
+          Console.WriteLine(sql0);
+      }
+  
+      static void GetSalayMaxFromCity(string city)
+      {
+          // 第一步: 创建连接
+          using var conn = new SqlConnection("server=.;database=lagou;uid=sa;pwd=sa");
+  
+          // 第二步: 组织语句
+          var command = new SqlCommand("select top 5 city, position from lagou_position where city=@xxx and salary_min > @aaa", conn);
+  
+          //command.Parameters.AddWithValue("xxx", city); // 绑定到了 xxx 位置
+          //command.Parameters.AddWithValue("aaa", 20);
+  
+          command.Parameters.AddRange(new[]
+          {
+              new SqlParameter("xxx", SqlDbType.VarChar) {Value = city},
+              new SqlParameter("aaa", SqlDbType.Int) {Value = 20}
+          });
+  
+  
+          //command.Parameters.Add("xxx", SqlDbType.VarChar);
+          //command.Parameters["xxx"].Value = city;
+  
+          //var param = new SqlParameter("xxx", SqlDbType.VarChar);
+          //param.Value = city;
+          //command.Parameters.Add(param);
+  
+          //command.Parameters.Add(new SqlParameter("xxx", SqlDbType.VarChar) {Value = city});
+  
+          // 第三步: 打开数据库
+          conn.Open();
+  
+          // 第四步: 查询
+          using var reader = command.ExecuteReader();
+          while (reader.Read())
+          {
+              Console.WriteLine($"-- {reader[0]}: {reader["position"]}");
+          }
       }
   }
 #+end_src

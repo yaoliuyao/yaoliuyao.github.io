@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-23 -->
+<!-- 2021-07-26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -260,7 +260,7 @@
 <li><a href="#org9f75295">21.1. ADO.NET</a>
 <ul>
 <li><a href="#orge8b95b7">21.1.1. 基本步骤</a></li>
-<li><a href="#org742b892">21.1.2. ExecuteScalar 和 SQL Injection</a></li>
+<li><a href="#orgd0c377b">21.1.2. ExecuteScalar / SQL Injection / Parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -348,13 +348,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgbc7831a">
+<figure id="org1a59080">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgdd44564">
+<figure id="org0aeebf1">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -599,7 +599,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org3cfee2a">
+<figure id="orgc959311">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -720,7 +720,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org422903f">
+<figure id="org4192618">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -748,7 +748,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgb223006">
+<figure id="orgfa3a432">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -807,7 +807,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgf709ea6">
+<figure id="org21f307f">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1233,7 +1233,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgac8a294">
+<figure id="orgcbeb3b0">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1271,7 +1271,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org566bff7">
+<figure id="org1e850d4">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2272,7 +2272,7 @@ out:
 </div>
 
 
-<figure id="org06ff2f0">
+<figure id="orgb3b2b70">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3684,7 +3684,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orga1a959c">
+<figure id="org31d6aaf">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -5827,8 +5827,8 @@ TODO:
 </div>
 </div>
 
-<div id="outline-container-org742b892" class="outline-4">
-<h4 id="org742b892"><span class="section-number-4">21.1.2.</span> ExecuteScalar 和 SQL Injection</h4>
+<div id="outline-container-orgd0c377b" class="outline-4">
+<h4 id="orgd0c377b"><span class="section-number-4">21.1.2.</span> ExecuteScalar / SQL Injection / Parameters</h4>
 <div class="outline-text-4" id="text-21-1-2">
 <p>
 在珠海，Salary_min 最高的 C# 岗位的 Salary_max 是多少:
@@ -5864,6 +5864,66 @@ TODO:
         <span style="color: #228b22;">double</span> <span style="color: #a0522d;">salaryMax</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">double</span><span style="color: #909183;">)</span>command.<span style="color: #0000ff;">ExecuteScalar</span><span style="color: #909183;">()</span>;
 
         <span style="color: #a020f0;">return</span> salaryMax;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #0000ff;">GetSalayMaxFromCity</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#29664;&#28023;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#36825;&#23601;&#26159;SQL&#27880;&#20837;&#38382;&#39064;</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">city</span> = <span style="color: #8b2252;">"&#29664;&#28023;';drop table lagou_position;select * from lagou_position where 1='"</span>;
+
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sql0</span> = $<span style="color: #8b2252;">"select * from lagou_position where city = '{city}'"</span>;
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">sql0</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">GetSalayMaxFromCity</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">city</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#27493;: &#21019;&#24314;&#36830;&#25509;</span>
+        <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> conn = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlConnection</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"server=.;database=lagou;uid=sa;pwd=sa"</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#20108;&#27493;: &#32452;&#32455;&#35821;&#21477;</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">command</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlCommand</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"select top 5 city, position from lagou_position where city=@xxx and salary_min &gt; @aaa"</span>, <span style="color: #228b22;">conn</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">command.Parameters.AddWithValue("xxx", city); // &#32465;&#23450;&#21040;&#20102; xxx &#20301;&#32622;</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">command.Parameters.AddWithValue("aaa", 20);</span>
+
+        command.Parameters.<span style="color: #0000ff;">AddRange</span><span style="color: #909183;">(</span><span style="color: #a020f0;">new</span><span style="color: #709870;">[]</span>
+        <span style="color: #709870;">{</span>
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlParameter</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"xxx"</span>, SqlDbType.<span style="color: #228b22;">VarChar</span><span style="color: #907373;">)</span> <span style="color: #907373;">{</span>Value = city<span style="color: #907373;">}</span>,
+            <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlParameter</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"aaa"</span>, SqlDbType.<span style="color: #228b22;">Int</span><span style="color: #907373;">)</span> <span style="color: #907373;">{</span>Value = 20<span style="color: #907373;">}</span>
+        <span style="color: #709870;">}</span><span style="color: #909183;">)</span>;
+
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">command.Parameters.Add("xxx", SqlDbType.VarChar);</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">command.Parameters["xxx"].Value = city;</span>
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">var param = new SqlParameter("xxx", SqlDbType.VarChar);</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">param.Value = city;</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">command.Parameters.Add(param);</span>
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">command.Parameters.Add(new SqlParameter("xxx", SqlDbType.VarChar) {Value = city});</span>
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19977;&#27493;: &#25171;&#24320;&#25968;&#25454;&#24211;</span>
+        conn.<span style="color: #0000ff;">Open</span><span style="color: #909183;">()</span>;
+
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#22235;&#27493;: &#26597;&#35810;</span>
+        <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> reader = command.<span style="color: #0000ff;">ExecuteReader</span><span style="color: #909183;">()</span>;
+        <span style="color: #a020f0;">while</span> <span style="color: #909183;">(</span>reader.<span style="color: #0000ff;">Read</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"-- {reader[0]}: {reader["</span>position<span style="color: #8b2252;">"]}"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
     <span style="color: #7388d6;">}</span>
 <span style="color: #707183;">}</span>
 </pre>
@@ -6312,7 +6372,7 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-23</p>
+<p class="date">Created: 2021-07-26</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
