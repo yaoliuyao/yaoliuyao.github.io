@@ -4639,6 +4639,13 @@ TODO:
   }
 #+end_src
 
+解决 SQL 注入，最朴素的方式，是对传入的字符串中的特殊字符进行替换:
+#+begin_src csharp
+  // 但是要注意，这种方式绝对不可能 100% 防止注入
+  city = city.Replace('-', '、');
+  city = city.Replace('\'', '’');
+#+end_src
+
 Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 #+begin_src csharp
   class Program
@@ -4858,6 +4865,50 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
   // .....
   Console.WriteLine(sw.ElapsedMillionseconds);  // 1111ms
   sw.Stop();
+#+end_src
+
+* Winform
+** 布局相关
+*** 基本属性
+
+- 通过 Size 设置窗口大小/尺寸
+- 通过 StartPosition 设置窗口的启动位置
+- 通过 FormBorderStyle 设置窗口的风格
+- 通过 MinimizeBox/MaximizeBox 来设置是否显示最大、最小按钮
+
+*** Layout
+
+- Anchor/锚
+
+通过代码的方式，进行自适应布局:
+#+begin_src csharp
+  protected override void OnLayout(LayoutEventArgs levent)
+  {
+      base.OnLayout(levent);
+      
+      var ww = this.ClientSize.Width; // 窗口的宽度
+      var labelW = 40;                // label 的宽度
+      var buttonW = 100;              // button 的宽度
+      var gap = 5;                    // 控件的间隔
+      int inputW = (ww - labelW * 3 - buttonW - 8 * gap - 6 * 7) / 3;
+  
+      nameLabel.Width = labelW;
+      label1.Width = labelW;
+      priceLabel.Width = labelW;
+      addBookBtn.Width = buttonW;
+  
+      nameInput.Width = inputW;
+      authorInput.Width = inputW;
+      priceInput.Width = inputW;
+  
+      nameLabel.Left = gap;
+      nameInput.Left = nameLabel.Right + gap;
+      label1.Left = nameInput.Right + gap;
+      authorInput.Left = label1.Right + gap;
+      priceLabel.Left = authorInput.Right + gap;
+      priceInput.Left = priceLabel.Right + gap;
+      addBookBtn.Left = priceInput.Right + gap;
+  }
 #+end_src
 
 * 技巧和示例
