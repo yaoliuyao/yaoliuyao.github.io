@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-28 -->
+<!-- 2021-09-16 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -261,8 +261,10 @@
 <ul>
 <li><a href="#org48215e3">21.1.1. SqlConnection / SqlCommand / SqlDataReader</a></li>
 <li><a href="#orgd0c377b">21.1.2. ExecuteScalar / SQL Injection / Parameters</a></li>
+<li><a href="#org10d5a6b">21.1.3. SqlDataReader vs SqlDataAdapter/DataTable</a></li>
 </ul>
 </li>
+<li><a href="#org78693f8">21.2. 事务 (Transaction)</a></li>
 </ul>
 </li>
 <li><a href="#org38d4328">22. BCL (Base-Class Library) 基础类库</a>
@@ -281,6 +283,7 @@
 <li><a href="#orgf36b96d">23.1.2. Layout</a></li>
 </ul>
 </li>
+<li><a href="#org1ef5577">23.2. 数据容器</a></li>
 </ul>
 </li>
 <li><a href="#org7906523">24. 技巧和示例</a>
@@ -358,13 +361,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org5622381">
+<figure id="org41f9bb2">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgce18820">
+<figure id="org6b3067b">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -609,7 +612,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org5ed876a">
+<figure id="org0925a95">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -730,7 +733,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgec43a37">
+<figure id="org0944ff7">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -758,7 +761,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org77e21aa">
+<figure id="org82af6a3">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -817,7 +820,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgd905d74">
+<figure id="orgfad33b0">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1243,7 +1246,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orge31d997">
+<figure id="orgdbcecd7">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1281,7 +1284,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgff68580">
+<figure id="orgc804dc5">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2282,7 +2285,7 @@ out:
 </div>
 
 
-<figure id="org9bc8307">
+<figure id="org769feba">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3694,7 +3697,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orga90bc39">
+<figure id="orge167b8a">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -5950,6 +5953,100 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </div>
 </div>
 </div>
+
+<div id="outline-container-org10d5a6b" class="outline-4">
+<h4 id="org10d5a6b"><span class="section-number-4">21.1.3.</span> SqlDataReader vs SqlDataAdapter/DataTable</h4>
+<div class="outline-text-4" id="text-21-1-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> conn = DbHelper.<span style="color: #0000ff;">GetConnection</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">command</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlCommand</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"select * from students"</span>, conn<span style="color: #7388d6;">)</span>;
+    <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> reader = command.<span style="color: #0000ff;">ExecuteReader</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #228b22;">DataTable</span> <span style="color: #a0522d;">dataTable</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">DataTable</span><span style="color: #7388d6;">()</span>;
+    dataTable.<span style="color: #0000ff;">Load</span><span style="color: #7388d6;">(</span>reader<span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">foreach</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">DataRow</span> <span style="color: #a0522d;">row</span> <span style="color: #a020f0;">in</span> dataTable.Rows<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{row[0]}:{row[1]}:{row[2]}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">DataTable</span> <span style="color: #a0522d;">dataTable</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">DataTable</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #a020f0;">using</span> <span style="color: #228b22;">var</span> conn = DbHelper.<span style="color: #0000ff;">GetConnection</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">adapter</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlDataAdapter</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"select name, tiwen_cishu, tiwen_fenshu from students where gid = @gid"</span>, conn<span style="color: #7388d6;">)</span>;
+    adapter.SelectCommand.Parameters.<span style="color: #0000ff;">AddWithValue</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"gid"</span>, 2<span style="color: #7388d6;">)</span>;
+    adapter.<span style="color: #0000ff;">Fill</span><span style="color: #7388d6;">(</span>dataTable<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org78693f8" class="outline-3">
+<h3 id="org78693f8"><span class="section-number-3">21.2.</span> 事务 (Transaction)</h3>
+<div class="outline-text-3" id="text-21-2">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">conn</span> = DbHelper.<span style="color: #0000ff;">GetConnection</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">SqlTransaction</span> <span style="color: #a0522d;">trans</span> = conn.<span style="color: #0000ff;">BeginTransaction</span><span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#21019;&#24314;&#20107;&#21153;</span>
+
+<span style="color: #a020f0;">try</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">1. </span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">command1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlCommand</span><span style="color: #7388d6;">(</span>
+        <span style="color: #8b2252;">"insert into tiwen (stuid, score) values (@stuid, @score)"</span>,
+        conn, trans<span style="color: #7388d6;">)</span>;                           <span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#32465;&#23450;&#20107;&#21153;</span>
+    command1.Parameters.<span style="color: #0000ff;">AddRange</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">new</span><span style="color: #909183;">[]</span>
+    <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlParameter</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"stuid"</span>, stuid<span style="color: #709870;">)</span>,
+        <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlParameter</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"score"</span>, score<span style="color: #709870;">)</span>
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+    command1.<span style="color: #0000ff;">ExecuteNonQuery</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">2</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">command2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlCommand</span><span style="color: #7388d6;">(</span>@<span style="color: #8b2252;">"update students</span>
+<span style="color: #8b2252;">        set tiwen_cishu = tiwen_cishu + 1, tiwen_fenshu = tiwen_fenshu + @score</span>
+<span style="color: #8b2252;">        where id = @stuid"</span>, conn, trans<span style="color: #7388d6;">)</span>;
+    command2.Parameters.<span style="color: #0000ff;">AddRange</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">new</span><span style="color: #909183;">[]</span>
+    <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlParameter</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"stuid"</span>, stuid<span style="color: #709870;">)</span>,
+        <span style="color: #a020f0;">new</span> <span style="color: #228b22;">SqlParameter</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"score"</span>, score<span style="color: #709870;">)</span>
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+    command2.<span style="color: #0000ff;">ExecuteNonQuery</span><span style="color: #7388d6;">()</span>;
+
+    trans.<span style="color: #0000ff;">Commit</span><span style="color: #7388d6;">()</span>;                              <span style="color: #b22222;">// </span><span style="color: #b22222;">3.&#25552;&#20132;&#20107;&#21153;</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">catch</span>
+<span style="color: #707183;">{</span>
+    trans.<span style="color: #0000ff;">Rollback</span><span style="color: #7388d6;">()</span>;                            <span style="color: #b22222;">// </span><span style="color: #b22222;">4. &#22238;&#25764;&#20107;&#21153;</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+环境事务:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">ts</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TransactionScope</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">foreach</span> <span style="color: #7388d6;">(</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">id</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">score</span><span style="color: #909183;">)</span> <span style="color: #a020f0;">in</span> scores<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        dal.<span style="color: #0000ff;">AddScore</span><span style="color: #909183;">(</span>id, score<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    ts.<span style="color: #0000ff;">Complete</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
 </div>
 </section>
 
@@ -6217,6 +6314,50 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 </div>
 </div>
+
+<div id="outline-container-org1ef5577" class="outline-3">
+<h3 id="org1ef5577"><span class="section-number-3">23.2.</span> 数据容器</h3>
+<div class="outline-text-3" id="text-23-2">
+<ul class="org-ul">
+<li>ListBox</li>
+<li>ListView</li>
+<li>TreeView</li>
+<li>DataGridView</li>
+</ul>
+
+
+<p>
+添加数据到 ListBox 的方式:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#31181;</span>
+<span style="color: #a020f0;">this</span>.lbStudents.Items.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#24352;&#19977;"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">this</span>.lbStudents.Items.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#26446;&#22235;"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">this</span>.lbStudents.Items.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#29579;&#20116;"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">this</span>.lbStudents.Items.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#36213;&#20845;"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#20108;&#31181;</span>
+<span style="color: #a020f0;">this</span>.lbStudents.Items.<span style="color: #0000ff;">AddRange</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span>
+<span style="color: #7388d6;">{</span>
+    <span style="color: #8b2252;">"Tom"</span>, <span style="color: #8b2252;">"Jerry"</span>, <span style="color: #8b2252;">"&#27966;&#22823;&#26143;"</span>, <span style="color: #8b2252;">"&#22885;&#29305;&#26364;"</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19977;&#31181;</span>
+<span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">students1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #8b2252;">"aaa"</span>, <span style="color: #8b2252;">"bbb"</span>, <span style="color: #8b2252;">"ccc"</span>
+<span style="color: #707183;">}</span>;
+<span style="color: #b22222;">//</span><span style="color: #b22222;">this.lbStudents.DataSource = students1;</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#22235;&#31181;</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">binding</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">BindingSource</span><span style="color: #707183;">()</span>;
+binding.DataSource = students1;
+binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"ddd"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">this</span>.lbStudents.DataSource = binding;
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-org7906523" class="outline-2">
@@ -6457,7 +6598,7 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-07-28</p>
+<p class="date">Created: 2021-09-16</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -4703,6 +4703,88 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
   }
 #+end_src
 
+*** SqlDataReader vs SqlDataAdapter/DataTable
+
+#+begin_src csharp
+  static void Main(string[] args)
+  {
+      using var conn = DbHelper.GetConnection();
+      var command = new SqlCommand("select * from students", conn);
+      using var reader = command.ExecuteReader();
+  
+      DataTable dataTable = new DataTable();
+      dataTable.Load(reader);
+  
+      foreach (DataRow row in dataTable.Rows)
+      {
+          Console.WriteLine($"{row[0]}:{row[1]}:{row[2]}");
+      }
+  }
+#+end_src
+
+#+begin_src csharp
+  static void Main(string[] args)
+  {
+      DataTable dataTable = new DataTable();
+  
+      using var conn = DbHelper.GetConnection();
+      var adapter = new SqlDataAdapter("select name, tiwen_cishu, tiwen_fenshu from students where gid = @gid", conn);
+      adapter.SelectCommand.Parameters.AddWithValue("gid", 2);
+      adapter.Fill(dataTable);
+  }
+#+end_src
+
+** 事务 (Transaction)
+
+#+begin_src csharp
+  var conn = DbHelper.GetConnection();
+  SqlTransaction trans = conn.BeginTransaction(); // 1. 创建事务
+  
+  try
+  {
+      // 1. 
+      var command1 = new SqlCommand(
+          "insert into tiwen (stuid, score) values (@stuid, @score)",
+          conn, trans);                           // 2. 绑定事务
+      command1.Parameters.AddRange(new[]
+      {
+          new SqlParameter("stuid", stuid),
+          new SqlParameter("score", score)
+      });
+      command1.ExecuteNonQuery();
+  
+      // 2
+      var command2 = new SqlCommand(@"update students
+          set tiwen_cishu = tiwen_cishu + 1, tiwen_fenshu = tiwen_fenshu + @score
+          where id = @stuid", conn, trans);
+      command2.Parameters.AddRange(new[]
+      {
+          new SqlParameter("stuid", stuid),
+          new SqlParameter("score", score)
+      });
+      command2.ExecuteNonQuery();
+  
+      trans.Commit();                              // 3.提交事务
+  }
+  catch
+  {
+      trans.Rollback();                            // 4. 回撤事务
+  }
+#+end_src
+
+环境事务:
+#+begin_src csharp
+  using (var ts = new TransactionScope())
+  {
+      foreach ((string id, int score) in scores)
+      {
+          dal.AddScore(id, score);
+      }
+  
+      ts.Complete();
+  } 
+#+end_src
+
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
 
@@ -4909,6 +4991,42 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
       priceInput.Left = priceLabel.Right + gap;
       addBookBtn.Left = priceInput.Right + gap;
   }
+#+end_src
+
+** 数据容器
+
+- ListBox
+- ListView
+- TreeView
+- DataGridView
+
+
+添加数据到 ListBox 的方式:
+#+begin_src csharp
+  // 第一种
+  this.lbStudents.Items.Add("张三");
+  this.lbStudents.Items.Add("李四");
+  this.lbStudents.Items.Add("王五");
+  this.lbStudents.Items.Add("赵六");
+  
+  // 第二种
+  this.lbStudents.Items.AddRange(new string[]
+  {
+      "Tom", "Jerry", "派大星", "奥特曼"
+  });
+  
+  // 第三种
+  List<string> students1 = new List<string>
+  {
+      "aaa", "bbb", "ccc"
+  };
+  //this.lbStudents.DataSource = students1;
+  
+  // 第四种
+  var binding = new BindingSource();
+  binding.DataSource = students1;
+  binding.Add("ddd");
+  this.lbStudents.DataSource = binding;
 #+end_src
 
 * 技巧和示例
