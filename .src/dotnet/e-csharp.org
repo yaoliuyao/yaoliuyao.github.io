@@ -4710,7 +4710,7 @@ Linq (Language Integrated Query，语言集成扩展)：
 - Action 等名字不够直观，没法做到望文生义
 - 按道理，订阅者没有权力在外部去操作 BiYe 的执行。但现在的权限控制完全做不到这样的限制
 
-因此，C# 提供了标准的关键词 event 和 EventHandler 委托，解决上述痛点:
+因此，C# 提供了标准的 event 关键词和 EventHandler 委托，解决上述痛点:
 #+begin_src csharp
   public class Teacher
   {
@@ -4736,7 +4736,7 @@ Linq (Language Integrated Query，语言集成扩展)：
 
 上述的事件声明，可以扩展为属性:
 #+begin_src csharp
-  public event EventHandler _biye;
+  private EventHandler _biye;
   
   public event EventHandler BiYe;
   {
@@ -4752,11 +4752,45 @@ Linq (Language Integrated Query，语言集成扩展)：
   }
 #+end_src
 
-** 接下来，要考虑的是，能不能在事件触发的时候，传递一些订阅者的个性化数据
+** 接下来，要考虑的是，能不能在事件触发的时候，传递一些参数
 
 EventHandler 两个参数:
 - object sender，用来表示谁是订阅者
-- EventArgs args，用来传递订阅者的一些个性化数据
+- EventArgs args，用来传递一些参数
+
+#+begin_src csharp
+  public class Teacher
+  {
+      public event EventHandler BiYe;
+  
+      public void Start()
+      {
+          var t1 = new Thread(() =>
+          {
+              while (true)
+              {
+                  if (DateTime.Now.Second % 10 == 5)
+                  {
+                      // BiYe(this, new MyEventArgs(5));
+                      BiYe.Invoke(this, new MyEventArgs(5));
+                  }
+                  Thread.Sleep(100);
+              }
+          });
+          t1.Start();
+      }
+  }
+  
+  public class MyEventArgs : EventArgs
+  {
+      public MyEventArgs(int canshu)
+      {
+          Canshu = canshu;
+      }
+  
+      public int Canshu { get; }
+  }
+#+end_src
 
 * 异常 (Exception)
 
