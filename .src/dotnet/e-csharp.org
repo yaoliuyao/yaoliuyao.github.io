@@ -4559,6 +4559,204 @@ Linq (Language Integrated Query，语言集成扩展)：
   }
 #+end_src
 
+* 事件 (Event)
+
+- 不是现在发生的事，而是未来发生的
+- 满足某个条件之后，才会发生的
+- 满足一定条件时，要执行的代码逻辑
+- 比如，你们要毕业，你们要做些什么
+- 比如，如果发生火灾，你要做些什么
+- 比如，在页面上，用户做了某些动作，会导致执行什么逻辑
+- 这种被动式被执行的逻辑，称作事件
+
+每个同学毕业的时候，都有自己的计划。这就是 [毕业事件]:
+- 达成的条件是，毕业的日期到了
+- 条件达成后，每个同学有不同的计划
+
+** 如果使用一般的写法
+
+每个同学，需要不停判断，毕业的时间有没有达成。如果达成了，就做某件事。反复判断。
+
+自己判断，自己触发:
+#+begin_src csharp
+  // A 同学
+  var t1 = new Thread(() =>
+  {
+      while (true)
+      {
+          if (DateTime.Now.Second % 10 == 5)
+          {
+              Console.WriteLine("继承家产");
+          }
+          Thread.Sleep(100);
+      }
+  });
+  
+  // B 同学
+  var t2 = new Thread(() =>
+  {
+      while (true)
+      {
+          if (DateTime.Now.Second % 10 == 5)
+          {
+              Console.WriteLine("回家啃老");
+          }
+          Thread.Sleep(100);
+      }
+  });
+  
+  // C、D、E... 同学都是相似的逻辑
+  
+  t1.Start();
+  t2.Start();
+  
+  t1.Join();
+  t2.Join();
+#+end_src
+
+** 上述的写法虽然没有错误，但是存在一些问题
+
+- 逻辑重复严重，冗余很大
+- 不停判断条件是否达成的代码过于繁琐，每个同学自己维护这段代码，有些不合理
+
+因此，我们需要 1) 将重复的代码剥离出来 2) 条件的判断只需要交付一个专门的人处理就可以了
+
+专人判断，集中逻辑:
+#+begin_src csharp
+  var t1 = new Thread(() =>
+  {
+      while (true)
+      {
+          if (DateTime.Now.Second % 10 == 5)
+          {
+              Console.WriteLine("回家继承家产"); // A
+              Console.WriteLine("搬砖");        // B
+              Console.WriteLine("创业");        // C
+              Console.WriteLine("回家啃老");    // D
+              Console.WriteLine("结婚");        // E...
+          }
+          Thread.Sleep(100);
+      }
+  });
+  t1.Start();
+  t1.Join();
+#+end_src
+
+** 上述代码虽然简洁了，但是条件和最后要执行的逻辑写在一起，耦合度太大
+
+因此，我们需要一种方式，将它们分开。这时候我们想到，委托是实现逻辑分离最佳的工具。
+
+专人判断，分离目标:
+#+begin_src csharp
+  var BiYe = new Action(() => { });
+  
+  // 专门负责判断条件是否达成 (发布事件的 Publisher)
+  var t1 = new Thread(() =>
+  {
+      while (true)
+      {
+          if (DateTime.Now.Second % 10 == 5)
+          {
+              BiYe();
+          }
+          Thread.Sleep(100);
+      }
+  });
+  
+  // 只需要向相应委托内添加自己的计划辑 (订阅上述事件 Subcriber)
+  BiYe += () => Console.WriteLine("搬砖");
+  BiYe += () => Console.WriteLine("结婚");
+  BiYe += () => Console.WriteLine("啃老");
+  
+  t1.Start();
+  t1.Join();
+#+end_src
+
+** 接下来，可以将第一段代码单独抽出来，作为单独的 Publisher，从而实现更好的分离
+
+#+begin_src csharp
+  public class Teacher
+  {
+      public Action BiYe;
+    
+      public void Start()
+      {
+          var t1 = new Thread(() =>
+          {
+              while (true)
+              {
+                  if (DateTime.Now.Second % 10 == 5)
+                  {
+                      BiYe();
+                  }
+                  Thread.Sleep(100);
+              }
+          });
+          t1.Start();
+      }
+  }
+    
+  // 使用者，只需要订阅，完全不需要关心发布者是怎么实现的内在逻辑
+  // 完美的解耦合 (分离)
+  var t = new Teacher();
+  t.BiYe += (s, e) => Console.WriteLine("回家吃饭");
+  t.BiYe += (s, e) => Console.WriteLine("回家抱娃");
+  t.Start();
+#+end_src
+
+** 通过上述实现，我们可以看到事件是通过委托实现的，但还是有些缺点
+
+- Action 等名字不够直观，没法做到望文生义
+- 按道理，订阅者没有权力在外部去操作 BiYe 的执行。但现在的权限控制完全做不到这样的限制
+
+因此，C# 提供了标准的关键词 event 和 EventHandler 委托，解决上述痛点:
+#+begin_src csharp
+  public class Teacher
+  {
+      public event EventHandler BiYe;
+    
+      public void Start()
+      {
+          var t1 = new Thread(() =>
+          {
+              while (true)
+              {
+                  if (DateTime.Now.Second % 10 == 5)
+                  {
+                      BiYe.Invoke(null, null);
+                  }
+                  Thread.Sleep(100);
+              }
+          });
+          t1.Start();
+      }
+  }
+#+end_src
+
+上述的事件声明，可以扩展为属性:
+#+begin_src csharp
+  public event EventHandler _biye;
+  
+  public event EventHandler BiYe;
+  {
+      add
+      {
+          Console.WriteLine("可以添加更多自己的逻辑");
+          _biye += value;
+      }
+      remove
+      {
+          _biye -= value;  
+      }
+  }
+#+end_src
+
+** 接下来，要考虑的是，能不能在事件触发的时候，传递一些订阅者的个性化数据
+
+EventHandler 两个参数:
+- object sender，用来表示谁是订阅者
+- EventArgs args，用来传递订阅者的一些个性化数据
+
 * 异常 (Exception)
 
 TODO: 
