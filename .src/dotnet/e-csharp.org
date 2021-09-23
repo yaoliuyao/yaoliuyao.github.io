@@ -4675,10 +4675,11 @@ Linq (Language Integrated Query，语言集成扩展)：
 ** 接下来，可以将第一段代码单独抽出来，作为单独的 Publisher，从而实现更好的分离
 
 #+begin_src csharp
+  // 事件的发布者，暴露了一个叫 BiYe 的事件
   public class Teacher
   {
       public Action BiYe;
-    
+  
       public void Start()
       {
           var t1 = new Thread(() =>
@@ -4695,7 +4696,7 @@ Linq (Language Integrated Query，语言集成扩展)：
           t1.Start();
       }
   }
-    
+  
   // 使用者，只需要订阅，完全不需要关心发布者是怎么实现的内在逻辑
   // 完美的解耦合 (分离)
   var t = new Teacher();
