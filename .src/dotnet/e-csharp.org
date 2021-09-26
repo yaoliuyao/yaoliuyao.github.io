@@ -1376,6 +1376,107 @@ API (Application Programming Interface) 应用程序编程接口。
   }
 #+end_src
 
+异常的嵌套，以及 finally:
+#+begin_src csharp
+  using System;
+  using System.Collections.Generic;
+  using System.IO;
+  
+  namespace SampleOfException1
+  {
+      class Program
+      {
+          static List<string> validGenders = new() { "男", "女" };
+  
+          static void Main(string[] args)
+          {
+              try
+              {
+                  夸奖("女孩儿");
+                  Console.WriteLine("1111");
+                  return;
+              }
+              catch(GenderTooLongException ex)
+              {
+                  try
+                  {
+                      Console.WriteLine("怎么搞的，这都能错？" + ex.Message);
+                      Console.WriteLine("22222");
+                      return;
+                  }
+                  catch
+                  {
+                      Console.WriteLine("4444");
+                  }
+                  finally
+                  {
+                      Console.WriteLine("666");
+                  }
+              }
+              catch (Exception ex)
+              {
+                  Console.WriteLine("调用失败: " + ex.Message);
+                  Console.WriteLine("555");
+              }
+              finally
+              {
+                  Console.WriteLine("3333");
+              }
+  
+              //try
+              //{
+              //    Kuaijiang("女2");
+              //}
+              //catch
+              //{
+  
+              //}
+          }
+  
+          static void 夸奖 (string  gender)
+          {
+              try
+              {
+                  Kuaijiang(gender);
+              }
+              catch
+              {
+                  Console.WriteLine("[爸爸] 哈哈，出错了吧");
+                  throw;
+              }
+              finally
+              {
+                  Console.WriteLine("[爸爸] 我处理完了!");
+              }
+          }
+  
+          static void Kuaijiang (string gender)
+          {
+              if (gender.Length > 2)
+                  throw new GenderTooLongException("性别怎么可能大约2?");
+  
+              if (validGenders.Contains(gender))
+                  throw new Exception("性别错误");
+  
+              if (gender == "男")
+              {
+                  Console.WriteLine("你真帅!");
+              }
+              if (gender == "女")
+              {
+                  Console.WriteLine("能加你微信吗?");
+              }
+          }
+      }
+      class GenderTooLongException : Exception
+      {
+          public GenderTooLongException(string message) : base(message)
+          {
+          }
+      }
+  }
+#+end_src
+
 *** Convert
 
 #+begin_src cs

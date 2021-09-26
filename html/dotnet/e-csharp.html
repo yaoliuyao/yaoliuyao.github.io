@@ -371,13 +371,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org5e1edee">
+<figure id="orgf0f8980">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgc27854e">
+<figure id="org64e19ff">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -622,7 +622,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org5e72185">
+<figure id="orga16473f">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -743,7 +743,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org3170c0a">
+<figure id="orgb9302f7">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -771,7 +771,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgddd3732">
+<figure id="org0475bb2">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -830,7 +830,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org0c83b7f">
+<figure id="org2ae9ba6">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1256,7 +1256,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orga0381cb">
+<figure id="orgc72b5ef">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1294,7 +1294,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org61e41b9">
+<figure id="org8bd04d4">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2093,6 +2093,110 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+
+<p>
+异常的嵌套，以及 finally:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">Collections</span>.<span style="color: #a0522d;">Generic</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>;
+
+<span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">SampleOfException1</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">static</span> <span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">validGenders</span> = <span style="color: #a020f0;">new</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span> <span style="color: #8b2252;">"&#30007;"</span>, <span style="color: #8b2252;">"&#22899;"</span> <span style="color: #909183;">}</span>;
+
+        <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span><span style="color: #709870;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">try</span>
+            <span style="color: #709870;">{</span>
+                &#22840;&#22870;<span style="color: #907373;">(</span><span style="color: #8b2252;">"&#22899;&#23401;&#20799;"</span><span style="color: #907373;">)</span>;
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"1111"</span><span style="color: #907373;">)</span>;
+                <span style="color: #a020f0;">return</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">catch</span><span style="color: #709870;">(</span><span style="color: #228b22;">GenderTooLongException</span> <span style="color: #a0522d;">ex</span><span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                <span style="color: #a020f0;">try</span>
+                <span style="color: #907373;">{</span>
+                    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #6276ba;">(</span><span style="color: #8b2252;">"&#24590;&#20040;&#25630;&#30340;&#65292;&#36825;&#37117;&#33021;&#38169;&#65311;"</span> + ex.Message<span style="color: #6276ba;">)</span>;
+                    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #6276ba;">(</span><span style="color: #8b2252;">"22222"</span><span style="color: #6276ba;">)</span>;
+                    <span style="color: #a020f0;">return</span>;
+                <span style="color: #907373;">}</span>
+                <span style="color: #a020f0;">catch</span>
+                <span style="color: #907373;">{</span>
+                    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #6276ba;">(</span><span style="color: #8b2252;">"4444"</span><span style="color: #6276ba;">)</span>;
+                <span style="color: #907373;">}</span>
+                <span style="color: #a020f0;">finally</span>
+                <span style="color: #907373;">{</span>
+                    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #6276ba;">(</span><span style="color: #8b2252;">"666"</span><span style="color: #6276ba;">)</span>;
+                <span style="color: #907373;">}</span>
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">catch</span> <span style="color: #709870;">(</span><span style="color: #228b22;">Exception</span> <span style="color: #a0522d;">ex</span><span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#35843;&#29992;&#22833;&#36133;: "</span> + ex.Message<span style="color: #907373;">)</span>;
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"555"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">finally</span>
+            <span style="color: #709870;">{</span>
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"3333"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">try</span>
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">{</span>
+            <span style="color: #b22222;">//    </span><span style="color: #b22222;">Kuaijiang("&#22899;2");</span>
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">}</span>
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">catch</span>
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">{</span>
+
+            <span style="color: #b22222;">//</span><span style="color: #b22222;">}</span>
+        <span style="color: #909183;">}</span>
+
+        <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">&#22840;&#22870;</span> <span style="color: #909183;">(</span><span style="color: #228b22;">string</span>  <span style="color: #a0522d;">gender</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">try</span>
+            <span style="color: #709870;">{</span>
+                <span style="color: #0000ff;">Kuaijiang</span><span style="color: #907373;">(</span><span style="color: #228b22;">gender</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">catch</span>
+            <span style="color: #709870;">{</span>
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"[&#29240;&#29240;] &#21704;&#21704;&#65292;&#20986;&#38169;&#20102;&#21543;"</span><span style="color: #907373;">)</span>;
+                <span style="color: #a020f0;">throw</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">finally</span>
+            <span style="color: #709870;">{</span>
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"[&#29240;&#29240;] &#25105;&#22788;&#29702;&#23436;&#20102;!"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+
+        <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Kuaijiang</span> <span style="color: #909183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">gender</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>gender.Length &gt; 2<span style="color: #709870;">)</span>
+                <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">GenderTooLongException</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#24615;&#21035;&#24590;&#20040;&#21487;&#33021;&#22823;&#32422;2?"</span><span style="color: #709870;">)</span>;
+
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>validGenders.<span style="color: #0000ff;">Contains</span><span style="color: #907373;">(</span><span style="color: #228b22;">gender</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+                <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Exception</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#24615;&#21035;&#38169;&#35823;"</span><span style="color: #709870;">)</span>;
+
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>gender == <span style="color: #8b2252;">"&#30007;"</span><span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#20320;&#30495;&#24069;!"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>gender == <span style="color: #8b2252;">"&#22899;"</span><span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"&#33021;&#21152;&#20320;&#24494;&#20449;&#21527;?"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">class</span> <span style="color: #228b22;">GenderTooLongException</span> : <span style="color: #228b22;">Exception</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">GenderTooLongException</span><span style="color: #909183;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">message</span><span style="color: #909183;">)</span> : <span style="color: #a020f0;">base</span><span style="color: #909183;">(</span>message<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 
@@ -2294,7 +2398,7 @@ out:
 </div>
 
 
-<figure id="org87c2350">
+<figure id="org8d1ef92">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3706,7 +3810,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org30a3750">
+<figure id="orgf5743a9">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
