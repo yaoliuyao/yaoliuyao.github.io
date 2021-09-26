@@ -4794,7 +4794,81 @@ EventHandler 两个参数:
 
 * 异常 (Exception)
 
-TODO: 
+传统方式:
+#+begin_src csharp
+  // 不够直观，啥是 int，分别有啥含义
+  // 代码变啰嗦了，不简洁了
+  // 编码难度变大了，错误的处理，干扰主干逻辑
+  // 调用这需要知道定义者，每个错误逻辑的含义
+  // 错误的处理，不是强制性的，所以容易隐藏 BUG，很难排查
+  static int Kuaijiang (string gender)
+  {
+      if (gender == "男")
+      {
+          Console.WriteLine("你真帅!");
+          return 0;
+      }
+      if (gender == "女")
+      {
+          Console.WriteLine("能加你微信吗?");
+          return 0;
+      }
+  
+      return 111;
+  }
+#+end_src
+
+通过 Exception 提供 *解耦合* 的处理方式:
+#+begin_src csharp
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          try
+          {
+              Kuaijiang("女孩儿");
+          }
+          catch(GenderTooLongException ex)
+          {
+              Console.WriteLine("怎么搞的，这都能错？" + ex.Message);
+          }
+          catch (Exception ex)
+          {
+              Console.WriteLine("调用失败: " + ex.Message);
+          }
+  
+          Console.WriteLine("做其他事情");
+      }
+  
+      static void Kuaijiang (string gender)
+      {
+          if (gender.Length > 2)
+          {
+              throw new GenderTooLongException("性别怎么可能大约2?");
+          }
+          if (gender != "男" && gender != "女")
+          {
+              Exception ex = new Exception("性别错误");
+              throw ex;
+          }
+  
+          if (gender == "男")
+          {
+              Console.WriteLine("你真帅!");
+          }
+          if (gender == "女")
+          {
+              Console.WriteLine("能加你微信吗?");
+          }
+      }
+  }
+  class GenderTooLongException : Exception
+  {
+      public GenderTooLongException(string message) : base(message)
+      {
+      }
+  }
+#+end_src
 
 * 特性和反射
 
