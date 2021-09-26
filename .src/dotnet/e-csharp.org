@@ -1352,6 +1352,7 @@ API (Application Programming Interface) 应用程序编程接口。
 #+end_src
 
 可以使用 TryParse 进行转化，如果转换失败，会返回 False:
+
 #+begin_src cs
   string s4 = "hello";
 
@@ -1372,7 +1373,8 @@ API (Application Programming Interface) 应用程序编程接口。
           result = 0;
           return false;
       }
-  }#+end_src
+  }
+#+end_src
 
 *** Convert
 
