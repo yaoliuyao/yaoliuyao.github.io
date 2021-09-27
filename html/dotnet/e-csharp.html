@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-09-26 -->
+<!-- 2021-09-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -269,7 +269,7 @@
 <li><a href="#org572cb08">19.3. 异常的嵌套，以及 finally</a></li>
 </ul>
 </li>
-<li><a href="#orgcff97a6">20. 特性和反射</a></li>
+<li><a href="#orgd668c08">20. 反射和特性 (Reflection/Attribute)</a></li>
 <li><a href="#orga66a59e">21. 异步编程</a></li>
 <li><a href="#org182b3e2">22. Database</a>
 <ul>
@@ -377,13 +377,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgfc74b57">
+<figure id="org4c03c0d">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org6a3a8e2">
+<figure id="orgea4a329">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -628,7 +628,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgff5efa9">
+<figure id="org1013dca">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -749,7 +749,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orge095247">
+<figure id="org9c3dade">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -777,7 +777,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgc52b4a7">
+<figure id="orgbeedfdd">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -836,7 +836,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgfd2eba9">
+<figure id="org86824e0">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1262,7 +1262,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org68567e9">
+<figure id="org3e4a6fd">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1300,7 +1300,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org732c013">
+<figure id="org8952f68">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2299,7 +2299,7 @@ out:
 </div>
 
 
-<figure id="orgc1d8973">
+<figure id="orga59b0d4">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3711,7 +3711,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org8cb01a8">
+<figure id="orga5f8057">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6249,7 +6249,7 @@ EventHandler 两个参数:
             <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>gender.Length &gt; 2<span style="color: #709870;">)</span>
                 <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">GenderTooLongException</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#24615;&#21035;&#24590;&#20040;&#21487;&#33021;&#22823;&#32422;2?"</span><span style="color: #709870;">)</span>;
 
-            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>validGenders.<span style="color: #0000ff;">Contains</span><span style="color: #907373;">(</span><span style="color: #228b22;">gender</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+            <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>!validGenders.<span style="color: #0000ff;">Contains</span><span style="color: #907373;">(</span><span style="color: #228b22;">gender</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
                 <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Exception</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#24615;&#21035;&#38169;&#35823;"</span><span style="color: #709870;">)</span>;
 
             <span style="color: #a020f0;">if</span> <span style="color: #709870;">(</span>gender == <span style="color: #8b2252;">"&#30007;"</span><span style="color: #709870;">)</span>
@@ -6275,12 +6275,93 @@ EventHandler 两个参数:
 </div>
 </section>
 
-<section id="outline-container-orgcff97a6" class="outline-2">
-<h2 id="orgcff97a6"><span class="section-number-2">20.</span> 特性和反射</h2>
+<section id="outline-container-orgd668c08" class="outline-2">
+<h2 id="orgd668c08"><span class="section-number-2">20.</span> 反射和特性 (Reflection/Attribute)</h2>
 <div class="outline-text-2" id="text-20">
+<ul class="org-ul">
+<li>反射就是运行时查看程序集 (Assembly) 元数据 (metadata) 的行为</li>
+<li>元数据，就是程序集所包含的所有的类型、属性、参数等数据</li>
+<li>C# 通过 <code>System.Reflection</code> 这个命名空间下的类，给出了反射的实现</li>
+<li>为了能够实现反射，运行时在运行的时候，会为每一个 Class 创建一个对应的 <code>Type</code> 类型的对象
+<ul class="org-ul">
+<li>typeof</li>
+<li>GetType</li>
+<li>assembly.GetTypes()</li>
+</ul></li>
+<li>类 <code>Assembly</code> 中提供了加载程序集和操作元数据的相关方法</li>
+<li>可以通过辅助类 <code>Activator</code> 快速创建一个实例</li>
+</ul>
+
 <p>
-TODO:
+正大光明的类型使用方式:
 </p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Student</span> <span style="color: #707183;">{}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">var typeofStudent = new Type(Student);</span>
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s4</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+
+s1.<span style="color: #0000ff;">SayHello</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+创建 Assembly 的若干方法:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">ass1</span> = Assembly.<span style="color: #0000ff;">Load</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"DAL"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">ass2</span> = Assembly.<span style="color: #0000ff;">LoadFile</span><span style="color: #707183;">(</span>@<span style="color: #8b2252;">"e:\Model.dll"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">ass3</span> = Assembly.<span style="color: #0000ff;">LoadFrom</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"DAL"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">ass4</span> = Assembly.<span style="color: #0000ff;">LoadFrom</span><span style="color: #707183;">(</span>@<span style="color: #8b2252;">"e:\Model.dll"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">ass5</span> = Assembly.<span style="color: #0000ff;">GetExecutingAssembly</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">Type</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">types</span> = ass1.<span style="color: #0000ff;">GetTypes</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">type</span> <span style="color: #a020f0;">in</span> types<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"Class: {type}"</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #228b22;">MethodInfo</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">methods</span> = type.<span style="color: #0000ff;">GetMethods</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #a020f0;">foreach</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">m</span> <span style="color: #a020f0;">in</span> methods<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>m<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+获取 Type 的若干方法:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0;
+<span style="color: #228b22;">Type</span> <span style="color: #a0522d;">type1</span> = i.<span style="color: #0000ff;">GetType</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">Student</span> <span style="color: #a0522d;">s</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Student</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">Type</span> <span style="color: #a0522d;">type2</span> = s.<span style="color: #0000ff;">GetType</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">Type</span> <span style="color: #a0522d;">type3</span> = <span style="color: #a020f0;">typeof</span><span style="color: #707183;">(</span>Student<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">ass</span> = Assembly.<span style="color: #0000ff;">GetExecutingAssembly</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">Type</span> <span style="color: #a0522d;">type4</span> = ass.<span style="color: #0000ff;">GetTypes</span><span style="color: #707183;">()[</span>0<span style="color: #707183;">]</span>;
+</pre>
+</div>
+
+<p>
+通过反射的方式，动态调用方法的过程:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">ass</span> = Assembly.<span style="color: #0000ff;">GetExecutingAssembly</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">o</span> = ass.<span style="color: #0000ff;">CreateInstance</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"SampleOfReflection.X"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">MethodInfo</span> <span style="color: #a0522d;">m</span> = o.<span style="color: #0000ff;">GetType</span><span style="color: #707183;">()</span>.<span style="color: #0000ff;">GetMethod</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"SayHello"</span><span style="color: #707183;">)</span>;
+m.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</span>o, <span style="color: #008b8b;">null</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
 </div>
 </section>
 
@@ -7091,7 +7172,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-09-26</p>
+<p class="date">Created: 2021-09-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -4952,7 +4952,7 @@ EventHandler 两个参数:
               if (gender.Length > 2)
                   throw new GenderTooLongException("性别怎么可能大约2?");
   
-              if (validGenders.Contains(gender))
+              if (!validGenders.Contains(gender))
                   throw new Exception("性别错误");
   
               if (gender == "男")
@@ -4974,9 +4974,76 @@ EventHandler 两个参数:
   }
 #+end_src
 
-* 特性和反射
+* 反射和特性 (Reflection/Attribute)
 
-TODO:
+- 反射就是运行时查看程序集 (Assembly) 元数据 (metadata) 的行为
+- 元数据，就是程序集所包含的所有的类型、属性、参数等数据
+- C# 通过 ~System.Reflection~ 这个命名空间下的类，给出了反射的实现
+- 为了能够实现反射，运行时在运行的时候，会为每一个 Class 创建一个对应的 ~Type~ 类型的对象
+  + typeof
+  + GetType
+  + assembly.GetTypes()
+- 类 ~Assembly~ 中提供了加载程序集和操作元数据的相关方法
+- 可以通过辅助类 ~Activator~ 快速创建一个实例
+
+正大光明的类型使用方式:
+#+begin_src csharp
+  class Student {}
+  // var typeofStudent = new Type(Student);
+  
+  var s1 = new Student();
+  var s2 = new Student();
+  var s3 = new Student();
+  var s4 = new Student();
+  
+  s1.SayHello();
+#+end_src
+
+创建 Assembly 的若干方法:
+#+begin_src csharp
+  var ass1 = Assembly.Load("DAL");
+  var ass2 = Assembly.LoadFile(@"e:\Model.dll");
+  var ass3 = Assembly.LoadFrom("DAL");
+  var ass4 = Assembly.LoadFrom(@"e:\Model.dll");
+  var ass5 = Assembly.GetExecutingAssembly();
+  
+  Type[] types = ass1.GetTypes();
+  foreach (var type in types)
+  {
+      Console.WriteLine($"Class: {type}");
+  
+      MethodInfo[] methods = type.GetMethods();
+      foreach (var m in methods)
+      {
+          Console.WriteLine(m);
+      }
+      Console.WriteLine();
+      Console.WriteLine();
+      Console.WriteLine();
+  }
+#+end_src
+
+获取 Type 的若干方法:
+#+begin_src csharp
+  int i = 0;
+  Type type1 = i.GetType();
+  
+  Student s = new Student();
+  Type type2 = s.GetType();
+  
+  Type type3 = typeof(Student);
+  
+  var ass = Assembly.GetExecutingAssembly();
+  Type type4 = ass.GetTypes()[0];
+#+end_src
+
+通过反射的方式，动态调用方法的过程:
+#+begin_src csharp
+  var ass = Assembly.GetExecutingAssembly();
+  object o = ass.CreateInstance("SampleOfReflection.X");
+  MethodInfo m = o.GetType().GetMethod("SayHello");
+  m.Invoke(o, null);
+#+end_src
 
 * 异步编程
 
