@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-09-27 -->
+<!-- 2021-09-30 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -269,7 +269,13 @@
 <li><a href="#org572cb08">19.3. 异常的嵌套，以及 finally</a></li>
 </ul>
 </li>
-<li><a href="#orgd668c08">20. 反射和特性 (Reflection/Attribute)</a></li>
+<li><a href="#orgd668c08">20. 反射和特性 (Reflection/Attribute)</a>
+<ul>
+<li><a href="#orgdbd226b">20.1. 反射 (Reflection)</a></li>
+<li><a href="#org7b4e1c9">20.2. [例子] ToModelList</a></li>
+<li><a href="#org9403e78">20.3. 特性 (Attribute)</a></li>
+</ul>
+</li>
 <li><a href="#orga66a59e">21. 异步编程</a></li>
 <li><a href="#org182b3e2">22. Database</a>
 <ul>
@@ -377,13 +383,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org4c03c0d">
+<figure id="orgf0ad9f8">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgea4a329">
+<figure id="org715ba46">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -628,7 +634,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org1013dca">
+<figure id="orge3fc532">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -749,7 +755,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org9c3dade">
+<figure id="org2408720">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -777,7 +783,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgbeedfdd">
+<figure id="orga843233">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -836,7 +842,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org86824e0">
+<figure id="org6b6ea4a">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1262,7 +1268,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org3e4a6fd">
+<figure id="org9de14a5">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1300,7 +1306,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org8952f68">
+<figure id="org458e185">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2299,7 +2305,7 @@ out:
 </div>
 
 
-<figure id="orga59b0d4">
+<figure id="org1b2636f">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3711,7 +3717,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orga5f8057">
+<figure id="org3d4fccc">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6278,6 +6284,10 @@ EventHandler 两个参数:
 <section id="outline-container-orgd668c08" class="outline-2">
 <h2 id="orgd668c08"><span class="section-number-2">20.</span> 反射和特性 (Reflection/Attribute)</h2>
 <div class="outline-text-2" id="text-20">
+</div>
+<div id="outline-container-orgdbd226b" class="outline-3">
+<h3 id="orgdbd226b"><span class="section-number-3">20.1.</span> 反射 (Reflection)</h3>
+<div class="outline-text-3" id="text-20-1">
 <ul class="org-ul">
 <li>反射就是运行时查看程序集 (Assembly) 元数据 (metadata) 的行为</li>
 <li>元数据，就是程序集所包含的所有的类型、属性、参数等数据</li>
@@ -6361,6 +6371,97 @@ s1.<span style="color: #0000ff;">SayHello</span><span style="color: #707183;">()
 <span style="color: #228b22;">MethodInfo</span> <span style="color: #a0522d;">m</span> = o.<span style="color: #0000ff;">GetType</span><span style="color: #707183;">()</span>.<span style="color: #0000ff;">GetMethod</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"SayHello"</span><span style="color: #707183;">)</span>;
 m.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</span>o, <span style="color: #008b8b;">null</span><span style="color: #707183;">)</span>;
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7b4e1c9" class="outline-3">
+<h3 id="org7b4e1c9"><span class="section-number-3">20.2.</span> [例子] ToModelList</h3>
+<div class="outline-text-3" id="text-20-2">
+<p>
+版本 1:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #707183;">&gt;</span> <span style="color: #0000ff;">ToModelList</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #707183;">&gt;(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">DataTable</span> <span style="color: #a0522d;">dt</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">return</span>
+        dt.Rows.<span style="color: #0000ff;">Cast</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">DataRow</span><span style="color: #7388d6;">&gt;()</span>
+        .<span style="color: #0000ff;">Select</span><span style="color: #7388d6;">(</span>r =&gt;
+        <span style="color: #909183;">{</span>
+            <span style="color: #228b22;">T</span> <span style="color: #a0522d;">t</span> = <span style="color: #709870;">(</span><span style="color: #228b22;">T</span><span style="color: #709870;">)</span> Activator.<span style="color: #0000ff;">CreateInstance</span><span style="color: #709870;">(</span><span style="color: #a020f0;">typeof</span><span style="color: #907373;">(</span>T<span style="color: #907373;">)</span><span style="color: #709870;">)</span>;
+            <span style="color: #a020f0;">foreach</span> <span style="color: #709870;">(</span><span style="color: #228b22;">PropertyInfo</span> <span style="color: #0000ff;">p</span> <span style="color: #a020f0;">in</span> <span style="color: #a020f0;">typeof</span><span style="color: #907373;">(</span>T<span style="color: #907373;">)</span>.<span style="color: #0000ff;">GetProperties</span><span style="color: #907373;">()</span><span style="color: #709870;">)</span>
+            <span style="color: #709870;">{</span>
+                p.<span style="color: #0000ff;">SetValue</span><span style="color: #907373;">(</span>t, r<span style="color: #6276ba;">[</span>p.Name.<span style="color: #0000ff;">ToLower</span><span style="color: #858580;">()</span><span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+            <span style="color: #a020f0;">return</span> t;
+        <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>
+        .<span style="color: #0000ff;">ToList</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+版本 2:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #707183;">&gt;</span> <span style="color: #0000ff;">ToModelList2</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #707183;">&gt;(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">DataTable</span> <span style="color: #a0522d;">dt</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">List</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">lst</span> = <span style="color: #7388d6;">(</span><span style="color: #228b22;">List</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #909183;">&gt;</span><span style="color: #7388d6;">)</span>Activator
+        .<span style="color: #0000ff;">CreateInstance</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">typeof</span><span style="color: #909183;">(</span><span style="color: #228b22;">List</span><span style="color: #709870;">&lt;&gt;</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">MakeGenericType</span><span style="color: #909183;">(</span><span style="color: #a020f0;">typeof</span><span style="color: #709870;">(</span>T<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">foreach</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">DataRow</span> <span style="color: #a0522d;">r</span> <span style="color: #a020f0;">in</span> dt.Rows<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">T</span> <span style="color: #a0522d;">t</span> = <span style="color: #909183;">(</span><span style="color: #228b22;">T</span><span style="color: #909183;">)</span>Activator.<span style="color: #0000ff;">CreateInstance</span><span style="color: #909183;">(</span><span style="color: #a020f0;">typeof</span><span style="color: #709870;">(</span>T<span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">PropertyInfo</span> <span style="color: #0000ff;">p</span> <span style="color: #a020f0;">in</span> <span style="color: #a020f0;">typeof</span><span style="color: #709870;">(</span>T<span style="color: #709870;">)</span>.<span style="color: #0000ff;">GetProperties</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            p.<span style="color: #0000ff;">SetValue</span><span style="color: #709870;">(</span>t, r<span style="color: #907373;">[</span>p.Name.<span style="color: #0000ff;">ToLower</span><span style="color: #6276ba;">()</span><span style="color: #907373;">]</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        lst.<span style="color: #0000ff;">GetType</span><span style="color: #909183;">()</span>.<span style="color: #0000ff;">GetMethod</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"Add"</span><span style="color: #909183;">)</span>.<span style="color: #0000ff;">Invoke</span><span style="color: #909183;">(</span>lst, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">object</span><span style="color: #709870;">[]</span> <span style="color: #709870;">{</span> t <span style="color: #709870;">}</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">return</span> lst;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+比较原版:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Group</span><span style="color: #707183;">&gt;</span> <span style="color: #0000ff;">ToModelList</span><span style="color: #707183;">(</span><span style="color: #228b22;">DataTable</span> <span style="color: #a0522d;">dt</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">list</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Group</span><span style="color: #7388d6;">&gt;()</span>;
+
+    <span style="color: #a020f0;">foreach</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">DataRow</span> <span style="color: #a0522d;">r</span> <span style="color: #a020f0;">in</span> dt.Rows<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">g</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Group</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #a0522d;">Gno</span> = <span style="color: #709870;">(</span><span style="color: #228b22;">int</span><span style="color: #709870;">)</span>r<span style="color: #709870;">[</span><span style="color: #8b2252;">"gno"</span><span style="color: #709870;">]</span>,
+            <span style="color: #a0522d;">Name</span> = <span style="color: #709870;">(</span><span style="color: #228b22;">string</span><span style="color: #709870;">)</span>r<span style="color: #709870;">[</span><span style="color: #8b2252;">"name"</span><span style="color: #709870;">]</span>,
+            <span style="color: #a0522d;">Cs</span> = <span style="color: #709870;">(</span><span style="color: #228b22;">int</span><span style="color: #709870;">)</span>r<span style="color: #709870;">[</span><span style="color: #8b2252;">"cs"</span><span style="color: #709870;">]</span>,
+            <span style="color: #a0522d;">Fs</span> = <span style="color: #709870;">(</span><span style="color: #228b22;">int</span><span style="color: #709870;">)</span>r<span style="color: #709870;">[</span><span style="color: #8b2252;">"fs"</span><span style="color: #709870;">]</span>
+        <span style="color: #909183;">}</span>;
+        list.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span>g<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">return</span> list;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9403e78" class="outline-3">
+<h3 id="org9403e78"><span class="section-number-3">20.3.</span> 特性 (Attribute)</h3>
+<div class="outline-text-3" id="text-20-3">
+<ul class="org-ul">
+<li>特性是向程序集添加用户自定义元数据的方式</li>
+<li>基本使用过程: [定义] &#x2013; 添加到 [目标 (target)] &#x2013; [消费 (consumer)]</li>
+<li>定义特性，只需要继承 Attribute 即可。类的命名以 Attribute 结尾，如 MyIgnoreAttribute</li>
+<li>特性的消费，需要使用反射的方式 (type.GetCustomerAttribute)</li>
+<li>特性只有被消费才具备其存在的意义。其意义是在消费的时候，使用者赋予的</li>
+<li>特性就像人生，定一个小目标，然后去实现它</li>
+</ul>
 </div>
 </div>
 </section>
@@ -7172,7 +7273,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-09-27</p>
+<p class="date">Created: 2021-09-30</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

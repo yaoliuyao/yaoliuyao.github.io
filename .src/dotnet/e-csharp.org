@@ -4975,6 +4975,7 @@ EventHandler 两个参数:
 #+end_src
 
 * 反射和特性 (Reflection/Attribute)
+** 反射 (Reflection)
 
 - 反射就是运行时查看程序集 (Assembly) 元数据 (metadata) 的行为
 - 元数据，就是程序集所包含的所有的类型、属性、参数等数据
@@ -5044,6 +5045,79 @@ EventHandler 两个参数:
   MethodInfo m = o.GetType().GetMethod("SayHello");
   m.Invoke(o, null);
 #+end_src
+
+** [例子] ToModelList
+
+版本 1:
+#+begin_src csharp
+  public static List<T> ToModelList<T>(this DataTable dt)
+  {
+      return 
+          dt.Rows.Cast<DataRow>()
+          .Select(r =>
+          {
+              T t = (T) Activator.CreateInstance(typeof(T));
+              foreach (PropertyInfo p in typeof(T).GetProperties())
+              {
+                  p.SetValue(t, r[p.Name.ToLower()]);
+              }
+              return t;
+          })
+          .ToList();
+  }
+#+end_src
+
+版本 2:
+#+begin_src csharp
+  public static List<T> ToModelList2<T>(this DataTable dt)
+  {
+      List<T> lst = (List<T>)Activator
+          .CreateInstance(typeof(List<>).MakeGenericType(typeof(T)));
+  
+      foreach (DataRow r in dt.Rows)
+      {
+          T t = (T)Activator.CreateInstance(typeof(T));
+          foreach (PropertyInfo p in typeof(T).GetProperties())
+          {
+              p.SetValue(t, r[p.Name.ToLower()]);
+          }
+          lst.GetType().GetMethod("Add").Invoke(lst, new object[] { t });
+      }
+  
+      return lst;
+  }
+#+end_src
+
+比较原版:
+#+begin_src csharp
+  public static List<Group> ToModelList(DataTable dt)
+  {
+      var list = new List<Group>();
+  
+      foreach (DataRow r in dt.Rows)
+      {
+          var g = new Group
+          {
+              Gno = (int)r["gno"],
+              Name = (string)r["name"],
+              Cs = (int)r["cs"],
+              Fs = (int)r["fs"]
+          };
+          list.Add(g);
+      }
+  
+      return list;
+  }
+#+end_src
+
+** 特性 (Attribute)
+
+- 特性是向程序集添加用户自定义元数据的方式
+- 基本使用过程: [定义] -- 添加到 [目标 (target)] -- [消费 (consumer)]
+- 定义特性，只需要继承 Attribute 即可。类的命名以 Attribute 结尾，如 MyIgnoreAttribute
+- 特性的消费，需要使用反射的方式 (type.GetCustomerAttribute)
+- 特性只有被消费才具备其存在的意义。其意义是在消费的时候，使用者赋予的
+- 特性就像人生，定一个小目标，然后去实现它
 
 * 异步编程
 
