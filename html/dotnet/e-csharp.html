@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-09-30 -->
+<!-- 2021-10-11 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -13,26 +13,6 @@
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
 <script src='/yaoliuyao/html/asset/common.js'></script>
-
-<style>
- /* From: https://endlessparentheses.com/public/css/endless.css */
- .special-kbd {
-   color: #333;
-   background-color: #f7f7f7;
-   border: 1px solid #ccc;
-   border-radius: 6px;
-   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-   display: inline-block;
-   font-family: 'Droid Sans Mono', monospace;
-   font-size: 80%;
-   font-weight: normal;
-   line-height: inherit;
-   margin: 2px .1em;
-   padding: .04em .4em;
-   text-shadow: 0 1px 0 #fff;
-   word-spacing: -3px;
- }
-</style>
 </head>
 <body>
 <div id="content">
@@ -273,69 +253,79 @@
 <ul>
 <li><a href="#orgdbd226b">20.1. 反射 (Reflection)</a></li>
 <li><a href="#org7b4e1c9">20.2. [例子] ToModelList</a></li>
-<li><a href="#org9403e78">20.3. 特性 (Attribute)</a></li>
+<li><a href="#org9403e78">20.3. 特性 (Attribute)</a>
+<ul>
+<li><a href="#orgd0b5d07">20.3.1. 特性就是一个普通的类</a></li>
+<li><a href="#org315ffa6">20.3.2. 通过反射得到它的实例，然后就可以使用了</a></li>
 </ul>
 </li>
-<li><a href="#orga66a59e">21. 异步编程</a></li>
-<li><a href="#org182b3e2">22. Database</a>
-<ul>
-<li><a href="#org9f75295">22.1. ADO.NET</a>
-<ul>
-<li><a href="#org48215e3">22.1.1. SqlConnection / SqlCommand / SqlDataReader</a></li>
-<li><a href="#orgd0c377b">22.1.2. ExecuteScalar / SQL Injection / Parameters</a></li>
-<li><a href="#org10d5a6b">22.1.3. SqlDataReader vs SqlDataAdapter/DataTable</a></li>
 </ul>
 </li>
-<li><a href="#org78693f8">22.2. 事务 (Transaction)</a></li>
+<li><a href="#orge19ab8b">21. 依赖注入 (DI/IoC)</a>
+<ul>
+<li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 </ul>
 </li>
-<li><a href="#org38d4328">23. BCL (Base-Class Library) 基础类库</a>
+<li><a href="#orga66a59e">22. 异步编程</a></li>
+<li><a href="#org182b3e2">23. Database</a>
 <ul>
-<li><a href="#orge42088e">23.1. Console/控制台</a></li>
-<li><a href="#orgd098591">23.2. Random/Thread</a></li>
-<li><a href="#orgd147bfd">23.3. IDisposable/资源</a></li>
-<li><a href="#org5c71774">23.4. Stopwatch/秒表</a></li>
+<li><a href="#org9f75295">23.1. ADO.NET</a>
+<ul>
+<li><a href="#org48215e3">23.1.1. SqlConnection / SqlCommand / SqlDataReader</a></li>
+<li><a href="#orgd0c377b">23.1.2. ExecuteScalar / SQL Injection / Parameters</a></li>
+<li><a href="#org10d5a6b">23.1.3. SqlDataReader vs SqlDataAdapter/DataTable</a></li>
 </ul>
 </li>
-<li><a href="#org6d7d01d">24. Winform</a>
-<ul>
-<li><a href="#org70997ee">24.1. 布局相关</a>
-<ul>
-<li><a href="#orgcf7571c">24.1.1. 基本属性</a></li>
-<li><a href="#orgf36b96d">24.1.2. Layout</a></li>
+<li><a href="#org78693f8">23.2. 事务 (Transaction)</a></li>
 </ul>
 </li>
-<li><a href="#org1ef5577">24.2. 数据容器</a></li>
+<li><a href="#org38d4328">24. BCL (Base-Class Library) 基础类库</a>
+<ul>
+<li><a href="#orge42088e">24.1. Console/控制台</a></li>
+<li><a href="#orgd098591">24.2. Random/Thread</a></li>
+<li><a href="#orgd147bfd">24.3. IDisposable/资源</a></li>
+<li><a href="#org5c71774">24.4. Stopwatch/秒表</a></li>
 </ul>
 </li>
-<li><a href="#org7906523">25. 技巧和示例</a>
+<li><a href="#org6d7d01d">25. Winform</a>
 <ul>
-<li><a href="#org723d270">25.1. 求余</a></li>
+<li><a href="#org70997ee">25.1. 布局相关</a>
+<ul>
+<li><a href="#orgcf7571c">25.1.1. 基本属性</a></li>
+<li><a href="#orgf36b96d">25.1.2. Layout</a></li>
 </ul>
 </li>
-<li><a href="#org8a80c1e">26. 模拟题</a>
-<ul>
-<li><a href="#org6400c8e">26.1. 继承相关</a></li>
-<li><a href="#org0993f51">26.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
+<li><a href="#org1ef5577">25.2. 数据容器</a></li>
 </ul>
 </li>
-<li><a href="#orgb8b093b">27. 问题 (仅作参考)</a>
+<li><a href="#org7906523">26. 技巧和示例</a>
 <ul>
-<li><a href="#org0931609">27.1. string 和 StringBuilder 有什么区别</a></li>
-<li><a href="#org5f8661c">27.2. 什么是抽象类，抽象类有什么用处</a></li>
-<li><a href="#orgddf3ea3">27.3. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
-<li><a href="#org156522f">27.4. 什么是静态类，什么是密封类，什么是分部类</a></li>
-<li><a href="#org51f1e72">27.5. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
-<li><a href="#org53c5fb1">27.6. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
-<li><a href="#org7f77498">27.7. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
-<li><a href="#org1453cfa">27.8. 什么是封装，什么是继承，什么是多态</a></li>
-<li><a href="#org7cbe124">27.9. 什么是虚方法，它有什么用处</a></li>
-<li><a href="#orga4100f5">27.10. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
-<li><a href="#org49d491a">27.11. 什么是 DRY，代码复用的手段有哪些</a></li>
-<li><a href="#org6186468">27.12. Parse/TryParse 有啥区别</a></li>
-<li><a href="#org6aa9caa">27.13. 什么是装箱拆箱</a></li>
-<li><a href="#org98ec2cf">27.14. 什么是值类型/引用类型</a></li>
-<li><a href="#org3f909ac">27.15. is/as 分别是干啥的</a></li>
+<li><a href="#org723d270">26.1. 求余</a></li>
+</ul>
+</li>
+<li><a href="#org8a80c1e">27. 模拟题</a>
+<ul>
+<li><a href="#org6400c8e">27.1. 继承相关</a></li>
+<li><a href="#org0993f51">27.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
+</ul>
+</li>
+<li><a href="#orgb8b093b">28. 问题 (仅作参考)</a>
+<ul>
+<li><a href="#org0931609">28.1. string 和 StringBuilder 有什么区别</a></li>
+<li><a href="#org5f8661c">28.2. 什么是抽象类，抽象类有什么用处</a></li>
+<li><a href="#orgddf3ea3">28.3. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
+<li><a href="#org156522f">28.4. 什么是静态类，什么是密封类，什么是分部类</a></li>
+<li><a href="#org51f1e72">28.5. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
+<li><a href="#org53c5fb1">28.6. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
+<li><a href="#org7f77498">28.7. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
+<li><a href="#org1453cfa">28.8. 什么是封装，什么是继承，什么是多态</a></li>
+<li><a href="#org7cbe124">28.9. 什么是虚方法，它有什么用处</a></li>
+<li><a href="#orga4100f5">28.10. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
+<li><a href="#org49d491a">28.11. 什么是 DRY，代码复用的手段有哪些</a></li>
+<li><a href="#org6186468">28.12. Parse/TryParse 有啥区别</a></li>
+<li><a href="#org6aa9caa">28.13. 什么是装箱拆箱</a></li>
+<li><a href="#org98ec2cf">28.14. 什么是值类型/引用类型</a></li>
+<li><a href="#org3f909ac">28.15. is/as 分别是干啥的</a></li>
 </ul>
 </li>
 </ul>
@@ -383,13 +373,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgf0ad9f8">
+<figure id="org800eecd">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org715ba46">
+<figure id="org6b4966e">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -634,7 +624,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orge3fc532">
+<figure id="orgd208aa9">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -755,7 +745,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org2408720">
+<figure id="org8df9dac">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -783,7 +773,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orga843233">
+<figure id="org31f047c">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -842,7 +832,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org6b6ea4a">
+<figure id="org8470cd6">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1268,7 +1258,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org9de14a5">
+<figure id="orgb6af84b">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1306,7 +1296,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org458e185">
+<figure id="orgea8ebb1">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2305,7 +2295,7 @@ out:
 </div>
 
 
-<figure id="org1b2636f">
+<figure id="orgd552b41">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3717,7 +3707,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org3d4fccc">
+<figure id="org0a01326">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6463,12 +6453,100 @@ m.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</sp
 <li>特性就像人生，定一个小目标，然后去实现它</li>
 </ul>
 </div>
+
+<div id="outline-container-orgd0b5d07" class="outline-4">
+<h4 id="orgd0b5d07"><span class="section-number-4">20.3.1.</span> 特性就是一个普通的类</h4>
+<div class="outline-text-4" id="text-20-3-1">
+<p>
+<b>最好</b> 按照一定的命名规范来命名 (当然，你不按照命名规范，也拿你没办法):
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">RainAttribute</span> : <span style="color: #228b22;">Attribute</span> <span style="color: #707183;">{}</span>
+</pre>
+</div>
+
+<p>
+特新本身是没有任何意义的，但是如果我们将其放到其他的地方。
+程序在编译运行的过程中，会记录这些特性 (元数据中会保留特性的信息)。
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #707183;">[</span><span style="color: #a0522d;">Rain</span><span style="color: #707183;">]</span>
+<span style="color: #707183;">[</span><span style="color: #a0522d;">RainAttribute</span><span style="color: #707183;">]</span>
+<span style="color: #a020f0;">class</span> Xxx <span style="color: #707183;">{}</span>  <span style="color: #b22222;">// </span><span style="color: #b22222;">- Type - &#21453;&#23556; - &#39069;&#22806;&#30340;&#20449;&#24687;&#65292;&#36825;&#20010;&#31867;&#19978;&#26377;&#20010; RainAttribute</span>
+
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Yyy</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #7388d6;">[</span><span style="color: #a0522d;">Rain</span><span style="color: #7388d6;">]</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">A</span><span style="color: #7388d6;">(){}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org315ffa6" class="outline-4">
+<h4 id="org315ffa6"><span class="section-number-4">20.3.2.</span> 通过反射得到它的实例，然后就可以使用了</h4>
+<div class="outline-text-4" id="text-20-3-2">
+<p>
+在使用反射方式，处理相关逻辑的时候，就可以借题发挥、指鹿为马了:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">rt</span> = type.<span style="color: #0000ff;">GetCustomerAttribute</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">RainAttribute</span><span style="color: #707183;">&gt;()</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26082;&#28982;&#19978;&#38754;&#26377;&#36825;&#20010;&#65292;&#37027;&#20040;&#30340;&#35805;&#65292;&#35828;&#26126;&#36825;&#20010;&#31867;&#26159;&#19981;&#33021;&#34987;...&#30340;&#65292;&#33021;&#34987;...&#30340;</span>
+
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>rt<span style="color: #707183;">)</span> &#19981;&#23454;&#20363;&#21270;;
+<span style="color: #a020f0;">if</span> <span style="color: #707183;">(</span>rt<span style="color: #707183;">)</span> &#23454;&#20363;&#21270;&#30340;&#26102;&#20505;&#65292;&#35760;&#24405;&#26085;&#24535;;
+
+<span style="color: #8b2252;">//// &#33719;&#21462;&#26041;&#27861;&#19978;&#38754;&#30340;&#29305;&#24615;</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">mType</span> = yType.<span style="color: #0000ff;">GetMethod</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"A"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">rt2</span> = mType.<span style="color: #0000ff;">GetCustomerAttribute</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">RainAttribute</span><span style="color: #707183;">&gt;()</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orge19ab8b" class="outline-2">
+<h2 id="orge19ab8b"><span class="section-number-2">21.</span> 依赖注入 (DI/IoC)</h2>
+<div class="outline-text-2" id="text-21">
+</div>
+<div id="outline-container-orgbdcd80b" class="outline-3">
+<h3 id="orgbdcd80b"><span class="section-number-3">21.1.</span> 正常手段</h3>
+<div class="outline-text-3" id="text-21-1">
+<p>
+很多时候，创建一个对象，可能并没有你想象的那么简单:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">Form1 &#21487;&#33021;&#23384;&#22312;&#22823;&#37327;&#30340;&#8220;&#20381;&#36182;&#8221;</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">f</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Form1</span><span style="color: #707183;">()</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#20026;&#20102;&#26500;&#36896;&#20986;&#23436;&#25972;&#30340; Form1&#65292;&#23601;&#38656;&#35201;&#20808;&#26500;&#36896;&#20986;&#23427;&#25152;&#26377;&#30340;&#20197;&#26469;&#65292;&#20197;&#21450;&#20381;&#36182;&#30340;&#20381;&#36182;</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">sbll</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StudentBLL</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">sdal</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StudentDAL</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">dbhelp</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">DbHelper</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">gbll</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">GroupBLL</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">gdal</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">GroupDAL</span><span style="color: #707183;">()</span>;
+sbll.dal = sdal;
+gbll.dal = gdal;
+sdal.dbhelper = dbhelp;
+gdal.dbhelper = dbhelp;
+f.sbll = sbll;
+f.gbll = gbll;
+</pre>
+</div>
+
+<p>
+那么本着一个最基本，最朴素的愿望: 简化上述依赖对象的创建。于是就有了 DI 框架。
+</p>
+</div>
 </div>
 </section>
 
 <section id="outline-container-orga66a59e" class="outline-2">
-<h2 id="orga66a59e"><span class="section-number-2">21.</span> 异步编程</h2>
-<div class="outline-text-2" id="text-21">
+<h2 id="orga66a59e"><span class="section-number-2">22.</span> 异步编程</h2>
+<div class="outline-text-2" id="text-22">
 <p>
 TODO:
 </p>
@@ -6476,16 +6554,16 @@ TODO:
 </section>
 
 <section id="outline-container-org182b3e2" class="outline-2">
-<h2 id="org182b3e2"><span class="section-number-2">22.</span> Database</h2>
-<div class="outline-text-2" id="text-22">
+<h2 id="org182b3e2"><span class="section-number-2">23.</span> Database</h2>
+<div class="outline-text-2" id="text-23">
 </div>
 <div id="outline-container-org9f75295" class="outline-3">
-<h3 id="org9f75295"><span class="section-number-3">22.1.</span> ADO.NET</h3>
-<div class="outline-text-3" id="text-22-1">
+<h3 id="org9f75295"><span class="section-number-3">23.1.</span> ADO.NET</h3>
+<div class="outline-text-3" id="text-23-1">
 </div>
 <div id="outline-container-org48215e3" class="outline-4">
-<h4 id="org48215e3"><span class="section-number-4">22.1.1.</span> SqlConnection / SqlCommand / SqlDataReader</h4>
-<div class="outline-text-4" id="text-22-1-1">
+<h4 id="org48215e3"><span class="section-number-4">23.1.1.</span> SqlConnection / SqlCommand / SqlDataReader</h4>
+<div class="outline-text-4" id="text-23-1-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">()</span>
 <span style="color: #707183;">{</span>
@@ -6516,8 +6594,8 @@ TODO:
 </div>
 
 <div id="outline-container-orgd0c377b" class="outline-4">
-<h4 id="orgd0c377b"><span class="section-number-4">22.1.2.</span> ExecuteScalar / SQL Injection / Parameters</h4>
-<div class="outline-text-4" id="text-22-1-2">
+<h4 id="orgd0c377b"><span class="section-number-4">23.1.2.</span> ExecuteScalar / SQL Injection / Parameters</h4>
+<div class="outline-text-4" id="text-23-1-2">
 <p>
 在珠海，Salary_min 最高的 C# 岗位的 Salary_max 是多少:
 </p>
@@ -6630,8 +6708,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </div>
 
 <div id="outline-container-org10d5a6b" class="outline-4">
-<h4 id="org10d5a6b"><span class="section-number-4">22.1.3.</span> SqlDataReader vs SqlDataAdapter/DataTable</h4>
-<div class="outline-text-4" id="text-22-1-3">
+<h4 id="org10d5a6b"><span class="section-number-4">23.1.3.</span> SqlDataReader vs SqlDataAdapter/DataTable</h4>
+<div class="outline-text-4" id="text-23-1-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
 <span style="color: #707183;">{</span>
@@ -6667,8 +6745,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </div>
 
 <div id="outline-container-org78693f8" class="outline-3">
-<h3 id="org78693f8"><span class="section-number-3">22.2.</span> 事务 (Transaction)</h3>
-<div class="outline-text-3" id="text-22-2">
+<h3 id="org78693f8"><span class="section-number-3">23.2.</span> 事务 (Transaction)</h3>
+<div class="outline-text-3" id="text-23-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">conn</span> = DbHelper.<span style="color: #0000ff;">GetConnection</span><span style="color: #707183;">()</span>;
 <span style="color: #228b22;">SqlTransaction</span> <span style="color: #a0522d;">trans</span> = conn.<span style="color: #0000ff;">BeginTransaction</span><span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#21019;&#24314;&#20107;&#21153;</span>
@@ -6726,12 +6804,12 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </section>
 
 <section id="outline-container-org38d4328" class="outline-2">
-<h2 id="org38d4328"><span class="section-number-2">23.</span> BCL (Base-Class Library) 基础类库</h2>
-<div class="outline-text-2" id="text-23">
+<h2 id="org38d4328"><span class="section-number-2">24.</span> BCL (Base-Class Library) 基础类库</h2>
+<div class="outline-text-2" id="text-24">
 </div>
 <div id="outline-container-orge42088e" class="outline-3">
-<h3 id="orge42088e"><span class="section-number-3">23.1.</span> Console/控制台</h3>
-<div class="outline-text-3" id="text-23-1">
+<h3 id="orge42088e"><span class="section-number-3">24.1.</span> Console/控制台</h3>
+<div class="outline-text-3" id="text-24-1">
 <p>
 相关方法和属性:
 </p>
@@ -6796,8 +6874,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </div>
 
 <div id="outline-container-orgd098591" class="outline-3">
-<h3 id="orgd098591"><span class="section-number-3">23.2.</span> Random/Thread</h3>
-<div class="outline-text-3" id="text-23-2">
+<h3 id="orgd098591"><span class="section-number-3">24.2.</span> Random/Thread</h3>
+<div class="outline-text-3" id="text-24-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span>
 <span style="color: #707183;">{</span>
@@ -6834,8 +6912,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </div>
 
 <div id="outline-container-orgd147bfd" class="outline-3">
-<h3 id="orgd147bfd"><span class="section-number-3">23.3.</span> IDisposable/资源</h3>
-<div class="outline-text-3" id="text-23-3">
+<h3 id="orgd147bfd"><span class="section-number-3">24.3.</span> IDisposable/资源</h3>
+<div class="outline-text-3" id="text-24-3">
 <ul class="org-ul">
 <li>资源，是指需要在操作系统中打开，用完之后，需要手动释放的对象</li>
 <li>为什么需要手动释放呢？因为 .NET 平台不是万能的。虽然 .NET 平台有垃圾回收器，你不再需要的
@@ -6910,8 +6988,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org5c71774" class="outline-3">
-<h3 id="org5c71774"><span class="section-number-3">23.4.</span> Stopwatch/秒表</h3>
-<div class="outline-text-3" id="text-23-4">
+<h3 id="org5c71774"><span class="section-number-3">24.4.</span> Stopwatch/秒表</h3>
+<div class="outline-text-3" id="text-24-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">Diagnostics</span>;
 
@@ -6927,16 +7005,16 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </section>
 
 <section id="outline-container-org6d7d01d" class="outline-2">
-<h2 id="org6d7d01d"><span class="section-number-2">24.</span> Winform</h2>
-<div class="outline-text-2" id="text-24">
+<h2 id="org6d7d01d"><span class="section-number-2">25.</span> Winform</h2>
+<div class="outline-text-2" id="text-25">
 </div>
 <div id="outline-container-org70997ee" class="outline-3">
-<h3 id="org70997ee"><span class="section-number-3">24.1.</span> 布局相关</h3>
-<div class="outline-text-3" id="text-24-1">
+<h3 id="org70997ee"><span class="section-number-3">25.1.</span> 布局相关</h3>
+<div class="outline-text-3" id="text-25-1">
 </div>
 <div id="outline-container-orgcf7571c" class="outline-4">
-<h4 id="orgcf7571c"><span class="section-number-4">24.1.1.</span> 基本属性</h4>
-<div class="outline-text-4" id="text-24-1-1">
+<h4 id="orgcf7571c"><span class="section-number-4">25.1.1.</span> 基本属性</h4>
+<div class="outline-text-4" id="text-25-1-1">
 <ul class="org-ul">
 <li>通过 Size 设置窗口大小/尺寸</li>
 <li>通过 StartPosition 设置窗口的启动位置</li>
@@ -6947,8 +7025,8 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 
 <div id="outline-container-orgf36b96d" class="outline-4">
-<h4 id="orgf36b96d"><span class="section-number-4">24.1.2.</span> Layout</h4>
-<div class="outline-text-4" id="text-24-1-2">
+<h4 id="orgf36b96d"><span class="section-number-4">25.1.2.</span> Layout</h4>
+<div class="outline-text-4" id="text-25-1-2">
 <ul class="org-ul">
 <li>Anchor/锚</li>
 </ul>
@@ -6991,8 +7069,8 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 
 <div id="outline-container-org1ef5577" class="outline-3">
-<h3 id="org1ef5577"><span class="section-number-3">24.2.</span> 数据容器</h3>
-<div class="outline-text-3" id="text-24-2">
+<h3 id="org1ef5577"><span class="section-number-3">25.2.</span> 数据容器</h3>
+<div class="outline-text-3" id="text-25-2">
 <ul class="org-ul">
 <li>ListBox</li>
 <li>ListView</li>
@@ -7036,12 +7114,12 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </section>
 
 <section id="outline-container-org7906523" class="outline-2">
-<h2 id="org7906523"><span class="section-number-2">25.</span> 技巧和示例</h2>
-<div class="outline-text-2" id="text-25">
+<h2 id="org7906523"><span class="section-number-2">26.</span> 技巧和示例</h2>
+<div class="outline-text-2" id="text-26">
 </div>
 <div id="outline-container-org723d270" class="outline-3">
-<h3 id="org723d270"><span class="section-number-3">25.1.</span> 求余</h3>
-<div class="outline-text-3" id="text-25-1">
+<h3 id="org723d270"><span class="section-number-3">26.1.</span> 求余</h3>
+<div class="outline-text-3" id="text-26-1">
 <p>
 求余经常用来将某个数 <b>转换</b> 为 0-N 区间的一个数。
 </p>
@@ -7111,12 +7189,12 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </section>
 
 <section id="outline-container-org8a80c1e" class="outline-2">
-<h2 id="org8a80c1e"><span class="section-number-2">26.</span> 模拟题</h2>
-<div class="outline-text-2" id="text-26">
+<h2 id="org8a80c1e"><span class="section-number-2">27.</span> 模拟题</h2>
+<div class="outline-text-2" id="text-27">
 </div>
 <div id="outline-container-org6400c8e" class="outline-3">
-<h3 id="org6400c8e"><span class="section-number-3">26.1.</span> 继承相关</h3>
-<div class="outline-text-3" id="text-26-1">
+<h3 id="org6400c8e"><span class="section-number-3">27.1.</span> 继承相关</h3>
+<div class="outline-text-3" id="text-27-1">
 <p>
 请问下面程序的输出是什么:
 </p>
@@ -7168,8 +7246,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 
 
 <div id="outline-container-org0993f51" class="outline-3">
-<h3 id="org0993f51"><span class="section-number-3">26.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
-<div class="outline-text-3" id="text-26-2">
+<h3 id="org0993f51"><span class="section-number-3">27.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
+<div class="outline-text-3" id="text-27-2">
 <p>
 重构 = 重新构造 = 将代码进行重写，让结构发生变化的行为
 = 一般来说，是因为现有的代码不合理，所以呢，重新调整一下
@@ -7180,12 +7258,12 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </section>
 
 <section id="outline-container-orgb8b093b" class="outline-2">
-<h2 id="orgb8b093b"><span class="section-number-2">27.</span> 问题 (仅作参考)</h2>
-<div class="outline-text-2" id="text-27">
+<h2 id="orgb8b093b"><span class="section-number-2">28.</span> 问题 (仅作参考)</h2>
+<div class="outline-text-2" id="text-28">
 </div>
 <div id="outline-container-org0931609" class="outline-3">
-<h3 id="org0931609"><span class="section-number-3">27.1.</span> string 和 StringBuilder 有什么区别</h3>
-<div class="outline-text-3" id="text-27-1">
+<h3 id="org0931609"><span class="section-number-3">28.1.</span> string 和 StringBuilder 有什么区别</h3>
+<div class="outline-text-3" id="text-28-1">
 <ul class="org-ul">
 <li>string 是一种预定义类型，它表达的是字符的有序组合</li>
 <li>StringBuilder 是定义在 BCL 中的类型，它主要用来进行字符串的拼接</li>
@@ -7197,38 +7275,38 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 
 <div id="outline-container-org5f8661c" class="outline-3">
-<h3 id="org5f8661c"><span class="section-number-3">27.2.</span> 什么是抽象类，抽象类有什么用处</h3>
+<h3 id="org5f8661c"><span class="section-number-3">28.2.</span> 什么是抽象类，抽象类有什么用处</h3>
 </div>
 <div id="outline-container-orgddf3ea3" class="outline-3">
-<h3 id="orgddf3ea3"><span class="section-number-3">27.3.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
+<h3 id="orgddf3ea3"><span class="section-number-3">28.3.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
 </div>
 <div id="outline-container-org156522f" class="outline-3">
-<h3 id="org156522f"><span class="section-number-3">27.4.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
+<h3 id="org156522f"><span class="section-number-3">28.4.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
 </div>
 <div id="outline-container-org51f1e72" class="outline-3">
-<h3 id="org51f1e72"><span class="section-number-3">27.5.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
+<h3 id="org51f1e72"><span class="section-number-3">28.5.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
 </div>
 <div id="outline-container-org53c5fb1" class="outline-3">
-<h3 id="org53c5fb1"><span class="section-number-3">27.6.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
+<h3 id="org53c5fb1"><span class="section-number-3">28.6.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
 </div>
 <div id="outline-container-org7f77498" class="outline-3">
-<h3 id="org7f77498"><span class="section-number-3">27.7.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
+<h3 id="org7f77498"><span class="section-number-3">28.7.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
 </div>
 <div id="outline-container-org1453cfa" class="outline-3">
-<h3 id="org1453cfa"><span class="section-number-3">27.8.</span> 什么是封装，什么是继承，什么是多态</h3>
+<h3 id="org1453cfa"><span class="section-number-3">28.8.</span> 什么是封装，什么是继承，什么是多态</h3>
 </div>
 <div id="outline-container-org7cbe124" class="outline-3">
-<h3 id="org7cbe124"><span class="section-number-3">27.9.</span> 什么是虚方法，它有什么用处</h3>
+<h3 id="org7cbe124"><span class="section-number-3">28.9.</span> 什么是虚方法，它有什么用处</h3>
 </div>
 <div id="outline-container-orga4100f5" class="outline-3">
-<h3 id="orga4100f5"><span class="section-number-3">27.10.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
+<h3 id="orga4100f5"><span class="section-number-3">28.10.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
 </div>
 <div id="outline-container-org49d491a" class="outline-3">
-<h3 id="org49d491a"><span class="section-number-3">27.11.</span> 什么是 DRY，代码复用的手段有哪些</h3>
+<h3 id="org49d491a"><span class="section-number-3">28.11.</span> 什么是 DRY，代码复用的手段有哪些</h3>
 </div>
 <div id="outline-container-org6186468" class="outline-3">
-<h3 id="org6186468"><span class="section-number-3">27.12.</span> Parse/TryParse 有啥区别</h3>
-<div class="outline-text-3" id="text-27-12">
+<h3 id="org6186468"><span class="section-number-3">28.12.</span> Parse/TryParse 有啥区别</h3>
+<div class="outline-text-3" id="text-28-12">
 <ul class="org-ul">
 <li>这两个都是用来将字符串转换为其他类型</li>
 <li>遇到转换失败的时候</li>
@@ -7240,8 +7318,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 
 <div id="outline-container-org6aa9caa" class="outline-3">
-<h3 id="org6aa9caa"><span class="section-number-3">27.13.</span> 什么是装箱拆箱</h3>
-<div class="outline-text-3" id="text-27-13">
+<h3 id="org6aa9caa"><span class="section-number-3">28.13.</span> 什么是装箱拆箱</h3>
+<div class="outline-text-3" id="text-28-13">
 <ul class="org-ul">
 <li>装箱是将值类型转换为 object 的过程</li>
 <li>拆箱是将装箱后的 object 转换为对应的值类型的过程</li>
@@ -7250,8 +7328,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 
 <div id="outline-container-org98ec2cf" class="outline-3">
-<h3 id="org98ec2cf"><span class="section-number-3">27.14.</span> 什么是值类型/引用类型</h3>
-<div class="outline-text-3" id="text-27-14">
+<h3 id="org98ec2cf"><span class="section-number-3">28.14.</span> 什么是值类型/引用类型</h3>
+<div class="outline-text-3" id="text-28-14">
 <ul class="org-ul">
 <li>变量位置保存的是类型实例自身，这样的类型叫 <b>值类型</b></li>
 <li>变量位置保存的是类型实例的引用，这样的类型叫 <b>引用类型</b></li>
@@ -7260,8 +7338,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 
 <div id="outline-container-org3f909ac" class="outline-3">
-<h3 id="org3f909ac"><span class="section-number-3">27.15.</span> is/as 分别是干啥的</h3>
-<div class="outline-text-3" id="text-27-15">
+<h3 id="org3f909ac"><span class="section-number-3">28.15.</span> is/as 分别是干啥的</h3>
+<div class="outline-text-3" id="text-28-15">
 <ul class="org-ul">
 <li>is 用来判断左边的实例是否是右边的类型。是的 true，不是的话 false。
 它常用来跟显式转换配合使用</li>
@@ -7273,7 +7351,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-09-30</p>
+<p class="date">Created: 2021-10-11</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

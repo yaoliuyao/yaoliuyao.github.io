@@ -44,10 +44,60 @@
   (let ((default-directory note-directory))
     (im/git-commit-and-push "best_try_and_best_chance")))
 
+
+;; translate
+
+(setq gts-translate-list '(("en" "zh")))
+
+(with-eval-after-load 'go-translate
+  (setq gts-default-translator
+        (gts-translator
+
+         :picker
+         ;;(gts-noprompt-picker)
+         ;;(gts-noprompt-picker :texter (gts-whole-buffer-texter))
+
+         (gts-prompt-picker)
+         ;;(gts-prompt-picker :single t)
+         ;;(gts-prompt-picker :texter (gts-current-or-selection-texter) :single t)
+
+         :engines
+         (list
+          (gts-bing-engine)
+          ;;(gts-google-engine)
+          (gts-google-engine :parser (gts-google-summary-parser))
+          (gts-google-rpc-engine)
+          ;;(gts-deepl-engine :auth-key "2e20bade-88e9-02f3-169f-ab3c445d7984:fx" :pro nil)
+
+          ;;(gts-google-engine :parser (gts-google-parser))
+          ;;(gts-google-rpc-engine :parser (gts-google-rpc-summary-parser))
+          )
+
+         :render
+         (gts-buffer-render)
+
+         ;;(gts-posframe-pop-render)
+         ;;(gts-posframe-pop-render :backcolor "#333333" :forecolor "#ffffff")
+
+         ;;(gts-posframe-pin-render)
+         ;;(gts-posframe-pin-render :position (cons 1200 20) :width 50 :height 18)
+         ;;(gts-posframe-pin-render :width 80 :height 25 :position (cons 1000 20) :forecolor "#ffffff" :backcolor "#111111")
+
+         ;;(gts-kill-ring-render)
+         ))
+
+  (define-key gts-prompt-for-translate-keymap [f5]
+    (lambda () (interactive) (exit-minibuffer))))
+
+
 (>>init>>
- (global-set-key [f5] 'im/note-publish)
+ (require 'go-translate)
+ (global-set-key [f5] 'gts-do-translate)
+
+ (global-set-key [f8] 'im/note-publish)
  (global-set-key [f9] 'im/shout-at-you)
  (global-set-key [f10] (lambda () (interactive) (im/shout-at-you 1)))
+
 
  (defun-hook org-mode-hook/roam-it ()
    ;;   (org-roam-mode 1)
@@ -87,7 +137,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(fanyi bbdb magit erc-hl-nicks org-noter-pdftools org-noter which-key ztree nnreddit nnhackernews omnisharp eglot embark-consult embark marginalia consult csproj-mode clojure-mode all-the-icons mpv udev-mode pyim rainbow-mode ssh-agency pdf-tools youdao-dictionary yaml-mode xterm-color websocket web-mode web-beautify vlf uuidgen use-package tide syntax-subword session selectrum-prescient scala-mode sbt-mode sass-mode robe rg rcirc-styles rainbow-delimiters powershell plantuml-mode page-break-lines ox-pandoc org-roam-server org-present org-plus-contrib ob-restclient oauth memory-usage markdown-toc lua-mode lsp-ui lsp-java kotlin-mode json-mode jdecomp htmlize hindent hide-mode-line groovy-mode graphviz-dot-mode gnuplot git-timemachine folding fold-this expand-region erlang engine-mode emms emmet-mode elpy elfeed-org dired-dups delight dante csharp-mode cquery company-web company-restclient company-posframe company-php company-math company-go company-ghc company-auctex c-eldoc attrap alchemist)))
+   '(lsp-java tide lsp-ui lsp-treemacs dap-mode ace-window magit marginalia multi-line go-translate bbdb erc-hl-nicks org-noter-pdftools org-noter which-key ztree nnreddit omnisharp eglot embark-consult csproj-mode clojure-mode all-the-icons mpv udev-mode pyim rainbow-mode ssh-agency youdao-dictionary yaml-mode xterm-color websocket web-mode web-beautify vlf uuidgen use-package syntax-subword session selectrum-prescient scala-mode sbt-mode sass-mode robe rg rcirc-styles rainbow-delimiters powershell plantuml-mode page-break-lines ox-pandoc org-roam-server org-present org-plus-contrib ob-restclient oauth memory-usage markdown-toc lua-mode kotlin-mode json-mode jdecomp htmlize hindent hide-mode-line groovy-mode graphviz-dot-mode gnuplot git-timemachine folding fold-this expand-region erlang engine-mode emms emmet-mode elpy elfeed-org dired-dups delight dante csharp-mode cquery company-web company-restclient company-posframe company-php company-math company-go company-ghc company-auctex c-eldoc attrap alchemist)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

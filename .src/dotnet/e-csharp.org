@@ -5119,6 +5119,67 @@ EventHandler 两个参数:
 - 特性只有被消费才具备其存在的意义。其意义是在消费的时候，使用者赋予的
 - 特性就像人生，定一个小目标，然后去实现它
 
+*** 特性就是一个普通的类
+
+*最好* 按照一定的命名规范来命名 (当然，你不按照命名规范，也拿你没办法):
+#+begin_src csharp  
+  class RainAttribute : Attribute {} 
+#+end_src
+
+特新本身是没有任何意义的，但是如果我们将其放到其他的地方。
+程序在编译运行的过程中，会记录这些特性 (元数据中会保留特性的信息)。
+#+begin_src csharp
+  [Rain]
+  [RainAttribute]
+  class Xxx {}  // - Type - 反射 - 额外的信息，这个类上有个 RainAttribute
+  
+  
+  class Yyy
+  {
+      [Rain]
+      void A(){}
+  }
+#+end_src
+
+*** 通过反射得到它的实例，然后就可以使用了
+
+在使用反射方式，处理相关逻辑的时候，就可以借题发挥、指鹿为马了:
+#+begin_src csharp
+  var rt = type.GetCustomerAttribute<RainAttribute>();
+  // 既然上面有这个，那么的话，说明这个类是不能被...的，能被...的
+  
+  if (rt) 不实例化;
+  if (rt) 实例化的时候，记录日志;
+  
+  //// 获取方法上面的特性
+  var mType = yType.GetMethod("A");
+  var rt2 = mType.GetCustomerAttribute<RainAttribute>();
+#+end_src
+
+* 依赖注入 (DI/IoC)
+** 正常手段
+
+很多时候，创建一个对象，可能并没有你想象的那么简单:
+#+begin_src csharp
+  // Form1 可能存在大量的“依赖”
+  var f = new Form1();
+  
+  // 为了构造出完整的 Form1，就需要先构造出它所有的以来，以及依赖的依赖
+  var sbll = new StudentBLL();
+  var sdal = new StudentDAL();
+  var dbhelp = new DbHelper();
+  var gbll = new GroupBLL();
+  var gdal = new GroupDAL();
+  sbll.dal = sdal;
+  gbll.dal = gdal;
+  sdal.dbhelper = dbhelp;
+  gdal.dbhelper = dbhelp;
+  f.sbll = sbll;
+  f.gbll = gbll;
+#+end_src
+
+那么本着一个最基本，最朴素的愿望: 简化上述依赖对象的创建。于是就有了 DI 框架。
+
 * 异步编程
 
 TODO:
