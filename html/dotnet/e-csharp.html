@@ -48,7 +48,7 @@
 <li><a href="#org1e189b5">2.1. Main</a></li>
 <li><a href="#org92c9241">2.2. 命名空间</a>
 <ul>
-<li><a href="#org0b355dd">2.2.1. 使用</a></li>
+<li><a href="#org2c0a99f">2.2.1. 使用</a></li>
 <li><a href="#org1184149">2.2.2. 定义</a></li>
 <li><a href="#org82ff726">2.2.3. BCL/System</a></li>
 </ul>
@@ -285,8 +285,9 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org2c0a99f">21.3. 使用</a></li>
-<li><a href="#orgec3b905">21.4. 三种声明周期</a></li>
+<li><a href="#orgd76c17b">21.3. 使用</a></li>
+<li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
+<li><a href="#org936867e">21.5. 分离</a></li>
 </ul>
 </li>
 <li><a href="#orga66a59e">22. 异步编程</a></li>
@@ -396,13 +397,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org02c1c66">
+<figure id="orgb649122">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org0be3b6e">
+<figure id="org72ccb18">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -482,8 +483,8 @@ args 使用的另一个示例:
 </ul>
 </div>
 
-<div id="outline-container-org0b355dd" class="outline-4">
-<h4 id="org0b355dd"><span class="section-number-4">2.2.1.</span> 使用</h4>
+<div id="outline-container-org2c0a99f" class="outline-4">
+<h4 id="org2c0a99f"><span class="section-number-4">2.2.1.</span> 使用</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#31867;&#22411;&#30340;&#20351;&#29992;&#65292;&#21487;&#20197;&#36890;&#36807; namespace.&#31867;&#22411; &#26469;&#35775;&#38382;&#21040; / full name</span>
@@ -647,7 +648,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org2844b65">
+<figure id="org0a898c1">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -768,7 +769,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org4bbbf4a">
+<figure id="orgc96b859">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -796,7 +797,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgbe758f3">
+<figure id="org015030c">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -855,7 +856,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orga652c09">
+<figure id="orga705cce">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1281,7 +1282,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgf8508d6">
+<figure id="org76cfd6e">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1319,7 +1320,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org44b2ea2">
+<figure id="orgbf20ec6">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2318,7 +2319,7 @@ out:
 </div>
 
 
-<figure id="orgce0446d">
+<figure id="orge402959">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3730,7 +3731,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org5cc09ba">
+<figure id="org0bd367e">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6615,8 +6616,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org2c0a99f" class="outline-3">
-<h3 id="org2c0a99f"><span class="section-number-3">21.3.</span> 使用</h3>
+<div id="outline-container-orgd76c17b" class="outline-3">
+<h3 id="orgd76c17b"><span class="section-number-3">21.3.</span> 使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -6637,8 +6638,8 @@ c1.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</spa
 </div>
 </div>
 
-<div id="outline-container-orgec3b905" class="outline-3">
-<h3 id="orgec3b905"><span class="section-number-3">21.4.</span> 三种声明周期</h3>
+<div id="outline-container-org1cf67a1" class="outline-3">
+<h3 id="org1cf67a1"><span class="section-number-3">21.4.</span> 三种生命周期</h3>
 <div class="outline-text-3" id="text-21-4">
 <p>
 Object Lifetime:
@@ -6685,6 +6686,120 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s4.<span style="color: #0000ff;">GetHashCode</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
 <span style="color: #228b22;">Cat</span> <span style="color: #a0522d;">s5</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Cat</span><span style="color: #707183;">&gt;()</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s5.<span style="color: #0000ff;">GetHashCode</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org936867e" class="outline-3">
+<h3 id="org936867e"><span class="section-number-3">21.5.</span> 分离</h3>
+<div class="outline-text-3" id="text-21-5">
+<p>
+面向对象编程的基本方针 <b>高内聚</b>，<b>低耦合</b> (SOLID):
+</p>
+<ul class="org-ul">
+<li>开闭原则 (Open-Close Principle)，对扩展开放，对修改关闭</li>
+<li>单一职责原则 (Single-Responsibility Principle)，一个类，只干一件事</li>
+<li>里氏替换原则 (Liskov Substitution Principle)</li>
+<li>依赖倒置原则 (Dependence Inversion Principle), 程序要依赖于抽象接口，不要依赖于具体实现</li>
+<li>接口分离原则 (Interface Segregation PrincipleISP)</li>
+</ul>
+
+<p>
+OCP:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">A</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Greet</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"Hello"</span><span style="color: #909183;">)</span>;<span style="color: #7388d6;">}</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">GreetJP</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"wawawawa"</span><span style="color: #909183;">)</span>;<span style="color: #7388d6;">}</span>
+
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Greet</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>...<span style="color: #909183;">)</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>...<span style="color: #909183;">)</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+        <span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>...<span style="color: #909183;">)</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">round-1</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">As</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">Dictionary</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #228b22;">string</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">dics</span> = <span style="color: #a020f0;">new</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #a020f0;">static</span> As <span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        dics.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"jp"</span>, <span style="color: #8b2252;">"wawawa"</span><span style="color: #909183;">)</span>;
+        dics.<span style="color: #0000ff;">Add</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"en"</span>, <span style="color: #8b2252;">"hello"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">A2</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Greet</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">message</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">message</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">GreetBy</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span> <span style="color: #a0522d;">who</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">message</span> = As.dics<span style="color: #909183;">[</span>who<span style="color: #909183;">]</span>;
+        <span style="color: #0000ff;">Greet</span><span style="color: #909183;">(</span><span style="color: #228b22;">message</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">round-2</span>
+<span style="color: #a020f0;">interface</span> <span style="color: #228b22;">IGreeter</span> <span style="color: #707183;">{</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Greet</span><span style="color: #7388d6;">()</span>; <span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">EnglishGreeter</span> : <span style="color: #228b22;">IGreeter</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Greet</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">new EnglishGreeter().Greet();</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">JPGreeter</span> : <span style="color: #228b22;">IGreeter</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Greet</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"baga"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">new JPGreeter().Greet();</span>
+</pre>
+</div>
+
+<p>
+LSP:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Banji161</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">Yanjiusheng</span> <span style="color: #a0522d;">xxx</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">Banji161</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">Yanjiusheng</span> <span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> =&gt; xxx = x; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#38656;&#35201;&#27169;&#31946;&#21270;</span>
+
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Teach</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        xxx.<span style="color: #0000ff;">Teach</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">new Banji161(xx).Teach();</span>
+
+<span style="color: #a020f0;">interface</span> <span style="color: #228b22;">ITeachable</span> <span style="color: #707183;">{</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Teach</span><span style="color: #7388d6;">()</span>; <span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Yanjiusheng</span> : <span style="color: #228b22;">ITeachable</span> <span style="color: #707183;">{</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Teach</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>...<span style="color: #7388d6;">}</span>; <span style="color: #707183;">}</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Banji161</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">ITeachable</span> <span style="color: #a0522d;">xxx</span>;
+    <span style="color: #a020f0;">public</span> <span style="color: #0000ff;">Banji161</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ITeachable</span> <span style="color: #a0522d;">x</span><span style="color: #7388d6;">)</span> =&gt; xxx = x;
+
+    <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Teach</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        xxx.<span style="color: #0000ff;">Teach</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">new Banji161(new Yanjiusheng()).Teach();</span>
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Boshisheng</span> : <span style="color: #228b22;">ITeachable</span> <span style="color: #707183;">{</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Teach</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span>...<span style="color: #7388d6;">}</span>; <span style="color: #707183;">}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">new Banji161(new Boshisheng()).Teach();</span>
 </pre>
 </div>
 </div>
