@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-11 -->
+<!-- 2021-10-12 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -13,6 +13,26 @@
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
 <script src='/yaoliuyao/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
 </head>
 <body>
 <div id="content">
@@ -264,6 +284,9 @@
 <li><a href="#orge19ab8b">21. 依赖注入 (DI/IoC)</a>
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
+<li><a href="#org48f9a13">21.2. DI/IoC</a></li>
+<li><a href="#org2c0a99f">21.3. 使用</a></li>
+<li><a href="#orgec3b905">21.4. 三种声明周期</a></li>
 </ul>
 </li>
 <li><a href="#orga66a59e">22. 异步编程</a></li>
@@ -373,13 +396,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org800eecd">
+<figure id="org02c1c66">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org6b4966e">
+<figure id="org0be3b6e">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -624,7 +647,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgd208aa9">
+<figure id="org2844b65">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -745,7 +768,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org8df9dac">
+<figure id="org4bbbf4a">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -773,7 +796,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org31f047c">
+<figure id="orgbe758f3">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -832,7 +855,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org8470cd6">
+<figure id="orga652c09">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1258,7 +1281,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgb6af84b">
+<figure id="orgf8508d6">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1296,7 +1319,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgea8ebb1">
+<figure id="org44b2ea2">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2295,7 +2318,7 @@ out:
 </div>
 
 
-<figure id="orgd552b41">
+<figure id="orgce0446d">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3707,7 +3730,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org0a01326">
+<figure id="org5cc09ba">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6542,6 +6565,130 @@ f.gbll = gbll;
 </p>
 </div>
 </div>
+
+<div id="outline-container-org48f9a13" class="outline-3">
+<h3 id="org48f9a13"><span class="section-number-3">21.2.</span> DI/IoC</h3>
+<div class="outline-text-3" id="text-21-2">
+<p>
+使用一个容器管理所有实例:
+</p>
+<ul class="org-ul">
+<li>DI: Dependency Injection, 依赖注入</li>
+<li>IoC: Inversion of Control, 控制反转</li>
+</ul>
+
+<p>
+.NET 上相关的 DI 容器:
+</p>
+<ul class="org-ul">
+<li>Microsft Dependency Injection (.Net Core Container)</li>
+<li>Autofac</li>
+<li>DryIoc</li>
+<li>Grace</li>
+<li>LightInject</li>
+<li>Lamar</li>
+<li>Stashbox</li>
+<li>Unity</li>
+</ul>
+
+<p>
+.Net Core Container 的特点:
+</p>
+<ul class="org-ul">
+<li>轻量、高效</li>
+<li>简单、快速</li>
+<li>支持三种生命周期 (Transient/Singleton/Scope)</li>
+<li>支持构造器注入 (Constructor Injection)</li>
+</ul>
+
+<p>
+.Net Core Container 缺失的功能:
+</p>
+<ul class="org-ul">
+<li>属性或方法注入 (Property/Method Injection)</li>
+<li>通过名字注入 (Injection Base on name or key)</li>
+<li>子容器 (child container)</li>
+<li>定制生命周期 (custom lifetime)</li>
+<li>基于规则注册 (Convention-based registration)</li>
+<li>缺乏 Lazy Initialize 功能</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2c0a99f" class="outline-3">
+<h3 id="org2c0a99f"><span class="section-number-3">21.3.</span> 使用</h3>
+<div class="outline-text-3" id="text-21-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
+    .<span style="color: #0000ff;">AddSingleton</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Dog</span><span style="color: #707183;">&gt;()</span>
+    .<span style="color: #0000ff;">AddSingleton</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Cat</span><span style="color: #707183;">&gt;()</span>
+    .<span style="color: #0000ff;">AddSingleton</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Teacher</span><span style="color: #707183;">&gt;()</span>
+    .<span style="color: #0000ff;">AddSingleton</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Student</span><span style="color: #707183;">&gt;()</span>
+    .<span style="color: #0000ff;">AddSingleton</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Pet</span><span style="color: #707183;">&gt;()</span>
+    .<span style="color: #0000ff;">AddTransient</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Class</span><span style="color: #707183;">&gt;()</span>
+    .<span style="color: #0000ff;">BuildServiceProvider</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">c1</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Class</span><span style="color: #707183;">&gt;()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#10003;</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">c2</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Class</span><span style="color: #707183;">&gt;()</span>;
+
+c1.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgec3b905" class="outline-3">
+<h3 id="orgec3b905"><span class="section-number-3">21.4.</span> 三种声明周期</h3>
+<div class="outline-text-3" id="text-21-4">
+<p>
+Object Lifetime:
+</p>
+<ol class="org-ol">
+<li>Transient, 暂时的</li>
+<li>Singleton, 单例的，是在第一次 Get 的时候创建的</li>
+<li>Scope, 基于作用域的，在同一作用域内，是单例的。作用域结束会释放掉</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">ServiceCollection</span> <span style="color: #a0522d;">sc</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>;
+sc.<span style="color: #0000ff;">AddSingleton</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Teacher</span><span style="color: #707183;">&gt;()</span>;
+sc.<span style="color: #0000ff;">AddSingleton</span><span style="color: #707183;">(</span><span style="color: #a020f0;">typeof</span><span style="color: #7388d6;">(</span>Student<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+sc.<span style="color: #0000ff;">AddTransient</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Dog</span><span style="color: #707183;">&gt;()</span>;
+sc.<span style="color: #0000ff;">AddScoped</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Cat</span><span style="color: #707183;">&gt;()</span>;
+<span style="color: #228b22;">ServiceProvider</span> <span style="color: #a0522d;">container</span> = sc.<span style="color: #0000ff;">BuildServiceProvider</span><span style="color: #707183;">()</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">Singleton</span>
+<span style="color: #228b22;">Teacher</span> <span style="color: #a0522d;">t1</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Teacher</span><span style="color: #707183;">&gt;()</span>;
+<span style="color: #228b22;">Teacher</span> <span style="color: #a0522d;">t2</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Teacher</span><span style="color: #707183;">&gt;()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"t1: {t1}, t2: {t2}, {object.ReferenceEquals(t1, t2)}"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">Transient</span>
+<span style="color: #228b22;">Dog</span> <span style="color: #a0522d;">d1</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Dog</span><span style="color: #707183;">&gt;()</span>;
+<span style="color: #228b22;">Dog</span> <span style="color: #a0522d;">d2</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Dog</span><span style="color: #707183;">&gt;()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"d1: {d1}, d2: {d2}, {d1 == d2}"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">Scope</span>
+<span style="color: #a020f0;">using</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">scope1</span> = container.<span style="color: #0000ff;">CreateScope</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">Cat</span> <span style="color: #a0522d;">s1</span> = scope1.ServiceProvider.<span style="color: #0000ff;">GetService</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Cat</span><span style="color: #7388d6;">&gt;()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>s1.<span style="color: #0000ff;">GetHashCode</span><span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #228b22;">Cat</span> <span style="color: #a0522d;">s2</span> = scope1.ServiceProvider.<span style="color: #0000ff;">GetService</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Cat</span><span style="color: #7388d6;">&gt;()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>s2.<span style="color: #0000ff;">GetHashCode</span><span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">using</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">scope2</span> = container.<span style="color: #0000ff;">CreateScope</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">Cat</span> <span style="color: #a0522d;">s3</span> = scope2.ServiceProvider.<span style="color: #0000ff;">GetService</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Cat</span><span style="color: #7388d6;">&gt;()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>s3.<span style="color: #0000ff;">GetHashCode</span><span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #228b22;">Cat</span> <span style="color: #a0522d;">s4</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Cat</span><span style="color: #707183;">&gt;()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s4.<span style="color: #0000ff;">GetHashCode</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">Cat</span> <span style="color: #a0522d;">s5</span> = container.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">Cat</span><span style="color: #707183;">&gt;()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s5.<span style="color: #0000ff;">GetHashCode</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-orga66a59e" class="outline-2">
@@ -7351,7 +7498,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-10-11</p>
+<p class="date">Created: 2021-10-12</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

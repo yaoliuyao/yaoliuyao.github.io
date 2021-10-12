@@ -5180,6 +5180,99 @@ EventHandler 两个参数:
 
 那么本着一个最基本，最朴素的愿望: 简化上述依赖对象的创建。于是就有了 DI 框架。
 
+** DI/IoC
+
+使用一个容器管理所有实例:
+- DI: Dependency Injection, 依赖注入
+- IoC: Inversion of Control, 控制反转
+
+.NET 上相关的 DI 容器:
+- Microsft Dependency Injection (.Net Core Container)
+- Autofac
+- DryIoc
+- Grace
+- LightInject
+- Lamar
+- Stashbox
+- Unity
+
+.Net Core Container 的特点:
+- 轻量、高效
+- 简单、快速
+- 支持三种生命周期 (Transient/Singleton/Scope)
+- 支持构造器注入 (Constructor Injection)
+
+.Net Core Container 缺失的功能:
+- 属性或方法注入 (Property/Method Injection)
+- 通过名字注入 (Injection Base on name or key)
+- 子容器 (child container)
+- 定制生命周期 (custom lifetime)
+- 基于规则注册 (Convention-based registration)
+- 缺乏 Lazy Initialize 功能
+
+** 使用
+
+#+begin_src csharp
+  var container = new ServiceCollection()
+      .AddSingleton<Dog>()
+      .AddSingleton<Cat>()
+      .AddSingleton<Teacher>()
+      .AddSingleton<Student>()
+      .AddSingleton<Pet>()
+      .AddTransient<Class>()
+      .BuildServiceProvider();
+  
+  var c1 = container.GetService<Class>(); // ✓
+  var c2 = container.GetService<Class>();
+  
+  c1.Say();
+#+end_src
+
+** 三种声明周期
+
+Object Lifetime:
+1. Transient, 暂时的
+2. Singleton, 单例的，是在第一次 Get 的时候创建的
+3. Scope, 基于作用域的，在同一作用域内，是单例的。作用域结束会释放掉
+
+#+begin_src csharp
+  ServiceCollection sc = new ServiceCollection();
+  sc.AddSingleton<Teacher>();
+  sc.AddSingleton(typeof(Student));
+  sc.AddTransient<Dog>();
+  sc.AddScoped<Cat>();
+  ServiceProvider container = sc.BuildServiceProvider();
+  
+  // Singleton
+  Teacher t1 = container.GetService<Teacher>();
+  Teacher t2 = container.GetService<Teacher>();
+  Console.WriteLine($"t1: {t1}, t2: {t2}, {object.ReferenceEquals(t1, t2)}");
+  
+  // Transient
+  Dog d1 = container.GetService<Dog>();
+  Dog d2 = container.GetService<Dog>();
+  Console.WriteLine($"d1: {d1}, d2: {d2}, {d1 == d2}");
+  
+  // Scope
+  using (var scope1 = container.CreateScope())
+  {
+      Cat s1 = scope1.ServiceProvider.GetService<Cat>();
+      Console.WriteLine(s1.GetHashCode());
+  
+      Cat s2 = scope1.ServiceProvider.GetService<Cat>();
+      Console.WriteLine(s2.GetHashCode());
+  }
+  using (var scope2 = container.CreateScope())
+  {
+      Cat s3 = scope2.ServiceProvider.GetService<Cat>();
+      Console.WriteLine(s3.GetHashCode());
+  }
+  Cat s4 = container.GetService<Cat>();
+  Console.WriteLine(s4.GetHashCode());
+  Cat s5 = container.GetService<Cat>();
+  Console.WriteLine(s5.GetHashCode());
+#+end_src
+
 * 异步编程
 
 TODO:
