@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-12 -->
+<!-- 2021-10-14 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -48,7 +48,7 @@
 <li><a href="#org1e189b5">2.1. Main</a></li>
 <li><a href="#org92c9241">2.2. 命名空间</a>
 <ul>
-<li><a href="#org2c0a99f">2.2.1. 使用</a></li>
+<li><a href="#orgd76c17b">2.2.1. 使用</a></li>
 <li><a href="#org1184149">2.2.2. 定义</a></li>
 <li><a href="#org82ff726">2.2.3. BCL/System</a></li>
 </ul>
@@ -285,12 +285,19 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#orgd76c17b">21.3. 使用</a></li>
+<li><a href="#org6a707b0">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
-<li><a href="#org936867e">21.5. 分离</a></li>
+<li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
 </li>
-<li><a href="#orga66a59e">22. 异步编程</a></li>
+<li><a href="#orga66a59e">22. 异步编程</a>
+<ul>
+<li><a href="#orgf9e80ac">22.1. Process</a></li>
+<li><a href="#orgfa54605">22.2. Thread</a></li>
+<li><a href="#org436d6e4">22.3. ThreadPool</a></li>
+<li><a href="#orgafd3879">22.4. TPL (Task-Parallel Libary)</a></li>
+</ul>
+</li>
 <li><a href="#org182b3e2">23. Database</a>
 <ul>
 <li><a href="#org9f75295">23.1. ADO.NET</a>
@@ -397,13 +404,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgb649122">
+<figure id="orgc1634a7">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org72ccb18">
+<figure id="org40e6f20">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -483,8 +490,8 @@ args 使用的另一个示例:
 </ul>
 </div>
 
-<div id="outline-container-org2c0a99f" class="outline-4">
-<h4 id="org2c0a99f"><span class="section-number-4">2.2.1.</span> 使用</h4>
+<div id="outline-container-orgd76c17b" class="outline-4">
+<h4 id="orgd76c17b"><span class="section-number-4">2.2.1.</span> 使用</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#31867;&#22411;&#30340;&#20351;&#29992;&#65292;&#21487;&#20197;&#36890;&#36807; namespace.&#31867;&#22411; &#26469;&#35775;&#38382;&#21040; / full name</span>
@@ -648,7 +655,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org0a898c1">
+<figure id="org9422d81">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -769,7 +776,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgc96b859">
+<figure id="org34e0776">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -797,7 +804,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org015030c">
+<figure id="org9c1b02f">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -856,7 +863,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orga705cce">
+<figure id="orgc064644">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1282,7 +1289,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org76cfd6e">
+<figure id="org4f4c82c">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1320,7 +1327,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgbf20ec6">
+<figure id="org2daf0b2">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2319,7 +2326,7 @@ out:
 </div>
 
 
-<figure id="orge402959">
+<figure id="orgb644a66">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3731,7 +3738,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org0bd367e">
+<figure id="org4097390">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6616,8 +6623,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-orgd76c17b" class="outline-3">
-<h3 id="orgd76c17b"><span class="section-number-3">21.3.</span> 使用</h3>
+<div id="outline-container-org6a707b0" class="outline-3">
+<h3 id="org6a707b0"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -6691,8 +6698,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org936867e" class="outline-3">
-<h3 id="org936867e"><span class="section-number-3">21.5.</span> 分离</h3>
+<div id="outline-container-org5bfe0c8" class="outline-3">
+<h3 id="org5bfe0c8"><span class="section-number-3">21.5.</span> 高内聚低耦合</h3>
 <div class="outline-text-3" id="text-21-5">
 <p>
 面向对象编程的基本方针 <b>高内聚</b>，<b>低耦合</b> (SOLID):
@@ -6809,9 +6816,195 @@ LSP:
 <section id="outline-container-orga66a59e" class="outline-2">
 <h2 id="orga66a59e"><span class="section-number-2">22.</span> 异步编程</h2>
 <div class="outline-text-2" id="text-22">
+</div>
+<div id="outline-container-orgf9e80ac" class="outline-3">
+<h3 id="orgf9e80ac"><span class="section-number-3">22.1.</span> Process</h3>
+<div class="outline-text-3" id="text-22-1">
+<ul class="org-ul">
+<li>点击打开程序，会自动创建进程</li>
+<li>通过代码的形式，创建进行</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Process</span> <span style="color: #a0522d;">np</span> = Process.<span style="color: #0000ff;">Start</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"notepad.exe"</span><span style="color: #707183;">)</span>;
+
+np.<span style="color: #0000ff;">Kill</span><span style="color: #707183;">()</span>;
+np.<span style="color: #0000ff;">CloseMainWindow</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfa54605" class="outline-3">
+<h3 id="orgfa54605"><span class="section-number-3">22.2.</span> Thread</h3>
+<div class="outline-text-3" id="text-22-2">
 <p>
-TODO:
+C# 1.0 中加入的。
 </p>
+
+<p>
+基本语法:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Thread</span> <span style="color: #a0522d;">t</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Thread</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+t.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"world"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">Thread</span> <span style="color: #a0522d;">tc</span> = Thread.CurrentThread;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"{t.ManagedThreadId} / {t.Name} / {t.IsAlive} / {t.IsBackground}"</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"{tc.ManagedThreadId} / {tc.Name} / {tc.IsAlive} / {tc.IsBackground}"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+例子:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Thread</span> <span style="color: #a0522d;">t</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Thread</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+t.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"+"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+线程之间可以共享数据:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">isFinished</span> = <span style="color: #008b8b;">false</span>;
+
+    <span style="color: #228b22;">Thread</span> <span style="color: #a0522d;">t1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Thread</span><span style="color: #7388d6;">(</span><span style="color: #909183;">()</span> =&gt;
+    <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">while</span> <span style="color: #709870;">(</span>!isFinished<span style="color: #709870;">)</span> <span style="color: #709870;">{</span> <span style="color: #709870;">}</span>
+
+        <span style="color: #a020f0;">for</span> <span style="color: #709870;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+            Console.<span style="color: #0000ff;">Write</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #907373;">)</span>;
+        <span style="color: #709870;">}</span>
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #228b22;">Thread</span> <span style="color: #a0522d;">t2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Thread</span><span style="color: #7388d6;">(</span><span style="color: #909183;">()</span> =&gt;
+    <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">for</span> <span style="color: #709870;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+            Console.<span style="color: #0000ff;">Write</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"*"</span><span style="color: #907373;">)</span>;
+        <span style="color: #709870;">}</span>
+        isFinished = <span style="color: #008b8b;">true</span>;
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+
+    t1.<span style="color: #0000ff;">Start</span><span style="color: #7388d6;">()</span>;
+    t2.<span style="color: #0000ff;">Start</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"+"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+线程是不是一定能让任务变快:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Stopwatch</span> <span style="color: #a0522d;">sw</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Stopwatch</span><span style="color: #707183;">()</span>;
+sw.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span> = 111110;
+    Math.<span style="color: #0000ff;">Pow</span><span style="color: #7388d6;">(</span>j, j<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>sw.Elapsed<span style="color: #707183;">)</span>;
+
+
+<span style="color: #228b22;">Stopwatch</span> <span style="color: #a0522d;">sw</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Stopwatch</span><span style="color: #707183;">()</span>;
+sw.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">Thread</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">ts</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Thread</span><span style="color: #707183;">[</span>10000000<span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">t</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Thread</span><span style="color: #7388d6;">(</span><span style="color: #909183;">()</span> =&gt;
+    <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">for</span> <span style="color: #709870;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10; i++<span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+            <span style="color: #228b22;">int</span> <span style="color: #a0522d;">j</span> = 111110;
+            Math.<span style="color: #0000ff;">Pow</span><span style="color: #907373;">(</span>j, j<span style="color: #907373;">)</span>;
+        <span style="color: #709870;">}</span>
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+    ts<span style="color: #7388d6;">[</span>i<span style="color: #7388d6;">]</span> = t;
+    t.<span style="color: #0000ff;">Start</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">t</span> <span style="color: #a020f0;">in</span> ts<span style="color: #707183;">)</span> t.<span style="color: #0000ff;">Join</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>sw.Elapsed<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+创建很多线程：
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 1000000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">t</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Thread</span><span style="color: #7388d6;">(</span><span style="color: #909183;">()</span> =&gt;
+    <span style="color: #909183;">{</span>
+        Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #709870;">(</span>2222222<span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+    t.<span style="color: #0000ff;">Start</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"..."</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org436d6e4" class="outline-3">
+<h3 id="org436d6e4"><span class="section-number-3">22.3.</span> ThreadPool</h3>
+<div class="outline-text-3" id="text-22-3">
+<p>
+C# 2.0 出现线程池。(IoC/DI)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgafd3879" class="outline-3">
+<h3 id="orgafd3879"><span class="section-number-3">22.4.</span> TPL (Task-Parallel Libary)</h3>
+<div class="outline-text-3" id="text-22-4">
+<p>
+C# 3/4 版本中，出现了更高一层的抽象。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"+"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
 </div>
 </section>
 
@@ -7613,7 +7806,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-10-12</p>
+<p class="date">Created: 2021-10-14</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
