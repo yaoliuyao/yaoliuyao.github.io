@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org6a707b0">11.1. 基本使用</a></li>
+<li><a href="#org25fd1bf">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org25fd1bf">21.3. 基本使用</a></li>
+<li><a href="#org44dfaec">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -408,13 +408,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org5be7211">
+<figure id="org91ae7a7">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org530b0d8">
+<figure id="org6ee8981">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -659,7 +659,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org01f4079">
+<figure id="org28d933d">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -780,7 +780,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org793e0ab">
+<figure id="org3dad513">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -808,7 +808,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgf671850">
+<figure id="org07793f2">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -867,7 +867,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org4f38ce1">
+<figure id="org6af9565">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1293,7 +1293,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org55d755c">
+<figure id="org208f776">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1331,7 +1331,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgba64900">
+<figure id="org2830c80">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2330,7 +2330,7 @@ out:
 </div>
 
 
-<figure id="org3d4f1c2">
+<figure id="orge6bea33">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3456,8 +3456,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org6a707b0" class="outline-3">
-<h3 id="org6a707b0"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org25fd1bf" class="outline-3">
+<h3 id="org25fd1bf"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3742,7 +3742,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org686d06a">
+<figure id="orgade9fd3">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6627,8 +6627,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org25fd1bf" class="outline-3">
-<h3 id="org25fd1bf"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org44dfaec" class="outline-3">
+<h3 id="org44dfaec"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -7092,11 +7092,21 @@ cts.Token.<span style="color: #0000ff;">Register</span><span style="color: #7071
 
 <span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
 <span style="color: #7388d6;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">Task t = Task.Run(() =&gt;</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">{</span>
+    <span style="color: #b22222;">//     </span><span style="color: #b22222;">for (int i = 0; i &lt; 10000; i++)</span>
+    <span style="color: #b22222;">//     </span><span style="color: #b22222;">{</span>
+    <span style="color: #b22222;">//         </span><span style="color: #b22222;">cts.Token.ThrowIfCancellationRequested();</span>
+    <span style="color: #b22222;">//         </span><span style="color: #b22222;">Console.Write("O");</span>
+    <span style="color: #b22222;">//     </span><span style="color: #b22222;">}</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">}, cts.Token);</span>
+
     <span style="color: #228b22;">var</span> <span style="color: #a0522d;">i</span> = 0;
     <span style="color: #b22222;">//</span><span style="color: #b22222;">while (!cts.Token.IsCancellationRequested &amp;&amp; i++ &lt; 10000)</span>
     <span style="color: #b22222;">//</span><span style="color: #b22222;">{ </span>
     <span style="color: #b22222;">//    </span><span style="color: #b22222;">Console.Write("O");</span>
     <span style="color: #b22222;">//</span><span style="color: #b22222;">}</span>
+
     <span style="color: #a020f0;">do</span>
     <span style="color: #909183;">{</span>
         cts.Token.<span style="color: #0000ff;">ThrowIfCancellationRequested</span><span style="color: #709870;">()</span>;

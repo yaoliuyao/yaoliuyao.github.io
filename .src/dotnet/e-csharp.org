@@ -5596,11 +5596,21 @@ C# 3/4 版本中，出现了更高一层的抽象:
   
   Task t = Task.Run(() =>
   {
+      // Task t = Task.Run(() =>
+      // {
+      //     for (int i = 0; i < 10000; i++)
+      //     {
+      //         cts.Token.ThrowIfCancellationRequested();
+      //         Console.Write("O");
+      //     }
+      // }, cts.Token);
+  
       var i = 0;
       //while (!cts.Token.IsCancellationRequested && i++ < 10000)
       //{ 
       //    Console.Write("O");
       //}
+      
       do
       {
           cts.Token.ThrowIfCancellationRequested();
