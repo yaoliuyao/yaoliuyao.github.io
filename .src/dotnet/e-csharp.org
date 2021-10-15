@@ -5542,6 +5542,10 @@ C# 3/4 版本中，出现了更高一层的抽象:
       }
   });
   
+  //Task.WaitAll(t1, t2);
+  //Task.WaitAny(t1, t2);
+  //t1.Wait(); // 阻塞当前线程
+  
   for (int i = 0; i < 10000; i++)
   {
       Console.Write("+");
@@ -5560,12 +5564,12 @@ C# 3/4 版本中，出现了更高一层的抽象:
       return Task.FromResult(sb.ToString());
   });
   
+  Console.WriteLine(t.Result); // 等待任务完成，阻塞当前
+  
   for (int i = 0; i < 10000; i++)
   {
       Console.Write("+");
   }
-  
-  Console.WriteLine(t.Result); // 等待任务完成，阻塞当前
 #+end_src
 
 简化:
@@ -5627,6 +5631,98 @@ C# 3/4 版本中，出现了更高一层的抽象:
       Console.Write("+");
   }
 #+end_src
+
+*** 其他创建任务的方式
+
+#+begin_src csharp
+  Task t = new TaskFactory().StartNew(() =>
+  {
+      for (int i = 0; i < 10000; i++)
+      {
+          Console.Write("-");
+      }
+  });
+  
+  for (int i = 0; i < 10000; i++)
+  {
+      Console.Write("+");
+  }
+#+end_src
+
+#+begin_src csharp
+  Task t = new Task(() =>
+  {
+      for (int i = 0; i < 10000; i++)
+      {
+          Console.Write("-");
+      }
+  }, TaskCreationOptions.LongRunning);
+  t.Start();
+#+end_src
+
+#+begin_src csharp
+  Task t = Task.Run(() =>
+  {
+      for (int i = 0; i < 10000; i++)
+      {
+          Console.Write("-");
+      }
+      Task.Run(() =>
+      {
+          Console.Write("%");
+          Task.Run(() =>
+          {
+              Console.Write("$");
+          });
+      });
+  });
+#+end_src
+
+*** 任务协作
+
+#+begin_src csharp
+  Task t1 = Task.Run(() =>
+  {
+      Console.WriteLine("拿扫把");
+      Task t2 = Task.Run(() =>
+      {
+          Console.WriteLine("扫地");
+          Task t3 = Task.Run(() =>
+          {
+              Console.WriteLine("集合");
+              Task t4 = Task.Run(() =>
+              {
+                  Console.WriteLine("吃饭");
+              });
+          });
+      });
+  });
+  t1.Wait();
+#+end_src
+
+使用 ContinueWith 简化:
+#+begin_src csharp
+  Task.Run(() =>
+  {
+      Console.WriteLine("拿扫把");
+  }).ContinueWith((s) =>
+  {
+      Console.WriteLine("扫地");
+  }).ContinueWith((s) =>
+  {
+      Console.WriteLine("集合");
+  }).ContinueWith((s) =>
+  {
+      Console.WriteLine("吃饭");
+  }).Wait();
+#+end_src
+
+** TAL (Task Awaitable Pattern)
+
+C# 5 中，出现了 async/await 关键词。
+
+
+
 
 * Database
 ** ADO.NET
