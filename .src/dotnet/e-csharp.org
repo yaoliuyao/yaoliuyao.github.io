@@ -5509,10 +5509,30 @@ C# 1.0 中加入的。
 
 C# 2.0 出现线程池。(IoC/DI)
 
+#+begin_src csharp
+  ThreadPool.QueueUserWorkItem(() =>
+  {
+      Console.WriteLine("hello");
+  });
+  
+  Console.WriteLine("world");
+#+end_src
+
 ** TPL (Task-Parallel Libary)
 
-C# 3/4 版本中，出现了更高一层的抽象。
+C# 3/4 版本中，出现了更高一层的抽象:
+- Thread 是一种昂贵的资源，创建和销毁和维护需要时间，而且需要空间 (1M)
+- 因此，充分利用 Thread 的方式，就是创建一个 Pool 来反复使用
+- 但是通过 Pool 的方式，不能够充分屏蔽线程的操作细节，但是 Pool 提供的 API 过于简陋
+- 因此，通过进一步抽象，使用 Task 概念来暴露线程需要完成的工作。
+  Task 交给背后的 Pool 之后，通过一定的线程调度机制，会使用 Pool 提供的某个线程，
+  去执行 Task 中的逻辑。
+- Task 对象用来表示包含了异步逻辑，以及异步的执行结果的对象。Task 可以组合。
+  我们可以将大任务，分成若干小任务，小任务完成之后组合成大任务。
 
+*** Task.Run
+
+基本使用:
 #+begin_src csharp
   Task t = Task.Run(() =>
   {
@@ -5524,6 +5544,76 @@ C# 3/4 版本中，出现了更高一层的抽象。
   
   for (int i = 0; i < 10000; i++)
   {
+      Console.Write("+");
+  }
+#+end_src
+
+带返回值的使用:
+#+begin_src csharp
+  Task<string> t = Task.Run(() =>
+  {
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; i < 10000; i++)
+      {
+          sb.Append("-");
+      }
+      return Task.FromResult(sb.ToString());
+  });
+  
+  for (int i = 0; i < 10000; i++)
+  {
+      Console.Write("+");
+  }
+  
+  Console.WriteLine(t.Result); // 等待任务完成，阻塞当前
+#+end_src
+
+简化:
+#+begin_src csharp
+  Task<string> t = Task.Run(() =>
+  {
+      var sb = new StringBuilder();
+      for (int i = 0; i < 10000; i++)
+      {
+          sb.Append("-");
+      }
+      return sb.ToString(); // this one
+  });
+  
+  for (int i = 0; i < 10000; i++)
+  {
+      Console.Write("+");
+  }
+  
+  Console.WriteLine(t.Result); // 等待任务完成，阻塞当前
+#+end_src
+
+带 CancellationToken 的 Task.Run:
+#+begin_src csharp
+  var cts = new CancellationTokenSource();
+  cts.CancelAfter(1000);
+  cts.Token.Register(() => Console.WriteLine("jieshule"));
+  
+  Task t = Task.Run(() =>
+  {
+      var i = 0;
+      //while (!cts.Token.IsCancellationRequested && i++ < 10000)
+      //{ 
+      //    Console.Write("O");
+      //}
+      do
+      {
+          cts.Token.ThrowIfCancellationRequested();
+          Console.Write("O");
+      } while (i++ < 1000);
+  }, cts.Token);
+  
+  for (int i = 0; i < 10000; i++)
+  {
+      if (i == 5)
+      {
+          cts.Cancel();
+      }
       Console.Write("+");
   }
 #+end_src

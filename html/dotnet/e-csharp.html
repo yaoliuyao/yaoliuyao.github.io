@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-14 -->
+<!-- 2021-10-15 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org49faf58">11.1. 基本使用</a></li>
+<li><a href="#org6a707b0">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org6a707b0">21.3. 基本使用</a></li>
+<li><a href="#org25fd1bf">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -295,7 +295,11 @@
 <li><a href="#orgf9e80ac">22.1. Process</a></li>
 <li><a href="#orgfa54605">22.2. Thread</a></li>
 <li><a href="#org436d6e4">22.3. ThreadPool</a></li>
-<li><a href="#orgafd3879">22.4. TPL (Task-Parallel Libary)</a></li>
+<li><a href="#orgafd3879">22.4. TPL (Task-Parallel Libary)</a>
+<ul>
+<li><a href="#org3d357ce">22.4.1. Task.Run</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org182b3e2">23. Database</a>
@@ -404,13 +408,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgc1634a7">
+<figure id="org5be7211">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org40e6f20">
+<figure id="org530b0d8">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -655,7 +659,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org9422d81">
+<figure id="org01f4079">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -776,7 +780,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org34e0776">
+<figure id="org793e0ab">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -804,7 +808,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org9c1b02f">
+<figure id="orgf671850">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -863,7 +867,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgc064644">
+<figure id="org4f38ce1">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1289,7 +1293,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org4f4c82c">
+<figure id="org55d755c">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1327,7 +1331,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org2daf0b2">
+<figure id="orgba64900">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2326,7 +2330,7 @@ out:
 </div>
 
 
-<figure id="orgb644a66">
+<figure id="org3d4f1c2">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3452,8 +3456,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org49faf58" class="outline-3">
-<h3 id="org49faf58"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org6a707b0" class="outline-3">
+<h3 id="org6a707b0"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3738,7 +3742,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org4097390">
+<figure id="org686d06a">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6623,8 +6627,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org6a707b0" class="outline-3">
-<h3 id="org6a707b0"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org25fd1bf" class="outline-3">
+<h3 id="org25fd1bf"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -6979,6 +6983,16 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <p>
 C# 2.0 出现线程池。(IoC/DI)
 </p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">ThreadPool.<span style="color: #0000ff;">QueueUserWorkItem</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"world"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
 </div>
 </div>
 
@@ -6986,9 +7000,26 @@ C# 2.0 出现线程池。(IoC/DI)
 <h3 id="orgafd3879"><span class="section-number-3">22.4.</span> TPL (Task-Parallel Libary)</h3>
 <div class="outline-text-3" id="text-22-4">
 <p>
-C# 3/4 版本中，出现了更高一层的抽象。
+C# 3/4 版本中，出现了更高一层的抽象:
 </p>
+<ul class="org-ul">
+<li>Thread 是一种昂贵的资源，创建和销毁和维护需要时间，而且需要空间 (1M)</li>
+<li>因此，充分利用 Thread 的方式，就是创建一个 Pool 来反复使用</li>
+<li>但是通过 Pool 的方式，不能够充分屏蔽线程的操作细节，但是 Pool 提供的 API 过于简陋</li>
+<li>因此，通过进一步抽象，使用 Task 概念来暴露线程需要完成的工作。
+Task 交给背后的 Pool 之后，通过一定的线程调度机制，会使用 Pool 提供的某个线程，
+去执行 Task 中的逻辑。</li>
+<li>Task 对象用来表示包含了异步逻辑，以及异步的执行结果的对象。Task 可以组合。
+我们可以将大任务，分成若干小任务，小任务完成之后组合成大任务。</li>
+</ul>
+</div>
 
+<div id="outline-container-org3d357ce" class="outline-4">
+<h4 id="org3d357ce"><span class="section-number-4">22.4.1.</span> Task.Run</h4>
+<div class="outline-text-4" id="text-22-4-1">
+<p>
+基本使用:
+</p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
 <span style="color: #7388d6;">{</span>
@@ -7003,6 +7034,86 @@ C# 3/4 版本中，出现了更高一层的抽象。
     Console.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"+"</span><span style="color: #7388d6;">)</span>;
 <span style="color: #707183;">}</span>
 </pre>
+</div>
+
+<p>
+带返回值的使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Task</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">t</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #909183;">()</span>;
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        sb.<span style="color: #0000ff;">Append</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+    <span style="color: #a020f0;">return</span> Task.<span style="color: #0000ff;">FromResult</span><span style="color: #909183;">(</span>sb.<span style="color: #0000ff;">ToString</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"+"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>t.Result<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31561;&#24453;&#20219;&#21153;&#23436;&#25104;&#65292;&#38459;&#22622;&#24403;&#21069;</span>
+</pre>
+</div>
+
+<p>
+简化:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Task</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">t</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #909183;">()</span>;
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        sb.<span style="color: #0000ff;">Append</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+    <span style="color: #a020f0;">return</span> sb.<span style="color: #0000ff;">ToString</span><span style="color: #909183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">this one</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"+"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>t.Result<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31561;&#24453;&#20219;&#21153;&#23436;&#25104;&#65292;&#38459;&#22622;&#24403;&#21069;</span>
+</pre>
+</div>
+
+<p>
+带 CancellationToken 的 Task.Run:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">cts</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">CancellationTokenSource</span><span style="color: #707183;">()</span>;
+cts.<span style="color: #0000ff;">CancelAfter</span><span style="color: #707183;">(</span>1000<span style="color: #707183;">)</span>;
+cts.Token.<span style="color: #0000ff;">Register</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt; Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"jieshule"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">i</span> = 0;
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">while (!cts.Token.IsCancellationRequested &amp;&amp; i++ &lt; 10000)</span>
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">{ </span>
+    <span style="color: #b22222;">//    </span><span style="color: #b22222;">Console.Write("O");</span>
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">}</span>
+    <span style="color: #a020f0;">do</span>
+    <span style="color: #909183;">{</span>
+        cts.Token.<span style="color: #0000ff;">ThrowIfCancellationRequested</span><span style="color: #709870;">()</span>;
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"O"</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span> <span style="color: #a020f0;">while</span> <span style="color: #909183;">(</span>i++ &lt; 1000<span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span>, cts.Token<span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>i == 5<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        cts.<span style="color: #0000ff;">Cancel</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+    Console.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"+"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -7806,7 +7917,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-10-14</p>
+<p class="date">Created: 2021-10-15</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
