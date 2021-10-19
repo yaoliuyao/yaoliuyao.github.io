@@ -5733,7 +5733,39 @@ C# 5 中，出现了 async/await 关键词:
     * 如果没有完成，将当前异步方法 *挂起*，然后返回调用这个异步方法的方法继续执行。
       如果后续 awaitable 状态变更为完成的话，异步方法将会被 *恢复*，并继续执行接下来的逻辑
 - 异步方法的调用，本身不会创建任何线程的
+
+
+#+begin_src csharp
+  static async Task<int> GetUrlContentLengthAsync()
+  {
+      var client = new HttpClient();
   
+      Task<string> getStringTask =
+          client.GetStringAsync("https://docs.microsoft.com/dotnet");
+  
+      DoIndependentWork();
+  
+      string contents = await getStringTask; // 魔法之源。如果任务没结束，把方法挂起来
+  
+      string cbaidu = await client.GetStringAsync("https://www.baidu.com");
+      Console.WriteLine($"百度的访问结束: {cbaidu.Length}");
+  
+      string cbing = await client.GetStringAsync("https://bing.com");
+      Console.WriteLine($"bing的访问结束: {cbing.Length}");
+  
+      Console.WriteLine("Finished.");
+  
+      return contents.Length;
+  }
+  
+  static async Task Main()
+  {
+      Console.WriteLine("111");
+      Task<int> t = GetUrlContentLengthAsync();
+      Console.WriteLine("222");
+      Console.WriteLine(await t); // Console.WriteLine(t.Result);
+  }
+#+end_src  
 
 * Database
 ** ADO.NET

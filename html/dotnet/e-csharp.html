@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org028e043">11.1. 基本使用</a></li>
+<li><a href="#org5aea46e">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org5aea46e">21.3. 基本使用</a></li>
+<li><a href="#orgd26a28e">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -411,13 +411,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org1c60299">
+<figure id="orgf9bc60b">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org0c26508">
+<figure id="orge48fed1">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -662,7 +662,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orga05765e">
+<figure id="org60c6b02">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -783,7 +783,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgf9652dd">
+<figure id="orgcfad156">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -811,7 +811,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org9807635">
+<figure id="orgd5aa372">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -870,7 +870,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org65edc2e">
+<figure id="orgd0c3b52">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1296,7 +1296,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orga617899">
+<figure id="org530d842">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1334,7 +1334,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgc4d77ac">
+<figure id="org3eb073f">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2333,7 +2333,7 @@ out:
 </div>
 
 
-<figure id="orgf92c447">
+<figure id="orgae72772">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3459,8 +3459,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org028e043" class="outline-3">
-<h3 id="org028e043"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org5aea46e" class="outline-3">
+<h3 id="org5aea46e"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3745,7 +3745,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgbbb8fbd">
+<figure id="orgc538e86">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6630,8 +6630,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org5aea46e" class="outline-3">
-<h3 id="org5aea46e"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-orgd26a28e" class="outline-3">
+<h3 id="orgd26a28e"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -7260,10 +7260,43 @@ C# 5 中，出现了 async/await 关键词:
 </ul></li>
 <li>异步方法的调用，本身不会创建任何线程的</li>
 </ul>
+
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #a020f0;">async</span> <span style="color: #228b22;">Task</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #707183;">&gt;</span> <span style="color: #0000ff;">GetUrlContentLengthAsync</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">client</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HttpClient</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #228b22;">Task</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">getStringTask</span> =
+        client.<span style="color: #0000ff;">GetStringAsync</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"https://docs.microsoft.com/dotnet"</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #0000ff;">DoIndependentWork</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">contents</span> = <span style="color: #a020f0;">await</span> getStringTask; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#39764;&#27861;&#20043;&#28304;&#12290;&#22914;&#26524;&#20219;&#21153;&#27809;&#32467;&#26463;&#65292;&#25226;&#26041;&#27861;&#25346;&#36215;&#26469;</span>
+
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">cbaidu</span> = <span style="color: #a020f0;">await</span> client.<span style="color: #0000ff;">GetStringAsync</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"https://www.baidu.com"</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"&#30334;&#24230;&#30340;&#35775;&#38382;&#32467;&#26463;: {cbaidu.Length}"</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">cbing</span> = <span style="color: #a020f0;">await</span> client.<span style="color: #0000ff;">GetStringAsync</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"https://bing.com"</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"bing&#30340;&#35775;&#38382;&#32467;&#26463;: {cbing.Length}"</span><span style="color: #7388d6;">)</span>;
+
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"Finished."</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">return</span> contents.Length;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">static</span> <span style="color: #a020f0;">async</span> <span style="color: #228b22;">Task</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"111"</span><span style="color: #7388d6;">)</span>;
+    <span style="color: #228b22;">Task</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">t</span> = <span style="color: #0000ff;">GetUrlContentLengthAsync</span><span style="color: #7388d6;">()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"222"</span><span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">await</span> <span style="color: #228b22;">t</span><span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.WriteLine(t.Result);</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </section>
-
 
 <section id="outline-container-org182b3e2" class="outline-2">
 <h2 id="org182b3e2"><span class="section-number-2">23.</span> Database</h2>
