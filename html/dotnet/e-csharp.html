@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-15 -->
+<!-- 2021-10-19 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org44dfaec">11.1. 基本使用</a></li>
+<li><a href="#org028e043">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org028e043">21.3. 基本使用</a></li>
+<li><a href="#org5aea46e">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -302,7 +302,7 @@
 <li><a href="#org107628d">22.4.3. 任务协作</a></li>
 </ul>
 </li>
-<li><a href="#orgcad81c3">22.5. TAL (Task Awaitable Pattern)</a></li>
+<li><a href="#org4e48bef">22.5. TAL (Task-based Asyncronize Pattern)</a></li>
 </ul>
 </li>
 <li><a href="#org182b3e2">23. Database</a>
@@ -411,13 +411,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org80c462d">
+<figure id="org1c60299">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org3c4f3a9">
+<figure id="org0c26508">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -662,7 +662,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgfa70c9a">
+<figure id="orga05765e">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -783,7 +783,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org57b5248">
+<figure id="orgf9652dd">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -811,7 +811,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org68e9bae">
+<figure id="org9807635">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -870,7 +870,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgcf08f30">
+<figure id="org65edc2e">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1296,7 +1296,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgc5d017c">
+<figure id="orga617899">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1334,7 +1334,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org7fcddee">
+<figure id="orgc4d77ac">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2333,7 +2333,7 @@ out:
 </div>
 
 
-<figure id="orgc01cd00">
+<figure id="orgf92c447">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3459,8 +3459,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org44dfaec" class="outline-3">
-<h3 id="org44dfaec"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org028e043" class="outline-3">
+<h3 id="org028e043"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3745,7 +3745,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org6d7751c">
+<figure id="orgbbb8fbd">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6630,8 +6630,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org028e043" class="outline-3">
-<h3 id="org028e043"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org5aea46e" class="outline-3">
+<h3 id="org5aea46e"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -7047,7 +7047,8 @@ Task 交给背后的 Pool 之后，通过一定的线程调度机制，会使用
 带返回值的使用:
 </p>
 <div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #228b22;">Task</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">t</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">Promise Style</span>
+<span style="color: #228b22;">Task</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">t</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
 <span style="color: #7388d6;">{</span>
     <span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #909183;">()</span>;
     <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10000; i++<span style="color: #909183;">)</span>
@@ -7233,17 +7234,35 @@ t1.<span style="color: #0000ff;">Wait</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-orgcad81c3" class="outline-3">
-<h3 id="orgcad81c3"><span class="section-number-3">22.5.</span> TAL (Task Awaitable Pattern)</h3>
+<div id="outline-container-org4e48bef" class="outline-3">
+<h3 id="org4e48bef"><span class="section-number-3">22.5.</span> TAL (Task-based Asyncronize Pattern)</h3>
 <div class="outline-text-3" id="text-22-5">
 <p>
-C# 5 中，出现了 async/await 关键词。
+C# 5 中，出现了 async/await 关键词:
 </p>
+<ul class="org-ul">
+<li><b>异步方法</b>，需要使用 <code>async</code> 来修饰
+<ul class="org-ul">
+<li>返回值必须是 Task 或者 Task&lt;T&gt; (有些情况下可以返回 void),</li>
+<li>参数不能是 ref/out 类型,</li>
+<li>方法名，按照约定，最好是以 Async 结尾</li>
+</ul></li>
+<li><code>await</code> 关键词，只能用于 async 修饰的方法内:
+<ul class="org-ul">
+<li>await 关键词后面跟着的是 awaitable 类型 (实现了 GetAwaiter 方法的类型) 的对象</li>
+<li>我们一般来说，没有必要手动创建 awaitable 对象，而是直接使用 Task</li>
+<li>await 会检查后面的 awaitable 对象的状态:
+<ul class="org-ul">
+<li>如果它已经完成，那么拿到返回结果之后继续</li>
+<li>如果没有完成，将当前异步方法 <b>挂起</b>，然后返回调用这个异步方法的方法继续执行。
+如果后续 awaitable 状态变更为完成的话，异步方法将会被 <b>恢复</b>，并继续执行接下来的逻辑</li>
+</ul></li>
+</ul></li>
+<li>异步方法的调用，本身不会创建任何线程的</li>
+</ul>
 </div>
 </div>
 </section>
-
-
 
 
 <section id="outline-container-org182b3e2" class="outline-2">
@@ -8044,7 +8063,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-10-15</p>
+<p class="date">Created: 2021-10-19</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

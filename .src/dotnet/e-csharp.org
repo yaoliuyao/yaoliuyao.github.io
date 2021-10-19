@@ -5554,6 +5554,7 @@ C# 3/4 版本中，出现了更高一层的抽象:
 
 带返回值的使用:
 #+begin_src csharp
+  // Promise Style
   Task<string> t = Task.Run(() =>
   {
       StringBuilder sb = new StringBuilder();
@@ -5717,12 +5718,22 @@ C# 3/4 版本中，出现了更高一层的抽象:
   }).Wait();
 #+end_src
 
-** TAL (Task Awaitable Pattern)
+** TAL (Task-based Asyncronize Pattern)
 
-C# 5 中，出现了 async/await 关键词。
-
-
-
+C# 5 中，出现了 async/await 关键词:
+- *异步方法*，需要使用 ~async~ 来修饰
+  + 返回值必须是 Task 或者 Task<T> (有些情况下可以返回 void),
+  + 参数不能是 ref/out 类型,
+  + 方法名，按照约定，最好是以 Async 结尾
+- ~await~ 关键词，只能用于 async 修饰的方法内:
+  + await 关键词后面跟着的是 awaitable 类型 (实现了 GetAwaiter 方法的类型) 的对象
+  + 我们一般来说，没有必要手动创建 awaitable 对象，而是直接使用 Task
+  + await 会检查后面的 awaitable 对象的状态:
+    * 如果它已经完成，那么拿到返回结果之后继续
+    * 如果没有完成，将当前异步方法 *挂起*，然后返回调用这个异步方法的方法继续执行。
+      如果后续 awaitable 状态变更为完成的话，异步方法将会被 *恢复*，并继续执行接下来的逻辑
+- 异步方法的调用，本身不会创建任何线程的
+  
 
 * Database
 ** ADO.NET
