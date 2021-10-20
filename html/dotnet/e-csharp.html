@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-19 -->
+<!-- 2021-10-20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org5aea46e">11.1. 基本使用</a></li>
+<li><a href="#orgd26a28e">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#orgd26a28e">21.3. 基本使用</a></li>
+<li><a href="#org2d9537f">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -303,6 +303,16 @@
 </ul>
 </li>
 <li><a href="#org4e48bef">22.5. TAL (Task-based Asyncronize Pattern)</a></li>
+<li><a href="#orgf5fc7db">22.6. 线程的同步和协作</a>
+<ul>
+<li><a href="#org45dd528">22.6.1. Monitor.Enter/Exit</a></li>
+<li><a href="#org83d9194">22.6.2. lock</a></li>
+<li><a href="#org06f9240">22.6.3. ManualResetEventSlim</a></li>
+<li><a href="#org7d4a9af">22.6.4. Interlock</a></li>
+<li><a href="#orgabd637f">22.6.5. Semaphore</a></li>
+<li><a href="#org0232e4d">22.6.6. Countdown</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org182b3e2">23. Database</a>
@@ -411,13 +421,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgf9bc60b">
+<figure id="orgf852fd1">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orge48fed1">
+<figure id="org2c636b9">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -662,7 +672,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org60c6b02">
+<figure id="org4e6545a">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -783,7 +793,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgcfad156">
+<figure id="orge5cc239">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -811,7 +821,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgd5aa372">
+<figure id="org1d3d022">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -870,7 +880,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgd0c3b52">
+<figure id="org4a7d00a">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1296,7 +1306,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org530d842">
+<figure id="org7e5f6b9">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1334,7 +1344,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org3eb073f">
+<figure id="orgfd274c2">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2333,7 +2343,7 @@ out:
 </div>
 
 
-<figure id="orgae72772">
+<figure id="org3947520">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3459,8 +3469,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org5aea46e" class="outline-3">
-<h3 id="org5aea46e"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-orgd26a28e" class="outline-3">
+<h3 id="orgd26a28e"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3745,7 +3755,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgc538e86">
+<figure id="orged491d3">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6630,8 +6640,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-orgd26a28e" class="outline-3">
-<h3 id="orgd26a28e"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org2d9537f" class="outline-3">
+<h3 id="org2d9537f"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -7293,6 +7303,338 @@ C# 5 中，出现了 async/await 关键词:
     Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">await</span> <span style="color: #228b22;">t</span><span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">Console.WriteLine(t.Result);</span>
 <span style="color: #707183;">}</span>
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf5fc7db" class="outline-3">
+<h3 id="orgf5fc7db"><span class="section-number-3">22.6.</span> 线程的同步和协作</h3>
+<div class="outline-text-3" id="text-22-6">
+</div>
+<div id="outline-container-org45dd528" class="outline-4">
+<h4 id="org45dd528"><span class="section-number-4">22.6.1.</span> Monitor.Enter/Exit</h4>
+<div class="outline-text-4" id="text-22-6-1">
+<p>
+锁的基本使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#21019;&#24314;&#38145;</span>
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">o</span> = <span style="color: #a020f0;">new</span> <span style="color: #0000ff;">object</span><span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#20854;&#24403;&#25104;&#19968;&#25226;&#38145;&#65292;&#26368;&#22909;&#23601;&#26159; object&#12290;&#23588;&#20854;&#19981;&#35201;&#20351;&#29992; this</span>
+
+Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span>xxx<span style="color: #707183;">)</span>;
+Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span>xxx<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#25250;&#22842;&#38145;</span>
+    Monitor.<span style="color: #0000ff;">Enter</span><span style="color: #7388d6;">(</span>o<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#25250;&#19981;&#21040;&#65292;&#37027;&#20040;&#31561; (&#38459;&#22622;)</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">3. &#25191;&#34892;&#20851;&#38190;&#20195;&#30721;</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#25191;&#34892;&#20851;&#38190;&#21306;&#22495;&#30340;&#20195;&#30721;"</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">4. &#37322;&#25918;&#38145;</span>
+    Monitor.<span style="color: #0000ff;">Exit</span><span style="color: #7388d6;">(</span>o<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+更加健壮一点的写法:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#21019;&#24314;&#38145;</span>
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">o</span> = <span style="color: #a020f0;">new</span> <span style="color: #0000ff;">object</span><span style="color: #707183;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#20854;&#24403;&#25104;&#19968;&#25226;&#38145;&#65292;&#26368;&#22909;&#23601;&#26159; object&#12290;&#23588;&#20854;&#19981;&#35201;&#20351;&#29992; this</span>
+
+Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span>xxx<span style="color: #707183;">)</span>;
+Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span>xxx<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#25250;&#22842;&#38145;</span>
+    Monitor.<span style="color: #0000ff;">Enter</span><span style="color: #7388d6;">(</span>o<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22914;&#26524;&#25250;&#19981;&#21040;&#65292;&#37027;&#20040;&#31561; (&#38459;&#22622;)</span>
+
+    <span style="color: #a020f0;">try</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">3. &#25191;&#34892;&#20851;&#38190;&#20195;&#30721;</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25191;&#34892;&#20851;&#38190;&#21306;&#22495;&#30340;&#20195;&#30721;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">finally</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">4. &#37322;&#25918;&#38145;</span>
+        Monitor.<span style="color: #0000ff;">Exit</span><span style="color: #909183;">(</span>o<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+我不想等 (我只能等若干时间):
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#21019;&#24314;&#38145;</span>
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">o</span> = <span style="color: #a020f0;">new</span> <span style="color: #0000ff;">object</span><span style="color: #707183;">()</span>;
+
+Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span>xxx<span style="color: #707183;">)</span>;
+Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span>xxx<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">2. &#25250;&#22842;&#38145;</span>
+    <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">isTaken</span> = Monitor.<span style="color: #0000ff;">TryEnter</span><span style="color: #7388d6;">(</span>o<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25105;&#31561;&#19981;&#21040;&#65292;&#23601;&#25289;&#20498; (&#38750;&#38459;&#22622;)</span>
+    <span style="color: #228b22;">bool</span> <span style="color: #a0522d;">isTaken</span> = Monitor.<span style="color: #0000ff;">TryEnter</span><span style="color: #7388d6;">(</span>o, 666<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25105;&#21482;&#33021;&#31561;&#36825;&#20040;&#20037;</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">3. &#21028;&#26029;&#26377;&#27809;&#26377;&#25343;&#21040;&#38145;</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>isTaken<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">try</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">// </span><span style="color: #b22222;">4. &#25191;&#34892;&#20851;&#38190;&#20195;&#30721;</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"&#25191;&#34892;&#20851;&#38190;&#21306;&#22495;&#30340;&#20195;&#30721;"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">finally</span>
+        <span style="color: #909183;">{</span>
+            <span style="color: #b22222;">// </span><span style="color: #b22222;">5. &#37322;&#25918;&#38145;</span>
+            Monitor.<span style="color: #0000ff;">Exit</span><span style="color: #709870;">(</span>o<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org83d9194" class="outline-4">
+<h4 id="org83d9194"><span class="section-number-4">22.6.2.</span> lock</h4>
+<div class="outline-text-4" id="text-22-6-2">
+<p>
+是 Monitor 语法糖。胜在简单，败在不够灵活。
+</p>
+<ul class="org-ul">
+<li>请注意，一定要控制好锁的范围 (颗粒)</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">object</span> <span style="color: #a0522d;">o</span> = <span style="color: #a020f0;">new</span> <span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">lock</span><span style="color: #7388d6;">(</span>o<span style="color: #7388d6;">)</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31561;&#24453;</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26159;&#20851;&#38190;&#21306;&#22495;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org06f9240" class="outline-4">
+<h4 id="org06f9240"><span class="section-number-4">22.6.3.</span> ManualResetEventSlim</h4>
+<div class="outline-text-4" id="text-22-6-3">
+<p>
+多任务的简单协同。事件机制。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">ev1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ManualResetEventSlim</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">ev2</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ManualResetEventSlim</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t1</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#26469;&#21040;&#25945;&#23460;"</span><span style="color: #909183;">)</span>;
+    ev2.<span style="color: #0000ff;">Wait</span><span style="color: #909183;">()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#25105;&#24320;&#22987;&#35762;&#35838;"</span><span style="color: #909183;">)</span>;
+    ev1.<span style="color: #0000ff;">Set</span><span style="color: #909183;">()</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t2</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20320;&#20204;&#26469;&#21040;&#25945;&#23460;"</span><span style="color: #909183;">)</span>;
+    ev2.<span style="color: #0000ff;">Set</span><span style="color: #909183;">()</span>;
+    ev1.<span style="color: #0000ff;">Wait</span><span style="color: #909183;">()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20320;&#20204;&#24320;&#22987;&#21548;&#35838;"</span><span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(</span>t1, t2<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#19979;&#35838;"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7d4a9af" class="outline-4">
+<h4 id="org7d4a9af"><span class="section-number-4">22.6.4.</span> Interlock</h4>
+<div class="outline-text-4" id="text-22-6-4">
+<p>
+即使 i++ 这样的代码，在 CPU 的角度，也不是原子性的 (从内存中拿取、计算、写入到内存):
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">money</span> = 1000000;
+
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t1</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        money++;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t2</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        money--;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(</span>t1, t2<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"&#29616;&#22312;&#25105;&#26377;&#38065;: {money}"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+遇到资源争用出现的问题，基本思路就是上锁:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">object</span> <span style="color: #a0522d;">_lock</span> = <span style="color: #a020f0;">new</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">money</span> = 1000000;
+
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t1</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">lock</span> <span style="color: #709870;">(</span>_lock<span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+            money++;
+        <span style="color: #709870;">}</span>
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t2</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">lock</span><span style="color: #709870;">(</span>_lock<span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+            money--;
+        <span style="color: #709870;">}</span>
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(</span>t1, t2<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"&#29616;&#22312;&#25105;&#26377;&#38065;: {money}"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+我们可以使用 Interlock 保证线程安全，它比使用上锁的方式，更快、更简单:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">object</span> <span style="color: #a0522d;">_lock</span> = <span style="color: #a020f0;">new</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">money</span> = 1000000000;
+
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t1</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        Interlocked.<span style="color: #0000ff;">Increment</span><span style="color: #709870;">(</span><span style="color: #a020f0;">ref</span> <span style="color: #228b22;">money</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t2</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000000; i++<span style="color: #909183;">)</span>
+    <span style="color: #909183;">{</span>
+        Interlocked.<span style="color: #0000ff;">Decrement</span><span style="color: #709870;">(</span><span style="color: #a020f0;">ref</span> <span style="color: #228b22;">money</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(</span>t1, t2<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"&#29616;&#22312;&#25105;&#26377;&#38065;: {money}"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgabd637f" class="outline-4">
+<h4 id="orgabd637f"><span class="section-number-4">22.6.5.</span> Semaphore</h4>
+<div class="outline-text-4" id="text-22-6-5">
+<p>
+可以看作是 Monitor 方式的增强版。可以控制同一时刻通过核心代码区域的任务数量:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Semaphore</span> <span style="color: #a0522d;">sem</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Semaphore</span><span style="color: #707183;">(</span>3, 3<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">random</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Random</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">DoSomething</span><span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">while</span> <span style="color: #7388d6;">(</span><span style="color: #008b8b;">true</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>sem.<span style="color: #0000ff;">WaitOne</span><span style="color: #709870;">(</span>1000<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"{n}: --- &#24685;&#21916;&#25105;&#25104;&#21151;&#25343;&#38145; :)"</span><span style="color: #709870;">)</span>;
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"{n}: &#25105;&#24320;&#22987;&#20570;&#20107;&#21679;"</span><span style="color: #709870;">)</span>;
+            Task.<span style="color: #0000ff;">Delay</span><span style="color: #709870;">(</span>random.<span style="color: #0000ff;">Next</span><span style="color: #907373;">(</span>2000<span style="color: #907373;">)</span> + 1000<span style="color: #709870;">)</span>.<span style="color: #0000ff;">Wait</span><span style="color: #709870;">()</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#27169;&#25311;&#20570;&#20102;&#28857;&#20107;</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"{n}: &#25105;&#20570;&#23436;&#21679;"</span><span style="color: #709870;">)</span>;
+            sem.<span style="color: #0000ff;">Release</span><span style="color: #709870;">()</span>;
+            <span style="color: #a020f0;">break</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">else</span>
+        <span style="color: #909183;">{</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"{n}: --- &#25105;&#25343;&#38145;&#22833;&#36133;&#20102; :("</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>;
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">List&lt;Task&gt; tasks = new();</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">for (int i = 0; i &lt; 10; i++)</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">{</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">var task = Task.Run(() =&gt; DoSomething(i));</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">tasks.Add(task);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">}</span>
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">tasks</span> = Enumerable.<span style="color: #0000ff;">Range</span><span style="color: #707183;">(</span>0, 10<span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Select</span><span style="color: #707183;">(</span>n =&gt; Task.<span style="color: #0000ff;">Run</span><span style="color: #7388d6;">(</span><span style="color: #909183;">()</span> =&gt; <span style="color: #0000ff;">DoSomething</span><span style="color: #909183;">(</span>n<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(</span>tasks.<span style="color: #0000ff;">ToArray</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0232e4d" class="outline-4">
+<h4 id="org0232e4d"><span class="section-number-4">22.6.6.</span> Countdown</h4>
+<div class="outline-text-4" id="text-22-6-6">
+<p>
+看作是 ManualResetEventSlim 的增强版。
+</p>
+
+<p>
+集齐 7 颗龙珠，召唤神龙:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">cde</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">CountdownEvent</span><span style="color: #707183;">(</span>7<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">random</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Random</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">void</span> <span style="color: #0000ff;">SeekLongZhu</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"{Task.CurrentId} &#24320;&#22987;&#23547;&#25214;..."</span><span style="color: #7388d6;">)</span>;
+    <span style="color: #a020f0;">while</span> <span style="color: #7388d6;">(</span>cde.CurrentCount &gt; 0<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Task.<span style="color: #0000ff;">Delay</span><span style="color: #909183;">(</span>200<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Wait</span><span style="color: #909183;">()</span>;
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>random.<span style="color: #0000ff;">Next</span><span style="color: #709870;">(</span>100<span style="color: #709870;">)</span> == 0<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            cde.<span style="color: #0000ff;">Signal</span><span style="color: #709870;">()</span>;
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>$<span style="color: #8b2252;">"{Task.CurrentId} &#25214;&#21040;&#19968;&#39063;&#40857;&#29664;"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">tasks</span> = Enumerable.<span style="color: #0000ff;">Range</span><span style="color: #707183;">(</span>0, 10<span style="color: #707183;">)</span>
+    .<span style="color: #0000ff;">Select</span><span style="color: #707183;">(</span>n =&gt; Task.<span style="color: #0000ff;">Run</span><span style="color: #7388d6;">(</span>SeekLongZhu<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+
+Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(</span>tasks.<span style="color: #0000ff;">ToArray</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+
+cde.<span style="color: #0000ff;">Wait</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#19971;&#39063;&#40857;&#29664;&#38598;&#40784;&#65292;&#24320;&#22987;&#21484;&#21796;&#31070;&#40857;"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -8096,7 +8438,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-10-19</p>
+<p class="date">Created: 2021-10-20</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

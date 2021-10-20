@@ -5767,6 +5767,282 @@ C# 5 中，出现了 async/await 关键词:
   }
 #+end_src  
 
+** 线程的同步和协作
+*** Monitor.Enter/Exit
+
+锁的基本使用:
+#+begin_src csharp
+  // 1. 创建锁
+  object o = new object(); // 将其当成一把锁，最好就是 object。尤其不要使用 this
+  
+  Task.Run(xxx);
+  Task.Run(xxx);
+  
+  void xxx()
+  {
+      // 2. 抢夺锁
+      Monitor.Enter(o); // 如果抢不到，那么等 (阻塞)
+  
+      // 3. 执行关键代码
+      Console.WriteLine("执行关键区域的代码");
+  
+      // 4. 释放锁
+      Monitor.Exit(o);          
+  }
+#+end_src
+
+更加健壮一点的写法:
+#+begin_src csharp
+  // 1. 创建锁
+  object o = new object(); // 将其当成一把锁，最好就是 object。尤其不要使用 this
+  
+  Task.Run(xxx);
+  Task.Run(xxx);
+  
+  void xxx()
+  {
+      // 2. 抢夺锁
+      Monitor.Enter(o); // 如果抢不到，那么等 (阻塞)
+  
+      try
+      {
+          // 3. 执行关键代码
+          Console.WriteLine("执行关键区域的代码");
+      }
+      finally
+      {
+          // 4. 释放锁
+          Monitor.Exit(o);
+      }
+  }
+#+end_src
+
+我不想等 (我只能等若干时间):
+#+begin_src csharp
+  // 1. 创建锁
+  object o = new object();
+  
+  Task.Run(xxx);
+  Task.Run(xxx);
+  
+  void xxx()
+  {
+      // 2. 抢夺锁
+      bool isTaken = Monitor.TryEnter(o); // 我等不到，就拉倒 (非阻塞)
+      bool isTaken = Monitor.TryEnter(o, 666); // 我只能等这么久
+  
+      // 3. 判断有没有拿到锁
+      if (isTaken)
+      {
+          try
+          {
+              // 4. 执行关键代码
+              Console.WriteLine("执行关键区域的代码");
+          }
+          finally
+          {
+              // 5. 释放锁
+              Monitor.Exit(o);          
+          }
+      }
+  }
+#+end_src
+
+*** lock
+
+是 Monitor 语法糖。胜在简单，败在不够灵活。
+- 请注意，一定要控制好锁的范围 (颗粒)
+
+#+begin_src csharp
+  object o = new ();
+  
+  void xxx()
+  {
+      lock(o) // 等待
+      {
+          Console.WriteLine("我是关键区域");
+      }
+  }
+#+end_src
+
+
+*** ManualResetEventSlim
+
+多任务的简单协同。事件机制。
+
+#+begin_src csharp
+  var ev1 = new ManualResetEventSlim();
+  var ev2 = new ManualResetEventSlim();
+  
+  Task t1 = Task.Run(() =>
+  {
+      Console.WriteLine("我来到教室");
+      ev2.Wait();
+      Console.WriteLine("我开始讲课");
+      ev1.Set();
+  });
+  Task t2 = Task.Run(() =>
+  {
+      Console.WriteLine("你们来到教室");
+      ev2.Set();
+      ev1.Wait();
+      Console.WriteLine("你们开始听课");
+  });
+  
+  Task.WaitAll(t1, t2);
+  Console.WriteLine("下课");
+#+end_src
+
+*** Interlock
+
+即使 i++ 这样的代码，在 CPU 的角度，也不是原子性的 (从内存中拿取、计算、写入到内存):
+#+begin_src csharp
+  int money = 1000000;
+  
+  Task t1 = Task.Run(() =>
+  {
+      for (int i = 0; i < 100000; i++)
+      {
+          money++;
+      }
+  });
+  Task t2 = Task.Run(() =>
+  {
+      for (int i = 0; i < 100000; i++)
+      {
+          money--;
+      }
+  });
+  Task.WaitAll(t1, t2);
+  Console.WriteLine($"现在我有钱: {money}");
+#+end_src
+
+遇到资源争用出现的问题，基本思路就是上锁:
+#+begin_src csharp
+  object _lock = new();
+  int money = 1000000;
+  
+  Task t1 = Task.Run(() =>
+  {
+      for (int i = 0; i < 100000; i++)
+      {
+          lock (_lock)
+          {
+              money++;
+          }
+      }
+  });
+  Task t2 = Task.Run(() =>
+  {
+      for (int i = 0; i < 100000; i++)
+      {
+          lock(_lock)
+          {
+              money--;
+          }
+      }
+  });
+  
+  Task.WaitAll(t1, t2);
+  Console.WriteLine($"现在我有钱: {money}");
+#+end_src
+
+我们可以使用 Interlock 保证线程安全，它比使用上锁的方式，更快、更简单:
+#+begin_src csharp
+  object _lock = new();
+  int money = 1000000000;
+  
+  Task t1 = Task.Run(() =>
+  {
+      for (int i = 0; i < 100000000; i++)
+      {
+          Interlocked.Increment(ref money);
+      }
+  });
+  Task t2 = Task.Run(() =>
+  {
+      for (int i = 0; i < 100000000; i++)
+      {
+          Interlocked.Decrement(ref money);
+      }
+  });
+  
+  Task.WaitAll(t1, t2);
+  Console.WriteLine($"现在我有钱: {money}");
+#+end_src
+
+*** Semaphore
+
+可以看作是 Monitor 方式的增强版。可以控制同一时刻通过核心代码区域的任务数量:
+#+begin_src csharp
+  Semaphore sem = new Semaphore(3, 3);
+  
+  var random = new Random();
+  void DoSomething(int n)
+  {
+      while (true)
+      {
+          if (sem.WaitOne(1000))
+          {
+              Console.WriteLine($"{n}: --- 恭喜我成功拿锁 :)");
+              Console.WriteLine($"{n}: 我开始做事咯");
+              Task.Delay(random.Next(2000) + 1000).Wait(); // 模拟做了点事
+              Console.WriteLine($"{n}: 我做完咯");
+              sem.Release();
+              break;
+          }
+          else
+          {
+              Console.WriteLine($"{n}: --- 我拿锁失败了 :(");
+          }
+      }
+  };
+  
+  //List<Task> tasks = new();
+  //for (int i = 0; i < 10; i++)
+  //{
+  //    var task = Task.Run(() => DoSomething(i));
+  //    tasks.Add(task);
+  //}
+  
+  var tasks = Enumerable.Range(0, 10)
+      .Select(n => Task.Run(() => DoSomething(n)));
+  Task.WaitAll(tasks.ToArray());
+#+end_src
+
+
+*** Countdown
+
+看作是 ManualResetEventSlim 的增强版。
+
+集齐 7 颗龙珠，召唤神龙:
+#+begin_src csharp
+  var cde = new CountdownEvent(7);
+  
+  var random = new Random();
+  void SeekLongZhu()
+  {
+      Console.WriteLine($"{Task.CurrentId} 开始寻找...");
+      while (cde.CurrentCount > 0)
+      {
+          Task.Delay(200).Wait();
+          if (random.Next(100) == 0)
+          {
+              cde.Signal();
+              Console.WriteLine($"{Task.CurrentId} 找到一颗龙珠");
+          }
+      }
+  }
+  
+  var tasks = Enumerable.Range(0, 10)
+      .Select(n => Task.Run(SeekLongZhu));
+  
+  Task.WaitAll(tasks.ToArray());
+  
+  cde.Wait();
+  Console.WriteLine("七颗龙珠集齐，开始召唤神龙");
+#+end_src
+
 * Database
 ** ADO.NET
 *** SqlConnection / SqlCommand / SqlDataReader
