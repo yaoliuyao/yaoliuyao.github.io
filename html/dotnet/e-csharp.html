@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-20 -->
+<!-- 2021-10-21 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#orgd26a28e">11.1. 基本使用</a></li>
+<li><a href="#org2d9537f">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org2d9537f">21.3. 基本使用</a></li>
+<li><a href="#org8fbf75d">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -303,14 +303,15 @@
 </ul>
 </li>
 <li><a href="#org4e48bef">22.5. TAL (Task-based Asyncronize Pattern)</a></li>
-<li><a href="#orgf5fc7db">22.6. 线程的同步和协作</a>
+<li><a href="#org86143dd">22.6. Parallel</a></li>
+<li><a href="#orgb1ac1ee">22.7. 任务的同步和协作</a>
 <ul>
-<li><a href="#org45dd528">22.6.1. Monitor.Enter/Exit</a></li>
-<li><a href="#org83d9194">22.6.2. lock</a></li>
-<li><a href="#org06f9240">22.6.3. ManualResetEventSlim</a></li>
-<li><a href="#org7d4a9af">22.6.4. Interlock</a></li>
-<li><a href="#orgabd637f">22.6.5. Semaphore</a></li>
-<li><a href="#org0232e4d">22.6.6. Countdown</a></li>
+<li><a href="#org45dd528">22.7.1. Monitor.Enter/Exit</a></li>
+<li><a href="#org83d9194">22.7.2. lock</a></li>
+<li><a href="#org06f9240">22.7.3. ManualResetEventSlim</a></li>
+<li><a href="#org7d4a9af">22.7.4. Interlock</a></li>
+<li><a href="#orgabd637f">22.7.5. Semaphore</a></li>
+<li><a href="#org0232e4d">22.7.6. Countdown</a></li>
 </ul>
 </li>
 </ul>
@@ -421,13 +422,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgf852fd1">
+<figure id="org605bc74">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org2c636b9">
+<figure id="org2d882a4">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -672,7 +673,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org4e6545a">
+<figure id="org3fa90e3">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -793,7 +794,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orge5cc239">
+<figure id="org17518cc">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -821,7 +822,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org1d3d022">
+<figure id="org85afcca">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -880,7 +881,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org4a7d00a">
+<figure id="org07389a4">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1306,7 +1307,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org7e5f6b9">
+<figure id="orgce6b045">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1344,7 +1345,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgfd274c2">
+<figure id="org9351abe">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2343,7 +2344,7 @@ out:
 </div>
 
 
-<figure id="org3947520">
+<figure id="orgd7298e3">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3469,8 +3470,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-orgd26a28e" class="outline-3">
-<h3 id="orgd26a28e"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org2d9537f" class="outline-3">
+<h3 id="org2d9537f"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3755,7 +3756,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orged491d3">
+<figure id="org0b64fcd">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6640,8 +6641,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org2d9537f" class="outline-3">
-<h3 id="org2d9537f"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org8fbf75d" class="outline-3">
+<h3 id="org8fbf75d"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -7307,13 +7308,71 @@ C# 5 中，出现了 async/await 关键词:
 </div>
 </div>
 
-<div id="outline-container-orgf5fc7db" class="outline-3">
-<h3 id="orgf5fc7db"><span class="section-number-3">22.6.</span> 线程的同步和协作</h3>
+<div id="outline-container-org86143dd" class="outline-3">
+<h3 id="org86143dd"><span class="section-number-3">22.6.</span> Parallel</h3>
 <div class="outline-text-3" id="text-22-6">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">//</span><span style="color: #b22222;">for (int i = 0; i &lt; 1000; i++)</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">{</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">Console.WriteLine(i);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">}</span>
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Task.WaitAll(</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">Enumerable.Range(0, 1000)</span>
+<span style="color: #b22222;">//        </span><span style="color: #b22222;">.Select(n =&gt; Task.Run(() =&gt; Console.WriteLine(n)))</span>
+<span style="color: #b22222;">//        </span><span style="color: #b22222;">.ToArray()</span>
+<span style="color: #b22222;">//        </span><span style="color: #b22222;">);</span>
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Parallel.For(0, 1000, (n) =&gt;</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">{</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">Console.WriteLine(n);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">});</span>
+
+<span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">int</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">numbers</span> = Enumerable.<span style="color: #0000ff;">Range</span><span style="color: #707183;">(</span>0, 1000<span style="color: #707183;">)</span>.<span style="color: #0000ff;">ToList</span><span style="color: #707183;">()</span>;
+<span style="color: #b22222;">//</span><span style="color: #b22222;">foreach (var n in numbers) Console.WriteLine(n);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Parallel.ForEach(numbers, (n) =&gt; Console.WriteLine(n));</span>
+
+Parallel.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</span>
+    <span style="color: #7388d6;">()</span> =&gt;
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">double</span> <span style="color: #a0522d;">ii</span> = 0;
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Task.<span style="color: #0000ff;">Delay</span><span style="color: #709870;">(</span>10<span style="color: #709870;">)</span>.<span style="color: #0000ff;">Wait</span><span style="color: #709870;">()</span>;
+            ii += Math.<span style="color: #0000ff;">Pow</span><span style="color: #709870;">(</span>i, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Random</span><span style="color: #907373;">()</span>.<span style="color: #0000ff;">Next</span><span style="color: #907373;">(</span>50<span style="color: #907373;">)</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{Task.CurrentId} &#35745;&#31639;&#23436;&#27605;: {ii}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>,
+    <span style="color: #7388d6;">()</span> =&gt;
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Task.<span style="color: #0000ff;">Delay</span><span style="color: #709870;">(</span>10<span style="color: #709870;">)</span>.<span style="color: #0000ff;">Wait</span><span style="color: #709870;">()</span>;
+            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">ii</span> = Math.<span style="color: #0000ff;">Pow</span><span style="color: #709870;">(</span>i, i * i + 3<span style="color: #709870;">)</span> - 1000;
+        <span style="color: #909183;">}</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{Task.CurrentId} &#35745;&#31639;&#23436;&#27605;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>,
+    <span style="color: #7388d6;">()</span> =&gt;
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">for</span> <span style="color: #909183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 100000; i++<span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            Task.<span style="color: #0000ff;">Delay</span><span style="color: #709870;">(</span>10<span style="color: #709870;">)</span>.<span style="color: #0000ff;">Wait</span><span style="color: #709870;">()</span>;
+            <span style="color: #228b22;">double</span> <span style="color: #a0522d;">ii</span> = Math.<span style="color: #0000ff;">Pow</span><span style="color: #709870;">(</span>i, i * i<span style="color: #709870;">)</span> / 3;
+        <span style="color: #909183;">}</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{Task.CurrentId} &#35745;&#31639;&#23436;&#27605;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb1ac1ee" class="outline-3">
+<h3 id="orgb1ac1ee"><span class="section-number-3">22.7.</span> 任务的同步和协作</h3>
+<div class="outline-text-3" id="text-22-7">
 </div>
 <div id="outline-container-org45dd528" class="outline-4">
-<h4 id="org45dd528"><span class="section-number-4">22.6.1.</span> Monitor.Enter/Exit</h4>
-<div class="outline-text-4" id="text-22-6-1">
+<h4 id="org45dd528"><span class="section-number-4">22.7.1.</span> Monitor.Enter/Exit</h4>
+<div class="outline-text-4" id="text-22-7-1">
 <p>
 锁的基本使用:
 </p>
@@ -7400,17 +7459,59 @@ Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</sp
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+
+<p>
+另外，一定要避免死锁的产生:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">object</span> <span style="color: #a0522d;">lock1</span> = <span style="color: #a020f0;">new</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">lock2</span> = <span style="color: #a020f0;">new</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t1</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    Monitor.<span style="color: #0000ff;">Enter</span><span style="color: #909183;">(</span>lock1<span style="color: #909183;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#24320;&#22987;"</span><span style="color: #909183;">)</span>;
+    Task.<span style="color: #0000ff;">Delay</span><span style="color: #909183;">(</span>2000<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Wait</span><span style="color: #909183;">()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#32467;&#26463;"</span><span style="color: #909183;">)</span>;
+
+    Monitor.<span style="color: #0000ff;">Enter</span><span style="color: #909183;">(</span>lock2<span style="color: #909183;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20854;&#20182;&#20107;&#24773;"</span><span style="color: #909183;">)</span>;
+    Monitor.<span style="color: #0000ff;">Exit</span><span style="color: #909183;">(</span>lock2<span style="color: #909183;">)</span>;
+
+    Monitor.<span style="color: #0000ff;">Exit</span><span style="color: #909183;">(</span>lock1<span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t2</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
+<span style="color: #7388d6;">{</span>
+    Monitor.<span style="color: #0000ff;">Enter</span><span style="color: #909183;">(</span>lock2<span style="color: #909183;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"My..."</span><span style="color: #909183;">)</span>;
+
+    Monitor.<span style="color: #0000ff;">Enter</span><span style="color: #909183;">(</span>lock1<span style="color: #909183;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"start"</span><span style="color: #909183;">)</span>;
+    Task.<span style="color: #0000ff;">Delay</span><span style="color: #909183;">(</span>1500<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Wait</span><span style="color: #909183;">()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"end"</span><span style="color: #909183;">)</span>;
+    Monitor.<span style="color: #0000ff;">Exit</span><span style="color: #909183;">(</span>lock1<span style="color: #909183;">)</span>;
+
+    Monitor.<span style="color: #0000ff;">Exit</span><span style="color: #909183;">(</span>lock2<span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(</span>t1, t2<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#22909;&#20102;"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
 </div>
 </div>
 
 <div id="outline-container-org83d9194" class="outline-4">
-<h4 id="org83d9194"><span class="section-number-4">22.6.2.</span> lock</h4>
-<div class="outline-text-4" id="text-22-6-2">
+<h4 id="org83d9194"><span class="section-number-4">22.7.2.</span> lock</h4>
+<div class="outline-text-4" id="text-22-7-2">
 <p>
-是 Monitor 语法糖。胜在简单，败在不够灵活。
+是 Monitor 语法糖。胜在简单，败在不够灵活:
 </p>
 <ul class="org-ul">
-<li>请注意，一定要控制好锁的范围 (颗粒)</li>
+<li>lock 的行为是，如果获取不到锁，就等待</li>
+<li>锁的争用会占用资源，拖慢速度</li>
+<li>因此，一定要控制好锁的范围 (颗粒)</li>
 </ul>
 
 <div class="org-src-container">
@@ -7428,10 +7529,9 @@ Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</sp
 </div>
 </div>
 
-
 <div id="outline-container-org06f9240" class="outline-4">
-<h4 id="org06f9240"><span class="section-number-4">22.6.3.</span> ManualResetEventSlim</h4>
-<div class="outline-text-4" id="text-22-6-3">
+<h4 id="org06f9240"><span class="section-number-4">22.7.3.</span> ManualResetEventSlim</h4>
+<div class="outline-text-4" id="text-22-7-3">
 <p>
 多任务的简单协同。事件机制。
 </p>
@@ -7463,8 +7563,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-org7d4a9af" class="outline-4">
-<h4 id="org7d4a9af"><span class="section-number-4">22.6.4.</span> Interlock</h4>
-<div class="outline-text-4" id="text-22-6-4">
+<h4 id="org7d4a9af"><span class="section-number-4">22.7.4.</span> Interlock</h4>
+<div class="outline-text-4" id="text-22-7-4">
 <p>
 即使 i++ 这样的代码，在 CPU 的角度，也不是原子性的 (从内存中拿取、计算、写入到内存):
 </p>
@@ -7553,8 +7653,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 <div id="outline-container-orgabd637f" class="outline-4">
-<h4 id="orgabd637f"><span class="section-number-4">22.6.5.</span> Semaphore</h4>
-<div class="outline-text-4" id="text-22-6-5">
+<h4 id="orgabd637f"><span class="section-number-4">22.7.5.</span> Semaphore</h4>
+<div class="outline-text-4" id="text-22-7-5">
 <p>
 可以看作是 Monitor 方式的增强版。可以控制同一时刻通过核心代码区域的任务数量:
 </p>
@@ -7599,8 +7699,8 @@ Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(
 
 
 <div id="outline-container-org0232e4d" class="outline-4">
-<h4 id="org0232e4d"><span class="section-number-4">22.6.6.</span> Countdown</h4>
-<div class="outline-text-4" id="text-22-6-6">
+<h4 id="org0232e4d"><span class="section-number-4">22.7.6.</span> Countdown</h4>
+<div class="outline-text-4" id="text-22-7-6">
 <p>
 看作是 ManualResetEventSlim 的增强版。
 </p>
@@ -8438,7 +8538,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-10-20</p>
+<p class="date">Created: 2021-10-21</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

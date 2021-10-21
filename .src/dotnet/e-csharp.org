@@ -5767,7 +5767,61 @@ C# 5 中，出现了 async/await 关键词:
   }
 #+end_src  
 
-** 线程的同步和协作
+** Parallel
+
+#+begin_src csharp
+  //for (int i = 0; i < 1000; i++)
+  //{
+  //    Console.WriteLine(i);
+  //}
+  
+  //Task.WaitAll(
+  //    Enumerable.Range(0, 1000)
+  //        .Select(n => Task.Run(() => Console.WriteLine(n)))
+  //        .ToArray()
+  //        );
+  
+  //Parallel.For(0, 1000, (n) =>
+  //{
+  //    Console.WriteLine(n);
+  //});
+  
+  List<int> numbers = Enumerable.Range(0, 1000).ToList();
+  //foreach (var n in numbers) Console.WriteLine(n);
+  //Parallel.ForEach(numbers, (n) => Console.WriteLine(n));
+  
+  Parallel.Invoke(
+      () =>
+      {
+          double ii = 0;
+          for (int i = 0; i < 100000; i++)
+          {
+              Task.Delay(10).Wait();
+              ii += Math.Pow(i, new Random().Next(50));
+          }
+          Console.WriteLine($"{Task.CurrentId} 计算完毕: {ii}");
+      },
+      () =>
+      {
+          for (int i = 0; i < 100000; i++)
+          {
+              Task.Delay(10).Wait();
+              double ii = Math.Pow(i, i * i + 3) - 1000;
+          }
+          Console.WriteLine($"{Task.CurrentId} 计算完毕");
+      },
+      () =>
+      {
+          for (int i = 0; i < 100000; i++)
+          {
+              Task.Delay(10).Wait();
+              double ii = Math.Pow(i, i * i) / 3;
+          }
+          Console.WriteLine($"{Task.CurrentId} 计算完毕");
+      });
+#+end_src
+
+** 任务的同步和协作
 *** Monitor.Enter/Exit
 
 锁的基本使用:
@@ -5848,10 +5902,49 @@ C# 5 中，出现了 async/await 关键词:
   }
 #+end_src
 
+另外，一定要避免死锁的产生:
+#+begin_src csharp
+  object lock1 = new();
+  object lock2 = new();
+  
+  Task t1 = Task.Run(() =>
+  {
+      Monitor.Enter(lock1);
+      Console.WriteLine("开始");
+      Task.Delay(2000).Wait();
+      Console.WriteLine("结束");
+  
+      Monitor.Enter(lock2);
+      Console.WriteLine("其他事情");
+      Monitor.Exit(lock2);
+  
+      Monitor.Exit(lock1);
+  });
+  
+  Task t2 = Task.Run(() =>
+  {
+      Monitor.Enter(lock2);
+      Console.WriteLine("My...");
+  
+      Monitor.Enter(lock1);
+      Console.WriteLine("start");
+      Task.Delay(1500).Wait();
+      Console.WriteLine("end");
+      Monitor.Exit(lock1);
+  
+      Monitor.Exit(lock2);
+  });
+  
+  Task.WaitAll(t1, t2);
+  Console.WriteLine("好了");
+#+end_src
+
 *** lock
 
-是 Monitor 语法糖。胜在简单，败在不够灵活。
-- 请注意，一定要控制好锁的范围 (颗粒)
+是 Monitor 语法糖。胜在简单，败在不够灵活:
+- lock 的行为是，如果获取不到锁，就等待
+- 锁的争用会占用资源，拖慢速度
+- 因此，一定要控制好锁的范围 (颗粒)
 
 #+begin_src csharp
   object o = new ();
@@ -5864,7 +5957,6 @@ C# 5 中，出现了 async/await 关键词:
       }
   }
 #+end_src
-
 
 *** ManualResetEventSlim
 
