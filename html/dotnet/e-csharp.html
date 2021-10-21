@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org2d9537f">11.1. 基本使用</a></li>
+<li><a href="#org8fbf75d">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org8fbf75d">21.3. 基本使用</a></li>
+<li><a href="#org06f8f6b">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -312,6 +312,12 @@
 <li><a href="#org7d4a9af">22.7.4. Interlock</a></li>
 <li><a href="#orgabd637f">22.7.5. Semaphore</a></li>
 <li><a href="#org0232e4d">22.7.6. Countdown</a></li>
+</ul>
+</li>
+<li><a href="#orge840c9d">22.8. 其他几种异步模式</a>
+<ul>
+<li><a href="#org4985432">22.8.1. BackgroundWorker</a></li>
+<li><a href="#org99d0a09">22.8.2. System.Threading.Timer</a></li>
 </ul>
 </li>
 </ul>
@@ -422,13 +428,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org605bc74">
+<figure id="orgfc6b259">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org2d882a4">
+<figure id="org50d0441">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -673,7 +679,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org3fa90e3">
+<figure id="orgcd4de5d">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -794,7 +800,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org17518cc">
+<figure id="org0ef7533">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -822,7 +828,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org85afcca">
+<figure id="org07fcea4">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -881,7 +887,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org07389a4">
+<figure id="org2efa605">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1307,7 +1313,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgce6b045">
+<figure id="orga81c0a7">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1345,7 +1351,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org9351abe">
+<figure id="orgadf56dc">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2344,7 +2350,7 @@ out:
 </div>
 
 
-<figure id="orgd7298e3">
+<figure id="org97fff67">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3470,8 +3476,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org2d9537f" class="outline-3">
-<h3 id="org2d9537f"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org8fbf75d" class="outline-3">
+<h3 id="org8fbf75d"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3756,7 +3762,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org0b64fcd">
+<figure id="org0b3440d">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6641,8 +6647,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org8fbf75d" class="outline-3">
-<h3 id="org8fbf75d"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org06f8f6b" class="outline-3">
+<h3 id="org06f8f6b"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -7733,6 +7739,86 @@ Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(
 
 cde.<span style="color: #0000ff;">Wait</span><span style="color: #707183;">()</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#19971;&#39063;&#40857;&#29664;&#38598;&#40784;&#65292;&#24320;&#22987;&#21484;&#21796;&#31070;&#40857;"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge840c9d" class="outline-3">
+<h3 id="orge840c9d"><span class="section-number-3">22.8.</span> 其他几种异步模式</h3>
+<div class="outline-text-3" id="text-22-8">
+</div>
+<div id="outline-container-org4985432" class="outline-4">
+<h4 id="org4985432"><span class="section-number-4">22.8.1.</span> BackgroundWorker</h4>
+<div class="outline-text-4" id="text-22-8-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">//</span><span style="color: #b22222;">button1.Click += (s, e) =&gt;</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">{</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">label111.Text = "&#20219;&#21153;&#36827;&#34892;&#20013;...";</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">Thread.Sleep(10000);</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">label111.Text = "&#20219;&#21153;&#24050;&#23436;&#25104;!";</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">};</span>
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">button1.Click += (s, e) =&gt;</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">{</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">label111.Text = "&#20219;&#21153;&#36827;&#34892;&#20013;...";</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">Task.Run(() =&gt;</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">{</span>
+<span style="color: #b22222;">//        </span><span style="color: #b22222;">Thread.Sleep(10000);</span>
+<span style="color: #b22222;">//        </span><span style="color: #b22222;">label111.Text = "&#20219;&#21153;&#24050;&#23436;&#25104;!";</span>
+<span style="color: #b22222;">//    </span><span style="color: #b22222;">});</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">};</span>
+
+button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #707183;">)</span> =&gt;
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">bgw</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">BackgroundWorker</span><span style="color: #7388d6;">()</span>;
+    bgw.DoWork += <span style="color: #7388d6;">(</span>s, e<span style="color: #7388d6;">)</span> =&gt;
+    <span style="color: #7388d6;">{</span>
+        label111.Text = <span style="color: #8b2252;">"&#20219;&#21153;&#36827;&#34892;&#20013;..."</span>;
+        Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #909183;">(</span>10000<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>;
+    bgw.RunWorkerCompleted += <span style="color: #7388d6;">(</span>s, e<span style="color: #7388d6;">)</span> =&gt;
+    <span style="color: #7388d6;">{</span>
+        label111.Text = <span style="color: #8b2252;">"&#20219;&#21153;&#24050;&#23436;&#25104;!"</span>;
+    <span style="color: #7388d6;">}</span>;
+    bgw.<span style="color: #0000ff;">RunWorkerAsync</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org99d0a09" class="outline-4">
+<h4 id="org99d0a09"><span class="section-number-4">22.8.2.</span> System.Threading.Timer</h4>
+<div class="outline-text-4" id="text-22-8-2">
+<div class="org-src-container">
+<pre class="src src-csharp">button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #707183;">)</span> =&gt;
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">timer</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">System</span>.Threading.<span style="color: #0000ff;">Timer</span><span style="color: #7388d6;">(</span><span style="color: #909183;">(</span>o<span style="color: #909183;">)</span> =&gt;
+    <span style="color: #909183;">{</span>
+        label111.Text += <span style="color: #8b2252;">"+"</span>;
+        Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #709870;">(</span>1000<span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>, <span style="color: #008b8b;">null</span>, 5000, 2000<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>;
+</pre>
+</div>
+
+<p>
+对比一下 Winform 版本的 Timer，它是局部阻塞:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">timer</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">System</span>.Windows.Forms.<span style="color: #0000ff;">Timer</span><span style="color: #707183;">()</span>;
+timer.Interval = 3000;
+timer.Tick += <span style="color: #707183;">(</span>s, e<span style="color: #707183;">)</span> =&gt;
+<span style="color: #707183;">{</span>
+    label111.Text += <span style="color: #8b2252;">"+"</span>;
+    Thread.<span style="color: #0000ff;">Sleep</span><span style="color: #7388d6;">(</span>2000<span style="color: #7388d6;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#22312;&#24403;&#21069;&#32447;&#31243;&#20013;&#65292;&#22581;</span>
+<span style="color: #707183;">}</span>;
+button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #707183;">)</span> =&gt;
+<span style="color: #707183;">{</span>
+    timer.<span style="color: #0000ff;">Start</span><span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>;
 </pre>
 </div>
 </div>

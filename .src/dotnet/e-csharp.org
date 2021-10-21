@@ -6135,6 +6135,71 @@ C# 5 中，出现了 async/await 关键词:
   Console.WriteLine("七颗龙珠集齐，开始召唤神龙");
 #+end_src
 
+** 其他几种异步模式
+*** BackgroundWorker
+
+#+begin_src csharp
+  //button1.Click += (s, e) =>
+  //{
+  //    label111.Text = "任务进行中...";
+  //    Thread.Sleep(10000);
+  //    label111.Text = "任务已完成!";
+  //};
+  
+  //button1.Click += (s, e) =>
+  //{
+  //    label111.Text = "任务进行中...";
+  //    Task.Run(() =>
+  //    {
+  //        Thread.Sleep(10000);
+  //        label111.Text = "任务已完成!";
+  //    });
+  //};
+  
+  button1.Click += (s, e) =>
+  {
+      var bgw = new BackgroundWorker();
+      bgw.DoWork += (s, e) =>
+      {
+          label111.Text = "任务进行中...";
+          Thread.Sleep(10000);
+      };
+      bgw.RunWorkerCompleted += (s, e) =>
+      {
+          label111.Text = "任务已完成!";
+      };
+      bgw.RunWorkerAsync();
+  };
+#+end_src
+
+*** System.Threading.Timer
+
+#+begin_src csharp
+  button1.Click += (s, e) =>
+  {
+      var timer = new System.Threading.Timer((o) =>
+      {
+          label111.Text += "+";
+          Thread.Sleep(1000);
+      }, null, 5000, 2000);
+  };
+#+end_src
+
+对比一下 Winform 版本的 Timer，它是局部阻塞:
+#+begin_src csharp
+  var timer = new System.Windows.Forms.Timer();
+  timer.Interval = 3000;
+  timer.Tick += (s, e) =>
+  {
+      label111.Text += "+";
+      Thread.Sleep(2000); // 在当前线程中，堵
+  };
+  button1.Click += (s, e) =>
+  {
+      timer.Start();
+  };
+#+end_src
+
 * Database
 ** ADO.NET
 *** SqlConnection / SqlCommand / SqlDataReader
