@@ -6103,7 +6103,7 @@ C# 5 中，出现了 async/await 关键词:
 #+end_src
 
 
-*** Countdown
+*** CountdownEvent
 
 看作是 ManualResetEventSlim 的增强版。
 
@@ -6199,6 +6199,35 @@ C# 5 中，出现了 async/await 关键词:
       timer.Start();
   };
 #+end_src
+
+* IO/Stream
+
+驱动器、文件夹、文件的基本操作:
+- 静态的 ~Path~ 类，用来处理路径
+- 处理驱动器，使用 ~DriveInfo~
+- 处理文件夹和文件，使用 ~FileSystemInfo~ (抽象类)，实现类:
+  + 文件夹，使用 ~DirectoryInfo~。静态的 ~Directory~
+  + 文件，使用 ~FileInfo~。静态的 ~File~
+
+文件内容的读写 (Stream):
+- 抽象的 ~Stream~ 表示流，它是所有底层流的基类 (基于 byte)
+- ~FileStream~ 用来读写文件的内容
+- ~MemoryStream~ 用来将某些内容按照流的方式写到内存中 (从内存中读取)
+- ~NetworkStream~ 从网络中进行读写
+- ~GZipStream~ 用来进行压缩、解压的
+
+通过不同的跟读写相关的辅助类 (Reader/Writer) 简化了对上述流的使用:
+- ~TextReader/TextWriter~，表示从流中读取若干字符 (基于 char)
+
+
+文件读写的辅助类 (Reader/Writer)
+其他的一些流跟相关的类
+
+
+
+* Socket
+* Entity Framework
+
 
 * Database
 ** ADO.NET
