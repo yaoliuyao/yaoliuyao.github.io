@@ -6483,9 +6483,100 @@ Socket
   File.WriteAllText(fn, "dkjskdjfskdfjds");
 #+end_src
 
+*** StringReader/StringWriter
+
+使用场景: xxxxx
+
+优势劣势: xxxxx
+
+#+begin_src csharp
+  var reader = new StringReader("hello, world");
+  //Console.WriteLine(reader.Read());
+  //Console.WriteLine(reader.ReadToEnd());
+  
+  var writer = new StringWriter();
+  //writer.WriteLine("hello");
+  //writer.WriteLine("world");
+  for (int i = 0; i < 1000; i++)
+  {
+      writer.WriteLine(i);
+  }
+  Console.WriteLine(writer.ToString());
+#+end_src
+
+*** BinaryReader/BinaryWriter
+
+BinaryWriter:
+#+begin_src csharp
+  string fn = @"E:\x11111.bin";
+  var writer = new BinaryWriter(File.OpenWrite(fn));
+  writer.Write(123);
+  writer.Write(true);
+  writer.Write('X');
+  writer.Write(33.3);
+  writer.Flush();
+  return writer;
+#+end_src
+
+BinaryReader:
+#+begin_src csharp
+  string fn = @"E:\x11111.bin";
+  var reader = new BinaryReader(File.OpenRead(fn));
+  int i = reader.ReadInt32();
+  bool b = reader.ReadBoolean();
+  char c = reader.ReadChar();
+  Console.WriteLine(c);
+#+end_src
+
+*** XmlReader/XmlWriter
+
+#+begin_src csharp
+  var fn = @"e:\hello.xml";
+  using var xw = XmlWriter.Create(File.OpenWrite(fn), new XmlWriterSettings { Indent = true });
+  
+  List<string> books = new()
+  {
+      "战争与和平",
+      "悲惨的世界",
+      "供货商打开",
+      "jQuery",
+      "Csharp"
+  };
+  
+  xw.WriteStartDocument();
+  xw.WriteStartElement("book");
+  xw.WriteComment("我也不知道");
+  foreach (var book in books)
+  {
+      xw.WriteElementString("name", book);
+  }
+  xw.WriteEndElement();
+  xw.Flush();
+#+end_src
+
+** FileSystemWatching
+
+#+begin_src csharp
+  var dn = @"e:\Tmp";
+  var watcher = new FileSystemWatcher
+  {
+      Path = dn,
+      IncludeSubdirectories = true,
+      EnableRaisingEvents = true
+  };
+  watcher.Changed += (s, e) =>
+  {
+      Console.WriteLine($"有东西发生了变化: {e.Name}, {e.ChangeType}");
+  };
+  watcher.Created += (s, e) =>
+  {
+      Console.WriteLine("创建了一点什么东西，我也不知都。可能是病毒把...");
+  };
+  Console.ReadKey();
+#+end_src
+
 * Socket
 * Entity Framework
-
 
 * Database
 ** ADO.NET

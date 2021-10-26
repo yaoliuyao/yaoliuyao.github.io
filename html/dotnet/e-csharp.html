@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#orgc8d80e9">11.1. 基本使用</a></li>
+<li><a href="#org90c76d4">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org90c76d4">21.3. 基本使用</a></li>
+<li><a href="#org9ed4caf">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -338,8 +338,12 @@
 <li><a href="#org2471856">23.6. Reader/Writer</a>
 <ul>
 <li><a href="#orge9bc6c4">23.6.1. StreamReader/StreamWriter</a></li>
+<li><a href="#orge5c8280">23.6.2. StringReader/StringWriter</a></li>
+<li><a href="#org25a4f84">23.6.3. BinaryReader/BinaryWriter</a></li>
+<li><a href="#org480e0ca">23.6.4. XmlReader/XmlWriter</a></li>
 </ul>
 </li>
+<li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
 </ul>
 </li>
 <li><a href="#org068e35c">24. Socket</a></li>
@@ -450,13 +454,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgfdb9564">
+<figure id="org034cf51">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org4ecf8f0">
+<figure id="org0374b78">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -701,7 +705,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org0dda104">
+<figure id="orgd742f38">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -822,7 +826,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org0019ef1">
+<figure id="org6977136">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -850,7 +854,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org9f94f67">
+<figure id="orgb54e964">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -909,7 +913,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgc58af1a">
+<figure id="org7ab7e1b">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1335,7 +1339,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org734f3cb">
+<figure id="orgcd4c4fc">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1373,7 +1377,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgc1e5d1e">
+<figure id="org1891c71">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2372,7 +2376,7 @@ out:
 </div>
 
 
-<figure id="orgbd20e31">
+<figure id="org024e442">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3498,8 +3502,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-orgc8d80e9" class="outline-3">
-<h3 id="orgc8d80e9"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org90c76d4" class="outline-3">
+<h3 id="org90c76d4"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3784,7 +3788,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org9f2c39a">
+<figure id="org0cd1a08">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6669,8 +6673,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org90c76d4" class="outline-3">
-<h3 id="org90c76d4"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org9ed4caf" class="outline-3">
+<h3 id="org9ed4caf"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8218,6 +8222,123 @@ File.<span style="color: #0000ff;">WriteAllText</span><span style="color: #70718
 </div>
 </div>
 </div>
+
+<div id="outline-container-orge5c8280" class="outline-4">
+<h4 id="orge5c8280"><span class="section-number-4">23.6.2.</span> StringReader/StringWriter</h4>
+<div class="outline-text-4" id="text-23-6-2">
+<p>
+使用场景: xxxxx
+</p>
+
+<p>
+优势劣势: xxxxx
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">reader</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringReader</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello, world"</span><span style="color: #707183;">)</span>;
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(reader.Read());</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(reader.ReadToEnd());</span>
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">writer</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringWriter</span><span style="color: #707183;">()</span>;
+<span style="color: #b22222;">//</span><span style="color: #b22222;">writer.WriteLine("hello");</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">writer.WriteLine("world");</span>
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 1000; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    writer.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>i<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>writer.<span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org25a4f84" class="outline-4">
+<h4 id="org25a4f84"><span class="section-number-4">23.6.3.</span> BinaryReader/BinaryWriter</h4>
+<div class="outline-text-4" id="text-23-6-3">
+<p>
+BinaryWriter:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\x11111.bin"</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">writer</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">BinaryWriter</span><span style="color: #707183;">(</span>File.<span style="color: #0000ff;">OpenWrite</span><span style="color: #7388d6;">(</span>fn<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+writer.<span style="color: #0000ff;">Write</span><span style="color: #707183;">(</span>123<span style="color: #707183;">)</span>;
+writer.<span style="color: #0000ff;">Write</span><span style="color: #707183;">(</span><span style="color: #008b8b;">true</span><span style="color: #707183;">)</span>;
+writer.<span style="color: #0000ff;">Write</span><span style="color: #707183;">(</span><span style="color: #8b2252;">'X'</span><span style="color: #707183;">)</span>;
+writer.<span style="color: #0000ff;">Write</span><span style="color: #707183;">(</span>33.3<span style="color: #707183;">)</span>;
+writer.<span style="color: #0000ff;">Flush</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">return</span> writer;
+</pre>
+</div>
+
+<p>
+BinaryReader:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\x11111.bin"</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">reader</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">BinaryReader</span><span style="color: #707183;">(</span>File.<span style="color: #0000ff;">OpenRead</span><span style="color: #7388d6;">(</span>fn<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = reader.<span style="color: #0000ff;">ReadInt32</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">b</span> = reader.<span style="color: #0000ff;">ReadBoolean</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">char</span> <span style="color: #a0522d;">c</span> = reader.<span style="color: #0000ff;">ReadChar</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>c<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org480e0ca" class="outline-4">
+<h4 id="org480e0ca"><span class="section-number-4">23.6.4.</span> XmlReader/XmlWriter</h4>
+<div class="outline-text-4" id="text-23-6-4">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"e:\hello.xml"</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> x<span style="color: #a0522d;">w</span> = <span style="color: #a0522d;">XmlWriter</span>.<span style="color: #a0522d;">Create</span><span style="color: #707183;">(</span><span style="color: #a0522d;">File</span>.<span style="color: #a0522d;">OpenWrite</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">fn</span><span style="color: #7388d6;">)</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">XmlWriterSettings</span> <span style="color: #7388d6;">{</span> <span style="color: #a0522d;">Indent</span> = <span style="color: #008b8b;">true</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">books</span> = <span style="color: #a020f0;">new</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #8b2252;">"&#25112;&#20105;&#19982;&#21644;&#24179;"</span>,
+    <span style="color: #8b2252;">"&#24754;&#24808;&#30340;&#19990;&#30028;"</span>,
+    <span style="color: #8b2252;">"&#20379;&#36135;&#21830;&#25171;&#24320;"</span>,
+    <span style="color: #8b2252;">"jQuery"</span>,
+    <span style="color: #8b2252;">"Csharp"</span>
+<span style="color: #707183;">}</span>;
+
+xw.<span style="color: #0000ff;">WriteStartDocument</span><span style="color: #707183;">()</span>;
+xw.<span style="color: #0000ff;">WriteStartElement</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"book"</span><span style="color: #707183;">)</span>;
+xw.<span style="color: #0000ff;">WriteComment</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#25105;&#20063;&#19981;&#30693;&#36947;"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">book</span> <span style="color: #a020f0;">in</span> books<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    xw.<span style="color: #0000ff;">WriteElementString</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"name"</span>, book<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+xw.<span style="color: #0000ff;">WriteEndElement</span><span style="color: #707183;">()</span>;
+xw.<span style="color: #0000ff;">Flush</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org84d80e8" class="outline-3">
+<h3 id="org84d80e8"><span class="section-number-3">23.7.</span> FileSystemWatching</h3>
+<div class="outline-text-3" id="text-23-7">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">dn</span> = @<span style="color: #8b2252;">"e:\Tmp"</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">watcher</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileSystemWatcher</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a0522d;">Path</span> = dn,
+    <span style="color: #a0522d;">IncludeSubdirectories</span> = <span style="color: #008b8b;">true</span>,
+    <span style="color: #a0522d;">EnableRaisingEvents</span> = <span style="color: #008b8b;">true</span>
+<span style="color: #707183;">}</span>;
+watcher.Changed += <span style="color: #707183;">(</span>s, e<span style="color: #707183;">)</span> =&gt;
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"&#26377;&#19996;&#35199;&#21457;&#29983;&#20102;&#21464;&#21270;: {e.Name}, {e.ChangeType}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>;
+watcher.Created += <span style="color: #707183;">(</span>s, e<span style="color: #707183;">)</span> =&gt;
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#21019;&#24314;&#20102;&#19968;&#28857;&#20160;&#20040;&#19996;&#35199;&#65292;&#25105;&#20063;&#19981;&#30693;&#37117;&#12290;&#21487;&#33021;&#26159;&#30149;&#27602;&#25226;..."</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>;
+Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
 </div>
 </section>
 
@@ -8227,7 +8348,6 @@ File.<span style="color: #0000ff;">WriteAllText</span><span style="color: #70718
 <section id="outline-container-orgf9e47f1" class="outline-2">
 <h2 id="orgf9e47f1"><span class="section-number-2">25.</span> Entity Framework</h2>
 </section>
-
 
 <section id="outline-container-org182b3e2" class="outline-2">
 <h2 id="org182b3e2"><span class="section-number-2">26.</span> Database</h2>
