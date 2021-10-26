@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-25 -->
+<!-- 2021-10-26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org06f8f6b">11.1. 基本使用</a></li>
+<li><a href="#orgc8d80e9">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#orgc8d80e9">21.3. 基本使用</a></li>
+<li><a href="#org90c76d4">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -322,7 +322,26 @@
 </li>
 </ul>
 </li>
-<li><a href="#org59e0d7a">23. IO/Stream</a></li>
+<li><a href="#org59e0d7a">23. IO/Stream</a>
+<ul>
+<li><a href="#org58abbb4">23.1. Path</a></li>
+<li><a href="#org91de9d0">23.2. Driver</a></li>
+<li><a href="#org9b44f50">23.3. Directory</a></li>
+<li><a href="#org19e7555">23.4. File</a></li>
+<li><a href="#orgfd2f6b9">23.5. Stream</a>
+<ul>
+<li><a href="#org27747ae">23.5.1. FileSteam</a></li>
+<li><a href="#org9a16aca">23.5.2. MemoryStream</a></li>
+<li><a href="#org73e97a4">23.5.3. NetworkStream</a></li>
+</ul>
+</li>
+<li><a href="#org2471856">23.6. Reader/Writer</a>
+<ul>
+<li><a href="#orge9bc6c4">23.6.1. StreamReader/StreamWriter</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#org068e35c">24. Socket</a></li>
 <li><a href="#orgf9e47f1">25. Entity Framework</a></li>
 <li><a href="#org182b3e2">26. Database</a>
@@ -431,13 +450,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org1cd6494">
+<figure id="orgfdb9564">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orge01075e">
+<figure id="org4ecf8f0">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -682,7 +701,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgd022181">
+<figure id="org0dda104">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -803,7 +822,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgc111510">
+<figure id="org0019ef1">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -831,7 +850,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org8ffe0c0">
+<figure id="org9f94f67">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -890,7 +909,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orge13c68a">
+<figure id="orgc58af1a">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1316,7 +1335,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org859f76c">
+<figure id="org734f3cb">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1354,7 +1373,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org914ab6a">
+<figure id="orgc1e5d1e">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2353,7 +2372,7 @@ out:
 </div>
 
 
-<figure id="org126c45e">
+<figure id="orgbd20e31">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3479,8 +3498,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org06f8f6b" class="outline-3">
-<h3 id="org06f8f6b"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-orgc8d80e9" class="outline-3">
+<h3 id="orgc8d80e9"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3765,7 +3784,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org6a4f19d">
+<figure id="org9f2c39a">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6650,8 +6669,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-orgc8d80e9" class="outline-3">
-<h3 id="orgc8d80e9"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org90c76d4" class="outline-3">
+<h3 id="org90c76d4"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -7836,7 +7855,7 @@ button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #
 驱动器、文件夹、文件的基本操作:
 </p>
 <ul class="org-ul">
-<li>静态的 <code>Path</code> 类，用来处理路径</li>
+<li>静态的 <code>Path</code> 类，用来处理路径 (路径是一个字符串)</li>
 <li>处理驱动器，使用 <code>DriveInfo</code></li>
 <li>处理文件夹和文件，使用 <code>FileSystemInfo</code> (抽象类)，实现类:
 <ul class="org-ul">
@@ -7860,18 +7879,347 @@ button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #
 通过不同的跟读写相关的辅助类 (Reader/Writer) 简化了对上述流的使用:
 </p>
 <ul class="org-ul">
-<li><code>TextReader/TextWriter</code>，表示从流中读取若干字符 (基于 char)</li>
+<li>抽象 <code>TextReader/TextWriter</code>，表示从流中读取若干字符 (基于 char)
+<ul class="org-ul">
+<li><code>StreamReader/StreamWriter</code> 用来包装底层流，增加基于字符读取的能力</li>
+<li><code>StringReader/StringWriter</code> 用来从字符串中读写</li>
+</ul></li>
+<li><code>BinaryReader/BinaryWriter</code> 用来读写现成的类型</li>
+<li><code>XmlReader/XmlWriter</code> 专门用来处理 xml 文件</li>
 </ul>
 
+<p>
+其他的一些流跟相关的类:
+</p>
+<ul class="org-ul">
+<li><code>ZipArchive/DeflateStream</code></li>
+<li><code>MemoryMappedFiles</code></li>
+<li><code>Pipes</code> 管道流</li>
+</ul>
+</div>
+
+<div id="outline-container-org58abbb4" class="outline-3">
+<h3 id="org58abbb4"><span class="section-number-3">23.1.</span> Path</h3>
+<div class="outline-text-3" id="text-23-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s1</span> = Path.<span style="color: #0000ff;">ChangeExtension</span><span style="color: #707183;">(</span>fn, <span style="color: #8b2252;">"java"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">d1</span> = @<span style="color: #8b2252;">"E:\ddd\";</span>
+<span style="color: #8b2252;">            string n1 = @"</span>aaa.txt<span style="color: #ff0000; font-weight: bold;">"</span><span style="color: #8b2252;">;</span>
+<span style="color: #228b22;">var</span> s2 = Path.<span style="color: #0000ff;">Combine</span><span style="color: #707183;">(</span>d1, n1<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">b1</span> = Path.<span style="color: #0000ff;">EndsInDirectorySeparator</span><span style="color: #707183;">(</span>d1<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s3</span> = Path.<span style="color: #0000ff;">GetDirectoryName</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s4</span> = Path.<span style="color: #0000ff;">GetExtension</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s5</span> = Path.<span style="color: #0000ff;">GetFileName</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s6</span> = Path.<span style="color: #0000ff;">GetFileNameWithoutExtension</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s7</span> = Path.<span style="color: #0000ff;">GetFullPath</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx.txt"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s8</span> = Path.<span style="color: #0000ff;">GetFullPath</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s9</span> = Path.<span style="color: #0000ff;">GetRandomFileName</span><span style="color: #707183;">()</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"{s9}"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91de9d0" class="outline-3">
+<h3 id="org91de9d0"><span class="section-number-3">23.2.</span> Driver</h3>
+<div class="outline-text-3" id="text-23-2">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">DriveInfo</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">drives</span> = DriveInfo.<span style="color: #0000ff;">GetDrives</span><span style="color: #707183;">()</span>;
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">DriveInfo</span> <span style="color: #a0522d;">di</span> <span style="color: #a020f0;">in</span> drives<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">try</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{di.Name}, {di.DriveType}, {di.DriveFormat}, {di.TotalSize}, {di.AvailableFreeSpace}"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">catch</span> <span style="color: #7388d6;">{</span> <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9b44f50" class="outline-3">
+<h3 id="org9b44f50"><span class="section-number-3">23.3.</span> Directory</h3>
+<div class="outline-text-3" id="text-23-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">d1</span> = @<span style="color: #8b2252;">"e:\demo1\hello"</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">d2</span> = @<span style="color: #8b2252;">"e:\demo1\world"</span>;
+
+Directory.<span style="color: #0000ff;">CreateDirectory</span><span style="color: #707183;">(</span>d1<span style="color: #707183;">)</span>;
+Directory.<span style="color: #0000ff;">CreateDirectory</span><span style="color: #707183;">(</span>d2<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Directory.Delete(Directory.GetParent(d).FullName);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Directory.Delete(Directory.GetParent(d).FullName, true);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Directory.Move(d2, d1);</span>
+
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #0000ff;">f</span> <span style="color: #a020f0;">in</span> Directory.<span style="color: #0000ff;">GetDirectories</span><span style="color: #7388d6;">(</span>@<span style="color: #8b2252;">"e:\Workdir"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>f<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #0000ff;">f</span> <span style="color: #a020f0;">in</span> Directory.<span style="color: #0000ff;">GetFiles</span><span style="color: #7388d6;">(</span>@<span style="color: #8b2252;">"e:\Workdir"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>f<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">IEnumerable</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">e1</span> = Directory.<span style="color: #0000ff;">EnumerateFiles</span><span style="color: #707183;">(</span>d2<span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s1</span> = Directory.<span style="color: #0000ff;">GetCreationTime</span><span style="color: #707183;">(</span>d1<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s2</span> = Directory.<span style="color: #0000ff;">GetCurrentDirectory</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">b1</span> = Directory.<span style="color: #0000ff;">Exists</span><span style="color: #707183;">(</span>d2<span style="color: #707183;">)</span>;
+Directory.<span style="color: #0000ff;">SetCreationTime</span><span style="color: #707183;">(</span>@<span style="color: #8b2252;">"e:\Video"</span>, DateTime.Now<span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>s2<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org19e7555" class="outline-3">
+<h3 id="org19e7555"><span class="section-number-3">23.4.</span> File</h3>
+<div class="outline-text-3" id="text-23-4">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">File.Exists(fn);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">File.Delete(fn);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">File.Move(fn, "xxx");</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">File.Copy(fn, "xxx");</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">File.Encrypt(fn);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">File.Decrypt(fn);</span>
+
+File.<span style="color: #0000ff;">GetCreationTime</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>File.<span style="color: #0000ff;">GetAttributes</span><span style="color: #7388d6;">(</span>fn<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfd2f6b9" class="outline-3">
+<h3 id="orgfd2f6b9"><span class="section-number-3">23.5.</span> Stream</h3>
+<div class="outline-text-3" id="text-23-5">
+</div>
+<div id="outline-container-org27747ae" class="outline-4">
+<h4 id="org27747ae"><span class="section-number-4">23.5.1.</span> FileSteam</h4>
+<div class="outline-text-4" id="text-23-5-1">
+<p>
+用完要释放; 使用 ReadByte 读取一个字节:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+
+<span style="color: #228b22;">FileStream</span> <span style="color: #a0522d;">stream</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileStream</span><span style="color: #707183;">(</span>fn, FileMode.Open<span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"{stream.CanRead}, {stream.CanWrite}"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; 10; i++<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">b</span> = stream.<span style="color: #0000ff;">ReadByte</span><span style="color: #7388d6;">()</span>;
+    Console.<span style="color: #0000ff;">Write</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"{b:x}"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">()</span>;
+
+stream.<span style="color: #0000ff;">Seek</span><span style="color: #707183;">(</span>5, SeekOrigin.Begin<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"{stream.ReadByte():x}"</span><span style="color: #707183;">)</span>;
+
+stream.<span style="color: #0000ff;">Dispose</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
 
 <p>
-文件读写的辅助类 (Reader/Writer)
-其他的一些流跟相关的类
+使用 using 管理资源 / 使用 Read 进行批量读取:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">stream</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileStream</span><span style="color: #7388d6;">(</span>fn, FileMode.Open<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">byte[] bs = stream.Read(10);</span>
+
+    <span style="color: #228b22;">byte</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">buf</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">byte</span><span style="color: #7388d6;">[</span>10<span style="color: #7388d6;">]</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span> = stream.<span style="color: #0000ff;">Read</span><span style="color: #7388d6;">(</span>buf, 0, 10<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"&#35835;&#21462;&#25104;&#21151;&#20102; {n} &#20010;"</span><span style="color: #7388d6;">)</span>;
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; n; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{buf[i]:x}-"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+全文读取:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> s<span style="color: #a0522d;">tream</span> = <span style="color: #a0522d;">new</span> F<span style="color: #a0522d;">ileStream</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span>, <span style="color: #a0522d;">FileMode</span>.<span style="color: #a0522d;">Open</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span>;
+<span style="color: #228b22;">byte</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">buf</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">byte</span><span style="color: #707183;">[</span>10<span style="color: #707183;">]</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#32531;&#20914;&#25968;&#32452;</span>
+<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>n = stream.<span style="color: #0000ff;">Read</span><span style="color: #909183;">(</span>buf<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span> &gt; 0<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #0000ff;">PrintBuffer</span><span style="color: #7388d6;">(</span>buf, n<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">private</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">PrintBuffer</span><span style="color: #707183;">(</span><span style="color: #228b22;">byte</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">buf</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">limit</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">for</span> <span style="color: #7388d6;">(</span><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; limit; i++<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        Console.<span style="color: #0000ff;">Write</span><span style="color: #909183;">(</span>$<span style="color: #8b2252;">"{buf[i]:x}-"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+异步读取:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> s<span style="color: #a0522d;">tream</span> = <span style="color: #a0522d;">new</span> F<span style="color: #a0522d;">ileStream</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span>, <span style="color: #a0522d;">FileMode</span>.<span style="color: #a0522d;">Open</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span>;
+<span style="color: #228b22;">byte</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">buf</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">byte</span><span style="color: #707183;">[</span>1000000<span style="color: #707183;">]</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">len</span> = <span style="color: #a020f0;">await</span> stream.<span style="color: #0000ff;">ReadAsync</span><span style="color: #707183;">(</span>buf<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+写:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> s<span style="color: #a0522d;">tream</span> = <span style="color: #a0522d;">new</span> F<span style="color: #a0522d;">ileStream</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span>, <span style="color: #a0522d;">FileMode</span>.<span style="color: #a0522d;">Open</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#26368;&#24320;&#22987;&#30340;&#20301;&#32622;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#35206;&#30422;</span>
+stream.<span style="color: #0000ff;">WriteByte</span><span style="color: #707183;">(</span>255<span style="color: #707183;">)</span>;
+stream.<span style="color: #0000ff;">WriteByte</span><span style="color: #707183;">(</span>255<span style="color: #707183;">)</span>;
+stream.<span style="color: #0000ff;">WriteByte</span><span style="color: #707183;">(</span>255<span style="color: #707183;">)</span>;
+stream.<span style="color: #0000ff;">WriteByte</span><span style="color: #707183;">(</span>255<span style="color: #707183;">)</span>;
+stream.<span style="color: #0000ff;">Flush</span><span style="color: #707183;">()</span>;
+
+stream.<span style="color: #0000ff;">Seek</span><span style="color: #707183;">(</span>100, SeekOrigin.Begin<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">ba1</span> = Encoding.UTF8.<span style="color: #0000ff;">GetBytes</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
+stream.<span style="color: #0000ff;">Write</span><span style="color: #707183;">(</span>ba1, 0, ba1.Length<span style="color: #707183;">)</span>;
+stream.<span style="color: #0000ff;">Flush</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+丰富多彩的构造参数:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program222.cs"</span>;
+<span style="color: #b22222;">//</span><span style="color: #b22222;">using var stream = new FileStream(fn, FileMode.OpenOrCreate);</span>
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> s<span style="color: #a0522d;">tream</span> = <span style="color: #a0522d;">new</span> F<span style="color: #a0522d;">ileStream</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span>,
+                                  <span style="color: #a0522d;">FileMode</span>.<span style="color: #a0522d;">OpenOrCreate</span>,
+                                  <span style="color: #a0522d;">FileAccess</span>.<span style="color: #a0522d;">Write</span>,
+                                  <span style="color: #a0522d;">FileShare</span>.<span style="color: #a0522d;">ReadWrite</span>,
+                                  <span style="color: #a0522d;">200</span>,
+                                  <span style="color: #a0522d;">FileOptions</span>.<span style="color: #a0522d;">DeleteOnClose</span><span style="color: #707183;">)</span>;
+
+stream.<span style="color: #0000ff;">WriteByte</span><span style="color: #707183;">(</span>255<span style="color: #707183;">)</span>;
+stream.<span style="color: #0000ff;">WriteByte</span><span style="color: #707183;">(</span>0x65<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+在 File 中存在若干创建流的快捷方式:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program222.cs"</span>;
+<span style="color: #b22222;">//</span><span style="color: #b22222;">using var stream = new FileStream(fn, FileMode.Open, FileAccess.Read);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">using var stream = File.Open(fn, FileMode.Open);</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">using var stream = File.OpenRead(fn);</span>
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> s<span style="color: #a0522d;">tream</span> = <span style="color: #a0522d;">File</span>.<span style="color: #a0522d;">OpenWrite</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9a16aca" class="outline-4">
+<h4 id="org9a16aca"><span class="section-number-4">23.5.2.</span> MemoryStream</h4>
+<div class="outline-text-4" id="text-23-5-2">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">MemoryStream</span> <span style="color: #a0522d;">s</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MemoryStream</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">byte</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">bs1</span> = Encoding.UTF8.<span style="color: #0000ff;">GetBytes</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"&#20013;&#22269;"</span><span style="color: #707183;">)</span>;
+<span style="color: #228b22;">byte</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">bs2</span> = Encoding.UTF8.<span style="color: #0000ff;">GetBytes</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"yyds"</span><span style="color: #707183;">)</span>;
+s.<span style="color: #0000ff;">Write</span><span style="color: #707183;">(</span>bs1, 0, bs1.Length<span style="color: #707183;">)</span>;
+s.<span style="color: #0000ff;">Write</span><span style="color: #707183;">(</span>bs2, 0, bs2.Length<span style="color: #707183;">)</span>;
+s.<span style="color: #0000ff;">ToArray</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org73e97a4" class="outline-4">
+<h4 id="org73e97a4"><span class="section-number-4">23.5.3.</span> NetworkStream</h4>
+<div class="outline-text-4" id="text-23-5-3">
+<p>
+Socket
 </p>
 </div>
+</div>
+</div>
+
+<div id="outline-container-org2471856" class="outline-3">
+<h3 id="org2471856"><span class="section-number-3">23.6.</span> Reader/Writer</h3>
+<div class="outline-text-3" id="text-23-6">
+</div>
+<div id="outline-container-orge9bc6c4" class="outline-4">
+<h4 id="orge9bc6c4"><span class="section-number-4">23.6.1.</span> StreamReader/StreamWriter</h4>
+<div class="outline-text-4" id="text-23-6-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">s</span> = File.<span style="color: #0000ff;">OpenRead</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> r<span style="color: #a0522d;">eader</span> = <span style="color: #a0522d;">new</span> S<span style="color: #a0522d;">treamReader</span><span style="color: #707183;">(</span><span style="color: #a0522d;">s</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(reader.ReadLine()); </span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(reader.ReadLine()); </span>
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">reader.Peek();</span>
+
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(reader.ReadToEnd());</span>
+
+reader.<span style="color: #0000ff;">Read</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+<p>
+可以直接传入文件名:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">using var reader = new StreamReader(File.OpenRead(fn));</span>
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> r<span style="color: #a0522d;">eader</span> = <span style="color: #a0522d;">new</span> S<span style="color: #a0522d;">treamReader</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+在 File 中提供了大量的快捷使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">StreamReader</span> s<span style="color: #a0522d;">r</span> = <span style="color: #a0522d;">File</span>.<span style="color: #a0522d;">OpenText</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">StreamWriter</span> s<span style="color: #a0522d;">w1</span> = <span style="color: #a0522d;">File</span>.<span style="color: #a0522d;">AppendText</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">StreamWriter</span> s<span style="color: #a0522d;">w2</span> = <span style="color: #a0522d;">File</span>.<span style="color: #a0522d;">CreateText</span><span style="color: #707183;">(</span><span style="color: #a0522d;">fn</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = File.<span style="color: #0000ff;">ReadAllText</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+<span style="color: #228b22;">string</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">ar</span> = File.<span style="color: #0000ff;">ReadAllLines</span><span style="color: #707183;">(</span>fn<span style="color: #707183;">)</span>;
+File.<span style="color: #0000ff;">WriteAllText</span><span style="color: #707183;">(</span>fn, <span style="color: #8b2252;">"dkjskdjfskdfjds"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-
 
 <section id="outline-container-org068e35c" class="outline-2">
 <h2 id="org068e35c"><span class="section-number-2">24.</span> Socket</h2>
@@ -8679,7 +9027,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-10-25</p>
+<p class="date">Created: 2021-10-26</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -6203,7 +6203,7 @@ C# 5 中，出现了 async/await 关键词:
 * IO/Stream
 
 驱动器、文件夹、文件的基本操作:
-- 静态的 ~Path~ 类，用来处理路径
+- 静态的 ~Path~ 类，用来处理路径 (路径是一个字符串)
 - 处理驱动器，使用 ~DriveInfo~
 - 处理文件夹和文件，使用 ~FileSystemInfo~ (抽象类)，实现类:
   + 文件夹，使用 ~DirectoryInfo~。静态的 ~Directory~
@@ -6217,13 +6217,271 @@ C# 5 中，出现了 async/await 关键词:
 - ~GZipStream~ 用来进行压缩、解压的
 
 通过不同的跟读写相关的辅助类 (Reader/Writer) 简化了对上述流的使用:
-- ~TextReader/TextWriter~，表示从流中读取若干字符 (基于 char)
+- 抽象 ~TextReader/TextWriter~，表示从流中读取若干字符 (基于 char)
+  + ~StreamReader/StreamWriter~ 用来包装底层流，增加基于字符读取的能力
+  + ~StringReader/StringWriter~ 用来从字符串中读写
+- ~BinaryReader/BinaryWriter~ 用来读写现成的类型
+- ~XmlReader/XmlWriter~ 专门用来处理 xml 文件
 
+其他的一些流跟相关的类:
+- ~ZipArchive/DeflateStream~
+- ~MemoryMappedFiles~
+- ~Pipes~ 管道流
 
-文件读写的辅助类 (Reader/Writer)
-其他的一些流跟相关的类
+** Path
 
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  var s1 = Path.ChangeExtension(fn, "java");
+  
+  string d1 = @"E:\ddd\";
+              string n1 = @"aaa.txt";
+  var s2 = Path.Combine(d1, n1);
+  
+  bool b1 = Path.EndsInDirectorySeparator(d1);
+  
+  var s3 = Path.GetDirectoryName(fn);
+  var s4 = Path.GetExtension(fn);
+  var s5 = Path.GetFileName(fn);
+  var s6 = Path.GetFileNameWithoutExtension(fn);
+  
+  var s7 = Path.GetFullPath("xxx.txt");
+  var s8 = Path.GetFullPath(fn);
+  var s9 = Path.GetRandomFileName();
+  
+  Console.WriteLine($"{s9}");
+#+end_src
 
+** Driver
+
+#+begin_src csharp
+  DriveInfo[] drives = DriveInfo.GetDrives();
+  foreach (DriveInfo di in drives)
+  {
+      try
+      {
+          Console.WriteLine($"{di.Name}, {di.DriveType}, {di.DriveFormat}, {di.TotalSize}, {di.AvailableFreeSpace}");
+      }
+      catch { }
+  }
+#+end_src
+
+** Directory
+
+#+begin_src csharp
+  var d1 = @"e:\demo1\hello";
+  var d2 = @"e:\demo1\world";
+  
+  Directory.CreateDirectory(d1);
+  Directory.CreateDirectory(d2);
+  
+  //Directory.Delete(Directory.GetParent(d).FullName);
+  //Directory.Delete(Directory.GetParent(d).FullName, true);
+  //Directory.Move(d2, d1);
+  
+  foreach (var f in Directory.GetDirectories(@"e:\Workdir"))
+  {
+      Console.WriteLine(f);
+  }
+  
+  foreach (var f in Directory.GetFiles(@"e:\Workdir"))
+  {
+      Console.WriteLine(f);
+  }
+  
+  IEnumerable<string> e1 = Directory.EnumerateFiles(d2);
+  
+  var s1 = Directory.GetCreationTime(d1);
+  var s2 = Directory.GetCurrentDirectory();
+  
+  var b1 = Directory.Exists(d2);
+  Directory.SetCreationTime(@"e:\Video", DateTime.Now);
+  
+  Console.WriteLine(s2);
+#+end_src
+
+** File
+
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  
+  //File.Exists(fn);
+  //File.Delete(fn);
+  //File.Move(fn, "xxx");
+  //File.Copy(fn, "xxx");
+  //File.Encrypt(fn);
+  //File.Decrypt(fn);
+  
+  File.GetCreationTime(fn);
+  Console.WriteLine(File.GetAttributes(fn));
+#+end_src
+
+** Stream
+*** FileSteam
+
+用完要释放; 使用 ReadByte 读取一个字节:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  
+  FileStream stream = new FileStream(fn, FileMode.Open);
+  
+  Console.WriteLine($"{stream.CanRead}, {stream.CanWrite}");
+  
+  for (int i = 0; i < 10; i++)
+  {
+      var b = stream.ReadByte();
+      Console.Write($"{b:x}");
+  }
+  Console.WriteLine();
+  
+  stream.Seek(5, SeekOrigin.Begin);
+  Console.WriteLine($"{stream.ReadByte():x}");
+  
+  stream.Dispose();
+#+end_src
+
+使用 using 管理资源 / 使用 Read 进行批量读取:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  using (var stream = new FileStream(fn, FileMode.Open))
+  {
+      // byte[] bs = stream.Read(10);
+  
+      byte[] buf = new byte[10];
+      int n = stream.Read(buf, 0, 10);
+      Console.WriteLine($"读取成功了 {n} 个");
+      for (int i = 0; i < n; i++)
+      {
+          Console.Write($"{buf[i]:x}-");
+      }
+  } 
+#+end_src
+
+全文读取:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  using var stream = new FileStream(fn, FileMode.Open);
+  
+  int n;
+  byte[] buf = new byte[10]; // 缓冲数组
+  while ((n = stream.Read(buf)) > 0)
+  {
+      PrintBuffer(buf, n);
+  }
+  
+  private static void PrintBuffer(byte[] buf, int limit)
+  {
+      for (int i = 0; i < limit; i++)
+      {
+          Console.Write($"{buf[i]:x}-");
+      }
+  }
+#+end_src
+
+异步读取:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  using var stream = new FileStream(fn, FileMode.Open);
+  
+  int n;
+  byte[] buf = new byte[1000000];
+  int len = await stream.ReadAsync(buf);
+#+end_src
+
+写:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  using var stream = new FileStream(fn, FileMode.Open);
+  
+  // 最开始的位置
+  // 覆盖
+  stream.WriteByte(255);
+  stream.WriteByte(255);
+  stream.WriteByte(255);
+  stream.WriteByte(255);
+  stream.Flush();
+
+  stream.Seek(100, SeekOrigin.Begin);
+  var ba1 = Encoding.UTF8.GetBytes("hello");
+  stream.Write(ba1, 0, ba1.Length);
+  stream.Flush();
+#+end_src
+
+丰富多彩的构造参数:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program222.cs";
+  //using var stream = new FileStream(fn, FileMode.OpenOrCreate);
+  using var stream = new FileStream(fn,
+                                    FileMode.OpenOrCreate,
+                                    FileAccess.Write,
+                                    FileShare.ReadWrite,
+                                    200,
+                                    FileOptions.DeleteOnClose);
+  
+  stream.WriteByte(255);
+  stream.WriteByte(0x65);
+#+end_src
+
+在 File 中存在若干创建流的快捷方式:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program222.cs";
+  //using var stream = new FileStream(fn, FileMode.Open, FileAccess.Read);
+  //using var stream = File.Open(fn, FileMode.Open);
+  //using var stream = File.OpenRead(fn);
+  using var stream = File.OpenWrite(fn);
+#+end_src
+
+*** MemoryStream
+
+#+begin_src csharp
+  MemoryStream s = new MemoryStream();
+  byte[] bs1 = Encoding.UTF8.GetBytes("中国");
+  byte[] bs2 = Encoding.UTF8.GetBytes("yyds");
+  s.Write(bs1, 0, bs1.Length);
+  s.Write(bs2, 0, bs2.Length);
+  s.ToArray();
+#+end_src
+
+*** NetworkStream
+
+Socket
+
+** Reader/Writer
+*** StreamReader/StreamWriter
+
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  var s = File.OpenRead(fn);
+  using var reader = new StreamReader(s);
+  
+  //Console.WriteLine(reader.ReadLine()); 
+  //Console.WriteLine(reader.ReadLine()); 
+  
+  //reader.Peek();
+  
+  //Console.WriteLine(reader.ReadToEnd());
+  
+  reader.Read();
+#+end_src
+
+可以直接传入文件名:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  // using var reader = new StreamReader(File.OpenRead(fn));
+  using var reader = new StreamReader(fn);
+#+end_src
+
+在 File 中提供了大量的快捷使用:
+#+begin_src csharp
+  string fn = @"E:\Workdir\Chengji\Chengji\Program.cs";
+  using StreamReader sr = File.OpenText(fn);
+  using StreamWriter sw1 = File.AppendText(fn);
+  using StreamWriter sw2 = File.CreateText(fn);
+  
+  string s1 = File.ReadAllText(fn);
+  string[] ar = File.ReadAllLines(fn);
+  File.WriteAllText(fn, "dkjskdjfskdfjds");
+#+end_src
 
 * Socket
 * Entity Framework
