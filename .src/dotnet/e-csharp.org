@@ -6596,6 +6596,8 @@ BinaryReader:
 
 ** TCP/IP 协议栈
 
+socket
+
 [[file:img/tcpipstack.png]]
 
 
@@ -6604,6 +6606,38 @@ BinaryReader:
 
 [[file:img/tcpip-3332.png]]
 
+** Uri/UriBuilder
+
+URI (Uniform Resource Identifier), 统一资源标识符:
+- url: Uniform Resource Locator, 统一资源定位器
+- urn: Uniform Resource Name, 统一资源名称
+
+示例:
+#+begin_example
+ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
+http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
+ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
+mailto:John.Doe@example.com (also a URL because of the protocol)
+news:comp.infosystems.www.servers.unix (also a URL because of the protocol)
+tel:+1-816-555-1212
+telnet://192.0.2.16:80/ (also a URL because of the protocol)
+urn:oasis:names:specification:docbook:dtd:xml:4.1.2
+#+end_example
+
+Uri 用于结构化 URL 地址:
+#+begin_src csharp
+  // 一个完整的 URL 地址包括若干部分:
+  //  协议://地址:端口/路径?查询参数#段
+  //  protocol://host:port/path?query#fragment
+  var s = "http://wwww.baidu.com:80/aaa/index.html?name=张三#333";
+  Uri uri = new Uri(s);
+  Console.WriteLine(uri.Host);
+  Console.WriteLine(uri.Port);
+  Console.WriteLine(uri.LocalPath);
+  Console.WriteLine(uri.AbsolutePath);
+  Console.WriteLine(uri.Query);
+  Console.WriteLine(uri.Fragment);
+#+end_src
 
 * Entity Framework
 
