@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org9ed4caf">11.1. 基本使用</a></li>
+<li><a href="#org62517e4">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org62517e4">21.3. 基本使用</a></li>
+<li><a href="#org0f47272">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -459,13 +459,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orge9114d6">
+<figure id="org3a1d50f">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org2293bec">
+<figure id="org88ad564">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -710,7 +710,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgab8591b">
+<figure id="org5b6cbbf">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -831,7 +831,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgb594b30">
+<figure id="org4403f13">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -859,7 +859,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org398400d">
+<figure id="orgabbd471">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -918,7 +918,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org8df7c3f">
+<figure id="org3c5e80b">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1344,7 +1344,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org3511fd7">
+<figure id="orgdfd6761">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1382,7 +1382,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgac5b99f">
+<figure id="orgec1f929">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2381,7 +2381,7 @@ out:
 </div>
 
 
-<figure id="org435f401">
+<figure id="orgb32bf05">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3507,8 +3507,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org9ed4caf" class="outline-3">
-<h3 id="org9ed4caf"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org62517e4" class="outline-3">
+<h3 id="org62517e4"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3793,7 +3793,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgffee9a3">
+<figure id="org05f70b4">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6678,8 +6678,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org62517e4" class="outline-3">
-<h3 id="org62517e4"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org0f47272" class="outline-3">
+<h3 id="org0f47272"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8365,7 +8365,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="org9d37751">
+<figure id="orge2abf4f">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8378,8 +8378,8 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 <li>到现在为止, Windows 操作系统也没有完全实现 OSI 协议</li>
 <li>反而在这个过程中，围绕着 TCP 和 IP 这两种协议，衍生出了 TCP/IP Protocol Stack (协议栈) 的概念，并且被广泛使用</li>
 <li>TCP/IP 协议栈慢慢就成为了事实上的标准；但是学习的时候，理论上还是以 OSI 为基准</li>
-<li>TCP/IP 出现在 OSI 模型之前，但是后面 OSI 出现之后，TCP/IP 借鉴了其中很多实现，包括分层</li>
-<li>正式因为如此，OSI 模型，现在变成了 <b>参考</b> 模型</li>
+<li>TCP/IP 出现在 OSI 模型之前，但是后面 OSI 出现之后，TCP/IP 借鉴了其中很多想法，包括分层</li>
+<li>正因为如此，OSI 模型，现在变成了 <b>参考</b> 模型</li>
 </ul>
 </div>
 </div>
@@ -8388,21 +8388,21 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 <h3 id="orge59bd55"><span class="section-number-3">24.2.</span> TCP/IP 协议栈</h3>
 <div class="outline-text-3" id="text-24-2">
 
-<figure id="org589c461">
+<figure id="org5f81328">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="org7b61078">
+<figure id="org69983bc">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="org9c046d8">
+<figure id="orgc1f913f">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
