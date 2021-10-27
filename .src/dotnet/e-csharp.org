@@ -6576,6 +6576,35 @@ BinaryReader:
 #+end_src
 
 * Socket
+** OSI 模型
+
+- 计算机网络刚起步的阶段，很多私有协议 (Protocol) 先后出现
+- 后面 ISO (国际标准组织) 出面推出了 OSI (Open System Interconnection) 协议
+  + 分为 7 层，每次都提供单独的服务，层与层之间紧密合作
+  + 大而全，从底层的网线接口，到高层的应用协议，无所不包
+  + 率先提出了服务、分层、协议、之类的概念
+
+[[file:img/osi-1.png]]
+
+但是:
+- 它太复杂了 ([[file:img/tcpip-111.png][大而全的 OSI 模型图片]])
+- 到现在为止, Windows 操作系统也没有完全实现 OSI 协议
+- 反而在这个过程中，围绕着 TCP 和 IP 这两种协议，衍生出了 TCP/IP Protocol Stack (协议栈) 的概念，并且被广泛使用
+- TCP/IP 协议栈慢慢就成为了事实上的标准；但是学习的时候，理论上还是以 OSI 为基准
+- TCP/IP 出现在 OSI 模型之前，但是后面 OSI 出现之后，TCP/IP 借鉴了其中很多实现，包括分层
+- 正式因为如此，OSI 模型，现在变成了 *参考* 模型
+
+** TCP/IP 协议栈
+
+[[file:img/tcpipstack.png]]
+
+
+[[file:img/tcpip-2222.png]]
+
+
+[[file:img/tcpip-3332.png]]
+
+
 * Entity Framework
 
 * Database
