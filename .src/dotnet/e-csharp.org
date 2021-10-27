@@ -6627,8 +6627,11 @@ urn:oasis:names:specification:docbook:dtd:xml:4.1.2
 Uri 用于结构化 URL 地址:
 #+begin_src csharp
   // 一个完整的 URL 地址包括若干部分:
-  //  协议://地址:端口/路径?查询参数#段
-  //  protocol://host:port/path?query#fragment
+  //   协议://[用户名@]地址[:端口]/路径?查询参数#段
+  //   schema://host:port/path?query#fragment
+  //   schema://host
+  //   http://baidu.com
+  
   var s = "http://wwww.baidu.com:80/aaa/index.html?name=张三#333";
   Uri uri = new Uri(s);
   Console.WriteLine(uri.Host);
@@ -6637,7 +6640,55 @@ Uri 用于结构化 URL 地址:
   Console.WriteLine(uri.AbsolutePath);
   Console.WriteLine(uri.Query);
   Console.WriteLine(uri.Fragment);
+  
+  Console.WriteLine();
+  
+  Console.WriteLine(Uri.EscapeDataString(s));
+  Console.WriteLine(Uri.EscapeUriString(s));
+  Console.WriteLine(Uri.EscapeDataString("张三"));
+  Console.WriteLine(Uri.UnescapeDataString("%3d"));
 #+end_src
+
+UriBuilder:
+#+begin_src csharp
+  var ub = new UriBuilder();
+  ub.Scheme = "https";
+  ub.Host = "182.23.444.55";
+  ub.Port = 444;
+  ub.Path = "/index.html";
+  ub.Query = "?name=zhangsan";
+  ub.UserName = "admin";
+  ub.Password = "admin2";
+  
+  var uri = ub.Uri;
+  Console.WriteLine(uri);
+#+end_src
+
+** IpAddress/Dns
+
+#+begin_src csharp
+  var ipStr = "8.8.8.8"; // 1.1.1.1 DNS 服务器
+  //IPAddress ip = new IPAddress(ipStr);
+  IPAddress ip = IPAddress.Parse(ipStr);
+  Console.WriteLine($"{ip.Address}, {ip.AddressFamily}");
+  
+  IPAddress[] ips = Dns.GetHostAddresses("www.baidu.com");
+  foreach (var i in ips)
+  {
+      Console.WriteLine(i);
+  }
+  
+  IPHostEntry ih = Dns.GetHostEntry("www.bing.com");
+  Console.WriteLine(ih.HostName);
+  foreach (var al in ih.Aliases)
+  {
+      Console.WriteLine(al);
+  }
+#+end_src
+
+** Socket
+
+插座来了。
 
 * Entity Framework
 

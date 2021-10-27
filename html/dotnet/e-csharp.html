@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org0f47272">11.1. 基本使用</a></li>
+<li><a href="#orga055751">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#orga055751">21.3. 基本使用</a></li>
+<li><a href="#orgcf09bf0">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -346,11 +346,13 @@
 <li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
 </ul>
 </li>
-<li><a href="#org068e35c">24. Socket</a>
+<li><a href="#org10beec9">24. Socket</a>
 <ul>
 <li><a href="#org0b5586b">24.1. OSI 模型</a></li>
 <li><a href="#orge59bd55">24.2. TCP/IP 协议栈</a></li>
 <li><a href="#orgea08fbc">24.3. Uri/UriBuilder</a></li>
+<li><a href="#org38cc391">24.4. IpAddress/Dns</a></li>
+<li><a href="#org068e35c">24.5. Socket</a></li>
 </ul>
 </li>
 <li><a href="#orgf9e47f1">25. Entity Framework</a></li>
@@ -460,13 +462,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org4e1c9aa">
+<figure id="orge2bd3a3">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orga1245cc">
+<figure id="orgffec731">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -711,7 +713,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org0fb2b41">
+<figure id="org0dafb6b">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -832,7 +834,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org27609bd">
+<figure id="org8a0ea44">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -860,7 +862,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orge3d0dc8">
+<figure id="org27a9ac8">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -919,7 +921,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgecdd0fd">
+<figure id="org96f9128">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1345,7 +1347,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org85947aa">
+<figure id="orge6d06a6">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1383,7 +1385,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgf73d789">
+<figure id="orgc09c0e0">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2382,7 +2384,7 @@ out:
 </div>
 
 
-<figure id="org480c5a2">
+<figure id="org366bcd7">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3508,8 +3510,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org0f47272" class="outline-3">
-<h3 id="org0f47272"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-orga055751" class="outline-3">
+<h3 id="orga055751"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3794,7 +3796,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgd36eebd">
+<figure id="orgf4b23e3">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6679,8 +6681,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-orga055751" class="outline-3">
-<h3 id="orga055751"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-orgcf09bf0" class="outline-3">
+<h3 id="orgcf09bf0"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8348,8 +8350,8 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-org068e35c" class="outline-2">
-<h2 id="org068e35c"><span class="section-number-2">24.</span> Socket</h2>
+<section id="outline-container-org10beec9" class="outline-2">
+<h2 id="org10beec9"><span class="section-number-2">24.</span> Socket</h2>
 <div class="outline-text-2" id="text-24">
 </div>
 <div id="outline-container-org0b5586b" class="outline-3">
@@ -8366,7 +8368,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="org91afc23">
+<figure id="org6f3d24e">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8393,21 +8395,21 @@ socket
 </p>
 
 
-<figure id="orgfe51ab2">
+<figure id="org6608a31">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="org9f5a87e">
+<figure id="org8535ca5">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="org92100a7">
+<figure id="org80a293e">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
@@ -8428,7 +8430,7 @@ URI (Uniform Resource Identifier), 统一资源标识符:
 <p>
 示例:
 </p>
-<pre class="example" id="orgb69d496">
+<pre class="example" id="org59edfe4">
 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
 http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
 ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
@@ -8444,8 +8446,11 @@ Uri 用于结构化 URL 地址:
 </p>
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#19968;&#20010;&#23436;&#25972;&#30340; URL &#22320;&#22336;&#21253;&#25324;&#33509;&#24178;&#37096;&#20998;:</span>
-<span style="color: #b22222;">//  </span><span style="color: #b22222;">&#21327;&#35758;://&#22320;&#22336;:&#31471;&#21475;/&#36335;&#24452;?&#26597;&#35810;&#21442;&#25968;#&#27573;</span>
-<span style="color: #b22222;">//  </span><span style="color: #b22222;">protocol://host:port/path?query#fragment</span>
+<span style="color: #b22222;">//   </span><span style="color: #b22222;">&#21327;&#35758;://[&#29992;&#25143;&#21517;@]&#22320;&#22336;[:&#31471;&#21475;]/&#36335;&#24452;?&#26597;&#35810;&#21442;&#25968;#&#27573;</span>
+<span style="color: #b22222;">//   </span><span style="color: #b22222;">schema://host:port/path?query#fragment</span>
+<span style="color: #b22222;">//   </span><span style="color: #b22222;">schema://host</span>
+<span style="color: #b22222;">//   </span><span style="color: #b22222;">http://baidu.com</span>
+
 <span style="color: #228b22;">var</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">"http://wwww.baidu.com:80/aaa/index.html?name=&#24352;&#19977;#333"</span>;
 <span style="color: #228b22;">Uri</span> <span style="color: #a0522d;">uri</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Uri</span><span style="color: #707183;">(</span>s<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>uri.Host<span style="color: #707183;">)</span>;
@@ -8454,8 +8459,68 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>uri.AbsolutePath<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>uri.Query<span style="color: #707183;">)</span>;
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>uri.Fragment<span style="color: #707183;">)</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">()</span>;
+
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>Uri.<span style="color: #0000ff;">EscapeDataString</span><span style="color: #7388d6;">(</span>s<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>Uri.<span style="color: #0000ff;">EscapeUriString</span><span style="color: #7388d6;">(</span>s<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>Uri.<span style="color: #0000ff;">EscapeDataString</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#24352;&#19977;"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>Uri.<span style="color: #0000ff;">UnescapeDataString</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"%3d"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
+
+<p>
+UriBuilder:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">ub</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">UriBuilder</span><span style="color: #707183;">()</span>;
+ub.Scheme = <span style="color: #8b2252;">"https"</span>;
+ub.Host = <span style="color: #8b2252;">"182.23.444.55"</span>;
+ub.Port = 444;
+ub.Path = <span style="color: #8b2252;">"/index.html"</span>;
+ub.Query = <span style="color: #8b2252;">"?name=zhangsan"</span>;
+ub.UserName = <span style="color: #8b2252;">"admin"</span>;
+ub.Password = <span style="color: #8b2252;">"admin2"</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">uri</span> = ub.Uri;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>uri<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org38cc391" class="outline-3">
+<h3 id="org38cc391"><span class="section-number-3">24.4.</span> IpAddress/Dns</h3>
+<div class="outline-text-3" id="text-24-4">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">ipStr</span> = <span style="color: #8b2252;">"8.8.8.8"</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">1.1.1.1 DNS &#26381;&#21153;&#22120;</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">IPAddress ip = new IPAddress(ipStr);</span>
+<span style="color: #228b22;">IPAddress</span> <span style="color: #a0522d;">ip</span> = IPAddress.<span style="color: #0000ff;">Parse</span><span style="color: #707183;">(</span>ipStr<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"{ip.Address}, {ip.AddressFamily}"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">IPAddress</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">ips</span> = Dns.<span style="color: #0000ff;">GetHostAddresses</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"www.baidu.com"</span><span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">i</span> <span style="color: #a020f0;">in</span> ips<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>i<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">IPHostEntry</span> <span style="color: #a0522d;">ih</span> = Dns.<span style="color: #0000ff;">GetHostEntry</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"www.bing.com"</span><span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>ih.HostName<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">al</span> <span style="color: #a020f0;">in</span> ih.Aliases<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>al<span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org068e35c" class="outline-3">
+<h3 id="org068e35c"><span class="section-number-3">24.5.</span> Socket</h3>
+<div class="outline-text-3" id="text-24-5">
+<p>
+插座来了。
+</p>
 </div>
 </div>
 </section>
