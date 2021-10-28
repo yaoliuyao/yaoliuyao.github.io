@@ -6787,6 +6787,10 @@ UriBuilder:
   Console.WriteLine($"我得到的响应内容是 {Encoding.UTF8.GetString(res)}");
 #+end_src
 
+*** 飞鸽/FeiQ
+
+https://blog.csdn.net/ufe_1/article/details/47170615
+
 ** TcpClient/TcpListener
 
 ** UdpClient
