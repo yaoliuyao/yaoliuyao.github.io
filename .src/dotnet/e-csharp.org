@@ -6596,7 +6596,6 @@ BinaryReader:
 
 ** TCP/IP 协议栈
 
-socket
 
 [[file:img/tcpipstack.png]]
 
@@ -6709,7 +6708,8 @@ UriBuilder:
 - Socket 是由操作系统提供的面向 TCP/IP 协议编程的接口
 - C# 中，使用 ~Socket~ 对象，来完成对系统 API 调用
 
-基本语法：
+**** 基本语法
+
 #+begin_src csharp
   // TCP 编程三板斧:
   //  1. bind (绑定)
@@ -6731,9 +6731,9 @@ UriBuilder:
 #+begin_src csharp
   Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
   // 绑定监听来自哪些 IP 地址的请求，监听哪个端口 (1024)
-  server.Bind(new IPEndPoint(IPAddress.Any, 16789));
+  server.Bind(new IPEndPoint(IPAddress.Any, 16780));
   // 开始监听
-  server.Listen();
+  server.Listen(100);
   
   int count = 0;
   
@@ -6741,28 +6741,32 @@ UriBuilder:
   {
       // 等待来自用户的请求
       Socket s = server.Accept();
-      Console.WriteLine($"-------- 第 {++count} 个请求 --------\n\n");
+      Task.Run(() =>
+      {
+          Console.WriteLine($"-------- 第 {++count} 个请求 --------\n\n");
   
-      // 数据的读取
+          // 数据的读取
   
-      byte[] buf = new byte[102010];
-      int n = s.Receive(buf);
-      Console.WriteLine($"接受到一个用户的请求 {s}");
+          byte[] buf = new byte[1020000];
+          int n = s.Receive(buf);
+          Console.WriteLine($"接受到一个用户的请求 {s}");
+          Console.WriteLine($"它发送的数据是 {Encoding.UTF8.GetString(buf, 0, n)}");
   
-      byte[] res = new byte[n];
-      Array.Copy(buf, res, n);
-      Console.WriteLine($"它发送的数据是 {Encoding.UTF8.GetString(res)}");
+          // 响应内容
   
-      // 响应内容
+          var content = "hello, world";
+          StringBuilder sb = new StringBuilder();
+          sb.Append("HTTP/1.1 200 OK\n");
+          sb.Append($"Content-Type: {content.Length}\n");
+          sb.Append("Content-Type: text/html; charset=utf-8\n");
+          sb.Append("\r\n");
+          sb.Append(content);
   
-      var content = "hello, world";
-      StringBuilder sb = new StringBuilder();
-      sb.Append("HTTP/1.1 200 OK\n");
-      sb.Append("Content-Type: text/html; charset=utf-8\n");
-      sb.Append("\r\n");
-      sb.Append(content);
+          s.Send(Encoding.UTF8.GetBytes(sb.ToString()));
   
-      s.Send(Encoding.UTF8.GetBytes(sb.ToString()));
+          s.Shutdown(SocketShutdown.Both);
+          s.Close();
+      });
   }
 #+end_src
 
