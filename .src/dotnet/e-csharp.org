@@ -6690,7 +6690,98 @@ UriBuilder:
 
 插座来了。
 
+*** TCP vs UDP
+
+- TCP (Transmission Control Protocol) 传输控制协议:
+  + 可靠的连接
+  + 三次握手跟四次挥手的连接跟断开
+  + 传输过程中，如果存在丢包的话
+- UDP (User Datagram Protocol) 用户数据报协议:
+  + 不需要握手、挥手，直接发数据
+  + 具备不可靠性
+  + 但是保障速度
+
 [[file:img/tcp3333.png]]
+
+*** Socket
+
+- TCP/IP 协议栈是由操作系统 (内核) 实现的
+- Socket 是由操作系统提供的面向 TCP/IP 协议编程的接口
+- C# 中，使用 ~Socket~ 对象，来完成对系统 API 调用
+
+基本语法：
+#+begin_src csharp
+  // TCP 编程三板斧:
+  //  1. bind (绑定)
+  //  2. listen (监听)
+  //  3. accept (接受)
+  
+  Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+  // 绑定监听来自哪些 IP 地址的请求，监听哪个端口 (1024)
+  server.Bind(new IPEndPoint(IPAddress.Any, 16789));
+  // 开始监听
+  server.Listen();
+  // 等待来自用户的请求
+  Socket s = server.Accept();
+  Console.WriteLine($"接受到一个用户的请求 {s}");
+#+end_src
+
+**** 简单的 HTTP 服务器
+
+#+begin_src csharp
+  Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+  // 绑定监听来自哪些 IP 地址的请求，监听哪个端口 (1024)
+  server.Bind(new IPEndPoint(IPAddress.Any, 16789));
+  // 开始监听
+  server.Listen();
+  
+  int count = 0;
+  
+  while (true)
+  {
+      // 等待来自用户的请求
+      Socket s = server.Accept();
+      Console.WriteLine($"-------- 第 {++count} 个请求 --------\n\n");
+  
+      // 数据的读取
+  
+      byte[] buf = new byte[102010];
+      int n = s.Receive(buf);
+      Console.WriteLine($"接受到一个用户的请求 {s}");
+  
+      byte[] res = new byte[n];
+      Array.Copy(buf, res, n);
+      Console.WriteLine($"它发送的数据是 {Encoding.UTF8.GetString(res)}");
+  
+      // 响应内容
+  
+      var content = "hello, world";
+      StringBuilder sb = new StringBuilder();
+      sb.Append("HTTP/1.1 200 OK\n");
+      sb.Append("Content-Type: text/html; charset=utf-8\n");
+      sb.Append("\r\n");
+      sb.Append(content);
+  
+      s.Send(Encoding.UTF8.GetBytes(sb.ToString()));
+  }
+#+end_src
+
+
+
+
+**** 简单的客户端实现
+
+#+begin_src csharp
+  Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+  
+  socket.Connect(IPAddress.Loopback, 16780);
+  
+  socket.Send(Encoding.UTF8.GetBytes("hello"));
+  
+  byte[] res = new byte[1024];
+  int n = socket.Receive(res);
+  Console.WriteLine($"我得到的响应内容是 {Encoding.UTF8.GetString(res)}");
+#+end_src
 
 ** TcpClient/TcpListener
 

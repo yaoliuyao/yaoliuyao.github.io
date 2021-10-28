@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-27 -->
+<!-- 2021-10-28 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org8998c95">11.1. 基本使用</a></li>
+<li><a href="#org0b187c1">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org0b187c1">21.3. 基本使用</a></li>
+<li><a href="#org728153c">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -346,13 +346,23 @@
 <li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
 </ul>
 </li>
-<li><a href="#orgc74bdc8">24. Socket</a>
+<li><a href="#org6d5d59a">24. Socket</a>
 <ul>
 <li><a href="#org0b5586b">24.1. OSI 模型</a></li>
 <li><a href="#orge59bd55">24.2. TCP/IP 协议栈</a></li>
 <li><a href="#orgea08fbc">24.3. Uri/UriBuilder</a></li>
 <li><a href="#org38cc391">24.4. IpAddress/Dns</a></li>
-<li><a href="#orgee7b8e4">24.5. Socket</a></li>
+<li><a href="#orgdea17d5">24.5. Socket</a>
+<ul>
+<li><a href="#org5047d34">24.5.1. TCP vs UDP</a></li>
+<li><a href="#orgc74bdc8">24.5.2. Socket</a>
+<ul>
+<li><a href="#orge316ce1">24.5.2.1. 简单的 HTTP 服务器</a></li>
+<li><a href="#org52bba41">24.5.2.2. 简单的客户端实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#org1744db1">24.6. TcpClient/TcpListener</a></li>
 <li><a href="#org8951255">24.7. UdpClient</a></li>
 <li><a href="#org828de41">24.8. HttpClient/HttpListener</a></li>
@@ -465,13 +475,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgf44b396">
+<figure id="orga7ae381">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org8b2311b">
+<figure id="orgcf72d23">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -716,7 +726,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org1b87141">
+<figure id="orgbf8aec0">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -837,7 +847,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org971fb38">
+<figure id="orgf7b3609">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -865,7 +875,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org357bac0">
+<figure id="org95c1fd4">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -924,7 +934,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgb41b9e1">
+<figure id="orgc5265e6">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1350,7 +1360,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org656b689">
+<figure id="org212fc75">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1388,7 +1398,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org9f1329a">
+<figure id="orgc43838c">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2387,7 +2397,7 @@ out:
 </div>
 
 
-<figure id="org1185acc">
+<figure id="orgec28b48">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3513,8 +3523,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org8998c95" class="outline-3">
-<h3 id="org8998c95"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org0b187c1" class="outline-3">
+<h3 id="org0b187c1"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3799,7 +3809,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org86cb81a">
+<figure id="orgecf9569">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -6684,8 +6694,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org0b187c1" class="outline-3">
-<h3 id="org0b187c1"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org728153c" class="outline-3">
+<h3 id="org728153c"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8353,8 +8363,8 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-orgc74bdc8" class="outline-2">
-<h2 id="orgc74bdc8"><span class="section-number-2">24.</span> Socket</h2>
+<section id="outline-container-org6d5d59a" class="outline-2">
+<h2 id="org6d5d59a"><span class="section-number-2">24.</span> Socket</h2>
 <div class="outline-text-2" id="text-24">
 </div>
 <div id="outline-container-org0b5586b" class="outline-3">
@@ -8371,7 +8381,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="org622166b">
+<figure id="orgec76f10">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8398,21 +8408,21 @@ socket
 </p>
 
 
-<figure id="orge191f6e">
+<figure id="orgc42d410">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="orgb8fc7c0">
+<figure id="orgbcbc3fc">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="org3b5f4de">
+<figure id="orgf4ae89e">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
@@ -8433,7 +8443,7 @@ URI (Uniform Resource Identifier), 统一资源标识符:
 <p>
 示例:
 </p>
-<pre class="example" id="org5befb1a">
+<pre class="example" id="orgaf43fc9">
 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
 http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
 ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
@@ -8518,18 +8528,134 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgee7b8e4" class="outline-3">
-<h3 id="orgee7b8e4"><span class="section-number-3">24.5.</span> Socket</h3>
+<div id="outline-container-orgdea17d5" class="outline-3">
+<h3 id="orgdea17d5"><span class="section-number-3">24.5.</span> Socket</h3>
 <div class="outline-text-3" id="text-24-5">
 <p>
 插座来了。
 </p>
+</div>
+
+<div id="outline-container-org5047d34" class="outline-4">
+<h4 id="org5047d34"><span class="section-number-4">24.5.1.</span> TCP vs UDP</h4>
+<div class="outline-text-4" id="text-24-5-1">
+<ul class="org-ul">
+<li>TCP (Transmission Control Protocol) 传输控制协议:
+<ul class="org-ul">
+<li>可靠的连接</li>
+<li>三次握手跟四次挥手的连接跟断开</li>
+<li>传输过程中，如果存在丢包的话</li>
+</ul></li>
+<li>UDP (User Datagram Protocol) 用户数据报协议:
+<ul class="org-ul">
+<li>不需要握手、挥手，直接发数据</li>
+<li>具备不可靠性</li>
+<li>但是保障速度</li>
+</ul></li>
+</ul>
 
 
-<figure id="org61a2ab1">
+<figure id="org9c08f47">
 <img src="img/tcp3333.png" alt="tcp3333.png">
 
 </figure>
+</div>
+</div>
+
+<div id="outline-container-orgc74bdc8" class="outline-4">
+<h4 id="orgc74bdc8"><span class="section-number-4">24.5.2.</span> Socket</h4>
+<div class="outline-text-4" id="text-24-5-2">
+<ul class="org-ul">
+<li>TCP/IP 协议栈是由操作系统 (内核) 实现的</li>
+<li>Socket 是由操作系统提供的面向 TCP/IP 协议编程的接口</li>
+<li>C# 中，使用 <code>Socket</code> 对象，来完成对系统 API 调用</li>
+</ul>
+
+<p>
+基本语法：
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">TCP &#32534;&#31243;&#19977;&#26495;&#26023;:</span>
+<span style="color: #b22222;">//  </span><span style="color: #b22222;">1. bind (&#32465;&#23450;)</span>
+<span style="color: #b22222;">//  </span><span style="color: #b22222;">2. listen (&#30417;&#21548;)</span>
+<span style="color: #b22222;">//  </span><span style="color: #b22222;">3. accept (&#25509;&#21463;)</span>
+
+<span style="color: #228b22;">Socket</span> <span style="color: #a0522d;">server</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Socket</span><span style="color: #707183;">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#32465;&#23450;&#30417;&#21548;&#26469;&#33258;&#21738;&#20123; IP &#22320;&#22336;&#30340;&#35831;&#27714;&#65292;&#30417;&#21548;&#21738;&#20010;&#31471;&#21475; (1024)</span>
+server.<span style="color: #0000ff;">Bind</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">IPEndPoint</span><span style="color: #7388d6;">(</span>IPAddress.<span style="color: #228b22;">Any</span>, 16789<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#24320;&#22987;&#30417;&#21548;</span>
+server.<span style="color: #0000ff;">Listen</span><span style="color: #707183;">()</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#31561;&#24453;&#26469;&#33258;&#29992;&#25143;&#30340;&#35831;&#27714;</span>
+<span style="color: #228b22;">Socket</span> <span style="color: #a0522d;">s</span> = server.<span style="color: #0000ff;">Accept</span><span style="color: #707183;">()</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"&#25509;&#21463;&#21040;&#19968;&#20010;&#29992;&#25143;&#30340;&#35831;&#27714; {s}"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge316ce1" class="outline-5">
+<h5 id="orge316ce1"><span class="section-number-5">24.5.2.1.</span> 简单的 HTTP 服务器</h5>
+<div class="outline-text-5" id="text-24-5-2-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Socket</span> <span style="color: #a0522d;">server</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Socket</span><span style="color: #707183;">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#32465;&#23450;&#30417;&#21548;&#26469;&#33258;&#21738;&#20123; IP &#22320;&#22336;&#30340;&#35831;&#27714;&#65292;&#30417;&#21548;&#21738;&#20010;&#31471;&#21475; (1024)</span>
+server.<span style="color: #0000ff;">Bind</span><span style="color: #707183;">(</span><span style="color: #a020f0;">new</span> <span style="color: #228b22;">IPEndPoint</span><span style="color: #7388d6;">(</span>IPAddress.<span style="color: #228b22;">Any</span>, 16789<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#24320;&#22987;&#30417;&#21548;</span>
+server.<span style="color: #0000ff;">Listen</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">count</span> = 0;
+
+<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">true</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31561;&#24453;&#26469;&#33258;&#29992;&#25143;&#30340;&#35831;&#27714;</span>
+    <span style="color: #228b22;">Socket</span> <span style="color: #a0522d;">s</span> = server.<span style="color: #0000ff;">Accept</span><span style="color: #7388d6;">()</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"-------- &#31532; {++count} &#20010;&#35831;&#27714; --------\n\n"</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25968;&#25454;&#30340;&#35835;&#21462;</span>
+
+    <span style="color: #228b22;">byte</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">buf</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">byte</span><span style="color: #7388d6;">[</span>102010<span style="color: #7388d6;">]</span>;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span> = s.<span style="color: #0000ff;">Receive</span><span style="color: #7388d6;">(</span>buf<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"&#25509;&#21463;&#21040;&#19968;&#20010;&#29992;&#25143;&#30340;&#35831;&#27714; {s}"</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #228b22;">byte</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">res</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">byte</span><span style="color: #7388d6;">[</span>n<span style="color: #7388d6;">]</span>;
+    Array.<span style="color: #0000ff;">Copy</span><span style="color: #7388d6;">(</span>buf, res, n<span style="color: #7388d6;">)</span>;
+    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #7388d6;">(</span>$<span style="color: #8b2252;">"&#23427;&#21457;&#36865;&#30340;&#25968;&#25454;&#26159; {Encoding.UTF8.GetString(res)}"</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21709;&#24212;&#20869;&#23481;</span>
+
+    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">content</span> = <span style="color: #8b2252;">"hello, world"</span>;
+    <span style="color: #228b22;">StringBuilder</span> <span style="color: #a0522d;">sb</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StringBuilder</span><span style="color: #7388d6;">()</span>;
+    sb.<span style="color: #0000ff;">Append</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"HTTP/1.1 200 OK\n"</span><span style="color: #7388d6;">)</span>;
+    sb.<span style="color: #0000ff;">Append</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"Content-Type: text/html; charset=utf-8\n"</span><span style="color: #7388d6;">)</span>;
+    sb.<span style="color: #0000ff;">Append</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"\r\n"</span><span style="color: #7388d6;">)</span>;
+    sb.<span style="color: #0000ff;">Append</span><span style="color: #7388d6;">(</span>content<span style="color: #7388d6;">)</span>;
+
+    s.<span style="color: #0000ff;">Send</span><span style="color: #7388d6;">(</span>Encoding.UTF8.<span style="color: #0000ff;">GetBytes</span><span style="color: #909183;">(</span>sb.<span style="color: #0000ff;">ToString</span><span style="color: #709870;">()</span><span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-org52bba41" class="outline-5">
+<h5 id="org52bba41"><span class="section-number-5">24.5.2.2.</span> 简单的客户端实现</h5>
+<div class="outline-text-5" id="text-24-5-2-2">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">Socket</span> <span style="color: #a0522d;">socket</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Socket</span><span style="color: #707183;">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span style="color: #707183;">)</span>;
+
+socket.<span style="color: #0000ff;">Connect</span><span style="color: #707183;">(</span>IPAddress.Loopback, 16780<span style="color: #707183;">)</span>;
+
+socket.<span style="color: #0000ff;">Send</span><span style="color: #707183;">(</span>Encoding.UTF8.<span style="color: #0000ff;">GetBytes</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+
+<span style="color: #228b22;">byte</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">res</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">byte</span><span style="color: #707183;">[</span>1024<span style="color: #707183;">]</span>;
+<span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span> = socket.<span style="color: #0000ff;">Receive</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>;
+Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>$<span style="color: #8b2252;">"&#25105;&#24471;&#21040;&#30340;&#21709;&#24212;&#20869;&#23481;&#26159; {Encoding.UTF8.GetString(res)}"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -9348,7 +9474,7 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-10-27</p>
+<p class="date">Created: 2021-10-28</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
