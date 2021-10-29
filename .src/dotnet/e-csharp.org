@@ -6444,7 +6444,7 @@ C# 5 中，出现了 async/await 关键词:
 
 *** NetworkStream
 
-Socket
+Socket!!!
 
 ** Reader/Writer
 *** StreamReader/StreamWriter
@@ -6816,13 +6816,67 @@ Receiver:
   }
 #+end_src
 
+*** 通过 NetworkStream 简化对 Socket 读写的操作
+
+#+begin_src csharp
+  using var s = new NetworkStream(socket);
+  
+  var sr = new StreamReader(s);
+  Console.WriteLine($"我接收到了数据: {sr.ReadToEnd()}");
+  
+  var sw = new StreamWriter(s);
+  sw.WriteLine("hello, world");
+#+end_src
+
 *** 飞鸽/FeiQ
 
 https://blog.csdn.net/ufe_1/article/details/47170615
 
 ** TcpClient/TcpListener
 
+服务器端:
+#+begin_src csharp
+  var listener = new TcpListener(IPAddress.Any, 8899);
+  listener.Start();
+              
+  while (true)
+  {
+      TcpClient tc = listener.AcceptTcpClient();
+      Task.Run(() =>
+      {
+          Console.WriteLine("---");
+          while (true)
+          {
+              var reader = new StreamReader(tc.GetStream());
+              Console.WriteLine($"接收到了信息: {reader.ReadLine()}");
+              Task.Delay(1000).Wait();
+          }
+      });
+  }
+#+end_src
+
+客户端:
+#+begin_src csharp
+  var tc = new TcpClient();
+  tc.Connect(IPAddress.Loopback, 8899);
+  using var sw = new StreamWriter(tc.GetStream());
+  while (true)
+  {
+      Console.Write("内容: ");
+      string c = Console.ReadLine();
+  
+      sw.WriteLine(c);
+      sw.Flush();
+  }
+#+end_src
+
 ** UdpClient
+
+#+begin_src csharp
+  var uc = new UdpClient();
+  var s = Encoding.UTF8.GetBytes("hello");
+  uc.Send(s, s.Length, new IPEndPoint(IPAddress.Loopback, 4344));
+#+end_src
 
 ** HttpClient/HttpListener
 
