@@ -6702,7 +6702,7 @@ UriBuilder:
 
 [[file:img/tcp3333.png]]
 
-*** Socket
+*** Socket/TCP
 
 - TCP/IP 协议栈是由操作系统 (内核) 实现的
 - Socket 是由操作系统提供的面向 TCP/IP 协议编程的接口
@@ -6770,9 +6770,6 @@ UriBuilder:
   }
 #+end_src
 
-
-
-
 **** 简单的客户端实现
 
 #+begin_src csharp
@@ -6785,6 +6782,38 @@ UriBuilder:
   byte[] res = new byte[1024];
   int n = socket.Receive(res);
   Console.WriteLine($"我得到的响应内容是 {Encoding.UTF8.GetString(res)}");
+#+end_src
+
+*** Socket/UDP
+
+Sender:
+#+begin_src csharp
+  var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+  
+  while (true)
+  {
+      Console.Write("请输入你要发送的内容: ");
+      string content = Console.ReadLine();
+      socket.SendTo(Encoding.UTF8.GetBytes(content), new IPEndPoint(IPAddress.Loopback, 9897));
+      Console.WriteLine("发送成功!");
+  }
+#+end_src
+
+Receiver:
+#+begin_src csharp
+  var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+  socket.Bind(new IPEndPoint(IPAddress.Any, 9897));
+  
+  Console.WriteLine("创建成功，准备工作...");
+  
+  byte[] buf = new byte[10023];
+  var ep = (EndPoint) new IPEndPoint(IPAddress.Any, 9897);
+  while (true)
+  {
+      int n = socket.ReceiveFrom(buf, ref ep);
+      Console.WriteLine($"接收到来自 {(ep as IPEndPoint).Address} 的信息:");
+      Console.WriteLine(Encoding.UTF8.GetString(buf, 0, n));
+  }
 #+end_src
 
 *** 飞鸽/FeiQ
