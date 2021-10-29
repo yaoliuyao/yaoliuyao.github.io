@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org537482e">11.1. 基本使用</a></li>
+<li><a href="#orgab1a8f0">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -192,7 +192,7 @@
 <li><a href="#orgd1deb5f">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
 </ul>
 </li>
-<li><a href="#org814b7a3">12.2. 基本语法</a></li>
+<li><a href="#orgf38370d">12.2. 基本语法</a></li>
 <li><a href="#org67327b1">12.3. 匿名委托</a></li>
 <li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
 <li><a href="#org8334416">12.5. 内建的委托类型 Action/Func</a></li>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#orgab1a8f0">21.3. 基本使用</a></li>
+<li><a href="#orgd5c0abd">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -346,18 +346,18 @@
 <li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
 </ul>
 </li>
-<li><a href="#orgcf39683">24. Socket</a>
+<li><a href="#org0b27213">24. Socket</a>
 <ul>
 <li><a href="#org0b5586b">24.1. OSI 模型</a></li>
 <li><a href="#orge59bd55">24.2. TCP/IP 协议栈</a></li>
 <li><a href="#orgea08fbc">24.3. Uri/UriBuilder</a></li>
 <li><a href="#org38cc391">24.4. IpAddress/Dns</a></li>
-<li><a href="#org289010d">24.5. Socket</a>
+<li><a href="#orgcf39683">24.5. Socket</a>
 <ul>
 <li><a href="#org5047d34">24.5.1. TCP vs UDP</a></li>
 <li><a href="#org496c64b">24.5.2. Socket/TCP</a>
 <ul>
-<li><a href="#orgf38370d">24.5.2.1. 基本语法</a></li>
+<li><a href="#org5f79e20">24.5.2.1. 基本语法</a></li>
 <li><a href="#orge316ce1">24.5.2.2. 简单的 HTTP 服务器</a></li>
 <li><a href="#org52bba41">24.5.2.3. 简单的客户端实现</a></li>
 </ul>
@@ -369,7 +369,12 @@
 </li>
 <li><a href="#org1744db1">24.6. TcpClient/TcpListener</a></li>
 <li><a href="#org8951255">24.7. UdpClient</a></li>
-<li><a href="#org828de41">24.8. HttpClient/HttpListener</a></li>
+<li><a href="#org828de41">24.8. HttpClient/HttpListener</a>
+<ul>
+<li><a href="#orgea7f61a">24.8.1. HttpListener</a></li>
+<li><a href="#orgc48c61f">24.8.2. HttpWebRequest/WebClient/HttpClient</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#orgf9e47f1">25. Entity Framework</a></li>
@@ -479,13 +484,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org966be66">
+<figure id="org3947fd4">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org43d4cec">
+<figure id="org2c7cac3">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -730,7 +735,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org0353465">
+<figure id="org1813ce3">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -851,7 +856,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org41bea26">
+<figure id="org6fd3765">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -879,7 +884,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org8c4ddea">
+<figure id="orge1bc0f6">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -938,7 +943,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org0f349d2">
+<figure id="orgff0ad37">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1364,7 +1369,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="orgcdf0fb3">
+<figure id="org85ba5bb">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1402,7 +1407,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org200b713">
+<figure id="org7133c2b">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2401,7 +2406,7 @@ out:
 </div>
 
 
-<figure id="org6abd5a4">
+<figure id="org5d14d7f">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3527,8 +3532,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org537482e" class="outline-3">
-<h3 id="org537482e"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-orgab1a8f0" class="outline-3">
+<h3 id="orgab1a8f0"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3813,7 +3818,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="orgc114c64">
+<figure id="orgb441ef4">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4008,8 +4013,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org814b7a3" class="outline-3">
-<h3 id="org814b7a3"><span class="section-number-3">12.2.</span> 基本语法</h3>
+<div id="outline-container-orgf38370d" class="outline-3">
+<h3 id="orgf38370d"><span class="section-number-3">12.2.</span> 基本语法</h3>
 <div class="outline-text-3" id="text-12-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126; (&#22996;&#25176;&#31867;&#22411;)</span>
@@ -6698,8 +6703,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-orgab1a8f0" class="outline-3">
-<h3 id="orgab1a8f0"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-orgd5c0abd" class="outline-3">
+<h3 id="orgd5c0abd"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8367,8 +8372,8 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-orgcf39683" class="outline-2">
-<h2 id="orgcf39683"><span class="section-number-2">24.</span> Socket</h2>
+<section id="outline-container-org0b27213" class="outline-2">
+<h2 id="org0b27213"><span class="section-number-2">24.</span> Socket</h2>
 <div class="outline-text-2" id="text-24">
 </div>
 <div id="outline-container-org0b5586b" class="outline-3">
@@ -8385,7 +8390,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="org1e8a84f">
+<figure id="org6f506cf">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8408,21 +8413,21 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 <h3 id="orge59bd55"><span class="section-number-3">24.2.</span> TCP/IP 协议栈</h3>
 <div class="outline-text-3" id="text-24-2">
 
-<figure id="orgba2c194">
+<figure id="org70f13bc">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="org40aae1a">
+<figure id="orgd98c83d">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="orge036314">
+<figure id="org1c25a29">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
@@ -8443,7 +8448,7 @@ URI (Uniform Resource Identifier), 统一资源标识符:
 <p>
 示例:
 </p>
-<pre class="example" id="org644dcb9">
+<pre class="example" id="orge33fa3a">
 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
 http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
 ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
@@ -8528,8 +8533,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org289010d" class="outline-3">
-<h3 id="org289010d"><span class="section-number-3">24.5.</span> Socket</h3>
+<div id="outline-container-orgcf39683" class="outline-3">
+<h3 id="orgcf39683"><span class="section-number-3">24.5.</span> Socket</h3>
 <div class="outline-text-3" id="text-24-5">
 <p>
 插座来了。
@@ -8555,7 +8560,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org10da262">
+<figure id="org7cbb0ac">
 <img src="img/tcp3333.png" alt="tcp3333.png">
 
 </figure>
@@ -8572,8 +8577,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 </div>
 
-<div id="outline-container-orgf38370d" class="outline-5">
-<h5 id="orgf38370d"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
+<div id="outline-container-org5f79e20" class="outline-5">
+<h5 id="org5f79e20"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
 <div class="outline-text-5" id="text-24-5-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">TCP &#32534;&#31243;&#19977;&#26495;&#26023;:</span>
@@ -8789,8 +8794,66 @@ uc.<span style="color: #0000ff;">Send</span><span style="color: #707183;">(</spa
 
 <div id="outline-container-org828de41" class="outline-3">
 <h3 id="org828de41"><span class="section-number-3">24.8.</span> HttpClient/HttpListener</h3>
+<div class="outline-text-3" id="text-24-8">
+</div>
+<div id="outline-container-orgea7f61a" class="outline-4">
+<h4 id="orgea7f61a"><span class="section-number-4">24.8.1.</span> HttpListener</h4>
+<div class="outline-text-4" id="text-24-8-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">root</span> = <span style="color: #8b2252;">"e:/myhtml/"</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">webServer</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">HttpListener</span><span style="color: #707183;">()</span>;
+webServer.Prefixes.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"http://localhost:8099/"</span><span style="color: #707183;">)</span>;
+webServer.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</span>;
+
+<span style="color: #a020f0;">while</span> <span style="color: #707183;">(</span><span style="color: #008b8b;">true</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #228b22;">HttpListenerContext</span> <span style="color: #a0522d;">context</span> = webServer.<span style="color: #0000ff;">GetContext</span><span style="color: #7388d6;">()</span>;
+
+    Task.<span style="color: #0000ff;">Run</span><span style="color: #7388d6;">(</span><span style="color: #909183;">()</span> =&gt;
+    <span style="color: #909183;">{</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">req</span> = context.Request;
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">resp</span> = context.Response;
+
+        Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #709870;">(</span>req.RemoteEndPoint.Address<span style="color: #709870;">)</span>;
+        <span style="color: #a020f0;">using</span> <span style="color: #709870;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">sw</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">StreamWriter</span><span style="color: #907373;">(</span>resp.OutputStream<span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+        <span style="color: #709870;">{</span>
+
+            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">path</span> = req.Url.LocalPath;
+            <span style="color: #228b22;">var</span> <span style="color: #a0522d;">fullPath</span> = Path.<span style="color: #0000ff;">Combine</span><span style="color: #907373;">(</span>root, path.<span style="color: #0000ff;">Substring</span><span style="color: #6276ba;">(</span>1<span style="color: #6276ba;">)</span><span style="color: #907373;">)</span>;
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #907373;">(</span>fullPath<span style="color: #907373;">)</span>;
+            <span style="color: #a020f0;">if</span> <span style="color: #907373;">(</span>Path.<span style="color: #0000ff;">GetExtension</span><span style="color: #6276ba;">(</span>path<span style="color: #6276ba;">)</span> == <span style="color: #8b2252;">".html"</span><span style="color: #907373;">)</span>
+            <span style="color: #907373;">{</span>
+                <span style="color: #a020f0;">if</span> <span style="color: #6276ba;">(</span>File.<span style="color: #0000ff;">Exists</span><span style="color: #858580;">(</span>fullPath<span style="color: #858580;">)</span><span style="color: #6276ba;">)</span>
+                <span style="color: #6276ba;">{</span>
+                    <span style="color: #228b22;">var</span> <span style="color: #a0522d;">content</span> = File.<span style="color: #0000ff;">ReadAllText</span><span style="color: #858580;">(</span>fullPath<span style="color: #858580;">)</span>;
+                    Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #858580;">(</span>content<span style="color: #858580;">)</span>;
+                    sw.<span style="color: #0000ff;">WriteLine</span><span style="color: #858580;">(</span>content<span style="color: #858580;">)</span>;
+                <span style="color: #6276ba;">}</span>
+                <span style="color: #a020f0;">else</span>
+                <span style="color: #6276ba;">{</span>
+                    resp.ContentType = <span style="color: #8b2252;">"text/html; charset=\"utf-8\""</span>;
+                    sw.<span style="color: #0000ff;">WriteLine</span><span style="color: #858580;">(</span><span style="color: #8b2252;">"&#27809;&#26377;&#25214;&#21040;&#32593;&#39029;"</span><span style="color: #858580;">)</span>;
+                    resp.StatusCode = 404;
+                <span style="color: #6276ba;">}</span>
+            <span style="color: #907373;">}</span>
+        <span style="color: #709870;">}</span>
+        resp.<span style="color: #0000ff;">Close</span><span style="color: #709870;">()</span>;
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgc48c61f" class="outline-4">
+<h4 id="orgc48c61f"><span class="section-number-4">24.8.2.</span> HttpWebRequest/WebClient/HttpClient</h4>
+</div>
 </div>
 </section>
+
 
 <section id="outline-container-orgf9e47f1" class="outline-2">
 <h2 id="orgf9e47f1"><span class="section-number-2">25.</span> Entity Framework</h2>

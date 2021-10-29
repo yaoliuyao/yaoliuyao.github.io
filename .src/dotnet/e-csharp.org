@@ -6879,6 +6879,56 @@ https://blog.csdn.net/ufe_1/article/details/47170615
 #+end_src
 
 ** HttpClient/HttpListener
+*** HttpListener
+
+#+begin_src csharp
+  var root = "e:/myhtml/";
+  
+  var webServer = new HttpListener();
+  webServer.Prefixes.Add("http://localhost:8099/");
+  webServer.Start();
+  
+  while (true)
+  {
+      HttpListenerContext context = webServer.GetContext();
+  
+      Task.Run(() =>
+      {
+          var req = context.Request;
+          var resp = context.Response;
+  
+          Console.WriteLine(req.RemoteEndPoint.Address);
+          using (var sw = new StreamWriter(resp.OutputStream))
+          {
+  
+              var path = req.Url.LocalPath;
+              var fullPath = Path.Combine(root, path.Substring(1));
+              Console.WriteLine(fullPath);
+              if (Path.GetExtension(path) == ".html")
+              {
+                  if (File.Exists(fullPath))
+                  {
+                      var content = File.ReadAllText(fullPath);
+                      Console.WriteLine(content);
+                      sw.WriteLine(content);
+                  }
+                  else
+                  {
+                      resp.ContentType = "text/html; charset=\"utf-8\"";
+                      sw.WriteLine("没有找到网页");
+                      resp.StatusCode = 404;
+                  }
+              }
+          }
+          resp.Close();
+      });
+  } 
+#+end_src
+
+
+
+*** HttpWebRequest/WebClient/HttpClient
+
 
 * Entity Framework
 
