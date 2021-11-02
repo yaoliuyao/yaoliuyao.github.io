@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#orgd5c0abd">11.1. 基本使用</a></li>
+<li><a href="#orga16036a">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -192,7 +192,7 @@
 <li><a href="#orgd1deb5f">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
 </ul>
 </li>
-<li><a href="#org5f79e20">12.2. 基本语法</a></li>
+<li><a href="#org3effbe3">12.2. 基本语法</a></li>
 <li><a href="#org67327b1">12.3. 匿名委托</a></li>
 <li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
 <li><a href="#org8334416">12.5. 内建的委托类型 Action/Func</a></li>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#orga16036a">21.3. 基本使用</a></li>
+<li><a href="#org374b7a4">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -346,18 +346,18 @@
 <li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
 </ul>
 </li>
-<li><a href="#org7804f23">24. Socket</a>
+<li><a href="#org5b05554">24. Socket</a>
 <ul>
 <li><a href="#org0b5586b">24.1. OSI 模型</a></li>
 <li><a href="#orge59bd55">24.2. TCP/IP 协议栈</a></li>
 <li><a href="#orgea08fbc">24.3. Uri/UriBuilder</a></li>
 <li><a href="#org38cc391">24.4. IpAddress/Dns</a></li>
-<li><a href="#org0b27213">24.5. Socket</a>
+<li><a href="#org7804f23">24.5. Socket</a>
 <ul>
 <li><a href="#org5047d34">24.5.1. TCP vs UDP</a></li>
 <li><a href="#org496c64b">24.5.2. Socket/TCP</a>
 <ul>
-<li><a href="#org3effbe3">24.5.2.1. 基本语法</a></li>
+<li><a href="#org9bc2926">24.5.2.1. 基本语法</a></li>
 <li><a href="#orge316ce1">24.5.2.2. 简单的 HTTP 服务器</a></li>
 <li><a href="#org52bba41">24.5.2.3. 简单的客户端实现</a></li>
 </ul>
@@ -440,6 +440,7 @@
 <li><a href="#org3f909ac">30.15. is/as 分别是干啥的</a></li>
 </ul>
 </li>
+<li><a href="#org8980666">31. 代码生成器</a></li>
 </ul>
 </div>
 </nav>
@@ -485,13 +486,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org6070b51">
+<figure id="org17d9262">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org62af7a5">
+<figure id="org099156f">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -736,7 +737,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org3ff728d">
+<figure id="orga1aa7bd">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -857,7 +858,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org65caad3">
+<figure id="orgde15667">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -885,7 +886,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org816899d">
+<figure id="org8ddab53">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -944,7 +945,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgf5bd57f">
+<figure id="orgad062cf">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1370,7 +1371,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org52f3882">
+<figure id="orgca07f85">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1408,7 +1409,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org691cd6f">
+<figure id="org8129685">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2407,7 +2408,7 @@ out:
 </div>
 
 
-<figure id="org994b92a">
+<figure id="org8ffcf87">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3533,8 +3534,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-orgd5c0abd" class="outline-3">
-<h3 id="orgd5c0abd"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-orga16036a" class="outline-3">
+<h3 id="orga16036a"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3819,7 +3820,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org8bb99ec">
+<figure id="org092ae88">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4014,8 +4015,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org5f79e20" class="outline-3">
-<h3 id="org5f79e20"><span class="section-number-3">12.2.</span> 基本语法</h3>
+<div id="outline-container-org3effbe3" class="outline-3">
+<h3 id="org3effbe3"><span class="section-number-3">12.2.</span> 基本语法</h3>
 <div class="outline-text-3" id="text-12-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126; (&#22996;&#25176;&#31867;&#22411;)</span>
@@ -6704,8 +6705,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-orga16036a" class="outline-3">
-<h3 id="orga16036a"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org374b7a4" class="outline-3">
+<h3 id="org374b7a4"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8373,8 +8374,8 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-org7804f23" class="outline-2">
-<h2 id="org7804f23"><span class="section-number-2">24.</span> Socket</h2>
+<section id="outline-container-org5b05554" class="outline-2">
+<h2 id="org5b05554"><span class="section-number-2">24.</span> Socket</h2>
 <div class="outline-text-2" id="text-24">
 </div>
 <div id="outline-container-org0b5586b" class="outline-3">
@@ -8391,7 +8392,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="orgea70571">
+<figure id="org3497fc2">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8414,21 +8415,21 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 <h3 id="orge59bd55"><span class="section-number-3">24.2.</span> TCP/IP 协议栈</h3>
 <div class="outline-text-3" id="text-24-2">
 
-<figure id="orgccb352a">
+<figure id="orgf71d3b8">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="org6722630">
+<figure id="org50ab8e3">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="orgbd7d569">
+<figure id="orgbe34fe1">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
@@ -8449,7 +8450,7 @@ URI (Uniform Resource Identifier), 统一资源标识符:
 <p>
 示例:
 </p>
-<pre class="example" id="orga0b28ae">
+<pre class="example" id="orgeaff26c">
 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
 http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
 ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
@@ -8534,8 +8535,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org0b27213" class="outline-3">
-<h3 id="org0b27213"><span class="section-number-3">24.5.</span> Socket</h3>
+<div id="outline-container-org7804f23" class="outline-3">
+<h3 id="org7804f23"><span class="section-number-3">24.5.</span> Socket</h3>
 <div class="outline-text-3" id="text-24-5">
 <p>
 插座来了。
@@ -8561,7 +8562,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org726be80">
+<figure id="org2bb2021">
 <img src="img/tcp3333.png" alt="tcp3333.png">
 
 </figure>
@@ -8578,8 +8579,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 </div>
 
-<div id="outline-container-org3effbe3" class="outline-5">
-<h5 id="org3effbe3"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
+<div id="outline-container-org9bc2926" class="outline-5">
+<h5 id="org9bc2926"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
 <div class="outline-text-5" id="text-24-5-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">TCP &#32534;&#31243;&#19977;&#26495;&#26023;:</span>
@@ -9668,6 +9669,24 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 <li>as 和显式转换相似，但它不会抛出异常，如果成功返回转换结果，失败返回 null</li>
 </ul>
 </div>
+</div>
+</section>
+
+
+<section id="outline-container-org8980666" class="outline-2">
+<h2 id="org8980666"><span class="section-number-2">31.</span> 代码生成器</h2>
+<div class="outline-text-2" id="text-31">
+<ul class="org-ul">
+<li>动软代码生成器</li>
+<li>Codematic</li>
+</ul>
+
+<p>
+链接:
+</p>
+<ul class="org-ul">
+<li><a href="https://www.cnblogs.com/huangguojin/p/5299153.html">https://www.cnblogs.com/huangguojin/p/5299153.html</a></li>
+</ul>
 </div>
 </section>
 </div>

@@ -7553,3 +7553,11 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
   它常用来跟显式转换配合使用
 - as 和显式转换相似，但它不会抛出异常，如果成功返回转换结果，失败返回 null
 
+
+* 代码生成器
+
+- 动软代码生成器
+- Codematic 
+
+链接:
+- https://www.cnblogs.com/huangguojin/p/5299153.html
