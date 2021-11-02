@@ -6930,9 +6930,10 @@ https://blog.csdn.net/ufe_1/article/details/47170615
 *** HttpWebRequest/WebClient/HttpClient
 
 
-* Entity Framework
-
 * Database
+
+勤学勤练，温故知新。
+
 ** ADO.NET
 *** SqlConnection / SqlCommand / SqlDataReader
 
@@ -7095,6 +7096,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
   }
 #+end_src
 
+** Entity Framework
+
 ** 事务 (Transaction)
 
 #+begin_src csharp
@@ -7145,6 +7148,12 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
       ts.Complete();
   } 
 #+end_src
+
+** 示例数据库
+
+- Sakila: https://github.com/ivanceras/sakila
+- Northwind/AdventureWorks: https://github.com/Microsoft/sql-server-samples
+- 生成示例数据库: https://mockaroo.com/
 
 * BCL (Base-Class Library) 基础类库
 ** Console/控制台
