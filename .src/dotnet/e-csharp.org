@@ -7119,19 +7119,24 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
 1. *Database First* 方式
    - 通过在 VS 中添加 [ADO.NET 实体数据模型] - [从数据库生成] 的方式，直接将数据库中的表映射为 edmx 文件
    - 通过修改 edmx 之后再保存，达到自动生成/更新相应的 Model 和相关类的目的
-   - tt 后缀名的文件，表示的是 t4 引擎的文件，它用来自动生成相关的类文件
 2. *Model First* 方式
-   - edmx (Entity Data Model XML) 实体数据模型
-   - edmx 主要分为三部分:
-     1) SSDL (Store Schema Definition Language) 描述数据库中的实体结构
-     2) CSDL (Conceptual Schema Definition Language) 描述 Csharp 模型
-     3) MSL (Mapping Specification Language) 描述数据库中的对象跟模型对象之间的映射关系
 
-3. 在 Entity Framework Core 中，这种方式，已经被遗弃。
+实体数据模型 edms (Entity Data Model XML):
+- edmx 主要分为三部分:
+  1) SSDL (Store Schema Definition Language) 描述数据库中的实体结构
+  2) CSDL (Conceptual Schema Definition Language) 描述 Csharp 模型
+  3) MSL (Mapping Specification Language) 描述数据库中的对象跟模型对象之间的映射关系
+- tt 后缀名的文件，表示的是 *t4* (Text Template Transformation Toolkit) 引擎的文件，它用来自动生成相关的类文件
+- 在 Entity Framework Core 中，这种方式，已经被遗弃
+
+留下在问题:
+- edmx 是什么？包含哪几部分？请做描述
+- 基于 edmx 的开发方式，有什么优点和缺点?
 
 **** 模型生成 (Code First)
 
 通过编码的方式，创建 Model 和 Database。
+- https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
 
 *** EFCore
 
