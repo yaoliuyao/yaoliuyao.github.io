@@ -7110,7 +7110,10 @@ Entity Framework:
 随着 .net core 的发布，Entity Framework 被微软完全重写了。
 
 *** EF6
-**** 模型生成
+
+https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
+
+**** 模型生成 (基于 edmx)
 
 基于 edmx 和 VS Designer 的生成方式:
 1. *Database First* 方式
@@ -7123,7 +7126,12 @@ Entity Framework:
      1) SSDL (Store Schema Definition Language) 描述数据库中的实体结构
      2) CSDL (Conceptual Schema Definition Language) 描述 Csharp 模型
      3) MSL (Mapping Specification Language) 描述数据库中的对象跟模型对象之间的映射关系
+
 3. 在 Entity Framework Core 中，这种方式，已经被遗弃。
+
+**** 模型生成 (Code First)
+
+通过编码的方式，创建 Model 和 Database。
 
 ** 事务 (Transaction)
 
