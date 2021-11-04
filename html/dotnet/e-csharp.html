@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org342fcd9">11.1. 基本使用</a></li>
+<li><a href="#org1f2231d">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -192,7 +192,7 @@
 <li><a href="#orgd1deb5f">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
 </ul>
 </li>
-<li><a href="#org7a3a6f7">12.2. 基本语法</a></li>
+<li><a href="#orgcb2594f">12.2. 基本语法</a></li>
 <li><a href="#org67327b1">12.3. 匿名委托</a></li>
 <li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
 <li><a href="#org8334416">12.5. 内建的委托类型 Action/Func</a></li>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org1f2231d">21.3. 基本使用</a></li>
+<li><a href="#org9d1e2e6">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -346,18 +346,18 @@
 <li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
 </ul>
 </li>
-<li><a href="#org29b2128">24. Socket</a>
+<li><a href="#org3e8b43e">24. Socket</a>
 <ul>
 <li><a href="#org0b5586b">24.1. OSI 模型</a></li>
 <li><a href="#orge59bd55">24.2. TCP/IP 协议栈</a></li>
 <li><a href="#orgea08fbc">24.3. Uri/UriBuilder</a></li>
 <li><a href="#org38cc391">24.4. IpAddress/Dns</a></li>
-<li><a href="#org8721fb2">24.5. Socket</a>
+<li><a href="#org29b2128">24.5. Socket</a>
 <ul>
 <li><a href="#org5047d34">24.5.1. TCP vs UDP</a></li>
 <li><a href="#org496c64b">24.5.2. Socket/TCP</a>
 <ul>
-<li><a href="#orgcb2594f">24.5.2.1. 基本语法</a></li>
+<li><a href="#orgbabbbcc">24.5.2.1. 基本语法</a></li>
 <li><a href="#orge316ce1">24.5.2.2. 简单的 HTTP 服务器</a></li>
 <li><a href="#org52bba41">24.5.2.3. 简单的客户端实现</a></li>
 </ul>
@@ -388,13 +388,21 @@
 </li>
 <li><a href="#orgf9e47f1">25.2. Entity Framework</a>
 <ul>
-<li><a href="#org452b671">25.2.1. 基本历史</a></li>
+<li><a href="#orgabebe93">25.2.1. 历史</a></li>
 <li><a href="#org778f25a">25.2.2. EF6</a>
 <ul>
 <li><a href="#org3364670">25.2.2.1. 模型生成 (基于 edmx)</a></li>
 <li><a href="#org686276d">25.2.2.2. 模型生成 (Code First)</a></li>
 </ul>
 </li>
+<li><a href="#orgf092a2f">25.2.3. EFCore</a></li>
+<li><a href="#orgd9f74d8">25.2.4. 模型生成的三个层次</a></li>
+<li><a href="#orga8122f5">25.2.5. 上下文 (DbContext)</a></li>
+<li><a href="#orgdeee7f7">25.2.6. 数据查询</a></li>
+<li><a href="#org15ccb25">25.2.7. 数据修改</a></li>
+<li><a href="#org2269db7">25.2.8. 日志</a></li>
+<li><a href="#org9e5afef">25.2.9. 集成容器</a></li>
+<li><a href="#org94e2dca">25.2.10. 三层架构</a></li>
 </ul>
 </li>
 <li><a href="#org78693f8">25.3. 事务 (Transaction)</a></li>
@@ -496,13 +504,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org8dcbde4">
+<figure id="org7743cab">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orgf1159ec">
+<figure id="orge067fca">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -747,7 +755,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org4d997db">
+<figure id="orgd5b0927">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -868,7 +876,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org51433a9">
+<figure id="org2165679">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -896,7 +904,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgc206b25">
+<figure id="org0f8906a">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -955,7 +963,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgf51f4ab">
+<figure id="org187dfa9">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1381,7 +1389,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org7243107">
+<figure id="orga7b6fac">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1419,7 +1427,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org4071bcc">
+<figure id="orgd101f38">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2418,7 +2426,7 @@ out:
 </div>
 
 
-<figure id="orgc482232">
+<figure id="org91fb43a">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3544,8 +3552,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org342fcd9" class="outline-3">
-<h3 id="org342fcd9"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org1f2231d" class="outline-3">
+<h3 id="org1f2231d"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3830,7 +3838,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org9a10cab">
+<figure id="org4d7c8cd">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4025,8 +4033,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org7a3a6f7" class="outline-3">
-<h3 id="org7a3a6f7"><span class="section-number-3">12.2.</span> 基本语法</h3>
+<div id="outline-container-orgcb2594f" class="outline-3">
+<h3 id="orgcb2594f"><span class="section-number-3">12.2.</span> 基本语法</h3>
 <div class="outline-text-3" id="text-12-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126; (&#22996;&#25176;&#31867;&#22411;)</span>
@@ -6715,8 +6723,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org1f2231d" class="outline-3">
-<h3 id="org1f2231d"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org9d1e2e6" class="outline-3">
+<h3 id="org9d1e2e6"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8384,8 +8392,8 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-org29b2128" class="outline-2">
-<h2 id="org29b2128"><span class="section-number-2">24.</span> Socket</h2>
+<section id="outline-container-org3e8b43e" class="outline-2">
+<h2 id="org3e8b43e"><span class="section-number-2">24.</span> Socket</h2>
 <div class="outline-text-2" id="text-24">
 </div>
 <div id="outline-container-org0b5586b" class="outline-3">
@@ -8402,7 +8410,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="orgdccfbe9">
+<figure id="orge891526">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8425,21 +8433,21 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 <h3 id="orge59bd55"><span class="section-number-3">24.2.</span> TCP/IP 协议栈</h3>
 <div class="outline-text-3" id="text-24-2">
 
-<figure id="orge6a8572">
+<figure id="org1202a8b">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="org6cab72d">
+<figure id="org164e84b">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="org8f71959">
+<figure id="org2c24026">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
@@ -8460,7 +8468,7 @@ URI (Uniform Resource Identifier), 统一资源标识符:
 <p>
 示例:
 </p>
-<pre class="example" id="org5360da1">
+<pre class="example" id="org3c0d56e">
 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
 http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
 ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
@@ -8545,8 +8553,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org8721fb2" class="outline-3">
-<h3 id="org8721fb2"><span class="section-number-3">24.5.</span> Socket</h3>
+<div id="outline-container-org29b2128" class="outline-3">
+<h3 id="org29b2128"><span class="section-number-3">24.5.</span> Socket</h3>
 <div class="outline-text-3" id="text-24-5">
 <p>
 插座来了。
@@ -8572,7 +8580,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org6f51dbc">
+<figure id="org8d73fcb">
 <img src="img/tcp3333.png" alt="tcp3333.png">
 
 </figure>
@@ -8589,8 +8597,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 </div>
 
-<div id="outline-container-orgcb2594f" class="outline-5">
-<h5 id="orgcb2594f"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
+<div id="outline-container-orgbabbbcc" class="outline-5">
+<h5 id="orgbabbbcc"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
 <div class="outline-text-5" id="text-24-5-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">TCP &#32534;&#31243;&#19977;&#26495;&#26023;:</span>
@@ -9070,8 +9078,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </p>
 </div>
 
-<div id="outline-container-org452b671" class="outline-4">
-<h4 id="org452b671"><span class="section-number-4">25.2.1.</span> 基本历史</h4>
+<div id="outline-container-orgabebe93" class="outline-4">
+<h4 id="orgabebe93"><span class="section-number-4">25.2.1.</span> 历史</h4>
 <div class="outline-text-4" id="text-25-2-1">
 <p>
 Entity Framework:
@@ -9133,6 +9141,44 @@ Entity Framework:
 </p>
 </div>
 </div>
+</div>
+
+<div id="outline-container-orgf092a2f" class="outline-4">
+<h4 id="orgf092a2f"><span class="section-number-4">25.2.3.</span> EFCore</h4>
+<div class="outline-text-4" id="text-25-2-3">
+<p>
+官方文档:
+</p>
+<ul class="org-ul">
+<li><a href="https://docs.microsoft.com/zh-cn/ef/">https://docs.microsoft.com/zh-cn/ef/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd9f74d8" class="outline-4">
+<h4 id="orgd9f74d8"><span class="section-number-4">25.2.4.</span> 模型生成的三个层次</h4>
+</div>
+
+<div id="outline-container-orga8122f5" class="outline-4">
+<h4 id="orga8122f5"><span class="section-number-4">25.2.5.</span> 上下文 (DbContext)</h4>
+</div>
+<div id="outline-container-orgdeee7f7" class="outline-4">
+<h4 id="orgdeee7f7"><span class="section-number-4">25.2.6.</span> 数据查询</h4>
+</div>
+
+<div id="outline-container-org15ccb25" class="outline-4">
+<h4 id="org15ccb25"><span class="section-number-4">25.2.7.</span> 数据修改</h4>
+</div>
+<div id="outline-container-org2269db7" class="outline-4">
+<h4 id="org2269db7"><span class="section-number-4">25.2.8.</span> 日志</h4>
+</div>
+
+<div id="outline-container-org9e5afef" class="outline-4">
+<h4 id="org9e5afef"><span class="section-number-4">25.2.9.</span> 集成容器</h4>
+</div>
+
+<div id="outline-container-org94e2dca" class="outline-4">
+<h4 id="org94e2dca"><span class="section-number-4">25.2.10.</span> 三层架构</h4>
 </div>
 </div>
 

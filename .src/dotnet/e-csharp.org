@@ -7100,7 +7100,7 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 
 https://docs.microsoft.com/zh-cn/ef/
 
-*** 基本历史
+*** 历史
 
 Entity Framework:
 - 1.0，.NET 3.5，微软推出了自己的 *ORM* 框架，叫 Entity Framework，简称 EF
@@ -7132,6 +7132,23 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
 **** 模型生成 (Code First)
 
 通过编码的方式，创建 Model 和 Database。
+
+*** EFCore
+
+官方文档:
+- https://docs.microsoft.com/zh-cn/ef/
+
+*** 模型生成的三个层次
+
+*** 上下文 (DbContext)
+*** 数据查询
+
+*** 数据修改
+*** 日志
+
+*** 集成容器
+
+*** 三层架构
 
 ** 事务 (Transaction)
 
