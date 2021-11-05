@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-11-04 -->
+<!-- 2021-11-05 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -42,7 +42,7 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgabebe93">1. 历史</a></li>
+<li><a href="#org6b25c86">1. 历史</a></li>
 <li><a href="#org5adcc5f">2. [语言与类型]</a>
 <ul>
 <li><a href="#org1e189b5">2.1. Main</a></li>
@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#org9d1e2e6">11.1. 基本使用</a></li>
+<li><a href="#orgc5b03e1">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -192,7 +192,7 @@
 <li><a href="#orgd1deb5f">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
 </ul>
 </li>
-<li><a href="#orgbabbbcc">12.2. 基本语法</a></li>
+<li><a href="#org9e6f831">12.2. 基本语法</a></li>
 <li><a href="#org67327b1">12.3. 匿名委托</a></li>
 <li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
 <li><a href="#org8334416">12.5. 内建的委托类型 Action/Func</a></li>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#orgc5b03e1">21.3. 基本使用</a></li>
+<li><a href="#org833a0dd">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -346,18 +346,18 @@
 <li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
 </ul>
 </li>
-<li><a href="#orgb238584">24. Socket</a>
+<li><a href="#orgb563c34">24. Socket</a>
 <ul>
 <li><a href="#org0b5586b">24.1. OSI 模型</a></li>
 <li><a href="#orge59bd55">24.2. TCP/IP 协议栈</a></li>
 <li><a href="#orgea08fbc">24.3. Uri/UriBuilder</a></li>
 <li><a href="#org38cc391">24.4. IpAddress/Dns</a></li>
-<li><a href="#org3e8b43e">24.5. Socket</a>
+<li><a href="#orgb238584">24.5. Socket</a>
 <ul>
 <li><a href="#org5047d34">24.5.1. TCP vs UDP</a></li>
 <li><a href="#org496c64b">24.5.2. Socket/TCP</a>
 <ul>
-<li><a href="#org9e6f831">24.5.2.1. 基本语法</a></li>
+<li><a href="#orgfc6adcf">24.5.2.1. 基本语法</a></li>
 <li><a href="#orge316ce1">24.5.2.2. 简单的 HTTP 服务器</a></li>
 <li><a href="#org52bba41">24.5.2.3. 简单的客户端实现</a></li>
 </ul>
@@ -388,7 +388,7 @@
 </li>
 <li><a href="#orgf9e47f1">25.2. Entity Framework</a>
 <ul>
-<li><a href="#org6b25c86">25.2.1. 历史</a></li>
+<li><a href="#org0badb3b">25.2.1. 历史</a></li>
 <li><a href="#org778f25a">25.2.2. EF6</a>
 <ul>
 <li><a href="#org3364670">25.2.2.1. 模型生成 (基于 edmx)</a></li>
@@ -459,13 +459,18 @@
 </ul>
 </li>
 <li><a href="#org8980666">31. 代码生成器</a></li>
+<li><a href="#org27a5900">32. Miscellaneous</a>
+<ul>
+<li><a href="#org426ba74">32.1. 模拟 Path 寻找的方式</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
 
 
-<section id="outline-container-orgabebe93" class="outline-2">
-<h2 id="orgabebe93"><span class="section-number-2">1.</span> 历史</h2>
+<section id="outline-container-org6b25c86" class="outline-2">
+<h2 id="org6b25c86"><span class="section-number-2">1.</span> 历史</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Visual J++ 被放弃，<a href="https://baike.baidu.com/item/%E5%AE%89%E5%BE%B7%E6%96%AF%C2%B7%E6%B5%B7%E5%B0%94%E6%96%AF%E4%BC%AF%E6%A0%BC">安德斯·海尔斯伯格</a>带领团队从 2000 年左右开始开发了 C#，到 2002 年的的时候，开始提交给 ECMA 成为了标准</li>
@@ -504,13 +509,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="org0d4033f">
+<figure id="orgad071df">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="orga947720">
+<figure id="org13f1907">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -755,7 +760,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org096ebc8">
+<figure id="org311a5ff">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -876,7 +881,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org0f9811e">
+<figure id="org76627ee">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -904,7 +909,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org912df26">
+<figure id="org9228d75">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -963,7 +968,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org3c3197e">
+<figure id="org3c99f9b">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1389,7 +1394,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org83dec72">
+<figure id="org47bb8e5">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1427,7 +1432,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgf079669">
+<figure id="orgf4dd74d">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2426,7 +2431,7 @@ out:
 </div>
 
 
-<figure id="org6d177de">
+<figure id="orga4e56dc">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3552,8 +3557,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-org9d1e2e6" class="outline-3">
-<h3 id="org9d1e2e6"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-orgc5b03e1" class="outline-3">
+<h3 id="orgc5b03e1"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3838,7 +3843,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org780a558">
+<figure id="org4af1c92">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4033,8 +4038,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-orgbabbbcc" class="outline-3">
-<h3 id="orgbabbbcc"><span class="section-number-3">12.2.</span> 基本语法</h3>
+<div id="outline-container-org9e6f831" class="outline-3">
+<h3 id="org9e6f831"><span class="section-number-3">12.2.</span> 基本语法</h3>
 <div class="outline-text-3" id="text-12-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126; (&#22996;&#25176;&#31867;&#22411;)</span>
@@ -6723,8 +6728,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-orgc5b03e1" class="outline-3">
-<h3 id="orgc5b03e1"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org833a0dd" class="outline-3">
+<h3 id="org833a0dd"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8392,8 +8397,8 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-orgb238584" class="outline-2">
-<h2 id="orgb238584"><span class="section-number-2">24.</span> Socket</h2>
+<section id="outline-container-orgb563c34" class="outline-2">
+<h2 id="orgb563c34"><span class="section-number-2">24.</span> Socket</h2>
 <div class="outline-text-2" id="text-24">
 </div>
 <div id="outline-container-org0b5586b" class="outline-3">
@@ -8410,7 +8415,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="org58e97cf">
+<figure id="orgee5f827">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8433,21 +8438,21 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 <h3 id="orge59bd55"><span class="section-number-3">24.2.</span> TCP/IP 协议栈</h3>
 <div class="outline-text-3" id="text-24-2">
 
-<figure id="org07436ad">
+<figure id="org93b6e40">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="org03c2e36">
+<figure id="org30ea65e">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="org78f9784">
+<figure id="org11dd6ed">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
@@ -8468,7 +8473,7 @@ URI (Uniform Resource Identifier), 统一资源标识符:
 <p>
 示例:
 </p>
-<pre class="example" id="org05a3cb3">
+<pre class="example" id="orgde0c049">
 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
 http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
 ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
@@ -8553,8 +8558,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org3e8b43e" class="outline-3">
-<h3 id="org3e8b43e"><span class="section-number-3">24.5.</span> Socket</h3>
+<div id="outline-container-orgb238584" class="outline-3">
+<h3 id="orgb238584"><span class="section-number-3">24.5.</span> Socket</h3>
 <div class="outline-text-3" id="text-24-5">
 <p>
 插座来了。
@@ -8580,7 +8585,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org41a9ca7">
+<figure id="orgf5e9e59">
 <img src="img/tcp3333.png" alt="tcp3333.png">
 
 </figure>
@@ -8597,8 +8602,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 </div>
 
-<div id="outline-container-org9e6f831" class="outline-5">
-<h5 id="org9e6f831"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
+<div id="outline-container-orgfc6adcf" class="outline-5">
+<h5 id="orgfc6adcf"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
 <div class="outline-text-5" id="text-24-5-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">TCP &#32534;&#31243;&#19977;&#26495;&#26023;:</span>
@@ -9078,8 +9083,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </p>
 </div>
 
-<div id="outline-container-org6b25c86" class="outline-4">
-<h4 id="org6b25c86"><span class="section-number-4">25.2.1.</span> 历史</h4>
+<div id="outline-container-org0badb3b" class="outline-4">
+<h4 id="org0badb3b"><span class="section-number-4">25.2.1.</span> 历史</h4>
 <div class="outline-text-4" id="text-25-2-1">
 <p>
 Entity Framework:
@@ -9102,6 +9107,14 @@ Entity Framework:
 <p>
 <a href="https://docs.microsoft.com/zh-cn/ef/ef6/modeling/">https://docs.microsoft.com/zh-cn/ef/ef6/modeling/</a>
 </p>
+
+<p>
+优点:
+</p>
+<ul class="org-ul">
+<li>漫长的积淀，非常成熟、非常稳定</li>
+<li>功能上相对强大</li>
+</ul>
 </div>
 
 <div id="outline-container-org3364670" class="outline-5">
@@ -9147,7 +9160,7 @@ Entity Framework:
 <h5 id="org686276d"><span class="section-number-5">25.2.2.2.</span> 模型生成 (Code First)</h5>
 <div class="outline-text-5" id="text-25-2-2-2">
 <p>
-通过编码的方式，创建 Model 和 Database。
+通过编码的方式，创建 Model 和 Database:
 </p>
 <ul class="org-ul">
 <li><a href="https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database">https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database</a></li>
@@ -9165,6 +9178,23 @@ Entity Framework:
 <ul class="org-ul">
 <li><a href="https://docs.microsoft.com/zh-cn/ef/">https://docs.microsoft.com/zh-cn/ef/</a></li>
 </ul>
+
+<p>
+安装依赖:
+</p>
+<ul class="org-ul">
+<li>Microsoft.EntityFrameworkCore [必须依赖]</li>
+<li>Microsoft.EntityFrameworkCore.SqlServer [按照数据库选择相应的]</li>
+</ul>
+
+<p>
+命令行添加:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">dotnet new console
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+</pre>
+</div>
 </div>
 </div>
 
@@ -9828,10 +9858,41 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </ul>
 </div>
 </section>
+
+<section id="outline-container-org27a5900" class="outline-2">
+<h2 id="org27a5900"><span class="section-number-2">32.</span> Miscellaneous</h2>
+<div class="outline-text-2" id="text-32">
+</div>
+<div id="outline-container-org426ba74" class="outline-3">
+<h3 id="org426ba74"><span class="section-number-3">32.1.</span> 模拟 Path 寻找的方式</h3>
+<div class="outline-text-3" id="text-32-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">cmd</span> = <span style="color: #8b2252;">"sl3"</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">f1</span> = cmd; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#32477;&#23545;&#36335;&#24452; d:\xxx\sl3.exe</span>
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">f2</span> = Directory.<span style="color: #0000ff;">CurrentDirectory</span><span style="color: #707183;">()</span> + cmd;
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#29615;&#22659;&#21464;&#37327;, &#25805;&#20316;&#31995;&#32479;&#30340;&#20840;&#23616;&#21464;&#37327;&#65292;PATH</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">PATH: dir1;dir2;dir3;dir4  dir5</span>
+<span style="color: #228b22;">string</span> <span style="color: #a0522d;">path</span> = <span style="color: #8b2252;">"dir1;dir2;dir3;dir4"</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">path_arr</span> = <span style="color: #707183;">[</span><span style="color: #8b2252;">"dir1"</span>, <span style="color: #8b2252;">"dir2"</span>, <span style="color: #8b2252;">"dir3"</span>, <span style="color: #8b2252;">"dir4"</span><span style="color: #707183;">]</span>;
+<span style="color: #a020f0;">for</span> <span style="color: #707183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">d</span> <span style="color: #a020f0;">in</span> path_arr<span style="color: #707183;">)</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>File.<span style="color: #0000ff;">Exists</span><span style="color: #909183;">(</span>d + cmd<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">&#25191;&#34892;</span>
+        <span style="color: #a020f0;">break</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">Windows</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-11-04</p>
+<p class="date">Created: 2021-11-05</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

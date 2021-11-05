@@ -7113,6 +7113,10 @@ Entity Framework:
 
 https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
 
+优点:
+- 漫长的积淀，非常成熟、非常稳定
+- 功能上相对强大
+
 **** 模型生成 (基于 edmx)
 
 基于 edmx 和 VS Designer 的生成方式:
@@ -7135,13 +7139,23 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
 
 **** 模型生成 (Code First)
 
-通过编码的方式，创建 Model 和 Database。
+通过编码的方式，创建 Model 和 Database:
 - https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
 
 *** EFCore
 
 官方文档:
 - https://docs.microsoft.com/zh-cn/ef/
+
+安装依赖:
+- Microsoft.EntityFrameworkCore [必须依赖]
+- Microsoft.EntityFrameworkCore.SqlServer [按照数据库选择相应的]
+
+命令行添加:
+#+begin_src sh
+  dotnet new console
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+#+end_src
 
 *** 模型生成的三个层次
 
@@ -7618,3 +7632,26 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
 
 链接:
 - https://www.cnblogs.com/huangguojin/p/5299153.html
+
+* Miscellaneous
+** 模拟 Path 寻找的方式
+
+#+begin_src csharp
+  var cmd = "sl3";
+  
+  var f1 = cmd; // 绝对路径 d:\xxx\sl3.exe
+  var f2 = Directory.CurrentDirectory() + cmd;
+  // 环境变量, 操作系统的全局变量，PATH
+  // PATH: dir1;dir2;dir3;dir4  dir5
+  string path = "dir1;dir2;dir3;dir4";
+  var path_arr = ["dir1", "dir2", "dir3", "dir4"];
+  for (var d in path_arr)
+  {
+      if (File.Exists(d + cmd))
+      {
+          // 执行
+          break;
+      }
+  }
+  // Windows
+#+end_src
