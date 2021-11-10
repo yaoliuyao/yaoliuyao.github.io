@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-11-05 -->
+<!-- 2021-11-10 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -42,7 +42,7 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6b25c86">1. 历史</a></li>
+<li><a href="#org0badb3b">1. 历史</a></li>
 <li><a href="#org5adcc5f">2. [语言与类型]</a>
 <ul>
 <li><a href="#org1e189b5">2.1. Main</a></li>
@@ -177,7 +177,7 @@
 <li><a href="#org4938218">10. 结构体 (Struct)</a></li>
 <li><a href="#org7a10a32">11. 枚举 (Enum)</a>
 <ul>
-<li><a href="#orgc5b03e1">11.1. 基本使用</a></li>
+<li><a href="#org833a0dd">11.1. 基本使用</a></li>
 <li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
 <li><a href="#org961cd86">11.3. 基本 API</a></li>
 </ul>
@@ -192,7 +192,7 @@
 <li><a href="#orgd1deb5f">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
 </ul>
 </li>
-<li><a href="#org9e6f831">12.2. 基本语法</a></li>
+<li><a href="#orgfc6adcf">12.2. 基本语法</a></li>
 <li><a href="#org67327b1">12.3. 匿名委托</a></li>
 <li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
 <li><a href="#org8334416">12.5. 内建的委托类型 Action/Func</a></li>
@@ -285,7 +285,7 @@
 <ul>
 <li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
 <li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org833a0dd">21.3. 基本使用</a></li>
+<li><a href="#org56d4ca9">21.3. 基本使用</a></li>
 <li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
 <li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
 </ul>
@@ -346,18 +346,18 @@
 <li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
 </ul>
 </li>
-<li><a href="#orgb563c34">24. Socket</a>
+<li><a href="#org5d68520">24. Socket</a>
 <ul>
 <li><a href="#org0b5586b">24.1. OSI 模型</a></li>
 <li><a href="#orge59bd55">24.2. TCP/IP 协议栈</a></li>
 <li><a href="#orgea08fbc">24.3. Uri/UriBuilder</a></li>
 <li><a href="#org38cc391">24.4. IpAddress/Dns</a></li>
-<li><a href="#orgb238584">24.5. Socket</a>
+<li><a href="#orgb563c34">24.5. Socket</a>
 <ul>
 <li><a href="#org5047d34">24.5.1. TCP vs UDP</a></li>
 <li><a href="#org496c64b">24.5.2. Socket/TCP</a>
 <ul>
-<li><a href="#orgfc6adcf">24.5.2.1. 基本语法</a></li>
+<li><a href="#org5261840">24.5.2.1. 基本语法</a></li>
 <li><a href="#orge316ce1">24.5.2.2. 简单的 HTTP 服务器</a></li>
 <li><a href="#org52bba41">24.5.2.3. 简单的客户端实现</a></li>
 </ul>
@@ -388,7 +388,7 @@
 </li>
 <li><a href="#orgf9e47f1">25.2. Entity Framework</a>
 <ul>
-<li><a href="#org0badb3b">25.2.1. 历史</a></li>
+<li><a href="#org374c2d0">25.2.1. 历史</a></li>
 <li><a href="#org778f25a">25.2.2. EF6</a>
 <ul>
 <li><a href="#org3364670">25.2.2.1. 模型生成 (基于 edmx)</a></li>
@@ -403,6 +403,11 @@
 <li><a href="#org2269db7">25.2.8. 日志</a></li>
 <li><a href="#org9e5afef">25.2.9. 集成容器</a></li>
 <li><a href="#org94e2dca">25.2.10. 三层架构</a></li>
+<li><a href="#orgbbaf52b">25.2.11. 随堂代码</a>
+<ul>
+<li><a href="#org1c9e5d6">25.2.11.1. 2021年11月10日</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org78693f8">25.3. 事务 (Transaction)</a></li>
@@ -415,6 +420,7 @@
 <li><a href="#orgd098591">26.2. Random/Thread</a></li>
 <li><a href="#orgd147bfd">26.3. IDisposable/资源</a></li>
 <li><a href="#org5c71774">26.4. Stopwatch/秒表</a></li>
+<li><a href="#org8c458cd">26.5. ConfigurationManager/配置管理器</a></li>
 </ul>
 </li>
 <li><a href="#org6d7d01d">27. Winform</a>
@@ -462,6 +468,8 @@
 <li><a href="#org27a5900">32. Miscellaneous</a>
 <ul>
 <li><a href="#org426ba74">32.1. 模拟 Path 寻找的方式</a></li>
+<li><a href="#org9b34cad">32.2. 基本思想</a></li>
+<li><a href="#org63ed685">32.3. Relation-Database/SQL</a></li>
 </ul>
 </li>
 </ul>
@@ -469,8 +477,8 @@
 </nav>
 
 
-<section id="outline-container-org6b25c86" class="outline-2">
-<h2 id="org6b25c86"><span class="section-number-2">1.</span> 历史</h2>
+<section id="outline-container-org0badb3b" class="outline-2">
+<h2 id="org0badb3b"><span class="section-number-2">1.</span> 历史</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Visual J++ 被放弃，<a href="https://baike.baidu.com/item/%E5%AE%89%E5%BE%B7%E6%96%AF%C2%B7%E6%B5%B7%E5%B0%94%E6%96%AF%E4%BC%AF%E6%A0%BC">安德斯·海尔斯伯格</a>带领团队从 2000 年左右开始开发了 C#，到 2002 年的的时候，开始提交给 ECMA 成为了标准</li>
@@ -509,13 +517,13 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgad071df">
+<figure id="orgd8ce732">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org13f1907">
+<figure id="org90e3bd2">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
@@ -760,7 +768,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="org311a5ff">
+<figure id="org78dec53">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -881,7 +889,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="org76627ee">
+<figure id="org9bb8144">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
@@ -909,7 +917,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org9228d75">
+<figure id="org67f7c53">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
@@ -968,7 +976,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="org3c99f9b">
+<figure id="org8950e04">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -1394,7 +1402,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org47bb8e5">
+<figure id="orgd34df88">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1432,7 +1440,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="orgf4dd74d">
+<figure id="orge201b31">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -2431,7 +2439,7 @@ out:
 </div>
 
 
-<figure id="orga4e56dc">
+<figure id="org47072c3">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -3557,8 +3565,8 @@ Gender (男<i>女</i>未知)
 </p>
 </div>
 
-<div id="outline-container-orgc5b03e1" class="outline-3">
-<h3 id="orgc5b03e1"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-org833a0dd" class="outline-3">
+<h3 id="org833a0dd"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3843,7 +3851,7 @@ Gender (男<i>女</i>未知)
 <h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org4af1c92">
+<figure id="orgdcd2a74">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -4038,8 +4046,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org9e6f831" class="outline-3">
-<h3 id="org9e6f831"><span class="section-number-3">12.2.</span> 基本语法</h3>
+<div id="outline-container-orgfc6adcf" class="outline-3">
+<h3 id="orgfc6adcf"><span class="section-number-3">12.2.</span> 基本语法</h3>
 <div class="outline-text-3" id="text-12-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126; (&#22996;&#25176;&#31867;&#22411;)</span>
@@ -6728,8 +6736,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org833a0dd" class="outline-3">
-<h3 id="org833a0dd"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-org56d4ca9" class="outline-3">
+<h3 id="org56d4ca9"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -8397,8 +8405,8 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-orgb563c34" class="outline-2">
-<h2 id="orgb563c34"><span class="section-number-2">24.</span> Socket</h2>
+<section id="outline-container-org5d68520" class="outline-2">
+<h2 id="org5d68520"><span class="section-number-2">24.</span> Socket</h2>
 <div class="outline-text-2" id="text-24">
 </div>
 <div id="outline-container-org0b5586b" class="outline-3">
@@ -8415,7 +8423,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="orgee5f827">
+<figure id="org91b6a4a">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8438,21 +8446,21 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 <h3 id="orge59bd55"><span class="section-number-3">24.2.</span> TCP/IP 协议栈</h3>
 <div class="outline-text-3" id="text-24-2">
 
-<figure id="org93b6e40">
+<figure id="org10fbbc8">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="org30ea65e">
+<figure id="orga9e2131">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="org11dd6ed">
+<figure id="orgdbe3149">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
@@ -8473,7 +8481,7 @@ URI (Uniform Resource Identifier), 统一资源标识符:
 <p>
 示例:
 </p>
-<pre class="example" id="orgde0c049">
+<pre class="example" id="org5608390">
 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
 http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
 ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
@@ -8558,8 +8566,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgb238584" class="outline-3">
-<h3 id="orgb238584"><span class="section-number-3">24.5.</span> Socket</h3>
+<div id="outline-container-orgb563c34" class="outline-3">
+<h3 id="orgb563c34"><span class="section-number-3">24.5.</span> Socket</h3>
 <div class="outline-text-3" id="text-24-5">
 <p>
 插座来了。
@@ -8585,7 +8593,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgf5e9e59">
+<figure id="org463d2ae">
 <img src="img/tcp3333.png" alt="tcp3333.png">
 
 </figure>
@@ -8602,8 +8610,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 </div>
 
-<div id="outline-container-orgfc6adcf" class="outline-5">
-<h5 id="orgfc6adcf"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
+<div id="outline-container-org5261840" class="outline-5">
+<h5 id="org5261840"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
 <div class="outline-text-5" id="text-24-5-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">TCP &#32534;&#31243;&#19977;&#26495;&#26023;:</span>
@@ -9083,8 +9091,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </p>
 </div>
 
-<div id="outline-container-org0badb3b" class="outline-4">
-<h4 id="org0badb3b"><span class="section-number-4">25.2.1.</span> 历史</h4>
+<div id="outline-container-org374c2d0" class="outline-4">
+<h4 id="org374c2d0"><span class="section-number-4">25.2.1.</span> 历史</h4>
 <div class="outline-text-4" id="text-25-2-1">
 <p>
 Entity Framework:
@@ -9204,7 +9212,19 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 
 <div id="outline-container-orga8122f5" class="outline-4">
 <h4 id="orga8122f5"><span class="section-number-4">25.2.5.</span> 上下文 (DbContext)</h4>
+<div class="outline-text-4" id="text-25-2-5">
+<p>
+DbContext 代表数据库的会话：
+</p>
+<ul class="org-ul">
+<li>这个设计本身是轻量级的。new 后，使用，用完，释放。<b>using 必须要使用</b></li>
+<li>管理 Entity，需要实现自己的 DbContext</li>
+<li>将要管理的 Entity，使用 DbSet&lt;T&gt; 的方式暴露出来</li>
+<li></li>
+</ul>
 </div>
+</div>
+
 <div id="outline-container-orgdeee7f7" class="outline-4">
 <h4 id="orgdeee7f7"><span class="section-number-4">25.2.6.</span> 数据查询</h4>
 </div>
@@ -9222,6 +9242,118 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 
 <div id="outline-container-org94e2dca" class="outline-4">
 <h4 id="org94e2dca"><span class="section-number-4">25.2.10.</span> 三层架构</h4>
+</div>
+
+<div id="outline-container-orgbbaf52b" class="outline-4">
+<h4 id="orgbbaf52b"><span class="section-number-4">25.2.11.</span> 随堂代码</h4>
+<div class="outline-text-4" id="text-25-2-11">
+</div>
+<div id="outline-container-org1c9e5d6" class="outline-5">
+<h5 id="org1c9e5d6"><span class="section-number-5">25.2.11.1.</span> 2021年11月10日</h5>
+<div class="outline-text-5" id="text-25-2-11-1">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">BloggingContext</span> : <span style="color: #228b22;">DbContext</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">DbSet</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Blog</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">BlogSet</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">DbSet</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Post</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">Posts</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">protected</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">OnConfiguring</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">DbContextOptionsBuilder</span> <span style="color: #a0522d;">options</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">options.UseSqlServer("server=.;database=ccc;uid=sa;pwd=sa");</span>
+        options.<span style="color: #0000ff;">UseSqlServer</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"blogdb"</span><span style="color: #909183;">)</span>;
+
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">protected</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">OnModelCreating</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">ModelBuilder</span> <span style="color: #a0522d;">modelBuilder</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">base</span>.<span style="color: #0000ff;">OnModelCreating</span><span style="color: #909183;">(</span>modelBuilder<span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Blog</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">BlogId</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Url</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">List</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Post</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">Posts</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #7388d6;">}</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Post</span><span style="color: #7388d6;">&gt;()</span>;
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">override</span> <span style="color: #228b22;">string</span> <span style="color: #0000ff;">ToString</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> $<span style="color: #8b2252;">"{{{nameof(BlogId)}={BlogId.ToString()}, {nameof(Url)}={Url}, {nameof(Posts)}={Posts}}}"</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Post</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">PostId</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Title</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Content</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">string</span> <span style="color: #a0522d;">Desc</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">int</span> <span style="color: #a0522d;">BlogId</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Blog</span> <span style="color: #a0522d;">Blog</span> <span style="color: #7388d6;">{</span> <span style="color: #a020f0;">get</span>; <span style="color: #a020f0;">set</span>; <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">string</span><span style="color: #909183;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #0000ff;">NewMethod</span><span style="color: #909183;">()</span>;
+
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">BloggingContext</span> <span style="color: #0000ff;">NewMethod</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">db</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">BloggingContext</span><span style="color: #909183;">()</span>;
+
+        db.BlogSet.<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.BlogId == 99<span style="color: #909183;">)</span>;
+        db.BlogSet.<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.BlogId == 96<span style="color: #909183;">)</span>;
+        db.BlogSet.<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.BlogId == 95<span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">IQueryable&lt;Blog&gt; blogs = db.Blogs.Where(b =&gt; b.BlogId &gt; 94);</span>
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(blogs.Count());</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(blogs.Max(b =&gt; b.BlogId));</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(blogs.OrderBy(b =&gt; b.Url).Last());</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">Console.WriteLine(blogs.Count());</span>
+
+        <span style="color: #228b22;">var</span> <span style="color: #a0522d;">blogs</span> = db.BlogSet
+            .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.BlogId &gt; 94<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.Url.Length &gt; 3<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">OrderByDescending</span><span style="color: #909183;">(</span>b =&gt; b.BlogId<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.Url.Length % 2 == 0 &amp;&amp; b.BlogId % 2 == 1<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.Posts.<span style="color: #0000ff;">Any</span><span style="color: #709870;">(</span>p =&gt; p.Title.Length &gt; 20<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.Url.Length &gt; 3<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">OrderByDescending</span><span style="color: #909183;">(</span>b =&gt; b.Url<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.BlogId % 2 != 1<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Pagination</span><span style="color: #909183;">(</span>3<span style="color: #909183;">)</span>
+            .<span style="color: #0000ff;">Where</span><span style="color: #909183;">(</span>b =&gt; b.Posts.<span style="color: #0000ff;">Any</span><span style="color: #709870;">(</span>p =&gt; p.Title.Length &gt; 20<span style="color: #709870;">)</span><span style="color: #909183;">)</span>;
+
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">blogs = Pagination(blogs, 3);</span>
+        <span style="color: #b22222;">//</span><span style="color: #b22222;">blogs = blogs.Where(b =&gt; b.Posts.Any(p =&gt; p.Title.Length &gt; 20));</span>
+
+        <span style="color: #a020f0;">foreach</span> <span style="color: #909183;">(</span><span style="color: #228b22;">var</span> <span style="color: #a0522d;">b</span> <span style="color: #a020f0;">in</span> blogs<span style="color: #909183;">)</span>
+            Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #909183;">(</span><span style="color: #228b22;">b</span><span style="color: #909183;">)</span>;
+        <span style="color: #a020f0;">return</span> db;
+    <span style="color: #7388d6;">}</span>
+
+    <span style="color: #a020f0;">static</span> <span style="color: #228b22;">IQueryable</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">Blog</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">Pagination</span><span style="color: #7388d6;">(</span><span style="color: #228b22;">IQueryable</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">Blog</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">query</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">pageNum</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">pageSize</span> = 5<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> query.<span style="color: #0000ff;">Skip</span><span style="color: #909183;">(</span><span style="color: #709870;">(</span>pageNum - 1<span style="color: #709870;">)</span> * pageSize<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span><span style="color: #228b22;">pageSize</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">MyExtendMethods1</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">IQueryable</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #7388d6;">&gt;</span> <span style="color: #0000ff;">Pagination</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #7388d6;">&gt;(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">IQueryable</span><span style="color: #909183;">&lt;</span><span style="color: #228b22;">T</span><span style="color: #909183;">&gt;</span> <span style="color: #a0522d;">query</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">pageNum</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">pageSize</span> = 5<span style="color: #7388d6;">)</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> query.<span style="color: #0000ff;">Skip</span><span style="color: #909183;">(</span><span style="color: #709870;">(</span>pageNum - 1<span style="color: #709870;">)</span> * pageSize<span style="color: #909183;">)</span>.<span style="color: #0000ff;">Take</span><span style="color: #909183;">(</span><span style="color: #228b22;">pageSize</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -9490,6 +9622,41 @@ sw.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</s
 <span style="color: #b22222;">// </span><span style="color: #b22222;">.....</span>
 Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span>sw.ElapsedMillionseconds<span style="color: #707183;">)</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">1111ms</span>
 sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8c458cd" class="outline-3">
+<h3 id="org8c458cd"><span class="section-number-3">26.5.</span> ConfigurationManager/配置管理器</h3>
+<div class="outline-text-3" id="text-26-5">
+<p>
+首先，需要引入包:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">dotnet add package System.Configuration.ConfigurationManager
+</pre>
+</div>
+
+<p>
+其次，在 App.config 或 Web.config 中添加相应配置信息:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #a020f0;">?xml</span> <span style="color: #a0522d;">version</span>="1.0" <span style="color: #a0522d;">encoding</span>="utf-8" ?&gt;
+&lt;<span style="color: #0000ff;">configuration</span>&gt;
+  &lt;<span style="color: #0000ff;">connectionStrings</span>&gt;
+    &lt;<span style="color: #0000ff;">clear</span>/&gt;
+    &lt;<span style="color: #0000ff;">add</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"blogdb"</span> <span style="color: #a0522d;">connectionString</span>=<span style="color: #8b2252;">"server=.;database=ccc;uid=sa;pwd=sa"</span>/&gt;
+  &lt;/<span style="color: #0000ff;">connectionStrings</span>&gt;
+&lt;/<span style="color: #0000ff;">configuration</span>&gt;
+</pre>
+</div>
+
+<p>
+最后，在程序中使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">dbString</span> = ConfigurationManager.ConnectionStrings<span style="color: #707183;">[</span><span style="color: #8b2252;">"blogdb"</span><span style="color: #707183;">]</span>.ConnectionString;
 </pre>
 </div>
 </div>
@@ -9888,11 +10055,75 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </div>
 </div>
+
+<div id="outline-container-org9b34cad" class="outline-3">
+<h3 id="org9b34cad"><span class="section-number-3">32.2.</span> 基本思想</h3>
+<div class="outline-text-3" id="text-32-2">
+<p>
+方法论:
+</p>
+<ul class="org-ul">
+<li>实践中碰都问题，找解决方案。</li>
+<li>方案找到之后，推而广之，升华到一定的理论。</li>
+<li>通过理论，再反哺到实践运用当中。</li>
+</ul>
+
+<p>
+概念:
+</p>
+<ul class="org-ul">
+<li>OOP (Object-Oriented Programing)</li>
+<li>IoC (Inverse of Control) &#x2013; DI/Spring.NET</li>
+<li>ORM (Object-Relation Mapping) &#x2013; Entity Framework / NHibernate</li>
+<li>MVC (Model-View-Control) &#x2013; .NET MVC</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org63ed685" class="outline-3">
+<h3 id="org63ed685"><span class="section-number-3">32.3.</span> Relation-Database/SQL</h3>
+<div class="outline-text-3" id="text-32-3">
+<p>
+Structured Query Language, 结构化查询语言。
+</p>
+
+<p>
+它是操作关系型数据的标准语言。
+</p>
+
+<p>
+发展简史:
+</p>
+<ul class="org-ul">
+<li>1976 左右，IBM 发表了想法</li>
+<li>1979 左右，Oracle 给出了实现 (爱里森)</li>
+<li>1990 左右，SQL 成了工业标准</li>
+</ul>
+
+<p>
+分类:
+</p>
+<ul class="org-ul">
+<li>DDL</li>
+<li>DML</li>
+<li>DCL</li>
+<li>TCL</li>
+</ul>
+
+<p>
+问题:
+</p>
+<ul class="org-ul">
+<li>SQL 语句的分类有哪些？请做简单介绍</li>
+<li>函数和存储过程有什么区别？分别用在什么场景</li>
+</ul>
+</div>
+</div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-11-05</p>
+<p class="date">Created: 2021-11-10</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

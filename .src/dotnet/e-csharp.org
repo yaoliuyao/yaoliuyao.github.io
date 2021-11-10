@@ -7160,6 +7160,13 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
 *** 模型生成的三个层次
 
 *** 上下文 (DbContext)
+
+DbContext 代表数据库的会话：
+- 这个设计本身是轻量级的。new 后，使用，用完，释放。*using 必须要使用*
+- 管理 Entity，需要实现自己的 DbContext
+- 将要管理的 Entity，使用 DbSet<T> 的方式暴露出来  
+- 
+
 *** 数据查询
 
 *** 数据修改
@@ -7168,6 +7175,110 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
 *** 集成容器
 
 *** 三层架构
+
+*** 随堂代码
+**** 2021年11月10日
+
+#+begin_src csharp
+  public class BloggingContext : DbContext
+  {
+      public DbSet<Blog> BlogSet { get; set; }
+      public DbSet<Post> Posts { get; set; }
+  
+      protected override void OnConfiguring(DbContextOptionsBuilder options)
+      {
+          //options.UseSqlServer("server=.;database=ccc;uid=sa;pwd=sa");
+          options.UseSqlServer("blogdb");
+  
+      }
+  
+      protected override void OnModelCreating(ModelBuilder modelBuilder)
+      {
+          base.OnModelCreating(modelBuilder);
+      }
+  }
+  
+  public class Blog
+  {
+      public int BlogId { get; set; }
+      public string Url { get; set; }
+  
+      public List<Post> Posts { get; } = new List<Post>();
+  
+      public override string ToString()
+      {
+          return $"{{{nameof(BlogId)}={BlogId.ToString()}, {nameof(Url)}={Url}, {nameof(Posts)}={Posts}}}";
+      }
+  }
+  
+  public class Post
+  {
+      public int PostId { get; set; }
+      public string Title { get; set; }
+      public string Content { get; set; }
+      public string Desc { get; set; }
+  
+      public int BlogId { get; set; }
+      public Blog Blog { get; set; }
+  }
+  
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          NewMethod();
+  
+      }
+  
+      private static BloggingContext NewMethod()
+      {
+          var db = new BloggingContext();
+  
+          db.BlogSet.Where(b => b.BlogId == 99);
+          db.BlogSet.Where(b => b.BlogId == 96);
+          db.BlogSet.Where(b => b.BlogId == 95);
+  
+          //IQueryable<Blog> blogs = db.Blogs.Where(b => b.BlogId > 94);
+  
+          //Console.WriteLine(blogs.Count());
+          //Console.WriteLine(blogs.Max(b => b.BlogId));
+          //Console.WriteLine(blogs.OrderBy(b => b.Url).Last());
+          //Console.WriteLine(blogs.Count());
+  
+          var blogs = db.BlogSet
+              .Where(b => b.BlogId > 94)
+              .Where(b => b.Url.Length > 3)
+              .OrderByDescending(b => b.BlogId)
+              .Where(b => b.Url.Length % 2 == 0 && b.BlogId % 2 == 1)
+              .Where(b => b.Posts.Any(p => p.Title.Length > 20))
+              .Where(b => b.Url.Length > 3)
+              .OrderByDescending(b => b.Url)
+              .Where(b => b.BlogId % 2 != 1)
+              .Pagination(3)
+              .Where(b => b.Posts.Any(p => p.Title.Length > 20));
+  
+          //blogs = Pagination(blogs, 3);
+          //blogs = blogs.Where(b => b.Posts.Any(p => p.Title.Length > 20));
+  
+          foreach (var b in blogs)
+              Console.WriteLine(b);
+          return db;
+      }
+  
+      static IQueryable<Blog> Pagination(IQueryable<Blog> query, int pageNum, int pageSize = 5)
+      {
+          return query.Skip((pageNum - 1) * pageSize).Take(pageSize);
+      }
+  }
+  
+  public static class MyExtendMethods1
+  {
+      public static IQueryable<T> Pagination<T>(this IQueryable<T> query, int pageNum, int pageSize = 5)
+      {
+          return query.Skip((pageNum - 1) * pageSize).Take(pageSize);
+      }
+  }
+#+end_src
 
 ** 事务 (Transaction)
 
@@ -7388,6 +7499,29 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
   // .....
   Console.WriteLine(sw.ElapsedMillionseconds);  // 1111ms
   sw.Stop();
+#+end_src
+
+** ConfigurationManager/配置管理器
+
+首先，需要引入包:
+#+begin_src sh
+  dotnet add package System.Configuration.ConfigurationManager
+#+end_src
+
+其次，在 App.config 或 Web.config 中添加相应配置信息:
+#+begin_src xml
+  <?xml version="1.0" encoding="utf-8" ?>
+  <configuration>
+    <connectionStrings>
+      <clear/>
+      <add name="blogdb" connectionString="server=.;database=ccc;uid=sa;pwd=sa"/>
+    </connectionStrings>
+  </configuration>
+#+end_src
+
+最后，在程序中使用:
+#+begin_src csharp
+  var dbString = ConfigurationManager.ConnectionStrings["blogdb"].ConnectionString;
 #+end_src
 
 * Winform
@@ -7655,3 +7789,37 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
   }
   // Windows
 #+end_src
+
+** 基本思想
+
+方法论:
+- 实践中碰都问题，找解决方案。
+- 方案找到之后，推而广之，升华到一定的理论。
+- 通过理论，再反哺到实践运用当中。
+
+概念:
+- OOP (Object-Oriented Programing)
+- IoC (Inverse of Control) -- DI/Spring.NET
+- ORM (Object-Relation Mapping) -- Entity Framework / NHibernate
+- MVC (Model-View-Control) -- .NET MVC
+
+** Relation-Database/SQL
+
+Structured Query Language, 结构化查询语言。
+
+它是操作关系型数据的标准语言。
+
+发展简史:
+- 1976 左右，IBM 发表了想法
+- 1979 左右，Oracle 给出了实现 (爱里森)
+- 1990 左右，SQL 成了工业标准
+
+分类:
+- DDL
+- DML
+- DCL
+- TCL
+
+问题:
+- SQL 语句的分类有哪些？请做简单介绍
+- 函数和存储过程有什么区别？分别用在什么场景
