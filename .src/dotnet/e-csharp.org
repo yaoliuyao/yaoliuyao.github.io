@@ -7157,20 +7157,64 @@ https://docs.microsoft.com/zh-cn/ef/ef6/modeling/
   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 #+end_src
 
-*** 模型生成的三个层次
+*** 上下文 (DbContext/DbSet)
 
-*** 上下文 (DbContext)
-
-DbContext 代表数据库的会话：
+DbContext 代表数据库的会话管理：
 - 这个设计本身是轻量级的。new 后，使用，用完，释放。*using 必须要使用*
 - 管理 Entity，需要实现自己的 DbContext
 - 将要管理的 Entity，使用 DbSet<T> 的方式暴露出来  
-- 
+- 使用 ~OnConfiguring~ 来进行 *初始配置*:
+  + 配置数据库连接: options.UseSqlServer(connStr)
+  + 配置日志的输出: options.LogTo(Console.WriteLine);
+- 使用 ~OnModelCreating~ 方法，用来在模型对象创建之后，做一些 *后续调整*
+
+*** 模型生成的三个层次
+
+*约定*:
+- CoC, Convention Over Configuration, 约定大于配置, Ruby, RoR, Ruby on Rails, Web: CoC
+- Entity 对应的表的名字，默认为 DbSet 属性的名字
+- Id 后缀名命名的 int/Guid 类型，会被当成数据库表的主键 (Id -> EntityId)
+- 类型约定:
+  : int -> int,
+  : string -> nvarchar(max)
+  : enum -> int,notnull
+  : double -> float,notnull
+  : DateTime -> datetime2
+- 字段，只有 get 的属性，是不能被映射到数据库的
+
+*[注解]* (System.ComponentModel.DataAnnotations):
+- Table/Column/NotMapped
+- ForeignKey/Key/DatatableGenerated
+- Require/StringLength/MinLength/MaxLength/Range
+- RegularExpression/Phone/EmailAddress/Url/CreditCard
+- Index
+- https://blog.csdn.net/a123_z/article/details/112279594
+
+*Fluent API*:
+- 写在 OnModelCreating 里面
+- 它跟注解都能达到配置模型和映射的目的，但他们并不是互斥的关系，而是一种互相补充
+- https://www.cnblogs.com/yanglang/p/7212203.html
 
 *** 数据查询
 
 *** 数据修改
 *** 日志
+**** 使用 options.LogTo 方法
+
+#+begin_src csharp
+  // 记录到控制台
+  options.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+  
+  // 记录到文件
+  options.LogTo((string log) =>
+  {
+      File.AppendAllText(@"e:\log1111.txt", $"\n\n{log}");
+      //Console.WriteLine(log);
+  }, Microsoft.Extensions.Logging.LogLevel.Information);
+  
+  // 可以简化为:
+  options.LogTo(log => File.AppendAllText(@"e:\log1111.txt", $"\n\n{log}"), Microsoft.Extensions.Logging.LogLevel.Information);
+#+end_src
 
 *** 集成容器
 
@@ -7523,6 +7567,10 @@ DbContext 代表数据库的会话：
 #+begin_src csharp
   var dbString = ConfigurationManager.ConnectionStrings["blogdb"].ConnectionString;
 #+end_src
+
+** RegularExpression/正则表达式
+
+- TODO: 必须要掌握的，特别重要的一个东西
 
 * Winform
 ** 布局相关
