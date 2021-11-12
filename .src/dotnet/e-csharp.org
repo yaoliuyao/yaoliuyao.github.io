@@ -7195,6 +7195,49 @@ DbContext 代表数据库的会话管理：
 - 它跟注解都能达到配置模型和映射的目的，但他们并不是互斥的关系，而是一种互相补充
 - https://www.cnblogs.com/yanglang/p/7212203.html
 
+*** 模型之间的关系
+
+#+begin_example
+  class Teacher // table teacher: id/name
+  {
+     Id;
+     Name;
+  }
+  class Student // table student: id/name/teacherid
+  {
+     Id;
+     Name;
+     TeacherId; // 外键
+  }
+  
+  class Blog
+  {
+    Id;
+    Url;
+    -----
+    Posts; // 导航属性
+  }
+  class Post
+  {
+    Id;
+    Title;
+    Content;
+    BlogId;
+  }
+#+end_example
+
+
+错误:
+#+begin_example
+  Unhandled exception. Microsoft.Data.SqlClient.SqlException (0x80131904): 将 FOREIGN KEY 约束 'FK_Books_Users_ReviewerId' 引入表 'Books' 可能会导 致循环或多重级联路径。请指定 ON DELETE NO ACTION 或 ON UPDATE NO ACTION，或修改其他 FOREIGN KEY 约束。
+  无法创建约束或索引。请参阅前面的错误。
+  
+  
+  [Solution] 两种方案:
+  第一种，将 AuthorId 或 ReviewId 设为可空类型
+  第二种，使用 FluentAPI 禁止级联删除 .OnDelete(...)
+#+end_example
+
 *** 数据查询
 
 *** 数据修改
@@ -7221,7 +7264,7 @@ DbContext 代表数据库的会话管理：
 *** 三层架构
 
 *** 随堂代码
-**** 2021年11月10日
+**** 2021年11月10日 (基本使用)
 
 #+begin_src csharp
   public class BloggingContext : DbContext
@@ -7322,6 +7365,249 @@ DbContext 代表数据库的会话管理：
           return query.Skip((pageNum - 1) * pageSize).Take(pageSize);
       }
   }
+#+end_src
+
+**** 2021年11月11日 (模型创建)
+
+#+begin_src csharp
+  public class BloggingContext : DbContext
+  {
+      public DbSet<Blog> BlogSet { get; set; }
+      public DbSet<Post> Posts { get; set; }
+      public DbSet<User> Users { get; set; }
+  
+      protected override void OnConfiguring(DbContextOptionsBuilder options)
+      {
+          //options.UseSqlServer("server=.;database=ccc;uid=sa;pwd=sa");
+          options.UseSqlServer(ConfigurationManager.ConnectionStrings["blogdb"].ConnectionString);
+          //options.UseSqlite(ConfigurationManager.ConnectionStrings["sqlite"].ConnectionString);
+          options.LogTo(LogHelper.WriteToFile, Microsoft.Extensions.Logging.LogLevel.Information);
+      }
+  
+      protected override void OnModelCreating(ModelBuilder modelBuilder)
+      {
+          base.OnModelCreating(modelBuilder);
+  
+          modelBuilder.Entity<Blog>()
+              .ToTable("MyBlogs");
+  
+          modelBuilder
+              .Entity<User>()
+              .HasKey(u => u.Username);
+  
+          modelBuilder
+              .Entity<User>()
+              .Property("Username").HasColumnName("my_usernmae");
+      }
+  }
+  
+  
+  [ComplexType]
+  public class X
+  {
+      public int A { get; set; }
+      public int B { get; set; }
+  }
+  
+  [Table("Blogs")]
+  public class Blog
+  {
+      public int BlogId { get; set; }
+  
+      [Column("BlogUrl")]
+      public string Url { get; set; }
+  
+      public List<Post> Posts { get; } = new List<Post>();
+  }
+  
+  public enum Zhiliang
+  {
+      Gao, Di
+  }
+  
+  public class Post
+  {
+      [Key]
+      public int PostId { get; set; }
+  
+      [Required]
+      public string Title { get; set; }
+  
+      [StringLength(1000)]
+      public string Content { get; set; }
+  
+      [Column("post_desc")]
+      public string Desc { get; set; }
+  
+      public Zhiliang ZL { get; set; }
+      [Range(0, 1000)]
+      public double Price { get; set; } = 55.2;
+      public DateTime CreatedAt { get; set; }
+  
+      [ForeignKey("fk_hello_blog")]
+      [Column("xxxx")]
+      public int BlogId { get; set; }
+      public Blog Blog { get; set; }
+  }
+  
+  public class User
+  {
+      public string  Username { get; set; }
+      public string  Address { get; set; }
+      public string  Weixin { get; set; }
+  }
+  
+  class Program
+  {
+      static void Main(string[] args)
+      {
+          using var db = new BloggingContext();
+          db.Database.EnsureDeleted();
+          db.Database.EnsureCreated();
+      }
+  
+      private static void NewMethod()
+      {
+          using var db = new BloggingContext();
+          db.BlogSet.Add(new Blog { Url = "http://baidu.com" });
+          db.SaveChanges();
+      }
+      static void NewMethod4()
+      {
+          var db = new BloggingContext();
+  
+          db.BlogSet.Where(b => b.BlogId == 99);
+          db.BlogSet.Where(b => b.BlogId == 96);
+          db.BlogSet.Where(b => b.BlogId == 95);
+  
+          //IQueryable<Blog> blogs = db.Blogs.Where(b => b.BlogId > 94);
+  
+          //Console.WriteLine(blogs.Count());
+          //Console.WriteLine(blogs.Max(b => b.BlogId));
+          //Console.WriteLine(blogs.OrderBy(b => b.Url).Last());
+          //Console.WriteLine(blogs.Count());
+  
+          var blogs = db.BlogSet
+              .Where(b => b.BlogId > 94)
+              .Where(b => b.Url.Length > 3)
+              .OrderByDescending(b => b.BlogId)
+              .Where(b => b.Url.Length % 2 == 0 && b.BlogId % 2 == 1)
+              .Where(b => b.Posts.Any(p => p.Title.Length > 20))
+              .Where(b => b.Url.Length > 3)
+              .OrderByDescending(b => b.Url)
+              .Where(b => b.BlogId % 2 != 1)
+              .Pagination(3)
+              .Where(b => b.Posts.Any(p => p.Title.Length > 20));
+  
+          //blogs = Pagination(blogs, 3);
+          //blogs = blogs.Where(b => b.Posts.Any(p => p.Title.Length > 20));
+  
+          foreach (var b in blogs)
+              Console.WriteLine(b);
+      }
+  }
+  
+  public static class MyExtendMethods1
+  {
+      public static IQueryable<T> Pagination<T>(this IQueryable<T> query, int pageNum, int pageSize = 5)
+      {
+          return query.Skip((pageNum - 1) * pageSize).Take(pageSize);
+      }
+  }
+#+end_src
+
+**** 2021年11月12日 (实体关系)
+
+#+begin_src csharp
+  public class BloggingContext : DbContext
+  {
+      protected override void OnConfiguring(DbContextOptionsBuilder options)
+      {
+          options.UseSqlServer(ConfigurationManager.ConnectionStrings["blogdb"].ConnectionString);
+          options.LogTo(LogHelper.WriteToFile, Microsoft.Extensions.Logging.LogLevel.Information);
+      }
+  
+      protected override void OnModelCreating(ModelBuilder modelBuilder)
+      {
+          base.OnModelCreating(modelBuilder);
+      }
+  
+      public DbSet<Blog> Blogs { get; set; }
+      public DbSet<Post> Posts { get; set; }
+      public DbSet<Book> Books { get; set; }
+      public DbSet<User> Users { get; set; }
+  }
+  
+  // blog vs post
+  
+  public class Blog
+  {
+      public int BlogId { get; set; }
+      public string Url { get; set; }
+  
+      public List<Post> Posts { get; set; } = new List<Post>();
+  }
+  public class Post
+  {
+      public int PostId { get; set; }
+      public string Title { get; set; }
+      public string Content { get; set; }
+      public int BlogId { get; set; }
+          
+      public Blog Blog { get; set; }
+  }
+  
+  // bookStore
+  
+  public class Book
+  {
+      public int BookId { get; set; }
+      public string Name { get; set; }
+      public DateTime PublishedAt { get; set; }
+  
+      public int AuthorId { get; set; }
+      public int? ReviewerId { get; set; }
+  
+      [ForeignKey("AuthorId")]
+      public User Author { get; set; }
+  
+      [ForeignKey("ReviewerId")]
+      public User Reviewer { get; set; }
+  
+      public List<Chapter> Chapters { get; set; } = new List<Chapter>();
+  
+      [InverseProperty("Book")]
+      public List<Comment> Comments { get; set; } = new List<Comment>();
+  
+  }
+  public class Chapter
+  {
+      public int Id { get; set; }
+      public string Title { get; set; }
+      public int BookId { get; set; }
+  
+      public Book Book { get; set; }
+  }
+  public class Comment
+  {
+      public int Id { get; set; }
+      public string Content { get; set; }
+      public int BookId { get; set; }
+  
+      public Book Book { get; set; }
+  }
+  public class User
+  {
+      public int UserId { get; set; }
+      public string Name { get; set; }
+  
+      [InverseProperty("Author")]
+      public List<Book> WriteBooks { get; set; } = new List<Book>();
+  
+      [InverseProperty("Reviewer")]
+      public List<Book> ReviewBooks { get; set; } = new List<Book>();
+  }
+  
 #+end_src
 
 ** 事务 (Transaction)
