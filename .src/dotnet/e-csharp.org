@@ -7168,7 +7168,7 @@ DbContext 代表数据库的会话管理：
   + 配置日志的输出: options.LogTo(Console.WriteLine);
 - 使用 ~OnModelCreating~ 方法，用来在模型对象创建之后，做一些 *后续调整*
 
-*** 模型生成的三个层次
+*** 模型的三个层次
 
 *约定*:
 - CoC, Convention Over Configuration, 约定大于配置, Ruby, RoR, Ruby on Rails, Web: CoC
@@ -7180,7 +7180,7 @@ DbContext 代表数据库的会话管理：
   : enum -> int,notnull
   : double -> float,notnull
   : DateTime -> datetime2
-- 字段，只有 get 的属性，是不能被映射到数据库的
+- 字段、只有 get 的属性，是不能被映射到数据库的
 
 *[注解]* (System.ComponentModel.DataAnnotations):
 - Table/Column/NotMapped
@@ -7331,6 +7331,69 @@ DbContext 代表数据库的会话管理：
 #+end_example
 
 *** 数据查询
+
+#+begin_src csharp
+  //using var db = new BloggingContext();
+  //List<Post> posts = db.Posts.ToList();
+  //Console.WriteLine(posts.Count());
+  
+  //using var db = new BloggingContext();
+  //List<Post> posts = await db.Posts.ToListAsync();
+  //Console.WriteLine(posts.Count());
+  
+  //using var db = new BloggingContext();
+  //List<Post> posts = db.Posts.ToList();
+  //var postIdGt5 = posts.Where(p => p.PostId > 5).ToList();
+  //Console.WriteLine(postIdGt5.Count());
+  
+  //using var db = new BloggingContext();
+  //var posts = db.Posts;
+  //var postIdGt5 = posts.Where(p => p.PostId > 5).ToList();
+  //Console.WriteLine(postIdGt5.Count());
+  
+  //using var db = new BloggingContext();
+  //DbSet<Post> posts = db.Posts;
+  //IQueryable<Post> postIdGt5 = posts.Where(p => p.PostId > 5);
+  //Console.WriteLine(postIdGt5.Count());
+  
+  //using var db = new BloggingContext();
+  //var posts = db.Posts;
+  //var postIdGt5 = posts.Where(p => p.PostId > 5);
+  //Console.WriteLine(postIdGt5.Count());
+  
+  //using var db = new BloggingContext();
+  //Console.WriteLine(db.Posts
+  //    .Where(p => p.PostId > 5)
+  //    .Where(p => p.Title.Length > 0)
+  //    .Count());
+  
+  //using var db = new BloggingContext();
+  //Console.WriteLine(db.Posts
+  //    .Where(p => p.PostId > 5 && p.Title.Length > 2)
+  //    .Where(p => p.Content != null)
+  //    //.Pagination(5)
+  //    .Count()) ;
+  
+  //using var db = new BloggingContext();
+  //Post post = db.Posts.Where(p => p.PostId == 1).ToList()[0];
+  //Console.WriteLine(post.BlogId);
+  
+  //using var db = new BloggingContext();
+  //Post post = db.Posts.Where(p => p.PostId == 1).First();
+  //Console.WriteLine(post.BlogId);
+  
+  //using var db = new BloggingContext();
+  //Post post = db.Posts.Where(p => p.PostId == 1).Single();
+  //Console.WriteLine(post.PostId);
+  
+  //using var db = new BloggingContext();
+  //Post post = db.Posts.Find(1);
+  //Console.WriteLine(post.PostId);
+  
+  using var db = new BloggingContext();
+  Post p = db.Posts.FromSqlRaw("select * from Posts join xxx on xxx... where postid = 3").Single();
+  Console.WriteLine(p.Title);
+#+end_src
 
 *** 数据修改
 *** 日志
