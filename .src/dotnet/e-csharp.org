@@ -7395,6 +7395,47 @@ DbContext 代表数据库的会话管理：
   Console.WriteLine(p.Title);
 #+end_src
 
+关联查询:
+#+begin_src csharp
+  // 显式、手动、主动加载
+  
+  //using var db = new BloggingContext();
+  //Blog b = db.Blogs.Find(1);
+  //db.Entry(b).Collection(b => b.Posts).Load();
+  //Console.WriteLine($"{b.BlogId}, {b.Url}");
+  //Console.WriteLine(b.Posts.Count());
+  
+  //using var db = new BloggingContext();
+  //Post p = db.Posts.Find(1);
+  //db.Entry(p).Reference(p => p.Blog).Load();
+  //Console.WriteLine($"{p.Title}");
+  //Console.WriteLine(p.Blog.Url);
+  
+  //using var db = new BloggingContext();
+  //Post p = db.Posts.Find(1);
+  //Console.WriteLine(p.Title);
+  //Thread.Sleep(10000);
+  //db.Entry(p).Reload();
+  //Console.WriteLine(p.Title);
+  
+  // 动态、实时加载
+  
+  //using var db = new BloggingContext();
+  //Post p = db.Posts
+  //    .Where(p => p.PostId == 1)
+  //    .Include(p => p.Blog)
+  //    .Single();
+  //Console.WriteLine(p.Blog.Url);
+  
+  using var db = new BloggingContext();
+  Post p = db.Posts
+      .Where(p => p.PostId == 1)
+      .Include(p => p.Blog)
+      .ThenInclude(b => b.Posts)
+      .Single();
+  Console.WriteLine(p.Blog.Posts.Count());
+#+end_src
+
 *** 数据修改
 *** 日志
 **** 使用 options.LogTo 方法
