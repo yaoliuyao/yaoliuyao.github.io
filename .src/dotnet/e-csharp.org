@@ -7332,6 +7332,7 @@ DbContext 代表数据库的会话管理：
 
 *** 数据查询
 
+Where/Find:
 #+begin_src csharp
   //using var db = new BloggingContext();
   //List<Post> posts = db.Posts.ToList();
