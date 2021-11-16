@@ -7402,6 +7402,8 @@ DbContext 代表数据库的会话管理：
   //using var db = new BloggingContext();
   //Blog b = db.Blogs.Find(1);
   //db.Entry(b).Collection(b => b.Posts).Load();
+  //db.Entry(b).Collection(b => b.Bs).Load();
+  //db.Entry(b).Collection(b => b.Cs).Load();
   //Console.WriteLine($"{b.BlogId}, {b.Url}");
   //Console.WriteLine(b.Posts.Count());
   
@@ -7434,6 +7436,21 @@ DbContext 代表数据库的会话管理：
       .ThenInclude(b => b.Posts)
       .Single();
   Console.WriteLine(p.Blog.Posts.Count());
+  
+  //using var db = new BloggingContext();
+  //Post p = db.Posts
+  //    .Where(p => p.PostId == 1)
+  //    .Include(p => p.Blog)
+  //    .ThenInclude(b => b.Posts)
+  //    .AsSplitQuery()
+  //    .Single();
+  //Console.WriteLine(p.Blog.Posts.Count());
+  
+  // 代理方式 Proxy
+  
+  using var db = new BloggingContext();
+  Blog p1 = db.Blogs.Find(1);
+  Console.WriteLine(p1.Posts.Count());
 #+end_src
 
 *** 数据修改
