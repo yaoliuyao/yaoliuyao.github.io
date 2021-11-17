@@ -238,7 +238,7 @@ System 命名空间:
 为了能在计算机中有效存储整数，C# 中预定义了如下类型:
 - byte (字节，使用 8bit 表示，它的表现能力最差，只有 0 ~ 255)
 - short (短整数，使用 2Byte 表示，能表示到 3 万大小)
-- int (整数，4B 长度，能表达到 20 多亿)
+- int (整数，4B 长度，能表达到 20 多亿)  
 - long (长整数，16B 长度，能表达到亿亿的单位)
 
 另外，考虑是否设置符号位 (Sign/Unsign)，上面的类型又有对应的类型:
@@ -7098,7 +7098,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 
 ** Entity Framework
 
-https://docs.microsoft.com/zh-cn/ef/
+- https://docs.microsoft.com/zh-cn/ef/
+- https://github.com/dotnet/EntityFramework.Docs
 
 *** 历史
 
@@ -7474,6 +7475,26 @@ Where/Find:
 #+end_src
 
 *** 集成容器
+
+#+begin_src csharp
+  //var di = new ServiceCollection()
+  //    .AddTransient<BloggingContext>()
+  //    .AddSingleton<PostService>()
+  //    .BuildServiceProvider();
+  
+  //var di = new ServiceCollection()
+  //    .AddDbContext<BloggingContext>()
+  //    .AddSingleton<PostService>()
+  //    .BuildServiceProvider();
+  
+  var di = new ServiceCollection()
+      .AddDbContext<BloggingContext>(options => options.UseSqlServer("server=.;database=ccc;uid=sa;pwd=sa"))
+      .AddSingleton<PostService>()
+      .BuildServiceProvider();
+  
+  di.GetService<PostService>().Xxxx();
+  //new PostService().Xxxx();
+#+end_src
 
 *** 三层架构
 
