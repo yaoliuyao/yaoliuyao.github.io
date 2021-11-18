@@ -7752,6 +7752,34 @@ Where/Find:
 #+end_src
 
 
+*** 总结
+
+请你简单叙述一下使用 EF 框架进行开发的优点和缺点。
+
+** Dapper/SqlSugar/FreeSQL/NHibernate
+*** Dapper
+
+King of Micro ORM framework, on speed.
+
+https://dapper-tutorial.net/dapper
+
+使用只需要三步:
+1. 创建 IDbConnection 对象
+2. 写一个 query 进行 CRUD 操作
+3. 在 Execute 方法中传入一个 parameter
+
+*** SqlSugar
+
+https://gitee.com/dotnetchina/SqlSugar
+
+*** FreeSQL
+
+http://www.freesql.net/
+
+*** NHibernate
+
+https://nhibernate.info/
+
 ** 事务 (Transaction)
 
 #+begin_src csharp
