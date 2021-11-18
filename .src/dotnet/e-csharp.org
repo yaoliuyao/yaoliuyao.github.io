@@ -7780,6 +7780,10 @@ http://www.freesql.net/
 
 https://nhibernate.info/
 
+*** MyBatis.NET
+
+https://www.codeproject.com/articles/894127/mybatis-net
+
 ** 事务 (Transaction)
 
 #+begin_src csharp
