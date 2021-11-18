@@ -1,10 +1,20 @@
 #+TITLE: 任务和作业
 
 
+
+
+* [2021-11-18 Thu]
+:PROPERTIES:
+:CUSTOM_ID: active
+:END:
+
+使用 EF 实现一个简单的博客 CRUD:
+- 经典三层结构
+- 使用 EF 实现 DAL 层
+- 使用 Winform 作为 UI 层
+- Blog/Post
+
 * [2021-07-05 Mon]
-  :PROPERTIES:
-  :CUSTOM_ID: active
-  :END:
 
 - 复习今天学习的代码
 - 梳理 ~System.Collections~ 下常用类
