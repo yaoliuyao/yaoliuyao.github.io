@@ -9,7 +9,7 @@
 :END:
 
 使用 EF 实现一个简单的博客 CRUD:
-- 经典三层结构
+- 经典三层结构 (UI - BLL - DAL, UI - Service - Repository)
 - 使用 EF 实现 DAL 层
 - 使用 Winform 作为 UI 层
 - Blog/Post

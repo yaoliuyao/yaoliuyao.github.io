@@ -7752,6 +7752,12 @@ Where/Find:
 #+end_src
 
 
+*** 生成/Reverse
+
+- Enable-Migrations
+- Add-Migration
+- Update-Database
+
 *** 总结
 
 请你简单叙述一下使用 EF 框架进行开发的优点和缺点。
