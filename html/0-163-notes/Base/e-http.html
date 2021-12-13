@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-20 -->
+<!-- 2021-12-13 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HTTP 协议</title>
@@ -13,26 +13,6 @@
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
 <script src='/yaoliuyao/html/asset/common.js'></script>
-
-<style>
- /* From: https://endlessparentheses.com/public/css/endless.css */
- .special-kbd {
-   color: #333;
-   background-color: #f7f7f7;
-   border: 1px solid #ccc;
-   border-radius: 6px;
-   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-   display: inline-block;
-   font-family: 'Droid Sans Mono', monospace;
-   font-size: 80%;
-   font-weight: normal;
-   line-height: inherit;
-   margin: 2px .1em;
-   padding: .04em .4em;
-   text-shadow: 0 1px 0 #fff;
-   word-spacing: -3px;
- }
-</style>
 </head>
 <body>
 <div id="content">
@@ -43,7 +23,9 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org1513fca">1. HTTP</a></li>
-<li><a href="#org65fedc6">2. Status Code (状态码)</a></li>
+<li><a href="#orge7e8133">2. Methods</a></li>
+<li><a href="#org448cadd">3. RESTful</a></li>
+<li><a href="#org65fedc6">4. Status Code (状态码)</a></li>
 </ul>
 </div>
 </nav>
@@ -78,12 +60,56 @@
 <ul class="org-ul">
 <li><a href="https://www.cnblogs.com/ranyonsue/p/5984001.html">https://www.cnblogs.com/ranyonsue/p/5984001.html</a></li>
 </ul>
+
+<div class="org-src-container">
+<pre class="src src-restclient"><span style="color: #a020f0;">GET</span> <span style="color: #0000ff;">https://localhost:5001/movies</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">GET https://localhost:5001/movies </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">HTTP/1.1 200 OK </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Date: Thu, 09 Dec 2021 08:06:51 GMT </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Content-Type: text/html; charset=utf-8 </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Server: Kestrel </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Cache-Control: no-cache, no-store </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Pragma: no-cache </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Transfer-Encoding: chunked </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Set-Cookie: .AspNetCore.Antiforgery.Ds3jRf6UWHc=CfDJ8LqXAFyWYq1Mvg4ZYZ1EO6hVx5yOCF9bOrfraagTHB0GOFbLfi1puaQIBD-vMHgN-ttge8fmb3_aV_MeoJBCed_-vPWrWFLXOjG9IMQxxbEs64wS7OV2Guo8_W-oGKixXUFtyAvvEZwgTAS8nlIdGSM; path=/; samesite=strict; httponly </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">X-Frame-Options: SAMEORIGIN </span><span style="color: #b22222;">--&gt;</span>
+<span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">Request duration: 0.024779s </span><span style="color: #b22222;">--&gt;</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orge7e8133" class="outline-2">
+<h2 id="orge7e8133"><span class="section-number-2">2.</span> Methods</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="http://xxxxx.com/yyyy">http://xxxxx.com/yyyy</a>:
+</p>
+<ul class="org-ul">
+<li>GET, GET <a href="http://xxxxx.com/book?id=3">http://xxxxx.com/book?id=3</a></li>
+<li>POST, POST <a href="http://xxxxx.com/book?id=3">http://xxxxx.com/book?id=3</a></li>
+<li>PUT, PUT <a href="http://xxxxx.com/book">http://xxxxx.com/book</a></li>
+<li>DEL, DELTE <a href="http://xxxxx.com/book?id=3">http://xxxxx.com/book?id=3</a> -&gt; <a href="http://xxxxx.com/yyy?action=del&amp;id=3">http://xxxxx.com/yyy?action=del&amp;id=3</a></li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org448cadd" class="outline-2">
+<h2 id="org448cadd"><span class="section-number-2">3.</span> RESTful</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+???
+</p>
 </div>
 </section>
 
 <section id="outline-container-org65fedc6" class="outline-2">
-<h2 id="org65fedc6"><span class="section-number-2">2.</span> Status Code (状态码)</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org65fedc6"><span class="section-number-2">4.</span> Status Code (状态码)</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 200: 请求成功，正常返回。
 </p>
@@ -104,7 +130,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-20</p>
+<p class="date">Created: 2021-12-13</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

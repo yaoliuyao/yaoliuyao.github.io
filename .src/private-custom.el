@@ -40,9 +40,6 @@
         (:dbhost . "localhost")
         (:database . "oa")))
 
-(defun-hook note-publish-post-hook (_)
-  (let ((default-directory note-directory))
-    (im/git-commit-and-push "best_try_and_best_chance")))
 
 
 ;; translate
@@ -90,7 +87,7 @@
     (lambda () (interactive) (exit-minibuffer))))
 
 
-(>>init>>
+(with-over
  (require 'go-translate)
  (global-set-key [f5] 'gts-do-translate)
 
@@ -102,6 +99,11 @@
  (defun-hook org-mode-hook/roam-it ()
    ;;   (org-roam-mode 1)
    )
+
+ 
+(defun-hook note-publish-post-hook (_)
+  (let ((default-directory note-directory))
+    (im/git-commit-and-push "best_try_and_best_chance")))
  )
 
 (setq go-translate-token-current (cons 430675 2721866130))
@@ -137,7 +139,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(sx cmake-mode httprepl company-tabnine consult-eglot orderless vertico lsp-java tide lsp-ui lsp-treemacs dap-mode ace-window magit marginalia multi-line go-translate bbdb erc-hl-nicks org-noter-pdftools org-noter which-key ztree nnreddit omnisharp eglot embark-consult csproj-mode clojure-mode all-the-icons mpv udev-mode pyim rainbow-mode ssh-agency youdao-dictionary yaml-mode xterm-color websocket web-mode web-beautify vlf uuidgen use-package syntax-subword session selectrum-prescient scala-mode sbt-mode sass-mode robe rg rcirc-styles rainbow-delimiters powershell plantuml-mode page-break-lines ox-pandoc org-roam-server org-present org-plus-contrib ob-restclient oauth memory-usage markdown-toc lua-mode kotlin-mode json-mode jdecomp htmlize hindent hide-mode-line groovy-mode graphviz-dot-mode gnuplot git-timemachine folding fold-this expand-region erlang engine-mode emms emmet-mode elpy elfeed-org dired-dups delight dante csharp-mode cquery company-web company-restclient company-posframe company-php company-math company-go company-ghc company-auctex c-eldoc attrap alchemist)))
+   '(macrostep license-templates gitignore-templates org-contrib git-modes sx cmake-mode httprepl company-tabnine consult-eglot orderless vertico lsp-java tide lsp-ui lsp-treemacs dap-mode ace-window magit marginalia multi-line go-translate bbdb erc-hl-nicks org-noter-pdftools org-noter which-key ztree nnreddit omnisharp eglot embark-consult csproj-mode clojure-mode all-the-icons mpv udev-mode pyim rainbow-mode ssh-agency youdao-dictionary yaml-mode xterm-color websocket web-mode web-beautify vlf uuidgen use-package syntax-subword session selectrum-prescient scala-mode sbt-mode sass-mode robe rg rcirc-styles rainbow-delimiters powershell plantuml-mode page-break-lines ox-pandoc org-roam-server org-present org-plus-contrib ob-restclient oauth memory-usage markdown-toc lua-mode kotlin-mode json-mode jdecomp htmlize hindent hide-mode-line groovy-mode graphviz-dot-mode gnuplot git-timemachine folding fold-this expand-region erlang engine-mode emms emmet-mode elpy elfeed-org dired-dups delight dante csharp-mode cquery company-web company-restclient company-posframe company-php company-math company-go company-ghc company-auctex c-eldoc attrap alchemist)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -8036,7 +8036,43 @@ https://www.codeproject.com/articles/894127/mybatis-net
 
 ** RegularExpression/正则表达式
 
-- TODO: 必须要掌握的，特别重要的一个东西
+https://regexlearn.com/
+
+电话号码:
+: ^1[3578][0-9]{9}$
+
+邮箱地址:
+: ^[a-zA-Z][a-zA-Z0-9_]{5,17}@[a-z0-9]+\.(com|net|edu.cn|org)$
+
+#+begin_src csharp
+  public string xxx1 (string input, string regexp)
+  {
+      // var r = new Regex("^1[3578][0-9]{9}$");
+      var r = Regex.IsMatch(input, regexp);
+      return $"{input}     {regexp}: {r}";
+  }
+  
+  public string xxx2 (string input, string regexp)
+  {
+      //var m = Regex.Match(input, regexp);
+      var ms = Regex.Matches(input, regexp);
+      var r = string.Join(" ", ms);
+      return $"{input}     {regexp}: {r}";
+  }
+  
+  public string xxx3 (string input, string regexp)
+  {
+      return Regex.Replace(input, regexp, ""); 
+  }
+  
+  public string xxx4 ()
+  {
+      var s = "hello   =   , world,  -      where _ , are";
+      var ws = Regex.Split(s, "[^a-zA-Z]+");
+      var r = string.Join("!!", ws);
+      return $"{r}";
+  }
+#+end_src  
 
 * Winform
 ** 布局相关

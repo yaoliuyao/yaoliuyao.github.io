@@ -18,6 +18,36 @@
 参考:
 - https://www.cnblogs.com/ranyonsue/p/5984001.html
 
+#+begin_src restclient
+  GET https://localhost:5001/movies
+#+end_src
+
+#+BEGIN_SRC html
+  <!-- GET https://localhost:5001/movies -->
+  <!-- HTTP/1.1 200 OK -->
+  <!-- Date: Thu, 09 Dec 2021 08:06:51 GMT -->
+  <!-- Content-Type: text/html; charset=utf-8 -->
+  <!-- Server: Kestrel -->
+  <!-- Cache-Control: no-cache, no-store -->
+  <!-- Pragma: no-cache -->
+  <!-- Transfer-Encoding: chunked -->
+  <!-- Set-Cookie: .AspNetCore.Antiforgery.Ds3jRf6UWHc=CfDJ8LqXAFyWYq1Mvg4ZYZ1EO6hVx5yOCF9bOrfraagTHB0GOFbLfi1puaQIBD-vMHgN-ttge8fmb3_aV_MeoJBCed_-vPWrWFLXOjG9IMQxxbEs64wS7OV2Guo8_W-oGKixXUFtyAvvEZwgTAS8nlIdGSM; path=/; samesite=strict; httponly -->
+  <!-- X-Frame-Options: SAMEORIGIN -->
+  <!-- Request duration: 0.024779s -->
+#+END_SRC
+
+* Methods
+
+http://xxxxx.com:80/yyyy:
+- GET, GET http://xxxxx.com/book?id=3
+- POST, POST http://xxxxx.com/book?id=3
+- PUT, PUT http://xxxxx.com/book
+- DEL, DELTE http://xxxxx.com/book?id=3 -> http://xxxxx.com/yyy?action=del&id=3
+
+* RESTful
+
+???
+
 * Status Code (状态码)
 
 200: 请求成功，正常返回。

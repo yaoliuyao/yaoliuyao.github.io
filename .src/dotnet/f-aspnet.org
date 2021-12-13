@@ -14,9 +14,21 @@ ASP.NET 为 .NET 平台提供了完整的进行 Web 开发的底层框架:
 - ASP.NET MVC (模型-视图-控制器)
 - ASP.NET Web API
 
-ASP.NET core:
+ASP.NET Core:
 - Razor Page
 - Blazor (组件，使用 C# 写前端)
 - MVC (跨平台，内置 web 服务器，内置 DI 容器)
 - Web API
 
+** 基本概念
+
+HTML:
+#+begin_example
+HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
+言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
+1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
+写的超文本文档称为HTML文档，它能独立于各种操作系统平台 (如UNIX，
+Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML文件，通过
+专用的浏览器来识别，并将这些HTML文件“翻译”成可以识别的信息，即现在所
+见到的网页。
+#+end_example
