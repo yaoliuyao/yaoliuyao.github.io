@@ -32,3 +32,122 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
 专用的浏览器来识别，并将这些HTML文件“翻译”成可以识别的信息，即现在所
 见到的网页。
 #+end_example
+
+* Summary-1
+
+项目的创建跟初始化:
+#+begin_src sh
+  dotnet new mvc -o MvcMovie1
+  cd MvcMovie1
+  
+  #dotnet tool install --global dotnet-ef --version 5.0.0
+  #dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0
+  dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.0
+  
+  code .
+  # Movie1.cs
+  
+  dotnet-aspnet-codegenerator controller -name Movies1Controller -m Movie1 -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+  # appsettings.json
+  
+  dotnet ef migrations add FirstInit
+  dotnet ef database update
+  
+  
+  dotnet run
+  dotnet watch run
+#+end_src
+
+生成种子数据:
+#+begin_src sql
+  insert into movie1 (id, name, price) values (1, "xx1", 123);
+  insert into movie1 (id, name, price) values (2, "x2x1", 132);
+  insert into movie1 (id, name, price) values (3, "xx31", 213);
+  insert into movie1 (id, name, price) values (4, "x2x1", 13);
+  insert into movie1 (id, name, price) values (5, "xxk1", 132);
+  insert into movie1 (id, name, price) values (6, "xax1", 13);
+  insert into movie1 (id, name, price) values (7, "xbx1", 23);
+  insert into movie1 (id, name, price) values (8, "xxy1", 53);
+  insert into movie1 (id, name, price) values (9, "xxz1", 923);
+  insert into movie1 (id, name, price) values (10, "xx-1", 13);
+  insert into movie1 (id, name, price) values (11, "x-x1", 123);
+#+end_src
+
+进行相关修改:
+1. 修改 _layout 文件
+2. 重新对 Movies1Controller 里面的内容做调整
+3. 对视图页面 (Views/*) 进行编辑
+
+添加字段:
+1. 修改 Model, Url
+2. 执行命令
+   #+begin_src sh
+     dotnet ef migrations add AddUrlToMovie1
+     dotnet ef database update
+   #+end_src   
+
+添加一个 Controller:
+#+begin_src sh
+  # Actor.cs
+  
+  dotnet-aspnet-codegenerator controller -name ActorController -m Actor -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+  
+  dotnet ef migrations add AddModelActor
+  dotnet ef database update
+#+end_src
+
+* Su-2
+** A 超链接
+
+将请求的参数，携带到 QueryString 中发送到服务器:
+: GET http://localhost:5001/comment/dolike?id=3
+: GET http://localhost:5001/comment/dolike/3
+
+** FORM 表单
+
+使用 Form 标签 + Input 进行更多属性的 *交互式* 提交:
+#+begin_src html
+  <!-- GET /comment/dosave?x=1&y=2&z=3 -->
+  
+  <form action="/comment/dosave" method="get">
+    <input name="x" value="1">
+    <input name="y" value="2">
+    <input name="z" value="3" type="password/number/date">
+  
+    <div>
+      <div>
+        <button>提交</button>
+        <input type="submit" value="提交">
+      </div>
+    </div>
+  </form>
+#+end_src
+
+** [AJAX] XMLHttpRequest
+
+Asynchronous JavaScript and XML:
+- 异步
+- 局部刷新 (JS 操作 DOM 节点)
+
+#+begin_src js
+  var xhr = new XmlHttpRequest();
+  xhr.open("get", "http://localhost:5001/comment/dosave");
+  
+  var d = new UrlSearchParams();
+  d.append("Comment.Author", "lisi");
+  d.append("Comment.Content", "xxxxx");
+  xhr.send(d);
+  
+  //// 通过事件，绑定相关动作
+  xhr.onload = (x) => {
+      alert(x);
+      window.location.refresh();
+  };
+  xhr.error = (err) =>
+  {
+      alert("保存失败!");
+  }
+#+end_src

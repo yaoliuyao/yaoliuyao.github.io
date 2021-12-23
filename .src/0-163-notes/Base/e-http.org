@@ -52,6 +52,8 @@ http://xxxxx.com:80/yyyy:
 
 200: 请求成功，正常返回。
 
+302: Redirect (Location=xxx)
+
 404: 服务器没有找到你请求的页面。
 
 405: 页面是存在，但是请求的方法不对 (get/post)

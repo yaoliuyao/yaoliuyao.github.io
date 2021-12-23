@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-13 -->
+<!-- 2021-12-23 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ASP.NET</title>
@@ -13,6 +13,26 @@
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
 <script src='/yaoliuyao/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
 </head>
 <body>
 <div id="content">
@@ -25,6 +45,14 @@
 <li><a href="#org1fcbec3">1. ASP.NET</a>
 <ul>
 <li><a href="#org4ae08d6">1.1. 基本概念</a></li>
+</ul>
+</li>
+<li><a href="#org03aa92f">2. Summary-1</a></li>
+<li><a href="#orgcd3a91b">3. Su-2</a>
+<ul>
+<li><a href="#org5c0dab5">3.1. A 超链接</a></li>
+<li><a href="#orgfd37282">3.2. FORM 表单</a></li>
+<li><a href="#org602e3da">3.3. [AJAX] XMLHttpRequest</a></li>
 </ul>
 </li>
 </ul>
@@ -69,7 +97,7 @@ ASP.NET Core:
 <p>
 HTML:
 </p>
-<pre class="example" id="org52890e9">
+<pre class="example" id="org1f6eeea">
 HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
 言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
 1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
@@ -81,10 +109,177 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
 </div>
 </div>
 </section>
+
+<section id="outline-container-org03aa92f" class="outline-2">
+<h2 id="org03aa92f"><span class="section-number-2">2.</span> Summary-1</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+项目的创建跟初始化:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">dotnet new mvc -o MvcMovie1
+<span style="color: #483d8b;">cd</span> MvcMovie1
+
+<span style="color: #b22222;">#</span><span style="color: #b22222;">dotnet tool install --global dotnet-ef --version 5.0.0</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0</span>
+dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.0
+
+code .
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Movie1.cs</span>
+
+dotnet-aspnet-codegenerator controller -name Movies1Controller -m Movie1 -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+<span style="color: #b22222;"># </span><span style="color: #b22222;">appsettings.json</span>
+
+dotnet ef migrations add FirstInit
+dotnet ef database update
+
+
+dotnet run
+dotnet watch run
+</pre>
+</div>
+
+<p>
+生成种子数据:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>1, "xx1", 123<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>2, "x2x1", 132<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>3, "xx31", 213<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>4, "x2x1", 13<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>5, "xxk1", 132<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>6, "xax1", 13<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>7, "xbx1", 23<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>8, "xxy1", 53<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>9, "xxz1", 923<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>10, "xx-1", 13<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>11, "x-x1", 123<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+进行相关修改:
+</p>
+<ol class="org-ol">
+<li>修改 _layout 文件</li>
+<li>重新对 Movies1Controller 里面的内容做调整</li>
+<li>对视图页面 (Views/*) 进行编辑</li>
+</ol>
+
+<p>
+添加字段:
+</p>
+<ol class="org-ol">
+<li>修改 Model, Url</li>
+<li><p>
+执行命令
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">dotnet ef migrations add AddUrlToMovie1
+dotnet ef database update
+</pre>
+</div></li>
+</ol>
+
+<p>
+添加一个 Controller:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Actor.cs</span>
+
+dotnet-aspnet-codegenerator controller -name ActorController -m Actor -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+
+dotnet ef migrations add AddModelActor
+dotnet ef database update
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgcd3a91b" class="outline-2">
+<h2 id="orgcd3a91b"><span class="section-number-2">3.</span> Su-2</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org5c0dab5" class="outline-3">
+<h3 id="org5c0dab5"><span class="section-number-3">3.1.</span> A 超链接</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+将请求的参数，携带到 QueryString 中发送到服务器:
+</p>
+<pre class="example">
+GET http://localhost:5001/comment/dolike?id=3
+GET http://localhost:5001/comment/dolike/3
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfd37282" class="outline-3">
+<h3 id="orgfd37282"><span class="section-number-3">3.2.</span> FORM 表单</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+使用 Form 标签 + Input 进行更多属性的 <b>交互式</b> 提交:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">GET /comment/dosave?x=1&amp;y=2&amp;z=3 </span><span style="color: #b22222;">--&gt;</span>
+
+<span style="color: #707183;">&lt;</span><span style="color: #0000ff;">form</span> <span style="color: #a0522d;">action</span>=<span style="color: #8b2252;">"/comment/dosave"</span> <span style="color: #a0522d;">method</span>=<span style="color: #8b2252;">"get"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">input</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"x"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"1"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">input</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"y"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"2"</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">input</span> <span style="color: #a0522d;">name</span>=<span style="color: #8b2252;">"z"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"3"</span> <span style="color: #a0522d;">type</span>=<span style="color: #8b2252;">"password/number/date"</span><span style="color: #707183;">&gt;</span>
+
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>&#25552;&#20132;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>
+      <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">input</span> <span style="color: #a0522d;">type</span>=<span style="color: #8b2252;">"submit"</span> <span style="color: #a0522d;">value</span>=<span style="color: #8b2252;">"&#25552;&#20132;"</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
+<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">form</span><span style="color: #707183;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org602e3da" class="outline-3">
+<h3 id="org602e3da"><span class="section-number-3">3.3.</span> [AJAX] XMLHttpRequest</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Asynchronous JavaScript and XML:
+</p>
+<ul class="org-ul">
+<li>异步</li>
+<li>局部刷新 (JS 操作 DOM 节点)</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">xhr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">XmlHttpRequest</span><span style="color: #707183;">()</span>;
+xhr.open<span style="color: #707183;">(</span><span style="color: #8b2252;">"get"</span>, <span style="color: #8b2252;">"http://localhost:5001/comment/dosave"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #a020f0;">var</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">UrlSearchParams</span><span style="color: #707183;">()</span>;
+d.append<span style="color: #707183;">(</span><span style="color: #8b2252;">"Comment.Author"</span>, <span style="color: #8b2252;">"lisi"</span><span style="color: #707183;">)</span>;
+d.append<span style="color: #707183;">(</span><span style="color: #8b2252;">"Comment.Content"</span>, <span style="color: #8b2252;">"xxxxx"</span><span style="color: #707183;">)</span>;
+xhr.send<span style="color: #707183;">(</span>d<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">//// </span><span style="color: #b22222;">&#36890;&#36807;&#20107;&#20214;&#65292;&#32465;&#23450;&#30456;&#20851;&#21160;&#20316;</span>
+xhr.onload = <span style="color: #707183;">(</span>x<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">{</span>
+    alert<span style="color: #7388d6;">(</span>x<span style="color: #7388d6;">)</span>;
+    window.location.refresh<span style="color: #7388d6;">()</span>;
+<span style="color: #707183;">}</span>;
+xhr.error = <span style="color: #707183;">(</span>err<span style="color: #707183;">)</span> =&gt;
+<span style="color: #707183;">{</span>
+    alert<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#20445;&#23384;&#22833;&#36133;!"</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-12-13</p>
+<p class="date">Created: 2021-12-23</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
