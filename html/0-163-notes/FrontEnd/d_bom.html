@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-20 -->
+<!-- 2021-12-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BOM (浏览器对象模型)</title>
@@ -42,21 +42,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5719728">1. 全局变量的问题</a></li>
-<li><a href="#org1098b41">2. alert/confirm/prompt 弹窗</a></li>
-<li><a href="#org80b9426">3. setTimeout/setInterval 计划任务</a></li>
-<li><a href="#org08f8ec4">4. window.open/close/moveTo 窗口控制</a></li>
-<li><a href="#org0d563e6">5. window.screen 获取显示器方面信息</a></li>
-<li><a href="#orgac25e65">6. window.navigator 获取浏览器基本信息</a></li>
-<li><a href="#org489d5ae">7. window.history 浏览历史</a></li>
-<li><a href="#org0e7828e">8. window.location 页面 URL</a></li>
+<li><a href="#org38b6c26">1. 全局变量的问题</a></li>
+<li><a href="#orgb7c3458">2. alert/confirm/prompt 弹窗</a></li>
+<li><a href="#orgbe9448e">3. setTimeout/setInterval 计划任务</a></li>
+<li><a href="#org1a14f52">4. window.open/close/moveTo 窗口控制</a></li>
+<li><a href="#orgbb1edd5">5. window.screen 获取显示器方面信息</a></li>
+<li><a href="#org863e015">6. window.navigator 获取浏览器基本信息</a></li>
+<li><a href="#org5e3a1ff">7. window.history 浏览历史</a></li>
+<li><a href="#orgef63b99">8. window.location 页面 URL</a></li>
 </ul>
 </div>
 </nav>
 
 
-<section id="outline-container-org5719728" class="outline-2">
-<h2 id="org5719728"><span class="section-number-2">1.</span> 全局变量的问题</h2>
+<section id="outline-container-org38b6c26" class="outline-2">
+<h2 id="org38b6c26"><span class="section-number-2">1.</span> 全局变量的问题</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#25152;&#26377;&#30340;&#20840;&#23616;&#21464;&#37327;</span>
@@ -94,8 +94,8 @@ window.open<span style="color: #707183;">(</span><span style="color: #8b2252;">'
 </div>
 </section>
 
-<section id="outline-container-org1098b41" class="outline-2">
-<h2 id="org1098b41"><span class="section-number-2">2.</span> alert/confirm/prompt 弹窗</h2>
+<section id="outline-container-orgb7c3458" class="outline-2">
+<h2 id="orgb7c3458"><span class="section-number-2">2.</span> alert/confirm/prompt 弹窗</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 尽量少用。
@@ -158,8 +158,8 @@ console.log<span style="color: #707183;">(</span>tom<span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-org80b9426" class="outline-2">
-<h2 id="org80b9426"><span class="section-number-2">3.</span> setTimeout/setInterval 计划任务</h2>
+<section id="outline-container-orgbe9448e" class="outline-2">
+<h2 id="orgbe9448e"><span class="section-number-2">3.</span> setTimeout/setInterval 计划任务</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 计时器、秒表。
@@ -214,8 +214,8 @@ clearInterval<span style="color: #707183;">(</span>a<span style="color: #707183;
 </div>
 </div>
 </section>
-<section id="outline-container-org08f8ec4" class="outline-2">
-<h2 id="org08f8ec4"><span class="section-number-2">4.</span> window.open/close/moveTo 窗口控制</h2>
+<section id="outline-container-org1a14f52" class="outline-2">
+<h2 id="org1a14f52"><span class="section-number-2">4.</span> window.open/close/moveTo 窗口控制</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 打开、关闭、移动:
@@ -235,8 +235,8 @@ window.close<span style="color: #707183;">()</span>;
 </div>
 </section>
 
-<section id="outline-container-org0d563e6" class="outline-2">
-<h2 id="org0d563e6"><span class="section-number-2">5.</span> window.screen 获取显示器方面信息</h2>
+<section id="outline-container-orgbb1edd5" class="outline-2">
+<h2 id="orgbb1edd5"><span class="section-number-2">5.</span> window.screen 获取显示器方面信息</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 只是提供了一些，跟显示器相关的参数。
@@ -256,11 +256,11 @@ window.screen.height;
 </div>
 </section>
 
-<section id="outline-container-orgac25e65" class="outline-2">
-<h2 id="orgac25e65"><span class="section-number-2">6.</span> window.navigator 获取浏览器基本信息</h2>
+<section id="outline-container-org863e015" class="outline-2">
+<h2 id="org863e015"><span class="section-number-2">6.</span> window.navigator 获取浏览器基本信息</h2>
 </section>
-<section id="outline-container-org489d5ae" class="outline-2">
-<h2 id="org489d5ae"><span class="section-number-2">7.</span> window.history 浏览历史</h2>
+<section id="outline-container-org5e3a1ff" class="outline-2">
+<h2 id="org5e3a1ff"><span class="section-number-2">7.</span> window.history 浏览历史</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 控制浏览器的浏览历史，前进或者后退:
@@ -296,8 +296,8 @@ setTimeout<span style="color: #707183;">(</span><span style="color: #a020f0;">fu
 </div>
 </section>
 
-<section id="outline-container-org0e7828e" class="outline-2">
-<h2 id="org0e7828e"><span class="section-number-2">8.</span> window.location 页面 URL</h2>
+<section id="outline-container-orgef63b99" class="outline-2">
+<h2 id="orgef63b99"><span class="section-number-2">8.</span> window.location 页面 URL</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 身份证:
@@ -349,7 +349,7 @@ location.href = <span style="color: #8b2252;">'http://baidu.com'</span>; <span s
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-20</p>
+<p class="date">Created: 2021-12-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

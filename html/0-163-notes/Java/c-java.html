@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-20 -->
+<!-- 2021-12-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java 基础</title>
@@ -54,32 +54,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd3b3350">1. JDK vs JRE</a></li>
-<li><a href="#org2d6b9a5">2. javac/java 命令</a></li>
-<li><a href="#orgf25cb3f">3. 三目运算符</a></li>
-<li><a href="#org9e7e0a8">4. 类/接口/抽象类</a>
+<li><a href="#org82e34c3">1. JDK vs JRE</a></li>
+<li><a href="#org53d1f8f">2. javac/java 命令</a></li>
+<li><a href="#org3741e30">3. 三目运算符</a></li>
+<li><a href="#org4661282">4. 类/接口/抽象类</a>
 <ul>
-<li><a href="#orgf4f034e">4.1. 类 (class)</a></li>
-<li><a href="#orgaaa0061">4.2. 接口 (interface)</a></li>
-<li><a href="#org25a761d">4.3. 抽象类 (abstract class)</a></li>
+<li><a href="#orgfe63bdf">4.1. 类 (class)</a></li>
+<li><a href="#orgd473d62">4.2. 接口 (interface)</a></li>
+<li><a href="#org257dafe">4.3. 抽象类 (abstract class)</a></li>
 </ul>
 </li>
-<li><a href="#org261927e">5. File/Path 文件</a></li>
-<li><a href="#org0c434a3">6. Input/Output Stream 流</a></li>
-<li><a href="#org772ca63">7. Exception 异常</a>
+<li><a href="#org0f94aaf">5. File/Path 文件</a></li>
+<li><a href="#orgdec85ee">6. Input/Output Stream 流</a></li>
+<li><a href="#org9ca9bb8">7. Exception 异常</a>
 <ul>
-<li><a href="#org9b45829">7.1. 例子</a></li>
-<li><a href="#org86fe2c6">7.2. 异常类</a></li>
-<li><a href="#org7647aaf">7.3. 异常的处理</a>
+<li><a href="#org02e5e9b">7.1. 例子</a></li>
+<li><a href="#org1805acc">7.2. 异常类</a></li>
+<li><a href="#orga3d7dff">7.3. 异常的处理</a>
 <ul>
-<li><a href="#orga5aba26">7.3.1. 甩手掌柜 (throws)</a></li>
-<li><a href="#orgd9c6923">7.3.2. 亲手给予方案 (try&#x2026;catch&#x2026;catch&#x2026;finally)</a></li>
-<li><a href="#orgf3d8e2b">7.3.3. 将上面的两种结合起来</a></li>
+<li><a href="#org17ddc66">7.3.1. 甩手掌柜 (throws)</a></li>
+<li><a href="#orga778350">7.3.2. 亲手给予方案 (try&#x2026;catch&#x2026;catch&#x2026;finally)</a></li>
+<li><a href="#org176f672">7.3.3. 将上面的两种结合起来</a></li>
 </ul>
 </li>
-<li><a href="#org990125b">7.4. 手动创建并抛出异常 (throw)</a></li>
-<li><a href="#org0e133b2">7.5. JDK7 推出的 Try-With-Resource</a></li>
-<li><a href="#org901e6b7">7.6. 空指针异常 (NullPointerException)</a></li>
+<li><a href="#org12afc84">7.4. 手动创建并抛出异常 (throw)</a></li>
+<li><a href="#org0539b39">7.5. JDK7 推出的 Try-With-Resource</a></li>
+<li><a href="#org0f3abd4">7.6. 空指针异常 (NullPointerException)</a></li>
 </ul>
 </li>
 </ul>
@@ -88,15 +88,15 @@
 
 
 
-<section id="outline-container-orgd3b3350" class="outline-2">
-<h2 id="orgd3b3350"><span class="section-number-2">1.</span> JDK vs JRE</h2>
+<section id="outline-container-org82e34c3" class="outline-2">
+<h2 id="org82e34c3"><span class="section-number-2">1.</span> JDK vs JRE</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 JDK:
 </p>
 <ul class="org-ul">
 <li>Java Develop Kit，开发包</li>
-<li>面对的是 <b>开发人员</b>，比较大</li>
+<li>面对的是 *开发人员*，比较大</li>
 <li>包含将一个 xxx.java 文件编译成 xxx.class 文件相关的一些组件跟命令</li>
 <li>包含生成相关文档的一些工具或命令</li>
 <li>包含一些跟调试相关的工具和命令</li>
@@ -108,7 +108,7 @@ JRE:
 </p>
 <ul class="org-ul">
 <li>Java Runtime Environment，运行环境</li>
-<li>面对的是普通的 <b>用户</b>，相对来说，很精简</li>
+<li>面对的是普通的 *用户*，相对来说，很精简</li>
 <li>是 Java 程序能在操作系统中运行起来的 <b>必备</b> 软件</li>
 <li>它的最主要组成部分就是 JVM (Java Virtual Machine)</li>
 <li>还包含一些跟运行相关的工具</li>
@@ -120,8 +120,8 @@ JRE:
 </div>
 </section>
 
-<section id="outline-container-org2d6b9a5" class="outline-2">
-<h2 id="org2d6b9a5"><span class="section-number-2">2.</span> javac/java 命令</h2>
+<section id="outline-container-org53d1f8f" class="outline-2">
+<h2 id="org53d1f8f"><span class="section-number-2">2.</span> javac/java 命令</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>安装完 JRE 后，得到的一个重要的命令是 java;</li>
@@ -134,7 +134,7 @@ JRE:
 <div class="org-src-container">
 <pre class="src src-bat">javac E:\xxx\yyy\A.java
 
-<span style="color: #b22222;">REM </span><span style="color: #b22222;">&#25110;</span>
+REM &#25110;
 <span style="color: #483d8b;">cd</span> E:\xxx\yyy
 javac A.java
 </pre>
@@ -161,7 +161,7 @@ java A
 </div>
 
 <p>
-另外，<code>javac</code> 还可以跟不同的参数，通过参数控制编译细节:
+另外，~javac~ 还可以跟不同的参数，通过参数控制编译细节:
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">javac -encoding utf-8 A.java   <span style="color: #b22222;"># </span><span style="color: #b22222;">&#25351;&#23450;&#20351;&#29992; utf-8 &#30340;&#26684;&#24335;&#36827;&#34892;&#32534;&#35793;&#12290;&#22914;&#26524; Win &#19979;&#20986;&#29616;&#20081;&#30721;&#21487;&#33021;&#38656;&#35201;&#21152;&#36825;&#21477;</span>
@@ -222,8 +222,8 @@ java com.nf.Study
 </div>
 </section>
 
-<section id="outline-container-orgf25cb3f" class="outline-2">
-<h2 id="orgf25cb3f"><span class="section-number-2">3.</span> 三目运算符</h2>
+<section id="outline-container-org3741e30" class="outline-2">
+<h2 id="org3741e30"><span class="section-number-2">3.</span> 三目运算符</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Test</span> <span style="color: #707183;">{</span>
@@ -250,12 +250,12 @@ short than 10
 </div>
 </section>
 
-<section id="outline-container-org9e7e0a8" class="outline-2">
-<h2 id="org9e7e0a8"><span class="section-number-2">4.</span> 类/接口/抽象类</h2>
+<section id="outline-container-org4661282" class="outline-2">
+<h2 id="org4661282"><span class="section-number-2">4.</span> 类/接口/抽象类</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgf4f034e" class="outline-3">
-<h3 id="orgf4f034e"><span class="section-number-3">4.1.</span> 类 (class)</h3>
+<div id="outline-container-orgfe63bdf" class="outline-3">
+<h3 id="orgfe63bdf"><span class="section-number-3">4.1.</span> 类 (class)</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 类是一种类似菜谱的东西，它描述了构建一个对象 (菜) 需要的数据 (材料) 和行为 (步骤)。
@@ -297,16 +297,16 @@ caipu.chi<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-orgaaa0061" class="outline-3">
-<h3 id="orgaaa0061"><span class="section-number-3">4.2.</span> 接口 (interface)</h3>
+<div id="outline-container-orgd473d62" class="outline-3">
+<h3 id="orgd473d62"><span class="section-number-3">4.2.</span> 接口 (interface)</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
-接口是一种 <b>特殊的类</b>，它里面的所有方法，都只有声明，没有实现。
+接口是一种 *特殊的类*，它里面的所有方法，都只有声明，没有实现。
 </p>
 
 <p>
 它主要的存在目的，就是为了制定规则，好让实现它的人能够按照规则做事。
-所以，在某些语言中，接口又被称作 <b>合同</b>。
+所以，在某些语言中，接口又被称作 *合同*。
 </p>
 
 <div class="org-src-container">
@@ -361,8 +361,8 @@ caipu.chi<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org25a761d" class="outline-3">
-<h3 id="org25a761d"><span class="section-number-3">4.3.</span> 抽象类 (abstract class)</h3>
+<div id="outline-container-org257dafe" class="outline-3">
+<h3 id="org257dafe"><span class="section-number-3">4.3.</span> 抽象类 (abstract class)</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 是对接口的部分实现，或者包含部分没有实现逻辑的类。
@@ -404,8 +404,8 @@ caipu.chi<span style="color: #707183;">()</span>;
 </div>
 </section>
 
-<section id="outline-container-org261927e" class="outline-2">
-<h2 id="org261927e"><span class="section-number-2">5.</span> File/Path 文件</h2>
+<section id="outline-container-org0f94aaf" class="outline-2">
+<h2 id="org0f94aaf"><span class="section-number-2">5.</span> File/Path 文件</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 都是用来处理文件系统中的文件。
@@ -433,8 +433,8 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </section>
 
-<section id="outline-container-org0c434a3" class="outline-2">
-<h2 id="org0c434a3"><span class="section-number-2">6.</span> Input/Output Stream 流</h2>
+<section id="outline-container-orgdec85ee" class="outline-2">
+<h2 id="orgdec85ee"><span class="section-number-2">6.</span> Input/Output Stream 流</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 输入、输出。
@@ -442,12 +442,12 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </section>
 
-<section id="outline-container-org772ca63" class="outline-2">
-<h2 id="org772ca63"><span class="section-number-2">7.</span> Exception 异常</h2>
+<section id="outline-container-org9ca9bb8" class="outline-2">
+<h2 id="org9ca9bb8"><span class="section-number-2">7.</span> Exception 异常</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org9b45829" class="outline-3">
-<h3 id="org9b45829"><span class="section-number-3">7.1.</span> 例子</h3>
+<div id="outline-container-org02e5e9b" class="outline-3">
+<h3 id="org02e5e9b"><span class="section-number-3">7.1.</span> 例子</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>可以预见的一些超乎正常的逻辑</li>
@@ -476,11 +476,11 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org86fe2c6" class="outline-3">
-<h3 id="org86fe2c6"><span class="section-number-3">7.2.</span> 异常类</h3>
+<div id="outline-container-org1805acc" class="outline-3">
+<h3 id="org1805acc"><span class="section-number-3">7.2.</span> 异常类</h3>
 <div class="outline-text-3" id="text-7-2">
 
-<figure id="orgbca3b3e">
+<figure id="org6a450ef">
 <img src="img/java-exception-1.png" alt="java-exception-1.png">
 
 </figure>
@@ -500,12 +500,12 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org7647aaf" class="outline-3">
-<h3 id="org7647aaf"><span class="section-number-3">7.3.</span> 异常的处理</h3>
+<div id="outline-container-orga3d7dff" class="outline-3">
+<h3 id="orga3d7dff"><span class="section-number-3">7.3.</span> 异常的处理</h3>
 <div class="outline-text-3" id="text-7-3">
 </div>
-<div id="outline-container-orga5aba26" class="outline-4">
-<h4 id="orga5aba26"><span class="section-number-4">7.3.1.</span> 甩手掌柜 (throws)</h4>
+<div id="outline-container-org17ddc66" class="outline-4">
+<h4 id="org17ddc66"><span class="section-number-4">7.3.1.</span> 甩手掌柜 (throws)</h4>
 <div class="outline-text-4" id="text-7-3-1">
 <p>
 在方法的上面，加上 throws Exception 用来将异常甩锅给调用它的方法。
@@ -529,8 +529,8 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-orgd9c6923" class="outline-4">
-<h4 id="orgd9c6923"><span class="section-number-4">7.3.2.</span> 亲手给予方案 (try&#x2026;catch&#x2026;catch&#x2026;finally)</h4>
+<div id="outline-container-orga778350" class="outline-4">
+<h4 id="orga778350"><span class="section-number-4">7.3.2.</span> 亲手给予方案 (try&#x2026;catch&#x2026;catch&#x2026;finally)</h4>
 <div class="outline-text-4" id="text-7-3-2">
 <p>
 亲力亲为，使用 try..catch..finally 进行捕获处理:
@@ -560,8 +560,8 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-orgf3d8e2b" class="outline-4">
-<h4 id="orgf3d8e2b"><span class="section-number-4">7.3.3.</span> 将上面的两种结合起来</h4>
+<div id="outline-container-org176f672" class="outline-4">
+<h4 id="org176f672"><span class="section-number-4">7.3.3.</span> 将上面的两种结合起来</h4>
 <div class="outline-text-4" id="text-7-3-3">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">ExceptionDemo</span> <span style="color: #707183;">{</span>
@@ -587,8 +587,8 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org990125b" class="outline-3">
-<h3 id="org990125b"><span class="section-number-3">7.4.</span> 手动创建并抛出异常 (throw)</h3>
+<div id="outline-container-org12afc84" class="outline-3">
+<h3 id="org12afc84"><span class="section-number-3">7.4.</span> 手动创建并抛出异常 (throw)</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 什么是不正常的情况？我们可以自定义。
@@ -617,8 +617,8 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org0e133b2" class="outline-3">
-<h3 id="org0e133b2"><span class="section-number-3">7.5.</span> JDK7 推出的 Try-With-Resource</h3>
+<div id="outline-container-org0539b39" class="outline-3">
+<h3 id="org0539b39"><span class="section-number-3">7.5.</span> JDK7 推出的 Try-With-Resource</h3>
 <div class="outline-text-3" id="text-7-5">
 
 <div  class='mc11'>
@@ -680,8 +680,8 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org901e6b7" class="outline-3">
-<h3 id="org901e6b7"><span class="section-number-3">7.6.</span> 空指针异常 (NullPointerException)</h3>
+<div id="outline-container-org0f3abd4" class="outline-3">
+<h3 id="org0f3abd4"><span class="section-number-3">7.6.</span> 空指针异常 (NullPointerException)</h3>
 <div class="outline-text-3" id="text-7-6">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #a020f0;">protected</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">service</span><span style="color: #707183;">(</span><span style="color: #228b22;">HttpServletRequest</span> <span style="color: #a0522d;">req</span>, <span style="color: #228b22;">HttpServletResponse</span> <span style="color: #a0522d;">resp</span><span style="color: #707183;">)</span> <span style="color: #a020f0;">throws</span> <span style="color: #228b22;">ServletException</span>, <span style="color: #228b22;">IOException</span> <span style="color: #707183;">{</span>
@@ -699,7 +699,7 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="org0fb7bfd">
+<figure id="orgbf1b6e6">
 <img src="img/null-pointer-exception.png" alt="null-pointer-exception.png">
 
 </figure>
@@ -709,7 +709,7 @@ Files.copy/delete/createXxx/readXxx<span style="color: #707183;">()</span>;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-20</p>
+<p class="date">Created: 2021-12-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

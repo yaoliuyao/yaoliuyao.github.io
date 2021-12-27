@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-13 -->
+<!-- 2021-12-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C♯</title>
@@ -13,6 +13,26 @@
 <script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 <script src='/html/asset/common.js'></script>
 <script src='/yaoliuyao/html/asset/common.js'></script>
+
+<style>
+ /* From: https://endlessparentheses.com/public/css/endless.css */
+ .special-kbd {
+   color: #333;
+   background-color: #f7f7f7;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+   display: inline-block;
+   font-family: 'Droid Sans Mono', monospace;
+   font-size: 80%;
+   font-weight: normal;
+   line-height: inherit;
+   margin: 2px .1em;
+   padding: .04em .4em;
+   text-shadow: 0 1px 0 #fff;
+   word-spacing: -3px;
+ }
+</style>
 </head>
 <body>
 <div id="content">
@@ -22,452 +42,452 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org180db5a">1. 历史</a></li>
-<li><a href="#org5adcc5f">2. [语言与类型]</a>
+<li><a href="#org704f4fb">1. 历史</a></li>
+<li><a href="#org215ec81">2. [语言与类型]</a>
 <ul>
-<li><a href="#org1e189b5">2.1. Main</a></li>
-<li><a href="#org92c9241">2.2. 命名空间</a>
+<li><a href="#org2c530ae">2.1. Main</a></li>
+<li><a href="#org74d778d">2.2. 命名空间</a>
 <ul>
-<li><a href="#orgd76c17b">2.2.1. 使用</a></li>
-<li><a href="#org1184149">2.2.2. 定义</a></li>
-<li><a href="#org82ff726">2.2.3. BCL/System</a></li>
+<li><a href="#org4a747a5">2.2.1. 使用</a></li>
+<li><a href="#org35cdcbe">2.2.2. 定义</a></li>
+<li><a href="#org2075c98">2.2.3. BCL/System</a></li>
 </ul>
 </li>
-<li><a href="#org8541a93">2.3. 模板 vs 实例</a></li>
-<li><a href="#org298bedc">2.4. 值类型 vs 引用类型</a></li>
+<li><a href="#org303539c">2.3. 模板 vs 实例</a></li>
+<li><a href="#org82a47e3">2.4. 值类型 vs 引用类型</a></li>
 </ul>
 </li>
-<li><a href="#org0d4856b">3. 预定义数值类型</a>
+<li><a href="#org0559329">3. 预定义数值类型</a>
 <ul>
-<li><a href="#org070482f">3.1. 整数</a></li>
-<li><a href="#org2999e61">3.2. 浮点数</a></li>
-<li><a href="#org4bd6aa8">3.3. Literate (字面量表达)</a></li>
+<li><a href="#org63d2929">3.1. 整数</a></li>
+<li><a href="#orgd900280">3.2. 浮点数</a></li>
+<li><a href="#org176c74c">3.3. Literate (字面量表达)</a></li>
 </ul>
 </li>
-<li><a href="#org41134c7">4. 预定义/非数值·值类型</a>
+<li><a href="#org119130a">4. 预定义/非数值·值类型</a>
 <ul>
-<li><a href="#org0128cb5">4.1. 字符类型 (char)</a></li>
-<li><a href="#org0563621">4.2. 布尔类型 (bool)</a>
+<li><a href="#org0f543da">4.1. 字符类型 (char)</a></li>
+<li><a href="#org6d49662">4.2. 布尔类型 (bool)</a>
 <ul>
-<li><a href="#org2553d56">4.2.1. [条件分支] 在某种条件之下，做某件事</a></li>
-<li><a href="#org5f55cf7">4.2.2. [循环迭代] 重复做某件事</a></li>
-<li><a href="#org4e236df">4.2.3. 语句 (Statement) vs 表达式 (Expression)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgcd1bce4">5. 预定义/非数值·引用类型</a>
-<ul>
-<li><a href="#org7686c83">5.1. string</a>
-<ul>
-<li><a href="#org1fb4758">5.1.1. 字符串的初始化</a></li>
-<li><a href="#org5e18494">5.1.2. 字符串的不可变性 (Immutable)</a>
-<ul>
-<li><a href="#org7925c0f">5.1.2.1. what &amp; why</a></li>
-<li><a href="#orgef53295">5.1.2.2. System.Text.StringBuilder</a></li>
-<li><a href="#orgb9c3bc1">5.1.2.3. String Intern Pool (字符串池)</a></li>
-</ul>
-</li>
-<li><a href="#org5bc7f62">5.1.3. [API] 基本操作</a></li>
-<li><a href="#org35d3e55">5.1.4. [API] 拼接 + 格式化</a></li>
-<li><a href="#orgdd497b0">5.1.5. [API] 子字符串</a></li>
-<li><a href="#orgb47b856">5.1.6. [API] 字符串的修改</a></li>
-<li><a href="#orge6669b1">5.1.7. [API] String 跟 Array 的转换</a></li>
-</ul>
-</li>
-<li><a href="#org0500176">5.2. object</a></li>
-<li><a href="#orgc220dcb">5.3. dynamic</a></li>
-</ul>
-</li>
-<li><a href="#org2f0b103">6. 用户自定义类型</a>
-<ul>
-<li><a href="#orgf6aeed0">6.1. class</a></li>
-<li><a href="#orgbc65562">6.2. interface</a></li>
-<li><a href="#org9dd0672">6.3. delegate</a></li>
-<li><a href="#org1b52cca">6.4. array</a></li>
-<li><a href="#org5df569b">6.5. struct</a></li>
-<li><a href="#org601c4c7">6.6. enum</a></li>
-</ul>
-</li>
-<li><a href="#orgf98ccd2">7. 类型转换</a>
-<ul>
-<li><a href="#org369825e">7.1. 隐式转换/强制转换</a></li>
-<li><a href="#orga71252b">7.2. 引用类型的隐式和强制转换</a></li>
-<li><a href="#org4c42ddc">7.3. 装箱/拆箱 (auto-boxing)</a></li>
-<li><a href="#orgf6e51e1">7.4. 自定义转换规则</a></li>
-<li><a href="#org07394f5">7.5. 基于 <b>字符串</b> 之间的互相转换</a>
-<ul>
-<li><a href="#orgc241043">7.5.1. string.Format</a></li>
-<li><a href="#org6fe4451">7.5.2. type.ToString</a></li>
-<li><a href="#org23edc9b">7.5.3. type.Parse/TryParse</a></li>
-<li><a href="#orgb81e480">7.5.4. Convert</a></li>
+<li><a href="#org6292f00">4.2.1. [条件分支] 在某种条件之下，做某件事</a></li>
+<li><a href="#orgd14fa0c">4.2.2. [循环迭代] 重复做某件事</a></li>
+<li><a href="#org6252d1e">4.2.3. 语句 (Statement) vs 表达式 (Expression)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org13746ef">8. 类 (Class)</a>
+<li><a href="#org2a0ed18">5. 预定义/非数值·引用类型</a>
 <ul>
-<li><a href="#orgf6ff4e3">8.1. 字段 (Field)</a></li>
-<li><a href="#org9cf6316">8.2. 方法 (Method)</a>
+<li><a href="#orge4dda6d">5.1. string</a>
 <ul>
-<li><a href="#org5653709">8.2.1. Basic</a></li>
-<li><a href="#orgb851b88">8.2.2. 方法的重载 (overload)</a></li>
-<li><a href="#org09ee730">8.2.3. 参数 (值参数/ref/out)</a></li>
-<li><a href="#orged69853">8.2.4. out 参数: 用来模拟方法返回多个值的场景</a></li>
-<li><a href="#orgec3795c">8.2.5. 数组参数 (params)</a></li>
-<li><a href="#orgc978e8a">8.2.6. 可选参数/命名参数</a></li>
+<li><a href="#orgea1a0e9">5.1.1. 字符串的初始化</a></li>
+<li><a href="#orga509b0c">5.1.2. 字符串的不可变性 (Immutable)</a>
+<ul>
+<li><a href="#org2e66dd9">5.1.2.1. what &amp; why</a></li>
+<li><a href="#org3d244a1">5.1.2.2. System.Text.StringBuilder</a></li>
+<li><a href="#orga3eea77">5.1.2.3. String Intern Pool (字符串池)</a></li>
 </ul>
 </li>
-<li><a href="#org8fb54bd">8.3. 属性 (Property)</a></li>
-<li><a href="#org31705c7">8.4. 索引器 (Indexer)</a></li>
-<li><a href="#org9981571">8.5. 构造方法/构造器 (Constructor)</a>
-<ul>
-<li><a href="#org3ec5c60">8.5.1. 对象的实例化</a></li>
-<li><a href="#orgcd7a5ea">8.5.2. 构造器</a></li>
-<li><a href="#org841d721">8.5.3. 构造器链</a></li>
-<li><a href="#org25cebcf">8.5.4. 静态构造器</a></li>
+<li><a href="#org8bd5cd4">5.1.3. [API] 基本操作</a></li>
+<li><a href="#org902e17f">5.1.4. [API] 拼接 + 格式化</a></li>
+<li><a href="#org330335b">5.1.5. [API] 子字符串</a></li>
+<li><a href="#orgebb94db">5.1.6. [API] 字符串的修改</a></li>
+<li><a href="#orgb13cd6e">5.1.7. [API] String 跟 Array 的转换</a></li>
 </ul>
 </li>
-<li><a href="#org62bbebf">8.6. 析构方法/析构器 (Deconstructor)</a></li>
-<li><a href="#orgfa159ce">8.7. 静态方法 (Static)</a></li>
-<li><a href="#org364c727">8.8. 将数据设置为不变的 (const/readonly)</a></li>
-<li><a href="#org6d7baba">8.9. 继承 (Inheritance)</a>
-<ul>
-<li><a href="#org97dd11c">8.9.1. 虚方法 (virtual/override)</a></li>
-<li><a href="#org12bc391">8.9.2. 抽象方法 (abstract)</a></li>
+<li><a href="#orgf40a769">5.2. object</a></li>
+<li><a href="#orgebd8ec8">5.3. dynamic</a></li>
 </ul>
 </li>
-<li><a href="#org5a5a1dd">8.10. 多态 (Polymorphism)</a></li>
-<li><a href="#org89daf1e">8.11. 静态类/static</a></li>
-<li><a href="#org668ec2f">8.12. 密封类/sealed</a></li>
-<li><a href="#org0aa2e60">8.13. 分部类/partial</a></li>
-<li><a href="#orgd68a159">8.14. 基类 Object</a>
+<li><a href="#org710620e">6. 用户自定义类型</a>
 <ul>
-<li><a href="#org6899a12">8.14.1. ToString</a></li>
+<li><a href="#orgecf4b54">6.1. class</a></li>
+<li><a href="#orgdf476f3">6.2. interface</a></li>
+<li><a href="#org29671bb">6.3. delegate</a></li>
+<li><a href="#org7a80d08">6.4. array</a></li>
+<li><a href="#org434b62c">6.5. struct</a></li>
+<li><a href="#org5842d62">6.6. enum</a></li>
 </ul>
 </li>
-<li><a href="#orgb9cf844">8.15. 类的扩展机制</a></li>
-</ul>
-</li>
-<li><a href="#orgfda2215">9. 接口 (Interface)</a>
+<li><a href="#org6672eb9">7. 类型转换</a>
 <ul>
-<li><a href="#org1599161">9.1. IComparable 接口使用示例</a></li>
-</ul>
-</li>
-<li><a href="#org4938218">10. 结构体 (Struct)</a></li>
-<li><a href="#org7a10a32">11. 枚举 (Enum)</a>
+<li><a href="#orgb9ed1b3">7.1. 隐式转换/强制转换</a></li>
+<li><a href="#orgb6d106f">7.2. 引用类型的隐式和强制转换</a></li>
+<li><a href="#org247f02f">7.3. 装箱/拆箱 (auto-boxing)</a></li>
+<li><a href="#org273cc98">7.4. 自定义转换规则</a></li>
+<li><a href="#org23dcc37">7.5. 基于 <b>字符串</b> 之间的互相转换</a>
 <ul>
-<li><a href="#org2b04676">11.1. 基本使用</a></li>
-<li><a href="#org40e776a">11.2. Flags (TODO)</a></li>
-<li><a href="#org961cd86">11.3. 基本 API</a></li>
-</ul>
-</li>
-<li><a href="#org3641f93">12. 委托 (Delegate)</a>
-<ul>
-<li><a href="#orga9786eb">12.1. 写一个方法 MyAdd ，求取 <b>若干数</b> 的和</a>
-<ul>
-<li><a href="#orgb0a16c3">12.1.1. 原始写法</a></li>
-<li><a href="#org01917d6">12.1.2. 通过一个 Flag 来通知 MyAdd 要去调用什么逻辑</a></li>
-<li><a href="#org1b1f6e4">12.1.3. 没有中间商赚差价，借助类和接口的方式，传递不同的方法</a></li>
-<li><a href="#orgd1deb5f">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
-</ul>
-</li>
-<li><a href="#org5006c1e">12.2. 基本语法</a></li>
-<li><a href="#org67327b1">12.3. 匿名委托</a></li>
-<li><a href="#orgcc08c59">12.4. 表达式语法</a></li>
-<li><a href="#org8334416">12.5. 内建的委托类型 Action/Func</a></li>
-<li><a href="#orga4ff6bb">12.6. 多播委托</a></li>
-<li><a href="#org57350ae">12.7. [练习] 如何简化图片绘制的代码</a></li>
-<li><a href="#orgd9776d6">12.8. [练习] 如何简化输出程序执行时间的逻辑</a></li>
-</ul>
-</li>
-<li><a href="#org389acba">13. 数组 (Array)</a>
-<ul>
-<li><a href="#org18a4431">13.1. 一维数组</a></li>
-<li><a href="#orgc354add">13.2. 多维数组 (Dimensional Array)</a></li>
-<li><a href="#orgcf3152a">13.3. 交错数组 (Jagged Array)</a></li>
-</ul>
-</li>
-<li><a href="#orge803e1f">14. 元组 (Tuple/ValueTuple)</a></li>
-<li><a href="#orgbc0cfd8">15. 集合 (Collections)</a>
-<ul>
-<li><a href="#org706c1d9">15.1. System.Collections</a>
-<ul>
-<li><a href="#orgbaafb74">15.1.1. ArrayList</a></li>
-<li><a href="#orga663854">15.1.2. Hashtable</a></li>
-<li><a href="#org9292458">15.1.3. Queue</a></li>
-<li><a href="#orgeb0fdc7">15.1.4. Stack</a></li>
-<li><a href="#orgf4b3a90">15.1.5. SortedList/BitArray</a></li>
-</ul>
-</li>
-<li><a href="#org66219f7">15.2. System.Collections.Generic</a>
-<ul>
-<li><a href="#org020b5d4">15.2.1. List&lt;T&gt;</a></li>
-<li><a href="#orgefbc16c">15.2.2. Dictionary&lt;TKey, TValue&gt;</a></li>
-<li><a href="#org694aefc">15.2.3. Queue&lt;T&gt;</a></li>
-<li><a href="#orge3ce9c7">15.2.4. Stack&lt;T&gt;</a></li>
-<li><a href="#orga720bd6">15.2.5. LinkedList&lt;T&gt;</a></li>
-<li><a href="#orged0d2eb">15.2.6. HashSet&lt;T&gt;</a></li>
-<li><a href="#org2187dd1">15.2.7. SortedList/Set/Dictionary&lt;&gt;</a></li>
-</ul>
-</li>
-<li><a href="#org977a8d0">15.3. System.Collections.Immutable</a></li>
-</ul>
-</li>
-<li><a href="#orgca7a4d7">16. IEnumerable/Linq</a>
-<ul>
-<li><a href="#orgf2c21b8">16.1. IEnumerable/IEnumerator/foreach</a></li>
-<li><a href="#orgc5c5c4a">16.2. Iterator</a></li>
-<li><a href="#org3d8c6a6">16.3. Linq</a>
-<ul>
-<li><a href="#org590211f">16.3.1. Method Syntax</a></li>
-<li><a href="#org6a927d0">16.3.2. Query Syntax/Expression</a></li>
-</ul>
-</li>
-<li><a href="#org2cdffd7">16.4. Linq to XML</a></li>
-</ul>
-</li>
-<li><a href="#org2296731">17. 泛型 (Generic)</a>
-<ul>
-<li><a href="#org566ea8d">17.1. 方法泛型</a></li>
-</ul>
-</li>
-<li><a href="#org2e684c7">18. 事件 (Event)</a>
-<ul>
-<li><a href="#orgc7107ae">18.1. 如果使用一般的写法</a></li>
-<li><a href="#orge6cdb74">18.2. 上述的写法虽然没有错误，但是存在一些问题</a></li>
-<li><a href="#orgaa13c54">18.3. 上述代码虽然简洁了，但是条件和最后要执行的逻辑写在一起，耦合度太大</a></li>
-<li><a href="#org8b0b93a">18.4. 接下来，可以将第一段代码单独抽出来，作为单独的 Publisher，从而实现更好的分离</a></li>
-<li><a href="#org3146135">18.5. 通过上述实现，我们可以看到事件是通过委托实现的，但还是有些缺点</a></li>
-<li><a href="#orga8b562e">18.6. 接下来，要考虑的是，能不能在事件触发的时候，传递一些参数</a></li>
-</ul>
-</li>
-<li><a href="#org57ddd9c">19. 异常 (Exception)</a>
-<ul>
-<li><a href="#orgf2d9755">19.1. 传统方式</a></li>
-<li><a href="#org007f231">19.2. 通过 Exception 提供 <b>解耦合</b> 的处理方式</a></li>
-<li><a href="#org572cb08">19.3. 异常的嵌套，以及 finally</a></li>
-</ul>
-</li>
-<li><a href="#orgd668c08">20. 反射和特性 (Reflection/Attribute)</a>
-<ul>
-<li><a href="#orgdbd226b">20.1. 反射 (Reflection)</a></li>
-<li><a href="#org7b4e1c9">20.2. [例子] ToModelList</a></li>
-<li><a href="#org9403e78">20.3. 特性 (Attribute)</a>
-<ul>
-<li><a href="#orgd0b5d07">20.3.1. 特性就是一个普通的类</a></li>
-<li><a href="#org315ffa6">20.3.2. 通过反射得到它的实例，然后就可以使用了</a></li>
+<li><a href="#org8d4e926">7.5.1. string.Format</a></li>
+<li><a href="#org7852148">7.5.2. type.ToString</a></li>
+<li><a href="#orgaa7a4ab">7.5.3. type.Parse/TryParse</a></li>
+<li><a href="#org89bbc31">7.5.4. Convert</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orge19ab8b">21. 依赖注入 (DI/IoC)</a>
+<li><a href="#orge7ae5fd">8. 类 (Class)</a>
 <ul>
-<li><a href="#orgbdcd80b">21.1. 正常手段</a></li>
-<li><a href="#org48f9a13">21.2. DI/IoC</a></li>
-<li><a href="#org3121a21">21.3. 基本使用</a></li>
-<li><a href="#org1cf67a1">21.4. 三种生命周期</a></li>
-<li><a href="#org5bfe0c8">21.5. 高内聚低耦合</a></li>
+<li><a href="#org99f48fc">8.1. 字段 (Field)</a></li>
+<li><a href="#orga8cd62d">8.2. 方法 (Method)</a>
+<ul>
+<li><a href="#orgfe90159">8.2.1. Basic</a></li>
+<li><a href="#org3f39897">8.2.2. 方法的重载 (overload)</a></li>
+<li><a href="#orgca9382d">8.2.3. 参数 (值参数/ref/out)</a></li>
+<li><a href="#orgb0c8cd6">8.2.4. out 参数: 用来模拟方法返回多个值的场景</a></li>
+<li><a href="#org1225826">8.2.5. 数组参数 (params)</a></li>
+<li><a href="#org5d0fcf2">8.2.6. 可选参数/命名参数</a></li>
 </ul>
 </li>
-<li><a href="#orga66a59e">22. 异步编程</a>
+<li><a href="#orgf1b7e70">8.3. 属性 (Property)</a></li>
+<li><a href="#org715084d">8.4. 索引器 (Indexer)</a></li>
+<li><a href="#org2457fb6">8.5. 构造方法/构造器 (Constructor)</a>
 <ul>
-<li><a href="#orgf9e80ac">22.1. Process</a></li>
-<li><a href="#orgfa54605">22.2. Thread</a></li>
-<li><a href="#org436d6e4">22.3. ThreadPool</a></li>
-<li><a href="#orgafd3879">22.4. TPL (Task-Parallel Libary)</a>
-<ul>
-<li><a href="#org3d357ce">22.4.1. Task.Run</a></li>
-<li><a href="#orgfe10ab2">22.4.2. 其他创建任务的方式</a></li>
-<li><a href="#org107628d">22.4.3. 任务协作</a></li>
+<li><a href="#org89b9afd">8.5.1. 对象的实例化</a></li>
+<li><a href="#orgd5f0cbd">8.5.2. 构造器</a></li>
+<li><a href="#org8ad35bd">8.5.3. 构造器链</a></li>
+<li><a href="#org3b33b66">8.5.4. 静态构造器</a></li>
 </ul>
 </li>
-<li><a href="#org4e48bef">22.5. TAL (Task-based Asyncronize Pattern)</a></li>
-<li><a href="#org86143dd">22.6. Parallel</a></li>
-<li><a href="#orgb1ac1ee">22.7. 任务的同步和协作</a>
+<li><a href="#org6b51ef3">8.6. 析构方法/析构器 (Deconstructor)</a></li>
+<li><a href="#orge4475c6">8.7. 静态方法 (Static)</a></li>
+<li><a href="#orgd48aa0d">8.8. 将数据设置为不变的 (const/readonly)</a></li>
+<li><a href="#orgbdf81f1">8.9. 继承 (Inheritance)</a>
 <ul>
-<li><a href="#org45dd528">22.7.1. Monitor.Enter/Exit</a></li>
-<li><a href="#org83d9194">22.7.2. lock</a></li>
-<li><a href="#org06f9240">22.7.3. ManualResetEventSlim</a></li>
-<li><a href="#org7d4a9af">22.7.4. Interlock</a></li>
-<li><a href="#orgabd637f">22.7.5. Semaphore</a></li>
-<li><a href="#orgf58bfc0">22.7.6. CountdownEvent</a></li>
+<li><a href="#orga51b557">8.9.1. 虚方法 (virtual/override)</a></li>
+<li><a href="#orga8b46e7">8.9.2. 抽象方法 (abstract)</a></li>
 </ul>
 </li>
-<li><a href="#orge840c9d">22.8. 其他几种异步模式</a>
+<li><a href="#org8464328">8.10. 多态 (Polymorphism)</a></li>
+<li><a href="#org2391071">8.11. 静态类/static</a></li>
+<li><a href="#org6276832">8.12. 密封类/sealed</a></li>
+<li><a href="#org6b1ee8d">8.13. 分部类/partial</a></li>
+<li><a href="#org3b7afe6">8.14. 基类 Object</a>
 <ul>
-<li><a href="#org4985432">22.8.1. BackgroundWorker</a></li>
-<li><a href="#org99d0a09">22.8.2. System.Threading.Timer</a></li>
+<li><a href="#org3cf1bab">8.14.1. ToString</a></li>
+</ul>
+</li>
+<li><a href="#org95a7a34">8.15. 类的扩展机制</a></li>
+</ul>
+</li>
+<li><a href="#org8ec73e0">9. 接口 (Interface)</a>
+<ul>
+<li><a href="#org1db3e56">9.1. IComparable 接口使用示例</a></li>
+</ul>
+</li>
+<li><a href="#org2b3f26b">10. 结构体 (Struct)</a></li>
+<li><a href="#orgf7e4865">11. 枚举 (Enum)</a>
+<ul>
+<li><a href="#orgecbdafb">11.1. 基本使用</a></li>
+<li><a href="#orge30e795">11.2. Flags (TODO)</a></li>
+<li><a href="#orgf66ddd0">11.3. 基本 API</a></li>
+</ul>
+</li>
+<li><a href="#org51cb116">12. 委托 (Delegate)</a>
+<ul>
+<li><a href="#org284b10d">12.1. 写一个方法 MyAdd ，求取 <b>若干数</b> 的和</a>
+<ul>
+<li><a href="#org8aeda41">12.1.1. 原始写法</a></li>
+<li><a href="#org1a2ec01">12.1.2. 通过一个 Flag 来通知 MyAdd 要去调用什么逻辑</a></li>
+<li><a href="#orgc3394e6">12.1.3. 没有中间商赚差价，借助类和接口的方式，传递不同的方法</a></li>
+<li><a href="#org8135472">12.1.4. 模板代码实在不爽，委托类型出现来救场</a></li>
+</ul>
+</li>
+<li><a href="#org5074c6d">12.2. 基本语法</a></li>
+<li><a href="#orgcd3c6c8">12.3. 匿名委托</a></li>
+<li><a href="#org3ba3802">12.4. 表达式语法</a></li>
+<li><a href="#orga61407f">12.5. 内建的委托类型 Action/Func</a></li>
+<li><a href="#org9960498">12.6. 多播委托</a></li>
+<li><a href="#org352852b">12.7. [练习] 如何简化图片绘制的代码</a></li>
+<li><a href="#orga83e7b7">12.8. [练习] 如何简化输出程序执行时间的逻辑</a></li>
+</ul>
+</li>
+<li><a href="#org83674a3">13. 数组 (Array)</a>
+<ul>
+<li><a href="#org6ff1fe0">13.1. 一维数组</a></li>
+<li><a href="#org45c249e">13.2. 多维数组 (Dimensional Array)</a></li>
+<li><a href="#org54c0416">13.3. 交错数组 (Jagged Array)</a></li>
+</ul>
+</li>
+<li><a href="#orgd1a814f">14. 元组 (Tuple/ValueTuple)</a></li>
+<li><a href="#org0ddd227">15. 集合 (Collections)</a>
+<ul>
+<li><a href="#org148b25e">15.1. System.Collections</a>
+<ul>
+<li><a href="#org23e8eaf">15.1.1. ArrayList</a></li>
+<li><a href="#org07d682c">15.1.2. Hashtable</a></li>
+<li><a href="#org71f747c">15.1.3. Queue</a></li>
+<li><a href="#org4da5fc8">15.1.4. Stack</a></li>
+<li><a href="#orgb6581b8">15.1.5. SortedList/BitArray</a></li>
+</ul>
+</li>
+<li><a href="#orgfd4e718">15.2. System.Collections.Generic</a>
+<ul>
+<li><a href="#org6e02371">15.2.1. List&lt;T&gt;</a></li>
+<li><a href="#orgaac5501">15.2.2. Dictionary&lt;TKey, TValue&gt;</a></li>
+<li><a href="#org5ae3ed1">15.2.3. Queue&lt;T&gt;</a></li>
+<li><a href="#org71a1d2e">15.2.4. Stack&lt;T&gt;</a></li>
+<li><a href="#org85be6fd">15.2.5. LinkedList&lt;T&gt;</a></li>
+<li><a href="#org4f819f4">15.2.6. HashSet&lt;T&gt;</a></li>
+<li><a href="#orgfde6f3a">15.2.7. SortedList/Set/Dictionary&lt;&gt;</a></li>
+</ul>
+</li>
+<li><a href="#org5849224">15.3. System.Collections.Immutable</a></li>
+</ul>
+</li>
+<li><a href="#org6d182ea">16. IEnumerable/Linq</a>
+<ul>
+<li><a href="#orge14a4af">16.1. IEnumerable/IEnumerator/foreach</a></li>
+<li><a href="#orgecb87b8">16.2. Iterator</a></li>
+<li><a href="#orga09ac9a">16.3. Linq</a>
+<ul>
+<li><a href="#org7a8df59">16.3.1. Method Syntax</a></li>
+<li><a href="#org04f3d4b">16.3.2. Query Syntax/Expression</a></li>
+</ul>
+</li>
+<li><a href="#org0334bbb">16.4. Linq to XML</a></li>
+</ul>
+</li>
+<li><a href="#org82eaf28">17. 泛型 (Generic)</a>
+<ul>
+<li><a href="#org38a7ec1">17.1. 方法泛型</a></li>
+</ul>
+</li>
+<li><a href="#org5501efc">18. 事件 (Event)</a>
+<ul>
+<li><a href="#orga0b7177">18.1. 如果使用一般的写法</a></li>
+<li><a href="#org2338b03">18.2. 上述的写法虽然没有错误，但是存在一些问题</a></li>
+<li><a href="#org6b57f0d">18.3. 上述代码虽然简洁了，但是条件和最后要执行的逻辑写在一起，耦合度太大</a></li>
+<li><a href="#org714a70d">18.4. 接下来，可以将第一段代码单独抽出来，作为单独的 Publisher，从而实现更好的分离</a></li>
+<li><a href="#orgbec16d7">18.5. 通过上述实现，我们可以看到事件是通过委托实现的，但还是有些缺点</a></li>
+<li><a href="#org8b4d25c">18.6. 接下来，要考虑的是，能不能在事件触发的时候，传递一些参数</a></li>
+</ul>
+</li>
+<li><a href="#org952b77e">19. 异常 (Exception)</a>
+<ul>
+<li><a href="#org8acbb25">19.1. 传统方式</a></li>
+<li><a href="#orgf237683">19.2. 通过 Exception 提供 <b>解耦合</b> 的处理方式</a></li>
+<li><a href="#orgd8f87c4">19.3. 异常的嵌套，以及 finally</a></li>
+</ul>
+</li>
+<li><a href="#org035e25c">20. 反射和特性 (Reflection/Attribute)</a>
+<ul>
+<li><a href="#org255be30">20.1. 反射 (Reflection)</a></li>
+<li><a href="#org430a056">20.2. [例子] ToModelList</a></li>
+<li><a href="#org35c2611">20.3. 特性 (Attribute)</a>
+<ul>
+<li><a href="#org297b46c">20.3.1. 特性就是一个普通的类</a></li>
+<li><a href="#org6455304">20.3.2. 通过反射得到它的实例，然后就可以使用了</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org59e0d7a">23. IO/Stream</a>
+<li><a href="#org176af74">21. 依赖注入 (DI/IoC)</a>
 <ul>
-<li><a href="#org58abbb4">23.1. Path</a></li>
-<li><a href="#org91de9d0">23.2. Driver</a></li>
-<li><a href="#org9b44f50">23.3. Directory</a></li>
-<li><a href="#org19e7555">23.4. File</a></li>
-<li><a href="#orgfd2f6b9">23.5. Stream</a>
-<ul>
-<li><a href="#org27747ae">23.5.1. FileSteam</a></li>
-<li><a href="#org9a16aca">23.5.2. MemoryStream</a></li>
-<li><a href="#org73e97a4">23.5.3. NetworkStream</a></li>
+<li><a href="#org52ee22f">21.1. 正常手段</a></li>
+<li><a href="#org6b77f67">21.2. DI/IoC</a></li>
+<li><a href="#orgbf8709d">21.3. 基本使用</a></li>
+<li><a href="#orgd43b4c0">21.4. 三种生命周期</a></li>
+<li><a href="#org241ceb1">21.5. 高内聚低耦合</a></li>
 </ul>
 </li>
-<li><a href="#org2471856">23.6. Reader/Writer</a>
+<li><a href="#org4c40ce0">22. 异步编程</a>
 <ul>
-<li><a href="#orge9bc6c4">23.6.1. StreamReader/StreamWriter</a></li>
-<li><a href="#orge5c8280">23.6.2. StringReader/StringWriter</a></li>
-<li><a href="#org25a4f84">23.6.3. BinaryReader/BinaryWriter</a></li>
-<li><a href="#org480e0ca">23.6.4. XmlReader/XmlWriter</a></li>
+<li><a href="#org44a15e9">22.1. Process</a></li>
+<li><a href="#orgdbe9107">22.2. Thread</a></li>
+<li><a href="#org0aef5ab">22.3. ThreadPool</a></li>
+<li><a href="#org4fffd68">22.4. TPL (Task-Parallel Libary)</a>
+<ul>
+<li><a href="#org42065bf">22.4.1. Task.Run</a></li>
+<li><a href="#orgee0881f">22.4.2. 其他创建任务的方式</a></li>
+<li><a href="#org9776dc9">22.4.3. 任务协作</a></li>
 </ul>
 </li>
-<li><a href="#org84d80e8">23.7. FileSystemWatching</a></li>
+<li><a href="#org7449fd7">22.5. TAL (Task-based Asyncronize Pattern)</a></li>
+<li><a href="#org4f504a1">22.6. Parallel</a></li>
+<li><a href="#org05ddd87">22.7. 任务的同步和协作</a>
+<ul>
+<li><a href="#org17ea04d">22.7.1. Monitor.Enter/Exit</a></li>
+<li><a href="#org734cdbb">22.7.2. lock</a></li>
+<li><a href="#org4af87e0">22.7.3. ManualResetEventSlim</a></li>
+<li><a href="#orgb8daa02">22.7.4. Interlock</a></li>
+<li><a href="#org56e5dfd">22.7.5. Semaphore</a></li>
+<li><a href="#org91c5610">22.7.6. CountdownEvent</a></li>
 </ul>
 </li>
-<li><a href="#org9553265">24. Socket</a>
+<li><a href="#orgd739c45">22.8. 其他几种异步模式</a>
 <ul>
-<li><a href="#org0b5586b">24.1. OSI 模型</a></li>
-<li><a href="#orge59bd55">24.2. TCP/IP 协议栈</a></li>
-<li><a href="#orgea08fbc">24.3. Uri/UriBuilder</a></li>
-<li><a href="#org38cc391">24.4. IpAddress/Dns</a></li>
-<li><a href="#org542785e">24.5. Socket</a>
-<ul>
-<li><a href="#org5047d34">24.5.1. TCP vs UDP</a></li>
-<li><a href="#org496c64b">24.5.2. Socket/TCP</a>
-<ul>
-<li><a href="#org986a252">24.5.2.1. 基本语法</a></li>
-<li><a href="#orge316ce1">24.5.2.2. 简单的 HTTP 服务器</a></li>
-<li><a href="#org52bba41">24.5.2.3. 简单的客户端实现</a></li>
-</ul>
-</li>
-<li><a href="#org30efac9">24.5.3. Socket/UDP</a></li>
-<li><a href="#org2b1f1ff">24.5.4. 通过 NetworkStream 简化对 Socket 读写的操作</a></li>
-<li><a href="#org2dfe689">24.5.5. 飞鸽/FeiQ</a></li>
-</ul>
-</li>
-<li><a href="#org1744db1">24.6. TcpClient/TcpListener</a></li>
-<li><a href="#org8951255">24.7. UdpClient</a></li>
-<li><a href="#org828de41">24.8. HttpClient/HttpListener</a>
-<ul>
-<li><a href="#orgea7f61a">24.8.1. HttpListener</a></li>
-<li><a href="#orgc48c61f">24.8.2. HttpWebRequest/WebClient/HttpClient</a></li>
+<li><a href="#org8d264a7">22.8.1. BackgroundWorker</a></li>
+<li><a href="#org8e134ef">22.8.2. System.Threading.Timer</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org182b3e2">25. Database</a>
+<li><a href="#org0adc5fa">23. IO/Stream</a>
 <ul>
-<li><a href="#org9f75295">25.1. ADO.NET</a>
+<li><a href="#org9d7cfe4">23.1. Path</a></li>
+<li><a href="#org6828845">23.2. Driver</a></li>
+<li><a href="#org942a5e5">23.3. Directory</a></li>
+<li><a href="#orgecb1704">23.4. File</a></li>
+<li><a href="#org0bb555b">23.5. Stream</a>
 <ul>
-<li><a href="#org48215e3">25.1.1. SqlConnection / SqlCommand / SqlDataReader</a></li>
-<li><a href="#orgd0c377b">25.1.2. ExecuteScalar / SQL Injection / Parameters</a></li>
-<li><a href="#org10d5a6b">25.1.3. SqlDataReader vs SqlDataAdapter/DataTable</a></li>
+<li><a href="#orgc15377d">23.5.1. FileSteam</a></li>
+<li><a href="#org58f5eb3">23.5.2. MemoryStream</a></li>
+<li><a href="#orgf9b860a">23.5.3. NetworkStream</a></li>
 </ul>
 </li>
-<li><a href="#orgf9e47f1">25.2. Entity Framework</a>
+<li><a href="#org575a40d">23.6. Reader/Writer</a>
 <ul>
-<li><a href="#orgca39d74">25.2.1. 历史</a></li>
-<li><a href="#org778f25a">25.2.2. EF6</a>
-<ul>
-<li><a href="#org3364670">25.2.2.1. 模型生成 (基于 edmx)</a></li>
-<li><a href="#org686276d">25.2.2.2. 模型生成 (Code First)</a></li>
+<li><a href="#org165428b">23.6.1. StreamReader/StreamWriter</a></li>
+<li><a href="#org2de8f2b">23.6.2. StringReader/StringWriter</a></li>
+<li><a href="#org7eb0fb0">23.6.3. BinaryReader/BinaryWriter</a></li>
+<li><a href="#org265e218">23.6.4. XmlReader/XmlWriter</a></li>
 </ul>
 </li>
-<li><a href="#orgf092a2f">25.2.3. EFCore</a></li>
-<li><a href="#org0431bc9">25.2.4. 上下文 (DbContext/DbSet)</a></li>
-<li><a href="#org7677353">25.2.5. 模型的三个层次</a></li>
-<li><a href="#orgcf97062">25.2.6. 模型之间的关系</a></li>
-<li><a href="#orgdeee7f7">25.2.7. 数据查询</a></li>
-<li><a href="#org15ccb25">25.2.8. 数据修改</a></li>
-<li><a href="#org2269db7">25.2.9. 日志</a>
+<li><a href="#org5138b5a">23.7. FileSystemWatching</a></li>
+</ul>
+</li>
+<li><a href="#orgd8059e2">24. Socket</a>
 <ul>
-<li><a href="#org6483d29">25.2.9.1. 使用 options.LogTo 方法</a></li>
-</ul>
-</li>
-<li><a href="#org9e5afef">25.2.10. 集成容器</a></li>
-<li><a href="#org94e2dca">25.2.11. 三层架构</a></li>
-<li><a href="#orgbbaf52b">25.2.12. 随堂代码</a>
+<li><a href="#org198d03f">24.1. OSI 模型</a></li>
+<li><a href="#orgf520b62">24.2. TCP/IP 协议栈</a></li>
+<li><a href="#orgad2a3f5">24.3. Uri/UriBuilder</a></li>
+<li><a href="#org009fd5e">24.4. IpAddress/Dns</a></li>
+<li><a href="#orgf348c64">24.5. Socket</a>
 <ul>
-<li><a href="#org0e65715">25.2.12.1. 2021年11月10日 (基本使用)</a></li>
-<li><a href="#org6302adf">25.2.12.2. 2021年11月11日 (模型创建)</a></li>
-</ul>
-</li>
-<li><a href="#orgb363a5e">25.2.13. 生成/Reverse</a></li>
-<li><a href="#org2a014ea">25.2.14. 总结</a></li>
-</ul>
-</li>
-<li><a href="#org312e86e">25.3. Dapper/SqlSugar/FreeSQL/NHibernate</a>
+<li><a href="#orgc6a387b">24.5.1. TCP vs UDP</a></li>
+<li><a href="#orgad22831">24.5.2. Socket/TCP</a>
 <ul>
-<li><a href="#org6834781">25.3.1. Dapper</a></li>
-<li><a href="#orgae1e4d1">25.3.2. SqlSugar</a></li>
-<li><a href="#org935b6e8">25.3.3. FreeSQL</a></li>
-<li><a href="#org6c85480">25.3.4. NHibernate</a></li>
-<li><a href="#orgcfb211a">25.3.5. MyBatis.NET</a></li>
+<li><a href="#orgc96b5c7">24.5.2.1. 基本语法</a></li>
+<li><a href="#orge8a1a0e">24.5.2.2. 简单的 HTTP 服务器</a></li>
+<li><a href="#orga38c28b">24.5.2.3. 简单的客户端实现</a></li>
 </ul>
 </li>
-<li><a href="#org78693f8">25.4. 事务 (Transaction)</a></li>
-<li><a href="#org043f4ba">25.5. 示例数据库</a></li>
+<li><a href="#org3889b60">24.5.3. Socket/UDP</a></li>
+<li><a href="#org0ca0d53">24.5.4. 通过 NetworkStream 简化对 Socket 读写的操作</a></li>
+<li><a href="#org4c1e0e3">24.5.5. 飞鸽/FeiQ</a></li>
 </ul>
 </li>
-<li><a href="#org38d4328">26. BCL (Base-Class Library) 基础类库</a>
+<li><a href="#org1fc4ef7">24.6. TcpClient/TcpListener</a></li>
+<li><a href="#org5066e75">24.7. UdpClient</a></li>
+<li><a href="#orgb33f00f">24.8. HttpClient/HttpListener</a>
 <ul>
-<li><a href="#orge42088e">26.1. Console/控制台</a></li>
-<li><a href="#orgd098591">26.2. Random/Thread</a></li>
-<li><a href="#orgd147bfd">26.3. IDisposable/资源</a></li>
-<li><a href="#org5c71774">26.4. Stopwatch/秒表</a></li>
-<li><a href="#org8c458cd">26.5. ConfigurationManager/配置管理器</a></li>
-<li><a href="#org8b28bbf">26.6. RegularExpression/正则表达式</a></li>
+<li><a href="#orgdf687fe">24.8.1. HttpListener</a></li>
+<li><a href="#orga03b142">24.8.2. HttpWebRequest/WebClient/HttpClient</a></li>
 </ul>
 </li>
-<li><a href="#org6d7d01d">27. Winform</a>
-<ul>
-<li><a href="#org70997ee">27.1. 布局相关</a>
-<ul>
-<li><a href="#orgcf7571c">27.1.1. 基本属性</a></li>
-<li><a href="#orgf36b96d">27.1.2. Layout</a></li>
 </ul>
 </li>
-<li><a href="#org1ef5577">27.2. 数据容器</a></li>
+<li><a href="#orgc60f97b">25. Database</a>
+<ul>
+<li><a href="#orgb67f9d8">25.1. ADO.NET</a>
+<ul>
+<li><a href="#orgbc4ea68">25.1.1. SqlConnection / SqlCommand / SqlDataReader</a></li>
+<li><a href="#orge4b38fe">25.1.2. ExecuteScalar / SQL Injection / Parameters</a></li>
+<li><a href="#orgf83cfa0">25.1.3. SqlDataReader vs SqlDataAdapter/DataTable</a></li>
 </ul>
 </li>
-<li><a href="#org7906523">28. 技巧和示例</a>
+<li><a href="#org1b59814">25.2. Entity Framework</a>
 <ul>
-<li><a href="#org723d270">28.1. 求余</a></li>
+<li><a href="#org6e8c65d">25.2.1. 历史</a></li>
+<li><a href="#orgf816245">25.2.2. EF6</a>
+<ul>
+<li><a href="#org8558171">25.2.2.1. 模型生成 (基于 edmx)</a></li>
+<li><a href="#org00357a0">25.2.2.2. 模型生成 (Code First)</a></li>
 </ul>
 </li>
-<li><a href="#org8a80c1e">29. 模拟题</a>
+<li><a href="#orgd42a80e">25.2.3. EFCore</a></li>
+<li><a href="#org2501b18">25.2.4. 上下文 (DbContext/DbSet)</a></li>
+<li><a href="#orge332288">25.2.5. 模型的三个层次</a></li>
+<li><a href="#org731eef2">25.2.6. 模型之间的关系</a></li>
+<li><a href="#org272d158">25.2.7. 数据查询</a></li>
+<li><a href="#org20ced09">25.2.8. 数据修改</a></li>
+<li><a href="#org8a170b5">25.2.9. 日志</a>
 <ul>
-<li><a href="#org6400c8e">29.1. 继承相关</a></li>
-<li><a href="#org0993f51">29.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
+<li><a href="#org449e710">25.2.9.1. 使用 options.LogTo 方法</a></li>
 </ul>
 </li>
-<li><a href="#orgb8b093b">30. 问题 (仅作参考)</a>
+<li><a href="#orgda84140">25.2.10. 集成容器</a></li>
+<li><a href="#org1bdad3d">25.2.11. 三层架构</a></li>
+<li><a href="#orgebd8559">25.2.12. 随堂代码</a>
 <ul>
-<li><a href="#org0931609">30.1. string 和 StringBuilder 有什么区别</a></li>
-<li><a href="#org5f8661c">30.2. 什么是抽象类，抽象类有什么用处</a></li>
-<li><a href="#orgddf3ea3">30.3. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
-<li><a href="#org156522f">30.4. 什么是静态类，什么是密封类，什么是分部类</a></li>
-<li><a href="#org51f1e72">30.5. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
-<li><a href="#org53c5fb1">30.6. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
-<li><a href="#org7f77498">30.7. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
-<li><a href="#org1453cfa">30.8. 什么是封装，什么是继承，什么是多态</a></li>
-<li><a href="#org7cbe124">30.9. 什么是虚方法，它有什么用处</a></li>
-<li><a href="#orga4100f5">30.10. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
-<li><a href="#org49d491a">30.11. 什么是 DRY，代码复用的手段有哪些</a></li>
-<li><a href="#org6186468">30.12. Parse/TryParse 有啥区别</a></li>
-<li><a href="#org6aa9caa">30.13. 什么是装箱拆箱</a></li>
-<li><a href="#org98ec2cf">30.14. 什么是值类型/引用类型</a></li>
-<li><a href="#org3f909ac">30.15. is/as 分别是干啥的</a></li>
+<li><a href="#orgeb840c2">25.2.12.1. 2021年11月10日 (基本使用)</a></li>
+<li><a href="#orgb8ed44a">25.2.12.2. 2021年11月11日 (模型创建)</a></li>
 </ul>
 </li>
-<li><a href="#org8980666">31. 代码生成器</a></li>
-<li><a href="#org27a5900">32. Miscellaneous</a>
+<li><a href="#org232efd1">25.2.13. 生成/Reverse</a></li>
+<li><a href="#org5744275">25.2.14. 总结</a></li>
+</ul>
+</li>
+<li><a href="#org095a64e">25.3. Dapper/SqlSugar/FreeSQL/NHibernate</a>
 <ul>
-<li><a href="#org426ba74">32.1. 模拟 Path 寻找的方式</a></li>
-<li><a href="#org9b34cad">32.2. 基本思想</a></li>
-<li><a href="#org63ed685">32.3. Relation-Database/SQL</a></li>
+<li><a href="#orga7baae3">25.3.1. Dapper</a></li>
+<li><a href="#orgccce5c8">25.3.2. SqlSugar</a></li>
+<li><a href="#org25d8e03">25.3.3. FreeSQL</a></li>
+<li><a href="#org9a88460">25.3.4. NHibernate</a></li>
+<li><a href="#org0cb1fbf">25.3.5. MyBatis.NET</a></li>
+</ul>
+</li>
+<li><a href="#orgc7102f7">25.4. 事务 (Transaction)</a></li>
+<li><a href="#orgcdaf6f1">25.5. 示例数据库</a></li>
+</ul>
+</li>
+<li><a href="#org5ebd25d">26. BCL (Base-Class Library) 基础类库</a>
+<ul>
+<li><a href="#org8b5c979">26.1. Console/控制台</a></li>
+<li><a href="#orgf370806">26.2. Random/Thread</a></li>
+<li><a href="#org078427d">26.3. IDisposable/资源</a></li>
+<li><a href="#orgb5a2b13">26.4. Stopwatch/秒表</a></li>
+<li><a href="#orgd0a8d63">26.5. ConfigurationManager/配置管理器</a></li>
+<li><a href="#orgf35d672">26.6. RegularExpression/正则表达式</a></li>
+</ul>
+</li>
+<li><a href="#org7682cdc">27. Winform</a>
+<ul>
+<li><a href="#org24de99a">27.1. 布局相关</a>
+<ul>
+<li><a href="#org5685a3a">27.1.1. 基本属性</a></li>
+<li><a href="#org3bdbf58">27.1.2. Layout</a></li>
+</ul>
+</li>
+<li><a href="#orge7f2856">27.2. 数据容器</a></li>
+</ul>
+</li>
+<li><a href="#org156e49a">28. 技巧和示例</a>
+<ul>
+<li><a href="#org0ca31ac">28.1. 求余</a></li>
+</ul>
+</li>
+<li><a href="#orgc4fc2ee">29. 模拟题</a>
+<ul>
+<li><a href="#orgc0f6ff4">29.1. 继承相关</a></li>
+<li><a href="#org939dab5">29.2. 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</a></li>
+</ul>
+</li>
+<li><a href="#orgeb3a958">30. 问题 (仅作参考)</a>
+<ul>
+<li><a href="#orgb7e73e7">30.1. string 和 StringBuilder 有什么区别</a></li>
+<li><a href="#org1ea4148">30.2. 什么是抽象类，抽象类有什么用处</a></li>
+<li><a href="#org137e9b5">30.3. 什么是接口，什么是面向接口编程，面向接口编程有什么好处</a></li>
+<li><a href="#org4fd837a">30.4. 什么是静态类，什么是密封类，什么是分部类</a></li>
+<li><a href="#org836a79f">30.5. 什么是类，什么是对象，对象的实例化过程是怎么样的</a></li>
+<li><a href="#org5e43cb0">30.6. 什么是面向对象编程，面向对象有什么特点，有什么好处</a></li>
+<li><a href="#org6dfeb49">30.7. 什么是字段，什么是方法，什么是属性。属性有什么好处</a></li>
+<li><a href="#orgc976762">30.8. 什么是封装，什么是继承，什么是多态</a></li>
+<li><a href="#orge5fd970">30.9. 什么是虚方法，它有什么用处</a></li>
+<li><a href="#org97c53af">30.10. 什么是组合，它跟继承有什么区别，分别用在什么场景</a></li>
+<li><a href="#org6a9a3d4">30.11. 什么是 DRY，代码复用的手段有哪些</a></li>
+<li><a href="#org4ff3fe5">30.12. Parse/TryParse 有啥区别</a></li>
+<li><a href="#org2df8eb1">30.13. 什么是装箱拆箱</a></li>
+<li><a href="#org5b399e5">30.14. 什么是值类型/引用类型</a></li>
+<li><a href="#org38b212d">30.15. is/as 分别是干啥的</a></li>
+</ul>
+</li>
+<li><a href="#org2b28ec2">31. 代码生成器</a></li>
+<li><a href="#org161d77e">32. Miscellaneous</a>
+<ul>
+<li><a href="#orgfa5d65f">32.1. 模拟 Path 寻找的方式</a></li>
+<li><a href="#org31978ab">32.2. 基本思想</a></li>
+<li><a href="#org2d4b2ec">32.3. Relation-Database/SQL</a></li>
 </ul>
 </li>
 </ul>
@@ -475,8 +495,8 @@
 </nav>
 
 
-<section id="outline-container-org180db5a" class="outline-2">
-<h2 id="org180db5a"><span class="section-number-2">1.</span> 历史</h2>
+<section id="outline-container-org704f4fb" class="outline-2">
+<h2 id="org704f4fb"><span class="section-number-2">1.</span> 历史</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Visual J++ 被放弃，<a href="https://baike.baidu.com/item/%E5%AE%89%E5%BE%B7%E6%96%AF%C2%B7%E6%B5%B7%E5%B0%94%E6%96%AF%E4%BC%AF%E6%A0%BC">安德斯·海尔斯伯格</a>带领团队从 2000 年左右开始开发了 C#，到 2002 年的的时候，开始提交给 ECMA 成为了标准</li>
@@ -501,11 +521,11 @@ C# 版本演化:
 </div>
 </section>
 
-<section id="outline-container-org5adcc5f" class="outline-2">
-<h2 id="org5adcc5f"><span class="section-number-2">2.</span> [语言与类型]</h2>
+<section id="outline-container-org215ec81" class="outline-2">
+<h2 id="org215ec81"><span class="section-number-2">2.</span> [语言与类型]</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-在 C# 等面向对象的语言中，<b>类型 (Type)</b> 是第一位的
+在 C# 等面向对象的语言中，*类型 (Type)* 是第一位的
 </p>
 <ul class="org-ul">
 <li>在 C# 中，不外乎做两件事，第一件是引入别人的类型，第二件是声明自己的类型</li>
@@ -515,20 +535,20 @@ C# 版本演化:
 </ul>
 
 
-<figure id="orgadda9b4">
+<figure id="orgaf964e8">
 <img src="img/types.png" alt="types.png" width="400px">
 
 </figure>
 
 
-<figure id="org804b038">
+<figure id="orgf3a6fcf">
 <img src="img/types-2.png" alt="types-2.png" width="400px">
 
 </figure>
 </div>
 
-<div id="outline-container-org1e189b5" class="outline-3">
-<h3 id="org1e189b5"><span class="section-number-3">2.1.</span> Main</h3>
+<div id="outline-container-org2c530ae" class="outline-3">
+<h3 id="org2c530ae"><span class="section-number-3">2.1.</span> Main</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">Main</span> <span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -592,8 +612,8 @@ args 使用的另一个示例:
 </div>
 </div>
 
-<div id="outline-container-org92c9241" class="outline-3">
-<h3 id="org92c9241"><span class="section-number-3">2.2.</span> 命名空间</h3>
+<div id="outline-container-org74d778d" class="outline-3">
+<h3 id="org74d778d"><span class="section-number-3">2.2.</span> 命名空间</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>用来解决类型名字的冲突</li>
@@ -601,8 +621,8 @@ args 使用的另一个示例:
 </ul>
 </div>
 
-<div id="outline-container-orgd76c17b" class="outline-4">
-<h4 id="orgd76c17b"><span class="section-number-4">2.2.1.</span> 使用</h4>
+<div id="outline-container-org4a747a5" class="outline-4">
+<h4 id="org4a747a5"><span class="section-number-4">2.2.1.</span> 使用</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#31867;&#22411;&#30340;&#20351;&#29992;&#65292;&#21487;&#20197;&#36890;&#36807; namespace.&#31867;&#22411; &#26469;&#35775;&#38382;&#21040; / full name</span>
@@ -625,7 +645,7 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 <span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"hello"</span><span style="color: #707183;">)</span>;
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21487;&#20197;&#20351;&#29992; using = &#30340;&#26041;&#24335;&#65292;&#20026;&#21629;&#21517;&#31354;&#38388;&#36215;&#19968;&#20010;&#21035;&#21517;&#12290;&#36825;&#31181;&#26041;&#24335;&#19968;&#33324;&#29992;&#26469;&#35299;&#20915;&#20914;&#31361;</span>
-<span style="color: #a020f0;">using</span> <span style="color: #a0522d;">SI</span> = <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #228b22;">SI</span> = <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>;
 <span style="color: #a020f0;">using</span> <span style="color: #a0522d;">HisSystem</span>;
 SI.File.<span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span>;  <span style="color: #b22222;">// </span><span style="color: #b22222;">System.IO.File.xxx();</span>
 File.<span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span>;     <span style="color: #b22222;">// </span><span style="color: #b22222;">HisSystem.FIle.xxx();</span>
@@ -634,14 +654,14 @@ File.<span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-org1184149" class="outline-4">
-<h4 id="org1184149"><span class="section-number-4">2.2.2.</span> 定义</h4>
+<div id="outline-container-org35cdcbe" class="outline-4">
+<h4 id="org35cdcbe"><span class="section-number-4">2.2.2.</span> 定义</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 支持嵌套，支持使用 . 的形式进行简写:
 </p>
 <div class="org-src-container">
-<pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">SI</span> = <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">File</span>
+<pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #228b22;">SI</span> = <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">IO</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">File</span>
 
 <span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">TaxCalculator</span>
 <span style="color: #707183;">{</span>
@@ -678,7 +698,7 @@ File.<span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</s
 
     <span style="color: #a020f0;">namespace</span> <span style="color: #a0522d;">B</span>
     <span style="color: #7388d6;">{</span>
-        <span style="color: #a020f0;">using</span> System;
+        <span style="color: #a020f0;">using</span> <span style="color: #008b8b;">System</span>;
         <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span> <span style="color: #b22222;">// </span><span style="color: #b22222;">TaxCalculator.Program</span>
         <span style="color: #909183;">{</span>
             <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #709870;">()</span>
@@ -695,8 +715,8 @@ File.<span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-org82ff726" class="outline-4">
-<h4 id="org82ff726"><span class="section-number-4">2.2.3.</span> BCL/System</h4>
+<div id="outline-container-org2075c98" class="outline-4">
+<h4 id="org2075c98"><span class="section-number-4">2.2.3.</span> BCL/System</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 System 命名空间:
@@ -714,11 +734,11 @@ System 命名空间:
 </div>
 </div>
 
-<div id="outline-container-org8541a93" class="outline-3">
-<h3 id="org8541a93"><span class="section-number-3">2.3.</span> 模板 vs 实例</h3>
+<div id="outline-container-org303539c" class="outline-3">
+<h3 id="org303539c"><span class="section-number-3">2.3.</span> 模板 vs 实例</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-类型就是用来创建数据结构的一种 <b>模板</b>：
+类型就是用来创建数据结构的一种 *模板*：
 </p>
 <ul class="org-ul">
 <li>类型本身并不是真正的数据，它只是描述了数据应该怎么被构造出来</li>
@@ -754,8 +774,8 @@ System 命名空间:
 </div>
 </div>
 
-<div id="outline-container-org298bedc" class="outline-3">
-<h3 id="org298bedc"><span class="section-number-3">2.4.</span> 值类型 vs 引用类型</h3>
+<div id="outline-container-org82a47e3" class="outline-3">
+<h3 id="org82a47e3"><span class="section-number-3">2.4.</span> 值类型 vs 引用类型</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 内存分为两部分:
@@ -766,7 +786,7 @@ System 命名空间:
 </ul>
 
 
-<figure id="orgbe43800">
+<figure id="org1868956">
 <img src="img/value-type-ref-type.png" alt="value-type-ref-type.png" width="500px">
 
 </figure>
@@ -774,12 +794,12 @@ System 命名空间:
 </div>
 </section>
 
-<section id="outline-container-org0d4856b" class="outline-2">
-<h2 id="org0d4856b"><span class="section-number-2">3.</span> 预定义数值类型</h2>
+<section id="outline-container-org0559329" class="outline-2">
+<h2 id="org0559329"><span class="section-number-2">3.</span> 预定义数值类型</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org070482f" class="outline-3">
-<h3 id="org070482f"><span class="section-number-3">3.1.</span> 整数</h3>
+<div id="outline-container-org63d2929" class="outline-3">
+<h3 id="org63d2929"><span class="section-number-3">3.1.</span> 整数</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 为了表示显示世界中的计算，人们发明了数字的记法:
@@ -887,15 +907,15 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 
 
-<figure id="orgfcb8456">
+<figure id="org72edc57">
 <img src="img/integers.png" alt="integers.png" width="400px">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org2999e61" class="outline-3">
-<h3 id="org2999e61"><span class="section-number-3">3.2.</span> 浮点数</h3>
+<div id="outline-container-orgd900280" class="outline-3">
+<h3 id="orgd900280"><span class="section-number-3">3.2.</span> 浮点数</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>根据存储形式，分为单精度 (float) 和双精度 (double)</li>
@@ -915,15 +935,15 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="org756b662">
+<figure id="org09d9444">
 <img src="img/float-type.png" alt="float-type.png" width="500px">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org4bd6aa8" class="outline-3">
-<h3 id="org4bd6aa8"><span class="section-number-3">3.3.</span> Literate (字面量表达)</h3>
+<div id="outline-container-org176c74c" class="outline-3">
+<h3 id="org176c74c"><span class="section-number-3">3.3.</span> Literate (字面量表达)</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23383;&#38754;&#37327;</span>
@@ -949,12 +969,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </section>
 
-<section id="outline-container-org41134c7" class="outline-2">
-<h2 id="org41134c7"><span class="section-number-2">4.</span> 预定义/非数值·值类型</h2>
+<section id="outline-container-org119130a" class="outline-2">
+<h2 id="org119130a"><span class="section-number-2">4.</span> 预定义/非数值·值类型</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org0128cb5" class="outline-3">
-<h3 id="org0128cb5"><span class="section-number-3">4.1.</span> 字符类型 (char)</h3>
+<div id="outline-container-org0f543da" class="outline-3">
+<h3 id="org0f543da"><span class="section-number-3">4.1.</span> 字符类型 (char)</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 字符集/编码格式:
@@ -974,7 +994,7 @@ Q &amp; A:
 </ul>
 
 
-<figure id="orgcbe01fa">
+<figure id="orgcd4a511">
 <img src="img/unicode.png" alt="unicode.png" width="500px">
 
 </figure>
@@ -994,8 +1014,8 @@ Q &amp; A:
 </div>
 </div>
 
-<div id="outline-container-org0563621" class="outline-3">
-<h3 id="org0563621"><span class="section-number-3">4.2.</span> 布尔类型 (bool)</h3>
+<div id="outline-container-org6d49662" class="outline-3">
+<h3 id="org6d49662"><span class="section-number-3">4.2.</span> 布尔类型 (bool)</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">bool</span> <span style="color: #a0522d;">a</span> = <span style="color: #008b8b;">true</span>;
@@ -1016,8 +1036,8 @@ f = <span style="color: #008b8b;">true</span>; g = <span style="color: #008b8b;"
 </div>
 </div>
 
-<div id="outline-container-org2553d56" class="outline-4">
-<h4 id="org2553d56"><span class="section-number-4">4.2.1.</span> [条件分支] 在某种条件之下，做某件事</h4>
+<div id="outline-container-org6292f00" class="outline-4">
+<h4 id="org6292f00"><span class="section-number-4">4.2.1.</span> [条件分支] 在某种条件之下，做某件事</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>if/else if/else</li>
@@ -1153,8 +1173,8 @@ switch statement (语句) 和 expression (表达式):
 </div>
 </div>
 
-<div id="outline-container-org5f55cf7" class="outline-4">
-<h4 id="org5f55cf7"><span class="section-number-4">4.2.2.</span> [循环迭代] 重复做某件事</h4>
+<div id="outline-container-orgd14fa0c" class="outline-4">
+<h4 id="orgd14fa0c"><span class="section-number-4">4.2.2.</span> [循环迭代] 重复做某件事</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li>for</li>
@@ -1299,8 +1319,8 @@ switch statement (语句) 和 expression (表达式):
 </div>
 </div>
 
-<div id="outline-container-org4e236df" class="outline-4">
-<h4 id="org4e236df"><span class="section-number-4">4.2.3.</span> 语句 (Statement) vs 表达式 (Expression)</h4>
+<div id="outline-container-org6252d1e" class="outline-4">
+<h4 id="org6252d1e"><span class="section-number-4">4.2.3.</span> 语句 (Statement) vs 表达式 (Expression)</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 提问:  <span style="color: red">表达式和语句有社么区别?</span>
@@ -1343,20 +1363,20 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </section>
 
-<section id="outline-container-orgcd1bce4" class="outline-2">
-<h2 id="orgcd1bce4"><span class="section-number-2">5.</span> 预定义/非数值·引用类型</h2>
+<section id="outline-container-org2a0ed18" class="outline-2">
+<h2 id="org2a0ed18"><span class="section-number-2">5.</span> 预定义/非数值·引用类型</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org7686c83" class="outline-3">
-<h3 id="org7686c83"><span class="section-number-3">5.1.</span> string</h3>
+<div id="outline-container-orge4dda6d" class="outline-3">
+<h3 id="orge4dda6d"><span class="section-number-3">5.1.</span> string</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 字符串，是由字符序列组成的一种数据结构。
 </p>
 </div>
 
-<div id="outline-container-org1fb4758" class="outline-4">
-<h4 id="org1fb4758"><span class="section-number-4">5.1.1.</span> 字符串的初始化</h4>
+<div id="outline-container-orgea1a0e9" class="outline-4">
+<h4 id="orgea1a0e9"><span class="section-number-4">5.1.1.</span> 字符串的初始化</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">g1</span> = <span style="color: #8b2252;">"Hello World!"</span>;
@@ -1377,12 +1397,12 @@ System.<span style="color: #228b22;">String</span> <span style="color: #a0522d;"
 </div>
 </div>
 
-<div id="outline-container-org5e18494" class="outline-4">
-<h4 id="org5e18494"><span class="section-number-4">5.1.2.</span> 字符串的不可变性 (Immutable)</h4>
+<div id="outline-container-orga509b0c" class="outline-4">
+<h4 id="orga509b0c"><span class="section-number-4">5.1.2.</span> 字符串的不可变性 (Immutable)</h4>
 <div class="outline-text-4" id="text-5-1-2">
 </div>
-<div id="outline-container-org7925c0f" class="outline-5">
-<h5 id="org7925c0f"><span class="section-number-5">5.1.2.1.</span> what &amp; why</h5>
+<div id="outline-container-org2e66dd9" class="outline-5">
+<h5 id="org2e66dd9"><span class="section-number-5">5.1.2.1.</span> what &amp; why</h5>
 <div class="outline-text-5" id="text-5-1-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">a</span>;
@@ -1400,7 +1420,7 @@ s += t; <span style="color: #b22222;">// </span><span style="color: #b22222;">s 
 </div>
 
 
-<figure id="org33bf9e9">
+<figure id="orgfc328b9">
 <img src="img/string-immute.png" alt="string-immute.png" width="400px">
 
 </figure>
@@ -1426,8 +1446,8 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </div>
 </div>
 
-<div id="outline-container-orgef53295" class="outline-5">
-<h5 id="orgef53295"><span class="section-number-5">5.1.2.2.</span> System.Text.StringBuilder</h5>
+<div id="outline-container-org3d244a1" class="outline-5">
+<h5 id="org3d244a1"><span class="section-number-5">5.1.2.2.</span> System.Text.StringBuilder</h5>
 <div class="outline-text-5" id="text-5-1-2-2">
 <p>
 这是 BCL 中提供的一个类，专门使用在 <b>字符串拼接</b> 的场景下。
@@ -1438,7 +1458,7 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </p>
 
 
-<figure id="org2cf3940">
+<figure id="orgd5ce5a6">
 <img src="img/string-vs-stringbuilder.png" alt="string-vs-stringbuilder.png" width="500px">
 
 </figure>
@@ -1472,8 +1492,8 @@ s<span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> =
 </div>
 </div>
 
-<div id="outline-container-orgb9c3bc1" class="outline-5">
-<h5 id="orgb9c3bc1"><span class="section-number-5">5.1.2.3.</span> String Intern Pool (字符串池)</h5>
+<div id="outline-container-orga3eea77" class="outline-5">
+<h5 id="orga3eea77"><span class="section-number-5">5.1.2.3.</span> String Intern Pool (字符串池)</h5>
 <div class="outline-text-5" id="text-5-1-2-3">
 <p>
 因为字符串是不可变的，所以在字符串的操作中，会产生很多临时字符串 (垃圾)。
@@ -1522,8 +1542,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org5bc7f62" class="outline-4">
-<h4 id="org5bc7f62"><span class="section-number-4">5.1.3.</span> [API] 基本操作</h4>
+<div id="outline-container-org8bd5cd4" class="outline-4">
+<h4 id="org8bd5cd4"><span class="section-number-4">5.1.3.</span> [API] 基本操作</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <p>
 API (Application Programming Interface) 应用程序编程接口。
@@ -1546,8 +1566,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org35d3e55" class="outline-4">
-<h4 id="org35d3e55"><span class="section-number-4">5.1.4.</span> [API] 拼接 + 格式化</h4>
+<div id="outline-container-org902e17f" class="outline-4">
+<h4 id="org902e17f"><span class="section-number-4">5.1.4.</span> [API] 拼接 + 格式化</h4>
 <div class="outline-text-4" id="text-5-1-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"tom"</span>;
@@ -1591,8 +1611,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgdd497b0" class="outline-4">
-<h4 id="orgdd497b0"><span class="section-number-4">5.1.5.</span> [API] 子字符串</h4>
+<div id="outline-container-org330335b" class="outline-4">
+<h4 id="org330335b"><span class="section-number-4">5.1.5.</span> [API] 子字符串</h4>
 <div class="outline-text-4" id="text-5-1-5">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"000o&#12290;OOOoOO0O0Ooo000o"</span>;
@@ -1638,8 +1658,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgb47b856" class="outline-4">
-<h4 id="orgb47b856"><span class="section-number-4">5.1.6.</span> [API] 字符串的修改</h4>
+<div id="outline-container-orgebb94db" class="outline-4">
+<h4 id="orgebb94db"><span class="section-number-4">5.1.6.</span> [API] 字符串的修改</h4>
 <div class="outline-text-4" id="text-5-1-6">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#35880;&#35760;:</span>
@@ -1673,8 +1693,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orge6669b1" class="outline-4">
-<h4 id="orge6669b1"><span class="section-number-4">5.1.7.</span> [API] String 跟 Array 的转换</h4>
+<div id="outline-container-orgb13cd6e" class="outline-4">
+<h4 id="orgb13cd6e"><span class="section-number-4">5.1.7.</span> [API] String 跟 Array 的转换</h4>
 <div class="outline-text-4" id="text-5-1-7">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = <span style="color: #8b2252;">"  000o&#12290;OOOoOO0O&#65292;0Ooo000o--"</span>;
@@ -1696,8 +1716,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org0500176" class="outline-3">
-<h3 id="org0500176"><span class="section-number-3">5.2.</span> object</h3>
+<div id="outline-container-orgf40a769" class="outline-3">
+<h3 id="orgf40a769"><span class="section-number-3">5.2.</span> object</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 <pre class="src src-csx"><span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 20;
@@ -1716,8 +1736,8 @@ s2 = <span style="color: #8b2252;">"hello"</span>;
 </div>
 </div>
 
-<div id="outline-container-orgc220dcb" class="outline-3">
-<h3 id="orgc220dcb"><span class="section-number-3">5.3.</span> dynamic</h3>
+<div id="outline-container-orgebd8ec8" class="outline-3">
+<h3 id="orgebd8ec8"><span class="section-number-3">5.3.</span> dynamic</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>静态语言</li>
@@ -1760,8 +1780,8 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </div>
 </section>
 
-<section id="outline-container-org2f0b103" class="outline-2">
-<h2 id="org2f0b103"><span class="section-number-2">6.</span> 用户自定义类型</h2>
+<section id="outline-container-org710620e" class="outline-2">
+<h2 id="org710620e"><span class="section-number-2">6.</span> 用户自定义类型</h2>
 <div class="outline-text-2" id="text-6">
 <ol class="org-ol">
 <li>声明类型</li>
@@ -1770,8 +1790,8 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </ol>
 </div>
 
-<div id="outline-container-orgf6aeed0" class="outline-3">
-<h3 id="orgf6aeed0"><span class="section-number-3">6.1.</span> class</h3>
+<div id="outline-container-orgecf4b54" class="outline-3">
+<h3 id="orgecf4b54"><span class="section-number-3">6.1.</span> class</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 类
@@ -1779,8 +1799,8 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </div>
 </div>
 
-<div id="outline-container-orgbc65562" class="outline-3">
-<h3 id="orgbc65562"><span class="section-number-3">6.2.</span> interface</h3>
+<div id="outline-container-orgdf476f3" class="outline-3">
+<h3 id="orgdf476f3"><span class="section-number-3">6.2.</span> interface</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 接口
@@ -1788,8 +1808,8 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </div>
 </div>
 
-<div id="outline-container-org9dd0672" class="outline-3">
-<h3 id="org9dd0672"><span class="section-number-3">6.3.</span> delegate</h3>
+<div id="outline-container-org29671bb" class="outline-3">
+<h3 id="org29671bb"><span class="section-number-3">6.3.</span> delegate</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 委托
@@ -1797,8 +1817,8 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </div>
 </div>
 
-<div id="outline-container-org1b52cca" class="outline-3">
-<h3 id="org1b52cca"><span class="section-number-3">6.4.</span> array</h3>
+<div id="outline-container-org7a80d08" class="outline-3">
+<h3 id="org7a80d08"><span class="section-number-3">6.4.</span> array</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 数组
@@ -1806,8 +1826,8 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </div>
 </div>
 
-<div id="outline-container-org5df569b" class="outline-3">
-<h3 id="org5df569b"><span class="section-number-3">6.5.</span> struct</h3>
+<div id="outline-container-org434b62c" class="outline-3">
+<h3 id="org434b62c"><span class="section-number-3">6.5.</span> struct</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 结构体
@@ -1815,8 +1835,8 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </div>
 </div>
 
-<div id="outline-container-org601c4c7" class="outline-3">
-<h3 id="org601c4c7"><span class="section-number-3">6.6.</span> enum</h3>
+<div id="outline-container-org5842d62" class="outline-3">
+<h3 id="org5842d62"><span class="section-number-3">6.6.</span> enum</h3>
 <div class="outline-text-3" id="text-6-6">
 <p>
 枚举
@@ -1825,8 +1845,8 @@ a = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FileI
 </div>
 </section>
 
-<section id="outline-container-orgf98ccd2" class="outline-2">
-<h2 id="orgf98ccd2"><span class="section-number-2">7.</span> 类型转换</h2>
+<section id="outline-container-org6672eb9" class="outline-2">
+<h2 id="org6672eb9"><span class="section-number-2">7.</span> 类型转换</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 基本类型的转换:
@@ -1905,8 +1925,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 </div>
 
-<div id="outline-container-org369825e" class="outline-3">
-<h3 id="org369825e"><span class="section-number-3">7.1.</span> 隐式转换/强制转换</h3>
+<div id="outline-container-orgb9ed1b3" class="outline-3">
+<h3 id="orgb9ed1b3"><span class="section-number-3">7.1.</span> 隐式转换/强制转换</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">char</span> <span style="color: #a0522d;">a</span> = <span style="color: #8b2252;">'A'</span>;
@@ -1957,8 +1977,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orga71252b" class="outline-3">
-<h3 id="orga71252b"><span class="section-number-3">7.2.</span> 引用类型的隐式和强制转换</h3>
+<div id="outline-container-orgb6d106f" class="outline-3">
+<h3 id="orgb6d106f"><span class="section-number-3">7.2.</span> 引用类型的隐式和强制转换</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Person</span> <span style="color: #707183;">{}</span>
@@ -1978,8 +1998,8 @@ a = 2122;
 </div>
 </div>
 
-<div id="outline-container-org4c42ddc" class="outline-3">
-<h3 id="org4c42ddc"><span class="section-number-3">7.3.</span> 装箱/拆箱 (auto-boxing)</h3>
+<div id="outline-container-org247f02f" class="outline-3">
+<h3 id="org247f02f"><span class="section-number-3">7.3.</span> 装箱/拆箱 (auto-boxing)</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-csx"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#33258;&#21160;&#35013;&#31665;</span>
@@ -2001,8 +2021,8 @@ i = <span style="color: #707183;">(</span><span style="color: #228b22;">int</spa
 </div>
 </div>
 
-<div id="outline-container-orgf6e51e1" class="outline-3">
-<h3 id="orgf6e51e1"><span class="section-number-3">7.4.</span> 自定义转换规则</h3>
+<div id="outline-container-org273cc98" class="outline-3">
+<h3 id="org273cc98"><span class="section-number-3">7.4.</span> 自定义转换规则</h3>
 <div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -2077,11 +2097,11 @@ S = <span style="color: #0000ff;">MakeStudent</span><span style="color: #707183;
 </div>
 </div>
 
-<div id="outline-container-org07394f5" class="outline-3">
-<h3 id="org07394f5"><span class="section-number-3">7.5.</span> 基于 <b>字符串</b> 之间的互相转换</h3>
+<div id="outline-container-org23dcc37" class="outline-3">
+<h3 id="org23dcc37"><span class="section-number-3">7.5.</span> 基于 <b>字符串</b> 之间的互相转换</h3>
 <div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
-<li>核心两种方法: <code>string.Format</code> 用来转换为字符串，<code>type.Parse</code> 用来从字符串转化</li>
+<li>核心两种方法: <code>string.Format</code> 用来转换为字符串，~type.Parse~ 用来从字符串转化</li>
 <li>可以使用 <code>ToString/TryParse</code> 对上面的两个方法进行补充</li>
 </ul>
 
@@ -2095,8 +2115,8 @@ S = <span style="color: #0000ff;">MakeStudent</span><span style="color: #707183;
 </ul>
 </div>
 
-<div id="outline-container-orgc241043" class="outline-4">
-<h4 id="orgc241043"><span class="section-number-4">7.5.1.</span> string.Format</h4>
+<div id="outline-container-org8d4e926" class="outline-4">
+<h4 id="org8d4e926"><span class="section-number-4">7.5.1.</span> string.Format</h4>
 <div class="outline-text-4" id="text-7-5-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">r3</span> = <span style="color: #228b22;">string</span>.<span style="color: #0000ff;">Format</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"{0}&#30340;&#26379;&#21451;&#26159;{1}&#65292;&#23427;&#34429;&#28982;&#21482;&#26377;{2}&#23681;&#65292;&#20294;&#26159;&#23427;&#30340;&#25910;&#20837;&#36798;&#21040;{3:C}"</span>, name, friend, age, sal<span style="color: #707183;">)</span>;
@@ -2105,8 +2125,8 @@ S = <span style="color: #0000ff;">MakeStudent</span><span style="color: #707183;
 </div>
 </div>
 
-<div id="outline-container-org6fe4451" class="outline-4">
-<h4 id="org6fe4451"><span class="section-number-4">7.5.2.</span> type.ToString</h4>
+<div id="outline-container-org7852148" class="outline-4">
+<h4 id="org7852148"><span class="section-number-4">7.5.2.</span> type.ToString</h4>
 <div class="outline-text-4" id="text-7-5-2">
 <p>
 因为，string 类型是如此重要，所以在 <b>所有类的基类，即 object 中</b>,
@@ -2170,8 +2190,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org23edc9b" class="outline-4">
-<h4 id="org23edc9b"><span class="section-number-4">7.5.3.</span> type.Parse/TryParse</h4>
+<div id="outline-container-orgaa7a4ab" class="outline-4">
+<h4 id="orgaa7a4ab"><span class="section-number-4">7.5.3.</span> type.Parse/TryParse</h4>
 <div class="outline-text-4" id="text-7-5-3">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">int</span>
@@ -2239,8 +2259,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgb81e480" class="outline-4">
-<h4 id="orgb81e480"><span class="section-number-4">7.5.4.</span> Convert</h4>
+<div id="outline-container-org89bbc31" class="outline-4">
+<h4 id="org89bbc31"><span class="section-number-4">7.5.4.</span> Convert</h4>
 <div class="outline-text-4" id="text-7-5-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">s1</span> = Convert.<span style="color: #0000ff;">ToString</span><span style="color: #707183;">(</span>82738283782, 2<span style="color: #707183;">)</span>;
@@ -2255,12 +2275,12 @@ Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="col
 </div>
 </section>
 
-<section id="outline-container-org13746ef" class="outline-2">
-<h2 id="org13746ef"><span class="section-number-2">8.</span> 类 (Class)</h2>
+<section id="outline-container-orge7ae5fd" class="outline-2">
+<h2 id="orge7ae5fd"><span class="section-number-2">8.</span> 类 (Class)</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-orgf6ff4e3" class="outline-3">
-<h3 id="orgf6ff4e3"><span class="section-number-3">8.1.</span> 字段 (Field)</h3>
+<div id="outline-container-org99f48fc" class="outline-3">
+<h3 id="org99f48fc"><span class="section-number-3">8.1.</span> 字段 (Field)</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li>作为一个字段，最重要的是 (类型) (名字) = (值)</li>
@@ -2274,12 +2294,12 @@ Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="col
 </div>
 </div>
 
-<div id="outline-container-org9cf6316" class="outline-3">
-<h3 id="org9cf6316"><span class="section-number-3">8.2.</span> 方法 (Method)</h3>
+<div id="outline-container-orga8cd62d" class="outline-3">
+<h3 id="orga8cd62d"><span class="section-number-3">8.2.</span> 方法 (Method)</h3>
 <div class="outline-text-3" id="text-8-2">
 </div>
-<div id="outline-container-org5653709" class="outline-4">
-<h4 id="org5653709"><span class="section-number-4">8.2.1.</span> Basic</h4>
+<div id="outline-container-orgfe90159" class="outline-4">
+<h4 id="orgfe90159"><span class="section-number-4">8.2.1.</span> Basic</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <p>
 方法是一个具备名字的代码块:
@@ -2298,8 +2318,8 @@ Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="col
 </div>
 </div>
 
-<div id="outline-container-orgb851b88" class="outline-4">
-<h4 id="orgb851b88"><span class="section-number-4">8.2.2.</span> 方法的重载 (overload)</h4>
+<div id="outline-container-org3f39897" class="outline-4">
+<h4 id="org3f39897"><span class="section-number-4">8.2.2.</span> 方法的重载 (overload)</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <ul class="org-ul">
 <li>一个类中，可以有同名的方法。需要有不同的参数 (这样才能区分调用)</li>
@@ -2352,8 +2372,8 @@ Convert.<span style="color: #0000ff;">TryFromBase64String</span><span style="col
 </div>
 </div>
 
-<div id="outline-container-org09ee730" class="outline-4">
-<h4 id="org09ee730"><span class="section-number-4">8.2.3.</span> 参数 (值参数/ref/out)</h4>
+<div id="outline-container-orgca9382d" class="outline-4">
+<h4 id="orgca9382d"><span class="section-number-4">8.2.3.</span> 参数 (值参数/ref/out)</h4>
 <div class="outline-text-4" id="text-8-2-3">
 <p>
 值参数 (默认的):
@@ -2437,7 +2457,7 @@ out:
 </div>
 
 
-<figure id="org27d8ac4">
+<figure id="org4572715">
 <img src="img/method-parameter.png" alt="method-parameter.png" width="400px">
 
 </figure>
@@ -2445,8 +2465,8 @@ out:
 </div>
 
 
-<div id="outline-container-orged69853" class="outline-4">
-<h4 id="orged69853"><span class="section-number-4">8.2.4.</span> out 参数: 用来模拟方法返回多个值的场景</h4>
+<div id="outline-container-orgb0c8cd6" class="outline-4">
+<h4 id="orgb0c8cd6"><span class="section-number-4">8.2.4.</span> out 参数: 用来模拟方法返回多个值的场景</h4>
 <div class="outline-text-4" id="text-8-2-4">
 <p>
 如果不用 out，可以使用 Class 的方式返回多个值，这种方式比较重:
@@ -2527,8 +2547,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-orgec3795c" class="outline-4">
-<h4 id="orgec3795c"><span class="section-number-4">8.2.5.</span> 数组参数 (params)</h4>
+<div id="outline-container-org1225826" class="outline-4">
+<h4 id="org1225826"><span class="section-number-4">8.2.5.</span> 数组参数 (params)</h4>
 <div class="outline-text-4" id="text-8-2-5">
 <p>
 实现累加:
@@ -2624,8 +2644,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-orgc978e8a" class="outline-4">
-<h4 id="orgc978e8a"><span class="section-number-4">8.2.6.</span> 可选参数/命名参数</h4>
+<div id="outline-container-org5d0fcf2" class="outline-4">
+<h4 id="org5d0fcf2"><span class="section-number-4">8.2.6.</span> 可选参数/命名参数</h4>
 <div class="outline-text-4" id="text-8-2-6">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -2662,8 +2682,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-org8fb54bd" class="outline-3">
-<h3 id="org8fb54bd"><span class="section-number-3">8.3.</span> 属性 (Property)</h3>
+<div id="outline-container-orgf1b7e70" class="outline-3">
+<h3 id="orgf1b7e70"><span class="section-number-3">8.3.</span> 属性 (Property)</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 属性本身就是 [private Field + public Method] 一种语法糖:
@@ -2716,8 +2736,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-org31705c7" class="outline-3">
-<h3 id="org31705c7"><span class="section-number-3">8.4.</span> 索引器 (Indexer)</h3>
+<div id="outline-container-org715084d" class="outline-3">
+<h3 id="org715084d"><span class="section-number-3">8.4.</span> 索引器 (Indexer)</h3>
 <div class="outline-text-3" id="text-8-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">()</span>
@@ -2770,12 +2790,12 @@ out:
 </div>
 </div>
 
-<div id="outline-container-org9981571" class="outline-3">
-<h3 id="org9981571"><span class="section-number-3">8.5.</span> 构造方法/构造器 (Constructor)</h3>
+<div id="outline-container-org2457fb6" class="outline-3">
+<h3 id="org2457fb6"><span class="section-number-3">8.5.</span> 构造方法/构造器 (Constructor)</h3>
 <div class="outline-text-3" id="text-8-5">
 </div>
-<div id="outline-container-org3ec5c60" class="outline-4">
-<h4 id="org3ec5c60"><span class="section-number-4">8.5.1.</span> 对象的实例化</h4>
+<div id="outline-container-org89b9afd" class="outline-4">
+<h4 id="org89b9afd"><span class="section-number-4">8.5.1.</span> 对象的实例化</h4>
 <div class="outline-text-4" id="text-8-5-1">
 <p>
 对象的实例化，分为下面几个步骤:
@@ -2783,20 +2803,20 @@ out:
 <ol class="org-ol">
 <li>在内存中，分配相应的空间</li>
 <li>按照类型进行相关字段的初始化工作</li>
-<li>调用相应的 <b>构造方法</b>，进行相关初始化工作</li>
+<li>调用相应的 *构造方法*，进行相关初始化工作</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-orgcd7a5ea" class="outline-4">
-<h4 id="orgcd7a5ea"><span class="section-number-4">8.5.2.</span> 构造器</h4>
+<div id="outline-container-orgd5f0cbd" class="outline-4">
+<h4 id="orgd5f0cbd"><span class="section-number-4">8.5.2.</span> 构造器</h4>
 <div class="outline-text-4" id="text-8-5-2">
 <p>
 所谓的构造方法，就是类中定义的一个特殊方法。它用来对实例空间进行若干初始化工作:
 </p>
 <ul class="org-ul">
 <li>构造方法可以写多个，即可以重载 (overload)</li>
-<li>我们也可以不写任何构造方法，那么编译器在编译的时候，会自动帮我们插入一个 <b>无参的空的</b>。
+<li>我们也可以不写任何构造方法，那么编译器在编译的时候，会自动帮我们插入一个 *无参的空的*。
 但是，如果你在类中，定义了任何的构造方法，那么编译器就不会帮你再生成了</li>
 </ul>
 
@@ -2824,8 +2844,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-org841d721" class="outline-4">
-<h4 id="org841d721"><span class="section-number-4">8.5.3.</span> 构造器链</h4>
+<div id="outline-container-org8ad35bd" class="outline-4">
+<h4 id="org8ad35bd"><span class="section-number-4">8.5.3.</span> 构造器链</h4>
 <div class="outline-text-4" id="text-8-5-3">
 <ul class="org-ul">
 <li>如果不显式继承某个类，那么继承的将是 object。即可以忽略掉 <code>: Object</code></li>
@@ -2893,8 +2913,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-org25cebcf" class="outline-4">
-<h4 id="org25cebcf"><span class="section-number-4">8.5.4.</span> 静态构造器</h4>
+<div id="outline-container-org3b33b66" class="outline-4">
+<h4 id="org3b33b66"><span class="section-number-4">8.5.4.</span> 静态构造器</h4>
 <div class="outline-text-4" id="text-8-5-4">
 <ul class="org-ul">
 <li>构造器是用来初始化 <b>对象</b> 的</li>
@@ -2918,8 +2938,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-org62bbebf" class="outline-3">
-<h3 id="org62bbebf"><span class="section-number-3">8.6.</span> 析构方法/析构器 (Deconstructor)</h3>
+<div id="outline-container-org6b51ef3" class="outline-3">
+<h3 id="org6b51ef3"><span class="section-number-3">8.6.</span> 析构方法/析构器 (Deconstructor)</h3>
 <div class="outline-text-3" id="text-8-6">
 <div class="org-src-container">
 <pre class="src src-csharp">~<span style="color: #0000ff;">TipCalculator</span><span style="color: #707183;">()</span>
@@ -2936,8 +2956,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-orgfa159ce" class="outline-3">
-<h3 id="orgfa159ce"><span class="section-number-3">8.7.</span> 静态方法 (Static)</h3>
+<div id="outline-container-orge4475c6" class="outline-3">
+<h3 id="orge4475c6"><span class="section-number-3">8.7.</span> 静态方法 (Static)</h3>
 <div class="outline-text-3" id="text-8-7">
 <p>
 将归属权，交给类。调用的时候，使用 <code>类名.xxx</code> 方式。
@@ -2945,8 +2965,8 @@ out:
 </div>
 </div>
 
-<div id="outline-container-org364c727" class="outline-3">
-<h3 id="org364c727"><span class="section-number-3">8.8.</span> 将数据设置为不变的 (const/readonly)</h3>
+<div id="outline-container-orgd48aa0d" class="outline-3">
+<h3 id="orgd48aa0d"><span class="section-number-3">8.8.</span> 将数据设置为不变的 (const/readonly)</h3>
 <div class="outline-text-3" id="text-8-8">
 <pre class="example">
 通过 private 等操作符可以保护数据的外部访问安全
@@ -2972,7 +2992,7 @@ readonly:
 <li>限定变量只能读，不能修改</li>
 <li>可以修饰任何的字段，不管是不是静态的</li>
 <li>相对来说，需要占用空间、需要运行时检查，效率会低一些</li>
-<li><b>注意</b>，使用 readonly 修饰数组等变量，虽然可以防止数组被重新赋值，但不能避免里面的元素被修改</li>
+<li>*注意*，使用 readonly 修饰数组等变量，虽然可以防止数组被重新赋值，但不能避免里面的元素被修改</li>
 </ul>
 
 <p>
@@ -2996,18 +3016,18 @@ readonly:
 </div>
 </div>
 
-<div id="outline-container-org6d7baba" class="outline-3">
-<h3 id="org6d7baba"><span class="section-number-3">8.9.</span> 继承 (Inheritance)</h3>
+<div id="outline-container-orgbdf81f1" class="outline-3">
+<h3 id="orgbdf81f1"><span class="section-number-3">8.9.</span> 继承 (Inheritance)</h3>
 <div class="outline-text-3" id="text-8-9">
 <ul class="org-ul">
 <li>继承表示，我的是我的，你的也是我的。使用 <code>:</code> 语法表示继承关系</li>
-<li>继承主要用来消除冗余，让逻辑得以 <b>复用</b>。逻辑上来说，跟自然界的分门别类是对应一致的</li>
-<li>new 对象的时候，会 <b>开辟空间、初始化字段、调用构造器</b>。如果存在继承关系的话，创建的实例是分为多部分的</li>
+<li>继承主要用来消除冗余，让逻辑得以 *复用*。逻辑上来说，跟自然界的分门别类是对应一致的</li>
+<li>new 对象的时候，会 *开辟空间、初始化字段、调用构造器*。如果存在继承关系的话，创建的实例是分为多部分的</li>
 <li>调用实例上的某个方法 A，如果 A 调用了另一个方法 B，这时候，优先会使用 A 自身部分上面定义的 B。
 如果想让 A 调用的 B 是派生类 <b>最下面</b> 的 B 的话，使用 <code>virutal/override</code> 将 B 设置为 <b>虚函数</b> 即可。
 子类中存在的相同方法，如果不是 override 的，那么将会是 new 的。new 可以不写</li>
 <li>在 C# 中，只允许有一个父类，即 <b>单继承</b></li>
-<li>所有类的根基类是 <b>object</b>。object 中定义了 ToString/GetType/Equal 等方法。因此，所有的对象都拥有这几个方法</li>
+<li>所有类的根基类是 *object*。object 中定义了 ToString/GetType/Equal 等方法。因此，所有的对象都拥有这几个方法</li>
 <li>在方法中，使用 <b>this</b> 表示当前的对象，使用 <b>base</b> 表示父类部分。base.Xxx 表示调用父类部分的 Xxx</li>
 <li>使用 private 修饰的数据不能被继承使用，这时候应该使用 <b>protected</b></li>
 </ul>
@@ -3026,8 +3046,8 @@ d.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 </div>
 
-<div id="outline-container-org97dd11c" class="outline-4">
-<h4 id="org97dd11c"><span class="section-number-4">8.9.1.</span> 虚方法 (virtual/override)</h4>
+<div id="outline-container-orga51b557" class="outline-4">
+<h4 id="orga51b557"><span class="section-number-4">8.9.1.</span> 虚方法 (virtual/override)</h4>
 <div class="outline-text-4" id="text-8-9-1">
 <p>
 虚函数:
@@ -3119,8 +3139,8 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 </div>
 
-<div id="outline-container-org12bc391" class="outline-4">
-<h4 id="org12bc391"><span class="section-number-4">8.9.2.</span> 抽象方法 (abstract)</h4>
+<div id="outline-container-orga8b46e7" class="outline-4">
+<h4 id="orga8b46e7"><span class="section-number-4">8.9.2.</span> 抽象方法 (abstract)</h4>
 <div class="outline-text-4" id="text-8-9-2">
 <ul class="org-ul">
 <li>继承下来的，不一定是权利，也有可能是义务。俗语有云 <b>父债子偿</b></li>
@@ -3167,8 +3187,8 @@ a.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</span
 </div>
 </div>
 
-<div id="outline-container-org5a5a1dd" class="outline-3">
-<h3 id="org5a5a1dd"><span class="section-number-3">8.10.</span> 多态 (Polymorphism)</h3>
+<div id="outline-container-org8464328" class="outline-3">
+<h3 id="org8464328"><span class="section-number-3">8.10.</span> 多态 (Polymorphism)</h3>
 <div class="outline-text-3" id="text-8-10">
 <p>
 多态是一个来自生物学上的概念，<a href="https://baike.baidu.com/item/%E5%A4%9A%E6%80%81%E7%8E%B0%E8%B1%A1">参见百度百科</a>:
@@ -3224,8 +3244,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-org89daf1e" class="outline-3">
-<h3 id="org89daf1e"><span class="section-number-3">8.11.</span> 静态类/static</h3>
+<div id="outline-container-org2391071" class="outline-3">
+<h3 id="org2391071"><span class="section-number-3">8.11.</span> 静态类/static</h3>
 <div class="outline-text-3" id="text-8-11">
 <p>
 限制里面所有的方法，必须是静态的。典型的代表是 Math 类。
@@ -3233,8 +3253,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-org668ec2f" class="outline-3">
-<h3 id="org668ec2f"><span class="section-number-3">8.12.</span> 密封类/sealed</h3>
+<div id="outline-container-org6276832" class="outline-3">
+<h3 id="org6276832"><span class="section-number-3">8.12.</span> 密封类/sealed</h3>
 <div class="outline-text-3" id="text-8-12">
 <p>
 这就从语法上，避免了某个类被继承的可能。
@@ -3242,8 +3262,8 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-org0aa2e60" class="outline-3">
-<h3 id="org0aa2e60"><span class="section-number-3">8.13.</span> 分部类/partial</h3>
+<div id="outline-container-org6b1ee8d" class="outline-3">
+<h3 id="org6b1ee8d"><span class="section-number-3">8.13.</span> 分部类/partial</h3>
 <div class="outline-text-3" id="text-8-13">
 <p>
 让类可以写成多部分。在编译的环节，编译器将会帮助我们自动合并之后再编译。
@@ -3268,12 +3288,12 @@ xxx.<span style="color: #0000ff;">Help</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-orgd68a159" class="outline-3">
-<h3 id="orgd68a159"><span class="section-number-3">8.14.</span> 基类 Object</h3>
+<div id="outline-container-org3b7afe6" class="outline-3">
+<h3 id="org3b7afe6"><span class="section-number-3">8.14.</span> 基类 Object</h3>
 <div class="outline-text-3" id="text-8-14">
 </div>
-<div id="outline-container-org6899a12" class="outline-4">
-<h4 id="org6899a12"><span class="section-number-4">8.14.1.</span> ToString</h4>
+<div id="outline-container-org3cf1bab" class="outline-4">
+<h4 id="org3cf1bab"><span class="section-number-4">8.14.1.</span> ToString</h4>
 <div class="outline-text-4" id="text-8-14-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">TipCalculator</span> : <span style="color: #228b22;">CalculatorBase</span>
@@ -3290,8 +3310,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgb9cf844" class="outline-3">
-<h3 id="orgb9cf844"><span class="section-number-3">8.15.</span> 类的扩展机制</h3>
+<div id="outline-container-org95a7a34" class="outline-3">
+<h3 id="org95a7a34"><span class="section-number-3">8.15.</span> 类的扩展机制</h3>
 <div class="outline-text-3" id="text-8-15">
 <p>
 为某个类扩展功能的基本方式:
@@ -3404,20 +3424,20 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </section>
 
-<section id="outline-container-orgfda2215" class="outline-2">
-<h2 id="orgfda2215"><span class="section-number-2">9.</span> 接口 (Interface)</h2>
+<section id="outline-container-org8ec73e0" class="outline-2">
+<h2 id="org8ec73e0"><span class="section-number-2">9.</span> 接口 (Interface)</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>接口本质就是一个可以进行 <b>多继承</b> 的纯的抽象类。它是单继承的一种例外</li>
 <li>使用 interface 关键词声明接口，接口里面只能包含方法。按照习惯，一般使用 IXxx 的方式命名接口</li>
 <li>不需要使用 public 修饰符，因为接口里所有方法默认都是公开的。方法不需要有方法体</li>
-<li>接口实际上就是一种 <b>合同</b>，它起到的作用是制定统一的 <b>规则</b></li>
+<li>接口实际上就是一种 <b>合同*，它起到的作用是制定统一的 *规则</b></li>
 <li>接口有很多好处: blahblahblah&#x2026; 面向接口编程是一种好的编程实践</li>
 </ul>
 </div>
 
-<div id="outline-container-org1599161" class="outline-3">
-<h3 id="org1599161"><span class="section-number-3">9.1.</span> IComparable 接口使用示例</h3>
+<div id="outline-container-org1db3e56" class="outline-3">
+<h3 id="org1db3e56"><span class="section-number-3">9.1.</span> IComparable 接口使用示例</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 IComparable 用来为两个对象进行比较提供比较的规则:
@@ -3471,8 +3491,8 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </div>
 </section>
 
-<section id="outline-container-org4938218" class="outline-2">
-<h2 id="org4938218"><span class="section-number-2">10.</span> 结构体 (Struct)</h2>
+<section id="outline-container-org2b3f26b" class="outline-2">
+<h2 id="org2b3f26b"><span class="section-number-2">10.</span> 结构体 (Struct)</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>它跟 class 非常像，但它是值类型</li>
@@ -3549,8 +3569,8 @@ IComparable 用来为两个对象进行比较提供比较的规则:
 </div>
 </section>
 
-<section id="outline-container-org7a10a32" class="outline-2">
-<h2 id="org7a10a32"><span class="section-number-2">11.</span> 枚举 (Enum)</h2>
+<section id="outline-container-orgf7e4865" class="outline-2">
+<h2 id="orgf7e4865"><span class="section-number-2">11.</span> 枚举 (Enum)</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 int/1 2 3 .. ..  3
@@ -3559,12 +3579,12 @@ bool: true/false
 </p>
 
 <p>
-Gender (男<i>女</i>未知)
+Gender (男/女/未知)
 </p>
 </div>
 
-<div id="outline-container-org2b04676" class="outline-3">
-<h3 id="org2b04676"><span class="section-number-3">11.1.</span> 基本使用</h3>
+<div id="outline-container-orgecbdafb" class="outline-3">
+<h3 id="orgecbdafb"><span class="section-number-3">11.1.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3634,8 +3654,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org40e776a" class="outline-3">
-<h3 id="org40e776a"><span class="section-number-3">11.2.</span> Flags (TODO)</h3>
+<div id="outline-container-orge30e795" class="outline-3">
+<h3 id="orge30e795"><span class="section-number-3">11.2.</span> Flags (TODO)</h3>
 <div class="outline-text-3" id="text-11-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #707183;">[</span><span style="color: #a0522d;">Flags</span><span style="color: #707183;">]</span>
@@ -3652,8 +3672,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org961cd86" class="outline-3">
-<h3 id="org961cd86"><span class="section-number-3">11.3.</span> 基本 API</h3>
+<div id="outline-container-orgf66ddd0" class="outline-3">
+<h3 id="orgf66ddd0"><span class="section-number-3">11.3.</span> 基本 API</h3>
 <div class="outline-text-3" id="text-11-3">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">foreach</span> <span style="color: #707183;">(</span><span style="color: #228b22;">string</span> <span style="color: #0000ff;">name</span> <span style="color: #a020f0;">in</span> Enum.<span style="color: #0000ff;">GetNames</span><span style="color: #7388d6;">(</span><span style="color: #a020f0;">typeof</span><span style="color: #909183;">(</span>Gender<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
@@ -3670,8 +3690,8 @@ Gender (男<i>女</i>未知)
 </div>
 </section>
 
-<section id="outline-container-org3641f93" class="outline-2">
-<h2 id="org3641f93"><span class="section-number-2">12.</span> 委托 (Delegate)</h2>
+<section id="outline-container-org51cb116" class="outline-2">
+<h2 id="org51cb116"><span class="section-number-2">12.</span> 委托 (Delegate)</h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>背景:
@@ -3687,12 +3707,12 @@ Gender (男<i>女</i>未知)
 </ul>
 </div>
 
-<div id="outline-container-orga9786eb" class="outline-3">
-<h3 id="orga9786eb"><span class="section-number-3">12.1.</span> 写一个方法 MyAdd ，求取 <b>若干数</b> 的和</h3>
+<div id="outline-container-org284b10d" class="outline-3">
+<h3 id="org284b10d"><span class="section-number-3">12.1.</span> 写一个方法 MyAdd ，求取 <b>若干数</b> 的和</h3>
 <div class="outline-text-3" id="text-12-1">
 </div>
-<div id="outline-container-orgb0a16c3" class="outline-4">
-<h4 id="orgb0a16c3"><span class="section-number-4">12.1.1.</span> 原始写法</h4>
+<div id="outline-container-org8aeda41" class="outline-4">
+<h4 id="org8aeda41"><span class="section-number-4">12.1.1.</span> 原始写法</h4>
 <div class="outline-text-4" id="text-12-1-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -3751,8 +3771,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org01917d6" class="outline-4">
-<h4 id="org01917d6"><span class="section-number-4">12.1.2.</span> 通过一个 Flag 来通知 MyAdd 要去调用什么逻辑</h4>
+<div id="outline-container-org1a2ec01" class="outline-4">
+<h4 id="org1a2ec01"><span class="section-number-4">12.1.2.</span> 通过一个 Flag 来通知 MyAdd 要去调用什么逻辑</h4>
 <div class="outline-text-4" id="text-12-1-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -3845,11 +3865,11 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org1b1f6e4" class="outline-4">
-<h4 id="org1b1f6e4"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
+<div id="outline-container-orgc3394e6" class="outline-4">
+<h4 id="orgc3394e6"><span class="section-number-4">12.1.3.</span> 没有中间商赚差价，借助类和接口的方式，传递不同的方法</h4>
 <div class="outline-text-4" id="text-12-1-3">
 
-<figure id="org2682adc">
+<figure id="orgb21da11">
 <img src="img/guaziershouche.png" alt="guaziershouche.png">
 
 </figure>
@@ -3954,8 +3974,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-orgd1deb5f" class="outline-4">
-<h4 id="orgd1deb5f"><span class="section-number-4">12.1.4.</span> 模板代码实在不爽，委托类型出现来救场</h4>
+<div id="outline-container-org8135472" class="outline-4">
+<h4 id="org8135472"><span class="section-number-4">12.1.4.</span> 模板代码实在不爽，委托类型出现来救场</h4>
 <div class="outline-text-4" id="text-12-1-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -4044,8 +4064,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org5006c1e" class="outline-3">
-<h3 id="org5006c1e"><span class="section-number-3">12.2.</span> 基本语法</h3>
+<div id="outline-container-org5074c6d" class="outline-3">
+<h3 id="org5074c6d"><span class="section-number-3">12.2.</span> 基本语法</h3>
 <div class="outline-text-3" id="text-12-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126; (&#22996;&#25176;&#31867;&#22411;)</span>
@@ -4088,8 +4108,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org67327b1" class="outline-3">
-<h3 id="org67327b1"><span class="section-number-3">12.3.</span> 匿名委托</h3>
+<div id="outline-container-orgcd3c6c8" class="outline-3">
+<h3 id="orgcd3c6c8"><span class="section-number-3">12.3.</span> 匿名委托</h3>
 <div class="outline-text-3" id="text-12-3">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126;</span>
@@ -4130,8 +4150,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-orgcc08c59" class="outline-3">
-<h3 id="orgcc08c59"><span class="section-number-3">12.4.</span> 表达式语法</h3>
+<div id="outline-container-org3ba3802" class="outline-3">
+<h3 id="org3ba3802"><span class="section-number-3">12.4.</span> 表达式语法</h3>
 <div class="outline-text-3" id="text-12-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126;</span>
@@ -4186,8 +4206,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org8334416" class="outline-3">
-<h3 id="org8334416"><span class="section-number-3">12.5.</span> 内建的委托类型 Action/Func</h3>
+<div id="outline-container-orga61407f" class="outline-3">
+<h3 id="orga61407f"><span class="section-number-3">12.5.</span> 内建的委托类型 Action/Func</h3>
 <div class="outline-text-3" id="text-12-5">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -4218,8 +4238,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-orga4ff6bb" class="outline-3">
-<h3 id="orga4ff6bb"><span class="section-number-3">12.6.</span> 多播委托</h3>
+<div id="outline-container-org9960498" class="outline-3">
+<h3 id="org9960498"><span class="section-number-3">12.6.</span> 多播委托</h3>
 <div class="outline-text-3" id="text-12-6">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -4267,8 +4287,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-org57350ae" class="outline-3">
-<h3 id="org57350ae"><span class="section-number-3">12.7.</span> [练习] 如何简化图片绘制的代码</h3>
+<div id="outline-container-org352852b" class="outline-3">
+<h3 id="org352852b"><span class="section-number-3">12.7.</span> [练习] 如何简化图片绘制的代码</h3>
 <div class="outline-text-3" id="text-12-7">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -4351,8 +4371,8 @@ Gender (男<i>女</i>未知)
 </div>
 </div>
 
-<div id="outline-container-orgd9776d6" class="outline-3">
-<h3 id="orgd9776d6"><span class="section-number-3">12.8.</span> [练习] 如何简化输出程序执行时间的逻辑</h3>
+<div id="outline-container-orga83e7b7" class="outline-3">
+<h3 id="orga83e7b7"><span class="section-number-3">12.8.</span> [练习] 如何简化输出程序执行时间的逻辑</h3>
 <div class="outline-text-3" id="text-12-8">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -4415,12 +4435,12 @@ Gender (男<i>女</i>未知)
 </div>
 </section>
 
-<section id="outline-container-org389acba" class="outline-2">
-<h2 id="org389acba"><span class="section-number-2">13.</span> 数组 (Array)</h2>
+<section id="outline-container-org83674a3" class="outline-2">
+<h2 id="org83674a3"><span class="section-number-2">13.</span> 数组 (Array)</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org18a4431" class="outline-3">
-<h3 id="org18a4431"><span class="section-number-3">13.1.</span> 一维数组</h3>
+<div id="outline-container-org6ff1fe0" class="outline-3">
+<h3 id="org6ff1fe0"><span class="section-number-3">13.1.</span> 一维数组</h3>
 <div class="outline-text-3" id="text-13-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #b22222;">// </span><span style="color: #b22222;">1. &#22768;&#26126;</span>
@@ -4502,8 +4522,8 @@ arr<span style="color: #707183;">[</span>5<span style="color: #707183;">]</span>
 </div>
 </div>
 
-<div id="outline-container-orgc354add" class="outline-3">
-<h3 id="orgc354add"><span class="section-number-3">13.2.</span> 多维数组 (Dimensional Array)</h3>
+<div id="outline-container-org45c249e" class="outline-3">
+<h3 id="org45c249e"><span class="section-number-3">13.2.</span> 多维数组 (Dimensional Array)</h3>
 <div class="outline-text-3" id="text-13-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">int</span><span style="color: #707183;">[</span>,,<span style="color: #707183;">]</span> arr =
@@ -4521,8 +4541,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgcf3152a" class="outline-3">
-<h3 id="orgcf3152a"><span class="section-number-3">13.3.</span> 交错数组 (Jagged Array)</h3>
+<div id="outline-container-org54c0416" class="outline-3">
+<h3 id="org54c0416"><span class="section-number-3">13.3.</span> 交错数组 (Jagged Array)</h3>
 <div class="outline-text-3" id="text-13-3">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">int</span><span style="color: #707183;">[][]</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span><span style="color: #707183;">[</span>3<span style="color: #707183;">][]</span>;
@@ -4538,8 +4558,8 @@ arr2<span style="color: #707183;">[</span>2<span style="color: #707183;">]</span
 </div>
 </section>
 
-<section id="outline-container-orge803e1f" class="outline-2">
-<h2 id="orge803e1f"><span class="section-number-2">14.</span> 元组 (Tuple/ValueTuple)</h2>
+<section id="outline-container-orgd1a814f" class="outline-2">
+<h2 id="orgd1a814f"><span class="section-number-2">14.</span> 元组 (Tuple/ValueTuple)</h2>
 <div class="outline-text-2" id="text-14">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Student</span>
@@ -4692,16 +4712,16 @@ ValueTuple:
 </div>
 </section>
 
-<section id="outline-container-orgbc0cfd8" class="outline-2">
-<h2 id="orgbc0cfd8"><span class="section-number-2">15.</span> 集合 (Collections)</h2>
+<section id="outline-container-org0ddd227" class="outline-2">
+<h2 id="org0ddd227"><span class="section-number-2">15.</span> 集合 (Collections)</h2>
 <div class="outline-text-2" id="text-15">
 </div>
-<div id="outline-container-org706c1d9" class="outline-3">
-<h3 id="org706c1d9"><span class="section-number-3">15.1.</span> System.Collections</h3>
+<div id="outline-container-org148b25e" class="outline-3">
+<h3 id="org148b25e"><span class="section-number-3">15.1.</span> System.Collections</h3>
 <div class="outline-text-3" id="text-15-1">
 </div>
-<div id="outline-container-orgbaafb74" class="outline-4">
-<h4 id="orgbaafb74"><span class="section-number-4">15.1.1.</span> ArrayList</h4>
+<div id="outline-container-org23e8eaf" class="outline-4">
+<h4 id="org23e8eaf"><span class="section-number-4">15.1.1.</span> ArrayList</h4>
 <div class="outline-text-4" id="text-15-1-1">
 <ul class="org-ul">
 <li>以数字为下标</li>
@@ -4779,8 +4799,8 @@ ValueTuple:
 </div>
 </div>
 
-<div id="outline-container-orga663854" class="outline-4">
-<h4 id="orga663854"><span class="section-number-4">15.1.2.</span> Hashtable</h4>
+<div id="outline-container-org07d682c" class="outline-4">
+<h4 id="org07d682c"><span class="section-number-4">15.1.2.</span> Hashtable</h4>
 <div class="outline-text-4" id="text-15-1-2">
 <ul class="org-ul">
 <li>以对象为下标</li>
@@ -4886,8 +4906,8 @@ ValueTuple:
 </div>
 </div>
 
-<div id="outline-container-org9292458" class="outline-4">
-<h4 id="org9292458"><span class="section-number-4">15.1.3.</span> Queue</h4>
+<div id="outline-container-org71f747c" class="outline-4">
+<h4 id="org71f747c"><span class="section-number-4">15.1.3.</span> Queue</h4>
 <div class="outline-text-4" id="text-15-1-3">
 <p>
 FIFO (First In First Out，先进先出):
@@ -4911,8 +4931,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgeb0fdc7" class="outline-4">
-<h4 id="orgeb0fdc7"><span class="section-number-4">15.1.4.</span> Stack</h4>
+<div id="outline-container-org4da5fc8" class="outline-4">
+<h4 id="org4da5fc8"><span class="section-number-4">15.1.4.</span> Stack</h4>
 <div class="outline-text-4" id="text-15-1-4">
 <p>
 LIFO (Last In First Out，后进先出):
@@ -4976,18 +4996,18 @@ s1.<span style="color: #0000ff;">Clear</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-orgf4b3a90" class="outline-4">
-<h4 id="orgf4b3a90"><span class="section-number-4">15.1.5.</span> SortedList/BitArray</h4>
+<div id="outline-container-orgb6581b8" class="outline-4">
+<h4 id="orgb6581b8"><span class="section-number-4">15.1.5.</span> SortedList/BitArray</h4>
 </div>
 </div>
 
 
-<div id="outline-container-org66219f7" class="outline-3">
-<h3 id="org66219f7"><span class="section-number-3">15.2.</span> System.Collections.Generic</h3>
+<div id="outline-container-orgfd4e718" class="outline-3">
+<h3 id="orgfd4e718"><span class="section-number-3">15.2.</span> System.Collections.Generic</h3>
 <div class="outline-text-3" id="text-15-2">
 </div>
-<div id="outline-container-org020b5d4" class="outline-4">
-<h4 id="org020b5d4"><span class="section-number-4">15.2.1.</span> List&lt;T&gt;</h4>
+<div id="outline-container-org6e02371" class="outline-4">
+<h4 id="org6e02371"><span class="section-number-4">15.2.1.</span> List&lt;T&gt;</h4>
 <div class="outline-text-4" id="text-15-2-1">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;</span> <span style="color: #a0522d;">l1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">List</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
@@ -5016,8 +5036,8 @@ l3.<span style="color: #0000ff;">RemoveAll</span><span style="color: #707183;">(
 </div>
 </div>
 
-<div id="outline-container-orgefbc16c" class="outline-4">
-<h4 id="orgefbc16c"><span class="section-number-4">15.2.2.</span> Dictionary&lt;TKey, TValue&gt;</h4>
+<div id="outline-container-orgaac5501" class="outline-4">
+<h4 id="orgaac5501"><span class="section-number-4">15.2.2.</span> Dictionary&lt;TKey, TValue&gt;</h4>
 <div class="outline-text-4" id="text-15-2-2">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">d1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Dictionary</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span>, <span style="color: #228b22;">double</span><span style="color: #707183;">&gt;()</span>;
@@ -5046,8 +5066,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org694aefc" class="outline-4">
-<h4 id="org694aefc"><span class="section-number-4">15.2.3.</span> Queue&lt;T&gt;</h4>
+<div id="outline-container-org5ae3ed1" class="outline-4">
+<h4 id="org5ae3ed1"><span class="section-number-4">15.2.3.</span> Queue&lt;T&gt;</h4>
 <div class="outline-text-4" id="text-15-2-3">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">q1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Queue</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
@@ -5062,8 +5082,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orge3ce9c7" class="outline-4">
-<h4 id="orge3ce9c7"><span class="section-number-4">15.2.4.</span> Stack&lt;T&gt;</h4>
+<div id="outline-container-org71a1d2e" class="outline-4">
+<h4 id="org71a1d2e"><span class="section-number-4">15.2.4.</span> Stack&lt;T&gt;</h4>
 <div class="outline-text-4" id="text-15-2-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">s1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Stack</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">string</span><span style="color: #707183;">&gt;()</span>;
@@ -5081,8 +5101,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orga720bd6" class="outline-4">
-<h4 id="orga720bd6"><span class="section-number-4">15.2.5.</span> LinkedList&lt;T&gt;</h4>
+<div id="outline-container-org85be6fd" class="outline-4">
+<h4 id="org85be6fd"><span class="section-number-4">15.2.5.</span> LinkedList&lt;T&gt;</h4>
 <div class="outline-text-4" id="text-15-2-5">
 <p>
 <a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.collections.generic.linkedlist-1?view=net-5.0">https://docs.microsoft.com/zh-cn/dotnet/api/system.collections.generic.linkedlist-1?view=net-5.0</a>
@@ -5090,8 +5110,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orged0d2eb" class="outline-4">
-<h4 id="orged0d2eb"><span class="section-number-4">15.2.6.</span> HashSet&lt;T&gt;</h4>
+<div id="outline-container-org4f819f4" class="outline-4">
+<h4 id="org4f819f4"><span class="section-number-4">15.2.6.</span> HashSet&lt;T&gt;</h4>
 <div class="outline-text-4" id="text-15-2-6">
 <ul class="org-ul">
 <li>无序</li>
@@ -5125,13 +5145,13 @@ hs1.<span style="color: #0000ff;">UnionWith</span><span style="color: #707183;">
 </div>
 </div>
 
-<div id="outline-container-org2187dd1" class="outline-4">
-<h4 id="org2187dd1"><span class="section-number-4">15.2.7.</span> SortedList/Set/Dictionary&lt;&gt;</h4>
+<div id="outline-container-orgfde6f3a" class="outline-4">
+<h4 id="orgfde6f3a"><span class="section-number-4">15.2.7.</span> SortedList/Set/Dictionary&lt;&gt;</h4>
 </div>
 </div>
 
-<div id="outline-container-org977a8d0" class="outline-3">
-<h3 id="org977a8d0"><span class="section-number-3">15.3.</span> System.Collections.Immutable</h3>
+<div id="outline-container-org5849224" class="outline-3">
+<h3 id="org5849224"><span class="section-number-3">15.3.</span> System.Collections.Immutable</h3>
 <div class="outline-text-3" id="text-15-3">
 <p>
 ImmutableList:
@@ -5166,8 +5186,8 @@ ImmutableList:
 
 
 
-<section id="outline-container-orgca7a4d7" class="outline-2">
-<h2 id="orgca7a4d7"><span class="section-number-2">16.</span> IEnumerable/Linq</h2>
+<section id="outline-container-org6d182ea" class="outline-2">
+<h2 id="org6d182ea"><span class="section-number-2">16.</span> IEnumerable/Linq</h2>
 <div class="outline-text-2" id="text-16">
 <ol class="org-ol">
 <li>string/array/List/Dict 虽然不是同一种类型，但是很像，有没有内在相似的逻辑? [思考]</li>
@@ -5188,8 +5208,8 @@ ImmutableList:
 </ol>
 </div>
 
-<div id="outline-container-orgf2c21b8" class="outline-3">
-<h3 id="orgf2c21b8"><span class="section-number-3">16.1.</span> IEnumerable/IEnumerator/foreach</h3>
+<div id="outline-container-orge14a4af" class="outline-3">
+<h3 id="orge14a4af"><span class="section-number-3">16.1.</span> IEnumerable/IEnumerator/foreach</h3>
 <div class="outline-text-3" id="text-16-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -5295,8 +5315,8 @@ ImmutableList:
 </div>
 </div>
 
-<div id="outline-container-orgc5c5c4a" class="outline-3">
-<h3 id="orgc5c5c4a"><span class="section-number-3">16.2.</span> Iterator</h3>
+<div id="outline-container-orgecb87b8" class="outline-3">
+<h3 id="orgecb87b8"><span class="section-number-3">16.2.</span> Iterator</h3>
 <div class="outline-text-3" id="text-16-2">
 <p>
 语法糖。
@@ -5390,8 +5410,8 @@ ImmutableList:
 </div>
 
 
-<div id="outline-container-org3d8c6a6" class="outline-3">
-<h3 id="org3d8c6a6"><span class="section-number-3">16.3.</span> Linq</h3>
+<div id="outline-container-orga09ac9a" class="outline-3">
+<h3 id="orga09ac9a"><span class="section-number-3">16.3.</span> Linq</h3>
 <div class="outline-text-3" id="text-16-3">
 <p>
 Linq (Language Integrated Query，语言集成扩展)：
@@ -5403,8 +5423,8 @@ Linq (Language Integrated Query，语言集成扩展)：
 </ul>
 </div>
 
-<div id="outline-container-org590211f" class="outline-4">
-<h4 id="org590211f"><span class="section-number-4">16.3.1.</span> Method Syntax</h4>
+<div id="outline-container-org7a8df59" class="outline-4">
+<h4 id="org7a8df59"><span class="section-number-4">16.3.1.</span> Method Syntax</h4>
 <div class="outline-text-4" id="text-16-3-1">
 <ul class="org-ul">
 <li>筛选操作符: Where/OfType</li>
@@ -5537,8 +5557,8 @@ Linq (Language Integrated Query，语言集成扩展)：
 </div>
 </div>
 
-<div id="outline-container-org6a927d0" class="outline-4">
-<h4 id="org6a927d0"><span class="section-number-4">16.3.2.</span> Query Syntax/Expression</h4>
+<div id="outline-container-org04f3d4b" class="outline-4">
+<h4 id="org04f3d4b"><span class="section-number-4">16.3.2.</span> Query Syntax/Expression</h4>
 <div class="outline-text-4" id="text-16-3-2">
 <ul class="org-ul">
 <li>Query 表达式，最终会被通过 Provider 提供的机制翻译成相关的方法调用。最终效果是一样的。不过 Provider 可能会进行一定程度的优化</li>
@@ -5640,8 +5660,8 @@ Linq (Language Integrated Query，语言集成扩展)：
 </div>
 </div>
 
-<div id="outline-container-org2cdffd7" class="outline-3">
-<h3 id="org2cdffd7"><span class="section-number-3">16.4.</span> Linq to XML</h3>
+<div id="outline-container-org0334bbb" class="outline-3">
+<h3 id="org0334bbb"><span class="section-number-3">16.4.</span> Linq to XML</h3>
 <div class="outline-text-3" id="text-16-4">
 <div class="org-src-container">
 <pre class="src src-xml">&lt;<span style="color: #a020f0;">?xml</span> <span style="color: #a0522d;">version</span>="1.0" <span style="color: #a0522d;">encoding</span>="utf-8"?&gt;
@@ -5741,8 +5761,8 @@ Linq (Language Integrated Query，语言集成扩展)：
 </div>
 </section>
 
-<section id="outline-container-org2296731" class="outline-2">
-<h2 id="org2296731"><span class="section-number-2">17.</span> 泛型 (Generic)</h2>
+<section id="outline-container-org82eaf28" class="outline-2">
+<h2 id="org82eaf28"><span class="section-number-2">17.</span> 泛型 (Generic)</h2>
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -5911,8 +5931,8 @@ Linq (Language Integrated Query，语言集成扩展)：
 </div>
 </div>
 
-<div id="outline-container-org566ea8d" class="outline-3">
-<h3 id="org566ea8d"><span class="section-number-3">17.1.</span> 方法泛型</h3>
+<div id="outline-container-org38a7ec1" class="outline-3">
+<h3 id="org38a7ec1"><span class="section-number-3">17.1.</span> 方法泛型</h3>
 <div class="outline-text-3" id="text-17-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">int</span> <span style="color: #0000ff;">Count</span><span style="color: #707183;">&lt;</span><span style="color: #228b22;">TSource</span><span style="color: #707183;">&gt;(</span><span style="color: #a020f0;">this</span> <span style="color: #228b22;">IEnumerable</span><span style="color: #7388d6;">&lt;</span><span style="color: #228b22;">TSource</span><span style="color: #7388d6;">&gt;</span> <span style="color: #a0522d;">source</span><span style="color: #707183;">)</span>
@@ -5925,8 +5945,8 @@ Linq (Language Integrated Query，语言集成扩展)：
 </div>
 </section>
 
-<section id="outline-container-org2e684c7" class="outline-2">
-<h2 id="org2e684c7"><span class="section-number-2">18.</span> 事件 (Event)</h2>
+<section id="outline-container-org5501efc" class="outline-2">
+<h2 id="org5501efc"><span class="section-number-2">18.</span> 事件 (Event)</h2>
 <div class="outline-text-2" id="text-18">
 <ul class="org-ul">
 <li>不是现在发生的事，而是未来发生的</li>
@@ -5947,8 +5967,8 @@ Linq (Language Integrated Query，语言集成扩展)：
 </ul>
 </div>
 
-<div id="outline-container-orgc7107ae" class="outline-3">
-<h3 id="orgc7107ae"><span class="section-number-3">18.1.</span> 如果使用一般的写法</h3>
+<div id="outline-container-orga0b7177" class="outline-3">
+<h3 id="orga0b7177"><span class="section-number-3">18.1.</span> 如果使用一般的写法</h3>
 <div class="outline-text-3" id="text-18-1">
 <p>
 每个同学，需要不停判断，毕业的时间有没有达成。如果达成了，就做某件事。反复判断。
@@ -5996,8 +6016,8 @@ t2.<span style="color: #0000ff;">Join</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-orge6cdb74" class="outline-3">
-<h3 id="orge6cdb74"><span class="section-number-3">18.2.</span> 上述的写法虽然没有错误，但是存在一些问题</h3>
+<div id="outline-container-org2338b03" class="outline-3">
+<h3 id="org2338b03"><span class="section-number-3">18.2.</span> 上述的写法虽然没有错误，但是存在一些问题</h3>
 <div class="outline-text-3" id="text-18-2">
 <ul class="org-ul">
 <li>逻辑重复严重，冗余很大</li>
@@ -6034,8 +6054,8 @@ t1.<span style="color: #0000ff;">Join</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-orgaa13c54" class="outline-3">
-<h3 id="orgaa13c54"><span class="section-number-3">18.3.</span> 上述代码虽然简洁了，但是条件和最后要执行的逻辑写在一起，耦合度太大</h3>
+<div id="outline-container-org6b57f0d" class="outline-3">
+<h3 id="org6b57f0d"><span class="section-number-3">18.3.</span> 上述代码虽然简洁了，但是条件和最后要执行的逻辑写在一起，耦合度太大</h3>
 <div class="outline-text-3" id="text-18-3">
 <p>
 因此，我们需要一种方式，将它们分开。这时候我们想到，委托是实现逻辑分离最佳的工具。
@@ -6072,8 +6092,8 @@ t1.<span style="color: #0000ff;">Join</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-org8b0b93a" class="outline-3">
-<h3 id="org8b0b93a"><span class="section-number-3">18.4.</span> 接下来，可以将第一段代码单独抽出来，作为单独的 Publisher，从而实现更好的分离</h3>
+<div id="outline-container-org714a70d" class="outline-3">
+<h3 id="org714a70d"><span class="section-number-3">18.4.</span> 接下来，可以将第一段代码单独抽出来，作为单独的 Publisher，从而实现更好的分离</h3>
 <div class="outline-text-3" id="text-18-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20107;&#20214;&#30340;&#21457;&#24067;&#32773;&#65292;&#26292;&#38706;&#20102;&#19968;&#20010;&#21483; BiYe &#30340;&#20107;&#20214;</span>
@@ -6109,8 +6129,8 @@ t.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-org3146135" class="outline-3">
-<h3 id="org3146135"><span class="section-number-3">18.5.</span> 通过上述实现，我们可以看到事件是通过委托实现的，但还是有些缺点</h3>
+<div id="outline-container-orgbec16d7" class="outline-3">
+<h3 id="orgbec16d7"><span class="section-number-3">18.5.</span> 通过上述实现，我们可以看到事件是通过委托实现的，但还是有些缺点</h3>
 <div class="outline-text-3" id="text-18-5">
 <ul class="org-ul">
 <li>Action 等名字不够直观，没法做到望文生义</li>
@@ -6167,8 +6187,8 @@ t.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-orga8b562e" class="outline-3">
-<h3 id="orga8b562e"><span class="section-number-3">18.6.</span> 接下来，要考虑的是，能不能在事件触发的时候，传递一些参数</h3>
+<div id="outline-container-org8b4d25c" class="outline-3">
+<h3 id="org8b4d25c"><span class="section-number-3">18.6.</span> 接下来，要考虑的是，能不能在事件触发的时候，传递一些参数</h3>
 <div class="outline-text-3" id="text-18-6">
 <p>
 EventHandler 两个参数:
@@ -6216,12 +6236,12 @@ EventHandler 两个参数:
 </div>
 </section>
 
-<section id="outline-container-org57ddd9c" class="outline-2">
-<h2 id="org57ddd9c"><span class="section-number-2">19.</span> 异常 (Exception)</h2>
+<section id="outline-container-org952b77e" class="outline-2">
+<h2 id="org952b77e"><span class="section-number-2">19.</span> 异常 (Exception)</h2>
 <div class="outline-text-2" id="text-19">
 </div>
-<div id="outline-container-orgf2d9755" class="outline-3">
-<h3 id="orgf2d9755"><span class="section-number-3">19.1.</span> 传统方式</h3>
+<div id="outline-container-org8acbb25" class="outline-3">
+<h3 id="org8acbb25"><span class="section-number-3">19.1.</span> 传统方式</h3>
 <div class="outline-text-3" id="text-19-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#19981;&#22815;&#30452;&#35266;&#65292;&#21861;&#26159; int&#65292;&#20998;&#21035;&#26377;&#21861;&#21547;&#20041;</span>
@@ -6249,8 +6269,8 @@ EventHandler 两个参数:
 </div>
 </div>
 
-<div id="outline-container-org007f231" class="outline-3">
-<h3 id="org007f231"><span class="section-number-3">19.2.</span> 通过 Exception 提供 <b>解耦合</b> 的处理方式</h3>
+<div id="outline-container-orgf237683" class="outline-3">
+<h3 id="orgf237683"><span class="section-number-3">19.2.</span> 通过 Exception 提供 <b>解耦合</b> 的处理方式</h3>
 <div class="outline-text-3" id="text-19-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Program</span>
@@ -6306,8 +6326,8 @@ EventHandler 两个参数:
 </div>
 </div>
 
-<div id="outline-container-org572cb08" class="outline-3">
-<h3 id="org572cb08"><span class="section-number-3">19.3.</span> 异常的嵌套，以及 finally</h3>
+<div id="outline-container-orgd8f87c4" class="outline-3">
+<h3 id="orgd8f87c4"><span class="section-number-3">19.3.</span> 异常的嵌套，以及 finally</h3>
 <div class="outline-text-3" id="text-19-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>;
@@ -6413,12 +6433,12 @@ EventHandler 两个参数:
 </div>
 </section>
 
-<section id="outline-container-orgd668c08" class="outline-2">
-<h2 id="orgd668c08"><span class="section-number-2">20.</span> 反射和特性 (Reflection/Attribute)</h2>
+<section id="outline-container-org035e25c" class="outline-2">
+<h2 id="org035e25c"><span class="section-number-2">20.</span> 反射和特性 (Reflection/Attribute)</h2>
 <div class="outline-text-2" id="text-20">
 </div>
-<div id="outline-container-orgdbd226b" class="outline-3">
-<h3 id="orgdbd226b"><span class="section-number-3">20.1.</span> 反射 (Reflection)</h3>
+<div id="outline-container-org255be30" class="outline-3">
+<h3 id="org255be30"><span class="section-number-3">20.1.</span> 反射 (Reflection)</h3>
 <div class="outline-text-3" id="text-20-1">
 <ul class="org-ul">
 <li>反射就是运行时查看程序集 (Assembly) 元数据 (metadata) 的行为</li>
@@ -6507,8 +6527,8 @@ m.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</sp
 </div>
 </div>
 
-<div id="outline-container-org7b4e1c9" class="outline-3">
-<h3 id="org7b4e1c9"><span class="section-number-3">20.2.</span> [例子] ToModelList</h3>
+<div id="outline-container-org430a056" class="outline-3">
+<h3 id="org430a056"><span class="section-number-3">20.2.</span> [例子] ToModelList</h3>
 <div class="outline-text-3" id="text-20-2">
 <p>
 版本 1:
@@ -6583,8 +6603,8 @@ m.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</sp
 </div>
 </div>
 
-<div id="outline-container-org9403e78" class="outline-3">
-<h3 id="org9403e78"><span class="section-number-3">20.3.</span> 特性 (Attribute)</h3>
+<div id="outline-container-org35c2611" class="outline-3">
+<h3 id="org35c2611"><span class="section-number-3">20.3.</span> 特性 (Attribute)</h3>
 <div class="outline-text-3" id="text-20-3">
 <ul class="org-ul">
 <li>特性是向程序集添加用户自定义元数据的方式</li>
@@ -6596,8 +6616,8 @@ m.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</sp
 </ul>
 </div>
 
-<div id="outline-container-orgd0b5d07" class="outline-4">
-<h4 id="orgd0b5d07"><span class="section-number-4">20.3.1.</span> 特性就是一个普通的类</h4>
+<div id="outline-container-org297b46c" class="outline-4">
+<h4 id="org297b46c"><span class="section-number-4">20.3.1.</span> 特性就是一个普通的类</h4>
 <div class="outline-text-4" id="text-20-3-1">
 <p>
 <b>最好</b> 按照一定的命名规范来命名 (当然，你不按照命名规范，也拿你没办法):
@@ -6627,8 +6647,8 @@ m.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</sp
 </div>
 </div>
 
-<div id="outline-container-org315ffa6" class="outline-4">
-<h4 id="org315ffa6"><span class="section-number-4">20.3.2.</span> 通过反射得到它的实例，然后就可以使用了</h4>
+<div id="outline-container-org6455304" class="outline-4">
+<h4 id="org6455304"><span class="section-number-4">20.3.2.</span> 通过反射得到它的实例，然后就可以使用了</h4>
 <div class="outline-text-4" id="text-20-3-2">
 <p>
 在使用反射方式，处理相关逻辑的时候，就可以借题发挥、指鹿为马了:
@@ -6650,12 +6670,12 @@ m.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;">(</sp
 </div>
 </section>
 
-<section id="outline-container-orge19ab8b" class="outline-2">
-<h2 id="orge19ab8b"><span class="section-number-2">21.</span> 依赖注入 (DI/IoC)</h2>
+<section id="outline-container-org176af74" class="outline-2">
+<h2 id="org176af74"><span class="section-number-2">21.</span> 依赖注入 (DI/IoC)</h2>
 <div class="outline-text-2" id="text-21">
 </div>
-<div id="outline-container-orgbdcd80b" class="outline-3">
-<h3 id="orgbdcd80b"><span class="section-number-3">21.1.</span> 正常手段</h3>
+<div id="outline-container-org52ee22f" class="outline-3">
+<h3 id="org52ee22f"><span class="section-number-3">21.1.</span> 正常手段</h3>
 <div class="outline-text-3" id="text-21-1">
 <p>
 很多时候，创建一个对象，可能并没有你想象的那么简单:
@@ -6685,8 +6705,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org48f9a13" class="outline-3">
-<h3 id="org48f9a13"><span class="section-number-3">21.2.</span> DI/IoC</h3>
+<div id="outline-container-org6b77f67" class="outline-3">
+<h3 id="org6b77f67"><span class="section-number-3">21.2.</span> DI/IoC</h3>
 <div class="outline-text-3" id="text-21-2">
 <p>
 使用一个容器管理所有实例:
@@ -6734,8 +6754,8 @@ f.gbll = gbll;
 </div>
 </div>
 
-<div id="outline-container-org3121a21" class="outline-3">
-<h3 id="org3121a21"><span class="section-number-3">21.3.</span> 基本使用</h3>
+<div id="outline-container-orgbf8709d" class="outline-3">
+<h3 id="orgbf8709d"><span class="section-number-3">21.3.</span> 基本使用</h3>
 <div class="outline-text-3" id="text-21-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">container</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ServiceCollection</span><span style="color: #707183;">()</span>
@@ -6756,8 +6776,8 @@ c1.<span style="color: #0000ff;">Say</span><span style="color: #707183;">()</spa
 </div>
 </div>
 
-<div id="outline-container-org1cf67a1" class="outline-3">
-<h3 id="org1cf67a1"><span class="section-number-3">21.4.</span> 三种生命周期</h3>
+<div id="outline-container-orgd43b4c0" class="outline-3">
+<h3 id="orgd43b4c0"><span class="section-number-3">21.4.</span> 三种生命周期</h3>
 <div class="outline-text-3" id="text-21-4">
 <p>
 Object Lifetime:
@@ -6809,11 +6829,11 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org5bfe0c8" class="outline-3">
-<h3 id="org5bfe0c8"><span class="section-number-3">21.5.</span> 高内聚低耦合</h3>
+<div id="outline-container-org241ceb1" class="outline-3">
+<h3 id="org241ceb1"><span class="section-number-3">21.5.</span> 高内聚低耦合</h3>
 <div class="outline-text-3" id="text-21-5">
 <p>
-面向对象编程的基本方针 <b>高内聚</b>，<b>低耦合</b> (SOLID):
+面向对象编程的基本方针 <b>高内聚*，*低耦合</b> (SOLID):
 </p>
 <ul class="org-ul">
 <li>开闭原则 (Open-Close Principle)，对扩展开放，对修改关闭</li>
@@ -6924,12 +6944,12 @@ LSP:
 </div>
 </section>
 
-<section id="outline-container-orga66a59e" class="outline-2">
-<h2 id="orga66a59e"><span class="section-number-2">22.</span> 异步编程</h2>
+<section id="outline-container-org4c40ce0" class="outline-2">
+<h2 id="org4c40ce0"><span class="section-number-2">22.</span> 异步编程</h2>
 <div class="outline-text-2" id="text-22">
 </div>
-<div id="outline-container-orgf9e80ac" class="outline-3">
-<h3 id="orgf9e80ac"><span class="section-number-3">22.1.</span> Process</h3>
+<div id="outline-container-org44a15e9" class="outline-3">
+<h3 id="org44a15e9"><span class="section-number-3">22.1.</span> Process</h3>
 <div class="outline-text-3" id="text-22-1">
 <ul class="org-ul">
 <li>点击打开程序，会自动创建进程</li>
@@ -6946,8 +6966,8 @@ np.<span style="color: #0000ff;">CloseMainWindow</span><span style="color: #7071
 </div>
 </div>
 
-<div id="outline-container-orgfa54605" class="outline-3">
-<h3 id="orgfa54605"><span class="section-number-3">22.2.</span> Thread</h3>
+<div id="outline-container-orgdbe9107" class="outline-3">
+<h3 id="orgdbe9107"><span class="section-number-3">22.2.</span> Thread</h3>
 <div class="outline-text-3" id="text-22-2">
 <p>
 C# 1.0 中加入的。
@@ -7084,8 +7104,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org436d6e4" class="outline-3">
-<h3 id="org436d6e4"><span class="section-number-3">22.3.</span> ThreadPool</h3>
+<div id="outline-container-org0aef5ab" class="outline-3">
+<h3 id="org0aef5ab"><span class="section-number-3">22.3.</span> ThreadPool</h3>
 <div class="outline-text-3" id="text-22-3">
 <p>
 C# 2.0 出现线程池。(IoC/DI)
@@ -7103,8 +7123,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgafd3879" class="outline-3">
-<h3 id="orgafd3879"><span class="section-number-3">22.4.</span> TPL (Task-Parallel Libary)</h3>
+<div id="outline-container-org4fffd68" class="outline-3">
+<h3 id="org4fffd68"><span class="section-number-3">22.4.</span> TPL (Task-Parallel Libary)</h3>
 <div class="outline-text-3" id="text-22-4">
 <p>
 C# 3/4 版本中，出现了更高一层的抽象:
@@ -7121,8 +7141,8 @@ Task 交给背后的 Pool 之后，通过一定的线程调度机制，会使用
 </ul>
 </div>
 
-<div id="outline-container-org3d357ce" class="outline-4">
-<h4 id="org3d357ce"><span class="section-number-4">22.4.1.</span> Task.Run</h4>
+<div id="outline-container-org42065bf" class="outline-4">
+<h4 id="org42065bf"><span class="section-number-4">22.4.1.</span> Task.Run</h4>
 <div class="outline-text-4" id="text-22-4-1">
 <p>
 基本使用:
@@ -7239,8 +7259,8 @@ cts.Token.<span style="color: #0000ff;">Register</span><span style="color: #7071
 </div>
 </div>
 
-<div id="outline-container-orgfe10ab2" class="outline-4">
-<h4 id="orgfe10ab2"><span class="section-number-4">22.4.2.</span> 其他创建任务的方式</h4>
+<div id="outline-container-orgee0881f" class="outline-4">
+<h4 id="orgee0881f"><span class="section-number-4">22.4.2.</span> 其他创建任务的方式</h4>
 <div class="outline-text-4" id="text-22-4-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">TaskFactory</span><span style="color: #707183;">()</span>.<span style="color: #0000ff;">StartNew</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
@@ -7291,8 +7311,8 @@ t.<span style="color: #0000ff;">Start</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-org107628d" class="outline-4">
-<h4 id="org107628d"><span class="section-number-4">22.4.3.</span> 任务协作</h4>
+<div id="outline-container-org9776dc9" class="outline-4">
+<h4 id="org9776dc9"><span class="section-number-4">22.4.3.</span> 任务协作</h4>
 <div class="outline-text-4" id="text-22-4-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">Task</span> <span style="color: #a0522d;">t1</span> = Task.<span style="color: #0000ff;">Run</span><span style="color: #707183;">(</span><span style="color: #7388d6;">()</span> =&gt;
@@ -7338,14 +7358,14 @@ t1.<span style="color: #0000ff;">Wait</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-org4e48bef" class="outline-3">
-<h3 id="org4e48bef"><span class="section-number-3">22.5.</span> TAL (Task-based Asyncronize Pattern)</h3>
+<div id="outline-container-org7449fd7" class="outline-3">
+<h3 id="org7449fd7"><span class="section-number-3">22.5.</span> TAL (Task-based Asyncronize Pattern)</h3>
 <div class="outline-text-3" id="text-22-5">
 <p>
 C# 5 中，出现了 async/await 关键词:
 </p>
 <ul class="org-ul">
-<li><b>异步方法</b>，需要使用 <code>async</code> 来修饰
+<li>*异步方法*，需要使用 <code>async</code> 来修饰
 <ul class="org-ul">
 <li>返回值必须是 Task 或者 Task&lt;T&gt; (有些情况下可以返回 void),</li>
 <li>参数不能是 ref/out 类型,</li>
@@ -7358,8 +7378,8 @@ C# 5 中，出现了 async/await 关键词:
 <li>await 会检查后面的 awaitable 对象的状态:
 <ul class="org-ul">
 <li>如果它已经完成，那么拿到返回结果之后继续</li>
-<li>如果没有完成，将当前异步方法 <b>挂起</b>，然后返回调用这个异步方法的方法继续执行。
-如果后续 awaitable 状态变更为完成的话，异步方法将会被 <b>恢复</b>，并继续执行接下来的逻辑</li>
+<li>如果没有完成，将当前异步方法 *挂起*，然后返回调用这个异步方法的方法继续执行。
+如果后续 awaitable 状态变更为完成的话，异步方法将会被 *恢复*，并继续执行接下来的逻辑</li>
 </ul></li>
 </ul></li>
 <li>异步方法的调用，本身不会创建任何线程的</li>
@@ -7401,8 +7421,8 @@ C# 5 中，出现了 async/await 关键词:
 </div>
 </div>
 
-<div id="outline-container-org86143dd" class="outline-3">
-<h3 id="org86143dd"><span class="section-number-3">22.6.</span> Parallel</h3>
+<div id="outline-container-org4f504a1" class="outline-3">
+<h3 id="org4f504a1"><span class="section-number-3">22.6.</span> Parallel</h3>
 <div class="outline-text-3" id="text-22-6">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">//</span><span style="color: #b22222;">for (int i = 0; i &lt; 1000; i++)</span>
@@ -7459,12 +7479,12 @@ Parallel.<span style="color: #0000ff;">Invoke</span><span style="color: #707183;
 </div>
 </div>
 
-<div id="outline-container-orgb1ac1ee" class="outline-3">
-<h3 id="orgb1ac1ee"><span class="section-number-3">22.7.</span> 任务的同步和协作</h3>
+<div id="outline-container-org05ddd87" class="outline-3">
+<h3 id="org05ddd87"><span class="section-number-3">22.7.</span> 任务的同步和协作</h3>
 <div class="outline-text-3" id="text-22-7">
 </div>
-<div id="outline-container-org45dd528" class="outline-4">
-<h4 id="org45dd528"><span class="section-number-4">22.7.1.</span> Monitor.Enter/Exit</h4>
+<div id="outline-container-org17ea04d" class="outline-4">
+<h4 id="org17ea04d"><span class="section-number-4">22.7.1.</span> Monitor.Enter/Exit</h4>
 <div class="outline-text-4" id="text-22-7-1">
 <p>
 锁的基本使用:
@@ -7595,8 +7615,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org83d9194" class="outline-4">
-<h4 id="org83d9194"><span class="section-number-4">22.7.2.</span> lock</h4>
+<div id="outline-container-org734cdbb" class="outline-4">
+<h4 id="org734cdbb"><span class="section-number-4">22.7.2.</span> lock</h4>
 <div class="outline-text-4" id="text-22-7-2">
 <p>
 是 Monitor 语法糖。胜在简单，败在不够灵活:
@@ -7622,8 +7642,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org06f9240" class="outline-4">
-<h4 id="org06f9240"><span class="section-number-4">22.7.3.</span> ManualResetEventSlim</h4>
+<div id="outline-container-org4af87e0" class="outline-4">
+<h4 id="org4af87e0"><span class="section-number-4">22.7.3.</span> ManualResetEventSlim</h4>
 <div class="outline-text-4" id="text-22-7-3">
 <p>
 多任务的简单协同。事件机制。
@@ -7655,8 +7675,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org7d4a9af" class="outline-4">
-<h4 id="org7d4a9af"><span class="section-number-4">22.7.4.</span> Interlock</h4>
+<div id="outline-container-orgb8daa02" class="outline-4">
+<h4 id="orgb8daa02"><span class="section-number-4">22.7.4.</span> Interlock</h4>
 <div class="outline-text-4" id="text-22-7-4">
 <p>
 即使 i++ 这样的代码，在 CPU 的角度，也不是原子性的 (从内存中拿取、计算、写入到内存):
@@ -7745,8 +7765,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgabd637f" class="outline-4">
-<h4 id="orgabd637f"><span class="section-number-4">22.7.5.</span> Semaphore</h4>
+<div id="outline-container-org56e5dfd" class="outline-4">
+<h4 id="org56e5dfd"><span class="section-number-4">22.7.5.</span> Semaphore</h4>
 <div class="outline-text-4" id="text-22-7-5">
 <p>
 可以看作是 Monitor 方式的增强版。可以控制同一时刻通过核心代码区域的任务数量:
@@ -7791,8 +7811,8 @@ Task.<span style="color: #0000ff;">WaitAll</span><span style="color: #707183;">(
 </div>
 
 
-<div id="outline-container-orgf58bfc0" class="outline-4">
-<h4 id="orgf58bfc0"><span class="section-number-4">22.7.6.</span> CountdownEvent</h4>
+<div id="outline-container-org91c5610" class="outline-4">
+<h4 id="org91c5610"><span class="section-number-4">22.7.6.</span> CountdownEvent</h4>
 <div class="outline-text-4" id="text-22-7-6">
 <p>
 看作是 ManualResetEventSlim 的增强版。
@@ -7832,12 +7852,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orge840c9d" class="outline-3">
-<h3 id="orge840c9d"><span class="section-number-3">22.8.</span> 其他几种异步模式</h3>
+<div id="outline-container-orgd739c45" class="outline-3">
+<h3 id="orgd739c45"><span class="section-number-3">22.8.</span> 其他几种异步模式</h3>
 <div class="outline-text-3" id="text-22-8">
 </div>
-<div id="outline-container-org4985432" class="outline-4">
-<h4 id="org4985432"><span class="section-number-4">22.8.1.</span> BackgroundWorker</h4>
+<div id="outline-container-org8d264a7" class="outline-4">
+<h4 id="org8d264a7"><span class="section-number-4">22.8.1.</span> BackgroundWorker</h4>
 <div class="outline-text-4" id="text-22-8-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">//</span><span style="color: #b22222;">button1.Click += (s, e) =&gt;</span>
@@ -7876,8 +7896,8 @@ button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org99d0a09" class="outline-4">
-<h4 id="org99d0a09"><span class="section-number-4">22.8.2.</span> System.Threading.Timer</h4>
+<div id="outline-container-org8e134ef" class="outline-4">
+<h4 id="org8e134ef"><span class="section-number-4">22.8.2.</span> System.Threading.Timer</h4>
 <div class="outline-text-4" id="text-22-8-2">
 <div class="org-src-container">
 <pre class="src src-csharp">button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #707183;">)</span> =&gt;
@@ -7913,8 +7933,8 @@ button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #
 </div>
 </section>
 
-<section id="outline-container-org59e0d7a" class="outline-2">
-<h2 id="org59e0d7a"><span class="section-number-2">23.</span> IO/Stream</h2>
+<section id="outline-container-org0adc5fa" class="outline-2">
+<h2 id="org0adc5fa"><span class="section-number-2">23.</span> IO/Stream</h2>
 <div class="outline-text-2" id="text-23">
 <p>
 驱动器、文件夹、文件的基本操作:
@@ -7924,8 +7944,8 @@ button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #
 <li>处理驱动器，使用 <code>DriveInfo</code></li>
 <li>处理文件夹和文件，使用 <code>FileSystemInfo</code> (抽象类)，实现类:
 <ul class="org-ul">
-<li>文件夹，使用 <code>DirectoryInfo</code>。静态的 <code>Directory</code></li>
-<li>文件，使用 <code>FileInfo</code>。静态的 <code>File</code></li>
+<li>文件夹，使用 <code>DirectoryInfo~。静态的 ~Directory</code></li>
+<li>文件，使用 <code>FileInfo~。静态的 ~File</code></li>
 </ul></li>
 </ul>
 
@@ -7944,7 +7964,7 @@ button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #
 通过不同的跟读写相关的辅助类 (Reader/Writer) 简化了对上述流的使用:
 </p>
 <ul class="org-ul">
-<li>抽象 <code>TextReader/TextWriter</code>，表示从流中读取若干字符 (基于 char)
+<li>抽象 ~TextReader/TextWriter~，表示从流中读取若干字符 (基于 char)
 <ul class="org-ul">
 <li><code>StreamReader/StreamWriter</code> 用来包装底层流，增加基于字符读取的能力</li>
 <li><code>StringReader/StringWriter</code> 用来从字符串中读写</li>
@@ -7963,8 +7983,8 @@ button1.Click += <span style="color: #707183;">(</span>s, e<span style="color: #
 </ul>
 </div>
 
-<div id="outline-container-org58abbb4" class="outline-3">
-<h3 id="org58abbb4"><span class="section-number-3">23.1.</span> Path</h3>
+<div id="outline-container-org9d7cfe4" class="outline-3">
+<h3 id="org9d7cfe4"><span class="section-number-3">23.1.</span> Path</h3>
 <div class="outline-text-3" id="text-23-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
@@ -7991,8 +8011,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org91de9d0" class="outline-3">
-<h3 id="org91de9d0"><span class="section-number-3">23.2.</span> Driver</h3>
+<div id="outline-container-org6828845" class="outline-3">
+<h3 id="org6828845"><span class="section-number-3">23.2.</span> Driver</h3>
 <div class="outline-text-3" id="text-23-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">DriveInfo</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">drives</span> = DriveInfo.<span style="color: #0000ff;">GetDrives</span><span style="color: #707183;">()</span>;
@@ -8009,8 +8029,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org9b44f50" class="outline-3">
-<h3 id="org9b44f50"><span class="section-number-3">23.3.</span> Directory</h3>
+<div id="outline-container-org942a5e5" class="outline-3">
+<h3 id="org942a5e5"><span class="section-number-3">23.3.</span> Directory</h3>
 <div class="outline-text-3" id="text-23-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">d1</span> = @<span style="color: #8b2252;">"e:\demo1\hello"</span>;
@@ -8047,8 +8067,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org19e7555" class="outline-3">
-<h3 id="org19e7555"><span class="section-number-3">23.4.</span> File</h3>
+<div id="outline-container-orgecb1704" class="outline-3">
+<h3 id="orgecb1704"><span class="section-number-3">23.4.</span> File</h3>
 <div class="outline-text-3" id="text-23-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
@@ -8067,12 +8087,12 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orgfd2f6b9" class="outline-3">
-<h3 id="orgfd2f6b9"><span class="section-number-3">23.5.</span> Stream</h3>
+<div id="outline-container-org0bb555b" class="outline-3">
+<h3 id="org0bb555b"><span class="section-number-3">23.5.</span> Stream</h3>
 <div class="outline-text-3" id="text-23-5">
 </div>
-<div id="outline-container-org27747ae" class="outline-4">
-<h4 id="org27747ae"><span class="section-number-4">23.5.1.</span> FileSteam</h4>
+<div id="outline-container-orgc15377d" class="outline-4">
+<h4 id="orgc15377d"><span class="section-number-4">23.5.1.</span> FileSteam</h4>
 <div class="outline-text-4" id="text-23-5-1">
 <p>
 用完要释放; 使用 ReadByte 读取一个字节:
@@ -8209,8 +8229,8 @@ stream.<span style="color: #0000ff;">WriteByte</span><span style="color: #707183
 </div>
 </div>
 
-<div id="outline-container-org9a16aca" class="outline-4">
-<h4 id="org9a16aca"><span class="section-number-4">23.5.2.</span> MemoryStream</h4>
+<div id="outline-container-org58f5eb3" class="outline-4">
+<h4 id="org58f5eb3"><span class="section-number-4">23.5.2.</span> MemoryStream</h4>
 <div class="outline-text-4" id="text-23-5-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">MemoryStream</span> <span style="color: #a0522d;">s</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MemoryStream</span><span style="color: #707183;">()</span>;
@@ -8224,8 +8244,8 @@ s.<span style="color: #0000ff;">ToArray</span><span style="color: #707183;">()</
 </div>
 </div>
 
-<div id="outline-container-org73e97a4" class="outline-4">
-<h4 id="org73e97a4"><span class="section-number-4">23.5.3.</span> NetworkStream</h4>
+<div id="outline-container-orgf9b860a" class="outline-4">
+<h4 id="orgf9b860a"><span class="section-number-4">23.5.3.</span> NetworkStream</h4>
 <div class="outline-text-4" id="text-23-5-3">
 <p>
 Socket!!!
@@ -8234,12 +8254,12 @@ Socket!!!
 </div>
 </div>
 
-<div id="outline-container-org2471856" class="outline-3">
-<h3 id="org2471856"><span class="section-number-3">23.6.</span> Reader/Writer</h3>
+<div id="outline-container-org575a40d" class="outline-3">
+<h3 id="org575a40d"><span class="section-number-3">23.6.</span> Reader/Writer</h3>
 <div class="outline-text-3" id="text-23-6">
 </div>
-<div id="outline-container-orge9bc6c4" class="outline-4">
-<h4 id="orge9bc6c4"><span class="section-number-4">23.6.1.</span> StreamReader/StreamWriter</h4>
+<div id="outline-container-org165428b" class="outline-4">
+<h4 id="org165428b"><span class="section-number-4">23.6.1.</span> StreamReader/StreamWriter</h4>
 <div class="outline-text-4" id="text-23-6-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">string</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"E:\Workdir\Chengji\Chengji\Program.cs"</span>;
@@ -8284,8 +8304,8 @@ File.<span style="color: #0000ff;">WriteAllText</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orge5c8280" class="outline-4">
-<h4 id="orge5c8280"><span class="section-number-4">23.6.2.</span> StringReader/StringWriter</h4>
+<div id="outline-container-org2de8f2b" class="outline-4">
+<h4 id="org2de8f2b"><span class="section-number-4">23.6.2.</span> StringReader/StringWriter</h4>
 <div class="outline-text-4" id="text-23-6-2">
 <p>
 使用场景: xxxxx
@@ -8313,8 +8333,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org25a4f84" class="outline-4">
-<h4 id="org25a4f84"><span class="section-number-4">23.6.3.</span> BinaryReader/BinaryWriter</h4>
+<div id="outline-container-org7eb0fb0" class="outline-4">
+<h4 id="org7eb0fb0"><span class="section-number-4">23.6.3.</span> BinaryReader/BinaryWriter</h4>
 <div class="outline-text-4" id="text-23-6-3">
 <p>
 BinaryWriter:
@@ -8346,8 +8366,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org480e0ca" class="outline-4">
-<h4 id="org480e0ca"><span class="section-number-4">23.6.4.</span> XmlReader/XmlWriter</h4>
+<div id="outline-container-org265e218" class="outline-4">
+<h4 id="org265e218"><span class="section-number-4">23.6.4.</span> XmlReader/XmlWriter</h4>
 <div class="outline-text-4" id="text-23-6-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">fn</span> = @<span style="color: #8b2252;">"e:\hello.xml"</span>;
@@ -8377,8 +8397,8 @@ xw.<span style="color: #0000ff;">Flush</span><span style="color: #707183;">()</s
 </div>
 </div>
 
-<div id="outline-container-org84d80e8" class="outline-3">
-<h3 id="org84d80e8"><span class="section-number-3">23.7.</span> FileSystemWatching</h3>
+<div id="outline-container-org5138b5a" class="outline-3">
+<h3 id="org5138b5a"><span class="section-number-3">23.7.</span> FileSystemWatching</h3>
 <div class="outline-text-3" id="text-23-7">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">dn</span> = @<span style="color: #8b2252;">"e:\Tmp"</span>;
@@ -8403,12 +8423,12 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </section>
 
-<section id="outline-container-org9553265" class="outline-2">
-<h2 id="org9553265"><span class="section-number-2">24.</span> Socket</h2>
+<section id="outline-container-orgd8059e2" class="outline-2">
+<h2 id="orgd8059e2"><span class="section-number-2">24.</span> Socket</h2>
 <div class="outline-text-2" id="text-24">
 </div>
-<div id="outline-container-org0b5586b" class="outline-3">
-<h3 id="org0b5586b"><span class="section-number-3">24.1.</span> OSI 模型</h3>
+<div id="outline-container-org198d03f" class="outline-3">
+<h3 id="org198d03f"><span class="section-number-3">24.1.</span> OSI 模型</h3>
 <div class="outline-text-3" id="text-24-1">
 <ul class="org-ul">
 <li>计算机网络刚起步的阶段，很多私有协议 (Protocol) 先后出现</li>
@@ -8421,7 +8441,7 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </ul>
 
 
-<figure id="org09388d6">
+<figure id="org1c6cd4b">
 <img src="img/osi-1.png" alt="osi-1.png">
 
 </figure>
@@ -8440,33 +8460,33 @@ Console.<span style="color: #0000ff;">ReadKey</span><span style="color: #707183;
 </div>
 </div>
 
-<div id="outline-container-orge59bd55" class="outline-3">
-<h3 id="orge59bd55"><span class="section-number-3">24.2.</span> TCP/IP 协议栈</h3>
+<div id="outline-container-orgf520b62" class="outline-3">
+<h3 id="orgf520b62"><span class="section-number-3">24.2.</span> TCP/IP 协议栈</h3>
 <div class="outline-text-3" id="text-24-2">
 
-<figure id="org579a71d">
+<figure id="org64671c9">
 <img src="img/tcpipstack.png" alt="tcpipstack.png">
 
 </figure>
 
 
 
-<figure id="orge0eb0bc">
+<figure id="org2cae951">
 <img src="img/tcpip-2222.png" alt="tcpip-2222.png">
 
 </figure>
 
 
 
-<figure id="org257431e">
+<figure id="orge158a6b">
 <img src="img/tcpip-3332.png" alt="tcpip-3332.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-orgea08fbc" class="outline-3">
-<h3 id="orgea08fbc"><span class="section-number-3">24.3.</span> Uri/UriBuilder</h3>
+<div id="outline-container-orgad2a3f5" class="outline-3">
+<h3 id="orgad2a3f5"><span class="section-number-3">24.3.</span> Uri/UriBuilder</h3>
 <div class="outline-text-3" id="text-24-3">
 <p>
 URI (Uniform Resource Identifier), 统一资源标识符:
@@ -8479,7 +8499,7 @@ URI (Uniform Resource Identifier), 统一资源标识符:
 <p>
 示例:
 </p>
-<pre class="example" id="org4ad6822">
+<pre class="example" id="org80d4b4e">
 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)
 http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol)
 ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)
@@ -8538,8 +8558,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org38cc391" class="outline-3">
-<h3 id="org38cc391"><span class="section-number-3">24.4.</span> IpAddress/Dns</h3>
+<div id="outline-container-org009fd5e" class="outline-3">
+<h3 id="org009fd5e"><span class="section-number-3">24.4.</span> IpAddress/Dns</h3>
 <div class="outline-text-3" id="text-24-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">ipStr</span> = <span style="color: #8b2252;">"8.8.8.8"</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">1.1.1.1 DNS &#26381;&#21153;&#22120;</span>
@@ -8564,16 +8584,16 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org542785e" class="outline-3">
-<h3 id="org542785e"><span class="section-number-3">24.5.</span> Socket</h3>
+<div id="outline-container-orgf348c64" class="outline-3">
+<h3 id="orgf348c64"><span class="section-number-3">24.5.</span> Socket</h3>
 <div class="outline-text-3" id="text-24-5">
 <p>
 插座来了。
 </p>
 </div>
 
-<div id="outline-container-org5047d34" class="outline-4">
-<h4 id="org5047d34"><span class="section-number-4">24.5.1.</span> TCP vs UDP</h4>
+<div id="outline-container-orgc6a387b" class="outline-4">
+<h4 id="orgc6a387b"><span class="section-number-4">24.5.1.</span> TCP vs UDP</h4>
 <div class="outline-text-4" id="text-24-5-1">
 <ul class="org-ul">
 <li>TCP (Transmission Control Protocol) 传输控制协议:
@@ -8591,15 +8611,15 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 
 
-<figure id="orgc012766">
+<figure id="org2a3107d">
 <img src="img/tcp3333.png" alt="tcp3333.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org496c64b" class="outline-4">
-<h4 id="org496c64b"><span class="section-number-4">24.5.2.</span> Socket/TCP</h4>
+<div id="outline-container-orgad22831" class="outline-4">
+<h4 id="orgad22831"><span class="section-number-4">24.5.2.</span> Socket/TCP</h4>
 <div class="outline-text-4" id="text-24-5-2">
 <ul class="org-ul">
 <li>TCP/IP 协议栈是由操作系统 (内核) 实现的</li>
@@ -8608,8 +8628,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </ul>
 </div>
 
-<div id="outline-container-org986a252" class="outline-5">
-<h5 id="org986a252"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
+<div id="outline-container-orgc96b5c7" class="outline-5">
+<h5 id="orgc96b5c7"><span class="section-number-5">24.5.2.1.</span> 基本语法</h5>
 <div class="outline-text-5" id="text-24-5-2-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">TCP &#32534;&#31243;&#19977;&#26495;&#26023;:</span>
@@ -8630,8 +8650,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-orge316ce1" class="outline-5">
-<h5 id="orge316ce1"><span class="section-number-5">24.5.2.2.</span> 简单的 HTTP 服务器</h5>
+<div id="outline-container-orge8a1a0e" class="outline-5">
+<h5 id="orge8a1a0e"><span class="section-number-5">24.5.2.2.</span> 简单的 HTTP 服务器</h5>
 <div class="outline-text-5" id="text-24-5-2-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">Socket</span> <span style="color: #a0522d;">server</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Socket</span><span style="color: #707183;">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span style="color: #707183;">)</span>;
@@ -8678,8 +8698,8 @@ server.<span style="color: #0000ff;">Listen</span><span style="color: #707183;">
 </div>
 </div>
 
-<div id="outline-container-org52bba41" class="outline-5">
-<h5 id="org52bba41"><span class="section-number-5">24.5.2.3.</span> 简单的客户端实现</h5>
+<div id="outline-container-orga38c28b" class="outline-5">
+<h5 id="orga38c28b"><span class="section-number-5">24.5.2.3.</span> 简单的客户端实现</h5>
 <div class="outline-text-5" id="text-24-5-2-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">Socket</span> <span style="color: #a0522d;">socket</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Socket</span><span style="color: #707183;">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span style="color: #707183;">)</span>;
@@ -8697,8 +8717,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org30efac9" class="outline-4">
-<h4 id="org30efac9"><span class="section-number-4">24.5.3.</span> Socket/UDP</h4>
+<div id="outline-container-org3889b60" class="outline-4">
+<h4 id="org3889b60"><span class="section-number-4">24.5.3.</span> Socket/UDP</h4>
 <div class="outline-text-4" id="text-24-5-3">
 <p>
 Sender:
@@ -8738,8 +8758,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org2b1f1ff" class="outline-4">
-<h4 id="org2b1f1ff"><span class="section-number-4">24.5.4.</span> 通过 NetworkStream 简化对 Socket 读写的操作</h4>
+<div id="outline-container-org0ca0d53" class="outline-4">
+<h4 id="org0ca0d53"><span class="section-number-4">24.5.4.</span> 通过 NetworkStream 简化对 Socket 读写的操作</h4>
 <div class="outline-text-4" id="text-24-5-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">var</span> s = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NetworkStream</span><span style="color: #707183;">(</span>socket<span style="color: #707183;">)</span>;
@@ -8754,8 +8774,8 @@ sw.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(
 </div>
 </div>
 
-<div id="outline-container-org2dfe689" class="outline-4">
-<h4 id="org2dfe689"><span class="section-number-4">24.5.5.</span> 飞鸽/FeiQ</h4>
+<div id="outline-container-org4c1e0e3" class="outline-4">
+<h4 id="org4c1e0e3"><span class="section-number-4">24.5.5.</span> 飞鸽/FeiQ</h4>
 <div class="outline-text-4" id="text-24-5-5">
 <p>
 <a href="https://blog.csdn.net/ufe_1/article/details/47170615">https://blog.csdn.net/ufe_1/article/details/47170615</a>
@@ -8764,8 +8784,8 @@ sw.<span style="color: #0000ff;">WriteLine</span><span style="color: #707183;">(
 </div>
 </div>
 
-<div id="outline-container-org1744db1" class="outline-3">
-<h3 id="org1744db1"><span class="section-number-3">24.6.</span> TcpClient/TcpListener</h3>
+<div id="outline-container-org1fc4ef7" class="outline-3">
+<h3 id="org1fc4ef7"><span class="section-number-3">24.6.</span> TcpClient/TcpListener</h3>
 <div class="outline-text-3" id="text-24-6">
 <p>
 服务器端:
@@ -8811,8 +8831,8 @@ tc.<span style="color: #0000ff;">Connect</span><span style="color: #707183;">(</
 </div>
 </div>
 
-<div id="outline-container-org8951255" class="outline-3">
-<h3 id="org8951255"><span class="section-number-3">24.7.</span> UdpClient</h3>
+<div id="outline-container-org5066e75" class="outline-3">
+<h3 id="org5066e75"><span class="section-number-3">24.7.</span> UdpClient</h3>
 <div class="outline-text-3" id="text-24-7">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">uc</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">UdpClient</span><span style="color: #707183;">()</span>;
@@ -8823,12 +8843,12 @@ uc.<span style="color: #0000ff;">Send</span><span style="color: #707183;">(</spa
 </div>
 </div>
 
-<div id="outline-container-org828de41" class="outline-3">
-<h3 id="org828de41"><span class="section-number-3">24.8.</span> HttpClient/HttpListener</h3>
+<div id="outline-container-orgb33f00f" class="outline-3">
+<h3 id="orgb33f00f"><span class="section-number-3">24.8.</span> HttpClient/HttpListener</h3>
 <div class="outline-text-3" id="text-24-8">
 </div>
-<div id="outline-container-orgea7f61a" class="outline-4">
-<h4 id="orgea7f61a"><span class="section-number-4">24.8.1.</span> HttpListener</h4>
+<div id="outline-container-orgdf687fe" class="outline-4">
+<h4 id="orgdf687fe"><span class="section-number-4">24.8.1.</span> HttpListener</h4>
 <div class="outline-text-4" id="text-24-8-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">root</span> = <span style="color: #8b2252;">"e:/myhtml/"</span>;
@@ -8879,27 +8899,27 @@ webServer.<span style="color: #0000ff;">Start</span><span style="color: #707183;
 
 
 
-<div id="outline-container-orgc48c61f" class="outline-4">
-<h4 id="orgc48c61f"><span class="section-number-4">24.8.2.</span> HttpWebRequest/WebClient/HttpClient</h4>
+<div id="outline-container-orga03b142" class="outline-4">
+<h4 id="orga03b142"><span class="section-number-4">24.8.2.</span> HttpWebRequest/WebClient/HttpClient</h4>
 </div>
 </div>
 </section>
 
 
-<section id="outline-container-org182b3e2" class="outline-2">
-<h2 id="org182b3e2"><span class="section-number-2">25.</span> Database</h2>
+<section id="outline-container-orgc60f97b" class="outline-2">
+<h2 id="orgc60f97b"><span class="section-number-2">25.</span> Database</h2>
 <div class="outline-text-2" id="text-25">
 <p>
 勤学勤练，温故知新。
 </p>
 </div>
 
-<div id="outline-container-org9f75295" class="outline-3">
-<h3 id="org9f75295"><span class="section-number-3">25.1.</span> ADO.NET</h3>
+<div id="outline-container-orgb67f9d8" class="outline-3">
+<h3 id="orgb67f9d8"><span class="section-number-3">25.1.</span> ADO.NET</h3>
 <div class="outline-text-3" id="text-25-1">
 </div>
-<div id="outline-container-org48215e3" class="outline-4">
-<h4 id="org48215e3"><span class="section-number-4">25.1.1.</span> SqlConnection / SqlCommand / SqlDataReader</h4>
+<div id="outline-container-orgbc4ea68" class="outline-4">
+<h4 id="orgbc4ea68"><span class="section-number-4">25.1.1.</span> SqlConnection / SqlCommand / SqlDataReader</h4>
 <div class="outline-text-4" id="text-25-1-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">()</span>
@@ -8930,8 +8950,8 @@ webServer.<span style="color: #0000ff;">Start</span><span style="color: #707183;
 </div>
 </div>
 
-<div id="outline-container-orgd0c377b" class="outline-4">
-<h4 id="orgd0c377b"><span class="section-number-4">25.1.2.</span> ExecuteScalar / SQL Injection / Parameters</h4>
+<div id="outline-container-orge4b38fe" class="outline-4">
+<h4 id="orge4b38fe"><span class="section-number-4">25.1.2.</span> ExecuteScalar / SQL Injection / Parameters</h4>
 <div class="outline-text-4" id="text-25-1-2">
 <p>
 在珠海，Salary_min 最高的 C# 岗位的 Salary_max 是多少:
@@ -9044,8 +9064,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </div>
 </div>
 
-<div id="outline-container-org10d5a6b" class="outline-4">
-<h4 id="org10d5a6b"><span class="section-number-4">25.1.3.</span> SqlDataReader vs SqlDataAdapter/DataTable</h4>
+<div id="outline-container-orgf83cfa0" class="outline-4">
+<h4 id="orgf83cfa0"><span class="section-number-4">25.1.3.</span> SqlDataReader vs SqlDataAdapter/DataTable</h4>
 <div class="outline-text-4" id="text-25-1-3">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">Main</span><span style="color: #707183;">(</span><span style="color: #228b22;">string</span><span style="color: #7388d6;">[]</span> <span style="color: #a0522d;">args</span><span style="color: #707183;">)</span>
@@ -9081,8 +9101,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </div>
 </div>
 
-<div id="outline-container-orgf9e47f1" class="outline-3">
-<h3 id="orgf9e47f1"><span class="section-number-3">25.2.</span> Entity Framework</h3>
+<div id="outline-container-org1b59814" class="outline-3">
+<h3 id="org1b59814"><span class="section-number-3">25.2.</span> Entity Framework</h3>
 <div class="outline-text-3" id="text-25-2">
 <ul class="org-ul">
 <li><a href="https://docs.microsoft.com/zh-cn/ef/">https://docs.microsoft.com/zh-cn/ef/</a></li>
@@ -9090,8 +9110,8 @@ Parameters 可以 a) 简化代码 b) 防止 SQL 注入:
 </ul>
 </div>
 
-<div id="outline-container-orgca39d74" class="outline-4">
-<h4 id="orgca39d74"><span class="section-number-4">25.2.1.</span> 历史</h4>
+<div id="outline-container-org6e8c65d" class="outline-4">
+<h4 id="org6e8c65d"><span class="section-number-4">25.2.1.</span> 历史</h4>
 <div class="outline-text-4" id="text-25-2-1">
 <p>
 Entity Framework:
@@ -9108,8 +9128,8 @@ Entity Framework:
 </div>
 </div>
 
-<div id="outline-container-org778f25a" class="outline-4">
-<h4 id="org778f25a"><span class="section-number-4">25.2.2.</span> EF6</h4>
+<div id="outline-container-orgf816245" class="outline-4">
+<h4 id="orgf816245"><span class="section-number-4">25.2.2.</span> EF6</h4>
 <div class="outline-text-4" id="text-25-2-2">
 <p>
 <a href="https://docs.microsoft.com/zh-cn/ef/ef6/modeling/">https://docs.microsoft.com/zh-cn/ef/ef6/modeling/</a>
@@ -9124,8 +9144,8 @@ Entity Framework:
 </ul>
 </div>
 
-<div id="outline-container-org3364670" class="outline-5">
-<h5 id="org3364670"><span class="section-number-5">25.2.2.1.</span> 模型生成 (基于 edmx)</h5>
+<div id="outline-container-org8558171" class="outline-5">
+<h5 id="org8558171"><span class="section-number-5">25.2.2.1.</span> 模型生成 (基于 edmx)</h5>
 <div class="outline-text-5" id="text-25-2-2-1">
 <p>
 基于 edmx 和 VS Designer 的生成方式:
@@ -9163,8 +9183,8 @@ Entity Framework:
 </div>
 </div>
 
-<div id="outline-container-org686276d" class="outline-5">
-<h5 id="org686276d"><span class="section-number-5">25.2.2.2.</span> 模型生成 (Code First)</h5>
+<div id="outline-container-org00357a0" class="outline-5">
+<h5 id="org00357a0"><span class="section-number-5">25.2.2.2.</span> 模型生成 (Code First)</h5>
 <div class="outline-text-5" id="text-25-2-2-2">
 <p>
 通过编码的方式，创建 Model 和 Database:
@@ -9176,8 +9196,8 @@ Entity Framework:
 </div>
 </div>
 
-<div id="outline-container-orgf092a2f" class="outline-4">
-<h4 id="orgf092a2f"><span class="section-number-4">25.2.3.</span> EFCore</h4>
+<div id="outline-container-orgd42a80e" class="outline-4">
+<h4 id="orgd42a80e"><span class="section-number-4">25.2.3.</span> EFCore</h4>
 <div class="outline-text-4" id="text-25-2-3">
 <p>
 官方文档:
@@ -9205,14 +9225,14 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 </div>
 </div>
 
-<div id="outline-container-org0431bc9" class="outline-4">
-<h4 id="org0431bc9"><span class="section-number-4">25.2.4.</span> 上下文 (DbContext/DbSet)</h4>
+<div id="outline-container-org2501b18" class="outline-4">
+<h4 id="org2501b18"><span class="section-number-4">25.2.4.</span> 上下文 (DbContext/DbSet)</h4>
 <div class="outline-text-4" id="text-25-2-4">
 <p>
 DbContext 代表数据库的会话管理：
 </p>
 <ul class="org-ul">
-<li>这个设计本身是轻量级的。new 后，使用，用完，释放。<b>using 必须要使用</b></li>
+<li>这个设计本身是轻量级的。new 后，使用，用完，释放。*using 必须要使用*</li>
 <li>管理 Entity，需要实现自己的 DbContext</li>
 <li>将要管理的 Entity，使用 DbSet&lt;T&gt; 的方式暴露出来</li>
 <li>使用 <code>OnConfiguring</code> 来进行 <b>初始配置</b>:
@@ -9225,8 +9245,8 @@ DbContext 代表数据库的会话管理：
 </div>
 </div>
 
-<div id="outline-container-org7677353" class="outline-4">
-<h4 id="org7677353"><span class="section-number-4">25.2.5.</span> 模型的三个层次</h4>
+<div id="outline-container-orge332288" class="outline-4">
+<h4 id="orge332288"><span class="section-number-4">25.2.5.</span> 模型的三个层次</h4>
 <div class="outline-text-4" id="text-25-2-5">
 <p>
 <b>约定</b>:
@@ -9271,13 +9291,13 @@ DateTime -&gt; datetime2
 </div>
 </div>
 
-<div id="outline-container-orgcf97062" class="outline-4">
-<h4 id="orgcf97062"><span class="section-number-4">25.2.6.</span> 模型之间的关系</h4>
+<div id="outline-container-org731eef2" class="outline-4">
+<h4 id="org731eef2"><span class="section-number-4">25.2.6.</span> 模型之间的关系</h4>
 <div class="outline-text-4" id="text-25-2-6">
 <p>
 导航属性:
 </p>
-<pre class="example" id="org4caf217">
+<pre class="example" id="org8406281">
 class Teacher // table teacher: id/name
 {
    Id;
@@ -9404,7 +9424,7 @@ class Post
 <p>
 错误:
 </p>
-<pre class="example" id="org7774ddf">
+<pre class="example" id="org05c495f">
 Unhandled exception. Microsoft.Data.SqlClient.SqlException (0x80131904): 将 FOREIGN KEY 约束 'FK_Books_Users_ReviewerId' 引入表 'Books' 可能会导 致循环或多重级联路径。请指定 ON DELETE NO ACTION 或 ON UPDATE NO ACTION，或修改其他 FOREIGN KEY 约束。
 无法创建约束或索引。请参阅前面的错误。
 
@@ -9416,8 +9436,8 @@ Unhandled exception. Microsoft.Data.SqlClient.SqlException (0x80131904): 将 FOR
 </div>
 </div>
 
-<div id="outline-container-orgdeee7f7" class="outline-4">
-<h4 id="orgdeee7f7"><span class="section-number-4">25.2.7.</span> 数据查询</h4>
+<div id="outline-container-org272d158" class="outline-4">
+<h4 id="org272d158"><span class="section-number-4">25.2.7.</span> 数据查询</h4>
 <div class="outline-text-4" id="text-25-2-7">
 <p>
 Where/Find:
@@ -9549,15 +9569,15 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org15ccb25" class="outline-4">
-<h4 id="org15ccb25"><span class="section-number-4">25.2.8.</span> 数据修改</h4>
+<div id="outline-container-org20ced09" class="outline-4">
+<h4 id="org20ced09"><span class="section-number-4">25.2.8.</span> 数据修改</h4>
 </div>
-<div id="outline-container-org2269db7" class="outline-4">
-<h4 id="org2269db7"><span class="section-number-4">25.2.9.</span> 日志</h4>
+<div id="outline-container-org8a170b5" class="outline-4">
+<h4 id="org8a170b5"><span class="section-number-4">25.2.9.</span> 日志</h4>
 <div class="outline-text-4" id="text-25-2-9">
 </div>
-<div id="outline-container-org6483d29" class="outline-5">
-<h5 id="org6483d29"><span class="section-number-5">25.2.9.1.</span> 使用 options.LogTo 方法</h5>
+<div id="outline-container-org449e710" class="outline-5">
+<h5 id="org449e710"><span class="section-number-5">25.2.9.1.</span> 使用 options.LogTo 方法</h5>
 <div class="outline-text-5" id="text-25-2-9-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#35760;&#24405;&#21040;&#25511;&#21046;&#21488;</span>
@@ -9578,8 +9598,8 @@ options.<span style="color: #0000ff;">LogTo</span><span style="color: #707183;">
 </div>
 </div>
 
-<div id="outline-container-org9e5afef" class="outline-4">
-<h4 id="org9e5afef"><span class="section-number-4">25.2.10.</span> 集成容器</h4>
+<div id="outline-container-orgda84140" class="outline-4">
+<h4 id="orgda84140"><span class="section-number-4">25.2.10.</span> 集成容器</h4>
 <div class="outline-text-4" id="text-25-2-10">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #b22222;">//</span><span style="color: #b22222;">var di = new ServiceCollection()</span>
@@ -9604,16 +9624,16 @@ di.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">
 </div>
 </div>
 
-<div id="outline-container-org94e2dca" class="outline-4">
-<h4 id="org94e2dca"><span class="section-number-4">25.2.11.</span> 三层架构</h4>
+<div id="outline-container-org1bdad3d" class="outline-4">
+<h4 id="org1bdad3d"><span class="section-number-4">25.2.11.</span> 三层架构</h4>
 </div>
 
-<div id="outline-container-orgbbaf52b" class="outline-4">
-<h4 id="orgbbaf52b"><span class="section-number-4">25.2.12.</span> 随堂代码</h4>
+<div id="outline-container-orgebd8559" class="outline-4">
+<h4 id="orgebd8559"><span class="section-number-4">25.2.12.</span> 随堂代码</h4>
 <div class="outline-text-4" id="text-25-2-12">
 </div>
-<div id="outline-container-org0e65715" class="outline-5">
-<h5 id="org0e65715"><span class="section-number-5">25.2.12.1.</span> 2021年11月10日 (基本使用)</h5>
+<div id="outline-container-orgeb840c2" class="outline-5">
+<h5 id="orgeb840c2"><span class="section-number-5">25.2.12.1.</span> 2021年11月10日 (基本使用)</h5>
 <div class="outline-text-5" id="text-25-2-12-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">BloggingContext</span> : <span style="color: #228b22;">DbContext</span>
@@ -9719,8 +9739,8 @@ di.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">
 </div>
 </div>
 
-<div id="outline-container-org6302adf" class="outline-5">
-<h5 id="org6302adf"><span class="section-number-5">25.2.12.2.</span> 2021年11月11日 (模型创建)</h5>
+<div id="outline-container-orgb8ed44a" class="outline-5">
+<h5 id="orgb8ed44a"><span class="section-number-5">25.2.12.2.</span> 2021年11月11日 (模型创建)</h5>
 <div class="outline-text-5" id="text-25-2-12-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">BloggingContext</span> : <span style="color: #228b22;">DbContext</span>
@@ -9874,8 +9894,8 @@ di.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">
 </div>
 
 
-<div id="outline-container-orgb363a5e" class="outline-4">
-<h4 id="orgb363a5e"><span class="section-number-4">25.2.13.</span> 生成/Reverse</h4>
+<div id="outline-container-org232efd1" class="outline-4">
+<h4 id="org232efd1"><span class="section-number-4">25.2.13.</span> 生成/Reverse</h4>
 <div class="outline-text-4" id="text-25-2-13">
 <ul class="org-ul">
 <li>Enable-Migrations</li>
@@ -9885,8 +9905,8 @@ di.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">
 </div>
 </div>
 
-<div id="outline-container-org2a014ea" class="outline-4">
-<h4 id="org2a014ea"><span class="section-number-4">25.2.14.</span> 总结</h4>
+<div id="outline-container-org5744275" class="outline-4">
+<h4 id="org5744275"><span class="section-number-4">25.2.14.</span> 总结</h4>
 <div class="outline-text-4" id="text-25-2-14">
 <p>
 请你简单叙述一下使用 EF 框架进行开发的优点和缺点。
@@ -9895,12 +9915,12 @@ di.<span style="color: #0000ff;">GetService</span><span style="color: #707183;">
 </div>
 </div>
 
-<div id="outline-container-org312e86e" class="outline-3">
-<h3 id="org312e86e"><span class="section-number-3">25.3.</span> Dapper/SqlSugar/FreeSQL/NHibernate</h3>
+<div id="outline-container-org095a64e" class="outline-3">
+<h3 id="org095a64e"><span class="section-number-3">25.3.</span> Dapper/SqlSugar/FreeSQL/NHibernate</h3>
 <div class="outline-text-3" id="text-25-3">
 </div>
-<div id="outline-container-org6834781" class="outline-4">
-<h4 id="org6834781"><span class="section-number-4">25.3.1.</span> Dapper</h4>
+<div id="outline-container-orga7baae3" class="outline-4">
+<h4 id="orga7baae3"><span class="section-number-4">25.3.1.</span> Dapper</h4>
 <div class="outline-text-4" id="text-25-3-1">
 <p>
 King of Micro ORM framework, on speed.
@@ -9921,8 +9941,8 @@ King of Micro ORM framework, on speed.
 </div>
 </div>
 
-<div id="outline-container-orgae1e4d1" class="outline-4">
-<h4 id="orgae1e4d1"><span class="section-number-4">25.3.2.</span> SqlSugar</h4>
+<div id="outline-container-orgccce5c8" class="outline-4">
+<h4 id="orgccce5c8"><span class="section-number-4">25.3.2.</span> SqlSugar</h4>
 <div class="outline-text-4" id="text-25-3-2">
 <p>
 <a href="https://gitee.com/dotnetchina/SqlSugar">https://gitee.com/dotnetchina/SqlSugar</a>
@@ -9930,8 +9950,8 @@ King of Micro ORM framework, on speed.
 </div>
 </div>
 
-<div id="outline-container-org935b6e8" class="outline-4">
-<h4 id="org935b6e8"><span class="section-number-4">25.3.3.</span> FreeSQL</h4>
+<div id="outline-container-org25d8e03" class="outline-4">
+<h4 id="org25d8e03"><span class="section-number-4">25.3.3.</span> FreeSQL</h4>
 <div class="outline-text-4" id="text-25-3-3">
 <p>
 <a href="http://www.freesql.net/">http://www.freesql.net/</a>
@@ -9939,8 +9959,8 @@ King of Micro ORM framework, on speed.
 </div>
 </div>
 
-<div id="outline-container-org6c85480" class="outline-4">
-<h4 id="org6c85480"><span class="section-number-4">25.3.4.</span> NHibernate</h4>
+<div id="outline-container-org9a88460" class="outline-4">
+<h4 id="org9a88460"><span class="section-number-4">25.3.4.</span> NHibernate</h4>
 <div class="outline-text-4" id="text-25-3-4">
 <p>
 <a href="https://nhibernate.info/">https://nhibernate.info/</a>
@@ -9948,8 +9968,8 @@ King of Micro ORM framework, on speed.
 </div>
 </div>
 
-<div id="outline-container-orgcfb211a" class="outline-4">
-<h4 id="orgcfb211a"><span class="section-number-4">25.3.5.</span> MyBatis.NET</h4>
+<div id="outline-container-org0cb1fbf" class="outline-4">
+<h4 id="org0cb1fbf"><span class="section-number-4">25.3.5.</span> MyBatis.NET</h4>
 <div class="outline-text-4" id="text-25-3-5">
 <p>
 <a href="https://www.codeproject.com/articles/894127/mybatis-net">https://www.codeproject.com/articles/894127/mybatis-net</a>
@@ -9958,8 +9978,8 @@ King of Micro ORM framework, on speed.
 </div>
 </div>
 
-<div id="outline-container-org78693f8" class="outline-3">
-<h3 id="org78693f8"><span class="section-number-3">25.4.</span> 事务 (Transaction)</h3>
+<div id="outline-container-orgc7102f7" class="outline-3">
+<h3 id="orgc7102f7"><span class="section-number-3">25.4.</span> 事务 (Transaction)</h3>
 <div class="outline-text-3" id="text-25-4">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">conn</span> = DbHelper.<span style="color: #0000ff;">GetConnection</span><span style="color: #707183;">()</span>;
@@ -10016,8 +10036,8 @@ King of Micro ORM framework, on speed.
 </div>
 </div>
 
-<div id="outline-container-org043f4ba" class="outline-3">
-<h3 id="org043f4ba"><span class="section-number-3">25.5.</span> 示例数据库</h3>
+<div id="outline-container-orgcdaf6f1" class="outline-3">
+<h3 id="orgcdaf6f1"><span class="section-number-3">25.5.</span> 示例数据库</h3>
 <div class="outline-text-3" id="text-25-5">
 <ul class="org-ul">
 <li>Sakila: <a href="https://github.com/ivanceras/sakila">https://github.com/ivanceras/sakila</a></li>
@@ -10028,12 +10048,12 @@ King of Micro ORM framework, on speed.
 </div>
 </section>
 
-<section id="outline-container-org38d4328" class="outline-2">
-<h2 id="org38d4328"><span class="section-number-2">26.</span> BCL (Base-Class Library) 基础类库</h2>
+<section id="outline-container-org5ebd25d" class="outline-2">
+<h2 id="org5ebd25d"><span class="section-number-2">26.</span> BCL (Base-Class Library) 基础类库</h2>
 <div class="outline-text-2" id="text-26">
 </div>
-<div id="outline-container-orge42088e" class="outline-3">
-<h3 id="orge42088e"><span class="section-number-3">26.1.</span> Console/控制台</h3>
+<div id="outline-container-org8b5c979" class="outline-3">
+<h3 id="org8b5c979"><span class="section-number-3">26.1.</span> Console/控制台</h3>
 <div class="outline-text-3" id="text-26-1">
 <p>
 相关方法和属性:
@@ -10098,8 +10118,8 @@ King of Micro ORM framework, on speed.
 </div>
 </div>
 
-<div id="outline-container-orgd098591" class="outline-3">
-<h3 id="orgd098591"><span class="section-number-3">26.2.</span> Random/Thread</h3>
+<div id="outline-container-orgf370806" class="outline-3">
+<h3 id="orgf370806"><span class="section-number-3">26.2.</span> Random/Thread</h3>
 <div class="outline-text-3" id="text-26-2">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span> <span style="color: #a0522d;">colors</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ConsoleColor</span><span style="color: #707183;">[]</span>
@@ -10136,8 +10156,8 @@ King of Micro ORM framework, on speed.
 </div>
 </div>
 
-<div id="outline-container-orgd147bfd" class="outline-3">
-<h3 id="orgd147bfd"><span class="section-number-3">26.3.</span> IDisposable/资源</h3>
+<div id="outline-container-org078427d" class="outline-3">
+<h3 id="org078427d"><span class="section-number-3">26.3.</span> IDisposable/资源</h3>
 <div class="outline-text-3" id="text-26-3">
 <ul class="org-ul">
 <li>资源，是指需要在操作系统中打开，用完之后，需要手动释放的对象</li>
@@ -10212,8 +10232,8 @@ Console.<span style="color: #0000ff;">WriteLine</span><span style="color: #70718
 </div>
 </div>
 
-<div id="outline-container-org5c71774" class="outline-3">
-<h3 id="org5c71774"><span class="section-number-3">26.4.</span> Stopwatch/秒表</h3>
+<div id="outline-container-orgb5a2b13" class="outline-3">
+<h3 id="orgb5a2b13"><span class="section-number-3">26.4.</span> Stopwatch/秒表</h3>
 <div class="outline-text-3" id="text-26-4">
 <div class="org-src-container">
 <pre class="src src-cs"><span style="color: #a020f0;">using</span> <span style="color: #a0522d;">System</span>.<span style="color: #a0522d;">Diagnostics</span>;
@@ -10228,8 +10248,8 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-org8c458cd" class="outline-3">
-<h3 id="org8c458cd"><span class="section-number-3">26.5.</span> ConfigurationManager/配置管理器</h3>
+<div id="outline-container-orgd0a8d63" class="outline-3">
+<h3 id="orgd0a8d63"><span class="section-number-3">26.5.</span> ConfigurationManager/配置管理器</h3>
 <div class="outline-text-3" id="text-26-5">
 <p>
 首先，需要引入包:
@@ -10263,8 +10283,8 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-org8b28bbf" class="outline-3">
-<h3 id="org8b28bbf"><span class="section-number-3">26.6.</span> RegularExpression/正则表达式</h3>
+<div id="outline-container-orgf35d672" class="outline-3">
+<h3 id="orgf35d672"><span class="section-number-3">26.6.</span> RegularExpression/正则表达式</h3>
 <div class="outline-text-3" id="text-26-6">
 <p>
 <a href="https://regexlearn.com/">https://regexlearn.com/</a>
@@ -10320,16 +10340,16 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 </section>
 
-<section id="outline-container-org6d7d01d" class="outline-2">
-<h2 id="org6d7d01d"><span class="section-number-2">27.</span> Winform</h2>
+<section id="outline-container-org7682cdc" class="outline-2">
+<h2 id="org7682cdc"><span class="section-number-2">27.</span> Winform</h2>
 <div class="outline-text-2" id="text-27">
 </div>
-<div id="outline-container-org70997ee" class="outline-3">
-<h3 id="org70997ee"><span class="section-number-3">27.1.</span> 布局相关</h3>
+<div id="outline-container-org24de99a" class="outline-3">
+<h3 id="org24de99a"><span class="section-number-3">27.1.</span> 布局相关</h3>
 <div class="outline-text-3" id="text-27-1">
 </div>
-<div id="outline-container-orgcf7571c" class="outline-4">
-<h4 id="orgcf7571c"><span class="section-number-4">27.1.1.</span> 基本属性</h4>
+<div id="outline-container-org5685a3a" class="outline-4">
+<h4 id="org5685a3a"><span class="section-number-4">27.1.1.</span> 基本属性</h4>
 <div class="outline-text-4" id="text-27-1-1">
 <ul class="org-ul">
 <li>通过 Size 设置窗口大小/尺寸</li>
@@ -10340,8 +10360,8 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-orgf36b96d" class="outline-4">
-<h4 id="orgf36b96d"><span class="section-number-4">27.1.2.</span> Layout</h4>
+<div id="outline-container-org3bdbf58" class="outline-4">
+<h4 id="org3bdbf58"><span class="section-number-4">27.1.2.</span> Layout</h4>
 <div class="outline-text-4" id="text-27-1-2">
 <ul class="org-ul">
 <li>Anchor/锚</li>
@@ -10384,8 +10404,8 @@ sw.<span style="color: #0000ff;">Stop</span><span style="color: #707183;">()</sp
 </div>
 </div>
 
-<div id="outline-container-org1ef5577" class="outline-3">
-<h3 id="org1ef5577"><span class="section-number-3">27.2.</span> 数据容器</h3>
+<div id="outline-container-orge7f2856" class="outline-3">
+<h3 id="orge7f2856"><span class="section-number-3">27.2.</span> 数据容器</h3>
 <div class="outline-text-3" id="text-27-2">
 <ul class="org-ul">
 <li>ListBox</li>
@@ -10429,12 +10449,12 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </section>
 
-<section id="outline-container-org7906523" class="outline-2">
-<h2 id="org7906523"><span class="section-number-2">28.</span> 技巧和示例</h2>
+<section id="outline-container-org156e49a" class="outline-2">
+<h2 id="org156e49a"><span class="section-number-2">28.</span> 技巧和示例</h2>
 <div class="outline-text-2" id="text-28">
 </div>
-<div id="outline-container-org723d270" class="outline-3">
-<h3 id="org723d270"><span class="section-number-3">28.1.</span> 求余</h3>
+<div id="outline-container-org0ca31ac" class="outline-3">
+<h3 id="org0ca31ac"><span class="section-number-3">28.1.</span> 求余</h3>
 <div class="outline-text-3" id="text-28-1">
 <p>
 求余经常用来将某个数 <b>转换</b> 为 0-N 区间的一个数。
@@ -10504,12 +10524,12 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </section>
 
-<section id="outline-container-org8a80c1e" class="outline-2">
-<h2 id="org8a80c1e"><span class="section-number-2">29.</span> 模拟题</h2>
+<section id="outline-container-orgc4fc2ee" class="outline-2">
+<h2 id="orgc4fc2ee"><span class="section-number-2">29.</span> 模拟题</h2>
 <div class="outline-text-2" id="text-29">
 </div>
-<div id="outline-container-org6400c8e" class="outline-3">
-<h3 id="org6400c8e"><span class="section-number-3">29.1.</span> 继承相关</h3>
+<div id="outline-container-orgc0f6ff4" class="outline-3">
+<h3 id="orgc0f6ff4"><span class="section-number-3">29.1.</span> 继承相关</h3>
 <div class="outline-text-3" id="text-29-1">
 <p>
 请问下面程序的输出是什么:
@@ -10561,8 +10581,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 
 
-<div id="outline-container-org0993f51" class="outline-3">
-<h3 id="org0993f51"><span class="section-number-3">29.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
+<div id="outline-container-org939dab5" class="outline-3">
+<h3 id="org939dab5"><span class="section-number-3">29.2.</span> 重载 (overload) 和 重写 (override) 有啥区别 (15 分)</h3>
 <div class="outline-text-3" id="text-29-2">
 <p>
 重构 = 重新构造 = 将代码进行重写，让结构发生变化的行为
@@ -10573,12 +10593,12 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </section>
 
-<section id="outline-container-orgb8b093b" class="outline-2">
-<h2 id="orgb8b093b"><span class="section-number-2">30.</span> 问题 (仅作参考)</h2>
+<section id="outline-container-orgeb3a958" class="outline-2">
+<h2 id="orgeb3a958"><span class="section-number-2">30.</span> 问题 (仅作参考)</h2>
 <div class="outline-text-2" id="text-30">
 </div>
-<div id="outline-container-org0931609" class="outline-3">
-<h3 id="org0931609"><span class="section-number-3">30.1.</span> string 和 StringBuilder 有什么区别</h3>
+<div id="outline-container-orgb7e73e7" class="outline-3">
+<h3 id="orgb7e73e7"><span class="section-number-3">30.1.</span> string 和 StringBuilder 有什么区别</h3>
 <div class="outline-text-3" id="text-30-1">
 <ul class="org-ul">
 <li>string 是一种预定义类型，它表达的是字符的有序组合</li>
@@ -10590,38 +10610,38 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </div>
 
-<div id="outline-container-org5f8661c" class="outline-3">
-<h3 id="org5f8661c"><span class="section-number-3">30.2.</span> 什么是抽象类，抽象类有什么用处</h3>
+<div id="outline-container-org1ea4148" class="outline-3">
+<h3 id="org1ea4148"><span class="section-number-3">30.2.</span> 什么是抽象类，抽象类有什么用处</h3>
 </div>
-<div id="outline-container-orgddf3ea3" class="outline-3">
-<h3 id="orgddf3ea3"><span class="section-number-3">30.3.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
+<div id="outline-container-org137e9b5" class="outline-3">
+<h3 id="org137e9b5"><span class="section-number-3">30.3.</span> 什么是接口，什么是面向接口编程，面向接口编程有什么好处</h3>
 </div>
-<div id="outline-container-org156522f" class="outline-3">
-<h3 id="org156522f"><span class="section-number-3">30.4.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
+<div id="outline-container-org4fd837a" class="outline-3">
+<h3 id="org4fd837a"><span class="section-number-3">30.4.</span> 什么是静态类，什么是密封类，什么是分部类</h3>
 </div>
-<div id="outline-container-org51f1e72" class="outline-3">
-<h3 id="org51f1e72"><span class="section-number-3">30.5.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
+<div id="outline-container-org836a79f" class="outline-3">
+<h3 id="org836a79f"><span class="section-number-3">30.5.</span> 什么是类，什么是对象，对象的实例化过程是怎么样的</h3>
 </div>
-<div id="outline-container-org53c5fb1" class="outline-3">
-<h3 id="org53c5fb1"><span class="section-number-3">30.6.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
+<div id="outline-container-org5e43cb0" class="outline-3">
+<h3 id="org5e43cb0"><span class="section-number-3">30.6.</span> 什么是面向对象编程，面向对象有什么特点，有什么好处</h3>
 </div>
-<div id="outline-container-org7f77498" class="outline-3">
-<h3 id="org7f77498"><span class="section-number-3">30.7.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
+<div id="outline-container-org6dfeb49" class="outline-3">
+<h3 id="org6dfeb49"><span class="section-number-3">30.7.</span> 什么是字段，什么是方法，什么是属性。属性有什么好处</h3>
 </div>
-<div id="outline-container-org1453cfa" class="outline-3">
-<h3 id="org1453cfa"><span class="section-number-3">30.8.</span> 什么是封装，什么是继承，什么是多态</h3>
+<div id="outline-container-orgc976762" class="outline-3">
+<h3 id="orgc976762"><span class="section-number-3">30.8.</span> 什么是封装，什么是继承，什么是多态</h3>
 </div>
-<div id="outline-container-org7cbe124" class="outline-3">
-<h3 id="org7cbe124"><span class="section-number-3">30.9.</span> 什么是虚方法，它有什么用处</h3>
+<div id="outline-container-orge5fd970" class="outline-3">
+<h3 id="orge5fd970"><span class="section-number-3">30.9.</span> 什么是虚方法，它有什么用处</h3>
 </div>
-<div id="outline-container-orga4100f5" class="outline-3">
-<h3 id="orga4100f5"><span class="section-number-3">30.10.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
+<div id="outline-container-org97c53af" class="outline-3">
+<h3 id="org97c53af"><span class="section-number-3">30.10.</span> 什么是组合，它跟继承有什么区别，分别用在什么场景</h3>
 </div>
-<div id="outline-container-org49d491a" class="outline-3">
-<h3 id="org49d491a"><span class="section-number-3">30.11.</span> 什么是 DRY，代码复用的手段有哪些</h3>
+<div id="outline-container-org6a9a3d4" class="outline-3">
+<h3 id="org6a9a3d4"><span class="section-number-3">30.11.</span> 什么是 DRY，代码复用的手段有哪些</h3>
 </div>
-<div id="outline-container-org6186468" class="outline-3">
-<h3 id="org6186468"><span class="section-number-3">30.12.</span> Parse/TryParse 有啥区别</h3>
+<div id="outline-container-org4ff3fe5" class="outline-3">
+<h3 id="org4ff3fe5"><span class="section-number-3">30.12.</span> Parse/TryParse 有啥区别</h3>
 <div class="outline-text-3" id="text-30-12">
 <ul class="org-ul">
 <li>这两个都是用来将字符串转换为其他类型</li>
@@ -10633,8 +10653,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </div>
 
-<div id="outline-container-org6aa9caa" class="outline-3">
-<h3 id="org6aa9caa"><span class="section-number-3">30.13.</span> 什么是装箱拆箱</h3>
+<div id="outline-container-org2df8eb1" class="outline-3">
+<h3 id="org2df8eb1"><span class="section-number-3">30.13.</span> 什么是装箱拆箱</h3>
 <div class="outline-text-3" id="text-30-13">
 <ul class="org-ul">
 <li>装箱是将值类型转换为 object 的过程</li>
@@ -10643,8 +10663,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </div>
 
-<div id="outline-container-org98ec2cf" class="outline-3">
-<h3 id="org98ec2cf"><span class="section-number-3">30.14.</span> 什么是值类型/引用类型</h3>
+<div id="outline-container-org5b399e5" class="outline-3">
+<h3 id="org5b399e5"><span class="section-number-3">30.14.</span> 什么是值类型/引用类型</h3>
 <div class="outline-text-3" id="text-30-14">
 <ul class="org-ul">
 <li>变量位置保存的是类型实例自身，这样的类型叫 <b>值类型</b></li>
@@ -10653,8 +10673,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </div>
 
-<div id="outline-container-org3f909ac" class="outline-3">
-<h3 id="org3f909ac"><span class="section-number-3">30.15.</span> is/as 分别是干啥的</h3>
+<div id="outline-container-org38b212d" class="outline-3">
+<h3 id="org38b212d"><span class="section-number-3">30.15.</span> is/as 分别是干啥的</h3>
 <div class="outline-text-3" id="text-30-15">
 <ul class="org-ul">
 <li>is 用来判断左边的实例是否是右边的类型。是的 true，不是的话 false。
@@ -10666,8 +10686,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </section>
 
 
-<section id="outline-container-org8980666" class="outline-2">
-<h2 id="org8980666"><span class="section-number-2">31.</span> 代码生成器</h2>
+<section id="outline-container-org2b28ec2" class="outline-2">
+<h2 id="org2b28ec2"><span class="section-number-2">31.</span> 代码生成器</h2>
 <div class="outline-text-2" id="text-31">
 <ul class="org-ul">
 <li>动软代码生成器</li>
@@ -10683,12 +10703,12 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </section>
 
-<section id="outline-container-org27a5900" class="outline-2">
-<h2 id="org27a5900"><span class="section-number-2">32.</span> Miscellaneous</h2>
+<section id="outline-container-org161d77e" class="outline-2">
+<h2 id="org161d77e"><span class="section-number-2">32.</span> Miscellaneous</h2>
 <div class="outline-text-2" id="text-32">
 </div>
-<div id="outline-container-org426ba74" class="outline-3">
-<h3 id="org426ba74"><span class="section-number-3">32.1.</span> 模拟 Path 寻找的方式</h3>
+<div id="outline-container-orgfa5d65f" class="outline-3">
+<h3 id="orgfa5d65f"><span class="section-number-3">32.1.</span> 模拟 Path 寻找的方式</h3>
 <div class="outline-text-3" id="text-32-1">
 <div class="org-src-container">
 <pre class="src src-csharp"><span style="color: #228b22;">var</span> <span style="color: #a0522d;">cmd</span> = <span style="color: #8b2252;">"sl3"</span>;
@@ -10713,8 +10733,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </div>
 
-<div id="outline-container-org9b34cad" class="outline-3">
-<h3 id="org9b34cad"><span class="section-number-3">32.2.</span> 基本思想</h3>
+<div id="outline-container-org31978ab" class="outline-3">
+<h3 id="org31978ab"><span class="section-number-3">32.2.</span> 基本思想</h3>
 <div class="outline-text-3" id="text-32-2">
 <p>
 方法论:
@@ -10737,8 +10757,8 @@ binding.<span style="color: #0000ff;">Add</span><span style="color: #707183;">(<
 </div>
 </div>
 
-<div id="outline-container-org63ed685" class="outline-3">
-<h3 id="org63ed685"><span class="section-number-3">32.3.</span> Relation-Database/SQL</h3>
+<div id="outline-container-org2d4b2ec" class="outline-3">
+<h3 id="org2d4b2ec"><span class="section-number-3">32.3.</span> Relation-Database/SQL</h3>
 <div class="outline-text-3" id="text-32-3">
 <p>
 Structured Query Language, 结构化查询语言。
@@ -10780,7 +10800,7 @@ Structured Query Language, 结构化查询语言。
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-12-13</p>
+<p class="date">Created: 2021-12-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

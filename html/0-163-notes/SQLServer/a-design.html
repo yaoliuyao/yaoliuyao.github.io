@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-20 -->
+<!-- 2021-12-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>数据库的设计</title>
@@ -42,16 +42,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1ec4331">1. 主流数据库简介</a></li>
-<li><a href="#org3d93bc6">2. 设计工具/网站</a></li>
-<li><a href="#org5b24abc">3. 项目的生命周期</a></li>
-<li><a href="#org9d2240b">4. 概要设计·实体关系图</a></li>
-<li><a href="#org13b02b0">5. 设计的理论依据: 范式</a>
+<li><a href="#org4b5815f">1. 主流数据库简介</a></li>
+<li><a href="#org9c72a5c">2. 设计工具/网站</a></li>
+<li><a href="#orgf48ed6e">3. 项目的生命周期</a></li>
+<li><a href="#org54511d7">4. 概要设计·实体关系图</a></li>
+<li><a href="#org3b6e1d9">5. 设计的理论依据: 范式</a>
 <ul>
-<li><a href="#org5a90ebf">5.1. 示例设计</a></li>
-<li><a href="#orgff2b3f2">5.2. 第一范式 (所有的列都是原子性的)</a></li>
-<li><a href="#org6f08f51">5.3. 第二范式 (消除对主键的部分依赖)</a></li>
-<li><a href="#org7f1fdac">5.4. 第三范式 (消除对主键的传递依赖)</a></li>
+<li><a href="#org000b9f3">5.1. 示例设计</a></li>
+<li><a href="#org8c791e5">5.2. 第一范式 (所有的列都是原子性的)</a></li>
+<li><a href="#org095df02">5.3. 第二范式 (消除对主键的部分依赖)</a></li>
+<li><a href="#org3d5bfef">5.4. 第三范式 (消除对主键的传递依赖)</a></li>
 </ul>
 </li>
 </ul>
@@ -59,8 +59,8 @@
 </nav>
 
 
-<section id="outline-container-org1ec4331" class="outline-2">
-<h2 id="org1ec4331"><span class="section-number-2">1.</span> 主流数据库简介</h2>
+<section id="outline-container-org4b5815f" class="outline-2">
+<h2 id="org4b5815f"><span class="section-number-2">1.</span> 主流数据库简介</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>IBM 研究部门。关系型数据库的构思论文《R 系统：数据库关系理论》</li>
@@ -92,8 +92,8 @@
 </div>
 </section>
 
-<section id="outline-container-org3d93bc6" class="outline-2">
-<h2 id="org3d93bc6"><span class="section-number-2">2.</span> 设计工具/网站</h2>
+<section id="outline-container-org9c72a5c" class="outline-2">
+<h2 id="org9c72a5c"><span class="section-number-2">2.</span> 设计工具/网站</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>纸和笔</li>
@@ -105,11 +105,11 @@
 </div>
 </section>
 
-<section id="outline-container-org5b24abc" class="outline-2">
-<h2 id="org5b24abc"><span class="section-number-2">3.</span> 项目的生命周期</h2>
+<section id="outline-container-orgf48ed6e" class="outline-2">
+<h2 id="orgf48ed6e"><span class="section-number-2">3.</span> 项目的生命周期</h2>
 <div class="outline-text-2" id="text-3">
 
-<figure id="org2a383d0">
+<figure id="org675c3c3">
 <object type="image/svg+xml" data="img/software-flow.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 
@@ -117,8 +117,8 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </section>
 
-<section id="outline-container-org9d2240b" class="outline-2">
-<h2 id="org9d2240b"><span class="section-number-2">4.</span> 概要设计·实体关系图</h2>
+<section id="outline-container-org54511d7" class="outline-2">
+<h2 id="org54511d7"><span class="section-number-2">4.</span> 概要设计·实体关系图</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Entity-Relationship Graph</li>
@@ -147,15 +147,15 @@ Sorry, your browser does not support SVG.</object>
 示例:
 </p>
 
-<figure id="org8523ca1">
+<figure id="org45fcfd0">
 <img src="img/er-demo.png" alt="er-demo.png" width="400">
 
 </figure>
 </div>
 </section>
 
-<section id="outline-container-org13b02b0" class="outline-2">
-<h2 id="org13b02b0"><span class="section-number-2">5.</span> 设计的理论依据: 范式</h2>
+<section id="outline-container-org3b6e1d9" class="outline-2">
+<h2 id="org3b6e1d9"><span class="section-number-2">5.</span> 设计的理论依据: 范式</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 范式 (Normal Form) 是什么:
@@ -177,8 +177,8 @@ Sorry, your browser does not support SVG.</object>
 </ul>
 </div>
 
-<div id="outline-container-org5a90ebf" class="outline-3">
-<h3 id="org5a90ebf"><span class="section-number-3">5.1.</span> 示例设计</h3>
+<div id="outline-container-org000b9f3" class="outline-3">
+<h3 id="org000b9f3"><span class="section-number-3">5.1.</span> 示例设计</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 学生管理系统:
@@ -245,8 +245,8 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </div>
 
-<div id="outline-container-orgff2b3f2" class="outline-3">
-<h3 id="orgff2b3f2"><span class="section-number-3">5.2.</span> 第一范式 (所有的列都是原子性的)</h3>
+<div id="outline-container-org8c791e5" class="outline-3">
+<h3 id="org8c791e5"><span class="section-number-3">5.2.</span> 第一范式 (所有的列都是原子性的)</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 根据第一范式，修改为:
@@ -344,8 +344,8 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </div>
 
-<div id="outline-container-org6f08f51" class="outline-3">
-<h3 id="org6f08f51"><span class="section-number-3">5.3.</span> 第二范式 (消除对主键的部分依赖)</h3>
+<div id="outline-container-org095df02" class="outline-3">
+<h3 id="org095df02"><span class="section-number-3">5.3.</span> 第二范式 (消除对主键的部分依赖)</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 所有的行必须要有主键:
@@ -590,8 +590,8 @@ select 这张表 where 学号 = xxx and 科目 = xx 会得到唯一一个结果
 </div>
 </div>
 
-<div id="outline-container-org7f1fdac" class="outline-3">
-<h3 id="org7f1fdac"><span class="section-number-3">5.4.</span> 第三范式 (消除对主键的传递依赖)</h3>
+<div id="outline-container-org3d5bfef" class="outline-3">
+<h3 id="org3d5bfef"><span class="section-number-3">5.4.</span> 第三范式 (消除对主键的传递依赖)</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 张三的班主任是老王，是因为:
@@ -752,7 +752,7 @@ select 这张表 where 学号 = xxx and 科目 = xx 会得到唯一一个结果
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-20</p>
+<p class="date">Created: 2021-12-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

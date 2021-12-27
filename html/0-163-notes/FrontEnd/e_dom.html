@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-20 -->
+<!-- 2021-12-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DOM (文档对象模型)</title>
@@ -42,71 +42,71 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc816e2e">1. 什么是 DOM</a></li>
-<li><a href="#org96fc37f">2. 节点 (Node) 的基本操作</a>
+<li><a href="#orgbdf5b8e">1. 什么是 DOM</a></li>
+<li><a href="#orge86b723">2. 节点 (Node) 的基本操作</a>
 <ul>
-<li><a href="#org5c6536c">2.1. 定位 (parent/child/sibling)</a></li>
-<li><a href="#orgfdb39c8">2.2. 修改 (nodeValue/innerText)</a></li>
-<li><a href="#org4b403d3">2.3. 新建、附加 (document.createXxx/appendChild/insertBefore)</a></li>
-<li><a href="#orgd5e4f44">2.4. 替换、删除 (replaceChild/removeChild)</a></li>
-<li><a href="#org637cf9a">2.5. 其他</a></li>
+<li><a href="#org04a16fd">2.1. 定位 (parent/child/sibling)</a></li>
+<li><a href="#orgc4e87fc">2.2. 修改 (nodeValue/innerText)</a></li>
+<li><a href="#org0c27a90">2.3. 新建、附加 (document.createXxx/appendChild/insertBefore)</a></li>
+<li><a href="#orgd3fef25">2.4. 替换、删除 (replaceChild/removeChild)</a></li>
+<li><a href="#org259bf3c">2.5. 其他</a></li>
 </ul>
 </li>
-<li><a href="#orgec53339">3. Element 节点</a>
+<li><a href="#org937346a">3. Element 节点</a>
 <ul>
-<li><a href="#orgcaee368">3.1. 查找节点的传统方法</a></li>
-<li><a href="#org30b19c5">3.2. CSS3 选择器 (querySelector/querySelectorAll)</a></li>
-<li><a href="#org02bb003">3.3. appendChild/innerHTML/insertAdjacentHTML</a></li>
-<li><a href="#org197e664">3.4. attributes/setAttribute/getAttribute vs properties</a></li>
-<li><a href="#org3afb010">3.5. scrollTo/scrollIntoView</a></li>
-<li><a href="#orgf0990ed">3.6. [样式] style</a></li>
-<li><a href="#orgea023e2">3.7. [样式] classList</a></li>
-<li><a href="#orge61042e">3.8. [数据] dataset</a></li>
+<li><a href="#org5824a94">3.1. 查找节点的传统方法</a></li>
+<li><a href="#org0219768">3.2. CSS3 选择器 (querySelector/querySelectorAll)</a></li>
+<li><a href="#org5ef6dcf">3.3. appendChild/innerHTML/insertAdjacentHTML</a></li>
+<li><a href="#org3701aa3">3.4. attributes/setAttribute/getAttribute vs properties</a></li>
+<li><a href="#org3e90eea">3.5. scrollTo/scrollIntoView</a></li>
+<li><a href="#orgab7fede">3.6. [样式] style</a></li>
+<li><a href="#org294135c">3.7. [样式] classList</a></li>
+<li><a href="#orgf47c47b">3.8. [数据] dataset</a></li>
 </ul>
 </li>
-<li><a href="#orga9ff1bd">4. 事件 (Event)</a>
+<li><a href="#orgc8d427e">4. 事件 (Event)</a>
 <ul>
-<li><a href="#org5afc013">4.1. 定义的函数，什么时候会执行</a></li>
-<li><a href="#orgfd021f6">4.2. 事件定义</a></li>
-<li><a href="#orga055fa1">4.3. 事件对象</a></li>
-<li><a href="#orga73db16">4.4. 事件类型例子</a></li>
-<li><a href="#org9e48d07">4.5. 事件的传播机制</a></li>
-<li><a href="#orgc5eb8fc">4.6. [可选] 事件的委托、代理</a></li>
+<li><a href="#org42206cd">4.1. 定义的函数，什么时候会执行</a></li>
+<li><a href="#org9050873">4.2. 事件定义</a></li>
+<li><a href="#org9a6b6de">4.3. 事件对象</a></li>
+<li><a href="#org6910161">4.4. 事件类型例子</a></li>
+<li><a href="#org913a7ef">4.5. 事件的传播机制</a></li>
+<li><a href="#org75b0595">4.6. [可选] 事件的委托、代理</a></li>
 </ul>
 </li>
-<li><a href="#org96bc058">5. 一些 API 的示例</a>
+<li><a href="#orgd055b0c">5. 一些 API 的示例</a>
 <ul>
-<li><a href="#org566c5fd">5.1. 删除的示例</a></li>
+<li><a href="#org6683f2a">5.1. 删除的示例</a></li>
 </ul>
 </li>
-<li><a href="#orgde9479a">6. 案例分析 (DOM 节点的基本操作)</a>
+<li><a href="#orgc174826">6. 案例分析 (DOM 节点的基本操作)</a>
 <ul>
-<li><a href="#orgad2fc1e">6.1. 在页面上创建一个按钮，然后点击的时候，动态向页面的某个位置，添加 input 输入框</a></li>
-<li><a href="#orgca8c764">6.2. 在上述的代码基础上，为每个 input 后面添加 <b>删除</b> 功能，点击后移除当前条目</a></li>
-<li><a href="#org4dc08ee">6.3. 在上面基础上，每个 input 后面再增加一个 <b>归档</b> 的操作，点击之后，此条目会被移动到下面的归档区域，且变得不能修改</a></li>
-<li><a href="#org8eae015">6.4. 在上述结果的基础上，为归档动作增加校验，保证 input 的值是合理的</a></li>
-<li><a href="#org9a393b6">6.5. alert 是万恶的，请将代码中的 alert 去除掉。提醒变为文字的方式</a></li>
+<li><a href="#org9e60f28">6.1. 在页面上创建一个按钮，然后点击的时候，动态向页面的某个位置，添加 input 输入框</a></li>
+<li><a href="#org86ff11f">6.2. 在上述的代码基础上，为每个 input 后面添加 <b>删除</b> 功能，点击后移除当前条目</a></li>
+<li><a href="#orgac183eb">6.3. 在上面基础上，每个 input 后面再增加一个 <b>归档</b> 的操作，点击之后，此条目会被移动到下面的归档区域，且变得不能修改</a></li>
+<li><a href="#org4422fdf">6.4. 在上述结果的基础上，为归档动作增加校验，保证 input 的值是合理的</a></li>
+<li><a href="#orgc9af2aa">6.5. alert 是万恶的，请将代码中的 alert 去除掉。提醒变为文字的方式</a></li>
 </ul>
 </li>
-<li><a href="#org88f44ed">7. 案例分析 (添加商品)</a>
+<li><a href="#orgf129d9f">7. 案例分析 (添加商品)</a>
 <ul>
-<li><a href="#org87eed6a">7.1. 页面分为两部分，一部分使用 input 提供信息输入，一部分用来显示添加后的列表</a></li>
-<li><a href="#orgabf7872">7.2. 将上述代码，使用 innerHTML 的方式，再实现一次</a></li>
-<li><a href="#org7f415a0">7.3. 为商品列表增加删除按钮</a></li>
-<li><a href="#orga329c8f">7.4. 增加 CheckBox，可以全选、取消选择、反向选择</a></li>
-<li><a href="#org09f3c29">7.5. 在上述 CheckBox 的基础上，增加删除所选项的功能</a></li>
-<li><a href="#org79b1b0a">7.6. 做完上述操作后的所有代码</a></li>
-<li><a href="#org6e381b1">7.7. 上述操作的另一种解答</a></li>
+<li><a href="#org80ca170">7.1. 页面分为两部分，一部分使用 input 提供信息输入，一部分用来显示添加后的列表</a></li>
+<li><a href="#org7dc76b9">7.2. 将上述代码，使用 innerHTML 的方式，再实现一次</a></li>
+<li><a href="#org48b6962">7.3. 为商品列表增加删除按钮</a></li>
+<li><a href="#orgfc4cc07">7.4. 增加 CheckBox，可以全选、取消选择、反向选择</a></li>
+<li><a href="#org4d605b7">7.5. 在上述 CheckBox 的基础上，增加删除所选项的功能</a></li>
+<li><a href="#orgbe8ebf1">7.6. 做完上述操作后的所有代码</a></li>
+<li><a href="#orgf9286ac">7.7. 上述操作的另一种解答</a></li>
 </ul>
 </li>
-<li><a href="#org1894029">8. 案例分析 (图片切换)</a>
+<li><a href="#org2d0d873">8. 案例分析 (图片切换)</a>
 <ul>
-<li><a href="#org697ae5f">8.1. 第一步</a></li>
-<li><a href="#org71f44a1">8.2. 第二步</a></li>
-<li><a href="#org4383d26">8.3. 第三步</a></li>
-<li><a href="#orgfe8c2bd">8.4. 第四步</a></li>
-<li><a href="#org9dc9dcc">8.5. 第五步</a></li>
-<li><a href="#orgffd6cc2">8.6. 最终的代码</a></li>
+<li><a href="#orgc8f0a84">8.1. 第一步</a></li>
+<li><a href="#org11f0f2d">8.2. 第二步</a></li>
+<li><a href="#org193f1b8">8.3. 第三步</a></li>
+<li><a href="#org7f8e26a">8.4. 第四步</a></li>
+<li><a href="#org95b43f0">8.5. 第五步</a></li>
+<li><a href="#org87c805b">8.6. 最终的代码</a></li>
 </ul>
 </li>
 </ul>
@@ -115,15 +115,15 @@
 
 
 
-<section id="outline-container-orgc816e2e" class="outline-2">
-<h2 id="orgc816e2e"><span class="section-number-2">1.</span> 什么是 DOM</h2>
+<section id="outline-container-orgbdf5b8e" class="outline-2">
+<h2 id="orgbdf5b8e"><span class="section-number-2">1.</span> 什么是 DOM</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 DOM 树是有多个 Node (节点) 组成的，Node 又有很多 Child Node 组成的。
 </p>
 
 
-<figure id="orgd9300cb">
+<figure id="org2ec0897">
 <img src="img/742px-DOM-model.svg_20200624_065310.png" alt="742px-DOM-model.svg_20200624_065310.png">
 
 </figure>
@@ -150,8 +150,8 @@ DOM 树是有多个 Node (节点) 组成的，Node 又有很多 Child Node 组�
 </div>
 </section>
 
-<section id="outline-container-org96fc37f" class="outline-2">
-<h2 id="org96fc37f"><span class="section-number-2">2.</span> 节点 (Node) 的基本操作</h2>
+<section id="outline-container-orge86b723" class="outline-2">
+<h2 id="orge86b723"><span class="section-number-2">2.</span> 节点 (Node) 的基本操作</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 示例 html 页面:
@@ -176,8 +176,8 @@ DOM 树是有多个 Node (节点) 组成的，Node 又有很多 Child Node 组�
 </div>
 </div>
 
-<div id="outline-container-org5c6536c" class="outline-3">
-<h3 id="org5c6536c"><span class="section-number-3">2.1.</span> 定位 (parent/child/sibling)</h3>
+<div id="outline-container-org04a16fd" class="outline-3">
+<h3 id="org04a16fd"><span class="section-number-3">2.1.</span> 定位 (parent/child/sibling)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 定位到节点的孩子、父亲、兄弟姐妹:
@@ -195,8 +195,8 @@ m.childNodes<span style="color: #707183;">[</span>3<span style="color: #707183;"
 </div>
 </div>
 
-<div id="outline-container-orgfdb39c8" class="outline-3">
-<h3 id="orgfdb39c8"><span class="section-number-3">2.2.</span> 修改 (nodeValue/innerText)</h3>
+<div id="outline-container-orgc4e87fc" class="outline-3">
+<h3 id="orgc4e87fc"><span class="section-number-3">2.2.</span> 修改 (nodeValue/innerText)</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 可以选取某个节点之后，直接对其进行修改:
@@ -209,8 +209,8 @@ m.childNodes<span style="color: #707183;">[</span>1<span style="color: #707183;"
 </div>
 </div>
 
-<div id="outline-container-org4b403d3" class="outline-3">
-<h3 id="org4b403d3"><span class="section-number-3">2.3.</span> 新建、附加 (document.createXxx/appendChild/insertBefore)</h3>
+<div id="outline-container-org0c27a90" class="outline-3">
+<h3 id="org0c27a90"><span class="section-number-3">2.3.</span> 新建、附加 (document.createXxx/appendChild/insertBefore)</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 创建新的节点，然后将其附加给某个节点就可以了:
@@ -236,8 +236,8 @@ m.insertBefore<span style="color: #707183;">(</span>e, m.childNodes<span style="
 </div>
 </div>
 
-<div id="outline-container-orgd5e4f44" class="outline-3">
-<h3 id="orgd5e4f44"><span class="section-number-3">2.4.</span> 替换、删除 (replaceChild/removeChild)</h3>
+<div id="outline-container-orgd3fef25" class="outline-3">
+<h3 id="orgd3fef25"><span class="section-number-3">2.4.</span> 替换、删除 (replaceChild/removeChild)</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 替换、删除某个节点:
@@ -252,8 +252,8 @@ m.removeChild<span style="color: #707183;">(</span>m.childNodes<span style="colo
 </div>
 </div>
 
-<div id="outline-container-org637cf9a" class="outline-3">
-<h3 id="org637cf9a"><span class="section-number-3">2.5.</span> 其他</h3>
+<div id="outline-container-org259bf3c" class="outline-3">
+<h3 id="org259bf3c"><span class="section-number-3">2.5.</span> 其他</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 cloneNode，请理解 clone 的意义:
@@ -281,12 +281,12 @@ e.innerText = <span style="color: #8b2252;">'hello'</span>;
 </div>
 </section>
 
-<section id="outline-container-orgec53339" class="outline-2">
-<h2 id="orgec53339"><span class="section-number-2">3.</span> Element 节点</h2>
+<section id="outline-container-org937346a" class="outline-2">
+<h2 id="org937346a"><span class="section-number-2">3.</span> Element 节点</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgcaee368" class="outline-3">
-<h3 id="orgcaee368"><span class="section-number-3">3.1.</span> 查找节点的传统方法</h3>
+<div id="outline-container-org5824a94" class="outline-3">
+<h3 id="org5824a94"><span class="section-number-3">3.1.</span> 查找节点的传统方法</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>document.getElementById，返回一个元素，根据 ID</li>
@@ -304,8 +304,8 @@ e.innerText = <span style="color: #8b2252;">'hello'</span>;
 </div>
 </div>
 
-<div id="outline-container-org30b19c5" class="outline-3">
-<h3 id="org30b19c5"><span class="section-number-3">3.2.</span> CSS3 选择器 (querySelector/querySelectorAll)</h3>
+<div id="outline-container-org0219768" class="outline-3">
+<h3 id="org0219768"><span class="section-number-3">3.2.</span> CSS3 选择器 (querySelector/querySelectorAll)</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 <a href="https://www.w3school.com.cn/cssref/css_selectors.asp">https://www.w3school.com.cn/cssref/css_selectors.asp</a>
@@ -352,8 +352,8 @@ NodeList.<span style="color: #008b8b;">prototype</span>.forEach = Array.<span st
 </div>
 </div>
 
-<div id="outline-container-org02bb003" class="outline-3">
-<h3 id="org02bb003"><span class="section-number-3">3.3.</span> appendChild/innerHTML/insertAdjacentHTML</h3>
+<div id="outline-container-org5ef6dcf" class="outline-3">
+<h3 id="org5ef6dcf"><span class="section-number-3">3.3.</span> appendChild/innerHTML/insertAdjacentHTML</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 如果想在某个节点下面，添加新的元素:
@@ -399,15 +399,24 @@ table.appendChild<span style="color: #707183;">(</span>tbody<span style="color: 
 使用方式:
 </p>
 <div class="org-src-container">
-<pre class="src src-js">table.insertAdjacentHTML<span style="color: #707183;">(</span><span style="color: #8b2252;">'beforebegin|afterbegin|beforeend|afterend'</span>, str<span style="color: #707183;">)</span>;
+<pre class="src src-js">div.insertAdjacentHTML<span style="color: #707183;">(</span><span style="color: #8b2252;">'beforebegin|afterbegin|beforeend|afterend'</span>, str<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">-&gt; beforebegin</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&lt;div&gt; begin &#26631;&#31614;</span>
+<span style="color: #b22222;">//     </span><span style="color: #b22222;">-&gt; afterbegin</span>
+<span style="color: #b22222;">//     </span><span style="color: #b22222;">...</span>
+<span style="color: #b22222;">//     </span><span style="color: #b22222;">...</span>
+<span style="color: #b22222;">//     </span><span style="color: #b22222;">-&gt; beforeend</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&lt;/div&gt; end &#26631;&#31614;</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">-&gt; afterend</span>
 </pre>
 </div></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org197e664" class="outline-3">
-<h3 id="org197e664"><span class="section-number-3">3.4.</span> attributes/setAttribute/getAttribute vs properties</h3>
+<div id="outline-container-org3701aa3" class="outline-3">
+<h3 id="org3701aa3"><span class="section-number-3">3.4.</span> attributes/setAttribute/getAttribute vs properties</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 属性节点的基本 API:
@@ -446,8 +455,8 @@ console.log<span style="color: #707183;">(</span>dom.style.color<span style="col
 </div>
 </div>
 
-<div id="outline-container-org3afb010" class="outline-3">
-<h3 id="org3afb010"><span class="section-number-3">3.5.</span> scrollTo/scrollIntoView</h3>
+<div id="outline-container-org3e90eea" class="outline-3">
+<h3 id="org3e90eea"><span class="section-number-3">3.5.</span> scrollTo/scrollIntoView</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 滚动进视野。
@@ -464,7 +473,7 @@ console.log<span style="color: #707183;">(</span>dom.style.color<span style="col
        <span style="color: #a020f0;">border</span>: 1px solid <span style="color: #ffffff; background-color: #ff0000;">red</span>;
        <span style="color: #a020f0;">height</span>: 300px;
      <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/style<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 
@@ -496,7 +505,7 @@ console.log<span style="color: #707183;">(</span>dom.style.color<span style="col
        <span style="color: #b22222;">// </span><span style="color: #b22222;">window.scrollTo(0, 500); // &#38656;&#35201;&#25163;&#21160;&#35745;&#31639;</span>
        document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">"#d4"</span><span style="color: #909183;">)</span>.scrollIntoView<span style="color: #909183;">(</span><span style="color: #008b8b;">false</span><span style="color: #909183;">)</span>;
      <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -504,8 +513,8 @@ console.log<span style="color: #707183;">(</span>dom.style.color<span style="col
 </div>
 </div>
 
-<div id="outline-container-orgf0990ed" class="outline-3">
-<h3 id="orgf0990ed"><span class="section-number-3">3.6.</span> [样式] style</h3>
+<div id="outline-container-orgab7fede" class="outline-3">
+<h3 id="orgab7fede"><span class="section-number-3">3.6.</span> [样式] style</h3>
 <div class="outline-text-3" id="text-3-6">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#24182;&#19981;&#22815;&#28789;&#27963;</span>
@@ -520,8 +529,8 @@ dom.style.cssText = <span style="color: #8b2252;">'color: red; font-size: 19pt'<
 </div>
 </div>
 
-<div id="outline-container-orgea023e2" class="outline-3">
-<h3 id="orgea023e2"><span class="section-number-3">3.7.</span> [样式] classList</h3>
+<div id="outline-container-org294135c" class="outline-3">
+<h3 id="org294135c"><span class="section-number-3">3.7.</span> [样式] classList</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li>dom.getAttribute('class')</li>
@@ -537,8 +546,8 @@ dom.classList.toggle<span style="color: #707183;">(</span><span style="color: #8
 </div>
 </div>
 
-<div id="outline-container-orge61042e" class="outline-3">
-<h3 id="orge61042e"><span class="section-number-3">3.8.</span> [数据] dataset</h3>
+<div id="outline-container-orgf47c47b" class="outline-3">
+<h3 id="orgf47c47b"><span class="section-number-3">3.8.</span> [数据] dataset</h3>
 <div class="outline-text-3" id="text-3-8">
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">div</span> <span style="color: #a0522d;">data-id</span>=<span style="color: #8b2252;">"22"</span> <span style="color: #a0522d;">data-price</span>=<span style="color: #8b2252;">"32"</span> <span style="color: #a0522d;">id</span>=<span style="color: #8b2252;">"x"</span><span style="color: #707183;">&gt;&lt;</span>/<span style="color: #0000ff;">div</span><span style="color: #707183;">&gt;</span>
@@ -553,12 +562,12 @@ dom.classList.toggle<span style="color: #707183;">(</span><span style="color: #8
 </div>
 </section>
 
-<section id="outline-container-orga9ff1bd" class="outline-2">
-<h2 id="orga9ff1bd"><span class="section-number-2">4.</span> 事件 (Event)</h2>
+<section id="outline-container-orgc8d427e" class="outline-2">
+<h2 id="orgc8d427e"><span class="section-number-2">4.</span> 事件 (Event)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org5afc013" class="outline-3">
-<h3 id="org5afc013"><span class="section-number-3">4.1.</span> 定义的函数，什么时候会执行</h3>
+<div id="outline-container-org42206cd" class="outline-3">
+<h3 id="org42206cd"><span class="section-number-3">4.1.</span> 定义的函数，什么时候会执行</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">xxx</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
@@ -596,8 +605,8 @@ setInterval<span style="color: #707183;">(</span>xxx, 3000<span style="color: #7
 </div>
 </div>
 
-<div id="outline-container-orgfd021f6" class="outline-3">
-<h3 id="orgfd021f6"><span class="section-number-3">4.2.</span> 事件定义</h3>
+<div id="outline-container-org9050873" class="outline-3">
+<h3 id="org9050873"><span class="section-number-3">4.2.</span> 事件定义</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 用户在页面上的操作，有很多类型，比如:
@@ -610,21 +619,21 @@ setInterval<span style="color: #707183;">(</span>xxx, 3000<span style="color: #7
 </ul>
 
 <p>
-<b>事件</b>，就是让浏览器随时监控这些动作，如果动作发生了，就触发绑定在节点上的相关函数的执行。
+*事件*，就是让浏览器随时监控这些动作，如果动作发生了，就触发绑定在节点上的相关函数的执行。
 </p>
 
 <p>
 所以，需要先在节点上绑定事件 (跟浏览器缔造触发事件的契约)，两种方式:
 </p>
 <ul class="org-ul">
-<li><code>onXxx</code>，属性
+<li>~onXxx~，属性
 <ul class="org-ul">
 <li>在每个 dom 节点上，都存在若干的 onxxx 属性，如果我们将此属性给赋值，然后契约就成立了</li>
 <li>优点: 写法特别简单</li>
 <li>缺点: 只能绑定一个函数；太粗糙了，功能太单薄了</li>
 <li>尽量不要使用这种方式进行事件绑定，千万不要这样 <code>&lt;div onclick="xxx()"&gt;</code></li>
 </ul></li>
-<li><code>dom.addEventListener()</code>，方法
+<li>~dom.addEventListener()~，方法
 <ul class="org-ul">
 <li>可以绑定多个事件</li>
 <li>可以随时移除事件</li>
@@ -633,8 +642,8 @@ setInterval<span style="color: #707183;">(</span>xxx, 3000<span style="color: #7
 </div>
 </div>
 
-<div id="outline-container-orga055fa1" class="outline-3">
-<h3 id="orga055fa1"><span class="section-number-3">4.3.</span> 事件对象</h3>
+<div id="outline-container-org9a6b6de" class="outline-3">
+<h3 id="org9a6b6de"><span class="section-number-3">4.3.</span> 事件对象</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 事件对象是通过事件函数的第一个参数的形式传递进去的:
@@ -665,8 +674,8 @@ dom.addEventListener<span style="color: #707183;">(</span><span style="color: #8
 </div>
 </div>
 
-<div id="outline-container-orga73db16" class="outline-3">
-<h3 id="orga73db16"><span class="section-number-3">4.4.</span> 事件类型例子</h3>
+<div id="outline-container-org6910161" class="outline-3">
+<h3 id="org6910161"><span class="section-number-3">4.4.</span> 事件类型例子</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #a020f0;">!doctype</span> html&gt;
@@ -718,7 +727,7 @@ dom.addEventListener<span style="color: #707183;">(</span><span style="color: #8
        <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
        img.src = <span style="color: #8b2252;">"https://tse1-mm.cn.bing.net/th/id/OIP.RUd94Zebp7W27HjJgzB7GgHaLI?pid=Api&amp;rs=1"</span>;
      <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
     <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>&#28857;&#25105;<span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">button</span><span style="color: #707183;">&gt;</span>
@@ -739,8 +748,8 @@ dom.addEventListener<span style="color: #707183;">(</span><span style="color: #8
 </div>
 </div>
 
-<div id="outline-container-org9e48d07" class="outline-3">
-<h3 id="org9e48d07"><span class="section-number-3">4.5.</span> 事件的传播机制</h3>
+<div id="outline-container-org913a7ef" class="outline-3">
+<h3 id="org913a7ef"><span class="section-number-3">4.5.</span> 事件的传播机制</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 当你在浏览器渲染出来的某个节点上点击了一下，你点到了目标节点，同样也点到了它的爸爸、爸爸的爸爸&#x2026;，因为 DOM 是一种盒子模型。
@@ -789,7 +798,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 
 
 
-<figure id="org0a1d87d">
+<figure id="orga6e9479">
 <img src="img/dom-event-model.jpg" alt="dom-event-model.jpg">
 
 </figure>
@@ -838,8 +847,8 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </div>
 
-<div id="outline-container-orgc5eb8fc" class="outline-3">
-<h3 id="orgc5eb8fc"><span class="section-number-3">4.6.</span> [可选] 事件的委托、代理</h3>
+<div id="outline-container-org75b0595" class="outline-3">
+<h3 id="org75b0595"><span class="section-number-3">4.6.</span> [可选] 事件的委托、代理</h3>
 <div class="outline-text-3" id="text-4-6">
 <blockquote>
 <p>
@@ -895,12 +904,12 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </section>
 
-<section id="outline-container-org96bc058" class="outline-2">
-<h2 id="org96bc058"><span class="section-number-2">5.</span> 一些 API 的示例</h2>
+<section id="outline-container-orgd055b0c" class="outline-2">
+<h2 id="orgd055b0c"><span class="section-number-2">5.</span> 一些 API 的示例</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org566c5fd" class="outline-3">
-<h3 id="org566c5fd"><span class="section-number-3">5.1.</span> 删除的示例</h3>
+<div id="outline-container-org6683f2a" class="outline-3">
+<h3 id="org6683f2a"><span class="section-number-3">5.1.</span> 删除的示例</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #a020f0;">!doctype</span> html&gt;
@@ -945,7 +954,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
          <span style="color: #709870;">}</span>
        <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
      <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -954,12 +963,12 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </section>
 
-<section id="outline-container-orgde9479a" class="outline-2">
-<h2 id="orgde9479a"><span class="section-number-2">6.</span> 案例分析 (DOM 节点的基本操作)</h2>
+<section id="outline-container-orgc174826" class="outline-2">
+<h2 id="orgc174826"><span class="section-number-2">6.</span> 案例分析 (DOM 节点的基本操作)</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgad2fc1e" class="outline-3">
-<h3 id="orgad2fc1e"><span class="section-number-3">6.1.</span> 在页面上创建一个按钮，然后点击的时候，动态向页面的某个位置，添加 input 输入框</h3>
+<div id="outline-container-org9e60f28" class="outline-3">
+<h3 id="org9e60f28"><span class="section-number-3">6.1.</span> 在页面上创建一个按钮，然后点击的时候，动态向页面的某个位置，添加 input 输入框</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 理思路:
@@ -993,7 +1002,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
           div.appendChild<span style="color: #7388d6;">(</span>input<span style="color: #7388d6;">)</span>;
           document.getElementById<span style="color: #7388d6;">(</span><span style="color: #8b2252;">'iamaquyu'</span><span style="color: #7388d6;">)</span>.appendChild<span style="color: #7388d6;">(</span>div<span style="color: #7388d6;">)</span>;
       <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -1001,8 +1010,8 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </div>
 
-<div id="outline-container-orgca8c764" class="outline-3">
-<h3 id="orgca8c764"><span class="section-number-3">6.2.</span> 在上述的代码基础上，为每个 input 后面添加 <b>删除</b> 功能，点击后移除当前条目</h3>
+<div id="outline-container-org86ff11f" class="outline-3">
+<h3 id="org86ff11f"><span class="section-number-3">6.2.</span> 在上述的代码基础上，为每个 input 后面添加 <b>删除</b> 功能，点击后移除当前条目</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 分析题目，我们每次添加的 input 应该是下面这种结构:
@@ -1069,7 +1078,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
          div.parentNode.removeChild<span style="color: #909183;">(</span>div<span style="color: #909183;">)</span>;
        <span style="color: #7388d6;">}</span>
      <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -1077,11 +1086,11 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </div>
 
-<div id="outline-container-org4dc08ee" class="outline-3">
-<h3 id="org4dc08ee"><span class="section-number-3">6.3.</span> 在上面基础上，每个 input 后面再增加一个 <b>归档</b> 的操作，点击之后，此条目会被移动到下面的归档区域，且变得不能修改</h3>
+<div id="outline-container-orgac183eb" class="outline-3">
+<h3 id="orgac183eb"><span class="section-number-3">6.3.</span> 在上面基础上，每个 input 后面再增加一个 <b>归档</b> 的操作，点击之后，此条目会被移动到下面的归档区域，且变得不能修改</h3>
 <div class="outline-text-3" id="text-6-3">
 
-<figure id="org2d8f70f">
+<figure id="orga9a2341">
 <img src="img/dom-arch.png.png" alt="dom-arch.png.png">
 
 </figure>
@@ -1142,7 +1151,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
          alert<span style="color: #909183;">(</span><span style="color: #8b2252;">"todo: guidang"</span><span style="color: #909183;">)</span>;
        <span style="color: #7388d6;">}</span>
      <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -1193,8 +1202,8 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </div>
 
-<div id="outline-container-org8eae015" class="outline-3">
-<h3 id="org8eae015"><span class="section-number-3">6.4.</span> 在上述结果的基础上，为归档动作增加校验，保证 input 的值是合理的</h3>
+<div id="outline-container-org4422fdf" class="outline-3">
+<h3 id="org4422fdf"><span class="section-number-3">6.4.</span> 在上述结果的基础上，为归档动作增加校验，保证 input 的值是合理的</h3>
 <div class="outline-text-3" id="text-6-4">
 <ul class="org-ul">
 <li>不能为空</li>
@@ -1235,11 +1244,11 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </div>
 
-<div id="outline-container-org9a393b6" class="outline-3">
-<h3 id="org9a393b6"><span class="section-number-3">6.5.</span> alert 是万恶的，请将代码中的 alert 去除掉。提醒变为文字的方式</h3>
+<div id="outline-container-orgc9af2aa" class="outline-3">
+<h3 id="orgc9af2aa"><span class="section-number-3">6.5.</span> alert 是万恶的，请将代码中的 alert 去除掉。提醒变为文字的方式</h3>
 <div class="outline-text-3" id="text-6-5">
 
-<figure id="org13c6d29">
+<figure id="org89f72f4">
 <img src="img/dom-arch-err.png" alt="dom-arch-err.png">
 
 </figure>
@@ -1331,7 +1340,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
          setTimeout<span style="color: #909183;">(</span><span style="color: #8b2252;">"document.getElementById('err').innerText = ''"</span>, timeout * 1000<span style="color: #909183;">)</span>;
        <span style="color: #7388d6;">}</span>
      <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -1339,19 +1348,19 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </div>
 </section>
-<section id="outline-container-org88f44ed" class="outline-2">
-<h2 id="org88f44ed"><span class="section-number-2">7.</span> 案例分析 (添加商品)</h2>
+<section id="outline-container-orgf129d9f" class="outline-2">
+<h2 id="orgf129d9f"><span class="section-number-2">7.</span> 案例分析 (添加商品)</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org87eed6a" class="outline-3">
-<h3 id="org87eed6a"><span class="section-number-3">7.1.</span> 页面分为两部分，一部分使用 input 提供信息输入，一部分用来显示添加后的列表</h3>
+<div id="outline-container-org80ca170" class="outline-3">
+<h3 id="org80ca170"><span class="section-number-3">7.1.</span> 页面分为两部分，一部分使用 input 提供信息输入，一部分用来显示添加后的列表</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 效果图:
 </p>
 
 
-<figure id="org6452810">
+<figure id="orgfd02ce0">
 <img src="img/dom-add-goods.png" alt="dom-add-goods.png">
 
 </figure>
@@ -1376,7 +1385,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
       <span style="color: #0000ff;">th, td </span><span style="color: #707183;">{</span>
           <span style="color: #a020f0;">padding</span>: 5px 1em;
       <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/style<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
     <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#21830;&#21697;&#24405;&#20837; </span><span style="color: #b22222;">--&gt;</span>
@@ -1463,7 +1472,7 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
           <span style="color: #b22222;">// </span><span style="color: #b22222;">&#23558;&#28966;&#28857;&#25918;&#21040;&#21830;&#21697;&#21517;&#23383;&#30340; input &#19978;</span>
           inputs<span style="color: #7388d6;">[</span>0<span style="color: #7388d6;">]</span>.focus<span style="color: #7388d6;">()</span>;
       <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -1471,8 +1480,8 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </div>
 
-<div id="outline-container-orgabf7872" class="outline-3">
-<h3 id="orgabf7872"><span class="section-number-3">7.2.</span> 将上述代码，使用 innerHTML 的方式，再实现一次</h3>
+<div id="outline-container-org7dc76b9" class="outline-3">
+<h3 id="org7dc76b9"><span class="section-number-3">7.2.</span> 将上述代码，使用 innerHTML 的方式，再实现一次</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 组装一个 tr:
@@ -1506,8 +1515,8 @@ div.onclick = xxx;                   // 通过 onxxx 绑定的事件，只有在
 </div>
 </div>
 
-<div id="outline-container-org7f415a0" class="outline-3">
-<h3 id="org7f415a0"><span class="section-number-3">7.3.</span> 为商品列表增加删除按钮</h3>
+<div id="outline-container-org48b6962" class="outline-3">
+<h3 id="org48b6962"><span class="section-number-3">7.3.</span> 为商品列表增加删除按钮</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 HTML 部分:
@@ -1559,8 +1568,8 @@ JS 部分:
 </div>
 </div>
 
-<div id="outline-container-orga329c8f" class="outline-3">
-<h3 id="orga329c8f"><span class="section-number-3">7.4.</span> 增加 CheckBox，可以全选、取消选择、反向选择</h3>
+<div id="outline-container-orgfc4cc07" class="outline-3">
+<h3 id="orgfc4cc07"><span class="section-number-3">7.4.</span> 增加 CheckBox，可以全选、取消选择、反向选择</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 考察内容:
@@ -1629,8 +1638,8 @@ checkboxNode.checked = true; // 将其选中
 </div>
 </div>
 
-<div id="outline-container-org09f3c29" class="outline-3">
-<h3 id="org09f3c29"><span class="section-number-3">7.5.</span> 在上述 CheckBox 的基础上，增加删除所选项的功能</h3>
+<div id="outline-container-org4d605b7" class="outline-3">
+<h3 id="org4d605b7"><span class="section-number-3">7.5.</span> 在上述 CheckBox 的基础上，增加删除所选项的功能</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 考察:
@@ -1653,8 +1662,8 @@ checkboxNode.checked = true; // 将其选中
 </div>
 </div>
 
-<div id="outline-container-org79b1b0a" class="outline-3">
-<h3 id="org79b1b0a"><span class="section-number-3">7.6.</span> 做完上述操作后的所有代码</h3>
+<div id="outline-container-orgbe8ebf1" class="outline-3">
+<h3 id="orgbe8ebf1"><span class="section-number-3">7.6.</span> 做完上述操作后的所有代码</h3>
 <div class="outline-text-3" id="text-7-6">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #a020f0;">!doctype</span> html&gt;
@@ -1681,7 +1690,7 @@ checkboxNode.checked = true; // 将其选中
       <span style="color: #a020f0;">color</span>: <span style="color: #ffffff; background-color: #009900;">#009900</span>;
       <span style="color: #a020f0;">margin-right</span>: 10px;
     <span style="color: #707183;">}</span>
-  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/style<span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
 
 <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
@@ -1788,7 +1797,7 @@ checkboxNode.checked = true; // 将其选中
         tr.parentNode.removeChild<span style="color: #909183;">(</span>tr<span style="color: #909183;">)</span>;
       <span style="color: #7388d6;">}</span>
     <span style="color: #707183;">}</span>
-  <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+  <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -1796,8 +1805,8 @@ checkboxNode.checked = true; // 将其选中
 </div>
 </div>
 
-<div id="outline-container-org6e381b1" class="outline-3">
-<h3 id="org6e381b1"><span class="section-number-3">7.7.</span> 上述操作的另一种解答</h3>
+<div id="outline-container-orgf9286ac" class="outline-3">
+<h3 id="orgf9286ac"><span class="section-number-3">7.7.</span> 上述操作的另一种解答</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 将对页面的操作，转化为了对数据 (array 数组) 的操作:
@@ -1827,7 +1836,7 @@ checkboxNode.checked = true; // 将其选中
        <span style="color: #a020f0;">color</span>: <span style="color: #ffffff; background-color: #009900;">#009900</span>;
        <span style="color: #a020f0;">margin-right</span>: 10px;
      <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/style<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
 
   <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
@@ -1950,7 +1959,7 @@ checkboxNode.checked = true; // 将其选中
      <span style="color: #707183;">}</span>
 
      renderGoods<span style="color: #707183;">()</span>;
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -1959,13 +1968,13 @@ checkboxNode.checked = true; // 将其选中
 </div>
 </section>
 
-<section id="outline-container-org1894029" class="outline-2">
-<h2 id="org1894029"><span class="section-number-2">8.</span> 案例分析 (图片切换)</h2>
+<section id="outline-container-org2d0d873" class="outline-2">
+<h2 id="org2d0d873"><span class="section-number-2">8.</span> 案例分析 (图片切换)</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 效果示例:
 </p>
-<pre class="example" id="org62ffcd6">
+<pre class="example" id="org6294c6d">
 +-------------------------+
 |                         |
 |                         |
@@ -1989,8 +1998,8 @@ checkboxNode.checked = true; // 将其选中
 </ul>
 </div>
 
-<div id="outline-container-org697ae5f" class="outline-3">
-<h3 id="org697ae5f"><span class="section-number-3">8.1.</span> 第一步</h3>
+<div id="outline-container-orgc8f0a84" class="outline-3">
+<h3 id="orgc8f0a84"><span class="section-number-3">8.1.</span> 第一步</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 先确立页面，保证各项元素能正常渲染:
@@ -2011,7 +2020,7 @@ checkboxNode.checked = true; // 将其选中
        <span style="color: #a020f0;">width</span>: 200px;
        <span style="color: #a020f0;">height</span>: 200px;
      <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/style<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
     <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#25918;&#32622;&#22270;&#29255; </span><span style="color: #b22222;">--&gt;</span>
@@ -2030,8 +2039,8 @@ checkboxNode.checked = true; // 将其选中
 </div>
 </div>
 </div>
-<div id="outline-container-org71f44a1" class="outline-3">
-<h3 id="org71f44a1"><span class="section-number-3">8.2.</span> 第二步</h3>
+<div id="outline-container-org11f0f2d" class="outline-3">
+<h3 id="org11f0f2d"><span class="section-number-3">8.2.</span> 第二步</h3>
 <div class="outline-text-3" id="text-8-2">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #a020f0;">!doctype</span> html&gt;
@@ -2044,7 +2053,7 @@ checkboxNode.checked = true; // 将其选中
           <span style="color: #a020f0;">width</span>: 200px;
           <span style="color: #a020f0;">height</span>: 200px;
       <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/style<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
     <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#25918;&#32622;&#22270;&#29255; </span><span style="color: #b22222;">--&gt;</span>
@@ -2094,7 +2103,7 @@ checkboxNode.checked = true; // 将其选中
 
       <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21021;&#22987;&#21270;&#28210;&#26579;&#65292;&#31532;&#19968;&#24352;&#22270;&#29255;</span>
       renderImage<span style="color: #707183;">()</span>;
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -2102,8 +2111,8 @@ checkboxNode.checked = true; // 将其选中
 </div>
 </div>
 
-<div id="outline-container-org4383d26" class="outline-3">
-<h3 id="org4383d26"><span class="section-number-3">8.3.</span> 第三步</h3>
+<div id="outline-container-org193f1b8" class="outline-3">
+<h3 id="org193f1b8"><span class="section-number-3">8.3.</span> 第三步</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 绑定键盘的事件:
@@ -2126,8 +2135,8 @@ checkboxNode.checked = true; // 将其选中
 </div>
 </div>
 
-<div id="outline-container-orgfe8c2bd" class="outline-3">
-<h3 id="orgfe8c2bd"><span class="section-number-3">8.4.</span> 第四步</h3>
+<div id="outline-container-org7f8e26a" class="outline-3">
+<h3 id="org7f8e26a"><span class="section-number-3">8.4.</span> 第四步</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 隐藏元素:
@@ -2152,8 +2161,8 @@ img.addEventListener<span style="color: #707183;">(</span><span style="color: #8
 </div>
 </div>
 
-<div id="outline-container-org9dc9dcc" class="outline-3">
-<h3 id="org9dc9dcc"><span class="section-number-3">8.5.</span> 第五步</h3>
+<div id="outline-container-org95b43f0" class="outline-3">
+<h3 id="org95b43f0"><span class="section-number-3">8.5.</span> 第五步</h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
 纯粹的 CSS 样式问题:
@@ -2179,8 +2188,8 @@ img.addEventListener<span style="color: #707183;">(</span><span style="color: #8
 </div>
 </div>
 </div>
-<div id="outline-container-orgffd6cc2" class="outline-3">
-<h3 id="orgffd6cc2"><span class="section-number-3">8.6.</span> 最终的代码</h3>
+<div id="outline-container-org87c805b" class="outline-3">
+<h3 id="org87c805b"><span class="section-number-3">8.6.</span> 最终的代码</h3>
 <div class="outline-text-3" id="text-8-6">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #a020f0;">!doctype</span> html&gt;
@@ -2202,7 +2211,7 @@ img.addEventListener<span style="color: #707183;">(</span><span style="color: #8
       <span style="color: #0000ff;">.yincangdiao </span><span style="color: #707183;">{</span>
           <span style="color: #a020f0;">display</span>: none; <span style="color: #b22222;">/* </span><span style="color: #b22222;">inline/block </span><span style="color: #b22222;">*/</span>
       <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/style<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
     <span style="color: #b22222;">&lt;!-- </span><span style="color: #b22222;">&#25918;&#32622;&#22270;&#29255; </span><span style="color: #b22222;">--&gt;</span>
@@ -2262,7 +2271,7 @@ img.addEventListener<span style="color: #707183;">(</span><span style="color: #8
 
       <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21021;&#22987;&#21270;&#28210;&#26579;&#65292;&#31532;&#19968;&#24352;&#22270;&#29255;</span>
       renderImage<span style="color: #707183;">()</span>;
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -2273,7 +2282,7 @@ img.addEventListener<span style="color: #707183;">(</span><span style="color: #8
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-20</p>
+<p class="date">Created: 2021-12-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

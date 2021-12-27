@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-20 -->
+<!-- 2021-12-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SQL 语句</title>
@@ -42,65 +42,65 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbba0d65">1. SQL 是什么</a></li>
-<li><a href="#org1d3dae2">2. SQL 的分类</a>
+<li><a href="#org6d01a37">1. SQL 是什么</a></li>
+<li><a href="#org7e7eca7">2. SQL 的分类</a>
 <ul>
-<li><a href="#org8b32cd4">2.1. DDL (Data Definition Language) 数据定义语言</a></li>
-<li><a href="#org73cfa07">2.2. DML (Data Manipulation Language) 数据操纵语言</a></li>
-<li><a href="#orge6ea739">2.3. DCL (Data Control Language) 数据控制语言</a></li>
-<li><a href="#orgc273fb9">2.4. TCL (Transaction Control Language) 事务控制语言</a></li>
+<li><a href="#org1118f92">2.1. DDL (Data Definition Language) 数据定义语言</a></li>
+<li><a href="#org30e315c">2.2. DML (Data Manipulation Language) 数据操纵语言</a></li>
+<li><a href="#org08e8165">2.3. DCL (Data Control Language) 数据控制语言</a></li>
+<li><a href="#orgb0c5ce7">2.4. TCL (Transaction Control Language) 事务控制语言</a></li>
 </ul>
 </li>
-<li><a href="#org7bd80b3">3. SQLServer 中的 SQL 语句</a>
+<li><a href="#org0d1d5cf">3. SQLServer 中的 SQL 语句</a>
 <ul>
-<li><a href="#orgbc26a50">3.1. database 的创建和删除</a></li>
-<li><a href="#org3daa799">3.2. table 的创建</a></li>
-<li><a href="#orgd40329f">3.3. 常见数据类型</a>
+<li><a href="#org95e415e">3.1. database 的创建和删除</a></li>
+<li><a href="#org76054f3">3.2. table 的创建</a></li>
+<li><a href="#orga0b377a">3.3. 常见数据类型</a>
 <ul>
-<li><a href="#org7a858c2">3.3.1. 数值</a></li>
-<li><a href="#orged6e83e">3.3.2. 字符串</a></li>
-<li><a href="#orgbb83b40">3.3.3. 日期/时间</a></li>
-<li><a href="#org39fc307">3.3.4. 其他类型</a></li>
-<li><a href="#orgf8db3c7">3.3.5. 使用例子</a></li>
+<li><a href="#org71e829e">3.3.1. 数值</a></li>
+<li><a href="#org5d722f5">3.3.2. 字符串</a></li>
+<li><a href="#org8ea4c34">3.3.3. 日期/时间</a></li>
+<li><a href="#orgb9ab735">3.3.4. 其他类型</a></li>
+<li><a href="#org046ff95">3.3.5. 使用例子</a></li>
 </ul>
 </li>
-<li><a href="#orgbfa35fd">3.4. table 的修改</a></li>
-<li><a href="#orge4907da">3.5. table 的删除</a></li>
-<li><a href="#org9d96dc2">3.6. constraint 的管理</a></li>
-<li><a href="#orge0b1a46">3.7. insert 插入</a></li>
-<li><a href="#org7f45769">3.8. delete/truncate 删除</a></li>
-<li><a href="#org1ebe218">3.9. update 更新</a></li>
-<li><a href="#orgac18c7f">3.10. select 查询</a>
+<li><a href="#orgb337c95">3.4. table 的修改</a></li>
+<li><a href="#org6119365">3.5. table 的删除</a></li>
+<li><a href="#orgfb6d19b">3.6. constraint 的管理</a></li>
+<li><a href="#org4b2a0b7">3.7. insert 插入</a></li>
+<li><a href="#org80bc96e">3.8. delete/truncate 删除</a></li>
+<li><a href="#orgd070207">3.9. update 更新</a></li>
+<li><a href="#org4576516">3.10. select 查询</a>
 <ul>
-<li><a href="#org9ad0986">3.10.1. 测试数据</a></li>
-<li><a href="#org1fe9689">3.10.2. 基本查询</a></li>
-<li><a href="#org59afe0d">3.10.3. 子查询 (subquery)</a>
+<li><a href="#org9a4da80">3.10.1. 测试数据</a></li>
+<li><a href="#org28560d2">3.10.2. 基本查询</a></li>
+<li><a href="#org29028c0">3.10.3. 子查询 (subquery)</a>
 <ul>
-<li><a href="#org580a2d2">3.10.3.1. 作为临时表存在</a></li>
-<li><a href="#orgc6f1ae6">3.10.3.2. 作为字段存在</a></li>
-<li><a href="#org4192084">3.10.3.3. 作为条件存在</a></li>
-<li><a href="#org4e23d87">3.10.3.4. 阶段性作业 (subquery)</a></li>
+<li><a href="#org90a70a9">3.10.3.1. 作为临时表存在</a></li>
+<li><a href="#org19acf45">3.10.3.2. 作为字段存在</a></li>
+<li><a href="#org2518bce">3.10.3.3. 作为条件存在</a></li>
+<li><a href="#orgc1c163a">3.10.3.4. 阶段性作业 (subquery)</a></li>
 </ul>
 </li>
-<li><a href="#orgfe7a66b">3.10.4. 连接查询 (join)</a></li>
-<li><a href="#org708ead7">3.10.5. 合并 (union)</a></li>
-<li><a href="#orgde5244a">3.10.6. 分组、窗口查询 (group by/over)</a></li>
-<li><a href="#orgd92396a">3.10.7. 分页查询 (top/row_number/fetch-offset)</a></li>
+<li><a href="#org3a6ee8c">3.10.4. 连接查询 (join)</a></li>
+<li><a href="#orgcf501e0">3.10.5. 合并 (union)</a></li>
+<li><a href="#orge2ee714">3.10.6. 分组、窗口查询 (group by/over)</a></li>
+<li><a href="#orga5fa186">3.10.7. 分页查询 (top/row_number/fetch-offset)</a></li>
 </ul>
 </li>
-<li><a href="#org8178d89">3.11. Transaction 事务</a>
+<li><a href="#org0d5b1d4">3.11. Transaction 事务</a>
 <ul>
-<li><a href="#org39c7b2f">3.11.1. 什么是事务 (ACID)</a></li>
-<li><a href="#org432d42c">3.11.2. 事务的状态</a></li>
-<li><a href="#orgd3c2bbd">3.11.3. SQLServer 中的事务</a></li>
+<li><a href="#org61b0733">3.11.1. 什么是事务 (ACID)</a></li>
+<li><a href="#orgb9b9933">3.11.2. 事务的状态</a></li>
+<li><a href="#orgc0615ba">3.11.3. SQLServer 中的事务</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orge64617b">4. MySQL 中的 SQL 语句</a>
+<li><a href="#org6c4ea5c">4. MySQL 中的 SQL 语句</a>
 <ul>
-<li><a href="#org6a6ab08">4.1. create</a></li>
-<li><a href="#orgc273a49">4.2. 分页</a></li>
+<li><a href="#org8260f91">4.1. create</a></li>
+<li><a href="#org14c2a03">4.2. 分页</a></li>
 </ul>
 </li>
 </ul>
@@ -108,8 +108,8 @@
 </nav>
 
 
-<section id="outline-container-orgbba0d65" class="outline-2">
-<h2 id="orgbba0d65"><span class="section-number-2">1.</span> SQL 是什么</h2>
+<section id="outline-container-org6d01a37" class="outline-2">
+<h2 id="org6d01a37"><span class="section-number-2">1.</span> SQL 是什么</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Structured Query Language, 结构化查询语言。
@@ -130,12 +130,12 @@ Structured Query Language, 结构化查询语言。
 </div>
 </section>
 
-<section id="outline-container-org1d3dae2" class="outline-2">
-<h2 id="org1d3dae2"><span class="section-number-2">2.</span> SQL 的分类</h2>
+<section id="outline-container-org7e7eca7" class="outline-2">
+<h2 id="org7e7eca7"><span class="section-number-2">2.</span> SQL 的分类</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8b32cd4" class="outline-3">
-<h3 id="org8b32cd4"><span class="section-number-3">2.1.</span> DDL (Data Definition Language) 数据定义语言</h3>
+<div id="outline-container-org1118f92" class="outline-3">
+<h3 id="org1118f92"><span class="section-number-3">2.1.</span> DDL (Data Definition Language) 数据定义语言</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 用来对数据的对象进行定义的一些语句:
@@ -148,8 +148,8 @@ Structured Query Language, 结构化查询语言。
 </div>
 </div>
 
-<div id="outline-container-org73cfa07" class="outline-3">
-<h3 id="org73cfa07"><span class="section-number-3">2.2.</span> DML (Data Manipulation Language) 数据操纵语言</h3>
+<div id="outline-container-org30e315c" class="outline-3">
+<h3 id="org30e315c"><span class="section-number-3">2.2.</span> DML (Data Manipulation Language) 数据操纵语言</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 对数据的操作:
@@ -163,8 +163,8 @@ Structured Query Language, 结构化查询语言。
 </div>
 </div>
 
-<div id="outline-container-orge6ea739" class="outline-3">
-<h3 id="orge6ea739"><span class="section-number-3">2.3.</span> DCL (Data Control Language) 数据控制语言</h3>
+<div id="outline-container-org08e8165" class="outline-3">
+<h3 id="org08e8165"><span class="section-number-3">2.3.</span> DCL (Data Control Language) 数据控制语言</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>授予权限: <code>grant to</code></li>
@@ -173,8 +173,8 @@ Structured Query Language, 结构化查询语言。
 </div>
 </div>
 
-<div id="outline-container-orgc273fb9" class="outline-3">
-<h3 id="orgc273fb9"><span class="section-number-3">2.4.</span> TCL (Transaction Control Language) 事务控制语言</h3>
+<div id="outline-container-orgb0c5ce7" class="outline-3">
+<h3 id="orgb0c5ce7"><span class="section-number-3">2.4.</span> TCL (Transaction Control Language) 事务控制语言</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>设置保存点: <code>savepoint xxx</code></li>
@@ -185,12 +185,12 @@ Structured Query Language, 结构化查询语言。
 </div>
 </section>
 
-<section id="outline-container-org7bd80b3" class="outline-2">
-<h2 id="org7bd80b3"><span class="section-number-2">3.</span> SQLServer 中的 SQL 语句</h2>
+<section id="outline-container-org0d1d5cf" class="outline-2">
+<h2 id="org0d1d5cf"><span class="section-number-2">3.</span> SQLServer 中的 SQL 语句</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgbc26a50" class="outline-3">
-<h3 id="orgbc26a50"><span class="section-number-3">3.1.</span> database 的创建和删除</h3>
+<div id="outline-container-org95e415e" class="outline-3">
+<h3 id="org95e415e"><span class="section-number-3">3.1.</span> database 的创建和删除</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 最基本的创建语句:
@@ -238,8 +238,8 @@ log <span style="color: #a020f0;">on</span>
 </div>
 </div>
 
-<div id="outline-container-org3daa799" class="outline-3">
-<h3 id="org3daa799"><span class="section-number-3">3.2.</span> table 的创建</h3>
+<div id="outline-container-org76054f3" class="outline-3">
+<h3 id="org76054f3"><span class="section-number-3">3.2.</span> table 的创建</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 基本的创建示例:
@@ -316,7 +316,7 @@ char/nchar/varchar/nvarchar 类型的区别
 <li>默认情况下，字段的大小写不敏感，可以使用 <code>[xxx]</code> 方式强制其敏感</li>
 <li>在数据库中，字段/表名字使用的是下划线分割的命名规则</li>
 <li>数据应该是静态的，年龄 (Age) 不适合作为一个字段，用 birth 代替</li>
-<li>建议使用 <b>代理主键</b> 代替 <b>自然主键</b>，即主键不应与业务有关</li>
+<li>建议使用 <b>代理主键</b> 代替 *自然主键*，即主键不应与业务有关</li>
 <li><p>
 表跟列的命名，有不同风格:
 </p>
@@ -330,12 +330,12 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-orgd40329f" class="outline-3">
-<h3 id="orgd40329f"><span class="section-number-3">3.3.</span> 常见数据类型</h3>
+<div id="outline-container-orga0b377a" class="outline-3">
+<h3 id="orga0b377a"><span class="section-number-3">3.3.</span> 常见数据类型</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org7a858c2" class="outline-4">
-<h4 id="org7a858c2"><span class="section-number-4">3.3.1.</span> 数值</h4>
+<div id="outline-container-org71e829e" class="outline-4">
+<h4 id="org71e829e"><span class="section-number-4">3.3.1.</span> 数值</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 整数:
@@ -366,8 +366,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-orged6e83e" class="outline-4">
-<h4 id="orged6e83e"><span class="section-number-4">3.3.2.</span> 字符串</h4>
+<div id="outline-container-org5d722f5" class="outline-4">
+<h4 id="org5d722f5"><span class="section-number-4">3.3.2.</span> 字符串</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <ul class="org-ul">
 <li>char/nchar</li>
@@ -377,8 +377,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-orgbb83b40" class="outline-4">
-<h4 id="orgbb83b40"><span class="section-number-4">3.3.3.</span> 日期/时间</h4>
+<div id="outline-container-org8ea4c34" class="outline-4">
+<h4 id="org8ea4c34"><span class="section-number-4">3.3.3.</span> 日期/时间</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <ul class="org-ul">
 <li>date</li>
@@ -390,8 +390,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-org39fc307" class="outline-4">
-<h4 id="org39fc307"><span class="section-number-4">3.3.4.</span> 其他类型</h4>
+<div id="outline-container-orgb9ab735" class="outline-4">
+<h4 id="orgb9ab735"><span class="section-number-4">3.3.4.</span> 其他类型</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <ul class="org-ul">
 <li>image</li>
@@ -401,8 +401,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-orgf8db3c7" class="outline-4">
-<h4 id="orgf8db3c7"><span class="section-number-4">3.3.5.</span> 使用例子</h4>
+<div id="outline-container-org046ff95" class="outline-4">
+<h4 id="org046ff95"><span class="section-number-4">3.3.5.</span> 使用例子</h4>
 <div class="outline-text-4" id="text-3-3-5">
 <div class="org-src-container">
 <pre class="src src-sql">use xxx;
@@ -418,8 +418,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-orgbfa35fd" class="outline-3">
-<h3 id="orgbfa35fd"><span class="section-number-3">3.4.</span> table 的修改</h3>
+<div id="outline-container-orgb337c95" class="outline-3">
+<h3 id="orgb337c95"><span class="section-number-3">3.4.</span> table 的修改</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 基本修改:
@@ -444,8 +444,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-orge4907da" class="outline-3">
-<h3 id="orge4907da"><span class="section-number-3">3.5.</span> table 的删除</h3>
+<div id="outline-container-org6119365" class="outline-3">
+<h3 id="org6119365"><span class="section-number-3">3.5.</span> table 的删除</h3>
 <div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">drop</span> <span style="color: #a020f0;">table</span> <span style="color: #0000ff;">xxx</span>;
@@ -454,8 +454,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-org9d96dc2" class="outline-3">
-<h3 id="org9d96dc2"><span class="section-number-3">3.6.</span> constraint 的管理</h3>
+<div id="outline-container-orgfb6d19b" class="outline-3">
+<h3 id="orgfb6d19b"><span class="section-number-3">3.6.</span> constraint 的管理</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 分类:
@@ -469,7 +469,7 @@ char/nchar/varchar/nvarchar 类型的区别
 </ul>
 
 <p>
-到底使用外键否? 取决于 <b>场景</b> 和 <b>权衡</b>。
+到底使用外键否? 取决于 <b>场景</b> 和 *权衡*。
 </p>
 
 <p>
@@ -546,8 +546,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-orge0b1a46" class="outline-3">
-<h3 id="orge0b1a46"><span class="section-number-3">3.7.</span> insert 插入</h3>
+<div id="outline-container-org4b2a0b7" class="outline-3">
+<h3 id="org4b2a0b7"><span class="section-number-3">3.7.</span> insert 插入</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 基本写法:
@@ -584,8 +584,8 @@ char/nchar/varchar/nvarchar 类型的区别
 </div>
 </div>
 
-<div id="outline-container-org7f45769" class="outline-3">
-<h3 id="org7f45769"><span class="section-number-3">3.8.</span> delete/truncate 删除</h3>
+<div id="outline-container-org80bc96e" class="outline-3">
+<h3 id="org80bc96e"><span class="section-number-3">3.8.</span> delete/truncate 删除</h3>
 <div class="outline-text-3" id="text-3-8">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #b22222;">-- &#21024;&#38500; zzz &#20013;&#25152;&#26377;&#25968;&#25454;</span>
@@ -605,8 +605,8 @@ truncate <span style="color: #a020f0;">table</span> zzz;
 </div>
 </div>
 
-<div id="outline-container-org1ebe218" class="outline-3">
-<h3 id="org1ebe218"><span class="section-number-3">3.9.</span> update 更新</h3>
+<div id="outline-container-orgd070207" class="outline-3">
+<h3 id="orgd070207"><span class="section-number-3">3.9.</span> update 更新</h3>
 <div class="outline-text-3" id="text-3-9">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #b22222;">-- &#19968;&#23450;&#19981;&#35201;&#33853;&#19979; where &#26465;&#20214;</span>
@@ -618,12 +618,12 @@ truncate <span style="color: #a020f0;">table</span> zzz;
 </div>
 </div>
 
-<div id="outline-container-orgac18c7f" class="outline-3">
-<h3 id="orgac18c7f"><span class="section-number-3">3.10.</span> select 查询</h3>
+<div id="outline-container-org4576516" class="outline-3">
+<h3 id="org4576516"><span class="section-number-3">3.10.</span> select 查询</h3>
 <div class="outline-text-3" id="text-3-10">
 </div>
-<div id="outline-container-org9ad0986" class="outline-4">
-<h4 id="org9ad0986"><span class="section-number-4">3.10.1.</span> 测试数据</h4>
+<div id="outline-container-org9a4da80" class="outline-4">
+<h4 id="org9a4da80"><span class="section-number-4">3.10.1.</span> 测试数据</h4>
 <div class="outline-text-4" id="text-3-10-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">CREATE</span> DATABASE oa;
@@ -694,8 +694,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org1fe9689" class="outline-4">
-<h4 id="org1fe9689"><span class="section-number-4">3.10.2.</span> 基本查询</h4>
+<div id="outline-container-org28560d2" class="outline-4">
+<h4 id="org28560d2"><span class="section-number-4">3.10.2.</span> 基本查询</h4>
 <div class="outline-text-4" id="text-3-10-2">
 <p>
 基本句式:
@@ -808,12 +808,12 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org59afe0d" class="outline-4">
-<h4 id="org59afe0d"><span class="section-number-4">3.10.3.</span> 子查询 (subquery)</h4>
+<div id="outline-container-org29028c0" class="outline-4">
+<h4 id="org29028c0"><span class="section-number-4">3.10.3.</span> 子查询 (subquery)</h4>
 <div class="outline-text-4" id="text-3-10-3">
 </div>
-<div id="outline-container-org580a2d2" class="outline-5">
-<h5 id="org580a2d2"><span class="section-number-5">3.10.3.1.</span> 作为临时表存在</h5>
+<div id="outline-container-org90a70a9" class="outline-5">
+<h5 id="org90a70a9"><span class="section-number-5">3.10.3.1.</span> 作为临时表存在</h5>
 <div class="outline-text-5" id="text-3-10-3-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #b22222;">-- &#23454;&#38469;&#19978;&#65292;&#23601;&#26159;&#20869;&#23384;&#20013;&#30340;&#20020;&#26102;&#34920;</span>
@@ -840,8 +840,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-orgc6f1ae6" class="outline-5">
-<h5 id="orgc6f1ae6"><span class="section-number-5">3.10.3.2.</span> 作为字段存在</h5>
+<div id="outline-container-org19acf45" class="outline-5">
+<h5 id="org19acf45"><span class="section-number-5">3.10.3.2.</span> 作为字段存在</h5>
 <div class="outline-text-5" id="text-3-10-3-2">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #a020f0;">select</span> empno, ename,
@@ -855,8 +855,8 @@ use oa;
 </div>
 </div>
 
-<div id="outline-container-org4192084" class="outline-5">
-<h5 id="org4192084"><span class="section-number-5">3.10.3.3.</span> 作为条件存在</h5>
+<div id="outline-container-org2518bce" class="outline-5">
+<h5 id="org2518bce"><span class="section-number-5">3.10.3.3.</span> 作为条件存在</h5>
 <div class="outline-text-5" id="text-3-10-3-3">
 <p>
 基本使用:
@@ -987,8 +987,8 @@ ALL/ANY/SOME 语句:
 </div>
 </div>
 
-<div id="outline-container-org4e23d87" class="outline-5">
-<h5 id="org4e23d87"><span class="section-number-5">3.10.3.4.</span> 阶段性作业 (subquery)</h5>
+<div id="outline-container-orgc1c163a" class="outline-5">
+<h5 id="orgc1c163a"><span class="section-number-5">3.10.3.4.</span> 阶段性作业 (subquery)</h5>
 <div class="outline-text-5" id="text-3-10-3-4">
 <p>
 查询出芝加哥工作的工资最高的人的上司的工资，超出平均工资的数目:
@@ -1029,8 +1029,8 @@ ALL/ANY/SOME 语句:
 </div>
 </div>
 
-<div id="outline-container-orgfe7a66b" class="outline-4">
-<h4 id="orgfe7a66b"><span class="section-number-4">3.10.4.</span> 连接查询 (join)</h4>
+<div id="outline-container-org3a6ee8c" class="outline-4">
+<h4 id="org3a6ee8c"><span class="section-number-4">3.10.4.</span> 连接查询 (join)</h4>
 <div class="outline-text-4" id="text-3-10-4">
 <ul class="org-ul">
 <li>emp
@@ -1142,8 +1142,8 @@ ALL/ANY/SOME 语句:
 </div>
 </div>
 
-<div id="outline-container-org708ead7" class="outline-4">
-<h4 id="org708ead7"><span class="section-number-4">3.10.5.</span> 合并 (union)</h4>
+<div id="outline-container-orgcf501e0" class="outline-4">
+<h4 id="orgcf501e0"><span class="section-number-4">3.10.5.</span> 合并 (union)</h4>
 <div class="outline-text-4" id="text-3-10-5">
 <p>
 Union 可以连接一切，有意义的，还有无意义的。
@@ -1171,8 +1171,8 @@ Union 可以连接一切，有意义的，还有无意义的。
 </div>
 </div>
 
-<div id="outline-container-orgde5244a" class="outline-4">
-<h4 id="orgde5244a"><span class="section-number-4">3.10.6.</span> 分组、窗口查询 (group by/over)</h4>
+<div id="outline-container-orge2ee714" class="outline-4">
+<h4 id="orge2ee714"><span class="section-number-4">3.10.6.</span> 分组、窗口查询 (group by/over)</h4>
 <div class="outline-text-4" id="text-3-10-6">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #b22222;">-- &#21487;&#20197;&#20351;&#29992; union &#25163;&#21160;&#20998;&#32452;</span>
@@ -1225,8 +1225,8 @@ Union 可以连接一切，有意义的，还有无意义的。
 </div>
 </div>
 
-<div id="outline-container-orgd92396a" class="outline-4">
-<h4 id="orgd92396a"><span class="section-number-4">3.10.7.</span> 分页查询 (top/row_number/fetch-offset)</h4>
+<div id="outline-container-orga5fa186" class="outline-4">
+<h4 id="orga5fa186"><span class="section-number-4">3.10.7.</span> 分页查询 (top/row_number/fetch-offset)</h4>
 <div class="outline-text-4" id="text-3-10-7">
 <p>
 只拿出分数据。
@@ -1276,12 +1276,12 @@ SQLServer 2012 以后，开始支持标准的 fetch-offset 写法:
 </div>
 </div>
 
-<div id="outline-container-org8178d89" class="outline-3">
-<h3 id="org8178d89"><span class="section-number-3">3.11.</span> Transaction 事务</h3>
+<div id="outline-container-org0d5b1d4" class="outline-3">
+<h3 id="org0d5b1d4"><span class="section-number-3">3.11.</span> Transaction 事务</h3>
 <div class="outline-text-3" id="text-3-11">
 </div>
-<div id="outline-container-org39c7b2f" class="outline-4">
-<h4 id="org39c7b2f"><span class="section-number-4">3.11.1.</span> 什么是事务 (ACID)</h4>
+<div id="outline-container-org61b0733" class="outline-4">
+<h4 id="org61b0733"><span class="section-number-4">3.11.1.</span> 什么是事务 (ACID)</h4>
 <div class="outline-text-4" id="text-3-11-1">
 <blockquote>
 <p>
@@ -1301,8 +1301,8 @@ SQLServer 2012 以后，开始支持标准的 fetch-offset 写法:
 </div>
 </div>
 
-<div id="outline-container-org432d42c" class="outline-4">
-<h4 id="org432d42c"><span class="section-number-4">3.11.2.</span> 事务的状态</h4>
+<div id="outline-container-orgb9b9933" class="outline-4">
+<h4 id="orgb9b9933"><span class="section-number-4">3.11.2.</span> 事务的状态</h4>
 <div class="outline-text-4" id="text-3-11-2">
 <ul class="org-ul">
 <li>活动状态 (active)</li>
@@ -1312,8 +1312,8 @@ SQLServer 2012 以后，开始支持标准的 fetch-offset 写法:
 </div>
 </div>
 
-<div id="outline-container-orgd3c2bbd" class="outline-4">
-<h4 id="orgd3c2bbd"><span class="section-number-4">3.11.3.</span> SQLServer 中的事务</h4>
+<div id="outline-container-orgc0615ba" class="outline-4">
+<h4 id="orgc0615ba"><span class="section-number-4">3.11.3.</span> SQLServer 中的事务</h4>
 <div class="outline-text-4" id="text-3-11-3">
 <p>
 首先，默认情况下，SQLServer 中每条语句都会被自动提交。
@@ -1358,22 +1358,22 @@ SQLServer 2012 以后，开始支持标准的 fetch-offset 写法:
 </div>
 </section>
 
-<section id="outline-container-orge64617b" class="outline-2">
-<h2 id="orge64617b"><span class="section-number-2">4.</span> MySQL 中的 SQL 语句</h2>
+<section id="outline-container-org6c4ea5c" class="outline-2">
+<h2 id="org6c4ea5c"><span class="section-number-2">4.</span> MySQL 中的 SQL 语句</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org6a6ab08" class="outline-3">
-<h3 id="org6a6ab08"><span class="section-number-3">4.1.</span> create</h3>
+<div id="outline-container-org8260f91" class="outline-3">
+<h3 id="org8260f91"><span class="section-number-3">4.1.</span> create</h3>
 </div>
 
-<div id="outline-container-orgc273a49" class="outline-3">
-<h3 id="orgc273a49"><span class="section-number-3">4.2.</span> 分页</h3>
+<div id="outline-container-org14c2a03" class="outline-3">
+<h3 id="org14c2a03"><span class="section-number-3">4.2.</span> 分页</h3>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-20</p>
+<p class="date">Created: 2021-12-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

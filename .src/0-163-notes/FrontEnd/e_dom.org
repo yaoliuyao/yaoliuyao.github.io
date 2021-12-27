@@ -192,7 +192,16 @@ https://www.w3school.com.cn/cssref/css_selectors.asp
 - 它可以看做是比较灵活的 innerHTML，它也是依据字符串的
 - 使用方式:
   #+begin_src js
-    table.insertAdjacentHTML('beforebegin|afterbegin|beforeend|afterend', str);
+    div.insertAdjacentHTML('beforebegin|afterbegin|beforeend|afterend', str);
+    
+    // -> beforebegin
+    // <div> begin 标签
+    //     -> afterbegin
+    //     ...
+    //     ...
+    //     -> beforeend
+    // </div> end 标签
+    // -> afterend
   #+end_src
 
 ** attributes/setAttribute/getAttribute vs properties

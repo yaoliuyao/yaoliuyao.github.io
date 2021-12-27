@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-20 -->
+<!-- 2021-12-27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JavaScript (ECMAScript)</title>
@@ -54,143 +54,143 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8bf80ff">1. Hello</a>
+<li><a href="#org2e93b33">1. Hello</a>
 <ul>
-<li><a href="#org6a736cd">1.1. 基本示例 (Hello World)</a></li>
-<li><a href="#org0722e08">1.2. 在浏览器中使用 JavaScript</a>
+<li><a href="#org8622d32">1.1. 基本示例 (Hello World)</a></li>
+<li><a href="#orgdd5a605">1.2. 在浏览器中使用 JavaScript</a>
 <ul>
-<li><a href="#org874e1e3">1.2.1. 内嵌在 html 代码中</a></li>
-<li><a href="#org622f200">1.2.2. 作为外部的 JS 文件存在</a></li>
-<li><a href="#orgf16e945">1.2.3. [示例] 创建一个网页，点击按钮刷新节点的时间</a></li>
+<li><a href="#orge09ba21">1.2.1. 内嵌在 html 代码中</a></li>
+<li><a href="#orge1d0301">1.2.2. 作为外部的 JS 文件存在</a></li>
+<li><a href="#org380d533">1.2.3. [示例] 创建一个网页，点击按钮刷新节点的时间</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org564f387">2. 概述</a></li>
-<li><a href="#org0de87cc">3. 变量 (Variable)</a>
+<li><a href="#org6915dab">2. 概述</a></li>
+<li><a href="#orgd5c7161">3. 变量 (Variable)</a>
 <ul>
-<li><a href="#orgf01c530">3.1. 变量的声明的若干方式</a></li>
+<li><a href="#org519fc8c">3.1. 变量的声明的若干方式</a></li>
 </ul>
 </li>
-<li><a href="#org27405b1">4. 类型 (Type)</a>
+<li><a href="#orgd70d583">4. 类型 (Type)</a>
 <ul>
-<li><a href="#orgfc86960">4.1. number</a>
+<li><a href="#org305862e">4.1. number</a>
 <ul>
-<li><a href="#org7fafaa9">4.1.1. 声明</a></li>
-<li><a href="#orgde8cbbe">4.1.2. 运算</a></li>
-<li><a href="#orgdd1ee0a">4.1.3. NaN (Not a Number)</a></li>
-<li><a href="#org21ab063">4.1.4. Infinity</a></li>
-<li><a href="#org59571aa">4.1.5. Number/parseInt/parseFloat</a></li>
-<li><a href="#org54ca7d8">4.1.6. 0.30000000000000004</a></li>
+<li><a href="#org0ea71d9">4.1.1. 声明</a></li>
+<li><a href="#org880692f">4.1.2. 运算</a></li>
+<li><a href="#org67e2700">4.1.3. NaN (Not a Number)</a></li>
+<li><a href="#org36836ab">4.1.4. Infinity</a></li>
+<li><a href="#org5fccfc4">4.1.5. Number/parseInt/parseFloat</a></li>
+<li><a href="#orgba2fa07">4.1.6. 0.30000000000000004</a></li>
 </ul>
 </li>
-<li><a href="#org3e82dde">4.2. string</a></li>
-<li><a href="#orgc625fc7">4.3. boolean</a></li>
-<li><a href="#org6ce7740">4.4. function</a>
+<li><a href="#org4f4dc55">4.2. string</a></li>
+<li><a href="#org1c46969">4.3. boolean</a></li>
+<li><a href="#orgbb42064">4.4. function</a>
 <ul>
-<li><a href="#org5da5e01">4.4.1. 基本的声明与使用</a></li>
-<li><a href="#org3210acb">4.4.2. 函数的定义</a></li>
-<li><a href="#org96a9f8b">4.4.3. 函数是一等公民 (回调函数)</a></li>
-<li><a href="#org7c0a4ad">4.4.4. 递归函数</a></li>
-<li><a href="#orge428fbd">4.4.5. 变量的提升 (var)</a></li>
-<li><a href="#org2ff6c22">4.4.6. 变量的作用域 (var)</a></li>
-<li><a href="#org51c845b">4.4.7. ES6 提出了两个进行变量定义的关键词 let/const</a></li>
-<li><a href="#orga5d77e1">4.4.8. 词法作用域 (Lexical Scope)</a></li>
-<li><a href="#org763affb">4.4.9. 闭包 (Closure)</a></li>
+<li><a href="#orgcf12522">4.4.1. 基本的声明与使用</a></li>
+<li><a href="#orga9a02b8">4.4.2. 函数的定义</a></li>
+<li><a href="#org4496f62">4.4.3. 函数是一等公民 (回调函数)</a></li>
+<li><a href="#org88806c5">4.4.4. 递归函数</a></li>
+<li><a href="#orgde5bd1b">4.4.5. 变量的提升 (var)</a></li>
+<li><a href="#org6d60447">4.4.6. 变量的作用域 (var)</a></li>
+<li><a href="#orgebab63e">4.4.7. ES6 提出了两个进行变量定义的关键词 let/const</a></li>
+<li><a href="#orgcc168e8">4.4.8. 词法作用域 (Lexical Scope)</a></li>
+<li><a href="#org55076e0">4.4.9. 闭包 (Closure)</a></li>
 </ul>
 </li>
-<li><a href="#org073bb49">4.5. undefined (null is not a type)</a></li>
-<li><a href="#org557f121">4.6. Object</a>
+<li><a href="#org469cad7">4.5. undefined (null is not a type)</a></li>
+<li><a href="#orgb0b5a84">4.6. Object</a>
 <ul>
-<li><a href="#orge90f6e1">4.6.1. 封装</a></li>
-<li><a href="#org78481ac">4.6.2. 继承 (基于原型链)</a></li>
-<li><a href="#orgb4be527">4.6.3. 使用构造函数，简化对象的创建</a></li>
-<li><a href="#org3fd2671">4.6.4. ES5 中的 Object.create</a></li>
-<li><a href="#orgf6478d1">4.6.5. ES6 中的 class 语法糖</a></li>
-<li><a href="#org8462652">4.6.6. Object 对象</a></li>
+<li><a href="#orgbc29639">4.6.1. 封装</a></li>
+<li><a href="#orge776c16">4.6.2. 继承 (基于原型链)</a></li>
+<li><a href="#orgb4f8184">4.6.3. 使用构造函数，简化对象的创建</a></li>
+<li><a href="#orgb9d5a24">4.6.4. ES5 中的 Object.create</a></li>
+<li><a href="#org8c685a0">4.6.5. ES6 中的 class 语法糖</a></li>
+<li><a href="#org641293a">4.6.6. Object 对象</a></li>
 </ul>
 </li>
-<li><a href="#orgede0aaa">4.7. 运算符优先级</a></li>
+<li><a href="#org9b0fe46">4.7. 运算符优先级</a></li>
 </ul>
 </li>
-<li><a href="#orgc1d4080">5. 标准内置对象 (Global Objects)</a>
+<li><a href="#orgf3bb26d">5. 标准内置对象 (Global Objects)</a>
 <ul>
-<li><a href="#orgb75a5f9">5.1. Number/String/Boolean/Function</a></li>
-<li><a href="#orga7587f3">5.2. Array</a>
+<li><a href="#org9894713">5.1. Number/String/Boolean/Function</a></li>
+<li><a href="#org1043cc8">5.2. Array</a>
 <ul>
-<li><a href="#org7463c9d">5.2.1. 数组的创建</a></li>
-<li><a href="#orgd36e6b1">5.2.2. 数组的基本用法</a></li>
-<li><a href="#orgf7f755c">5.2.3. 字符串跟数组的美好友谊</a></li>
-<li><a href="#org6f8f482">5.2.4. Array 与 function 的美好生活</a></li>
-<li><a href="#org59539a5">5.2.5. ES6 添加的 Array 的一些静态方法</a></li>
-<li><a href="#orge6ac23e">5.2.6. [示例] 常规操作</a></li>
+<li><a href="#org1ba4119">5.2.1. 数组的创建</a></li>
+<li><a href="#orgb20b71e">5.2.2. 数组的基本用法</a></li>
+<li><a href="#orga12d00b">5.2.3. 字符串跟数组的美好友谊</a></li>
+<li><a href="#orgab11e77">5.2.4. Array 与 function 的美好生活</a></li>
+<li><a href="#org3427ace">5.2.5. ES6 添加的 Array 的一些静态方法</a></li>
+<li><a href="#org645e7ef">5.2.6. [示例] 常规操作</a></li>
 </ul>
 </li>
-<li><a href="#orgd833644">5.3. Math</a></li>
-<li><a href="#orge865e3b">5.4. Date</a></li>
-<li><a href="#org5db2ee8">5.5. RegExp</a>
+<li><a href="#orge8c1a80">5.3. Math</a></li>
+<li><a href="#orgcdd0c3c">5.4. Date</a></li>
+<li><a href="#orgc90341f">5.5. RegExp</a>
 <ul>
-<li><a href="#orgf53c96e">5.5.1. 补充</a></li>
+<li><a href="#org9389470">5.5.1. 补充</a></li>
 </ul>
 </li>
-<li><a href="#orgfea50e0">5.6. JSON</a></li>
-<li><a href="#org53c5e8c">5.7. Symbol</a></li>
-<li><a href="#orgb8dc65b">5.8. Set/Map/WeakSet/WeakMap</a></li>
-<li><a href="#org3ff9976">5.9. ArrayBuffer/DataView</a></li>
-<li><a href="#orgd9c6013">5.10. Promise/async</a></li>
+<li><a href="#org0a606bb">5.6. JSON</a></li>
+<li><a href="#orgd4cb294">5.7. Symbol</a></li>
+<li><a href="#org3974ef0">5.8. Set/Map/WeakSet/WeakMap</a></li>
+<li><a href="#orgc0cea07">5.9. ArrayBuffer/DataView</a></li>
+<li><a href="#org0666541">5.10. Promise/async</a></li>
 </ul>
 </li>
-<li><a href="#orgfb32840">6. 执行逻辑</a>
+<li><a href="#orga78934b">6. 执行逻辑</a>
 <ul>
-<li><a href="#orgcdecbc4">6.1. 顺序执行</a></li>
-<li><a href="#org3088543">6.2. 分支判断</a>
+<li><a href="#org2c09b6c">6.1. 顺序执行</a></li>
+<li><a href="#orgfdb5d49">6.2. 分支判断</a>
 <ul>
-<li><a href="#org63b33c2">6.2.1. IF/ELSE</a></li>
-<li><a href="#orgc5dd0a5">6.2.2. Switch/Case</a></li>
-<li><a href="#org01c9c76">6.2.3. 三目运算</a></li>
+<li><a href="#orgeddc12b">6.2.1. IF/ELSE</a></li>
+<li><a href="#org6aea7c2">6.2.2. Switch/Case</a></li>
+<li><a href="#orgda079b1">6.2.3. 三目运算</a></li>
 </ul>
 </li>
-<li><a href="#org25aa8fd">6.3. 循环迭代</a></li>
+<li><a href="#orgf0c8be2">6.3. 循环迭代</a></li>
 </ul>
 </li>
-<li><a href="#org8b59e85">7. 作用域及模块化</a>
+<li><a href="#orge8f68cd">7. 作用域及模块化</a>
 <ul>
-<li><a href="#org593184c">7.1. var: 古老的函数级别作用域</a></li>
-<li><a href="#org61bba54">7.2. let/const: 块级作用域的华丽登场</a></li>
-<li><a href="#org272060d">7.3. &lt;script src="xxx.js"&gt; 划文件而治</a></li>
-<li><a href="#orga7a42f5">7.4. 模块化的第三方解决方案 CommonJS/AMD</a></li>
-<li><a href="#orgcad5b31">7.5. 终于，在 ES6 中，推出了标准化的模块写法</a></li>
+<li><a href="#org5123001">7.1. var: 古老的函数级别作用域</a></li>
+<li><a href="#orga1d9873">7.2. let/const: 块级作用域的华丽登场</a></li>
+<li><a href="#org8420d9f">7.3. &lt;script src="xxx.js"&gt; 划文件而治</a></li>
+<li><a href="#org8640650">7.4. 模块化的第三方解决方案 CommonJS/AMD</a></li>
+<li><a href="#orge2c9b63">7.5. 终于，在 ES6 中，推出了标准化的模块写法</a></li>
 </ul>
 </li>
-<li><a href="#org17e39b8">8. ES6 快速预览</a>
+<li><a href="#org1d07a2e">8. ES6 快速预览</a>
 <ul>
-<li><a href="#org1a6f9fc">8.1. 对象的扩展</a></li>
-<li><a href="#org258f96a">8.2. 块级作用域</a></li>
-<li><a href="#orgcaca515">8.3. 函数默认值</a></li>
-<li><a href="#org208b7c3">8.4. spread/rest</a></li>
-<li><a href="#org54c3b8c">8.5. destructuring</a></li>
-<li><a href="#orge7fef68">8.6. Arrow Function</a></li>
-<li><a href="#org593f338">8.7. 循环</a></li>
-<li><a href="#org378f65c">8.8. 模板字符串</a></li>
+<li><a href="#org9d65650">8.1. 对象的扩展</a></li>
+<li><a href="#orgac18c5e">8.2. 块级作用域</a></li>
+<li><a href="#org7bbf898">8.3. 函数默认值</a></li>
+<li><a href="#org75e7db1">8.4. spread/rest</a></li>
+<li><a href="#org41840ec">8.5. destructuring</a></li>
+<li><a href="#org621d1b2">8.6. Arrow Function</a></li>
+<li><a href="#orgf801f86">8.7. 循环</a></li>
+<li><a href="#orgcc98e8f">8.8. 模板字符串</a></li>
 </ul>
 </li>
-<li><a href="#org86997a8">9. 其他</a>
+<li><a href="#orgab3949e">9. 其他</a>
 <ul>
-<li><a href="#orgddc4a78">9.1. 严格模式 (strict mode)</a></li>
-<li><a href="#orgd199743">9.2. 异常处理</a></li>
-<li><a href="#org07073c6">9.3. Object.defineProperty / Proxy</a></li>
+<li><a href="#org8ae639d">9.1. 严格模式 (strict mode)</a></li>
+<li><a href="#orgd1d8a95">9.2. 异常处理</a></li>
+<li><a href="#orgfd6b059">9.3. Object.defineProperty / Proxy</a></li>
 </ul>
 </li>
-<li><a href="#orgd6c60f4">10. 问题集锦</a>
+<li><a href="#org725d006">10. 问题集锦</a>
 <ul>
-<li><a href="#orgd75bc7e">10.1. 运算符优先级</a></li>
-<li><a href="#orgcfccf44">10.2. 正则表达式</a></li>
-<li><a href="#orga6a812a">10.3. 从文件名取后缀名</a></li>
-<li><a href="#orge62b651">10.4. undefine/null</a></li>
-<li><a href="#org598918e">10.5. 数字 + 字符串 + NaN</a></li>
-<li><a href="#org40286e1">10.6. 浮点数计算</a></li>
-<li><a href="#org9c0a23b">10.7. 求取斐波那契数列的某项 [递归]</a></li>
-<li><a href="#orgd86e45a">10.8. 自增运算符</a></li>
+<li><a href="#org40975e9">10.1. 运算符优先级</a></li>
+<li><a href="#orgb15e7b6">10.2. 正则表达式</a></li>
+<li><a href="#org749d514">10.3. 从文件名取后缀名</a></li>
+<li><a href="#org6174b58">10.4. undefine/null</a></li>
+<li><a href="#org79a083b">10.5. 数字 + 字符串 + NaN</a></li>
+<li><a href="#org0dc9c0d">10.6. 浮点数计算</a></li>
+<li><a href="#org3636bc9">10.7. 求取斐波那契数列的某项 [递归]</a></li>
+<li><a href="#org62699f1">10.8. 自增运算符</a></li>
 </ul>
 </li>
 </ul>
@@ -198,8 +198,8 @@
 </nav>
 
 
-<section id="outline-container-org8bf80ff" class="outline-2">
-<h2 id="org8bf80ff"><span class="section-number-2">1.</span> Hello</h2>
+<section id="outline-container-org2e93b33" class="outline-2">
+<h2 id="org2e93b33"><span class="section-number-2">1.</span> Hello</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript</a>
@@ -234,8 +234,8 @@ JavaScript 发展史:
 </ol>
 </div>
 
-<div id="outline-container-org6a736cd" class="outline-3">
-<h3 id="org6a736cd"><span class="section-number-3">1.1.</span> 基本示例 (Hello World)</h3>
+<div id="outline-container-org8622d32" class="outline-3">
+<h3 id="org8622d32"><span class="section-number-3">1.1.</span> 基本示例 (Hello World)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/First_steps/What_is_JavaScript">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/First_steps/What_is_JavaScript</a>
@@ -255,7 +255,7 @@ JavaScript 发展史:
             <span style="color: #a020f0;">font-weight</span>: 400;
             <span style="color: #a020f0;">color</span>:<span style="color: #ffffff; background-color: #ff0000;">red</span>
         <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">style</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/style<span style="color: #707183;">&gt;</span>
     <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span> <span style="color: #a0522d;">type</span>=<span style="color: #8b2252;">"text/javascript"</span><span style="color: #707183;">&gt;</span>
         <span style="color: #a020f0;">function</span> <span style="color: #0000ff;">bianyanse</span> <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
             <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">new_name</span> = prompt<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"&#35831;&#36755;&#20837;&#24744;&#24819;&#35201;&#30340;&#21517;&#23383;!"</span><span style="color: #7388d6;">)</span>;
@@ -263,7 +263,7 @@ JavaScript 发展史:
             xiaoming.style.background = <span style="color: #8b2252;">"red"</span>;
             xiaoming.innerText = new_name;
         <span style="color: #707183;">}</span>
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
     &#31034;&#20363;:
@@ -279,19 +279,19 @@ JavaScript 发展史:
 </div>
 </div>
 
-<div id="outline-container-org0722e08" class="outline-3">
-<h3 id="org0722e08"><span class="section-number-3">1.2.</span> 在浏览器中使用 JavaScript</h3>
+<div id="outline-container-orgdd5a605" class="outline-3">
+<h3 id="orgdd5a605"><span class="section-number-3">1.2.</span> 在浏览器中使用 JavaScript</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org874e1e3" class="outline-4">
-<h4 id="org874e1e3"><span class="section-number-4">1.2.1.</span> 内嵌在 html 代码中</h4>
+<div id="outline-container-orge09ba21" class="outline-4">
+<h4 id="orge09ba21"><span class="section-number-4">1.2.1.</span> 内嵌在 html 代码中</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 可以在 html 文档的任意部位添加 JavaScript 代码:
 </p>
 <div class="org-src-container">
 <pre class="src src-html"><span style="color: #707183;">&lt;</span><span style="color: #0000ff;">head</span><span style="color: #707183;">&gt;</span>
-  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>...&lt;/scirpt&gt;
+  <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>...&lt;/<span style="color: #0000ff;">scirpt</span>&gt;
 &lt;script&gt;...&lt;/scirpt&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -332,8 +332,8 @@ JavaScript 发展史:
 </div>
 </div>
 
-<div id="outline-container-org622f200" class="outline-4">
-<h4 id="org622f200"><span class="section-number-4">1.2.2.</span> 作为外部的 JS 文件存在</h4>
+<div id="outline-container-orge1d0301" class="outline-4">
+<h4 id="orge1d0301"><span class="section-number-4">1.2.2.</span> 作为外部的 JS 文件存在</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 引入外部 JavaScript 脚本的语法:
@@ -371,7 +371,7 @@ JavaScript 发展史:
   <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
     <span style="color: #707183;">&lt;</span><span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
      alert<span style="color: #707183;">(</span>$<span style="color: #707183;">)</span>;
-    <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">script</span><span style="color: #707183;">&gt;</span>
+    <span style="color: #707183;">&lt;</span>/script<span style="color: #707183;">&gt;</span>
   <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">body</span><span style="color: #707183;">&gt;</span>
 <span style="color: #707183;">&lt;</span>/<span style="color: #0000ff;">html</span><span style="color: #707183;">&gt;</span>
 </pre>
@@ -379,8 +379,8 @@ JavaScript 发展史:
 </div>
 </div>
 
-<div id="outline-container-orgf16e945" class="outline-4">
-<h4 id="orgf16e945"><span class="section-number-4">1.2.3.</span> [示例] 创建一个网页，点击按钮刷新节点的时间</h4>
+<div id="outline-container-org380d533" class="outline-4">
+<h4 id="org380d533"><span class="section-number-4">1.2.3.</span> [示例] 创建一个网页，点击按钮刷新节点的时间</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 首先，创建一个网页 aaa.html，确定其中的「内容」和「结构」:
@@ -448,8 +448,8 @@ node_button = showTime;
 </div>
 </section>
 
-<section id="outline-container-org564f387" class="outline-2">
-<h2 id="org564f387"><span class="section-number-2">2.</span> 概述</h2>
+<section id="outline-container-org6915dab" class="outline-2">
+<h2 id="org6915dab"><span class="section-number-2">2.</span> 概述</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 JavaScript 语法上特别像 Java，实质上更像 Scheme，另外它的基于原型 (prototype) 的对象系统，是来自于 Self。
@@ -556,8 +556,8 @@ fff<span style="color: #707183;">(</span>bbb<span style="color: #707183;">)</spa
 </div>
 </section>
 
-<section id="outline-container-org0de87cc" class="outline-2">
-<h2 id="org0de87cc"><span class="section-number-2">3.</span> 变量 (Variable)</h2>
+<section id="outline-container-orgd5c7161" class="outline-2">
+<h2 id="orgd5c7161"><span class="section-number-2">3.</span> 变量 (Variable)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 变量的的定义:
@@ -616,8 +616,8 @@ i -= 2;
 </div>
 </div>
 
-<div id="outline-container-orgf01c530" class="outline-3">
-<h3 id="orgf01c530"><span class="section-number-3">3.1.</span> 变量的声明的若干方式</h3>
+<div id="outline-container-org519fc8c" class="outline-3">
+<h3 id="org519fc8c"><span class="section-number-3">3.1.</span> 变量的声明的若干方式</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 第一种:
@@ -661,8 +661,8 @@ pi++;  <span style="color: #b22222;">// </span><span style="color: #b22222;">Err
 </div>
 </section>
 
-<section id="outline-container-org27405b1" class="outline-2">
-<h2 id="org27405b1"><span class="section-number-2">4.</span> 类型 (Type)</h2>
+<section id="outline-container-orgd70d583" class="outline-2">
+<h2 id="orgd70d583"><span class="section-number-2">4.</span> 类型 (Type)</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>原始类型 (Primitive Type): number/string/boolean/function/undefined</li>
@@ -670,16 +670,16 @@ pi++;  <span style="color: #b22222;">// </span><span style="color: #b22222;">Err
 </ul>
 </div>
 
-<div id="outline-container-orgfc86960" class="outline-3">
-<h3 id="orgfc86960"><span class="section-number-3">4.1.</span> number</h3>
+<div id="outline-container-org305862e" class="outline-3">
+<h3 id="org305862e"><span class="section-number-3">4.1.</span> number</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 在 JS 中，number 表示一切数字，包括整数和浮点数。全都是 64 位。
 </p>
 </div>
 
-<div id="outline-container-org7fafaa9" class="outline-4">
-<h4 id="org7fafaa9"><span class="section-number-4">4.1.1.</span> 声明</h4>
+<div id="outline-container-org0ea71d9" class="outline-4">
+<h4 id="org0ea71d9"><span class="section-number-4">4.1.1.</span> 声明</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">int a = 1;</span>
@@ -699,8 +699,8 @@ pi++;  <span style="color: #b22222;">// </span><span style="color: #b22222;">Err
 </div>
 </div>
 
-<div id="outline-container-orgde8cbbe" class="outline-4">
-<h4 id="orgde8cbbe"><span class="section-number-4">4.1.2.</span> 运算</h4>
+<div id="outline-container-org880692f" class="outline-4">
+<h4 id="org880692f"><span class="section-number-4">4.1.2.</span> 运算</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <ul class="org-ul">
 <li>+ - x / %</li>
@@ -712,8 +712,8 @@ pi++;  <span style="color: #b22222;">// </span><span style="color: #b22222;">Err
 </div>
 </div>
 
-<div id="outline-container-orgdd1ee0a" class="outline-4">
-<h4 id="orgdd1ee0a"><span class="section-number-4">4.1.3.</span> NaN (Not a Number)</h4>
+<div id="outline-container-org67e2700" class="outline-4">
+<h4 id="org67e2700"><span class="section-number-4">4.1.3.</span> NaN (Not a Number)</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <ul class="org-ul">
 <li>表示不是一个数字</li>
@@ -757,8 +757,8 @@ Math.sqrt(-1)
 </div>
 </div>
 
-<div id="outline-container-org21ab063" class="outline-4">
-<h4 id="org21ab063"><span class="section-number-4">4.1.4.</span> Infinity</h4>
+<div id="outline-container-org36836ab" class="outline-4">
+<h4 id="org36836ab"><span class="section-number-4">4.1.4.</span> Infinity</h4>
 <div class="outline-text-4" id="text-4-1-4">
 <pre class="example">
 5 / 0
@@ -766,8 +766,8 @@ Math.sqrt(-1)
 </div>
 </div>
 
-<div id="outline-container-org59571aa" class="outline-4">
-<h4 id="org59571aa"><span class="section-number-4">4.1.5.</span> Number/parseInt/parseFloat</h4>
+<div id="outline-container-org5fccfc4" class="outline-4">
+<h4 id="org5fccfc4"><span class="section-number-4">4.1.5.</span> Number/parseInt/parseFloat</h4>
 <div class="outline-text-4" id="text-4-1-5">
 <p>
 parseInt 和 parseFloat 只转化第一个无效字符之前的字符串:
@@ -789,8 +789,8 @@ parseInt<span style="color: #707183;">(</span><span style="color: #008b8b;">null
 </div>
 </div>
 
-<div id="outline-container-org54ca7d8" class="outline-4">
-<h4 id="org54ca7d8"><span class="section-number-4">4.1.6.</span> 0.30000000000000004</h4>
+<div id="outline-container-orgba2fa07" class="outline-4">
+<h4 id="orgba2fa07"><span class="section-number-4">4.1.6.</span> 0.30000000000000004</h4>
 <div class="outline-text-4" id="text-4-1-6">
 <ul class="org-ul">
 <li>浮点数计算偏差，典型的 \(0.1 + 0.2 \ne 0.3\)</li>
@@ -800,8 +800,8 @@ parseInt<span style="color: #707183;">(</span><span style="color: #008b8b;">null
 </div>
 </div>
 
-<div id="outline-container-org3e82dde" class="outline-3">
-<h3 id="org3e82dde"><span class="section-number-3">4.2.</span> string</h3>
+<div id="outline-container-org4f4dc55" class="outline-3">
+<h3 id="org4f4dc55"><span class="section-number-3">4.2.</span> string</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 字符串的字面表达:
@@ -897,8 +897,8 @@ d.getFullYear<span style="color: #707183;">()</span>.concat<span style="color: #
 </div>
 </div>
 
-<div id="outline-container-orgc625fc7" class="outline-3">
-<h3 id="orgc625fc7"><span class="section-number-3">4.3.</span> boolean</h3>
+<div id="outline-container-org1c46969" class="outline-3">
+<h3 id="org1c46969"><span class="section-number-3">4.3.</span> boolean</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 用来配合 if/while 进行条件判断的，只有两个值:
@@ -959,12 +959,12 @@ d.getFullYear<span style="color: #707183;">()</span>.concat<span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org6ce7740" class="outline-3">
-<h3 id="org6ce7740"><span class="section-number-3">4.4.</span> function</h3>
+<div id="outline-container-orgbb42064" class="outline-3">
+<h3 id="orgbb42064"><span class="section-number-3">4.4.</span> function</h3>
 <div class="outline-text-3" id="text-4-4">
 </div>
-<div id="outline-container-org5da5e01" class="outline-4">
-<h4 id="org5da5e01"><span class="section-number-4">4.4.1.</span> 基本的声明与使用</h4>
+<div id="outline-container-orgcf12522" class="outline-4">
+<h4 id="orgcf12522"><span class="section-number-4">4.4.1.</span> 基本的声明与使用</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 函数就是 <b>执行逻辑</b> 的一种封装。
@@ -1056,8 +1056,8 @@ f(x) = x^3 + 2x^2 + 1
 </div>
 </div>
 
-<div id="outline-container-org3210acb" class="outline-4">
-<h4 id="org3210acb"><span class="section-number-4">4.4.2.</span> 函数的定义</h4>
+<div id="outline-container-orga9a02b8" class="outline-4">
+<h4 id="orga9a02b8"><span class="section-number-4">4.4.2.</span> 函数的定义</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <p>
 function -&gt; Function
@@ -1138,7 +1138,7 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 <p>
 古语有云:
 </p>
-<pre class="example" id="org42c96c5">
+<pre class="example" id="org550bec6">
 函数内部有 this，默认指向调用者
 如果调用在顶层，this 的值是 window
 强行指定 this 值，请你使用 apply/call/bind
@@ -1146,8 +1146,8 @@ o.a.bind<span style="color: #707183;">(</span>p, 1, 1<span style="color: #707183
 </div>
 </div>
 
-<div id="outline-container-org96a9f8b" class="outline-4">
-<h4 id="org96a9f8b"><span class="section-number-4">4.4.3.</span> 函数是一等公民 (回调函数)</h4>
+<div id="outline-container-org4496f62" class="outline-4">
+<h4 id="org4496f62"><span class="section-number-4">4.4.3.</span> 函数是一等公民 (回调函数)</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <p>
 函数作为另一个函数的参数的情况，叫回调函数。
@@ -1219,8 +1219,8 @@ chuli<span style="color: #707183;">(</span>3, jia2, cheng3, <span style="color: 
 </div>
 </div>
 
-<div id="outline-container-org7c0a4ad" class="outline-4">
-<h4 id="org7c0a4ad"><span class="section-number-4">4.4.4.</span> 递归函数</h4>
+<div id="outline-container-org88806c5" class="outline-4">
+<h4 id="org88806c5"><span class="section-number-4">4.4.4.</span> 递归函数</h4>
 <div class="outline-text-4" id="text-4-4-4">
 <p>
 不断调用自己，千层套娃:
@@ -1284,8 +1284,8 @@ s<span style="color: #707183;">(</span>1000<span style="color: #707183;">)</span
 </div>
 </div>
 
-<div id="outline-container-orge428fbd" class="outline-4">
-<h4 id="orge428fbd"><span class="section-number-4">4.4.5.</span> 变量的提升 (var)</h4>
+<div id="outline-container-orgde5bd1b" class="outline-4">
+<h4 id="orgde5bd1b"><span class="section-number-4">4.4.5.</span> 变量的提升 (var)</h4>
 <div class="outline-text-4" id="text-4-4-5">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span>;
@@ -1310,8 +1310,8 @@ aaa = <span style="color: #a020f0;">function</span> <span style="color: #707183;
 </div>
 </div>
 
-<div id="outline-container-org2ff6c22" class="outline-4">
-<h4 id="org2ff6c22"><span class="section-number-4">4.4.6.</span> 变量的作用域 (var)</h4>
+<div id="outline-container-org6d60447" class="outline-4">
+<h4 id="org6d60447"><span class="section-number-4">4.4.6.</span> 变量的作用域 (var)</h4>
 <div class="outline-text-4" id="text-4-4-6">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = 9;
@@ -1438,8 +1438,8 @@ z<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org51c845b" class="outline-4">
-<h4 id="org51c845b"><span class="section-number-4">4.4.7.</span> ES6 提出了两个进行变量定义的关键词 let/const</h4>
+<div id="outline-container-orgebab63e" class="outline-4">
+<h4 id="orgebab63e"><span class="section-number-4">4.4.7.</span> ES6 提出了两个进行变量定义的关键词 let/const</h4>
 <div class="outline-text-4" id="text-4-4-7">
 <p>
 区别:
@@ -1494,8 +1494,8 @@ a = 2;  <span style="color: #b22222;">// </span><span style="color: #b22222;">&#
 </div>
 </div>
 
-<div id="outline-container-orga5d77e1" class="outline-4">
-<h4 id="orga5d77e1"><span class="section-number-4">4.4.8.</span> 词法作用域 (Lexical Scope)</h4>
+<div id="outline-container-orgcc168e8" class="outline-4">
+<h4 id="orgcc168e8"><span class="section-number-4">4.4.8.</span> 词法作用域 (Lexical Scope)</h4>
 <div class="outline-text-4" id="text-4-4-8">
 <p>
 即静态绑定。
@@ -1540,11 +1540,11 @@ test<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org763affb" class="outline-4">
-<h4 id="org763affb"><span class="section-number-4">4.4.9.</span> 闭包 (Closure)</h4>
+<div id="outline-container-org55076e0" class="outline-4">
+<h4 id="org55076e0"><span class="section-number-4">4.4.9.</span> 闭包 (Closure)</h4>
 <div class="outline-text-4" id="text-4-4-9">
 <p>
-闭包的根源是 <b>词法作用域</b>！
+闭包的根源是 *词法作用域*！
 </p>
 
 
@@ -1638,8 +1638,8 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org073bb49" class="outline-3">
-<h3 id="org073bb49"><span class="section-number-3">4.5.</span> undefined (null is not a type)</h3>
+<div id="outline-container-org469cad7" class="outline-3">
+<h3 id="org469cad7"><span class="section-number-3">4.5.</span> undefined (null is not a type)</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li>undefined 表示的是变量已经声明，但是没有赋值！</li>
@@ -1655,19 +1655,19 @@ c.reset<span style="color: #707183;">()</span>;
 </div>
 
 
-<figure id="orgd5a550c">
+<figure id="org023f417">
 <img src="img/undefined-vs-null.png" alt="undefined-vs-null.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org557f121" class="outline-3">
-<h3 id="org557f121"><span class="section-number-3">4.6.</span> Object</h3>
+<div id="outline-container-orgb0b5a84" class="outline-3">
+<h3 id="orgb0b5a84"><span class="section-number-3">4.6.</span> Object</h3>
 <div class="outline-text-3" id="text-4-6">
 </div>
-<div id="outline-container-orge90f6e1" class="outline-4">
-<h4 id="orge90f6e1"><span class="section-number-4">4.6.1.</span> 封装</h4>
+<div id="outline-container-orgbc29639" class="outline-4">
+<h4 id="orgbc29639"><span class="section-number-4">4.6.1.</span> 封装</h4>
 <div class="outline-text-4" id="text-4-6-1">
 <p>
 Array 是一种集合:
@@ -1754,8 +1754,8 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org78481ac" class="outline-4">
-<h4 id="org78481ac"><span class="section-number-4">4.6.2.</span> 继承 (基于原型链)</h4>
+<div id="outline-container-orge776c16" class="outline-4">
+<h4 id="orge776c16"><span class="section-number-4">4.6.2.</span> 继承 (基于原型链)</h4>
 <div class="outline-text-4" id="text-4-6-2">
 <p>
 JS 中，基于原型链的继承:
@@ -1808,8 +1808,8 @@ xiaoming.study<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-orgb4be527" class="outline-4">
-<h4 id="orgb4be527"><span class="section-number-4">4.6.3.</span> 使用构造函数，简化对象的创建</h4>
+<div id="outline-container-orgb4f8184" class="outline-4">
+<h4 id="orgb4f8184"><span class="section-number-4">4.6.3.</span> 使用构造函数，简化对象的创建</h4>
 <div class="outline-text-4" id="text-4-6-3">
 <p>
 如果想构建结果类似的 object 数据，普通的写法有点罗嗦:
@@ -2024,8 +2024,8 @@ iphone.hello<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org3fd2671" class="outline-4">
-<h4 id="org3fd2671"><span class="section-number-4">4.6.4.</span> ES5 中的 Object.create</h4>
+<div id="outline-container-orgb9d5a24" class="outline-4">
+<h4 id="orgb9d5a24"><span class="section-number-4">4.6.4.</span> ES5 中的 Object.create</h4>
 <div class="outline-text-4" id="text-4-6-4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">person</span> = <span style="color: #707183;">{}</span>;
@@ -2038,8 +2038,8 @@ Object.assign<span style="color: #707183;">(</span>student, <span style="color: 
 </div>
 </div>
 
-<div id="outline-container-orgf6478d1" class="outline-4">
-<h4 id="orgf6478d1"><span class="section-number-4">4.6.5.</span> ES6 中的 class 语法糖</h4>
+<div id="outline-container-org8c685a0" class="outline-4">
+<h4 id="org8c685a0"><span class="section-number-4">4.6.5.</span> ES6 中的 class 语法糖</h4>
 <div class="outline-text-4" id="text-4-6-5">
 <p>
 一定要注意，这只是一种 <b>语法糖</b> ！
@@ -2071,8 +2071,8 @@ xiaoming.eat<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org8462652" class="outline-4">
-<h4 id="org8462652"><span class="section-number-4">4.6.6.</span> Object 对象</h4>
+<div id="outline-container-org641293a" class="outline-4">
+<h4 id="org641293a"><span class="section-number-4">4.6.6.</span> Object 对象</h4>
 <div class="outline-text-4" id="text-4-6-6">
 <p>
 hasOwnProperty 用来判断某个属性是否定义在某个对象自身上:
@@ -2145,11 +2145,11 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </div>
 
-<div id="outline-container-orgede0aaa" class="outline-3">
-<h3 id="orgede0aaa"><span class="section-number-3">4.7.</span> 运算符优先级</h3>
+<div id="outline-container-org9b0fe46" class="outline-3">
+<h3 id="org9b0fe46"><span class="section-number-3">4.7.</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-4-7">
 
-<figure id="orgdfc7ed7">
+<figure id="org573e645">
 <img src="img/var-youxianji.png" alt="var-youxianji.png">
 
 </figure>
@@ -2157,12 +2157,12 @@ Object.defineProperties<span style="color: #707183;">(</span>o, <span style="col
 </div>
 </section>
 
-<section id="outline-container-orgc1d4080" class="outline-2">
-<h2 id="orgc1d4080"><span class="section-number-2">5.</span> 标准内置对象 (Global Objects)</h2>
+<section id="outline-container-orgf3bb26d" class="outline-2">
+<h2 id="orgf3bb26d"><span class="section-number-2">5.</span> 标准内置对象 (Global Objects)</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgb75a5f9" class="outline-3">
-<h3 id="orgb75a5f9"><span class="section-number-3">5.1.</span> Number/String/Boolean/Function</h3>
+<div id="outline-container-org9894713" class="outline-3">
+<h3 id="org9894713"><span class="section-number-3">5.1.</span> Number/String/Boolean/Function</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 包装类型 (Wrapper)：因为一切都是对象嘛……
@@ -2198,12 +2198,12 @@ s1 === s3  <span style="color: #b22222;">// </span><span style="color: #b22222;"
 </div>
 </div>
 
-<div id="outline-container-orga7587f3" class="outline-3">
-<h3 id="orga7587f3"><span class="section-number-3">5.2.</span> Array</h3>
+<div id="outline-container-org1043cc8" class="outline-3">
+<h3 id="org1043cc8"><span class="section-number-3">5.2.</span> Array</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-org7463c9d" class="outline-4">
-<h4 id="org7463c9d"><span class="section-number-4">5.2.1.</span> 数组的创建</h4>
+<div id="outline-container-org1ba4119" class="outline-4">
+<h4 id="org1ba4119"><span class="section-number-4">5.2.1.</span> 数组的创建</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Array</span><span style="color: #707183;">()</span>;
@@ -2226,8 +2226,8 @@ arr<span style="color: #707183;">[</span>5<span style="color: #707183;">]()</spa
 </div>
 </div>
 
-<div id="outline-container-orgd36e6b1" class="outline-4">
-<h4 id="orgd36e6b1"><span class="section-number-4">5.2.2.</span> 数组的基本用法</h4>
+<div id="outline-container-orgb20b71e" class="outline-4">
+<h4 id="orgb20b71e"><span class="section-number-4">5.2.2.</span> 数组的基本用法</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">arr</span> = <span style="color: #707183;">[</span>1, 2, <span style="color: #8b2252;">"hello"</span>, <span style="color: #008b8b;">true</span><span style="color: #707183;">]</span>;
@@ -2251,8 +2251,8 @@ arr.sort<span style="color: #707183;">(</span><span style="color: #a020f0;">func
 </div>
 </div>
 
-<div id="outline-container-orgf7f755c" class="outline-4">
-<h4 id="orgf7f755c"><span class="section-number-4">5.2.3.</span> 字符串跟数组的美好友谊</h4>
+<div id="outline-container-orga12d00b" class="outline-4">
+<h4 id="orga12d00b"><span class="section-number-4">5.2.3.</span> 字符串跟数组的美好友谊</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #8b2252;">"kkkk:jjjj:2222:xxxx"</span>.split<span style="color: #707183;">(</span><span style="color: #8b2252;">":"</span><span style="color: #707183;">)</span>.reverse<span style="color: #707183;">()</span>.join<span style="color: #707183;">(</span><span style="color: #8b2252;">"-"</span><span style="color: #707183;">)</span>;
@@ -2262,8 +2262,8 @@ arr.sort<span style="color: #707183;">(</span><span style="color: #a020f0;">func
 </div>
 </div>
 
-<div id="outline-container-org6f8f482" class="outline-4">
-<h4 id="org6f8f482"><span class="section-number-4">5.2.4.</span> Array 与 function 的美好生活</h4>
+<div id="outline-container-orgab11e77" class="outline-4">
+<h4 id="orgab11e77"><span class="section-number-4">5.2.4.</span> Array 与 function 的美好生活</h4>
 <div class="outline-text-4" id="text-5-2-4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#23547;&#25214;&#31526;&#21512;&#26465;&#20214;&#30340;</span>
@@ -2292,8 +2292,8 @@ arr.forEach<span style="color: #707183;">(</span><span style="color: #a020f0;">f
 </div>
 </div>
 
-<div id="outline-container-org59539a5" class="outline-4">
-<h4 id="org59539a5"><span class="section-number-4">5.2.5.</span> ES6 添加的 Array 的一些静态方法</h4>
+<div id="outline-container-org3427ace" class="outline-4">
+<h4 id="org3427ace"><span class="section-number-4">5.2.5.</span> ES6 添加的 Array 的一些静态方法</h4>
 <div class="outline-text-4" id="text-5-2-5">
 <div class="org-src-container">
 <pre class="src src-js">Array.from
@@ -2303,8 +2303,8 @@ Array.of
 </div>
 </div>
 
-<div id="outline-container-orge6ac23e" class="outline-4">
-<h4 id="orge6ac23e"><span class="section-number-4">5.2.6.</span> [示例] 常规操作</h4>
+<div id="outline-container-org645e7ef" class="outline-4">
+<h4 id="org645e7ef"><span class="section-number-4">5.2.6.</span> [示例] 常规操作</h4>
 <div class="outline-text-4" id="text-5-2-6">
 <p>
 现有一数组:
@@ -2348,8 +2348,8 @@ Array.of
 </div>
 </div>
 
-<div id="outline-container-orgd833644" class="outline-3">
-<h3 id="orgd833644"><span class="section-number-3">5.3.</span> Math</h3>
+<div id="outline-container-orge8c1a80" class="outline-3">
+<h3 id="orge8c1a80"><span class="section-number-3">5.3.</span> Math</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Math 对象是一个静态的对象 (不需要使用 new Math()，而是直接 Math.xxx)。
@@ -2388,8 +2388,8 @@ Math.round<span style="color: #707183;">(</span>100 * Math.random<span style="co
 </div>
 </div>
 
-<div id="outline-container-orge865e3b" class="outline-3">
-<h3 id="orge865e3b"><span class="section-number-3">5.4.</span> Date</h3>
+<div id="outline-container-orgcdd0c3c" class="outline-3">
+<h3 id="orgcdd0c3c"><span class="section-number-3">5.4.</span> Date</h3>
 <div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">d</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Date</span><span style="color: #707183;">()</span>;
@@ -2426,8 +2426,8 @@ d.toString<span style="color: #707183;">()</span>;           <span style="color:
 </div>
 </div>
 
-<div id="outline-container-org5db2ee8" class="outline-3">
-<h3 id="org5db2ee8"><span class="section-number-3">5.5.</span> RegExp</h3>
+<div id="outline-container-orgc90341f" class="outline-3">
+<h3 id="orgc90341f"><span class="section-number-3">5.5.</span> RegExp</h3>
 <div class="outline-text-3" id="text-5-5">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">RegExp</span><span style="color: #707183;">(</span><span style="color: #8b2252;">"[a-z]"</span><span style="color: #707183;">)</span>
@@ -2450,8 +2450,8 @@ a.compile<span style="color: #707183;">()</span>;
 </ul>
 </div>
 
-<div id="outline-container-orgf53c96e" class="outline-4">
-<h4 id="orgf53c96e"><span class="section-number-4">5.5.1.</span> 补充</h4>
+<div id="outline-container-org9389470" class="outline-4">
+<h4 id="org9389470"><span class="section-number-4">5.5.1.</span> 补充</h4>
 <div class="outline-text-4" id="text-5-5-1">
 <p>
 a{2}bc[abc]{2,5}
@@ -2489,8 +2489,8 @@ a{2}bc[abc]{2,5}
 </div>
 </div>
 
-<div id="outline-container-orgfea50e0" class="outline-3">
-<h3 id="orgfea50e0"><span class="section-number-3">5.6.</span> JSON</h3>
+<div id="outline-container-org0a606bb" class="outline-3">
+<h3 id="org0a606bb"><span class="section-number-3">5.6.</span> JSON</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 序列化:
@@ -2526,8 +2526,8 @@ a{2}bc[abc]{2,5}
 </div>
 </div>
 
-<div id="outline-container-org53c5e8c" class="outline-3">
-<h3 id="org53c5e8c"><span class="section-number-3">5.7.</span> Symbol</h3>
+<div id="outline-container-orgd4cb294" class="outline-3">
+<h3 id="orgd4cb294"><span class="section-number-3">5.7.</span> Symbol</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 唯一性。
@@ -2548,8 +2548,8 @@ OrderStatus.INIT;
 </div>
 </div>
 
-<div id="outline-container-orgb8dc65b" class="outline-3">
-<h3 id="orgb8dc65b"><span class="section-number-3">5.8.</span> Set/Map/WeakSet/WeakMap</h3>
+<div id="outline-container-org3974ef0" class="outline-3">
+<h3 id="org3974ef0"><span class="section-number-3">5.8.</span> Set/Map/WeakSet/WeakMap</h3>
 <div class="outline-text-3" id="text-5-8">
 <p>
 Set 集合，唯一无序:
@@ -2635,8 +2635,8 @@ test<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-org3ff9976" class="outline-3">
-<h3 id="org3ff9976"><span class="section-number-3">5.9.</span> ArrayBuffer/DataView</h3>
+<div id="outline-container-orgc0cea07" class="outline-3">
+<h3 id="orgc0cea07"><span class="section-number-3">5.9.</span> ArrayBuffer/DataView</h3>
 <div class="outline-text-3" id="text-5-9">
 <p>
 &lt;input type=file id=xxx&gt;
@@ -2648,8 +2648,8 @@ xxx.files[0]
 </div>
 </div>
 
-<div id="outline-container-orgd9c6013" class="outline-3">
-<h3 id="orgd9c6013"><span class="section-number-3">5.10.</span> Promise/async</h3>
+<div id="outline-container-org0666541" class="outline-3">
+<h3 id="org0666541"><span class="section-number-3">5.10.</span> Promise/async</h3>
 <div class="outline-text-3" id="text-5-10">
 <p>
 异步非常爽，一不小心就进入了回调地狱:
@@ -2709,12 +2709,12 @@ ES7 中异步编程的继续演化:
 </div>
 </section>
 
-<section id="outline-container-orgfb32840" class="outline-2">
-<h2 id="orgfb32840"><span class="section-number-2">6.</span> 执行逻辑</h2>
+<section id="outline-container-orga78934b" class="outline-2">
+<h2 id="orga78934b"><span class="section-number-2">6.</span> 执行逻辑</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgcdecbc4" class="outline-3">
-<h3 id="orgcdecbc4"><span class="section-number-3">6.1.</span> 顺序执行</h3>
+<div id="outline-container-org2c09b6c" class="outline-3">
+<h3 id="org2c09b6c"><span class="section-number-3">6.1.</span> 顺序执行</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 默认行为
@@ -2722,8 +2722,8 @@ ES7 中异步编程的继续演化:
 </div>
 </div>
 
-<div id="outline-container-org3088543" class="outline-3">
-<h3 id="org3088543"><span class="section-number-3">6.2.</span> 分支判断</h3>
+<div id="outline-container-orgfdb5d49" class="outline-3">
+<h3 id="orgfdb5d49"><span class="section-number-3">6.2.</span> 分支判断</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>if/else if/else</li>
@@ -2732,8 +2732,8 @@ ES7 中异步编程的继续演化:
 </ul>
 </div>
 
-<div id="outline-container-org63b33c2" class="outline-4">
-<h4 id="org63b33c2"><span class="section-number-4">6.2.1.</span> IF/ELSE</h4>
+<div id="outline-container-orgeddc12b" class="outline-4">
+<h4 id="orgeddc12b"><span class="section-number-4">6.2.1.</span> IF/ELSE</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <p>
 完全句式:
@@ -2848,8 +2848,8 @@ ES7 中异步编程的继续演化:
 </div>
 </div>
 
-<div id="outline-container-orgc5dd0a5" class="outline-4">
-<h4 id="orgc5dd0a5"><span class="section-number-4">6.2.2.</span> Switch/Case</h4>
+<div id="outline-container-org6aea7c2" class="outline-4">
+<h4 id="org6aea7c2"><span class="section-number-4">6.2.2.</span> Switch/Case</h4>
 <div class="outline-text-4" id="text-6-2-2">
 <p>
 注意:
@@ -2914,8 +2914,8 @@ ES7 中异步编程的继续演化:
 </div>
 </div>
 
-<div id="outline-container-org01c9c76" class="outline-4">
-<h4 id="org01c9c76"><span class="section-number-4">6.2.3.</span> 三目运算</h4>
+<div id="outline-container-orgda079b1" class="outline-4">
+<h4 id="orgda079b1"><span class="section-number-4">6.2.3.</span> 三目运算</h4>
 <div class="outline-text-4" id="text-6-2-3">
 <ul class="org-ul">
 <li>简短、快捷</li>
@@ -2929,8 +2929,8 @@ BOOLEAN ? 分支1 : 分支2
 </div>
 </div>
 
-<div id="outline-container-org25aa8fd" class="outline-3">
-<h3 id="org25aa8fd"><span class="section-number-3">6.3.</span> 循环迭代</h3>
+<div id="outline-container-orgf0c8be2" class="outline-3">
+<h3 id="orgf0c8be2"><span class="section-number-3">6.3.</span> 循环迭代</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>for</li>
@@ -2941,12 +2941,12 @@ BOOLEAN ? 分支1 : 分支2
 </div>
 </section>
 
-<section id="outline-container-org8b59e85" class="outline-2">
-<h2 id="org8b59e85"><span class="section-number-2">7.</span> 作用域及模块化</h2>
+<section id="outline-container-orge8f68cd" class="outline-2">
+<h2 id="orge8f68cd"><span class="section-number-2">7.</span> 作用域及模块化</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org593184c" class="outline-3">
-<h3 id="org593184c"><span class="section-number-3">7.1.</span> var: 古老的函数级别作用域</h3>
+<div id="outline-container-org5123001" class="outline-3">
+<h3 id="org5123001"><span class="section-number-3">7.1.</span> var: 古老的函数级别作用域</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 使用 var 定义的数据的作用域，是函数级别的! var 定义的变量会自动提升
@@ -2990,8 +2990,8 @@ xxx<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </s
 </div>
 </div>
 
-<div id="outline-container-org61bba54" class="outline-3">
-<h3 id="org61bba54"><span class="section-number-3">7.2.</span> let/const: 块级作用域的华丽登场</h3>
+<div id="outline-container-orga1d9873" class="outline-3">
+<h3 id="orga1d9873"><span class="section-number-3">7.2.</span> let/const: 块级作用域的华丽登场</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 使用的优先级:
@@ -3014,8 +3014,8 @@ xxx<span style="color: #707183;">()</span>; <span style="color: #b22222;">// </s
 </div>
 </div>
 
-<div id="outline-container-org272060d" class="outline-3">
-<h3 id="org272060d"><span class="section-number-3">7.3.</span> &lt;script src="xxx.js"&gt; 划文件而治</h3>
+<div id="outline-container-org8420d9f" class="outline-3">
+<h3 id="org8420d9f"><span class="section-number-3">7.3.</span> &lt;script src="xxx.js"&gt; 划文件而治</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 如果代码量变大的话，会将其划分到不同的文件中:
@@ -3086,8 +3086,8 @@ c1.hi<span style="color: #707183;">()</span>;
 </div>
 </div>
 
-<div id="outline-container-orga7a42f5" class="outline-3">
-<h3 id="orga7a42f5"><span class="section-number-3">7.4.</span> 模块化的第三方解决方案 CommonJS/AMD</h3>
+<div id="outline-container-org8640650" class="outline-3">
+<h3 id="org8640650"><span class="section-number-3">7.4.</span> 模块化的第三方解决方案 CommonJS/AMD</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 Asynchronous Module Definition.
@@ -3095,8 +3095,8 @@ Asynchronous Module Definition.
 </div>
 </div>
 
-<div id="outline-container-orgcad5b31" class="outline-3">
-<h3 id="orgcad5b31"><span class="section-number-3">7.5.</span> 终于，在 ES6 中，推出了标准化的模块写法</h3>
+<div id="outline-container-orge2c9b63" class="outline-3">
+<h3 id="orge2c9b63"><span class="section-number-3">7.5.</span> 终于，在 ES6 中，推出了标准化的模块写法</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 两种语法:
@@ -3155,12 +3155,12 @@ Asynchronous Module Definition.
 </div>
 </section>
 
-<section id="outline-container-org17e39b8" class="outline-2">
-<h2 id="org17e39b8"><span class="section-number-2">8.</span> ES6 快速预览</h2>
+<section id="outline-container-org1d07a2e" class="outline-2">
+<h2 id="org1d07a2e"><span class="section-number-2">8.</span> ES6 快速预览</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org1a6f9fc" class="outline-3">
-<h3 id="org1a6f9fc"><span class="section-number-3">8.1.</span> 对象的扩展</h3>
+<div id="outline-container-org9d65650" class="outline-3">
+<h3 id="org9d65650"><span class="section-number-3">8.1.</span> 对象的扩展</h3>
 <div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">const</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"tom"</span>;
@@ -3220,8 +3220,8 @@ zzz.__proto__ = xxx;
 </div>
 </div>
 
-<div id="outline-container-org258f96a" class="outline-3">
-<h3 id="org258f96a"><span class="section-number-3">8.2.</span> 块级作用域</h3>
+<div id="outline-container-orgac18c5e" class="outline-3">
+<h3 id="orgac18c5e"><span class="section-number-3">8.2.</span> 块级作用域</h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
 <li>let/const</li>
@@ -3229,8 +3229,8 @@ zzz.__proto__ = xxx;
 </div>
 </div>
 
-<div id="outline-container-orgcaca515" class="outline-3">
-<h3 id="orgcaca515"><span class="section-number-3">8.3.</span> 函数默认值</h3>
+<div id="outline-container-org7bbf898" class="outline-3">
+<h3 id="org7bbf898"><span class="section-number-3">8.3.</span> 函数默认值</h3>
 <div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">xxx</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">score</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
@@ -3250,8 +3250,8 @@ xxx<span style="color: #707183;">(</span>33<span style="color: #707183;">)</span
 </div>
 </div>
 
-<div id="outline-container-org208b7c3" class="outline-3">
-<h3 id="org208b7c3"><span class="section-number-3">8.4.</span> spread/rest</h3>
+<div id="outline-container-org75e7db1" class="outline-3">
+<h3 id="org75e7db1"><span class="section-number-3">8.4.</span> spread/rest</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 扒衣服:
@@ -3289,8 +3289,8 @@ xxx<span style="color: #707183;">(</span>1, 2, 3, 4<span style="color: #707183;"
 </div>
 </div>
 
-<div id="outline-container-org54c3b8c" class="outline-3">
-<h3 id="org54c3b8c"><span class="section-number-3">8.5.</span> destructuring</h3>
+<div id="outline-container-org41840ec" class="outline-3">
+<h3 id="org41840ec"><span class="section-number-3">8.5.</span> destructuring</h3>
 <div class="outline-text-3" id="text-8-5">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #b22222;">// </span><span style="color: #b22222;">&#20174;&#25968;&#32452;&#20013;</span>
@@ -3323,8 +3323,8 @@ xxx<span style="color: #707183;">(</span>1, 2, 3, 4<span style="color: #707183;"
 </div>
 </div>
 
-<div id="outline-container-orge7fef68" class="outline-3">
-<h3 id="orge7fef68"><span class="section-number-3">8.6.</span> Arrow Function</h3>
+<div id="outline-container-org621d1b2" class="outline-3">
+<h3 id="org621d1b2"><span class="section-number-3">8.6.</span> Arrow Function</h3>
 <div class="outline-text-3" id="text-8-6">
 <ul class="org-ul">
 <li>没有自己的 this，而是继承自其父作用域</li>
@@ -3337,8 +3337,8 @@ xxx<span style="color: #707183;">(</span>1, 2, 3, 4<span style="color: #707183;"
 </div>
 </div>
 
-<div id="outline-container-org593f338" class="outline-3">
-<h3 id="org593f338"><span class="section-number-3">8.7.</span> 循环</h3>
+<div id="outline-container-orgf801f86" class="outline-3">
+<h3 id="orgf801f86"><span class="section-number-3">8.7.</span> 循环</h3>
 <div class="outline-text-3" id="text-8-7">
 <p>
 传统的方式:
@@ -3358,8 +3358,8 @@ ES6 中:
 </div>
 </div>
 
-<div id="outline-container-org378f65c" class="outline-3">
-<h3 id="org378f65c"><span class="section-number-3">8.8.</span> 模板字符串</h3>
+<div id="outline-container-orgcc98e8f" class="outline-3">
+<h3 id="orgcc98e8f"><span class="section-number-3">8.8.</span> 模板字符串</h3>
 <div class="outline-text-3" id="text-8-8">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">name</span> = <span style="color: #8b2252;">"world"</span>;
@@ -3370,12 +3370,12 @@ ES6 中:
 </div>
 </section>
 
-<section id="outline-container-org86997a8" class="outline-2">
-<h2 id="org86997a8"><span class="section-number-2">9.</span> 其他</h2>
+<section id="outline-container-orgab3949e" class="outline-2">
+<h2 id="orgab3949e"><span class="section-number-2">9.</span> 其他</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-orgddc4a78" class="outline-3">
-<h3 id="orgddc4a78"><span class="section-number-3">9.1.</span> 严格模式 (strict mode)</h3>
+<div id="outline-container-org8ae639d" class="outline-3">
+<h3 id="org8ae639d"><span class="section-number-3">9.1.</span> 严格模式 (strict mode)</h3>
 <div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #8b2252;">"use strict"</span>;
@@ -3394,8 +3394,8 @@ ES6 中:
 </div>
 </div>
 
-<div id="outline-container-orgd199743" class="outline-3">
-<h3 id="orgd199743"><span class="section-number-3">9.2.</span> 异常处理</h3>
+<div id="outline-container-orgd1d8a95" class="outline-3">
+<h3 id="orgd1d8a95"><span class="section-number-3">9.2.</span> 异常处理</h3>
 <div class="outline-text-3" id="text-9-2">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">try</span> <span style="color: #707183;">{</span>
@@ -3421,8 +3421,8 @@ window.addEventListener<span style="color: #707183;">(</span><span style="color:
 </div>
 </div>
 
-<div id="outline-container-org07073c6" class="outline-3">
-<h3 id="org07073c6"><span class="section-number-3">9.3.</span> Object.defineProperty / Proxy</h3>
+<div id="outline-container-orgfd6b059" class="outline-3">
+<h3 id="orgfd6b059"><span class="section-number-3">9.3.</span> Object.defineProperty / Proxy</h3>
 <div class="outline-text-3" id="text-9-3">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">data</span> = <span style="color: #707183;">{</span>
@@ -3459,12 +3459,12 @@ dataProxy.friends<span style="color: #707183;">[</span>1<span style="color: #707
 </div>
 </section>
 
-<section id="outline-container-orgd6c60f4" class="outline-2">
-<h2 id="orgd6c60f4"><span class="section-number-2">10.</span> 问题集锦</h2>
+<section id="outline-container-org725d006" class="outline-2">
+<h2 id="org725d006"><span class="section-number-2">10.</span> 问题集锦</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orgd75bc7e" class="outline-3">
-<h3 id="orgd75bc7e"><span class="section-number-3">10.1.</span> 运算符优先级</h3>
+<div id="outline-container-org40975e9" class="outline-3">
+<h3 id="org40975e9"><span class="section-number-3">10.1.</span> 运算符优先级</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 请说出下面运算的结果，并简析原因:
@@ -3505,11 +3505,11 @@ Something
 </div>
 </div>
 
-<div id="outline-container-orgcfccf44" class="outline-3">
-<h3 id="orgcfccf44"><span class="section-number-3">10.2.</span> 正则表达式</h3>
+<div id="outline-container-orgb15e7b6" class="outline-3">
+<h3 id="orgb15e7b6"><span class="section-number-3">10.2.</span> 正则表达式</h3>
 <div class="outline-text-3" id="text-10-2">
 <p>
-请分别将下面字符串中的 <b>电话号码</b> 和 <b>邮箱地址</b>，使用 <b>正则表达式</b> 的形式，提取出来，并 <b>分别打印</b>:
+请分别将下面字符串中的 <b>电话号码</b> 和 <b>邮箱地址*，使用 *正则表达式</b> 的形式，提取出来，并 <b>分别打印</b>:
 </p>
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">'&#25105;&#30340;&#30005;&#35805;&#21495;&#30721;&#26159; 16776876543&#65292;&#25105;&#30340;&#37038;&#31665;&#26159; xxx@qq.com&#65292;&#35831;&#38543;&#26102;&#32852;&#31995;&#25105;&#12290;&#21542;&#21017;&#25171; 110.'</span>
@@ -3573,8 +3573,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 </div>
 
-<div id="outline-container-orga6a812a" class="outline-3">
-<h3 id="orga6a812a"><span class="section-number-3">10.3.</span> 从文件名取后缀名</h3>
+<div id="outline-container-org749d514" class="outline-3">
+<h3 id="org749d514"><span class="section-number-3">10.3.</span> 从文件名取后缀名</h3>
 <div class="outline-text-3" id="text-10-3">
 <p>
 从下面给出的文件名字符串中，提取后缀名:
@@ -3618,8 +3618,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 </div>
 
-<div id="outline-container-orge62b651" class="outline-3">
-<h3 id="orge62b651"><span class="section-number-3">10.4.</span> undefine/null</h3>
+<div id="outline-container-org6174b58" class="outline-3">
+<h3 id="org6174b58"><span class="section-number-3">10.4.</span> undefine/null</h3>
 <div class="outline-text-3" id="text-10-4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #008b8b;">undefined</span> == <span style="color: #008b8b;">null</span>   <span style="color: #b22222;">// </span><span style="color: #b22222;">true</span>
@@ -3631,8 +3631,8 @@ console.log<span style="color: #707183;">(</span>r<span style="color: #7388d6;">
 </div>
 </div>
 
-<div id="outline-container-org598918e" class="outline-3">
-<h3 id="org598918e"><span class="section-number-3">10.5.</span> 数字 + 字符串 + NaN</h3>
+<div id="outline-container-org79a083b" class="outline-3">
+<h3 id="org79a083b"><span class="section-number-3">10.5.</span> 数字 + 字符串 + NaN</h3>
 <div class="outline-text-3" id="text-10-5">
 <div class="org-src-container">
 <pre class="src src-js">3 + 5        <span style="color: #b22222;">// </span><span style="color: #b22222;">8</span>
@@ -3660,8 +3660,8 @@ Math.sqrt<span style="color: #707183;">(</span>-1<span style="color: #707183;">)
 </div>
 </div>
 
-<div id="outline-container-org40286e1" class="outline-3">
-<h3 id="org40286e1"><span class="section-number-3">10.6.</span> 浮点数计算</h3>
+<div id="outline-container-org0dc9c0d" class="outline-3">
+<h3 id="org0dc9c0d"><span class="section-number-3">10.6.</span> 浮点数计算</h3>
 <div class="outline-text-3" id="text-10-6">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">a</span> = 0.1;
@@ -3684,8 +3684,8 @@ c == a + b
 </div>
 </div>
 
-<div id="outline-container-org9c0a23b" class="outline-3">
-<h3 id="org9c0a23b"><span class="section-number-3">10.7.</span> 求取斐波那契数列的某项 [递归]</h3>
+<div id="outline-container-org3636bc9" class="outline-3">
+<h3 id="org3636bc9"><span class="section-number-3">10.7.</span> 求取斐波那契数列的某项 [递归]</h3>
 <div class="outline-text-3" id="text-10-7">
 <p>
 斐波那契数列，就是某一项的值，为前两项的和:
@@ -3710,8 +3710,8 @@ c == a + b
 </div>
 </div>
 
-<div id="outline-container-orgd86e45a" class="outline-3">
-<h3 id="orgd86e45a"><span class="section-number-3">10.8.</span> 自增运算符</h3>
+<div id="outline-container-org62699f1" class="outline-3">
+<h3 id="org62699f1"><span class="section-number-3">10.8.</span> 自增运算符</h3>
 <div class="outline-text-3" id="text-10-8">
 <p>
 请解析下面的结果:
@@ -3736,7 +3736,7 @@ console.log<span style="color: #707183;">(</span>a, b, c, d<span style="color: #
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2021-05-20</p>
+<p class="date">Created: 2021-12-27</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
