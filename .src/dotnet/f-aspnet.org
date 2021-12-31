@@ -128,27 +128,67 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
 
 ** [AJAX] XMLHttpRequest
 
+https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest
+
 Asynchronous JavaScript and XML:
-- 异步
+- 异步 (不会导致当前页面卡顿)
 - 局部刷新 (JS 操作 DOM 节点)
+
+使用 AJAX 进行操作的基本流程:
+- 第一步，发送请求
+- 第二步，获取响应的数据
+- 第三步，将数据组装为需要的 html 字符串
+- 第四步，找到某个 dom 节点，将上述 html 字符串添加到其中
 
 #+begin_src js
   var xhr = new XmlHttpRequest();
-  xhr.open("get", "http://localhost:5001/comment/dosave");
-  
-  var d = new UrlSearchParams();
-  d.append("Comment.Author", "lisi");
-  d.append("Comment.Content", "xxxxx");
-  xhr.send(d);
+  //xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+  xhr.setRequestHeader("xxx", "123");
+  xhr.open("get", "http://localhost:5001/comment/dosave");  
+  xhr.send("Author=lisi&Content=xxx");
   
   //// 通过事件，绑定相关动作
-  xhr.onload = (x) => {
-      alert(x);
-      window.location.refresh();
+  xhr.onload = (event) => {
+      if (xhr.statusCode == 200)
+      {
+          let content = xhr.responseText; // 返回的响应字符串
+          //window.location.refresh();
+          //dom.innerHTML = content;
+          dom.innerHTML = JSON.parse(content).xxx;
+      }
   };
   xhr.error = (err) =>
   {
       alert("保存失败!");
   }
+#+end_src
+
+对于 JSON 的处理
+#+begin_src js
+  let xhr = new XmlHttpRequest();
+  xhr.open();
+  xhr.send();
+  
+  // 第一种方式
+  xhr.onload = (e) =>
+  {
+      if (xhr.statusCode == 200)
+      {
+          let text = xhr.responseText; // DOMString
+          let json = JSON.parse(text); // JSON 对象
+          alert(json[1].name);
+      }
+  };
+  
+  // 第二种方式
+  xhr.responseType = "json";
+  xhr.onload = (e) =>
+  {
+      if (xhr.statusCode == 200)
+      {
+          let json = xhr.response; // 根据 responseType 自动格式化
+          alert(json[1].name);
+      }
+  };
 #+end_src
 

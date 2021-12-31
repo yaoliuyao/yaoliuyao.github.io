@@ -116,3 +116,14 @@
 另外:
 - 主要用于查询
 - 也可以进行有限的 /增删改/
+
+* BLOB (二进制大对象)
+
+#+begin_src sql
+  create table xxx (id int identity, ddd varbinary(max));
+  
+  insert into xxx (ddd)  
+  select bulkcolumn from openrowset(Bulk 'e:\Codematic2.rar', single_blob) as blob;
+  
+  select * from xxx;
+#+end_src
