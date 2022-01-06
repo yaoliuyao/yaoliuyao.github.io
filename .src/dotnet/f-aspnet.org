@@ -99,7 +99,7 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
   dotnet ef database update
 #+end_src
 
-* Su-2
+* Request/Response
 ** A 超链接
 
 将请求的参数，携带到 QueryString 中发送到服务器:
@@ -191,4 +191,7 @@ Asynchronous JavaScript and XML:
       }
   };
 #+end_src
+
+
+
 
