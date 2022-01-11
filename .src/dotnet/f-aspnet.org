@@ -99,7 +99,7 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
   dotnet ef database update
 #+end_src
 
-* Request/Response
+* 从浏览器发送请求/发展史
 ** A 超链接
 
 将请求的参数，携带到 QueryString 中发送到服务器:
@@ -279,3 +279,165 @@ Asynchronous JavaScript and XML:
   // 加载 js 脚本
   $.getScript("/xxxx.js");
 #+end_src
+
+** Fetch API
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
+
+#+begin_src js
+  function list () {
+      fetch("/Post/List")
+          .then(response => response.json())
+          .then(posts => {
+              document.querySelector(".list-box").innerHTML = posts.length > 0 ? "" : "没有任何文章";
+              for (let i = 0; i < posts.length; i++) {
+                  renderPost(posts[i]);
+              }
+          }).catch(e => {
+              renderError(err);
+          });
+  }
+  
+  function upload (e) {
+      let fd = new FormData();
+      fd.append("x", $("#mfile").get(0).files[0]);
+  
+      fetch("/Post/Upload", { method: "POST", body: fd })
+          .then(r => r.text())
+          .then(name => {
+              document.querySelector("#cover").value = name;
+              document.querySelector("#preview").src = `/images/${name}`;
+          });
+  }
+  
+  async function save (e) {
+      let fd = new FormData();
+      fd.append("cover", document.querySelector("#cover").value);
+      fd.append("author", document.querySelector("#author").value);
+      fd.append("title", document.querySelector("#title").value);
+      fd.append("content", document.querySelector("#content").value);
+  
+      try {
+          let rsp = await fetch("/Post/Save", { method: "post", body: fd });
+          renderPost(await rsp.json());
+  
+          clearInputs();
+          document.querySelector(".post-new").style.display = "block";
+          document.querySelector(".input-box").style.display = "none";
+      } catch (e) {
+          renderError("保存失败");
+      }
+  }
+#+end_src
+
+** axios
+
+基本使用:
+#+begin_src js
+  function list () {
+      axios("/Post/List")
+          .then(resp => {
+              let posts = resp.data;
+              document.querySelector(".list-box").innerHTML = posts.length > 0 ? "" : "没有任何文章";
+              for (let i = 0; i < posts.length; i++) {
+                  renderPost(posts[i]);
+              }
+          })
+          .catch(e => renderError(err));
+  }
+  
+  function upload (e) {
+      let fd = new FormData();
+      fd.append("x", $("#mfile").get(0).files[0]);
+  
+      axios({
+          method: "post",
+          url: "/Post/Upload", 
+          data: fd 
+      }).then(resp => {
+          let name = resp.data;
+          document.querySelector("#cover").value = name;
+          document.querySelector("#preview").src = `/images/${name}`;
+      });
+  }
+  
+  async function save (e) {
+      let fd = new FormData();
+      ["cover", "author", "title", "content"].forEach(id => {
+          fd.append(id, document.querySelector(`#${id}`).value);
+      });
+  
+      try {
+          let rsp = await axios("/Post/Save", { method: "post", data: fd });
+          renderPost(rsp.data);
+  
+          clearInputs();
+          document.querySelector(".post-new").style.display = "block";
+          document.querySelector(".input-box").style.display = "none";
+      } catch (e) {
+          renderError("保存失败");
+      }
+  }
+  
+#+end_src
+
+回调地狱 (Callback Hell):
+#+begin_src js
+  function xxx_then (e) {
+      axios("/post/getpost/3")
+          .then(r => {
+              console.log(`得到 ${r.data.title}`);
+              axios("/post/getpost/5")
+                  .then(r => {
+                      console.log(`得到 ${r.data.title}`);
+                      axios("/post/getpost/6")
+                          .then(r => {
+                              console.log(`得到 ${r.data.title}`);
+                              axios("/post/getpost/15")
+                                  .then(r => {
+                                      console.log(`得到 ${r.data.title}`);
+                                      axios("/post/getpost/23")
+                                          .then(r => {
+                                              console.log(`得到 ${r.data.title}`);
+                                              alert("终于结束了");
+                                          });
+                                  });
+                          });
+                  });
+          });
+  }
+  
+  async function xxx (e) {
+      let r;
+  
+      r = await axios("/post/getpost/3");
+      console.log(`得到 ${r.data.title}`);
+  
+      r = await axios("/post/getpost/5");
+      console.log(`得到 ${r.data.title}`);
+  
+      r = await axios("/post/getpost/6"); 
+      console.log(`得到 ${r.data.title}`);
+  
+      r = await axios("/post/getpost/15"); 
+      console.log(`得到 ${r.data.title}`);
+  
+      r = await axios("/post/getpost/23"); 
+      console.log(`得到 ${r.data.title}`);
+  }
+  
+  function xxx_await_short()
+  {
+      [3, 5, 6, 15, 23].forEach(async id => {
+          let r = await axios("/post/getpost/" + id);
+          console.log(`得到 ${r.data.title}`);
+      });
+  }
+#+end_src
+
+* 页面元素的操作/发展史
+** 原生 DOM 节点
+
+** jQuery
+
+** Vue/ReactJS/Angular

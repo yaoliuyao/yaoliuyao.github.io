@@ -28,12 +28,21 @@
 </ul>
 </li>
 <li><a href="#org2aa5ad6">2. Summary-1</a></li>
-<li><a href="#orgd913fe0">3. Request/Response</a>
+<li><a href="#org8e71b9a">3. 从浏览器发送请求/发展史</a>
 <ul>
 <li><a href="#org94e0250">3.1. A 超链接</a></li>
 <li><a href="#org956006e">3.2. FORM 表单</a></li>
 <li><a href="#org2384b99">3.3. [AJAX] XMLHttpRequest</a></li>
 <li><a href="#org70dcdeb">3.4. jQuery (封装)</a></li>
+<li><a href="#org491c23d">3.5. Fetch API</a></li>
+<li><a href="#org8861c0b">3.6. axios</a></li>
+</ul>
+</li>
+<li><a href="#org725a847">4. 页面元素的操作/发展史</a>
+<ul>
+<li><a href="#orgcc48a27">4.1. 原生 DOM 节点</a></li>
+<li><a href="#org6327adb">4.2. jQuery</a></li>
+<li><a href="#org4c9f26a">4.3. Vue/ReactJS/Angular</a></li>
 </ul>
 </li>
 </ul>
@@ -78,7 +87,7 @@ ASP.NET Core:
 <p>
 HTML:
 </p>
-<pre class="example" id="org19456e7">
+<pre class="example" id="org2162473">
 HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
 言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
 1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
@@ -180,8 +189,8 @@ dotnet ef database update
 </div>
 </section>
 
-<section id="outline-container-orgd913fe0" class="outline-2">
-<h2 id="orgd913fe0"><span class="section-number-2">3.</span> Request/Response</h2>
+<section id="outline-container-org8e71b9a" class="outline-2">
+<h2 id="org8e71b9a"><span class="section-number-2">3.</span> 从浏览器发送请求/发展史</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org94e0250" class="outline-3">
@@ -405,6 +414,193 @@ $.getScript<span style="color: #707183;">(</span><span style="color: #8b2252;">"
 </pre>
 </div>
 </div>
+</div>
+
+<div id="outline-container-org491c23d" class="outline-3">
+<h3 id="org491c23d"><span class="section-number-3">3.5.</span> Fetch API</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">list</span> <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+    fetch<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/Post/List"</span><span style="color: #7388d6;">)</span>
+        .then<span style="color: #7388d6;">(</span>response =&gt; response.json<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>
+        .then<span style="color: #7388d6;">(</span>posts =&gt; <span style="color: #909183;">{</span>
+            document.querySelector<span style="color: #709870;">(</span><span style="color: #8b2252;">".list-box"</span><span style="color: #709870;">)</span>.innerHTML = posts.length &gt; 0 ? <span style="color: #8b2252;">""</span> : <span style="color: #8b2252;">"&#27809;&#26377;&#20219;&#20309;&#25991;&#31456;"</span>;
+            <span style="color: #a020f0;">for</span> <span style="color: #709870;">(</span><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">i</span> = 0; i &lt; posts.length; i++<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+                renderPost<span style="color: #907373;">(</span>posts<span style="color: #6276ba;">[</span>i<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>.<span style="color: #a020f0;">catch</span><span style="color: #7388d6;">(</span>e =&gt; <span style="color: #909183;">{</span>
+            renderError<span style="color: #709870;">(</span>err<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">upload</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">e</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">fd</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FormData</span><span style="color: #7388d6;">()</span>;
+    fd.append<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"x"</span>, $<span style="color: #909183;">(</span><span style="color: #8b2252;">"#mfile"</span><span style="color: #909183;">)</span>.get<span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>.files<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+
+    fetch<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/Post/Upload"</span>, <span style="color: #909183;">{</span> method: <span style="color: #8b2252;">"POST"</span>, body: fd <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>
+        .then<span style="color: #7388d6;">(</span>r =&gt; r.text<span style="color: #909183;">()</span><span style="color: #7388d6;">)</span>
+        .then<span style="color: #7388d6;">(</span>name =&gt; <span style="color: #909183;">{</span>
+            document.querySelector<span style="color: #709870;">(</span><span style="color: #8b2252;">"#cover"</span><span style="color: #709870;">)</span>.value = name;
+            document.querySelector<span style="color: #709870;">(</span><span style="color: #8b2252;">"#preview"</span><span style="color: #709870;">)</span>.src = <span style="color: #8b2252;">`/images/${name}`</span>;
+        <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">async</span> <span style="color: #a020f0;">function</span> save <span style="color: #707183;">(</span><span style="color: #a0522d;">e</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">fd</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FormData</span><span style="color: #7388d6;">()</span>;
+    fd.append<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"cover"</span>, document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">"#cover"</span><span style="color: #909183;">)</span>.value<span style="color: #7388d6;">)</span>;
+    fd.append<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"author"</span>, document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">"#author"</span><span style="color: #909183;">)</span>.value<span style="color: #7388d6;">)</span>;
+    fd.append<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"title"</span>, document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">"#title"</span><span style="color: #909183;">)</span>.value<span style="color: #7388d6;">)</span>;
+    fd.append<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"content"</span>, document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">"#content"</span><span style="color: #909183;">)</span>.value<span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">try</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">rsp</span> = <span style="color: #a020f0;">await</span> fetch<span style="color: #909183;">(</span><span style="color: #8b2252;">"/Post/Save"</span>, <span style="color: #709870;">{</span> method: <span style="color: #8b2252;">"post"</span>, body: fd <span style="color: #709870;">}</span><span style="color: #909183;">)</span>;
+        renderPost<span style="color: #909183;">(</span><span style="color: #a020f0;">await</span> rsp.json<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;
+
+        clearInputs<span style="color: #909183;">()</span>;
+        document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">".post-new"</span><span style="color: #909183;">)</span>.style.display = <span style="color: #8b2252;">"block"</span>;
+        document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">".input-box"</span><span style="color: #909183;">)</span>.style.display = <span style="color: #8b2252;">"none"</span>;
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">catch</span> <span style="color: #7388d6;">(</span>e<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        renderError<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20445;&#23384;&#22833;&#36133;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8861c0b" class="outline-3">
+<h3 id="org8861c0b"><span class="section-number-3">3.6.</span> axios</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+基本使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">list</span> <span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+    axios<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/Post/List"</span><span style="color: #7388d6;">)</span>
+        .then<span style="color: #7388d6;">(</span>resp =&gt; <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">posts</span> = resp.data;
+            document.querySelector<span style="color: #709870;">(</span><span style="color: #8b2252;">".list-box"</span><span style="color: #709870;">)</span>.innerHTML = posts.length &gt; 0 ? <span style="color: #8b2252;">""</span> : <span style="color: #8b2252;">"&#27809;&#26377;&#20219;&#20309;&#25991;&#31456;"</span>;
+            <span style="color: #a020f0;">for</span> <span style="color: #709870;">(</span><span style="color: #a020f0;">let</span> <span style="color: #a0522d;">i</span> = 0; i &lt; posts.length; i++<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+                renderPost<span style="color: #907373;">(</span>posts<span style="color: #6276ba;">[</span>i<span style="color: #6276ba;">]</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>
+        .<span style="color: #a020f0;">catch</span><span style="color: #7388d6;">(</span>e =&gt; renderError<span style="color: #909183;">(</span>err<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">upload</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">e</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">fd</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FormData</span><span style="color: #7388d6;">()</span>;
+    fd.append<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"x"</span>, $<span style="color: #909183;">(</span><span style="color: #8b2252;">"#mfile"</span><span style="color: #909183;">)</span>.get<span style="color: #909183;">(</span>0<span style="color: #909183;">)</span>.files<span style="color: #909183;">[</span>0<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>;
+
+    axios<span style="color: #7388d6;">(</span><span style="color: #909183;">{</span>
+        method: <span style="color: #8b2252;">"post"</span>,
+        url: <span style="color: #8b2252;">"/Post/Upload"</span>,
+        data: fd
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>.then<span style="color: #7388d6;">(</span>resp =&gt; <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">name</span> = resp.data;
+        document.querySelector<span style="color: #709870;">(</span><span style="color: #8b2252;">"#cover"</span><span style="color: #709870;">)</span>.value = name;
+        document.querySelector<span style="color: #709870;">(</span><span style="color: #8b2252;">"#preview"</span><span style="color: #709870;">)</span>.src = <span style="color: #8b2252;">`/images/${name}`</span>;
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">async</span> <span style="color: #a020f0;">function</span> save <span style="color: #707183;">(</span><span style="color: #a0522d;">e</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">fd</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FormData</span><span style="color: #7388d6;">()</span>;
+    <span style="color: #7388d6;">[</span><span style="color: #8b2252;">"cover"</span>, <span style="color: #8b2252;">"author"</span>, <span style="color: #8b2252;">"title"</span>, <span style="color: #8b2252;">"content"</span><span style="color: #7388d6;">]</span>.forEach<span style="color: #7388d6;">(</span>id =&gt; <span style="color: #909183;">{</span>
+        fd.append<span style="color: #709870;">(</span>id, document.querySelector<span style="color: #907373;">(</span><span style="color: #8b2252;">`#${id}`</span><span style="color: #907373;">)</span>.value<span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+
+    <span style="color: #a020f0;">try</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">rsp</span> = <span style="color: #a020f0;">await</span> axios<span style="color: #909183;">(</span><span style="color: #8b2252;">"/Post/Save"</span>, <span style="color: #709870;">{</span> method: <span style="color: #8b2252;">"post"</span>, data: fd <span style="color: #709870;">}</span><span style="color: #909183;">)</span>;
+        renderPost<span style="color: #909183;">(</span>rsp.data<span style="color: #909183;">)</span>;
+
+        clearInputs<span style="color: #909183;">()</span>;
+        document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">".post-new"</span><span style="color: #909183;">)</span>.style.display = <span style="color: #8b2252;">"block"</span>;
+        document.querySelector<span style="color: #909183;">(</span><span style="color: #8b2252;">".input-box"</span><span style="color: #909183;">)</span>.style.display = <span style="color: #8b2252;">"none"</span>;
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">catch</span> <span style="color: #7388d6;">(</span>e<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        renderError<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#20445;&#23384;&#22833;&#36133;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+</pre>
+</div>
+
+<p>
+回调地狱 (Callback Hell):
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">xxx_then</span> <span style="color: #707183;">(</span><span style="color: #a0522d;">e</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    axios<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/post/getpost/3"</span><span style="color: #7388d6;">)</span>
+        .then<span style="color: #7388d6;">(</span>r =&gt; <span style="color: #909183;">{</span>
+            console.log<span style="color: #709870;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #709870;">)</span>;
+            axios<span style="color: #709870;">(</span><span style="color: #8b2252;">"/post/getpost/5"</span><span style="color: #709870;">)</span>
+                .then<span style="color: #709870;">(</span>r =&gt; <span style="color: #907373;">{</span>
+                    console.log<span style="color: #6276ba;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #6276ba;">)</span>;
+                    axios<span style="color: #6276ba;">(</span><span style="color: #8b2252;">"/post/getpost/6"</span><span style="color: #6276ba;">)</span>
+                        .then<span style="color: #6276ba;">(</span>r =&gt; <span style="color: #858580;">{</span>
+                            console.log<span style="color: #80a880;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #80a880;">)</span>;
+                            axios<span style="color: #80a880;">(</span><span style="color: #8b2252;">"/post/getpost/15"</span><span style="color: #80a880;">)</span>
+                                .then<span style="color: #80a880;">(</span>r =&gt; <span style="color: #887070;">{</span>
+                                    console.log<span style="color: #707183;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #707183;">)</span>;
+                                    axios<span style="color: #707183;">(</span><span style="color: #8b2252;">"/post/getpost/23"</span><span style="color: #707183;">)</span>
+                                        .then<span style="color: #707183;">(</span>r =&gt; <span style="color: #7388d6;">{</span>
+                                            console.log<span style="color: #909183;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #909183;">)</span>;
+                                            alert<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#32456;&#20110;&#32467;&#26463;&#20102;"</span><span style="color: #909183;">)</span>;
+                                        <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+                                <span style="color: #887070;">}</span><span style="color: #80a880;">)</span>;
+                        <span style="color: #858580;">}</span><span style="color: #6276ba;">)</span>;
+                <span style="color: #907373;">}</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">async</span> <span style="color: #a020f0;">function</span> xxx <span style="color: #707183;">(</span><span style="color: #a0522d;">e</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">r</span>;
+
+    r = <span style="color: #a020f0;">await</span> axios<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/post/getpost/3"</span><span style="color: #7388d6;">)</span>;
+    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #7388d6;">)</span>;
+
+    r = <span style="color: #a020f0;">await</span> axios<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/post/getpost/5"</span><span style="color: #7388d6;">)</span>;
+    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #7388d6;">)</span>;
+
+    r = <span style="color: #a020f0;">await</span> axios<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/post/getpost/6"</span><span style="color: #7388d6;">)</span>;
+    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #7388d6;">)</span>;
+
+    r = <span style="color: #a020f0;">await</span> axios<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/post/getpost/15"</span><span style="color: #7388d6;">)</span>;
+    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #7388d6;">)</span>;
+
+    r = <span style="color: #a020f0;">await</span> axios<span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/post/getpost/23"</span><span style="color: #7388d6;">)</span>;
+    console.log<span style="color: #7388d6;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">xxx_await_short</span><span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #7388d6;">[</span>3, 5, 6, 15, 23<span style="color: #7388d6;">]</span>.forEach<span style="color: #7388d6;">(</span><span style="color: #a020f0;">async</span> id =&gt; <span style="color: #909183;">{</span>
+        <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">r</span> = <span style="color: #a020f0;">await</span> axios<span style="color: #709870;">(</span><span style="color: #8b2252;">"/post/getpost/"</span> + id<span style="color: #709870;">)</span>;
+        console.log<span style="color: #709870;">(</span><span style="color: #8b2252;">`&#24471;&#21040; ${r.data.title}`</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span><span style="color: #7388d6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org725a847" class="outline-2">
+<h2 id="org725a847"><span class="section-number-2">4.</span> 页面元素的操作/发展史</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgcc48a27" class="outline-3">
+<h3 id="orgcc48a27"><span class="section-number-3">4.1.</span> 原生 DOM 节点</h3>
+</div>
+
+<div id="outline-container-org6327adb" class="outline-3">
+<h3 id="org6327adb"><span class="section-number-3">4.2.</span> jQuery</h3>
+</div>
+
+<div id="outline-container-org4c9f26a" class="outline-3">
+<h3 id="org4c9f26a"><span class="section-number-3">4.3.</span> Vue/ReactJS/Angular</h3>
 </div>
 </section>
 </div>
