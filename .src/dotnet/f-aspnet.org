@@ -141,7 +141,7 @@ Asynchronous JavaScript and XML:
 - 第四步，找到某个 dom 节点，将上述 html 字符串添加到其中
 
 #+begin_src js
-  var xhr = new XmlHttpRequest();
+  var xhr = new XMLHttpRequest();
   //xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   xhr.setRequestHeader("xxx", "123");
   xhr.open("get", "http://localhost:5001/comment/dosave");  
@@ -193,5 +193,89 @@ Asynchronous JavaScript and XML:
 #+end_src
 
 
+** jQuery (封装)
 
+旧时代的残迹:
+#+begin_src js
+  function createXHR ()
+  {
+      var xmlHttp = false;
+      try {
+          xmlHttp = new XMLHttpRequest();
+      } catch (trymicrosoft) {
+          try {
+              xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+          } catch (othermicrosoft) {
+              try {
+                  xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+              } catch (failed) {
+                  xmlHttp = false;
+              }
+          }
+      }
+      if (!xmlHttp){
+          alert("无法创建 XMLHttpRequest 对象！");
+      }
+  }
+#+end_src
 
+主要的问题:
+1. AJAX 兼容性的写法
+2. DOM 节点兼容性的写法
+
+通过 jQuery 发送请求:
+#+begin_src js
+  $.ajax({
+      url: '/xxx',                 // 代表请求的服务器地址
+      method: 'get|post|..',       // 使用的请求方法
+      headers: {},                 // 设置请求头
+  
+      contentType: 'application/x-www-form-urlencoded|...', // 请求的 enctype
+      data: 'String'|Object|Array, // 传输的数据
+      processData: true|false,     // true: 若 data 是字符串不处理，否则调用 $.params(data, tranditional) 将其转换为 UrlSearchParams 格式
+      tranditional: false|true,    // 此参数将会传给上述 $.param 函数，决定是否深度序列
+  
+      dataType: 'json?xml?text',   // 默认根据 response 头部的信息自动推测
+      async: true|false,           // 是否使用异步请求的方式
+      xhr: () => { var xhr = $.ajaxSettings.xhr() }, // 创建 xhr 后调用
+      xhrFields: { withCredentials: true },          // 跨域
+      timeout, cache, accepts, contents, crossDomain, converters, jsonp, mimeType
+  }).done((data) => {
+      console.log(data.xxx);
+  }).fail((xhr, status, err) => {
+      console.error(err);
+  }).always((data|xhr, status) => {
+      console.log("终于结束了!");
+  });
+  
+  // 语法糖
+  $.get("/xxx", callback);
+  $.get("/xxx").done(callback);
+  $.post("/xxx", callback);
+  $.post("/xxx", { id: 1 }, callback);
+  $.post("/xxx", { id: 1 }).done(callback);
+  
+  // 下面是等同的
+  $.ajax({
+      method: "get",
+      url: "/xxx",
+      dataType: "json"
+  }).done(function (data) {
+      // data is json
+  });
+  $.getJSON("/XXX", callback);        // 1 个函数
+  $.getJSON("/XXX", { a: 2, b: 3});   // 1 个 json
+  $.getJSON("/XXX", { a: 2, b: 3},  callback); // 两个，数据和函数
+  
+  // 下面是等同的
+  $.ajax({
+      method: "get",
+      url: "/xxx"
+  }).done(function(data) {
+      $("h3").html(data);
+  });
+  $("h3").load("/xxx");
+  
+  // 加载 js 脚本
+  $.getScript("/xxxx.js");
+#+end_src

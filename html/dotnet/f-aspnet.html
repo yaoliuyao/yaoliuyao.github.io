@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-06 -->
+<!-- 2022-01-11 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ASP.NET</title>
@@ -33,6 +33,7 @@
 <li><a href="#org94e0250">3.1. A 超链接</a></li>
 <li><a href="#org956006e">3.2. FORM 表单</a></li>
 <li><a href="#org2384b99">3.3. [AJAX] XMLHttpRequest</a></li>
+<li><a href="#org70dcdeb">3.4. jQuery (封装)</a></li>
 </ul>
 </li>
 </ul>
@@ -77,7 +78,7 @@ ASP.NET Core:
 <p>
 HTML:
 </p>
-<pre class="example" id="orgcbfe5dc">
+<pre class="example" id="org19456e7">
 HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
 言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
 1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
@@ -248,7 +249,7 @@ Asynchronous JavaScript and XML:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">xhr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">XmlHttpRequest</span><span style="color: #707183;">()</span>;
+<pre class="src src-js"><span style="color: #a020f0;">var</span> <span style="color: #a0522d;">xhr</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">XMLHttpRequest</span><span style="color: #707183;">()</span>;
 <span style="color: #b22222;">//</span><span style="color: #b22222;">xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");</span>
 xhr.setRequestHeader<span style="color: #707183;">(</span><span style="color: #8b2252;">"xxx"</span>, <span style="color: #8b2252;">"123"</span><span style="color: #707183;">)</span>;
 xhr.open<span style="color: #707183;">(</span><span style="color: #8b2252;">"get"</span>, <span style="color: #8b2252;">"http://localhost:5001/comment/dosave"</span><span style="color: #707183;">)</span>;
@@ -304,11 +305,112 @@ xhr.onload = <span style="color: #707183;">(</span>e<span style="color: #707183;
 </div>
 </div>
 </div>
+
+
+<div id="outline-container-org70dcdeb" class="outline-3">
+<h3 id="org70dcdeb"><span class="section-number-3">3.4.</span> jQuery (封装)</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+旧时代的残迹:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">createXHR</span> <span style="color: #707183;">()</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">xmlHttp</span> = <span style="color: #008b8b;">false</span>;
+    <span style="color: #a020f0;">try</span> <span style="color: #7388d6;">{</span>
+        xmlHttp = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">XMLHttpRequest</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span> <span style="color: #a020f0;">catch</span> <span style="color: #7388d6;">(</span>trymicrosoft<span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">try</span> <span style="color: #909183;">{</span>
+            xmlHttp = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ActiveXObject</span><span style="color: #709870;">(</span><span style="color: #8b2252;">"Msxml2.XMLHTTP"</span><span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span> <span style="color: #a020f0;">catch</span> <span style="color: #909183;">(</span>othermicrosoft<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #a020f0;">try</span> <span style="color: #709870;">{</span>
+                xmlHttp = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">ActiveXObject</span><span style="color: #907373;">(</span><span style="color: #8b2252;">"Microsoft.XMLHTTP"</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span> <span style="color: #a020f0;">catch</span> <span style="color: #709870;">(</span>failed<span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+                xmlHttp = <span style="color: #008b8b;">false</span>;
+            <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">if</span> <span style="color: #7388d6;">(</span>!xmlHttp<span style="color: #7388d6;">){</span>
+        alert<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#26080;&#27861;&#21019;&#24314; XMLHttpRequest &#23545;&#35937;&#65281;"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+<p>
+主要的问题:
+</p>
+<ol class="org-ol">
+<li>AJAX 兼容性的写法</li>
+<li>DOM 节点兼容性的写法</li>
+</ol>
+
+<p>
+通过 jQuery 发送请求:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">$.ajax<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span>
+    url: <span style="color: #8b2252;">'/xxx'</span>,                 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20195;&#34920;&#35831;&#27714;&#30340;&#26381;&#21153;&#22120;&#22320;&#22336;</span>
+    method: <span style="color: #8b2252;">'get|post|..'</span>,       <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20351;&#29992;&#30340;&#35831;&#27714;&#26041;&#27861;</span>
+    headers: <span style="color: #909183;">{}</span>,                 <span style="color: #b22222;">// </span><span style="color: #b22222;">&#35774;&#32622;&#35831;&#27714;&#22836;</span>
+
+    contentType: <span style="color: #8b2252;">'application/x-www-form-urlencoded|...'</span>, <span style="color: #b22222;">// </span><span style="color: #b22222;">&#35831;&#27714;&#30340; enctype</span>
+    data: <span style="color: #8b2252;">'String'</span>|Object|Array, <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20256;&#36755;&#30340;&#25968;&#25454;</span>
+    processData: <span style="color: #008b8b;">true</span>|<span style="color: #008b8b;">false</span>,     <span style="color: #b22222;">// </span><span style="color: #b22222;">true: &#33509; data &#26159;&#23383;&#31526;&#20018;&#19981;&#22788;&#29702;&#65292;&#21542;&#21017;&#35843;&#29992; $.params(data, tranditional) &#23558;&#20854;&#36716;&#25442;&#20026; UrlSearchParams &#26684;&#24335;</span>
+    tranditional: <span style="color: #008b8b;">false</span>|<span style="color: #008b8b;">true</span>,    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#27492;&#21442;&#25968;&#23558;&#20250;&#20256;&#32473;&#19978;&#36848; $.param &#20989;&#25968;&#65292;&#20915;&#23450;&#26159;&#21542;&#28145;&#24230;&#24207;&#21015;</span>
+
+    dataType: <span style="color: #8b2252;">'json?xml?text'</span>,   <span style="color: #b22222;">// </span><span style="color: #b22222;">&#40664;&#35748;&#26681;&#25454; response &#22836;&#37096;&#30340;&#20449;&#24687;&#33258;&#21160;&#25512;&#27979;</span>
+    <span style="color: #a020f0;">async</span>: <span style="color: #008b8b;">true</span>|<span style="color: #008b8b;">false</span>,           <span style="color: #b22222;">// </span><span style="color: #b22222;">&#26159;&#21542;&#20351;&#29992;&#24322;&#27493;&#35831;&#27714;&#30340;&#26041;&#24335;</span>
+    xhr: <span style="color: #909183;">()</span> =&gt; <span style="color: #909183;">{</span> <span style="color: #a020f0;">var</span> <span style="color: #a0522d;">xhr</span> = $.ajaxSettings.xhr<span style="color: #709870;">()</span> <span style="color: #909183;">}</span>, <span style="color: #b22222;">// </span><span style="color: #b22222;">&#21019;&#24314; xhr &#21518;&#35843;&#29992;</span>
+    xhrFields: <span style="color: #909183;">{</span> withCredentials: <span style="color: #008b8b;">true</span> <span style="color: #909183;">}</span>,          <span style="color: #b22222;">// </span><span style="color: #b22222;">&#36328;&#22495;</span>
+    timeout, cache, accepts, contents, crossDomain, converters, jsonp, mimeType
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>.done<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>data<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{</span>
+    console.log<span style="color: #909183;">(</span>data.xxx<span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>.fail<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>xhr, status, err<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{</span>
+    console.error<span style="color: #909183;">(</span>err<span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>.always<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>data|xhr, status<span style="color: #7388d6;">)</span> =&gt; <span style="color: #7388d6;">{</span>
+    console.log<span style="color: #909183;">(</span><span style="color: #8b2252;">"&#32456;&#20110;&#32467;&#26463;&#20102;!"</span><span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#35821;&#27861;&#31958;</span>
+$.get<span style="color: #707183;">(</span><span style="color: #8b2252;">"/xxx"</span>, callback<span style="color: #707183;">)</span>;
+$.get<span style="color: #707183;">(</span><span style="color: #8b2252;">"/xxx"</span><span style="color: #707183;">)</span>.done<span style="color: #707183;">(</span>callback<span style="color: #707183;">)</span>;
+$.post<span style="color: #707183;">(</span><span style="color: #8b2252;">"/xxx"</span>, callback<span style="color: #707183;">)</span>;
+$.post<span style="color: #707183;">(</span><span style="color: #8b2252;">"/xxx"</span>, <span style="color: #7388d6;">{</span> id: 1 <span style="color: #7388d6;">}</span>, callback<span style="color: #707183;">)</span>;
+$.post<span style="color: #707183;">(</span><span style="color: #8b2252;">"/xxx"</span>, <span style="color: #7388d6;">{</span> id: 1 <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>.done<span style="color: #707183;">(</span>callback<span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#19979;&#38754;&#26159;&#31561;&#21516;&#30340;</span>
+$.ajax<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span>
+    method: <span style="color: #8b2252;">"get"</span>,
+    url: <span style="color: #8b2252;">"/xxx"</span>,
+    dataType: <span style="color: #8b2252;">"json"</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>.done<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span> <span style="color: #7388d6;">(</span><span style="color: #a0522d;">data</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">data is json</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+$.getJSON<span style="color: #707183;">(</span><span style="color: #8b2252;">"/XXX"</span>, callback<span style="color: #707183;">)</span>;        <span style="color: #b22222;">// </span><span style="color: #b22222;">1 &#20010;&#20989;&#25968;</span>
+$.getJSON<span style="color: #707183;">(</span><span style="color: #8b2252;">"/XXX"</span>, <span style="color: #7388d6;">{</span> a: 2, b: 3<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;   <span style="color: #b22222;">// </span><span style="color: #b22222;">1 &#20010; json</span>
+$.getJSON<span style="color: #707183;">(</span><span style="color: #8b2252;">"/XXX"</span>, <span style="color: #7388d6;">{</span> a: 2, b: 3<span style="color: #7388d6;">}</span>,  callback<span style="color: #707183;">)</span>; <span style="color: #b22222;">// </span><span style="color: #b22222;">&#20004;&#20010;&#65292;&#25968;&#25454;&#21644;&#20989;&#25968;</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#19979;&#38754;&#26159;&#31561;&#21516;&#30340;</span>
+$.ajax<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span>
+    method: <span style="color: #8b2252;">"get"</span>,
+    url: <span style="color: #8b2252;">"/xxx"</span>
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>.done<span style="color: #707183;">(</span><span style="color: #a020f0;">function</span><span style="color: #7388d6;">(</span><span style="color: #a0522d;">data</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">{</span>
+    $<span style="color: #909183;">(</span><span style="color: #8b2252;">"h3"</span><span style="color: #909183;">)</span>.html<span style="color: #909183;">(</span>data<span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+$<span style="color: #707183;">(</span><span style="color: #8b2252;">"h3"</span><span style="color: #707183;">)</span>.load<span style="color: #707183;">(</span><span style="color: #8b2252;">"/xxx"</span><span style="color: #707183;">)</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#21152;&#36733; js &#33050;&#26412;</span>
+$.getScript<span style="color: #707183;">(</span><span style="color: #8b2252;">"/xxxx.js"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2022-01-06</p>
+<p class="date">Created: 2022-01-11</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
