@@ -1,112 +1,15 @@
 #+TITLE: ASP.NET
 
 
-
-* ASP.NET
-
-- JSP: Java Server Pages
-- ASP: Active Server Pages
-- ASP.NET
-
-ASP.NET 为 .NET 平台提供了完整的进行 Web 开发的底层框架:
-- (ADO.NET - EF)
-- Webforms - Winforms (事件驱动、基于控件)
-- ASP.NET MVC (模型-视图-控制器)
-- ASP.NET Web API
-
-ASP.NET Core:
-- Razor Page
-- Blazor (组件，使用 C# 写前端)
-- MVC (跨平台，内置 web 服务器，内置 DI 容器)
-- Web API
-
-** 基本概念
-
-HTML:
-#+begin_example
-HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
-言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
-1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
-写的超文本文档称为HTML文档，它能独立于各种操作系统平台 (如UNIX，
-Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML文件，通过
-专用的浏览器来识别，并将这些HTML文件“翻译”成可以识别的信息，即现在所
-见到的网页。
-#+end_example
-
-* Summary-1
-
-项目的创建跟初始化:
-#+begin_src sh
-  dotnet new mvc -o MvcMovie1
-  cd MvcMovie1
-  
-  #dotnet tool install --global dotnet-ef --version 5.0.0
-  #dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0
-  dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
-  dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0
-  dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.0
-  
-  code .
-  # Movie1.cs
-  
-  dotnet-aspnet-codegenerator controller -name Movies1Controller -m Movie1 -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
-  # appsettings.json
-  
-  dotnet ef migrations add FirstInit
-  dotnet ef database update
-  
-  
-  dotnet run
-  dotnet watch run
-#+end_src
-
-生成种子数据:
-#+begin_src sql
-  insert into movie1 (id, name, price) values (1, "xx1", 123);
-  insert into movie1 (id, name, price) values (2, "x2x1", 132);
-  insert into movie1 (id, name, price) values (3, "xx31", 213);
-  insert into movie1 (id, name, price) values (4, "x2x1", 13);
-  insert into movie1 (id, name, price) values (5, "xxk1", 132);
-  insert into movie1 (id, name, price) values (6, "xax1", 13);
-  insert into movie1 (id, name, price) values (7, "xbx1", 23);
-  insert into movie1 (id, name, price) values (8, "xxy1", 53);
-  insert into movie1 (id, name, price) values (9, "xxz1", 923);
-  insert into movie1 (id, name, price) values (10, "xx-1", 13);
-  insert into movie1 (id, name, price) values (11, "x-x1", 123);
-#+end_src
-
-进行相关修改:
-1. 修改 _layout 文件
-2. 重新对 Movies1Controller 里面的内容做调整
-3. 对视图页面 (Views/*) 进行编辑
-
-添加字段:
-1. 修改 Model, Url
-2. 执行命令
-   #+begin_src sh
-     dotnet ef migrations add AddUrlToMovie1
-     dotnet ef database update
-   #+end_src   
-
-添加一个 Controller:
-#+begin_src sh
-  # Actor.cs
-  
-  dotnet-aspnet-codegenerator controller -name ActorController -m Actor -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
-  
-  dotnet ef migrations add AddModelActor
-  dotnet ef database update
-#+end_src
-
-* 从浏览器发送请求/发展史
-** A 超链接
+* Prelude
+** 请求
+*** A 超链接
 
 将请求的参数，携带到 QueryString 中发送到服务器:
 : GET http://localhost:5001/comment/dolike?id=3
 : GET http://localhost:5001/comment/dolike/3
 
-** FORM 表单
+*** FORM 表单
 
 使用 Form 标签 + Input 进行更多属性的 *交互式* 提交:
 #+begin_src html
@@ -126,7 +29,7 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
   </form>
 #+end_src
 
-** [AJAX] XMLHttpRequest
+*** [AJAX] XMLHttpRequest
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest
 
@@ -193,7 +96,7 @@ Asynchronous JavaScript and XML:
 #+end_src
 
 
-** jQuery (封装)
+*** jQuery (封装)
 
 旧时代的残迹:
 #+begin_src js
@@ -280,7 +183,7 @@ Asynchronous JavaScript and XML:
   $.getScript("/xxxx.js");
 #+end_src
 
-** Fetch API
+*** Fetch API
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
 
@@ -330,7 +233,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
   }
 #+end_src
 
-** axios
+*** axios
 
 基本使用:
 #+begin_src js
@@ -435,12 +338,170 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
   }
 #+end_src
 
-* 页面元素的操作/发展史
-** 原生 DOM 节点
+** 页面
+*** A/FORM
 
-** jQuery
+得到的，就是完整的页面:
+- 服务器端，通过模板引擎，模块化的方式，组合成了完整的页面
 
-** Vue/ReactJS/Angular
+*** AJAX/原生 DOM 节点
+
+浏览器需要将得到的数据 (本质是字符串)，转换为 DOM 节点的一部分:
+- ajax 发送请求，得到数据
+- 将结果拼接成合理的 html 字符串片段
+- 找到 dom 中的某个节点
+- 将上述拼装的字符串，更新到选择的节点上
+
+*** jQuery
+
+将拼字符串的方式发扬光大
+
+*** Vue/ReactJS/Angular
 
 - 前端的模板引擎
 - 组件化、模块化、工程化
+* ASP.NET Core
+
+- JSP: Java Server Pages
+- ASP: Active Server Pages
+- ASP.NET
+
+ASP.NET 为 .NET 平台提供了完整的进行 Web 开发的底层框架:
+- (ADO.NET - EF)
+- Webforms - Winforms (事件驱动、基于控件)
+- ASP.NET MVC (模型-视图-控制器)
+- ASP.NET Web API
+
+ASP.NET Core:
+- Razor Page
+- Blazor (组件，使用 C# 写前端)
+- MVC (跨平台，内置 web 服务器，内置 DI 容器)
+- Web API
+
+** 基本概念
+
+HTML:
+#+begin_example
+HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
+言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
+1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
+写的超文本文档称为HTML文档，它能独立于各种操作系统平台 (如UNIX，
+Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML文件，通过
+专用的浏览器来识别，并将这些HTML文件“翻译”成可以识别的信息，即现在所
+见到的网页。
+#+end_example
+
+* MVC
+
+项目的创建跟初始化:
+#+begin_src sh
+  dotnet new mvc -o MvcMovie1
+  cd MvcMovie1
+  
+  #dotnet tool install --global dotnet-ef --version 5.0.0
+  #dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0
+  dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.0
+  
+  code .
+  # Movie1.cs
+  
+  dotnet-aspnet-codegenerator controller -name Movies1Controller -m Movie1 -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+  # appsettings.json
+  
+  dotnet ef migrations add FirstInit
+  dotnet ef database update
+  
+  
+  dotnet run
+  dotnet watch run
+#+end_src
+
+生成种子数据:
+#+begin_src sql
+  insert into movie1 (id, name, price) values (1, "xx1", 123);
+  insert into movie1 (id, name, price) values (2, "x2x1", 132);
+  insert into movie1 (id, name, price) values (3, "xx31", 213);
+  insert into movie1 (id, name, price) values (4, "x2x1", 13);
+  insert into movie1 (id, name, price) values (5, "xxk1", 132);
+  insert into movie1 (id, name, price) values (6, "xax1", 13);
+  insert into movie1 (id, name, price) values (7, "xbx1", 23);
+  insert into movie1 (id, name, price) values (8, "xxy1", 53);
+  insert into movie1 (id, name, price) values (9, "xxz1", 923);
+  insert into movie1 (id, name, price) values (10, "xx-1", 13);
+  insert into movie1 (id, name, price) values (11, "x-x1", 123);
+#+end_src
+
+进行相关修改:
+1. 修改 _layout 文件
+2. 重新对 Movies1Controller 里面的内容做调整
+3. 对视图页面 (Views/*) 进行编辑
+
+添加字段:
+1. 修改 Model, Url
+2. 执行命令
+   #+begin_src sh
+     dotnet ef migrations add AddUrlToMovie1
+     dotnet ef database update
+   #+end_src   
+
+添加一个 Controller:
+#+begin_src sh
+  # Actor.cs
+  
+  dotnet-aspnet-codegenerator controller -name ActorController -m Actor -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+  
+  dotnet ef migrations add AddModelActor
+  dotnet ef database update
+#+end_src
+
+* WebAPI
+** 项目的创建
+
+创建一个新项目:
+: dotnet new webapi -o 你的项目名字
+
+如果需要 ef 支持，添加:
+: dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
+
+** OpenAPI/Swagger
+
+背景:
+- 前后端分离大趋势
+- 前后端的开发，需要在 API 方面进行深入交流
+- 在这样的需求驱动下，最后就产生了 OpenAPI 的标准
+- 它的核心就是一个 json/yaml 文档
+- Swagger 是 OpenAPI 的实现:
+  + Codegen
+  + Editor
+  + UI
+
+使用 Swagger 的步骤。在这里，我们使用 Swashbuckle 框架。
+
+首先，添加依赖到项目。
+
+: dotnet add package Swashbuckle.AspNetCore
+
+其次，注入相关内容。
+
+#+begin_src csharp
+  services.AddSwaggerGen(c =>
+  {
+      c.SwaggerDoc("v1", new OpenApiInfo { Title = "我的项目", Version = "v1.2" });
+  });
+#+end_src
+
+最后，配置使用:
+#+begin_src csharp
+  app.UseSwagger();
+  app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
+#+end_src
+
+访问:
+#+begin_example
+  doc: https://localhost:44322/swagger/v1/swagger.json
+  ui:  https://localhost:44322/swagger/index.html
+#+end_example
+

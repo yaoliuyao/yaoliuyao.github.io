@@ -1,0 +1,178 @@
+#+TITLE: .NET
+
+
+
+* 发展历史和平台结构
+
+在大约 90 年代，Windows 编程分化出了很多不同分支:
+- Windows 操作系统是使用 C++ 写的，所以刚开始的编程语言，大家使用的是 C/C++
+- Win32 API，可以使用 C/C++ 直接调用
+- MFC，它是面向对象的一种封装，依然使用的是 C/C++
+- COM，理论上非常简单，但是在实践过程中，却发现实际的代码是越来越复杂的
+
+但是这些方式都有一定的局限性:
+- Win32 API 太原始了，太面向过程了，不适合写复杂的项目
+- MFC 相对来说难度大，并且存在各种不一致
+- COM 组件化的理想很好，现实却是骨感的
+
+为了稳固 Windows 平台的江湖地位，微软向推出一个新的平台，以此来简化 Windows 下面的
+编程，这种方式需要更加一致、更加优雅，需要具备一定的面向互联网的能力。于是，
+名字为 .NET 的平台，就是 2000 年左右被推出了。
+
+经过这么多年，.NET 平台有三个主要的版本:
+
+1. .NET Framework
+   - 这个框架现在已经被预装到了 Win10 中，在 Win10 中，你不需要安装就能使用其功能
+   - 这个框架，只支持 Windows 平台的开发，最新的版本是 .NET Framework 4.7
+   - .NET Framework 包含:
+     + *CLR* (Common Language Runtime) 通用语言运行环境/运行时
+     + *BCL* (Base Class Library)，基础类库
+     + *FCL* (Framework Class Library)，框架类库
+   - 一些技术:
+     + Winform
+     + WPF
+     + WCF
+     + ASP.NET Webform/MVC
+
+2. Mono
+   - 第三方开发的一个 .NET 平台，它的主要目的是跨越平台
+   - 最主要的运用 Xamarin 的框架，用于移动端的开发
+   - 后来，微软将其收购并免费了
+
+3. .Net Core
+   - 微软决定将 .NET 变为跨平台的技术，因此，将 .NET Framework 中的核心部分抽出来，并进行了重构。这种新的平台就是 .NET Core
+   - 最新的 .NET Core 是 3.1 版本。之后的版本就变成了 .NET 5
+
+微软的目标是大一统，因此从 .NET 5 之后，就没有 Framework/Core 的区分了。
+所有的一切都会并入到同一个平台中，这个平台，就是 .NET 平台。
+
+为了统一各个 .net 平台，所以推出了 *.NET Standard*:
+- 制定了一系列的标准，并推荐各个平台能够遵循这些标准
+- 为了防止各个 .net 平台越来越碎片化，避免出现分化
+- .NET Framework 目前支持到 .NET Standard 2 的标准; Mono 和 Core 支持到了 .NET Standard 2.1 的标准
+- C# 8/9 语言特性，需要 .NET Standard 2.1 标准的支持
+
+.NET 的基本流程是源代码，编译成中间码 (IL)，然后交付给 CLR 运行。所以 .NET 平台并不局限使用什么语言，可以是 VB、可以是 C++，也可以是 C#/F#。
+甚至如果你自己发明了一种语言，你也可以通过某些方式让 .NET 平台去支持它。
+C# 语言却是 .NET 的亲儿子。
+
+为了让不同的编程语言在 .NET 平台上有序协作，微软定义了一系列的规范，称为 *CLI* (Common Language Infrastructure，公共语言基础结构):
+- 它通过 *CLS* (Common Language Specification, 公共语言规范) 制定了各种不同语言运行在平台上需要遵循的一些基本规则
+- 它通过 *CTS* (Common Type System，公共类型系统) 制定了 .NET 平台上的类型标准
+- 它通过 *CIL* (Common Language Intermediate，公共语言中间码) 制定了中间码的标准
+- 它还包括了 *CLR* 的一些列执行标准
+- 后来的话，微软将 CLI 交付给了国际化标准化组织。然后，这一系列规范就成了国际标准
+
+C# 是运行在 .NET 平台上的一种标准语言。它从源代码，到执行，经历了两次编译的过程:
+- 使用 csc/dotnet build 将 xxx.cs 编译成程序集 (IL 代码)
+- 如果用户点击程序运行的话，这时候 CLR 会加载程序集中的 IL，然后将其 JIT (Just In Time) 编译为 Native 码进行运行
+
+
+[[file:img/dotnet-arch.png]]
+
+
+
+* 开发方式
+** 原始方式
+
+安装完 Windows 之后，自带的 csc 在 C:\Windows\Microsoft.NET\版本号 下面。
+
+所以，可以使用记事本等任何顺手的文本编辑器，创建并打开编辑一个 Hello.cs 的文件:
+#+begin_src csharp
+  namespace Hello {
+      class Test {
+          static void Main() {
+              System.Console.WriteLine("hello, csharp");
+          }
+      }
+  }
+#+end_src
+
+接下来，就可以编译，并运行了:
+: C:\Windows\...\csc.exe Hello.cs
+: Hello.exe
+
+** 解锁开发的完全能力 (Visual Studio)
+
+如果在 Windows 下面进行开发的话。最好的环境就是 VS。
+
+三个版本:
+1. 社区版
+2. 专业版
+3. 企业版
+
+** 跨平台开发 (.net core + vscode)
+
+首先，安装 .Net Core 的开发环境
+- https://dotnet.microsoft.com/download
+- 下载安装 SDK 即可。安装完毕，得到一个 dotnet 命令
+  : dotnet
+
+其次，安装并配置 VSCode:
+- https://code.visualstudio.com/
+- 打开 VSCode，在插件市场，搜索 C# 插件并安装
+
+最后，就可以使用 ~dotnet~ 命令进行项目的创建和运行，使用 VSCode 进行代码的编写了:
+#+begin_src sh
+  # 1. 先创建项目
+  cd Workdir
+  dotnet new console -o MyHello
+
+  # 2. 使用 VSCode 打开项目，并进行编辑
+  code MyHello
+
+  # 3. 使用 dotnet 命令编译并允许
+  dotnet run
+#+end_src
+
+PS, dotnet 命令:
+#+begin_src sh
+  dotnet new console # 在当前文件夹创建一个 Console 类型的项目
+  dotnet new mvc/wpf # 创建其他类型的项目
+  dotnet new console -o Hello # 创建一个 Hello 文件夹，包含 Console 类型的项目
+
+  dotnet build
+  dotnet run  # dotnet build && cd ... && xxx.exe
+#+end_src  
+
+** 书籍和文档
+
+- MSDN (墙裂推荐): https://docs.microsoft.com/zh-cn/dotnet/
+- C# 入门经典: https://item.jd.com/12508114.html
+- C# 图解教程: https://item.jd.com/12601789.html
+- C# 高级编程 (红皮书): https://item.jd.com/45998158124.html
+- CLR via C#: https://item.jd.com/1403938154.html
+  
+* .NET 平台的项目
+** Console 控制台应用
+
+基于命令行窗口的应用。
+
+** WinForm 窗体应用
+
+基本特点:
+- 简单，直观
+- 效率高，比较快
+
+** WPF 应用程序
+
+- MVVM
+- 数据驱动
+- 通过 xaml 文件进行视图分离
+
+** ASP.NET WebForm
+
+比较老的，跟 WinForm 类似的一种 BS 开发方式。
+
+** ASP.NET MVC
+
+使用 MVC 三层结构，对逻辑和视图进行有效分离。
+
+** Xamarin
+
+移动开发，安卓或 iOS
+
+** Unity3D
+
+游戏开发
+

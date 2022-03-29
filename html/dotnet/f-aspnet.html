@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-11 -->
+<!-- 2022-03-29 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ASP.NET</title>
@@ -22,27 +22,38 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0dce62d">1. ASP.NET</a>
+<li><a href="#org3d6c7e9">1. Prelude</a>
 <ul>
-<li><a href="#org4497edf">1.1. 基本概念</a></li>
+<li><a href="#orgaeb87db">1.1. 请求</a>
+<ul>
+<li><a href="#org94e0250">1.1.1. A 超链接</a></li>
+<li><a href="#org956006e">1.1.2. FORM 表单</a></li>
+<li><a href="#org2384b99">1.1.3. [AJAX] XMLHttpRequest</a></li>
+<li><a href="#org70dcdeb">1.1.4. jQuery (封装)</a></li>
+<li><a href="#org491c23d">1.1.5. Fetch API</a></li>
+<li><a href="#org8861c0b">1.1.6. axios</a></li>
 </ul>
 </li>
-<li><a href="#org2aa5ad6">2. Summary-1</a></li>
-<li><a href="#org8e71b9a">3. 从浏览器发送请求/发展史</a>
+<li><a href="#orgb5b2e0e">1.2. 页面</a>
 <ul>
-<li><a href="#org94e0250">3.1. A 超链接</a></li>
-<li><a href="#org956006e">3.2. FORM 表单</a></li>
-<li><a href="#org2384b99">3.3. [AJAX] XMLHttpRequest</a></li>
-<li><a href="#org70dcdeb">3.4. jQuery (封装)</a></li>
-<li><a href="#org491c23d">3.5. Fetch API</a></li>
-<li><a href="#org8861c0b">3.6. axios</a></li>
+<li><a href="#orgea09761">1.2.1. A/FORM</a></li>
+<li><a href="#orgb7dc610">1.2.2. AJAX/原生 DOM 节点</a></li>
+<li><a href="#org6327adb">1.2.3. jQuery</a></li>
+<li><a href="#org4c9f26a">1.2.4. Vue/ReactJS/Angular</a></li>
 </ul>
 </li>
-<li><a href="#org725a847">4. 页面元素的操作/发展史</a>
+</ul>
+</li>
+<li><a href="#org09e9bb8">2. ASP.NET Core</a>
 <ul>
-<li><a href="#orgcc48a27">4.1. 原生 DOM 节点</a></li>
-<li><a href="#org6327adb">4.2. jQuery</a></li>
-<li><a href="#org4c9f26a">4.3. Vue/ReactJS/Angular</a></li>
+<li><a href="#org4497edf">2.1. 基本概念</a></li>
+</ul>
+</li>
+<li><a href="#org900d865">3. MVC</a></li>
+<li><a href="#org37d53cf">4. WebAPI</a>
+<ul>
+<li><a href="#org1379624">4.1. 项目的创建</a></li>
+<li><a href="#orge5b511c">4.2. OpenAPI/Swagger</a></li>
 </ul>
 </li>
 </ul>
@@ -50,152 +61,17 @@
 </nav>
 
 
-
-<section id="outline-container-org0dce62d" class="outline-2">
-<h2 id="org0dce62d"><span class="section-number-2">1.</span> ASP.NET</h2>
+<section id="outline-container-org3d6c7e9" class="outline-2">
+<h2 id="org3d6c7e9"><span class="section-number-2">1.</span> Prelude</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li>JSP: Java Server Pages</li>
-<li>ASP: Active Server Pages</li>
-<li>ASP.NET</li>
-</ul>
-
-<p>
-ASP.NET 为 .NET 平台提供了完整的进行 Web 开发的底层框架:
-</p>
-<ul class="org-ul">
-<li>(ADO.NET - EF)</li>
-<li>Webforms - Winforms (事件驱动、基于控件)</li>
-<li>ASP.NET MVC (模型-视图-控制器)</li>
-<li>ASP.NET Web API</li>
-</ul>
-
-<p>
-ASP.NET Core:
-</p>
-<ul class="org-ul">
-<li>Razor Page</li>
-<li>Blazor (组件，使用 C# 写前端)</li>
-<li>MVC (跨平台，内置 web 服务器，内置 DI 容器)</li>
-<li>Web API</li>
-</ul>
 </div>
-
-<div id="outline-container-org4497edf" class="outline-3">
-<h3 id="org4497edf"><span class="section-number-3">1.1.</span> 基本概念</h3>
+<div id="outline-container-orgaeb87db" class="outline-3">
+<h3 id="orgaeb87db"><span class="section-number-3">1.1.</span> 请求</h3>
 <div class="outline-text-3" id="text-1-1">
-<p>
-HTML:
-</p>
-<pre class="example" id="org6673825">
-HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
-言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
-1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
-写的超文本文档称为HTML文档，它能独立于各种操作系统平台 (如UNIX，
-Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML文件，通过
-专用的浏览器来识别，并将这些HTML文件“翻译”成可以识别的信息，即现在所
-见到的网页。
-</pre>
 </div>
-</div>
-</section>
-
-<section id="outline-container-org2aa5ad6" class="outline-2">
-<h2 id="org2aa5ad6"><span class="section-number-2">2.</span> Summary-1</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-项目的创建跟初始化:
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">dotnet new mvc -o MvcMovie1
-<span style="color: #483d8b;">cd</span> MvcMovie1
-
-<span style="color: #b22222;">#</span><span style="color: #b22222;">dotnet tool install --global dotnet-ef --version 5.0.0</span>
-<span style="color: #b22222;">#</span><span style="color: #b22222;">dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0</span>
-dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.0
-
-code .
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Movie1.cs</span>
-
-dotnet-aspnet-codegenerator controller -name Movies1Controller -m Movie1 -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
-<span style="color: #b22222;"># </span><span style="color: #b22222;">appsettings.json</span>
-
-dotnet ef migrations add FirstInit
-dotnet ef database update
-
-
-dotnet run
-dotnet watch run
-</pre>
-</div>
-
-<p>
-生成种子数据:
-</p>
-<div class="org-src-container">
-<pre class="src src-sql"><span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>1, "xx1", 123<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>2, "x2x1", 132<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>3, "xx31", 213<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>4, "x2x1", 13<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>5, "xxk1", 132<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>6, "xax1", 13<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>7, "xbx1", 23<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>8, "xxy1", 53<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>9, "xxz1", 923<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>10, "xx-1", 13<span style="color: #707183;">)</span>;
-<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>11, "x-x1", 123<span style="color: #707183;">)</span>;
-</pre>
-</div>
-
-<p>
-进行相关修改:
-</p>
-<ol class="org-ol">
-<li>修改 _layout 文件</li>
-<li>重新对 Movies1Controller 里面的内容做调整</li>
-<li>对视图页面 (Views/*) 进行编辑</li>
-</ol>
-
-<p>
-添加字段:
-</p>
-<ol class="org-ol">
-<li>修改 Model, Url</li>
-<li><p>
-执行命令
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">dotnet ef migrations add AddUrlToMovie1
-dotnet ef database update
-</pre>
-</div></li>
-</ol>
-
-<p>
-添加一个 Controller:
-</p>
-<div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Actor.cs</span>
-
-dotnet-aspnet-codegenerator controller -name ActorController -m Actor -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
-
-dotnet ef migrations add AddModelActor
-dotnet ef database update
-</pre>
-</div>
-</div>
-</section>
-
-<section id="outline-container-org8e71b9a" class="outline-2">
-<h2 id="org8e71b9a"><span class="section-number-2">3.</span> 从浏览器发送请求/发展史</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-org94e0250" class="outline-3">
-<h3 id="org94e0250"><span class="section-number-3">3.1.</span> A 超链接</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org94e0250" class="outline-4">
+<h4 id="org94e0250"><span class="section-number-4">1.1.1.</span> A 超链接</h4>
+<div class="outline-text-4" id="text-1-1-1">
 <p>
 将请求的参数，携带到 QueryString 中发送到服务器:
 </p>
@@ -206,9 +82,9 @@ GET http://localhost:5001/comment/dolike/3
 </div>
 </div>
 
-<div id="outline-container-org956006e" class="outline-3">
-<h3 id="org956006e"><span class="section-number-3">3.2.</span> FORM 表单</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org956006e" class="outline-4">
+<h4 id="org956006e"><span class="section-number-4">1.1.2.</span> FORM 表单</h4>
+<div class="outline-text-4" id="text-1-1-2">
 <p>
 使用 Form 标签 + Input 进行更多属性的 <b>交互式</b> 提交:
 </p>
@@ -232,9 +108,9 @@ GET http://localhost:5001/comment/dolike/3
 </div>
 </div>
 
-<div id="outline-container-org2384b99" class="outline-3">
-<h3 id="org2384b99"><span class="section-number-3">3.3.</span> [AJAX] XMLHttpRequest</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org2384b99" class="outline-4">
+<h4 id="org2384b99"><span class="section-number-4">1.1.3.</span> [AJAX] XMLHttpRequest</h4>
+<div class="outline-text-4" id="text-1-1-3">
 <p>
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest">https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest</a>
 </p>
@@ -316,9 +192,9 @@ xhr.onload = <span style="color: #707183;">(</span>e<span style="color: #707183;
 </div>
 
 
-<div id="outline-container-org70dcdeb" class="outline-3">
-<h3 id="org70dcdeb"><span class="section-number-3">3.4.</span> jQuery (封装)</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-org70dcdeb" class="outline-4">
+<h4 id="org70dcdeb"><span class="section-number-4">1.1.4.</span> jQuery (封装)</h4>
+<div class="outline-text-4" id="text-1-1-4">
 <p>
 旧时代的残迹:
 </p>
@@ -416,9 +292,9 @@ $.getScript<span style="color: #707183;">(</span><span style="color: #8b2252;">"
 </div>
 </div>
 
-<div id="outline-container-org491c23d" class="outline-3">
-<h3 id="org491c23d"><span class="section-number-3">3.5.</span> Fetch API</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-org491c23d" class="outline-4">
+<h4 id="org491c23d"><span class="section-number-4">1.1.5.</span> Fetch API</h4>
+<div class="outline-text-4" id="text-1-1-5">
 <p>
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch</a>
 </p>
@@ -472,9 +348,9 @@ $.getScript<span style="color: #707183;">(</span><span style="color: #8b2252;">"
 </div>
 </div>
 
-<div id="outline-container-org8861c0b" class="outline-3">
-<h3 id="org8861c0b"><span class="section-number-3">3.6.</span> axios</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-org8861c0b" class="outline-4">
+<h4 id="org8861c0b"><span class="section-number-4">1.1.6.</span> axios</h4>
+<div class="outline-text-4" id="text-1-1-6">
 <p>
 基本使用:
 </p>
@@ -585,34 +461,288 @@ $.getScript<span style="color: #707183;">(</span><span style="color: #8b2252;">"
 </div>
 </div>
 </div>
-</section>
-
-<section id="outline-container-org725a847" class="outline-2">
-<h2 id="org725a847"><span class="section-number-2">4.</span> 页面元素的操作/发展史</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-orgcc48a27" class="outline-3">
-<h3 id="orgcc48a27"><span class="section-number-3">4.1.</span> 原生 DOM 节点</h3>
 </div>
 
-<div id="outline-container-org6327adb" class="outline-3">
-<h3 id="org6327adb"><span class="section-number-3">4.2.</span> jQuery</h3>
+<div id="outline-container-orgb5b2e0e" class="outline-3">
+<h3 id="orgb5b2e0e"><span class="section-number-3">1.2.</span> 页面</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgea09761" class="outline-4">
+<h4 id="orgea09761"><span class="section-number-4">1.2.1.</span> A/FORM</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+得到的，就是完整的页面:
+</p>
+<ul class="org-ul">
+<li>服务器端，通过模板引擎，模块化的方式，组合成了完整的页面</li>
+</ul>
+</div>
 </div>
 
-<div id="outline-container-org4c9f26a" class="outline-3">
-<h3 id="org4c9f26a"><span class="section-number-3">4.3.</span> Vue/ReactJS/Angular</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-orgb7dc610" class="outline-4">
+<h4 id="orgb7dc610"><span class="section-number-4">1.2.2.</span> AJAX/原生 DOM 节点</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+浏览器需要将得到的数据 (本质是字符串)，转换为 DOM 节点的一部分:
+</p>
+<ul class="org-ul">
+<li>ajax 发送请求，得到数据</li>
+<li>将结果拼接成合理的 html 字符串片段</li>
+<li>找到 dom 中的某个节点</li>
+<li>将上述拼装的字符串，更新到选择的节点上</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6327adb" class="outline-4">
+<h4 id="org6327adb"><span class="section-number-4">1.2.3.</span> jQuery</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+将拼字符串的方式发扬光大
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c9f26a" class="outline-4">
+<h4 id="org4c9f26a"><span class="section-number-4">1.2.4.</span> Vue/ReactJS/Angular</h4>
+<div class="outline-text-4" id="text-1-2-4">
 <ul class="org-ul">
 <li>前端的模板引擎</li>
 <li>组件化、模块化、工程化</li>
 </ul>
 </div>
 </div>
+</div>
+</section>
+<section id="outline-container-org09e9bb8" class="outline-2">
+<h2 id="org09e9bb8"><span class="section-number-2">2.</span> ASP.NET Core</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>JSP: Java Server Pages</li>
+<li>ASP: Active Server Pages</li>
+<li>ASP.NET</li>
+</ul>
+
+<p>
+ASP.NET 为 .NET 平台提供了完整的进行 Web 开发的底层框架:
+</p>
+<ul class="org-ul">
+<li>(ADO.NET - EF)</li>
+<li>Webforms - Winforms (事件驱动、基于控件)</li>
+<li>ASP.NET MVC (模型-视图-控制器)</li>
+<li>ASP.NET Web API</li>
+</ul>
+
+<p>
+ASP.NET Core:
+</p>
+<ul class="org-ul">
+<li>Razor Page</li>
+<li>Blazor (组件，使用 C# 写前端)</li>
+<li>MVC (跨平台，内置 web 服务器，内置 DI 容器)</li>
+<li>Web API</li>
+</ul>
+</div>
+
+<div id="outline-container-org4497edf" class="outline-3">
+<h3 id="org4497edf"><span class="section-number-3">2.1.</span> 基本概念</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+HTML:
+</p>
+<pre class="example" id="orgb82fd13">
+HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
+言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
+1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
+写的超文本文档称为HTML文档，它能独立于各种操作系统平台 (如UNIX，
+Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML文件，通过
+专用的浏览器来识别，并将这些HTML文件“翻译”成可以识别的信息，即现在所
+见到的网页。
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org900d865" class="outline-2">
+<h2 id="org900d865"><span class="section-number-2">3.</span> MVC</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+项目的创建跟初始化:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">dotnet new mvc -o MvcMovie1
+<span style="color: #483d8b;">cd</span> MvcMovie1
+
+<span style="color: #b22222;">#</span><span style="color: #b22222;">dotnet tool install --global dotnet-ef --version 5.0.0</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0</span>
+dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.0
+
+code .
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Movie1.cs</span>
+
+dotnet-aspnet-codegenerator controller -name Movies1Controller -m Movie1 -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+<span style="color: #b22222;"># </span><span style="color: #b22222;">appsettings.json</span>
+
+dotnet ef migrations add FirstInit
+dotnet ef database update
+
+
+dotnet run
+dotnet watch run
+</pre>
+</div>
+
+<p>
+生成种子数据:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>1, "xx1", 123<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>2, "x2x1", 132<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>3, "xx31", 213<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>4, "x2x1", 13<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>5, "xxk1", 132<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>6, "xax1", 13<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>7, "xbx1", 23<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>8, "xxy1", 53<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>9, "xxz1", 923<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>10, "xx-1", 13<span style="color: #707183;">)</span>;
+<span style="color: #a020f0;">insert</span> <span style="color: #a020f0;">into</span> movie1 <span style="color: #707183;">(</span>id, <span style="color: #a020f0;">name</span>, price<span style="color: #707183;">)</span> <span style="color: #a020f0;">values</span> <span style="color: #707183;">(</span>11, "x-x1", 123<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+进行相关修改:
+</p>
+<ol class="org-ol">
+<li>修改 _layout 文件</li>
+<li>重新对 Movies1Controller 里面的内容做调整</li>
+<li>对视图页面 (Views/*) 进行编辑</li>
+</ol>
+
+<p>
+添加字段:
+</p>
+<ol class="org-ol">
+<li>修改 Model, Url</li>
+<li><p>
+执行命令
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">dotnet ef migrations add AddUrlToMovie1
+dotnet ef database update
+</pre>
+</div></li>
+</ol>
+
+<p>
+添加一个 Controller:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Actor.cs</span>
+
+dotnet-aspnet-codegenerator controller -name ActorController -m Actor -dc MvcMovie1Context --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+
+dotnet ef migrations add AddModelActor
+dotnet ef database update
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org37d53cf" class="outline-2">
+<h2 id="org37d53cf"><span class="section-number-2">4.</span> WebAPI</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org1379624" class="outline-3">
+<h3 id="org1379624"><span class="section-number-3">4.1.</span> 项目的创建</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+创建一个新项目:
+</p>
+<pre class="example">
+dotnet new webapi -o 你的项目名字
+</pre>
+
+
+<p>
+如果需要 ef 支持，添加:
+</p>
+<pre class="example">
+dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge5b511c" class="outline-3">
+<h3 id="orge5b511c"><span class="section-number-3">4.2.</span> OpenAPI/Swagger</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+背景:
+</p>
+<ul class="org-ul">
+<li>前后端分离大趋势</li>
+<li>前后端的开发，需要在 API 方面进行深入交流</li>
+<li>在这样的需求驱动下，最后就产生了 OpenAPI 的标准</li>
+<li>它的核心就是一个 json/yaml 文档</li>
+<li>Swagger 是 OpenAPI 的实现:
+<ul class="org-ul">
+<li>Codegen</li>
+<li>Editor</li>
+<li>UI</li>
+</ul></li>
+</ul>
+
+<p>
+使用 Swagger 的步骤。在这里，我们使用 Swashbuckle 框架。
+</p>
+
+<p>
+首先，添加依赖到项目。
+</p>
+
+<pre class="example">
+dotnet add package Swashbuckle.AspNetCore
+</pre>
+
+
+<p>
+其次，注入相关内容。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">services.<span style="color: #0000ff;">AddSwaggerGen</span><span style="color: #707183;">(</span>c =&gt;
+<span style="color: #7388d6;">{</span>
+    c.<span style="color: #0000ff;">SwaggerDoc</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"v1"</span>, <span style="color: #a020f0;">new</span> <span style="color: #228b22;">OpenApiInfo</span> <span style="color: #709870;">{</span> <span style="color: #a0522d;">Title</span> = <span style="color: #8b2252;">"&#25105;&#30340;&#39033;&#30446;"</span>, <span style="color: #a0522d;">Version</span> = <span style="color: #8b2252;">"v1.2"</span> <span style="color: #709870;">}</span><span style="color: #909183;">)</span>;
+<span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+最后，配置使用:
+</p>
+<div class="org-src-container">
+<pre class="src src-csharp">app.<span style="color: #0000ff;">UseSwagger</span><span style="color: #707183;">()</span>;
+app.<span style="color: #0000ff;">UseSwaggerUI</span><span style="color: #707183;">(</span>c =&gt; c.<span style="color: #0000ff;">SwaggerEndpoint</span><span style="color: #7388d6;">(</span><span style="color: #8b2252;">"/swagger/v1/swagger.json"</span>, <span style="color: #8b2252;">"WebApplication1 v1"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+<p>
+访问:
+</p>
+<pre class="example" id="org49b6b1e">
+doc: https://localhost:44322/swagger/v1/swagger.json
+ui:  https://localhost:44322/swagger/index.html
+</pre>
+</div>
+</div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2022-01-11</p>
+<p class="date">Created: 2022-03-29</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
