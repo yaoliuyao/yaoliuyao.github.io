@@ -466,6 +466,21 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
 如果需要 ef 支持，添加:
 : dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
 
+** Controller
+
+- 需要继承自 ControllerBase
+- ControllerBase 里提供了 Ok/NotFound/BadReqeust/Content/CreatedAtAction 之类的方法
+- 通过 [Route] [HttpXxx] 的方式，构成了访问的 url
+- 返回值可以是一个类，可以是列表、枚举对象，也可以是 ActionResult
+- [ApiController] 作用在 Controller 类上
+
+** RESTful
+
+- 什么是前后端分离
+- 为什么使用 JSON 进行数据传递
+- 什么是 RESTful
+- 什么是 YAML
+  
 ** OpenAPI/Swagger
 
 背景:
@@ -504,4 +519,5 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
   doc: https://localhost:44322/swagger/v1/swagger.json
   ui:  https://localhost:44322/swagger/index.html
 #+end_example
+
 

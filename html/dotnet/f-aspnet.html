@@ -53,7 +53,9 @@
 <li><a href="#org37d53cf">4. WebAPI</a>
 <ul>
 <li><a href="#org1379624">4.1. 项目的创建</a></li>
-<li><a href="#orge5b511c">4.2. OpenAPI/Swagger</a></li>
+<li><a href="#orgb65e312">4.2. Controller</a></li>
+<li><a href="#org3922bce">4.3. RESTful</a></li>
+<li><a href="#orge5b511c">4.4. OpenAPI/Swagger</a></li>
 </ul>
 </li>
 </ul>
@@ -550,7 +552,7 @@ ASP.NET Core:
 <p>
 HTML:
 </p>
-<pre class="example" id="orgb82fd13">
+<pre class="example" id="org74718e7">
 HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
 言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
 1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
@@ -676,9 +678,34 @@ dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0
 </div>
 </div>
 
-<div id="outline-container-orge5b511c" class="outline-3">
-<h3 id="orge5b511c"><span class="section-number-3">4.2.</span> OpenAPI/Swagger</h3>
+<div id="outline-container-orgb65e312" class="outline-3">
+<h3 id="orgb65e312"><span class="section-number-3">4.2.</span> Controller</h3>
 <div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>需要继承自 ControllerBase</li>
+<li>ControllerBase 里提供了 Ok/NotFound/BadReqeust/Content/CreatedAtAction 之类的方法</li>
+<li>通过 [Route] [HttpXxx] 的方式，构成了访问的 url</li>
+<li>返回值可以是一个类，可以是列表、枚举对象，也可以是 ActionResult</li>
+<li>[ApiController] 作用在 Controller 类上</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3922bce" class="outline-3">
+<h3 id="org3922bce"><span class="section-number-3">4.3.</span> RESTful</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>什么是前后端分离</li>
+<li>为什么使用 JSON 进行数据传递</li>
+<li>什么是 RESTful</li>
+<li>什么是 YAML</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge5b511c" class="outline-3">
+<h3 id="orge5b511c"><span class="section-number-3">4.4.</span> OpenAPI/Swagger</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 背景:
 </p>
@@ -732,7 +759,7 @@ app.<span style="color: #0000ff;">UseSwaggerUI</span><span style="color: #707183
 <p>
 访问:
 </p>
-<pre class="example" id="org49b6b1e">
+<pre class="example" id="orgee9e577">
 doc: https://localhost:44322/swagger/v1/swagger.json
 ui:  https://localhost:44322/swagger/index.html
 </pre>
