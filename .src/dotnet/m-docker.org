@@ -1,0 +1,12 @@
+#+TITLE: Docker and K8S
+
+
+* Docker
+
+#+begin_example
+
+           pull         run
+ Repository  ↔   Image   ↔     Container
+           push        commit
+
+#+end_example
