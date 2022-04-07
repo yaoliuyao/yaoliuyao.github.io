@@ -63,6 +63,7 @@
   - [[file:111/x-qa.org][答疑 (Q & A)]]
   - [[file:111/z-cases.org][一万行代码]]
   - [[file:111/zz-jiuye.org][就业环节]]
+  - [[file:111/zzz-design-pattern.org][设计模式 (Design Pattern)]]
 - dotnet
   - [[file:dotnet/a-dotnet.org][.NET]]
   - [[file:dotnet/e-csharp.org][C♯]]

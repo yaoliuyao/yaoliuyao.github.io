@@ -1,0 +1,129 @@
+#+TITLE: 设计模式 (Design Pattern)
+
+
+* 原则和模式
+
+语言分为动态 (JS) 和静态 (Java, 面向对象)：
+- 动态语言，非常灵活。增加各种限制
+- 静态语言，非常安全。增加其灵活性
+
+四人帮 (GoF)，经验，写了一本书《设计模式-可复用面向对象软件的基础》，提出了 23 中设计模式。
+
+面向对象编程，我们需要把握的方针: 高内聚、低耦合：
+- 高内聚
+- 低耦合
+
+基于上面的方针，就出现了很多设计上的原则 (SOLID):
+- 开闭原则 (Open-Closed Principle, OCP)。对扩展开放，对修改关闭。这是根本原则!
+- 单一职责原则 (Single Responsibility Principle, SRP)，一个类只负责一个功能领域中的相应职责，不应太大
+- 里氏替代原则 (Liskov Substitution Principle, LSP)，所有引用基类对象的地方能够透明的使用其子类对象
+- 依赖倒置原则 (DI Principle, DIP)，抽象不应该依赖于细节，细节应该依赖于抽象，即面向接口编程
+- 接口隔离原则 (Interface Segregation Principle, ISP)，使用多个专门的接口，而不是使用单一的总接口
+- 合成复用原则 (Composite Reuse Principle, CRP)，进行使用对象的组合，而不是使用继承来达到复用的目的
+- 迪米特原则 (Law of Demeter, LoD)，一个软件实体应该尽量与其他实体发生交互关系
+
+基于上面的原则，在编码过程中，就产生了一些套路 (经验)，它们就是所谓的设计模式。
+
+创建型:
+- 单例模式 (Singleton)
+- 工厂模式 (Factory Method)
+- 构建者模式 (Builder)
+
+结构型:
+- 装饰模式 (Decorator)
+- 适配器模式 (Adaptor)
+- 门面模式 (Facade)
+- 代理模式 (Proxy)
+- 桥接模式 (Bridge)
+- 复合模式 (Composite)
+
+行为型:
+- 责任链模式
+- 观察者模式
+- 命令模式
+- 中介模式
+- 模板方法模式
+- 策略模式
+- 状态模式
+- 迭代器模式
+- 访问者模式
+
+* 单例模式
+
+一般情况，一个类可以实例化无数的对象出来。但是有时候，需要只有一个实例。
+
+#+begin_src csharp
+  public class Youxi
+  {
+      // ...
+  }
+  
+  var x = new Youxi();
+  var y = new Youxi();
+  var z = new Youxi();
+  
+  // 饿汉模式
+  public class MyGame
+  {
+      private static MyGame myGame = new MyGame();
+  
+      // 第一步
+      private MyGame() { }
+  
+      // 第二步
+      public static MyGame CreateInstance()
+      {
+          return myGame;
+      }
+  }
+  
+  // 懒汉模式
+  public class MyGame
+  {
+      private static MyGame myGame;
+  
+      // 第一步
+      private MyGame() { }
+  
+      // 第二步
+      public static MyGame CreateInstance()
+      {
+          if (myGame == null)
+          {
+              myGame = new MyGame();
+          }
+          return myGame;
+      }
+  }
+#+end_src
+
+* 工厂模式
+
+#+begin_src csharp
+  public class FoodFactory
+  {
+      public Pizza GetPizza()
+      {
+          return new Pizza();
+      }
+      public Pizza GetBing()
+      {
+          // new XxxBing();
+          return new YyyBing();
+      }
+  }
+  
+  var b1 = new XxxBing();
+  var b3 = new YyyBing();
+  
+  var f = new FoodFactory();
+  var b2 = f.GetBing();
+#+end_src
+
+* 构建者模式
+
+自行找例子
+
+* 装饰模式
+
+基于组合，而非继承

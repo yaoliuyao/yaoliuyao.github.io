@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-04-07 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>设计模式 (Design Pattern)</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="悟饭">
+<link rel='stylesheet' href='/html/asset/common.css?3344' />
+<link rel='stylesheet' href='/yaoliuyao/html/asset/common.css?3344' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/html/asset/common.js'></script>
+<script src='/yaoliuyao/html/asset/common.js'></script>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">设计模式 (Design Pattern)</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgdfe941f">1. 原则和模式</a></li>
+<li><a href="#orgefed048">2. 单例模式</a></li>
+<li><a href="#org65ccada">3. 工厂模式</a></li>
+<li><a href="#org960c87c">4. 构建者模式</a></li>
+<li><a href="#org1e6c987">5. 装饰模式</a></li>
+</ul>
+</div>
+</nav>
+
+
+<section id="outline-container-orgdfe941f" class="outline-2">
+<h2 id="orgdfe941f"><span class="section-number-2">1.</span> 原则和模式</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+语言分为动态 (JS) 和静态 (Java, 面向对象)：
+</p>
+<ul class="org-ul">
+<li>动态语言，非常灵活。增加各种限制</li>
+<li>静态语言，非常安全。增加其灵活性</li>
+</ul>
+
+<p>
+四人帮 (GoF)，经验，写了一本书《设计模式-可复用面向对象软件的基础》，提出了 23 中设计模式。
+</p>
+
+<p>
+面向对象编程，我们需要把握的方针: 高内聚、低耦合：
+</p>
+<ul class="org-ul">
+<li>高内聚</li>
+<li>低耦合</li>
+</ul>
+
+<p>
+基于上面的方针，就出现了很多设计上的原则 (SOLID):
+</p>
+<ul class="org-ul">
+<li>开闭原则 (Open-Closed Principle, OCP)。对扩展开放，对修改关闭。这是根本原则!</li>
+<li>单一职责原则 (Single Responsibility Principle, SRP)，一个类只负责一个功能领域中的相应职责，不应太大</li>
+<li>里氏替代原则 (Liskov Substitution Principle, LSP)，所有引用基类对象的地方能够透明的使用其子类对象</li>
+<li>依赖倒置原则 (DI Principle, DIP)，抽象不应该依赖于细节，细节应该依赖于抽象，即面向接口编程</li>
+<li>接口隔离原则 (Interface Segregation Principle, ISP)，使用多个专门的接口，而不是使用单一的总接口</li>
+<li>合成复用原则 (Composite Reuse Principle, CRP)，进行使用对象的组合，而不是使用继承来达到复用的目的</li>
+<li>迪米特原则 (Law of Demeter, LoD)，一个软件实体应该尽量与其他实体发生交互关系</li>
+</ul>
+
+<p>
+基于上面的原则，在编码过程中，就产生了一些套路 (经验)，它们就是所谓的设计模式。
+</p>
+
+<p>
+创建型:
+</p>
+<ul class="org-ul">
+<li>单例模式 (Singleton)</li>
+<li>工厂模式 (Factory Method)</li>
+<li>构建者模式 (Builder)</li>
+</ul>
+
+<p>
+结构型:
+</p>
+<ul class="org-ul">
+<li>装饰模式 (Decorator)</li>
+<li>适配器模式 (Adaptor)</li>
+<li>门面模式 (Facade)</li>
+<li>代理模式 (Proxy)</li>
+<li>桥接模式 (Bridge)</li>
+<li>复合模式 (Composite)</li>
+</ul>
+
+<p>
+行为型:
+</p>
+<ul class="org-ul">
+<li>责任链模式</li>
+<li>观察者模式</li>
+<li>命令模式</li>
+<li>中介模式</li>
+<li>模板方法模式</li>
+<li>策略模式</li>
+<li>状态模式</li>
+<li>迭代器模式</li>
+<li>访问者模式</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-orgefed048" class="outline-2">
+<h2 id="orgefed048"><span class="section-number-2">2.</span> 单例模式</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+一般情况，一个类可以实例化无数的对象出来。但是有时候，需要只有一个实例。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">Youxi</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">x</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Youxi</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">y</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Youxi</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">z</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Youxi</span><span style="color: #707183;">()</span>;
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#39295;&#27721;&#27169;&#24335;</span>
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">MyGame</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">MyGame</span> <span style="color: #a0522d;">myGame</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyGame</span><span style="color: #7388d6;">()</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#27493;</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #0000ff;">MyGame</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #7388d6;">}</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#20108;&#27493;</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">MyGame</span> <span style="color: #0000ff;">CreateInstance</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> myGame;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">&#25042;&#27721;&#27169;&#24335;</span>
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">MyGame</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">MyGame</span> <span style="color: #a0522d;">myGame</span>;
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#19968;&#27493;</span>
+    <span style="color: #a020f0;">private</span> <span style="color: #0000ff;">MyGame</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">{</span> <span style="color: #7388d6;">}</span>
+
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">&#31532;&#20108;&#27493;</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">MyGame</span> <span style="color: #0000ff;">CreateInstance</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">if</span> <span style="color: #909183;">(</span>myGame == <span style="color: #008b8b;">null</span><span style="color: #909183;">)</span>
+        <span style="color: #909183;">{</span>
+            myGame = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">MyGame</span><span style="color: #709870;">()</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #a020f0;">return</span> myGame;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org65ccada" class="outline-2">
+<h2 id="org65ccada"><span class="section-number-2">3.</span> 工厂模式</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-csharp"><span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">FoodFactory</span>
+<span style="color: #707183;">{</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Pizza</span> <span style="color: #0000ff;">GetPizza</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">Pizza</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">Pizza</span> <span style="color: #0000ff;">GetBing</span><span style="color: #7388d6;">()</span>
+    <span style="color: #7388d6;">{</span>
+        <span style="color: #b22222;">// </span><span style="color: #b22222;">new XxxBing();</span>
+        <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">YyyBing</span><span style="color: #909183;">()</span>;
+    <span style="color: #7388d6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">b1</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">XxxBing</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">b3</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">YyyBing</span><span style="color: #707183;">()</span>;
+
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">f</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">FoodFactory</span><span style="color: #707183;">()</span>;
+<span style="color: #228b22;">var</span> <span style="color: #a0522d;">b2</span> = f.<span style="color: #0000ff;">GetBing</span><span style="color: #707183;">()</span>;
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org960c87c" class="outline-2">
+<h2 id="org960c87c"><span class="section-number-2">4.</span> 构建者模式</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+自行找例子
+</p>
+</div>
+</section>
+
+<section id="outline-container-org1e6c987" class="outline-2">
+<h2 id="org1e6c987"><span class="section-number-2">5.</span> 装饰模式</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+基于组合，而非继承
+</p>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 悟饭</p>
+<p class="date">Created: 2022-04-07</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>
