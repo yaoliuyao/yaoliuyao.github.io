@@ -521,3 +521,32 @@ Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML�
 #+end_example
 
 
+
+* Identity
+
+Identity:
+#+begin_example
+名词:
+ 1. 身分 (identity, status, position, rank, dignity)
+ 2. 特性 (characteristic, feature, property, behavior, identity, characteristical)
+ 3. 个性 (personality, individuality, character, individual character, identity, selfhood)
+ 4. 恒等式 (identity)
+#+end_example
+
+ASP.NET 中，Identity 主要做的两件事:
+1. Authentication (认证、验证) 登录
+2. Authorization (授权)
+
+
+
+#+begin_src sqlite :db E:\Workdir\WebApplication4\WebApplication4\IdentitySqlite.db
+  select * from AspNetUsers;
+#+end_src
+
+#+RESULTS:
+| 02333d35-a7fa-439d-879b-7876c8eb278c | wodeyouxiang@qq.com | WODEYOUXIANG@QQ.COM | wodeyouxiang@qq.com | WODEYOUXIANG@QQ.COM | 1 | AQAAAAEAACcQAAAAEPCUecCKcIWyQfqVRSgeFTEz/P94aqvELBbx17XJWa8RmXbOBnvA0EV5cZBps3JGnQ== | 2G5SUZCMSEDXPK6MBUC25NEH2XKWJ4YE | e42ce9aa-6071-41fb-9b5f-01b580c99c83 |   | 0 | 0 |   | 1 | 0 |
+
+
+
+
+| 02333d35-a7fa-439d-879b-7876c8eb278c | wodeyouxiang@qq.com | WODEYOUXIANG@QQ.COM | wodeyouxiang@qq.com | WODEYOUXIANG@QQ.COM | 0 | AQAAAAEAACcQAAAAEPCUecCKcIWyQfqVRSgeFTEz/P94aqvELBbx17XJWa8RmXbOBnvA0EV5cZBps3JGnQ== | 2G5SUZCMSEDXPK6MBUC25NEH2XKWJ4YE | 62ce8e06-9a0b-4a07-9ad5-01c914821d13 |   | 0 | 0 |   | 1 | 0 |

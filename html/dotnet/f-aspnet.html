@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-03-29 -->
+<!-- 2022-04-08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ASP.NET</title>
@@ -58,6 +58,7 @@
 <li><a href="#orge5b511c">4.4. OpenAPI/Swagger</a></li>
 </ul>
 </li>
+<li><a href="#org83525d8">5. Identity</a></li>
 </ul>
 </div>
 </nav>
@@ -552,7 +553,7 @@ ASP.NET Core:
 <p>
 HTML:
 </p>
-<pre class="example" id="org74718e7">
+<pre class="example" id="orgde6e882">
 HTML 由来. HTML的英文全称是 Hyper Text Markup Language，即超文本标记语
 言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于
 1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编
@@ -759,17 +760,108 @@ app.<span style="color: #0000ff;">UseSwaggerUI</span><span style="color: #707183
 <p>
 访问:
 </p>
-<pre class="example" id="orgee9e577">
+<pre class="example" id="orged53b13">
 doc: https://localhost:44322/swagger/v1/swagger.json
 ui:  https://localhost:44322/swagger/index.html
 </pre>
 </div>
 </div>
 </section>
+
+
+
+<section id="outline-container-org83525d8" class="outline-2">
+<h2 id="org83525d8"><span class="section-number-2">5.</span> Identity</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Identity:
+</p>
+<pre class="example" id="org9e2833e">
+名词:
+ 1. 身分 (identity, status, position, rank, dignity)
+ 2. 特性 (characteristic, feature, property, behavior, identity, characteristical)
+ 3. 个性 (personality, individuality, character, individual character, identity, selfhood)
+ 4. 恒等式 (identity)
+</pre>
+
+<p>
+ASP.NET 中，Identity 主要做的两件事:
+</p>
+<ol class="org-ol">
+<li>Authentication (认证、验证) 登录</li>
+<li>Authorization (授权)</li>
+</ol>
+
+
+
+<div class="org-src-container">
+<pre class="src src-sqlite"><span style="color: #a020f0;">select</span> * <span style="color: #a020f0;">from</span> AspNetUsers;
+</pre>
+</div>
+
+
+
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">02333d35-a7fa-439d-879b-7876c8eb278c</td>
+<td class="org-left">wodeyouxiang@qq.com</td>
+<td class="org-left">WODEYOUXIANG@QQ.COM</td>
+<td class="org-left">wodeyouxiang@qq.com</td>
+<td class="org-left">WODEYOUXIANG@QQ.COM</td>
+<td class="org-right">0</td>
+<td class="org-left">AQAAAAEAACcQAAAAEPCUecCKcIWyQfqVRSgeFTEz/P94aqvELBbx17XJWa8RmXbOBnvA0EV5cZBps3JGnQ==</td>
+<td class="org-left">2G5SUZCMSEDXPK6MBUC25NEH2XKWJ4YE</td>
+<td class="org-left">62ce8e06-9a0b-4a07-9ad5-01c914821d13</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 悟饭</p>
-<p class="date">Created: 2022-03-29</p>
+<p class="date">Created: 2022-04-08</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
