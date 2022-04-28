@@ -64,6 +64,7 @@
   - [[file:111/z-cases.org][一万行代码]]
   - [[file:111/zz-jiuye.org][就业环节]]
   - [[file:111/zzz-design-pattern.org][设计模式 (Design Pattern)]]
+  - [[file:111/zzzz-jinengkaoshi.org][职业技能考试]]
 - dotnet
   - [[file:dotnet/a-dotnet.org][.NET]]
   - [[file:dotnet/e-csharp.org][C♯]]

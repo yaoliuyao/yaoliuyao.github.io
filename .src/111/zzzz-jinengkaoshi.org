@@ -1,0 +1,54 @@
+#+TITLE: 职业技能考试
+
+
+* 基本要求
+
+- 使用 VS2019 + SqlServer2015 进行开发 (sqlserver: sa/123456)
+- 务必按照题目要求做事，不要做多余的，也不要忽略题目要求
+- 使用自己最擅长的技术，最好最快的就是 .NET MVC，用 Razor 写界面
+
+* 你能用到的
+
+在考试机器的桌面上，你会发现你用到的三个快捷方式:
+- dawio (用来绘图，请提前了解)
+- Visual Studio 2019 (你的 IDE，不要擅作主张去用 VSCode)
+- SSMS (SqlServer 客户端工具)
+
+在考试的文件夹中，你能发现试题以及截图文件:
+- 截图.exe
+
+在 C 盘，你能发现一些参考资料 (请谨慎使用，低调使用):
+- C:\Logs\BZ
+
+
+* 基本答题步骤
+
+- 首先, *仔细* 阅读题目
+- 然后，打开 VS2019
+- 随后，创建一个 MVC Core 项目 (项目命名要按照要求来；务必选择 .NET 版本为 5.0；务必记住项目的存储路径)
+- 用记事本打开 ~C:\Logs\BZ\RecruitProject22\RecruitProject22.csproj~ 文件，将添加依赖的一段拷贝到我们新项目的 .csproj 文件内。
+  拷贝完成，大致是这样的:
+  #+begin_src xml
+    <Project Sdk="Microsoft.NET.Sdk.Web">
+        <PropertyGroup>
+            <TargetFramework>net5.0</TargetFramework>
+        </PropertyGroup>
+        <!-- 务必确定依赖版本是 5.* -->
+        <ItemGroup>
+            <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+                <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+                <PrivateAssets>all</PrivateAssets>
+            </PackageReference>
+            <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="5.0.0" />
+            <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+            <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0" />
+        </ItemGroup>
+    </Project>
+    
+  #+end_src
+- 打开桌面的 ~dawio~ 工具，按要求绘制相关 UML 图，然后使用 ~截图.exe~ 截图保存到相应位置
+- 在项目中完成功能实现。文件夹 ~C:\Logs\BZ~ 下的内容 *仅供参开，谢绝照搬* !
+- 按照要求，打包文件。
+- 最后，最重要的: *仔细检查项目，务必按照要求，提交考试文件！*, 不要少提交东西，切切!
+
+
