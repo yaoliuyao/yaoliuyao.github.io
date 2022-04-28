@@ -30,7 +30,7 @@
   + *务必选择 .NET 版本为 5.0*
   + 务必记住项目的存储路径
 - 用记事本打开 ~C:\Logs\BZ\RecruitProject22\RecruitProject22.csproj~ 文件，将添加依赖的一段拷贝到我们新项目的 .csproj 文件内。
-  拷贝完成，大致是这样的:
+- 拷贝完成，你项目的 .csproj 大致是这样的 (拷贝完成最好调用 dotnet restore 还原一下):
   #+begin_src xml
     <Project Sdk="Microsoft.NET.Sdk.Web">
         <PropertyGroup>
@@ -47,7 +47,6 @@
             <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0" />
         </ItemGroup>
     </Project>
-    
   #+end_src
 - 打开桌面的 ~drawio~ 工具，按要求绘制相关 UML 图，然后使用 ~截图.exe~ 截图保存到相应位置
 - 在项目中完成功能实现。文件夹 ~C:\Logs\BZ~ 下的内容 *仅供参考，谢绝照搬* !

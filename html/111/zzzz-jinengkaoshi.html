@@ -94,9 +94,9 @@
 <li><b>务必选择 .NET 版本为 5.0</b></li>
 <li>务必记住项目的存储路径</li>
 </ul></li>
+<li>用记事本打开 <code>C:\Logs\BZ\RecruitProject22\RecruitProject22.csproj</code> 文件，将添加依赖的一段拷贝到我们新项目的 .csproj 文件内。</li>
 <li><p>
-用记事本打开 <code>C:\Logs\BZ\RecruitProject22\RecruitProject22.csproj</code> 文件，将添加依赖的一段拷贝到我们新项目的 .csproj 文件内。
-拷贝完成，大致是这样的:
+拷贝完成，你项目的 .csproj 大致是这样的 (拷贝完成最好调用 dotnet restore 还原一下):
 </p>
 <div class="org-src-container">
 <pre class="src src-xml">&lt;<span style="color: #0000ff;">Project</span> <span style="color: #a0522d;">Sdk</span>=<span style="color: #8b2252;">"Microsoft.NET.Sdk.Web"</span>&gt;
@@ -114,7 +114,6 @@
         &lt;<span style="color: #0000ff;">PackageReference</span> <span style="color: #a0522d;">Include</span>=<span style="color: #8b2252;">"Microsoft.VisualStudio.Web.CodeGeneration.Design"</span> <span style="color: #a0522d;">Version</span>=<span style="color: #8b2252;">"5.0.0"</span> /&gt;
     &lt;/<span style="color: #0000ff;">ItemGroup</span>&gt;
 &lt;/<span style="color: #0000ff;">Project</span>&gt;
-
 </pre>
 </div></li>
 <li>打开桌面的 <code>drawio</code> 工具，按要求绘制相关 UML 图，然后使用 <code>截图.exe</code> 截图保存到相应位置</li>
